@@ -1,4 +1,4 @@
 mlphp
 =====
 
-PHP Connector for MarkLogic REST API
+PHP Connector for MarkLogic REST API.
