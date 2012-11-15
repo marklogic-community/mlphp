@@ -65,10 +65,12 @@ of PHP)
 
 5. The photomap application requires the following:
 
-    * Configure the permissions for the the mlphp/photomap/uploads directory so
-      PHP can read, write, and execute.
+   <ul>
+   <li>Configure the permissions for the the mlphp/photomap/uploads directory so
+       PHP can read, write, and execute.</li>
 
-    * Add a Google Maps key to the photomap setup file: mlphp/photomap/setup.php
+   <li>Add a Google Maps key to the photomap setup file: mlphp/photomap/setup.php</li>
+   </ul>
 
 6. Setup is complete! To see MLPHP in action, access the following:
 
