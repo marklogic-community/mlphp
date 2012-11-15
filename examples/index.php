@@ -15,10 +15,10 @@
 <p>Check out example code that shows you how to load documents, read and write metadata, build search options nodes, and search the MarkLogic database:</p>
 
 <ul>
-<li><a href="example_docs_display.php">Read/Write/Delete Documents</a></li>
-<li><a href="example_meta_display.php">Manage Document Metadata</a></li>
-<li><a href="example_opts_display.php">Define Search Options</a></li>
-<li><a href="example_search_display.php">Perform Searches</a></li>
+<li><a href="example.php?id=docs&view=code">Read/Write/Delete Documents</a></li>
+<li><a href="example.php?id=meta&view=code">Manage Document Metadata</a></li>
+<li><a href="example.php?id=opts&view=code">Define Search Options</a></li>
+<li><a href="example.php?id=search&view=code">Perform Searches</a></li>
 </ul>
 
 <p>For more details, see the <a href="../api/docs">API documentation</a>.</p>

@@ -1,28 +1,4 @@
-<!DOCTYPE html>
-<html lang="en-us">
-<head>
-<title>Example Code: Read/Write Documents</title>
-<link type="text/css" href="styles.css" rel="stylesheet">
-</head>
-
-<div id="wrapper">
-
-<div class="examples-subtitle"><a href="index.php">Example Code</a></div>
-<h1>Read/Write/Delete Documents</h1>
-
-<div class="code-links"><a href="example_docs_display.php">Display code</a> | <strong>Execute code</strong></div>
-
-<pre>
 <?php
-// MarkLogic REST documentation for document loading: http://docs.marklogic.com/guide/rest-dev/documents#id_11953
-
-require_once ('setup.php');	// Define $mlphp properties
-
-// Create a REST client object using global variables
-$client = new RESTClient($mlphp['host'], $mlphp['port'], $mlphp['path'], $mlphp['version'],
-                         $mlphp['username'], $mlphp['password'], $mlphp['auth']);
-
-
 // Text as a document
 $doc1 = new Document($client);			// Create a Document object (passing the REST client)
 $xml1 = 'Hello, PHP';				// Define document text
@@ -126,10 +102,6 @@ $doc1->delete('/example.txt');
 echo "Attempt to read:\n";
 echo $doc1->read('/example.txt') . "\n";
 
-?>
-</pre>
-
-<?php
 function displayImage($uri, $contentType) {
     echo '<img src="binary.php?uri=' . $uri . '&type=' . $contentType . '"/>';
 }
@@ -137,9 +109,5 @@ function displayImage($uri, $contentType) {
 function displayLink($uri, $contentType, $text) {
     echo '<a href="binary.php?uri=' . $uri . '&type=' . $contentType . '">' . $text . '</a>';
 }
+
 ?>
-
-</div>
-
-</body>
-</html>
