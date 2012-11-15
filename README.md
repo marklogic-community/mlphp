@@ -27,12 +27,12 @@ of PHP)
 
 2. In the MarkLogic Admin interface, set up two REST users:
 
-   User: rest-writer-user
-   Password: writer-pw
+   User: rest-writer-user <br />
+   Password: writer-pw <br />
    Role: rest-writer
 
-   User: rest-admin-user
-   Password: admin-pw
+   User: rest-admin-user <br />
+   Password: admin-pw <br />
    Role: rest-admin
 
    To set up the users, go to the Admin interface (http://localhost:8001/),
@@ -56,8 +56,8 @@ of PHP)
 
 4. The code examples require the following roles:
 
-   doc-reader
-   doc-admin
+   doc-reader <br />
+   doc-admin <br />
    doc-editor
 
    To set up roles, go to the Admin interface (http://localhost:8001/), click
