@@ -1,0 +1,146 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+<html lang="en">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="generator" content="PHPDoctor 2RC4 (http://peej.github.com/phpdoctor/)">
+<meta name="when" content="Wed, 14 Nov 2012 20:38:03 +0000">
+
+<link rel="stylesheet" type="text/css" href="../../stylesheet.css">
+<link rel="start" href="../../overview-summary.html">
+
+<title>ValueConstraint ('MLPHP')</title>
+
+</head>
+<body id="definition" onload="parent.document.title=document.title;">
+
+<div class="header">
+<h1><a href=../../index.php target=_top>MLPHP</a></h1>
+<ul>
+<li><a href="../../overview-summary.html">Overview</a></li>
+<li><a href="../../mlphp/options/package-summary.html">Namespace</a></li>
+<li class="active">Class</li>
+<li><a href="../../mlphp/options/package-tree.html">Tree</a></li>
+<li><a href="../../overview-files.html">Files</a></li>
+<li><a href="../../deprecated-list.html">Deprecated</a></li>
+<li><a href="../../todo-list.html">Todo</a></li>
+<li><a href="../../index-all.html">Index</a></li>
+</ul>
+</div>
+
+<div class="small_links">
+<a href="../../index.html" target="_top">Frames</a>
+<a href="../../mlphp/options/valueconstraint.html" target="_top">No frames</a>
+</div>
+<div class="small_links">
+Summary: <a href="#summary_field">Field</a> | <a href="#summary_method">Method</a> | <a href="#summary_constr">Constr</a>
+Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> | <a href="#summary_constr">Constr</a>
+</div>
+<hr>
+
+<div class="qualifiedName">mlphp\options\ValueConstraint</div>
+<a href="../../source/valueconstraint.php.html#line9" class="location">ValueConstraint.php at line 9</a>
+
+<h1>Class ValueConstraint</h1>
+
+<pre class="tree"><a href="../../mlphp/options/abstractconstraint.html">AbstractConstraint</a><br>    └─<strong>ValueConstraint</strong><br /></pre>
+
+<hr>
+
+<p class="signature">public  class <strong>ValueConstraint</strong><br>extends <a href="../../mlphp/options/abstractconstraint.html">AbstractConstraint</a>
+
+</p>
+
+<div class="comment" id="overview_description"><p>Represents a value constraint for search.</p></div>
+
+<dl>
+<dt>Author:</dt>
+<dd>Mike Wooldridge <mike.wooldridge@marklogic.com></dd>
+</dl>
+<hr>
+
+<table id="summary_constructor">
+<tr><th colspan="2">Constructor Summary</th></tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#__construct()">__construct</a>(string name, string elem, string ns, string attr, string attrNs)</p><p class="description">Create a ValueConstraint object.</p></td>
+</tr>
+</table>
+
+<table id="summary_method">
+<tr><th colspan="2">Method Summary</th></tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#getAsElem()">getAsElem</a>(DOMDocument dom)</p><p class="description">Get the constraint as a DOMElement object.</p></td>
+</tr>
+</table>
+
+<table class="inherit">
+<tr><th colspan="2">Methods inherited from mlphp\options\AbstractConstraint</th></tr>
+<tr><td><a href="../../mlphp/options/abstractconstraint.html#__construct()">__construct</a>, <a href="../../mlphp/options/abstractconstraint.html#addFacetOptions()">addFacetOptions</a>, <a href="../../mlphp/options/abstractconstraint.html#addFragmentScope()">addFragmentScope</a>, <a href="../../mlphp/options/abstractconstraint.html#addTermOptions()">addTermOptions</a>, <a href="../../mlphp/options/abstractconstraint.html#setFacetOptions()">setFacetOptions</a>, <a href="../../mlphp/options/abstractconstraint.html#setFragmentScrope()">setFragmentScrope</a>, <a href="../../mlphp/options/abstractconstraint.html#setTermOptions()">setTermOptions</a></td></tr></table>
+
+<h2 id="detail_method">Constructor Detail</h2>
+<a href="../../source/valueconstraint.php.html#line29" class="location">ValueConstraint.php at line 29</a>
+
+<h3 id="__construct()">__construct</h3>
+<code class="signature">public  void <strong>__construct</strong>(string name, string elem, string ns, string attr, string attrNs)</code>
+<div class="details">
+<p>Create a ValueConstraint object.</p><dl>
+<dt>See Also:</dt>
+<dd><a href="http://docs.marklogic.com/search:search#opt-constraint">http://docs.marklogic.com/search:search#opt-constraint</a></dd>
+<dt>Parameters:</dt>
+<dd>name - Constraint name.</dd>
+<dd>elem - Element name.</dd>
+<dd>ns - An element namespace.</dd>
+<dd>attr - Attribute name.</dd>
+<dd>attrNs - An attribute namespace.</dd>
+</dl>
+</div>
+
+<hr>
+
+<h2 id="detail_method">Method Detail</h2>
+<a href="../../source/valueconstraint.php.html#line43" class="location">ValueConstraint.php at line 43</a>
+
+<h3 id="getAsElem()">getAsElem</h3>
+<code class="signature">public  void <strong>getAsElem</strong>(DOMDocument dom)</code>
+<div class="details">
+<p>Get the constraint as a DOMElement object.</p><dl>
+<dt>Parameters:</dt>
+<dd>dom - The DOMDocument object with which to create the element.</dd>
+</dl>
+</div>
+
+<hr>
+
+<div class="header">
+<h1><a href=../../index.php target=_top>MLPHP</a></h1>
+<ul>
+<li><a href="../../overview-summary.html">Overview</a></li>
+<li><a href="../../mlphp/options/package-summary.html">Namespace</a></li>
+<li class="active">Class</li>
+<li><a href="../../mlphp/options/package-tree.html">Tree</a></li>
+<li><a href="../../overview-files.html">Files</a></li>
+<li><a href="../../deprecated-list.html">Deprecated</a></li>
+<li><a href="../../todo-list.html">Todo</a></li>
+<li><a href="../../index-all.html">Index</a></li>
+</ul>
+</div>
+
+<div class="small_links">
+<a href="../../index.html" target="_top">Frames</a>
+<a href="../../mlphp/options/valueconstraint.html" target="_top">No frames</a>
+</div>
+<div class="small_links">
+Summary: <a href="#summary_field">Field</a> | <a href="#summary_method">Method</a> | <a href="#summary_constr">Constr</a>
+Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> | <a href="#summary_constr">Constr</a>
+</div>
+<hr>
+
+<p id="footer"></p>
+
+</body>
+
+</html>

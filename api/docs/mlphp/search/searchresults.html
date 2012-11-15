@@ -1,0 +1,361 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+<html lang="en">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="generator" content="PHPDoctor 2RC4 (http://peej.github.com/phpdoctor/)">
+<meta name="when" content="Wed, 14 Nov 2012 20:38:03 +0000">
+
+<link rel="stylesheet" type="text/css" href="../../stylesheet.css">
+<link rel="start" href="../../overview-summary.html">
+
+<title>SearchResults ('MLPHP')</title>
+
+</head>
+<body id="definition" onload="parent.document.title=document.title;">
+
+<div class="header">
+<h1><a href=../../index.php target=_top>MLPHP</a></h1>
+<ul>
+<li><a href="../../overview-summary.html">Overview</a></li>
+<li><a href="../../mlphp/search/package-summary.html">Namespace</a></li>
+<li class="active">Class</li>
+<li><a href="../../mlphp/search/package-tree.html">Tree</a></li>
+<li><a href="../../overview-files.html">Files</a></li>
+<li><a href="../../deprecated-list.html">Deprecated</a></li>
+<li><a href="../../todo-list.html">Todo</a></li>
+<li><a href="../../index-all.html">Index</a></li>
+</ul>
+</div>
+
+<div class="small_links">
+<a href="../../index.html" target="_top">Frames</a>
+<a href="../../mlphp/search/searchresults.html" target="_top">No frames</a>
+</div>
+<div class="small_links">
+Summary: <a href="#summary_field">Field</a> | <a href="#summary_method">Method</a> | <a href="#summary_constr">Constr</a>
+Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> | <a href="#summary_constr">Constr</a>
+</div>
+<hr>
+
+<div class="qualifiedName">mlphp\search\SearchResults</div>
+<a href="../../source/searchresults.php.html#line11" class="location">SearchResults.php at line 11</a>
+
+<h1>Class SearchResults</h1>
+
+<pre class="tree"><strong>SearchResults</strong><br /></pre>
+
+<hr>
+
+<p class="signature">public  class <strong>SearchResults</strong></p>
+
+<div class="comment" id="overview_description"><p>Represents search results.</p></div>
+
+<dl>
+<dt>Author:</dt>
+<dd>Mike Wooldridge <mike.wooldridge@marklogic.com></dd>
+</dl>
+<hr>
+
+<table id="summary_constructor">
+<tr><th colspan="2">Constructor Summary</th></tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#__construct()">__construct</a>(string response)</p><p class="description">Create a SearchResults object.</p></td>
+</tr>
+</table>
+
+<table id="summary_method">
+<tr><th colspan="2">Method Summary</th></tr>
+<tr>
+<td class="type"> array</td>
+<td class="description"><p class="name"><a href="#getResults()">getResults</a>()</p><p class="description">Get the search results.</p></td>
+</tr>
+<tr>
+<td class="type"> <a href="../../mlphp/search/searchresult.html">SearchResult</a></td>
+<td class="description"><p class="name"><a href="#getResultByURI()">getResultByURI</a>(string uri)</p><p class="description">Get a search result corresponding to a URI.</p></td>
+</tr>
+<tr>
+<td class="type"> <a href="../../mlphp/search/searchresult.html">SearchResult</a></td>
+<td class="description"><p class="name"><a href="#getResultByIndex()">getResultByIndex</a>(int index)</p><p class="description">Get a search result corresponding to an index.</p></td>
+</tr>
+<tr>
+<td class="type"> int</td>
+<td class="description"><p class="name"><a href="#getTotal()">getTotal</a>()</p><p class="description">Get the total number of results.</p></td>
+</tr>
+<tr>
+<td class="type"> int</td>
+<td class="description"><p class="name"><a href="#getStart()">getStart</a>()</p><p class="description">Get the result starting index.</p></td>
+</tr>
+<tr>
+<td class="type"> int</td>
+<td class="description"><p class="name"><a href="#getEnd()">getEnd</a>()</p><p class="description">Get the result ending index.</p></td>
+</tr>
+<tr>
+<td class="type"> int</td>
+<td class="description"><p class="name"><a href="#getCurrentPage()">getCurrentPage</a>()</p><p class="description">Get the current page index (starts at 1).</p></td>
+</tr>
+<tr>
+<td class="type"> int</td>
+<td class="description"><p class="name"><a href="#getTotalPages()">getTotalPages</a>()</p><p class="description">Get the total number of pages.</p></td>
+</tr>
+<tr>
+<td class="type"> int</td>
+<td class="description"><p class="name"><a href="#getPageLength()">getPageLength</a>()</p><p class="description">Get the page length (number of results in results set).</p></td>
+</tr>
+<tr>
+<td class="type"> int</td>
+<td class="description"><p class="name"><a href="#getPreviousStart()">getPreviousStart</a>()</p><p class="description">Get the previous starting index for paging.</p></td>
+</tr>
+<tr>
+<td class="type"> int</td>
+<td class="description"><p class="name"><a href="#getNextStart()">getNextStart</a>()</p><p class="description">Get the next starting index for paging.</p></td>
+</tr>
+<tr>
+<td class="type"> bool</td>
+<td class="description"><p class="name"><a href="#hasFacets()">hasFacets</a>()</p><p class="description">Check if a results set has one or more facets.</p></td>
+</tr>
+<tr>
+<td class="type"> array</td>
+<td class="description"><p class="name"><a href="#getFacets()">getFacets</a>()</p><p class="description">Get the facets for a results set.</p></td>
+</tr>
+<tr>
+<td class="type"> array</td>
+<td class="description"><p class="name"><a href="#getFacet()">getFacet</a>(mixed name)</p><p class="description">Get a facet by its name.</p></td>
+</tr>
+</table>
+
+<h2 id="detail_method">Constructor Detail</h2>
+<a href="../../source/searchresults.php.html#line27" class="location">SearchResults.php at line 27</a>
+
+<h3 id="__construct()">__construct</h3>
+<code class="signature">public  void <strong>__construct</strong>(string response)</code>
+<div class="details">
+<p>Create a SearchResults object.</p><dl>
+<dt>Todo:</dt>
+<dd>Index and retrieval of results by index or URI.</dd>
+<dt>Parameters:</dt>
+<dd>response - A search response as XML.</dd>
+</dl>
+</div>
+
+<hr>
+
+<h2 id="detail_method">Method Detail</h2>
+<a href="../../source/searchresults.php.html#line52" class="location">SearchResults.php at line 52</a>
+
+<h3 id="getResults()">getResults</h3>
+<code class="signature">public  array <strong>getResults</strong>()</code>
+<div class="details">
+<p>Get the search results.</p><dl>
+<dt>Returns:</dt>
+<dd>An array of search result objects.</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/searchresults.php.html#line63" class="location">SearchResults.php at line 63</a>
+
+<h3 id="getResultByURI()">getResultByURI</h3>
+<code class="signature">public  <a href="../../mlphp/search/searchresult.html">SearchResult</a> <strong>getResultByURI</strong>(string uri)</code>
+<div class="details">
+<p>Get a search result corresponding to a URI.</p><dl>
+<dt>Parameters:</dt>
+<dd>uri - A document URI.</dd>
+<dt>Returns:</dt>
+<dd>A search result object or null if none found.</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/searchresults.php.html#line80" class="location">SearchResults.php at line 80</a>
+
+<h3 id="getResultByIndex()">getResultByIndex</h3>
+<code class="signature">public  <a href="../../mlphp/search/searchresult.html">SearchResult</a> <strong>getResultByIndex</strong>(int index)</code>
+<div class="details">
+<p>Get a search result corresponding to an index.</p><dl>
+<dt>Parameters:</dt>
+<dd>index - A search result index.</dd>
+<dt>Returns:</dt>
+<dd>A search result object or null if none found.</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/searchresults.php.html#line96" class="location">SearchResults.php at line 96</a>
+
+<h3 id="getTotal()">getTotal</h3>
+<code class="signature">public  int <strong>getTotal</strong>()</code>
+<div class="details">
+<p>Get the total number of results.</p><dl>
+<dt>Returns:</dt>
+<dd>The total number of results.</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/searchresults.php.html#line106" class="location">SearchResults.php at line 106</a>
+
+<h3 id="getStart()">getStart</h3>
+<code class="signature">public  int <strong>getStart</strong>()</code>
+<div class="details">
+<p>Get the result starting index.</p><dl>
+<dt>Returns:</dt>
+<dd>The starting index.</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/searchresults.php.html#line116" class="location">SearchResults.php at line 116</a>
+
+<h3 id="getEnd()">getEnd</h3>
+<code class="signature">public  int <strong>getEnd</strong>()</code>
+<div class="details">
+<p>Get the result ending index.</p><dl>
+<dt>Returns:</dt>
+<dd>The ending index.</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/searchresults.php.html#line126" class="location">SearchResults.php at line 126</a>
+
+<h3 id="getCurrentPage()">getCurrentPage</h3>
+<code class="signature">public  int <strong>getCurrentPage</strong>()</code>
+<div class="details">
+<p>Get the current page index (starts at 1).</p><dl>
+<dt>Returns:</dt>
+<dd>The current page index.</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/searchresults.php.html#line136" class="location">SearchResults.php at line 136</a>
+
+<h3 id="getTotalPages()">getTotalPages</h3>
+<code class="signature">public  int <strong>getTotalPages</strong>()</code>
+<div class="details">
+<p>Get the total number of pages.</p><dl>
+<dt>Returns:</dt>
+<dd>The total number of pages.</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/searchresults.php.html#line146" class="location">SearchResults.php at line 146</a>
+
+<h3 id="getPageLength()">getPageLength</h3>
+<code class="signature">public  int <strong>getPageLength</strong>()</code>
+<div class="details">
+<p>Get the page length (number of results in results set).</p><dl>
+<dt>Returns:</dt>
+<dd>The page length.</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/searchresults.php.html#line156" class="location">SearchResults.php at line 156</a>
+
+<h3 id="getPreviousStart()">getPreviousStart</h3>
+<code class="signature">public  int <strong>getPreviousStart</strong>()</code>
+<div class="details">
+<p>Get the previous starting index for paging.</p><dl>
+<dt>Returns:</dt>
+<dd>The previous starting index.</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/searchresults.php.html#line166" class="location">SearchResults.php at line 166</a>
+
+<h3 id="getNextStart()">getNextStart</h3>
+<code class="signature">public  int <strong>getNextStart</strong>()</code>
+<div class="details">
+<p>Get the next starting index for paging.</p><dl>
+<dt>Returns:</dt>
+<dd>The next starting index.</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/searchresults.php.html#line176" class="location">SearchResults.php at line 176</a>
+
+<h3 id="hasFacets()">hasFacets</h3>
+<code class="signature">public  bool <strong>hasFacets</strong>()</code>
+<div class="details">
+<p>Check if a results set has one or more facets.</p><dl>
+<dt>Returns:</dt>
+<dd>true if one of more facets exist.</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/searchresults.php.html#line186" class="location">SearchResults.php at line 186</a>
+
+<h3 id="getFacets()">getFacets</h3>
+<code class="signature">public  array <strong>getFacets</strong>()</code>
+<div class="details">
+<p>Get the facets for a results set.</p><dl>
+<dt>Returns:</dt>
+<dd>Array of Facet objects.</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/searchresults.php.html#line196" class="location">SearchResults.php at line 196</a>
+
+<h3 id="getFacet()">getFacet</h3>
+<code class="signature">public  array <strong>getFacet</strong>(mixed name)</code>
+<div class="details">
+<p>Get a facet by its name.</p><dl>
+<dt>Returns:</dt>
+<dd>Array of Facet objects.</dd>
+</dl>
+</div>
+
+<hr>
+
+<div class="header">
+<h1><a href=../../index.php target=_top>MLPHP</a></h1>
+<ul>
+<li><a href="../../overview-summary.html">Overview</a></li>
+<li><a href="../../mlphp/search/package-summary.html">Namespace</a></li>
+<li class="active">Class</li>
+<li><a href="../../mlphp/search/package-tree.html">Tree</a></li>
+<li><a href="../../overview-files.html">Files</a></li>
+<li><a href="../../deprecated-list.html">Deprecated</a></li>
+<li><a href="../../todo-list.html">Todo</a></li>
+<li><a href="../../index-all.html">Index</a></li>
+</ul>
+</div>
+
+<div class="small_links">
+<a href="../../index.html" target="_top">Frames</a>
+<a href="../../mlphp/search/searchresults.html" target="_top">No frames</a>
+</div>
+<div class="small_links">
+Summary: <a href="#summary_field">Field</a> | <a href="#summary_method">Method</a> | <a href="#summary_constr">Constr</a>
+Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> | <a href="#summary_constr">Constr</a>
+</div>
+<hr>
+
+<p id="footer"></p>
+
+</body>
+
+</html>

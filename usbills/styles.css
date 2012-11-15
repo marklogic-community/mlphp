@@ -1,0 +1,154 @@
+body {
+    font-family: Helvetica, Verdana, Arial, sans-serif;
+    font-size: 90%;
+    line-height: 1.2em;
+    margin: 0px;
+    padding: 0px;
+    background-color:#4578AC;
+    background-repeat:repeat-x;
+}
+#wrapper {
+    position:relative;
+    margin-left:auto;
+    margin-right:auto;
+    top: 0px;
+    width:950px;
+    background-color: #FFFFFF;
+}
+#header {
+    position: relative;
+    width:950px;
+    background-color: #E6E6E6;
+    padding: 0px;
+}
+#logo {
+    position: relative;
+    height: 30px;
+    font-size: 2.5em;
+    font-weight: bold;
+    color: #4578AC;
+    padding-top: 25px;
+    padding-left: 20px;
+    padding-bottom: 8px;
+    text-decoration: none;
+}
+#logo a {
+  color: #4578AC;
+  text-decoration: none;
+}
+#subtitle {
+    position: absolute;
+    left: 300px;
+    top: 30px;
+    color: #999999;
+}
+#subtitle a {
+  color: #999999;
+}
+#search {
+    position: relative;
+    width:920px;
+    height: 50px;
+    padding-top: 5px;
+    padding-left: 20px;
+    padding-bottom: 0px;
+    padding-right: 10px;
+    background-color: #E6E6E6;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.0em;
+}
+#query {
+    font-size: 1.4em;
+    width: 500px;
+}
+#menu {
+    font-size: 1.3em;
+    line-height: 1.4em;
+}
+#submit {
+    font-size: 1.4em;
+}
+.keywords {
+    position: relative;
+    width:930px;
+    padding-top: 10px;
+    padding-left: 25px;
+    padding-bottom: 5px;
+    padding-right: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.2em;
+    line-height: 1.2em;
+}
+.keyword {
+  white-space:nowrap;
+}
+.summary {
+    position: relative;
+    width:940px;
+    height:15px;
+    padding: 15px 0px 5px 25px;
+    clear:both;
+}
+.result {
+    position: relative;
+    width:900px;
+    left:0px;
+    background-color: #FFFFFF;
+    padding-top: 10px;
+    padding-left: 25px;
+    padding-bottom: 5px;
+    padding-right: 25px;
+    /* border-top: 1px solid #4578AC; */
+    clear:both;
+}
+.result-title, #bill-title {
+    font-size: 1.3em;
+    line-height: 1.5em;
+}
+.result-snippet .highlight {
+    background: #FFFFCC;
+}
+.result-meta {
+    padding-top: 2px;
+    color: #999999;
+}
+#back-link {
+    padding: 15px 15px 0 25px;
+}
+#bill-body {
+    padding: 15px;
+}
+.bill-details, #bill-summary, #bill-title {
+    padding: 10px 0 0 10px;
+}
+.bill-detail {
+    padding-right: 15px;
+}
+#footer {
+    position: relative;
+    width:950px;
+    background-color: #E6E6E6;
+    padding: 5px 0;
+    text-align: center;
+    margin-top: 20px;
+    color: #999999;
+}
+#loading {
+    text-align: center;
+    position: absolute;
+    top: 30%;
+    width: 100%;
+}
+#loading-content {
+    font-size: 2.0em;
+    line-height: 2.0em;
+    text-align: center;
+    background-color: white;
+    width: 400px;
+    margin-left: auto ;
+    margin-right: auto ;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+    padding: 20px;
+}

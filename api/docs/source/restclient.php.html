@@ -1,0 +1,387 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+<html lang="en">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="generator" content="PHPDoctor 2RC4 (http://peej.github.com/phpdoctor/)">
+<meta name="when" content="Wed, 14 Nov 2012 20:38:03 +0000">
+
+<link rel="stylesheet" type="text/css" href="../stylesheet.css">
+<link rel="start" href="../overview-summary.html">
+
+<title>RESTClient.php ('MLPHP')</title>
+
+</head>
+<body id="file" onload="parent.document.title=document.title;">
+
+<div class="header">
+<h1><a href=../../index.php target=_top>MLPHP</a></h1>
+<ul>
+<li><a href="../overview-summary.html">Overview</a></li>
+<li>Package</li><li>Class</li><li>Tree</li><li><a href="../overview-files.html">Files</a></li>
+<li><a href="../deprecated-list.html">Deprecated</a></li>
+<li><a href="../todo-list.html">Todo</a></li>
+<li><a href="../index-all.html">Index</a></li>
+</ul>
+</div>
+
+<div class="small_links">
+<a href="../index.html" target="_top">Frames</a>
+<a href="../source/restclient.php.html" target="_top">No frames</a>
+</div>
+<hr>
+
+<h1>RESTClient.php</h1>
+<hr>
+
+<a name="line1"></a><pre><?php
+<a name="line2"></a>
+<a name="line3"></a>require_once 'RESTResponse.php';
+<a name="line4"></a>
+<a name="line5"></a>/**
+<a name="line6"></a> * Represents a REST client.
+<a name="line7"></a> *
+<a name="line8"></a> * @package mlphp\rest
+<a name="line9"></a> * @author Mike Wooldridge <mike.wooldridge@marklogic.com>
+<a name="line10"></a> */
+<a name="line11"></a>class RESTClient
+<a name="line12"></a>{
+<a name="line13"></a>    private $host; // @var string
+<a name="line14"></a>    private $port; // @var int
+<a name="line15"></a>    private $version; // @var string
+<a name="line16"></a>    private $username; // @var string
+<a name="line17"></a>    private $password; // @var string
+<a name="line18"></a>    private $auth; // @var string
+<a name="line19"></a>    private $prefix; // @var string
+<a name="line20"></a>    private $request; // @var RESTRequest
+<a name="line21"></a>
+<a name="line22"></a>    /*
+<a name="line23"></a>     * Create a REST client object and configure REST server and authentication information.
+<a name="line24"></a>     *
+<a name="line25"></a>     * @param string $host The host (examples: 'localhost', 'test.marklogic.com', '192.162.5.1').
+<a name="line26"></a>     * @param int $port The port (example: 8003). Set to 0 for no port.
+<a name="line27"></a>     * @param string $path An additional path prefix.
+<a name="line28"></a>     * @param string $version The API version (example: 'v1').
+<a name="line29"></a>     * @param string $username The username for REST authentication.
+<a name="line30"></a>     * @param string $password The password for REST authentication.
+<a name="line31"></a>     * @param string $auth The authentication scheme (examples: 'basic', 'digest').
+<a name="line32"></a>     */
+<a name="line33"></a>    public function __construct($host = '', $port = 0, $path = '', $version = '', $username = '', $password = '', $auth = '')
+<a name="line34"></a>    {
+<a name="line35"></a>        $this->host = (string)$host;
+<a name="line36"></a>        $this->port = (int)$port;
+<a name="line37"></a>        $this->path = (string)$path;
+<a name="line38"></a>        $this->version = (string)$version;
+<a name="line39"></a>        $this->username = (string)$username;
+<a name="line40"></a>        $this->password = (string)$password;
+<a name="line41"></a>        switch ($auth) {
+<a name="line42"></a>            case 'basic':
+<a name="line43"></a>                $this->auth = CURLAUTH_BASIC;
+<a name="line44"></a>                break;
+<a name="line45"></a>            case 'digest':
+<a name="line46"></a>                $this->auth = CURLAUTH_DIGEST;
+<a name="line47"></a>                break;
+<a name="line48"></a>            default:
+<a name="line49"></a>                   $this->auth = CURLAUTH_ANY;
+<a name="line50"></a>        }
+<a name="line51"></a>        $this->prefix = '';
+<a name="line52"></a>        // Construct: http://<host>:<port>/<path>/<version>/
+<a name="line53"></a>        if (!empty($this->host)) {
+<a name="line54"></a>            $this->prefix = 'http://' . $this->host;
+<a name="line55"></a>            $this->prefix .= (!empty($this->port)) ? ':' . $this->port : '';
+<a name="line56"></a>            $this->prefix .= (!empty($this->path)) ? '/' . $this->path : '';
+<a name="line57"></a>            $this->prefix .= (!empty($this->version)) ? '/' . $this->version : '';
+<a name="line58"></a>            $this->prefix .= '/';
+<a name="line59"></a>        }
+<a name="line60"></a>    }
+<a name="line61"></a>
+<a name="line62"></a>    /**
+<a name="line63"></a>     * Set the host.
+<a name="line64"></a>     *
+<a name="line65"></a>     * @param string $host The host (examples: 'localhost', 'test.marklogic.com', '192.162.5.1').
+<a name="line66"></a>     */
+<a name="line67"></a>    public function setHost($host)
+<a name="line68"></a>    {
+<a name="line69"></a>        $this->host = $host;
+<a name="line70"></a>    }
+<a name="line71"></a>
+<a name="line72"></a>    /**
+<a name="line73"></a>     * Set the port.
+<a name="line74"></a>     *
+<a name="line75"></a>     * @param string $port The port (example: 8003).
+<a name="line76"></a>     */
+<a name="line77"></a>    public function setPort($port)
+<a name="line78"></a>    {
+<a name="line79"></a>        $this->port = $port;
+<a name="line80"></a>    }
+<a name="line81"></a>
+<a name="line82"></a>    /**
+<a name="line83"></a>     * Set the path.
+<a name="line84"></a>     *
+<a name="line85"></a>     * @param string $path The path (example: 'api').
+<a name="line86"></a>     */
+<a name="line87"></a>    public function setPath($path)
+<a name="line88"></a>    {
+<a name="line89"></a>        $this->path = $path;
+<a name="line90"></a>    }
+<a name="line91"></a>
+<a name="line92"></a>    /**
+<a name="line93"></a>     * Set the version.
+<a name="line94"></a>     *
+<a name="line95"></a>     * @param string $version The API version (example: 'v1').
+<a name="line96"></a>     */
+<a name="line97"></a>    public function setVersion($version)
+<a name="line98"></a>    {
+<a name="line99"></a>        $this->version = $version;
+<a name="line100"></a>    }
+<a name="line101"></a>
+<a name="line102"></a>    /**
+<a name="line103"></a>     * Set the username.
+<a name="line104"></a>     *
+<a name="line105"></a>     * @param string $username The username for REST authentication.
+<a name="line106"></a>     */
+<a name="line107"></a>    public function setUsername($username)
+<a name="line108"></a>    {
+<a name="line109"></a>        $this->username = $username;
+<a name="line110"></a>    }
+<a name="line111"></a>
+<a name="line112"></a>    /**
+<a name="line113"></a>     * Set the password.
+<a name="line114"></a>     *
+<a name="line115"></a>     * @param string $password The password for REST authentication.
+<a name="line116"></a>     */
+<a name="line117"></a>    public function setPassword($password)
+<a name="line118"></a>    {
+<a name="line119"></a>        $this->password = $password;
+<a name="line120"></a>    }
+<a name="line121"></a>
+<a name="line122"></a>    /**
+<a name="line123"></a>     * Set the authentication scheme.
+<a name="line124"></a>     *
+<a name="line125"></a>     * @param string $auth The authentication scheme (examples: 'basic', 'digest').
+<a name="line126"></a>     */
+<a name="line127"></a>    public function setAuth($auth)
+<a name="line128"></a>    {
+<a name="line129"></a>        $this->auth = $auth;
+<a name="line130"></a>    }
+<a name="line131"></a>
+<a name="line132"></a>    /**
+<a name="line133"></a>     * Set the URL prefix. Allows you to create a custom URL when no arguments are passed at construction.
+<a name="line134"></a>     *
+<a name="line135"></a>     * @param string $prefix The URL prefix.
+<a name="line136"></a>     */
+<a name="line137"></a>    public function setPrefix($prefix)
+<a name="line138"></a>    {
+<a name="line139"></a>        $this->prefix = $prefix;
+<a name="line140"></a>    }
+<a name="line141"></a>
+<a name="line142"></a>  /**
+<a name="line143"></a>     * Send a REST request.
+<a name="line144"></a>     *
+<a name="line145"></a>     * @param RESTRequest $request A RESTRequest object
+<a name="line146"></a>     * @result RESTResponse A RESTResponse object.
+<a name="line147"></a>     */
+<a name="line148"></a>    public function send($request)
+<a name="line149"></a>    {
+<a name="line150"></a>
+<a name="line151"></a>        $this->request = $request;
+<a name="line152"></a>
+<a name="line153"></a>        switch (strtoupper($request->getVerb())) {
+<a name="line154"></a>            case 'GET':
+<a name="line155"></a>                $this->response = $this->get($request);
+<a name="line156"></a>                break;
+<a name="line157"></a>            case 'PUT':
+<a name="line158"></a>                $this->response = $this->put($request);
+<a name="line159"></a>                break;
+<a name="line160"></a>            case 'DELETE':
+<a name="line161"></a>                $this->response = $this->delete($request);
+<a name="line162"></a>                break;
+<a name="line163"></a>            case 'POST':
+<a name="line164"></a>                $this->response = $this->post($request);
+<a name="line165"></a>                break;
+<a name="line166"></a>            case 'HEAD':
+<a name="line167"></a>                $this->response = $this->head($request);
+<a name="line168"></a>                break;
+<a name="line169"></a>            default:
+<a name="line170"></a>                throw new Exception($verb . ' is an invalid or unsupported REST verb.');
+<a name="line171"></a>        }
+<a name="line172"></a>    return $this->response;
+<a name="line173"></a>    }
+<a name="line174"></a>
+<a name="line175"></a>    /**
+<a name="line176"></a>     * Set cURL options common to all requests
+<a name="line177"></a>     *
+<a name="line178"></a>     * @param resource $ch The cURL handle.
+<a name="line179"></a>     * @param string $url The REST URL string (example: 'documents').
+<a name="line180"></a>     * @result array An array of cURL options.
+<a name="line181"></a>     */
+<a name="line182"></a>    protected function setOptions(&$ch, $urlStr, $headers)
+<a name="line183"></a>    {
+<a name="line184"></a>        $url = $this->prefix . $urlStr; // Build full URL
+<a name="line185"></a>        curl_setopt($ch, CURLOPT_URL, $url);
+<a name="line186"></a>        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+<a name="line187"></a>        curl_setopt($ch, CURLOPT_HTTPAUTH, $this->auth);
+<a name="line188"></a>        curl_setopt($ch, CURLOPT_USERPWD, $this->username . ':' . $this->password);
+<a name="line189"></a>        curl_setopt($ch, CURLOPT_TIMEOUT, 10);
+<a name="line190"></a>        curl_setopt($ch, CURLOPT_URL, $url);
+<a name="line191"></a>        foreach ($headers as $key => $val) {
+<a name="line192"></a>            curl_setopt($ch, CURLOPT_HTTPHEADER, array($key . ': ' . $val));
+<a name="line193"></a>        }
+<a name="line194"></a>    }
+<a name="line195"></a>
+<a name="line196"></a>  /**
+<a name="line197"></a>     * Perform a GET request with cURL
+<a name="line198"></a>     *
+<a name="line199"></a>     * @param RESTRequest $request A REST request.
+<a name="line200"></a>     * @result RESTResponse A REST response.
+<a name="line201"></a>     */
+<a name="line202"></a>    public function get($request)
+<a name="line203"></a>    {
+<a name="line204"></a>
+<a name="line205"></a>        $ch = curl_init();
+<a name="line206"></a>
+<a name="line207"></a>        $this->setOptions($ch, $request->getUrlStr(), $request->getHeaders());
+<a name="line208"></a>
+<a name="line209"></a>        // Options specific to GET
+<a name="line210"></a>        curl_setopt($ch, CURLOPT_HTTPGET, true);
+<a name="line211"></a>
+<a name="line212"></a>        return $this->execute($ch);
+<a name="line213"></a>    }
+<a name="line214"></a>
+<a name="line215"></a>    /**
+<a name="line216"></a>     * Perform a PUT request with cURL
+<a name="line217"></a>     *
+<a name="line218"></a>     * @param RESTRequest $request A REST request.
+<a name="line219"></a>     * @result RESTResponse A REST response.
+<a name="line220"></a>     */
+<a name="line221"></a>    public function put($request)
+<a name="line222"></a>    {
+<a name="line223"></a>
+<a name="line224"></a>        $ch = curl_init();
+<a name="line225"></a>
+<a name="line226"></a>        // Handle PUT body
+<a name="line227"></a>        $requestLength = strlen($request->getBody());
+<a name="line228"></a>        $fh = fopen('php://memory', 'rw');
+<a name="line229"></a>        fwrite($fh, $request->getBody());
+<a name="line230"></a>        rewind($fh);
+<a name="line231"></a>
+<a name="line232"></a>        $this->setOptions($ch, $request->getUrlStr(), $request->getHeaders());
+<a name="line233"></a>
+<a name="line234"></a>        // Options specific to PUT
+<a name="line235"></a>        curl_setopt($ch, CURLOPT_INFILE, $fh);
+<a name="line236"></a>        curl_setopt($ch, CURLOPT_INFILESIZE, $requestLength);
+<a name="line237"></a>        curl_setopt($ch, CURLOPT_PUT, true);
+<a name="line238"></a>
+<a name="line239"></a>        return $this->execute($ch);
+<a name="line240"></a>    }
+<a name="line241"></a>
+<a name="line242"></a>    /**
+<a name="line243"></a>     * Perform a DELETE request with cURL
+<a name="line244"></a>     *
+<a name="line245"></a>     * @param RESTRequest $request A REST request.
+<a name="line246"></a>     * @result RESTResponse A REST response.
+<a name="line247"></a>     */
+<a name="line248"></a>    public function delete($request)
+<a name="line249"></a>    {
+<a name="line250"></a>
+<a name="line251"></a>        $ch = curl_init();
+<a name="line252"></a>
+<a name="line253"></a>        $this->setOptions($ch, $request->getUrlStr(), $request->getHeaders());
+<a name="line254"></a>
+<a name="line255"></a>        // Options specific to DELETE
+<a name="line256"></a>        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'DELETE');
+<a name="line257"></a>
+<a name="line258"></a>        return $this->execute($ch);
+<a name="line259"></a>    }
+<a name="line260"></a>
+<a name="line261"></a>    /**
+<a name="line262"></a>     * Perform a POST request with cURL
+<a name="line263"></a>     *
+<a name="line264"></a>     * @param RESTRequest $request A REST request.
+<a name="line265"></a>     * @result RESTResponse A REST response.
+<a name="line266"></a>     */
+<a name="line267"></a>    public function post($request)
+<a name="line268"></a>    {
+<a name="line269"></a>        $ch = curl_init();
+<a name="line270"></a>
+<a name="line271"></a>      $requestBody = http_build_query($requestBody, '', '&');
+<a name="line272"></a>
+<a name="line273"></a>        $this->setOptions($ch, $request->getUrlStr(), $request->getHeaders());
+<a name="line274"></a>
+<a name="line275"></a>        // Options specific to POST
+<a name="line276"></a>        curl_setopt($ch, CURLOPT_POST, true);
+<a name="line277"></a>        curl_setopt($ch, CURLOPT_POSTFIELDS, $requestBody);
+<a name="line278"></a>
+<a name="line279"></a>        return $this->execute($ch);
+<a name="line280"></a>    }
+<a name="line281"></a>
+<a name="line282"></a>    /**
+<a name="line283"></a>     * Perform a HEAD request with cURL
+<a name="line284"></a>     *
+<a name="line285"></a>     * @param RESTRequest $request A REST request.
+<a name="line286"></a>     * @result RESTResponse A REST response.
+<a name="line287"></a>     */
+<a name="line288"></a>    public function head($request)
+<a name="line289"></a>    {
+<a name="line290"></a>        $ch = curl_init();
+<a name="line291"></a>
+<a name="line292"></a>        $this->setOptions($ch, $request->getUrlStr(), $request->getHeaders());
+<a name="line293"></a>
+<a name="line294"></a>        // Options specific to POST
+<a name="line295"></a>        curl_setopt($ch, CURLOPT_NOBODY, true);
+<a name="line296"></a>        curl_setopt($ch, CURLOPT_HEADER, true);
+<a name="line297"></a>        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'HEAD');
+<a name="line298"></a>
+<a name="line299"></a>        return $this->execute($ch);
+<a name="line300"></a>    }
+<a name="line301"></a>
+<a name="line302"></a>    /**
+<a name="line303"></a>     * Execute a cURL request.
+<a name="line304"></a>     *
+<a name="line305"></a>     * @todo Handle more response codes
+<a name="line306"></a>     *
+<a name="line307"></a>     * @param resource $ch The REST URL string (example: 'documents')
+<a name="line308"></a>     * @result bool true if successful, false otherwise.
+<a name="line309"></a>     */
+<a name="line310"></a>    public function execute(&$ch)
+<a name="line311"></a>    {
+<a name="line312"></a>        $response = new RESTResponse();
+<a name="line313"></a>        $response->setBody(curl_exec($ch));
+<a name="line314"></a>        $response->setInfo(curl_getinfo($ch));
+<a name="line315"></a>        //print_r($response);
+<a name="line316"></a>        if ($response->getHttpCode() == 301) {
+<a name="line317"></a>            // Redirect to specified URL
+<a name="line318"></a>            curl_setopt($ch, CURLOPT_URL, $response->getRedirectUrl());
+<a name="line319"></a>            return $this->execute($ch);
+<a name="line320"></a>        } else if ($response->getHttpCode() >= 400) {
+<a name="line321"></a>            throw new Exception($response->getErrorMessage(), $response->getHttpCode());
+<a name="line322"></a>        } else {
+<a name="line323"></a>            curl_close ($ch);
+<a name="line324"></a>            return $response;
+<a name="line325"></a>        }
+<a name="line326"></a>    }
+<a name="line327"></a>}</pre>
+<div class="header">
+<h1><a href=../../index.php target=_top>MLPHP</a></h1>
+<ul>
+<li><a href="../overview-summary.html">Overview</a></li>
+<li>Package</li><li>Class</li><li>Tree</li><li><a href="../overview-files.html">Files</a></li>
+<li><a href="../deprecated-list.html">Deprecated</a></li>
+<li><a href="../todo-list.html">Todo</a></li>
+<li><a href="../index-all.html">Index</a></li>
+</ul>
+</div>
+
+<div class="small_links">
+<a href="../index.html" target="_top">Frames</a>
+<a href="../source/restclient.php.html" target="_top">No frames</a>
+</div>
+<hr>
+
+<p id="footer"></p>
+
+</body>
+
+</html>
