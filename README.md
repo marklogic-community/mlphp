@@ -27,13 +27,13 @@ of PHP)
 
 2. In the MarkLogic Admin interface, set up two REST users:
 
-   User: rest-writer-user
-   Password: writer-pw
-   Role: rest-writer
+> User: rest-writer-user
+> Password: writer-pw
+> Role: rest-writer
 
-   User: rest-admin-user
-   Password: admin-pw
-   Role: rest-admin
+> User: rest-admin-user
+> Password: admin-pw
+> Role: rest-admin
 
    To set up the users, go to the Admin interface (http://localhost:8001/),
    click Security, click Users, and then click the Create tab.
@@ -56,19 +56,19 @@ of PHP)
 
 4. The code examples require the following roles:
 
-   doc-reader
-   doc-admin
-   doc-editor
+> doc-reader
+> doc-admin
+> doc-editor
 
    To set up roles, go to the Admin interface (http://localhost:8001/), click
    Security, click Roles, and then click the Create tab.
 
 5. The photomap application requires the following:
 
-   * Configure the permissions for the the mlphp/photomap/uploads directory so
-     PHP can read, write, and execute.
+    * Configure the permissions for the the mlphp/photomap/uploads directory so
+      PHP can read, write, and execute.
 
-   * Add a Google Maps key to the photomap setup file: mlphp/photomap/setup.php
+    * Add a Google Maps key to the photomap setup file: mlphp/photomap/setup.php
 
 6. Setup is complete! To see MLPHP in action, access the following:
 
