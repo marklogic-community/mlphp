@@ -63,7 +63,7 @@ class SearchResults
     public function getResultByURI($uri)
     {
         $res = null;
-        foreach ($results as $result) {
+        foreach ($this->results as $result) {
             if ($result->getURI() === $uri) {
                 $res = $result;
             }
@@ -80,8 +80,8 @@ class SearchResults
     public function getResultByIndex($index)
     {
         $res = null;
-        foreach ($results as $result) {
-            if ($result->getIndex() === $index) {
+        foreach ($this->results as $result) {
+            if ($result->getIndex() == $index) {
                 $res = $result;
             }
         }
