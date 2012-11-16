@@ -18,7 +18,7 @@ limitations under the License.
 require_once ('setup.php');
 
 // Load search options if needed
-if (!isset($_SESSION['options_loaded']) || !$_SESSION['options_loaded'] === TRUE) {
+if (!isset($_SESSION['documents_loaded_usbills']) || !$_SESSION['options_loaded_usbills'] === TRUE) {
     echo '<!-- Loading search options -->' . PHP_EOL;
 
     $client = new RESTClient($mlphp['host'], $mlphp['port'], $mlphp['path'], $mlphp['version'], $mlphp['username-admin'], $mlphp['password-admin'], $mlphp['auth']);
@@ -85,7 +85,7 @@ if (!isset($_SESSION['options_loaded']) || !$_SESSION['options_loaded'] === TRUE
 
     echo '<!--' . $options->read($optionsid) . '-->' . PHP_EOL;
 
-    $_SESSION['options_loaded'] = TRUE;
+    $_SESSION['options_loaded_usbills'] = TRUE;
 
 } else {
 
