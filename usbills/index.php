@@ -87,7 +87,7 @@ if (TRUE) { // TODO Change TRUE to not execute search following in some cases?
     // No results
     if ($searchResults->getTotal() == 0) {
         $message = 'No results.';
-        if (!isset($_SESSION['documents_loaded']) || !$_SESSION['documents_loaded'] === TRUE) {
+        if (!isset($_SESSION['documents_loaded_usbills']) || !$_SESSION['documents_loaded_usbills'] === TRUE) {
             $message .= ' <a href="documents.php?redirect=index.php&items=bills">Click here to load bills</a>.';
         }
         echo '<div class="result textLarge">' . $message . '</div>';
