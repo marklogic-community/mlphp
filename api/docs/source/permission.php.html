@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="generator" content="PHPDoctor 2RC4 (http://peej.github.com/phpdoctor/)">
-<meta name="when" content="Wed, 14 Nov 2012 20:38:03 +0000">
+<meta name="when" content="Fri, 16 Nov 2012 04:29:46 +0000">
 
 <link rel="stylesheet" type="text/css" href="../stylesheet.css">
 <link rel="start" href="../overview-summary.html">
@@ -37,74 +37,89 @@
 <hr>
 
 <a name="line1"></a><pre><?php
-<a name="line2"></a>
-<a name="line3"></a>/**
-<a name="line4"></a> * Represents permission metadata.
-<a name="line5"></a> *
-<a name="line6"></a> * @package mlphp\document
-<a name="line7"></a> * @author Mike Wooldridge <mike.wooldridge@marklogic.com>
-<a name="line8"></a> */
-<a name="line9"></a>class Permission
-<a name="line10"></a>{
-<a name="line11"></a>    private $roleName = ''; // @var string
-<a name="line12"></a>    private $capabilities = array(); // @var array
-<a name="line13"></a>
-<a name="line14"></a>    /**
-<a name="line15"></a>     * Create a Permission object.
-<a name="line16"></a>     *
-<a name="line17"></a>     * @param string $roleName The role name for the permission.
-<a name="line18"></a>     * @param array|string $capabilities An array of capability strings or a single capability string.
-<a name="line19"></a>     */
-<a name="line20"></a>    public function __construct($roleName = '', $capabilities = array())
-<a name="line21"></a>    {
-<a name="line22"></a>        $this->roleName = (string)$roleName;
-<a name="line23"></a>        $this->addCapabilities($capabilities);
-<a name="line24"></a>    }
-<a name="line25"></a>
-<a name="line26"></a>    /**
-<a name="line27"></a>     * Get the role name.
-<a name="line28"></a>     *
-<a name="line29"></a>     * @return string A role name.
-<a name="line30"></a>     */
-<a name="line31"></a>    public function getRoleName()
-<a name="line32"></a>    {
-<a name="line33"></a>        return $this->roleName;
-<a name="line34"></a>    }
-<a name="line35"></a>
-<a name="line36"></a>    /**
-<a name="line37"></a>     * Set the role name.
-<a name="line38"></a>     *
-<a name="line39"></a>     * @param string $roleName The role name.
-<a name="line40"></a>     */
-<a name="line41"></a>    public function setRoleName($roleName)
-<a name="line42"></a>    {
-<a name="line43"></a>        $this->roleName = (string)$roleName;
-<a name="line44"></a>    }
-<a name="line45"></a>
-<a name="line46"></a>    /**
-<a name="line47"></a>     * Get the capabilities.
-<a name="line48"></a>     *
-<a name="line49"></a>     * @return array An array of capability strings.
-<a name="line50"></a>     */
-<a name="line51"></a>    public function getCapabilities()
-<a name="line52"></a>    {
-<a name="line53"></a>        return $this->capabilities;
-<a name="line54"></a>    }
-<a name="line55"></a>
-<a name="line56"></a>    /**
-<a name="line57"></a>     * Add capabilities.
-<a name="line58"></a>     *
-<a name="line59"></a>     * @param array|string $capabilities An array of capability strings or a single capability string.
-<a name="line60"></a>     */
-<a name="line61"></a>    public function addCapabilities($capabilities)
-<a name="line62"></a>    {
-<a name="line63"></a>        if (is_array($capabilities)) {
-<a name="line64"></a>            $this->capabilities = array_merge((array)$this->capabilities, (array)$capabilities);
-<a name="line65"></a>        } else {
-<a name="line66"></a>            $this->capabilities[] = (string)$capabilities;
-<a name="line67"></a>        }
-<a name="line68"></a>    }
-<a name="line69"></a>}</pre>
+<a name="line2"></a>/*
+<a name="line3"></a>Copyright 2002-2012 MarkLogic Corporation.  All Rights Reserved.
+<a name="line4"></a>
+<a name="line5"></a>Licensed under the Apache License, Version 2.0 (the "License");
+<a name="line6"></a>you may not use this file except in compliance with the License.
+<a name="line7"></a>You may obtain a copy of the License at
+<a name="line8"></a>
+<a name="line9"></a>     http://www.apache.org/licenses/LICENSE-2.0
+<a name="line10"></a>
+<a name="line11"></a>Unless required by applicable law or agreed to in writing, software
+<a name="line12"></a>distributed under the License is distributed on an "AS IS" BASIS,
+<a name="line13"></a>WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+<a name="line14"></a>See the License for the specific language governing permissions and
+<a name="line15"></a>limitations under the License.
+<a name="line16"></a>*/
+<a name="line17"></a>
+<a name="line18"></a>/**
+<a name="line19"></a> * Represents permission metadata.
+<a name="line20"></a> *
+<a name="line21"></a> * @package mlphp\document
+<a name="line22"></a> * @author Mike Wooldridge <mike.wooldridge@marklogic.com>
+<a name="line23"></a> */
+<a name="line24"></a>class Permission
+<a name="line25"></a>{
+<a name="line26"></a>    private $roleName = ''; // @var string
+<a name="line27"></a>    private $capabilities = array(); // @var array
+<a name="line28"></a>
+<a name="line29"></a>    /**
+<a name="line30"></a>     * Create a Permission object.
+<a name="line31"></a>     *
+<a name="line32"></a>     * @param string $roleName The role name for the permission.
+<a name="line33"></a>     * @param array|string $capabilities An array of capability strings or a single capability string.
+<a name="line34"></a>     */
+<a name="line35"></a>    public function __construct($roleName = '', $capabilities = array())
+<a name="line36"></a>    {
+<a name="line37"></a>        $this->roleName = (string)$roleName;
+<a name="line38"></a>        $this->addCapabilities($capabilities);
+<a name="line39"></a>    }
+<a name="line40"></a>
+<a name="line41"></a>    /**
+<a name="line42"></a>     * Get the role name.
+<a name="line43"></a>     *
+<a name="line44"></a>     * @return string A role name.
+<a name="line45"></a>     */
+<a name="line46"></a>    public function getRoleName()
+<a name="line47"></a>    {
+<a name="line48"></a>        return $this->roleName;
+<a name="line49"></a>    }
+<a name="line50"></a>
+<a name="line51"></a>    /**
+<a name="line52"></a>     * Set the role name.
+<a name="line53"></a>     *
+<a name="line54"></a>     * @param string $roleName The role name.
+<a name="line55"></a>     */
+<a name="line56"></a>    public function setRoleName($roleName)
+<a name="line57"></a>    {
+<a name="line58"></a>        $this->roleName = (string)$roleName;
+<a name="line59"></a>    }
+<a name="line60"></a>
+<a name="line61"></a>    /**
+<a name="line62"></a>     * Get the capabilities.
+<a name="line63"></a>     *
+<a name="line64"></a>     * @return array An array of capability strings.
+<a name="line65"></a>     */
+<a name="line66"></a>    public function getCapabilities()
+<a name="line67"></a>    {
+<a name="line68"></a>        return $this->capabilities;
+<a name="line69"></a>    }
+<a name="line70"></a>
+<a name="line71"></a>    /**
+<a name="line72"></a>     * Add capabilities.
+<a name="line73"></a>     *
+<a name="line74"></a>     * @param array|string $capabilities An array of capability strings or a single capability string.
+<a name="line75"></a>     */
+<a name="line76"></a>    public function addCapabilities($capabilities)
+<a name="line77"></a>    {
+<a name="line78"></a>        if (is_array($capabilities)) {
+<a name="line79"></a>            $this->capabilities = array_merge((array)$this->capabilities, (array)$capabilities);
+<a name="line80"></a>        } else {
+<a name="line81"></a>            $this->capabilities[] = (string)$capabilities;
+<a name="line82"></a>        }
+<a name="line83"></a>    }
+<a name="line84"></a>}</pre>
 <div class="header">
 <h1><a href=../../index.php target=_top>MLPHP</a></h1>
 <ul>
@@ -122,7 +137,7 @@
 </div>
 <hr>
 
-<p id="footer"></p>
+<p id="footer">Copyright 2002-2012 MarkLogic Corporation.  All Rights Reserved.</p>
 
 </body>
 

@@ -1,11 +1,29 @@
 <?php
+/*
+Copyright 2002-2012 MarkLogic Corporation.  All Rights Reserved.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
+
 $title = array(
-    'docs' => 'Read/Write/Delete Documents',
-    'meta' => 'Manage Document Metadata',
-    'opts' => 'Define Search Options',
-    'search' => 'Perform Searches',
+    'example_docs.php' => 'Read/Write/Delete Documents',
+    'example_meta.php' => 'Manage Document Metadata',
+    'example_opts.php' => 'Define Search Options',
+    'example_search.php' => 'Perform Searches',
+    '../my_first_app.php' => 'Simple Application',
 );
-$id = (!empty($_REQUEST['id']) ? $_REQUEST['id'] : 'docs');
+$id = (!empty($_REQUEST['id']) ? $_REQUEST['id'] : '');
+$id_decoded = urldecode($id);
 $view = (!empty($_REQUEST['view']) ? $_REQUEST['view'] : 'code');
 
 require_once ('setup.php');	// Define $mlphp properties
@@ -37,12 +55,16 @@ $client = new RESTClient($mlphp['host'], $mlphp['port'], $mlphp['path'], $mlphp[
 
 <?php if ($view === 'code') { ?>
 <pre class="prettyprint">
-<?php echo str_replace('<?php', '', file_get_contents('example_' . $id . '.php')); ?>
+<?php
+$pattern = '/\/\*([^*]|[\r\n])*\*\//';
+$replacement = '';
+echo trim(preg_replace($pattern, $replacement, str_replace('<?php', '', file_get_contents($id_decoded)), 1));
+//echo str_replace('<?php', '', file_get_contents('example_' . $id . '.php'));
+?>
 </pre>
 <?php } else { ?>
 <pre>
-
-<?php require_once('example_' . $id . '.php') ?>
+<?php require_once($id_decoded) ?>
 </pre>
 <?php } ?>
 

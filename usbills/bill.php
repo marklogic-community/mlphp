@@ -1,4 +1,20 @@
 <?php
+/*
+Copyright 2002-2012 MarkLogic Corporation.  All Rights Reserved.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
+
 session_start();
 require_once ('setup.php');
 $restClient = new RESTClient($mlphp['host'], $mlphp['port'], $mlphp['path'], $mlphp['version'], $mlphp['username'], $mlphp['password'], $mlphp['auth']);
@@ -9,7 +25,6 @@ $start = (!empty($_REQUEST['start'])) ? $_REQUEST['start'] : '';
 $pageLength = (!empty($_REQUEST['pageLength'])) ? $_REQUEST['pageLength'] : '';
 $link = 'index.php?q=' . $query . '&session=' . $session . '&start=' . $start;
 ?>
-
 <!DOCTYPE html>
 <html lang="en-us">
 <head>
@@ -45,7 +60,7 @@ $proc->importStyleSheet($xsl); // attach the xsl rules
 echo $proc->transformToXML($xml);
 
 ?>
-<div id="footer">Powered by MLPHP</div>
+<div id="footer">Powered by <a href="../index.php">MLPHP</a></div>
 </div><!-- /wrapper -->
 </body>
 </html>

@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="generator" content="PHPDoctor 2RC4 (http://peej.github.com/phpdoctor/)">
-<meta name="when" content="Wed, 14 Nov 2012 20:38:03 +0000">
+<meta name="when" content="Fri, 16 Nov 2012 04:29:46 +0000">
 
 <link rel="stylesheet" type="text/css" href="../stylesheet.css">
 <link rel="start" href="../overview-summary.html">
@@ -37,43 +37,58 @@
 <hr>
 
 <a name="line1"></a><pre><?php
-<a name="line2"></a>
-<a name="line3"></a>require_once('Document.php');
+<a name="line2"></a>/*
+<a name="line3"></a>Copyright 2002-2012 MarkLogic Corporation.  All Rights Reserved.
 <a name="line4"></a>
-<a name="line5"></a>/**
-<a name="line6"></a> * Represents an XML document.
-<a name="line7"></a> *
-<a name="line8"></a> * @package mlphp\document
-<a name="line9"></a> * @author Mike Wooldridge <mike.wooldridge@marklogic.com>
-<a name="line10"></a> */
-<a name="line11"></a>class XMLDocument extends Document
-<a name="line12"></a>{
-<a name="line13"></a>    private $dom; // @var DOMDocument object
-<a name="line14"></a>
-<a name="line15"></a>    /**
-<a name="line16"></a>     * Create an XML document object.
-<a name="line17"></a>     *
-<a name="line18"></a>     * @param RESTClient $restClient A REST client object.
-<a name="line19"></a>     * @param string $uri A document URI.
-<a name="line20"></a>     */
-<a name="line21"></a>    public function __construct($restClient, $uri = null)
-<a name="line22"></a>    {
-<a name="line23"></a>        parent::__construct($restClient, $uri);
-<a name="line24"></a>        $this->dom = new DOMDocument();
-<a name="line25"></a>        $this->contentType = 'application/xml';
-<a name="line26"></a>    }
-<a name="line27"></a>
-<a name="line28"></a>    /**
-<a name="line29"></a>     * Get the document as a DOMDocument object.
-<a name="line30"></a>     *
-<a name="line31"></a>     * @return DOMDocument|null A DOMDocument object.
-<a name="line32"></a>     */
-<a name="line33"></a>    public function getAsDOMDocument()
-<a name="line34"></a>    {
-<a name="line35"></a>        return $this->dom->loadXML($this->getContent());
-<a name="line36"></a>    }
-<a name="line37"></a>
-<a name="line38"></a>}</pre>
+<a name="line5"></a>Licensed under the Apache License, Version 2.0 (the "License");
+<a name="line6"></a>you may not use this file except in compliance with the License.
+<a name="line7"></a>You may obtain a copy of the License at
+<a name="line8"></a>
+<a name="line9"></a>     http://www.apache.org/licenses/LICENSE-2.0
+<a name="line10"></a>
+<a name="line11"></a>Unless required by applicable law or agreed to in writing, software
+<a name="line12"></a>distributed under the License is distributed on an "AS IS" BASIS,
+<a name="line13"></a>WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+<a name="line14"></a>See the License for the specific language governing permissions and
+<a name="line15"></a>limitations under the License.
+<a name="line16"></a>*/
+<a name="line17"></a>
+<a name="line18"></a>require_once('Document.php');
+<a name="line19"></a>
+<a name="line20"></a>/**
+<a name="line21"></a> * Represents an XML document.
+<a name="line22"></a> *
+<a name="line23"></a> * @package mlphp\document
+<a name="line24"></a> * @author Mike Wooldridge <mike.wooldridge@marklogic.com>
+<a name="line25"></a> */
+<a name="line26"></a>class XMLDocument extends Document
+<a name="line27"></a>{
+<a name="line28"></a>    private $dom; // @var DOMDocument object
+<a name="line29"></a>
+<a name="line30"></a>    /**
+<a name="line31"></a>     * Create an XML document object.
+<a name="line32"></a>     *
+<a name="line33"></a>     * @param RESTClient $restClient A REST client object.
+<a name="line34"></a>     * @param string $uri A document URI.
+<a name="line35"></a>     */
+<a name="line36"></a>    public function __construct($restClient, $uri = null)
+<a name="line37"></a>    {
+<a name="line38"></a>        parent::__construct($restClient, $uri);
+<a name="line39"></a>        $this->dom = new DOMDocument();
+<a name="line40"></a>        $this->contentType = 'application/xml';
+<a name="line41"></a>    }
+<a name="line42"></a>
+<a name="line43"></a>    /**
+<a name="line44"></a>     * Get the document as a DOMDocument object.
+<a name="line45"></a>     *
+<a name="line46"></a>     * @return DOMDocument|null A DOMDocument object.
+<a name="line47"></a>     */
+<a name="line48"></a>    public function getAsDOMDocument()
+<a name="line49"></a>    {
+<a name="line50"></a>        return $this->dom->loadXML($this->getContent());
+<a name="line51"></a>    }
+<a name="line52"></a>
+<a name="line53"></a>}</pre>
 <div class="header">
 <h1><a href=../../index.php target=_top>MLPHP</a></h1>
 <ul>
@@ -91,7 +106,7 @@
 </div>
 <hr>
 
-<p id="footer"></p>
+<p id="footer">Copyright 2002-2012 MarkLogic Corporation.  All Rights Reserved.</p>
 
 </body>
 

@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="generator" content="PHPDoctor 2RC4 (http://peej.github.com/phpdoctor/)">
-<meta name="when" content="Wed, 14 Nov 2012 20:38:03 +0000">
+<meta name="when" content="Fri, 16 Nov 2012 04:29:46 +0000">
 
 <link rel="stylesheet" type="text/css" href="../stylesheet.css">
 <link rel="start" href="../overview-summary.html">
@@ -37,53 +37,68 @@
 <hr>
 
 <a name="line1"></a><pre><?php
-<a name="line2"></a>
-<a name="line3"></a>/**
-<a name="line4"></a> * Represents a collection constraint for search.
-<a name="line5"></a> *
-<a name="line6"></a> * @package mlphp\options
-<a name="line7"></a> * @author Mike Wooldridge <mike.wooldridge@marklogic.com>
-<a name="line8"></a> */
-<a name="line9"></a>class CollectionConstraint extends AbstractConstraint
-<a name="line10"></a>{
-<a name="line11"></a>    private $prefix; // @var bool
-<a name="line12"></a>    protected $termOptions; // @var array
-<a name="line13"></a>    protected $facetOptions; // @var array
-<a name="line14"></a>
-<a name="line15"></a>    /**
-<a name="line16"></a>     * Create a CollectionConstraint object.
-<a name="line17"></a>     *
-<a name="line18"></a>     * @see http://docs.marklogic.com/search:search#opt-constraint
-<a name="line19"></a>     *
-<a name="line20"></a>     * @param string $name Constraint name.
-<a name="line21"></a>     * @param string $prefix Collection prefix.
-<a name="line22"></a>     */
-<a name="line23"></a>    public function __construct($name, $prefix)
-<a name="line24"></a>    {
-<a name="line25"></a>        $this->prefix = (string)$prefix;
-<a name="line26"></a>    parent::__construct($name);
-<a name="line27"></a>    }
-<a name="line28"></a>
-<a name="line29"></a>    /**
-<a name="line30"></a>     * Get the constraint as a DOMElement object.
-<a name="line31"></a>     *
-<a name="line32"></a>     * @param DOMDocument $dom The DOMDocument object with which to create the element.
-<a name="line33"></a>     */
-<a name="line34"></a>    public function getAsElem($dom)
-<a name="line35"></a>    {
-<a name="line36"></a>        $constElem = $dom->createElement('constraint');
-<a name="line37"></a>        $constElem->setAttribute('name', $this->name);
-<a name="line38"></a>        $collElem = $dom->createElement('collection');
-<a name="line39"></a>        $collElem->setAttribute('prefix', $this->prefix);
-<a name="line40"></a>        $this->addTermOptions($dom, $collElem);
-<a name="line41"></a>        $this->addFacetOptions($dom, $collElem);
-<a name="line42"></a>        $constElem->appendChild($collElem);
-<a name="line43"></a>        /* <constraint name='contributor'>
-<a name="line44"></a>                <collection prefix='http://bbq.com/contributor/'/>
-<a name="line45"></a>       </constraint> */
-<a name="line46"></a>        return $constElem;
-<a name="line47"></a>    }
-<a name="line48"></a>}</pre>
+<a name="line2"></a>/*
+<a name="line3"></a>Copyright 2002-2012 MarkLogic Corporation.  All Rights Reserved.
+<a name="line4"></a>
+<a name="line5"></a>Licensed under the Apache License, Version 2.0 (the "License");
+<a name="line6"></a>you may not use this file except in compliance with the License.
+<a name="line7"></a>You may obtain a copy of the License at
+<a name="line8"></a>
+<a name="line9"></a>     http://www.apache.org/licenses/LICENSE-2.0
+<a name="line10"></a>
+<a name="line11"></a>Unless required by applicable law or agreed to in writing, software
+<a name="line12"></a>distributed under the License is distributed on an "AS IS" BASIS,
+<a name="line13"></a>WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+<a name="line14"></a>See the License for the specific language governing permissions and
+<a name="line15"></a>limitations under the License.
+<a name="line16"></a>*/
+<a name="line17"></a>
+<a name="line18"></a>/**
+<a name="line19"></a> * Represents a collection constraint for search.
+<a name="line20"></a> *
+<a name="line21"></a> * @package mlphp\options
+<a name="line22"></a> * @author Mike Wooldridge <mike.wooldridge@marklogic.com>
+<a name="line23"></a> */
+<a name="line24"></a>class CollectionConstraint extends AbstractConstraint
+<a name="line25"></a>{
+<a name="line26"></a>    private $prefix; // @var bool
+<a name="line27"></a>    protected $termOptions; // @var array
+<a name="line28"></a>    protected $facetOptions; // @var array
+<a name="line29"></a>
+<a name="line30"></a>    /**
+<a name="line31"></a>     * Create a CollectionConstraint object.
+<a name="line32"></a>     *
+<a name="line33"></a>     * @see http://docs.marklogic.com/search:search#opt-constraint
+<a name="line34"></a>     *
+<a name="line35"></a>     * @param string $name Constraint name.
+<a name="line36"></a>     * @param string $prefix Collection prefix.
+<a name="line37"></a>     */
+<a name="line38"></a>    public function __construct($name, $prefix)
+<a name="line39"></a>    {
+<a name="line40"></a>        $this->prefix = (string)$prefix;
+<a name="line41"></a>    parent::__construct($name);
+<a name="line42"></a>    }
+<a name="line43"></a>
+<a name="line44"></a>    /**
+<a name="line45"></a>     * Get the constraint as a DOMElement object.
+<a name="line46"></a>     *
+<a name="line47"></a>     * @param DOMDocument $dom The DOMDocument object with which to create the element.
+<a name="line48"></a>     */
+<a name="line49"></a>    public function getAsElem($dom)
+<a name="line50"></a>    {
+<a name="line51"></a>        $constElem = $dom->createElement('constraint');
+<a name="line52"></a>        $constElem->setAttribute('name', $this->name);
+<a name="line53"></a>        $collElem = $dom->createElement('collection');
+<a name="line54"></a>        $collElem->setAttribute('prefix', $this->prefix);
+<a name="line55"></a>        $this->addTermOptions($dom, $collElem);
+<a name="line56"></a>        $this->addFacetOptions($dom, $collElem);
+<a name="line57"></a>        $constElem->appendChild($collElem);
+<a name="line58"></a>        /* <constraint name='contributor'>
+<a name="line59"></a>                <collection prefix='http://bbq.com/contributor/'/>
+<a name="line60"></a>       </constraint> */
+<a name="line61"></a>        return $constElem;
+<a name="line62"></a>    }
+<a name="line63"></a>}</pre>
 <div class="header">
 <h1><a href=../../index.php target=_top>MLPHP</a></h1>
 <ul>
@@ -101,7 +116,7 @@
 </div>
 <hr>
 
-<p id="footer"></p>
+<p id="footer">Copyright 2002-2012 MarkLogic Corporation.  All Rights Reserved.</p>
 
 </body>
 

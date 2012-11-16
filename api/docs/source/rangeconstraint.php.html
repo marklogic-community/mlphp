@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="generator" content="PHPDoctor 2RC4 (http://peej.github.com/phpdoctor/)">
-<meta name="when" content="Wed, 14 Nov 2012 20:38:03 +0000">
+<meta name="when" content="Fri, 16 Nov 2012 04:29:46 +0000">
 
 <link rel="stylesheet" type="text/css" href="../stylesheet.css">
 <link rel="start" href="../overview-summary.html">
@@ -37,82 +37,97 @@
 <hr>
 
 <a name="line1"></a><pre><?php
-<a name="line2"></a>
-<a name="line3"></a>/**
-<a name="line4"></a> * Represents a range constraint for search.
-<a name="line5"></a> *
-<a name="line6"></a> * @package mlphp\options
-<a name="line7"></a> * @author Mike Wooldridge <mike.wooldridge@marklogic.com>
-<a name="line8"></a> */
-<a name="line9"></a>class RangeConstraint extends AbstractConstraint
-<a name="line10"></a>{
-<a name="line11"></a>    private $elem; // @var string
-<a name="line12"></a>    private $ns; // @var string
-<a name="line13"></a>    private $attr; // @var string
-<a name="line14"></a>    private $attrNs; // @var string
-<a name="line15"></a>    private $datatype; // @var string
-<a name="line16"></a>    private $facet; // @var bool
-<a name="line17"></a>    protected $fragmentScope; // @var string
-<a name="line18"></a>    protected $facetOptions; // @var array
-<a name="line19"></a>
-<a name="line20"></a>    /**
-<a name="line21"></a>     * Create a RangeConstraint object.
-<a name="line22"></a>     *
-<a name="line23"></a>     * @see http://docs.marklogic.com/search:search#opt-constraint
-<a name="line24"></a>     *
-<a name="line25"></a>     * @param string $name Constraint name.
-<a name="line26"></a>     * @param string $datatype Constraint datatype.
-<a name="line27"></a>     * @param string $facet Whether constraint should be faceted ('true' or 'false').
-<a name="line28"></a>     * @param string $elem Name of the element.
-<a name="line29"></a>     * @param string $ns Element namespace.
-<a name="line30"></a>     * @param string $attr Attribute name.
-<a name="line31"></a>     * @param string $attrNs An attribute namespace.
-<a name="line32"></a>     */
-<a name="line33"></a>    public function __construct($name, $datatype, $facet = 'true', $elem, $ns = '', $attr = '', $attrNs = '')
-<a name="line34"></a>    {
-<a name="line35"></a>        $this->elem = (string)$elem;
-<a name="line36"></a>        $this->ns = (string)$ns;
-<a name="line37"></a>        $this->attr = (string)$attr;
-<a name="line38"></a>        $this->attrNs = (string)$attrNs;
-<a name="line39"></a>        $this->datatype = (string)$datatype;
-<a name="line40"></a>        $this->facet = (string)$facet;
-<a name="line41"></a>        parent::__construct($name);
-<a name="line42"></a>    }
-<a name="line43"></a>
-<a name="line44"></a>    /**
-<a name="line45"></a>     * Get the constraint as a DOMElement object.
-<a name="line46"></a>     *
-<a name="line47"></a>     * @param DOMDocument $dom The DOMDocument object with which to create the element.
-<a name="line48"></a>     */
-<a name="line49"></a>    public function getAsElem($dom)
-<a name="line50"></a>    {
-<a name="line51"></a>        $constElem = $dom->createElement('constraint');
-<a name="line52"></a>        $constElem->setAttribute('name', $this->name);
-<a name="line53"></a>        $rangeElem = $dom->createElement('range');
-<a name="line54"></a>        $rangeElem->setAttribute('type', $this->datatype);
-<a name="line55"></a>        $rangeElem->setAttribute('facet', $this->facet);
-<a name="line56"></a>        $elemElem = $dom->createElement('element');
-<a name="line57"></a>        $elemElem->setAttribute('ns', $this->ns);
-<a name="line58"></a>        $elemElem->setAttribute('name', $this->elem);
-<a name="line59"></a>        $rangeElem->appendChild($elemElem);
-<a name="line60"></a>        if($this->attr) {
-<a name="line61"></a>            $attrElem = $dom->createElement('attribute');
-<a name="line62"></a>            $attrElem->setAttribute('ns', $this->attrNs);
-<a name="line63"></a>            $attrElem->setAttribute('name', $this->attr);
-<a name="line64"></a>            $rangeElem->appendChild($attrElem);
-<a name="line65"></a>        }
-<a name="line66"></a>        // Note: No term options for range constraints
-<a name="line67"></a>        $this->addFacetOptions($dom, $rangeElem);
-<a name="line68"></a>        $this->addFragmentScope($dom, $rangeElem);
-<a name="line69"></a>        $constElem->appendChild($rangeElem);
-<a name="line70"></a>    /* <constraint name='rating'>
-<a name="line71"></a>               <range type='xs:decimal'>
-<a name="line72"></a>                   <element ns='http://example.com' name='rating'/>
-<a name="line73"></a>               </range>
-<a name="line74"></a>           </constraint> */
-<a name="line75"></a>        return $constElem;
-<a name="line76"></a>    }
-<a name="line77"></a>}</pre>
+<a name="line2"></a>/*
+<a name="line3"></a>Copyright 2002-2012 MarkLogic Corporation.  All Rights Reserved.
+<a name="line4"></a>
+<a name="line5"></a>Licensed under the Apache License, Version 2.0 (the "License");
+<a name="line6"></a>you may not use this file except in compliance with the License.
+<a name="line7"></a>You may obtain a copy of the License at
+<a name="line8"></a>
+<a name="line9"></a>     http://www.apache.org/licenses/LICENSE-2.0
+<a name="line10"></a>
+<a name="line11"></a>Unless required by applicable law or agreed to in writing, software
+<a name="line12"></a>distributed under the License is distributed on an "AS IS" BASIS,
+<a name="line13"></a>WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+<a name="line14"></a>See the License for the specific language governing permissions and
+<a name="line15"></a>limitations under the License.
+<a name="line16"></a>*/
+<a name="line17"></a>
+<a name="line18"></a>/**
+<a name="line19"></a> * Represents a range constraint for search.
+<a name="line20"></a> *
+<a name="line21"></a> * @package mlphp\options
+<a name="line22"></a> * @author Mike Wooldridge <mike.wooldridge@marklogic.com>
+<a name="line23"></a> */
+<a name="line24"></a>class RangeConstraint extends AbstractConstraint
+<a name="line25"></a>{
+<a name="line26"></a>    private $elem; // @var string
+<a name="line27"></a>    private $ns; // @var string
+<a name="line28"></a>    private $attr; // @var string
+<a name="line29"></a>    private $attrNs; // @var string
+<a name="line30"></a>    private $datatype; // @var string
+<a name="line31"></a>    private $facet; // @var bool
+<a name="line32"></a>    protected $fragmentScope; // @var string
+<a name="line33"></a>    protected $facetOptions; // @var array
+<a name="line34"></a>
+<a name="line35"></a>    /**
+<a name="line36"></a>     * Create a RangeConstraint object.
+<a name="line37"></a>     *
+<a name="line38"></a>     * @see http://docs.marklogic.com/search:search#opt-constraint
+<a name="line39"></a>     *
+<a name="line40"></a>     * @param string $name Constraint name.
+<a name="line41"></a>     * @param string $datatype Constraint datatype.
+<a name="line42"></a>     * @param string $facet Whether constraint should be faceted ('true' or 'false').
+<a name="line43"></a>     * @param string $elem Name of the element.
+<a name="line44"></a>     * @param string $ns Element namespace.
+<a name="line45"></a>     * @param string $attr Attribute name.
+<a name="line46"></a>     * @param string $attrNs An attribute namespace.
+<a name="line47"></a>     */
+<a name="line48"></a>    public function __construct($name, $datatype, $facet = 'true', $elem, $ns = '', $attr = '', $attrNs = '')
+<a name="line49"></a>    {
+<a name="line50"></a>        $this->elem = (string)$elem;
+<a name="line51"></a>        $this->ns = (string)$ns;
+<a name="line52"></a>        $this->attr = (string)$attr;
+<a name="line53"></a>        $this->attrNs = (string)$attrNs;
+<a name="line54"></a>        $this->datatype = (string)$datatype;
+<a name="line55"></a>        $this->facet = (string)$facet;
+<a name="line56"></a>        parent::__construct($name);
+<a name="line57"></a>    }
+<a name="line58"></a>
+<a name="line59"></a>    /**
+<a name="line60"></a>     * Get the constraint as a DOMElement object.
+<a name="line61"></a>     *
+<a name="line62"></a>     * @param DOMDocument $dom The DOMDocument object with which to create the element.
+<a name="line63"></a>     */
+<a name="line64"></a>    public function getAsElem($dom)
+<a name="line65"></a>    {
+<a name="line66"></a>        $constElem = $dom->createElement('constraint');
+<a name="line67"></a>        $constElem->setAttribute('name', $this->name);
+<a name="line68"></a>        $rangeElem = $dom->createElement('range');
+<a name="line69"></a>        $rangeElem->setAttribute('type', $this->datatype);
+<a name="line70"></a>        $rangeElem->setAttribute('facet', $this->facet);
+<a name="line71"></a>        $elemElem = $dom->createElement('element');
+<a name="line72"></a>        $elemElem->setAttribute('ns', $this->ns);
+<a name="line73"></a>        $elemElem->setAttribute('name', $this->elem);
+<a name="line74"></a>        $rangeElem->appendChild($elemElem);
+<a name="line75"></a>        if($this->attr) {
+<a name="line76"></a>            $attrElem = $dom->createElement('attribute');
+<a name="line77"></a>            $attrElem->setAttribute('ns', $this->attrNs);
+<a name="line78"></a>            $attrElem->setAttribute('name', $this->attr);
+<a name="line79"></a>            $rangeElem->appendChild($attrElem);
+<a name="line80"></a>        }
+<a name="line81"></a>        // Note: No term options for range constraints
+<a name="line82"></a>        $this->addFacetOptions($dom, $rangeElem);
+<a name="line83"></a>        $this->addFragmentScope($dom, $rangeElem);
+<a name="line84"></a>        $constElem->appendChild($rangeElem);
+<a name="line85"></a>    /* <constraint name='rating'>
+<a name="line86"></a>               <range type='xs:decimal'>
+<a name="line87"></a>                   <element ns='http://example.com' name='rating'/>
+<a name="line88"></a>               </range>
+<a name="line89"></a>           </constraint> */
+<a name="line90"></a>        return $constElem;
+<a name="line91"></a>    }
+<a name="line92"></a>}</pre>
 <div class="header">
 <h1><a href=../../index.php target=_top>MLPHP</a></h1>
 <ul>
@@ -130,7 +145,7 @@
 </div>
 <hr>
 
-<p id="footer"></p>
+<p id="footer">Copyright 2002-2012 MarkLogic Corporation.  All Rights Reserved.</p>
 
 </body>
 

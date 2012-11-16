@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="generator" content="PHPDoctor 2RC4 (http://peej.github.com/phpdoctor/)">
-<meta name="when" content="Wed, 14 Nov 2012 20:38:03 +0000">
+<meta name="when" content="Fri, 16 Nov 2012 04:29:46 +0000">
 
 <link rel="stylesheet" type="text/css" href="../stylesheet.css">
 <link rel="start" href="../overview-summary.html">
@@ -37,53 +37,68 @@
 <hr>
 
 <a name="line1"></a><pre><?php
-<a name="line2"></a>
-<a name="line3"></a>/**
-<a name="line4"></a> * Represents an element-query constraint for search.
-<a name="line5"></a> *
-<a name="line6"></a> * @package mlphp\options
-<a name="line7"></a> * @author Mike Wooldridge <mike.wooldridge@marklogic.com>
-<a name="line8"></a> */
-<a name="line9"></a>class ElementQueryConstraint extends AbstractConstraint
-<a name="line10"></a>{
-<a name="line11"></a>    private $elem; // @var string
-<a name="line12"></a>    private $ns; // @var string
-<a name="line13"></a>
-<a name="line14"></a>    /**
-<a name="line15"></a>     * Create a ElementQueryConstraint object.
-<a name="line16"></a>     *
-<a name="line17"></a>     * @see http://docs.marklogic.com/search:search#opt-constraint
-<a name="line18"></a>     *
-<a name="line19"></a>     * @param string $name Constraint name.
-<a name="line20"></a>     * @param string $elem Element name.
-<a name="line21"></a>     * @param string $ns Element namespace.
-<a name="line22"></a>     */
-<a name="line23"></a>    public function __construct($name, $elem, $ns = '')
-<a name="line24"></a>    {
-<a name="line25"></a>        $this->elem = (string)$elem;
-<a name="line26"></a>      $this->ns = (string)$ns;
-<a name="line27"></a>    parent::__construct($name);
-<a name="line28"></a>    }
-<a name="line29"></a>
-<a name="line30"></a>    /**
-<a name="line31"></a>     * Get the constraint as a DOMElement object.
-<a name="line32"></a>     *
-<a name="line33"></a>     * @param DOMDocument $dom The DOMDocument object with which to create the element.
-<a name="line34"></a>     */
-<a name="line35"></a>    public function getAsElem($dom)
-<a name="line36"></a>    {
-<a name="line37"></a>        $constElem = $dom->createElement('constraint');
-<a name="line38"></a>        $constElem->setAttribute('name', $this->name);
-<a name="line39"></a>        $eqElem = $dom->createElement('element-query');
-<a name="line40"></a>        $eqElem->setAttribute('ns', $this->ns);
-<a name="line41"></a>        $eqElem->setAttribute('name', $this->elem);
-<a name="line42"></a>        $constElem->appendChild($eqElem);
-<a name="line43"></a>        /* <constraint name='sample-element-constraint'>
-<a name="line44"></a>              <element-query name='title' ns='http://my/namespace' />
-<a name="line45"></a>         </constraint> */
-<a name="line46"></a>        return $constElem;
-<a name="line47"></a>    }
-<a name="line48"></a>}</pre>
+<a name="line2"></a>/*
+<a name="line3"></a>Copyright 2002-2012 MarkLogic Corporation.  All Rights Reserved.
+<a name="line4"></a>
+<a name="line5"></a>Licensed under the Apache License, Version 2.0 (the "License");
+<a name="line6"></a>you may not use this file except in compliance with the License.
+<a name="line7"></a>You may obtain a copy of the License at
+<a name="line8"></a>
+<a name="line9"></a>     http://www.apache.org/licenses/LICENSE-2.0
+<a name="line10"></a>
+<a name="line11"></a>Unless required by applicable law or agreed to in writing, software
+<a name="line12"></a>distributed under the License is distributed on an "AS IS" BASIS,
+<a name="line13"></a>WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+<a name="line14"></a>See the License for the specific language governing permissions and
+<a name="line15"></a>limitations under the License.
+<a name="line16"></a>*/
+<a name="line17"></a>
+<a name="line18"></a>/**
+<a name="line19"></a> * Represents an element-query constraint for search.
+<a name="line20"></a> *
+<a name="line21"></a> * @package mlphp\options
+<a name="line22"></a> * @author Mike Wooldridge <mike.wooldridge@marklogic.com>
+<a name="line23"></a> */
+<a name="line24"></a>class ElementQueryConstraint extends AbstractConstraint
+<a name="line25"></a>{
+<a name="line26"></a>    private $elem; // @var string
+<a name="line27"></a>    private $ns; // @var string
+<a name="line28"></a>
+<a name="line29"></a>    /**
+<a name="line30"></a>     * Create a ElementQueryConstraint object.
+<a name="line31"></a>     *
+<a name="line32"></a>     * @see http://docs.marklogic.com/search:search#opt-constraint
+<a name="line33"></a>     *
+<a name="line34"></a>     * @param string $name Constraint name.
+<a name="line35"></a>     * @param string $elem Element name.
+<a name="line36"></a>     * @param string $ns Element namespace.
+<a name="line37"></a>     */
+<a name="line38"></a>    public function __construct($name, $elem, $ns = '')
+<a name="line39"></a>    {
+<a name="line40"></a>        $this->elem = (string)$elem;
+<a name="line41"></a>      $this->ns = (string)$ns;
+<a name="line42"></a>    parent::__construct($name);
+<a name="line43"></a>    }
+<a name="line44"></a>
+<a name="line45"></a>    /**
+<a name="line46"></a>     * Get the constraint as a DOMElement object.
+<a name="line47"></a>     *
+<a name="line48"></a>     * @param DOMDocument $dom The DOMDocument object with which to create the element.
+<a name="line49"></a>     */
+<a name="line50"></a>    public function getAsElem($dom)
+<a name="line51"></a>    {
+<a name="line52"></a>        $constElem = $dom->createElement('constraint');
+<a name="line53"></a>        $constElem->setAttribute('name', $this->name);
+<a name="line54"></a>        $eqElem = $dom->createElement('element-query');
+<a name="line55"></a>        $eqElem->setAttribute('ns', $this->ns);
+<a name="line56"></a>        $eqElem->setAttribute('name', $this->elem);
+<a name="line57"></a>        $constElem->appendChild($eqElem);
+<a name="line58"></a>        /* <constraint name='sample-element-constraint'>
+<a name="line59"></a>              <element-query name='title' ns='http://my/namespace' />
+<a name="line60"></a>         </constraint> */
+<a name="line61"></a>        return $constElem;
+<a name="line62"></a>    }
+<a name="line63"></a>}</pre>
 <div class="header">
 <h1><a href=../../index.php target=_top>MLPHP</a></h1>
 <ul>
@@ -101,7 +116,7 @@
 </div>
 <hr>
 
-<p id="footer"></p>
+<p id="footer">Copyright 2002-2012 MarkLogic Corporation.  All Rights Reserved.</p>
 
 </body>
 
