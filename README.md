@@ -76,6 +76,10 @@ of PHP)
 
    http://localhost/~user/mlphp/
 
+   You can also view the code for a simple application:
+
+   mlphp/my_first_app.php
+
 ## Troubleshooting
 
 * If you encounter 403 errors, make sure your REST users are set up correctly
