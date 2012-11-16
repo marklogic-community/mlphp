@@ -24,8 +24,7 @@ if (!empty($redirect)) {
 }
 
 // Load search options if needed
-if (true) {
-//if (!isset($_SESSION['options_loaded'])) {
+if (!isset($_SESSION['options_loaded']) || !$_SESSION['options_loaded'] === TRUE) {
     echo '<!-- Loading search options -->' . PHP_EOL;
 
     $client = new RESTClient($mlphp['host'], $mlphp['port'], $mlphp['path'], $mlphp['version'], $mlphp['username-admin'], $mlphp['password-admin'], $mlphp['auth']);
@@ -63,7 +62,7 @@ if (true) {
 
     echo '<!--' . $options->read($optionsid) . '-->' . PHP_EOL;
 
-    $_SESSION['options_loaded'] = true;
+    $_SESSION['options_loaded'] = TRUE;
 
 } else {
 
