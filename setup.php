@@ -30,8 +30,8 @@ $mlphp = array(
 );
 
 function __autoload($classname) {
-      // TODO Get 'api/' dynamically
-    $filename = 'api/' . $classname . '.php';
+    global $mlphp;
+    $filename = $mlphp['api_path'] . $classname . '.php';
     require_once($filename);
 }
 
