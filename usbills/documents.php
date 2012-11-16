@@ -66,7 +66,7 @@ foreach($subdirs as $subdir) {
             }
         }
         closedir($handle);
-        $_SESSION['documents_loaded'] = true;
+        $_SESSION['documents_loaded'] = TRUE;
     }
 }
 

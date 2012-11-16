@@ -56,7 +56,7 @@ $pageLength = (!empty($_REQUEST['pageLength'])) ? $_REQUEST['pageLength'] : '';
 
 <?php
 
-if (true) {
+if (TRUE) { // TODO Change TRUE to not execute search following in some cases?
 
     // Get search results
     $search = new Search($restClient);
@@ -87,9 +87,9 @@ if (true) {
     // No results
     if ($searchResults->getTotal() == 0) {
         $message = 'No results.';
-        //if (!isset($_SESSION['documents_loaded']) || $_SESSION['documents_loaded'] === false) {
+        if (!isset($_SESSION['documents_loaded']) || !$_SESSION['documents_loaded'] === TRUE) {
             $message .= ' <a href="documents.php?redirect=index.php&items=bills">Click here to load bills</a>.';
-        //}
+        }
         echo '<div class="result textLarge">' . $message . '</div>';
     // Results
     } else {
