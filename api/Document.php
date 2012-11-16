@@ -1,6 +1,8 @@
 <?php
 
 require_once 'Metadata.php';
+require_once 'RESTRequest.php';
+require_once 'Match.php';
 
 /**
  * Represents a document.
