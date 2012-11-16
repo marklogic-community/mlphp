@@ -1,5 +1,7 @@
 <?php
 
+require_once ('Match.php');
+
 /**
  * Represents a search result.
  *
