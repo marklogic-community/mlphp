@@ -1,0 +1,816 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+<html lang="en">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="generator" content="PHPDoctor 2RC4 (http://peej.github.com/phpdoctor/)">
+<meta name="when" content="Fri, 16 Nov 2012 04:29:45 +0000">
+
+<link rel="stylesheet" type="text/css" href="../../stylesheet.css">
+<link rel="start" href="../../overview-summary.html">
+
+<title>Options ('MLPHP')</title>
+
+</head>
+<body id="definition" onload="parent.document.title=document.title;">
+
+<div class="header">
+<h1><a href=../../index.php target=_top>MLPHP</a></h1>
+<ul>
+<li><a href="../../overview-summary.html">Overview</a></li>
+<li><a href="../../mlphp/options/package-summary.html">Namespace</a></li>
+<li class="active">Class</li>
+<li><a href="../../mlphp/options/package-tree.html">Tree</a></li>
+<li><a href="../../overview-files.html">Files</a></li>
+<li><a href="../../deprecated-list.html">Deprecated</a></li>
+<li><a href="../../todo-list.html">Todo</a></li>
+<li><a href="../../index-all.html">Index</a></li>
+</ul>
+</div>
+
+<div class="small_links">
+<a href="../../index.html" target="_top">Frames</a>
+<a href="../../mlphp/options/options.html" target="_top">No frames</a>
+</div>
+<div class="small_links">
+Summary: <a href="#summary_field">Field</a> | <a href="#summary_method">Method</a> | <a href="#summary_constr">Constr</a>
+Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> | <a href="#summary_constr">Constr</a>
+</div>
+<hr>
+
+<div class="qualifiedName">mlphp\options\Options</div>
+<a href="../../source/options.php.html#line28" class="location">Options.php at line 28</a>
+
+<h1>Class Options</h1>
+
+<pre class="tree"><strong>Options</strong><br /></pre>
+
+<hr>
+
+<p class="signature">public  class <strong>Options</strong></p>
+
+<div class="comment" id="overview_description"><p>Represents search options.</p></div>
+
+<dl>
+<dt>Author:</dt>
+<dd>Mike Wooldridge <mike.wooldridge@marklogic.com></dd>
+<dt>See Also:</dt>
+<dd>list: http://docs.marklogic.com/search:search</dd>
+<dt>Todo:</dt>
+<dd>Support complete of properties (see below)</dd>
+</dl>
+<hr>
+
+<table id="summary_constructor">
+<tr><th colspan="2">Constructor Summary</th></tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#__construct()">__construct</a>(<a href="../../mlphp/rest/restclient.html">RESTClient</a> restClient)</p><p class="description">Create an Options object.</p></td>
+</tr>
+</table>
+
+<table id="summary_method">
+<tr><th colspan="2">Method Summary</th></tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#addConstraint()">addConstraint</a>(mixed constraint)</p><p class="description">Add a constraint.</p></td>
+</tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#addValues()">addValues</a>(<a href="../../mlphp/options/values.html">Values</a> values)</p><p class="description">Add a values setting.</p></td>
+</tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#setExtracts()">setExtracts</a>(<a href="../../mlphp/options/extracts.html">Extracts</a> extracts)</p><p class="description">Set the metadata extracts.</p></td>
+</tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#setTransformResults()">setTransformResults</a>(<a href="../../mlphp/options/transformresults.html">TransformResults</a> transformResults)</p><p class="description">Set the transform-results setting.</p></td>
+</tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#setTerm()">setTerm</a>(<a href="../../mlphp/options/term.html">Term</a> term)</p><p class="description">Set the term setting.</p></td>
+</tr>
+<tr>
+<td class="type"> string</td>
+<td class="description"><p class="name"><a href="#getAsXML()">getAsXML</a>()</p><p class="description">Get the search options as XML.</p></td>
+</tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#addOption()">addOption</a>(DOMElement root, string name, string value)</p><p class="description">If an option value is set, create a DOM element with an option name and value and append it to the root element of the options node.</p></td>
+</tr>
+<tr>
+<td class="type"> <a href="../../mlphp/rest/restresponse.html">RESTResponse</a></td>
+<td class="description"><p class="name"><a href="#write()">write</a>(str name)</p><p class="description">Write the search options to the database.</p></td>
+</tr>
+<tr>
+<td class="type"> string</td>
+<td class="description"><p class="name"><a href="#read()">read</a>(str name)</p><p class="description">Read the search options from the database.</p></td>
+</tr>
+<tr>
+<td class="type"> string</td>
+<td class="description"><p class="name"><a href="#getAdditionalQuery()">getAdditionalQuery</a>()</p><p class="description">Get the additional-query setting.</p></td>
+</tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#setAdditionalQuery()">setAdditionalQuery</a>(string additionalQuery)</p><p class="description">Set The additional-query setting.</p></td>
+</tr>
+<tr>
+<td class="type"> int</td>
+<td class="description"><p class="name"><a href="#getConcurrencyLevel()">getConcurrencyLevel</a>()</p><p class="description">Get the concurrency level.</p></td>
+</tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#setConcurrencyLevel()">setConcurrencyLevel</a>(int concurrencyLevel)</p><p class="description">Set The concurrency level.</p></td>
+</tr>
+<tr>
+<td class="type"> string</td>
+<td class="description"><p class="name"><a href="#getDebug()">getDebug</a>()</p><p class="description">Get the debug setting.</p></td>
+</tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#setDebug()">setDebug</a>(string debug)</p><p class="description">Set the debug setting.</p></td>
+</tr>
+<tr>
+<td class="type"> int</td>
+<td class="description"><p class="name"><a href="#getForest()">getForest</a>()</p><p class="description">Get the forest ID.</p></td>
+</tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#setForest()">setForest</a>(int forest)</p><p class="description">Set the forest ID.</p></td>
+</tr>
+<tr>
+<td class="type"> int</td>
+<td class="description"><p class="name"><a href="#getPageLength()">getPageLength</a>()</p><p class="description">Get the page length.</p></td>
+</tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#setPageLength()">setPageLength</a>(int pageLength)</p><p class="description">Set the page length.</p></td>
+</tr>
+<tr>
+<td class="type"> float</td>
+<td class="description"><p class="name"><a href="#getQualityWeight()">getQualityWeight</a>()</p><p class="description">Get the quality weight.</p></td>
+</tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#setQualityWeight()">setQualityWeight</a>(float qualityWeight)</p><p class="description">Set the quality weight.</p></td>
+</tr>
+<tr>
+<td class="type"> string</td>
+<td class="description"><p class="name"><a href="#getReturnConstraints()">getReturnConstraints</a>()</p><p class="description">Get the return-constraints setting.</p></td>
+</tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#setReturnConstraints()">setReturnConstraints</a>(string returnConstraints)</p><p class="description">Set the return-constraints setting.</p></td>
+</tr>
+<tr>
+<td class="type"> string</td>
+<td class="description"><p class="name"><a href="#getReturnFacets()">getReturnFacets</a>()</p><p class="description">Get the return-facets setting.</p></td>
+</tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#setReturnFacets()">setReturnFacets</a>(string returnFacets)</p><p class="description">Set the return-facets setting.</p></td>
+</tr>
+<tr>
+<td class="type"> string</td>
+<td class="description"><p class="name"><a href="#getReturnMetrics()">getReturnMetrics</a>()</p><p class="description">Get the return-metrics setting.</p></td>
+</tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#setReturnMetrics()">setReturnMetrics</a>(string returnMetrics)</p><p class="description">Set the return-metrics setting.</p></td>
+</tr>
+<tr>
+<td class="type"> string</td>
+<td class="description"><p class="name"><a href="#getReturnPlan()">getReturnPlan</a>()</p><p class="description">Get the return-plan setting.</p></td>
+</tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#setReturnPlan()">setReturnPlan</a>(string returnPlan)</p><p class="description">Set the return-plan setting.</p></td>
+</tr>
+<tr>
+<td class="type"> string</td>
+<td class="description"><p class="name"><a href="#getReturnQtext()">getReturnQtext</a>()</p><p class="description">Get the return-qtext setting.</p></td>
+</tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#setReturnQtext()">setReturnQtext</a>(string returnQtext)</p><p class="description">Set the return-qtext setting.</p></td>
+</tr>
+<tr>
+<td class="type"> string</td>
+<td class="description"><p class="name"><a href="#getReturnQuery()">getReturnQuery</a>()</p><p class="description">Get the return-query setting.</p></td>
+</tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#setReturnQuery()">setReturnQuery</a>(string returnQuery)</p><p class="description">Set the return-query setting.</p></td>
+</tr>
+<tr>
+<td class="type"> string</td>
+<td class="description"><p class="name"><a href="#getReturnResults()">getReturnResults</a>()</p><p class="description">Get the return-results setting.</p></td>
+</tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#setReturnResults()">setReturnResults</a>(string returnResults)</p><p class="description">Set the return-results setting.</p></td>
+</tr>
+<tr>
+<td class="type"> string</td>
+<td class="description"><p class="name"><a href="#getReturnSimilar()">getReturnSimilar</a>()</p><p class="description">Get the return-similar setting.</p></td>
+</tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#setReturnSimilar()">setReturnSimilar</a>(string returnSimilar)</p><p class="description">Set the return-similar setting.</p></td>
+</tr>
+<tr>
+<td class="type"> array</td>
+<td class="description"><p class="name"><a href="#getSearchOptions()">getSearchOptions</a>()</p><p class="description">Get the search options.</p></td>
+</tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#setSearchOptions()">setSearchOptions</a>(string|array searchOptions)</p><p class="description">Set the search options.</p></td>
+</tr>
+</table>
+
+<h2 id="detail_method">Constructor Detail</h2>
+<a href="../../source/options.php.html#line72" class="location">Options.php at line 72</a>
+
+<h3 id="__construct()">__construct</h3>
+<code class="signature">public  void <strong>__construct</strong>(<a href="../../mlphp/rest/restclient.html">RESTClient</a> restClient)</code>
+<div class="details">
+<p>Create an Options object.</p><dl>
+<dt>Parameters:</dt>
+<dd>restClient - A REST client object.</dd>
+</dl>
+</div>
+
+<hr>
+
+<h2 id="detail_method">Method Detail</h2>
+<a href="../../source/options.php.html#line85" class="location">Options.php at line 85</a>
+
+<h3 id="addConstraint()">addConstraint</h3>
+<code class="signature">public  void <strong>addConstraint</strong>(mixed constraint)</code>
+<div class="details">
+<p>Add a constraint.</p><dl>
+<dt>Parameters:</dt>
+<dd>constraint - constraint object.</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/options.php.html#line95" class="location">Options.php at line 95</a>
+
+<h3 id="addValues()">addValues</h3>
+<code class="signature">public  void <strong>addValues</strong>(<a href="../../mlphp/options/values.html">Values</a> values)</code>
+<div class="details">
+<p>Add a values setting.</p><dl>
+<dt>Parameters:</dt>
+<dd>values - Values object.</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/options.php.html#line105" class="location">Options.php at line 105</a>
+
+<h3 id="setExtracts()">setExtracts</h3>
+<code class="signature">public  void <strong>setExtracts</strong>(<a href="../../mlphp/options/extracts.html">Extracts</a> extracts)</code>
+<div class="details">
+<p>Set the metadata extracts.</p><dl>
+<dt>Parameters:</dt>
+<dd>extracts - A metadata extracts object.</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/options.php.html#line115" class="location">Options.php at line 115</a>
+
+<h3 id="setTransformResults()">setTransformResults</h3>
+<code class="signature">public  void <strong>setTransformResults</strong>(<a href="../../mlphp/options/transformresults.html">TransformResults</a> transformResults)</code>
+<div class="details">
+<p>Set the transform-results setting.</p><dl>
+<dt>Parameters:</dt>
+<dd>transformResults - A TransformResults object.</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/options.php.html#line125" class="location">Options.php at line 125</a>
+
+<h3 id="setTerm()">setTerm</h3>
+<code class="signature">public  void <strong>setTerm</strong>(<a href="../../mlphp/options/term.html">Term</a> term)</code>
+<div class="details">
+<p>Set the term setting.</p><dl>
+<dt>Parameters:</dt>
+<dd>term - A Term object.</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/options.php.html#line135" class="location">Options.php at line 135</a>
+
+<h3 id="getAsXML()">getAsXML</h3>
+<code class="signature">public  string <strong>getAsXML</strong>()</code>
+<div class="details">
+<p>Get the search options as XML.</p><dl>
+<dt>Returns:</dt>
+<dd>The search options as XML.</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/options.php.html#line200" class="location">Options.php at line 200</a>
+
+<h3 id="addOption()">addOption</h3>
+<code class="signature">public  void <strong>addOption</strong>(DOMElement root, string name, string value)</code>
+<div class="details">
+<p>If an option value is set, create a DOM element with an option name and value and append it to the root element of the options node.</p><dl>
+<dt>Parameters:</dt>
+<dd>root - The root element of the options node.</dd>
+<dd>name - The element name (option name).</dd>
+<dd>value - The node value.</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/options.php.html#line214" class="location">Options.php at line 214</a>
+
+<h3 id="write()">write</h3>
+<code class="signature">public  <a href="../../mlphp/rest/restresponse.html">RESTResponse</a> <strong>write</strong>(str name)</code>
+<div class="details">
+<p>Write the search options to the database.</p><dl>
+<dt>Returns:</dt>
+<dd>RESTResponse object.</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/options.php.html#line233" class="location">Options.php at line 233</a>
+
+<h3 id="read()">read</h3>
+<code class="signature">public  string <strong>read</strong>(str name)</code>
+<div class="details">
+<p>Read the search options from the database.</p><dl>
+<dt>Returns:</dt>
+<dd>The search options as XML.</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/options.php.html#line250" class="location">Options.php at line 250</a>
+
+<h3 id="getAdditionalQuery()">getAdditionalQuery</h3>
+<code class="signature">public  string <strong>getAdditionalQuery</strong>()</code>
+<div class="details">
+<p>Get the additional-query setting.</p><dl>
+<dt>Returns:</dt>
+<dd>The additional-query setting.</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/options.php.html#line262" class="location">Options.php at line 262</a>
+
+<h3 id="setAdditionalQuery()">setAdditionalQuery</h3>
+<code class="signature">public  void <strong>setAdditionalQuery</strong>(string additionalQuery)</code>
+<div class="details">
+<p>Set The additional-query setting.</p><dl>
+<dt>See Also:</dt>
+<dd><a href="http://docs.marklogic.com/search:search#opt-additional-query">http://docs.marklogic.com/search:search#opt-additional-query</a></dd>
+<dt>Parameters:</dt>
+<dd>additionalQuery - The additional-query setting.</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/options.php.html#line272" class="location">Options.php at line 272</a>
+
+<h3 id="getConcurrencyLevel()">getConcurrencyLevel</h3>
+<code class="signature">public  int <strong>getConcurrencyLevel</strong>()</code>
+<div class="details">
+<p>Get the concurrency level.</p><dl>
+<dt>Returns:</dt>
+<dd>The concurrency level.</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/options.php.html#line284" class="location">Options.php at line 284</a>
+
+<h3 id="setConcurrencyLevel()">setConcurrencyLevel</h3>
+<code class="signature">public  void <strong>setConcurrencyLevel</strong>(int concurrencyLevel)</code>
+<div class="details">
+<p>Set The concurrency level.</p><dl>
+<dt>See Also:</dt>
+<dd><a href="http://docs.marklogic.com/search:search#opt-concurrency-level">http://docs.marklogic.com/search:search#opt-concurrency-level</a></dd>
+<dt>Parameters:</dt>
+<dd>concurrencyLevel - The concurrency level.</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/options.php.html#line294" class="location">Options.php at line 294</a>
+
+<h3 id="getDebug()">getDebug</h3>
+<code class="signature">public  string <strong>getDebug</strong>()</code>
+<div class="details">
+<p>Get the debug setting.</p><dl>
+<dt>Returns:</dt>
+<dd>The debug setting, 'true' or 'false'.</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/options.php.html#line306" class="location">Options.php at line 306</a>
+
+<h3 id="setDebug()">setDebug</h3>
+<code class="signature">public  void <strong>setDebug</strong>(string debug)</code>
+<div class="details">
+<p>Set the debug setting.</p><dl>
+<dt>See Also:</dt>
+<dd><a href="http://docs.marklogic.com/search:search#opt-debug">http://docs.marklogic.com/search:search#opt-debug</a></dd>
+<dt>Parameters:</dt>
+<dd>debug - The debug setting, 'true' or 'false'.</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/options.php.html#line316" class="location">Options.php at line 316</a>
+
+<h3 id="getForest()">getForest</h3>
+<code class="signature">public  int <strong>getForest</strong>()</code>
+<div class="details">
+<p>Get the forest ID.</p><dl>
+<dt>Returns:</dt>
+<dd>The forest ID.</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/options.php.html#line328" class="location">Options.php at line 328</a>
+
+<h3 id="setForest()">setForest</h3>
+<code class="signature">public  void <strong>setForest</strong>(int forest)</code>
+<div class="details">
+<p>Set the forest ID.</p><dl>
+<dt>See Also:</dt>
+<dd><a href="http://docs.marklogic.com/search:search#opt-forest">http://docs.marklogic.com/search:search#opt-forest</a></dd>
+<dt>Parameters:</dt>
+<dd>forest - The forest ID.</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/options.php.html#line338" class="location">Options.php at line 338</a>
+
+<h3 id="getPageLength()">getPageLength</h3>
+<code class="signature">public  int <strong>getPageLength</strong>()</code>
+<div class="details">
+<p>Get the page length.</p><dl>
+<dt>Returns:</dt>
+<dd>The page length.</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/options.php.html#line350" class="location">Options.php at line 350</a>
+
+<h3 id="setPageLength()">setPageLength</h3>
+<code class="signature">public  void <strong>setPageLength</strong>(int pageLength)</code>
+<div class="details">
+<p>Set the page length.</p><dl>
+<dt>See Also:</dt>
+<dd><a href="http://docs.marklogic.com/search:search#opt-page-length">http://docs.marklogic.com/search:search#opt-page-length</a></dd>
+<dt>Parameters:</dt>
+<dd>pageLength - The page length.</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/options.php.html#line360" class="location">Options.php at line 360</a>
+
+<h3 id="getQualityWeight()">getQualityWeight</h3>
+<code class="signature">public  float <strong>getQualityWeight</strong>()</code>
+<div class="details">
+<p>Get the quality weight.</p><dl>
+<dt>Returns:</dt>
+<dd>The quality weight.</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/options.php.html#line372" class="location">Options.php at line 372</a>
+
+<h3 id="setQualityWeight()">setQualityWeight</h3>
+<code class="signature">public  void <strong>setQualityWeight</strong>(float qualityWeight)</code>
+<div class="details">
+<p>Set the quality weight.</p><dl>
+<dt>See Also:</dt>
+<dd><a href="http://docs.marklogic.com/search:search#opt-quality-weight">http://docs.marklogic.com/search:search#opt-quality-weight</a></dd>
+<dt>Parameters:</dt>
+<dd>qualityWeight - The quality weight.</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/options.php.html#line382" class="location">Options.php at line 382</a>
+
+<h3 id="getReturnConstraints()">getReturnConstraints</h3>
+<code class="signature">public  string <strong>getReturnConstraints</strong>()</code>
+<div class="details">
+<p>Get the return-constraints setting.</p><dl>
+<dt>Returns:</dt>
+<dd>The return-constraints setting.</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/options.php.html#line394" class="location">Options.php at line 394</a>
+
+<h3 id="setReturnConstraints()">setReturnConstraints</h3>
+<code class="signature">public  void <strong>setReturnConstraints</strong>(string returnConstraints)</code>
+<div class="details">
+<p>Set the return-constraints setting.</p><dl>
+<dt>See Also:</dt>
+<dd><a href="http://docs.marklogic.com/search:search#opt-return-constraints">http://docs.marklogic.com/search:search#opt-return-constraints</a></dd>
+<dt>Parameters:</dt>
+<dd>returnConstraints - The return-constraints setting, 'true' or 'false'.</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/options.php.html#line404" class="location">Options.php at line 404</a>
+
+<h3 id="getReturnFacets()">getReturnFacets</h3>
+<code class="signature">public  string <strong>getReturnFacets</strong>()</code>
+<div class="details">
+<p>Get the return-facets setting.</p><dl>
+<dt>Returns:</dt>
+<dd>The return-facets setting.</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/options.php.html#line416" class="location">Options.php at line 416</a>
+
+<h3 id="setReturnFacets()">setReturnFacets</h3>
+<code class="signature">public  void <strong>setReturnFacets</strong>(string returnFacets)</code>
+<div class="details">
+<p>Set the return-facets setting.</p><dl>
+<dt>See Also:</dt>
+<dd><a href="http://docs.marklogic.com/search:search#opt-return-facets">http://docs.marklogic.com/search:search#opt-return-facets</a></dd>
+<dt>Parameters:</dt>
+<dd>returnFacets - The return-facets setting, 'true' or 'false'.</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/options.php.html#line426" class="location">Options.php at line 426</a>
+
+<h3 id="getReturnMetrics()">getReturnMetrics</h3>
+<code class="signature">public  string <strong>getReturnMetrics</strong>()</code>
+<div class="details">
+<p>Get the return-metrics setting.</p><dl>
+<dt>Returns:</dt>
+<dd>The return-metrics setting.</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/options.php.html#line438" class="location">Options.php at line 438</a>
+
+<h3 id="setReturnMetrics()">setReturnMetrics</h3>
+<code class="signature">public  void <strong>setReturnMetrics</strong>(string returnMetrics)</code>
+<div class="details">
+<p>Set the return-metrics setting.</p><dl>
+<dt>See Also:</dt>
+<dd><a href="http://docs.marklogic.com/search:search#opt-return-metrics">http://docs.marklogic.com/search:search#opt-return-metrics</a></dd>
+<dt>Parameters:</dt>
+<dd>returnMetrics - The return-metrics setting, 'true' or 'false'.</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/options.php.html#line448" class="location">Options.php at line 448</a>
+
+<h3 id="getReturnPlan()">getReturnPlan</h3>
+<code class="signature">public  string <strong>getReturnPlan</strong>()</code>
+<div class="details">
+<p>Get the return-plan setting.</p><dl>
+<dt>Returns:</dt>
+<dd>The return-plan setting.</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/options.php.html#line460" class="location">Options.php at line 460</a>
+
+<h3 id="setReturnPlan()">setReturnPlan</h3>
+<code class="signature">public  void <strong>setReturnPlan</strong>(string returnPlan)</code>
+<div class="details">
+<p>Set the return-plan setting.</p><dl>
+<dt>See Also:</dt>
+<dd><a href="http://docs.marklogic.com/search:search#opt-return-plan">http://docs.marklogic.com/search:search#opt-return-plan</a></dd>
+<dt>Parameters:</dt>
+<dd>returnPlan - The return-plan setting, 'true' or 'false'.</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/options.php.html#line470" class="location">Options.php at line 470</a>
+
+<h3 id="getReturnQtext()">getReturnQtext</h3>
+<code class="signature">public  string <strong>getReturnQtext</strong>()</code>
+<div class="details">
+<p>Get the return-qtext setting.</p><dl>
+<dt>Returns:</dt>
+<dd>The return-qtext setting.</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/options.php.html#line482" class="location">Options.php at line 482</a>
+
+<h3 id="setReturnQtext()">setReturnQtext</h3>
+<code class="signature">public  void <strong>setReturnQtext</strong>(string returnQtext)</code>
+<div class="details">
+<p>Set the return-qtext setting.</p><dl>
+<dt>See Also:</dt>
+<dd><a href="http://docs.marklogic.com/search:search#opt-return-qtext">http://docs.marklogic.com/search:search#opt-return-qtext</a></dd>
+<dt>Parameters:</dt>
+<dd>returnQtext - The return-qtext setting, 'true' or 'false'.</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/options.php.html#line492" class="location">Options.php at line 492</a>
+
+<h3 id="getReturnQuery()">getReturnQuery</h3>
+<code class="signature">public  string <strong>getReturnQuery</strong>()</code>
+<div class="details">
+<p>Get the return-query setting.</p><dl>
+<dt>Returns:</dt>
+<dd>The return-query setting.</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/options.php.html#line504" class="location">Options.php at line 504</a>
+
+<h3 id="setReturnQuery()">setReturnQuery</h3>
+<code class="signature">public  void <strong>setReturnQuery</strong>(string returnQuery)</code>
+<div class="details">
+<p>Set the return-query setting.</p><dl>
+<dt>See Also:</dt>
+<dd><a href="http://docs.marklogic.com/search:search#opt-return-query">http://docs.marklogic.com/search:search#opt-return-query</a></dd>
+<dt>Parameters:</dt>
+<dd>returnQuery - The return-query setting, 'true' or 'false'.</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/options.php.html#line514" class="location">Options.php at line 514</a>
+
+<h3 id="getReturnResults()">getReturnResults</h3>
+<code class="signature">public  string <strong>getReturnResults</strong>()</code>
+<div class="details">
+<p>Get the return-results setting.</p><dl>
+<dt>Returns:</dt>
+<dd>The return-results setting.</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/options.php.html#line526" class="location">Options.php at line 526</a>
+
+<h3 id="setReturnResults()">setReturnResults</h3>
+<code class="signature">public  void <strong>setReturnResults</strong>(string returnResults)</code>
+<div class="details">
+<p>Set the return-results setting.</p><dl>
+<dt>See Also:</dt>
+<dd><a href="http://docs.marklogic.com/search:search#opt-return-results">http://docs.marklogic.com/search:search#opt-return-results</a></dd>
+<dt>Parameters:</dt>
+<dd>returnResults - The return-results setting, 'true' or 'false'.</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/options.php.html#line536" class="location">Options.php at line 536</a>
+
+<h3 id="getReturnSimilar()">getReturnSimilar</h3>
+<code class="signature">public  string <strong>getReturnSimilar</strong>()</code>
+<div class="details">
+<p>Get the return-similar setting.</p><dl>
+<dt>Returns:</dt>
+<dd>The return-similar setting.</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/options.php.html#line548" class="location">Options.php at line 548</a>
+
+<h3 id="setReturnSimilar()">setReturnSimilar</h3>
+<code class="signature">public  void <strong>setReturnSimilar</strong>(string returnSimilar)</code>
+<div class="details">
+<p>Set the return-similar setting.</p><dl>
+<dt>See Also:</dt>
+<dd><a href="http://docs.marklogic.com/search:search#opt-return-similar">http://docs.marklogic.com/search:search#opt-return-similar</a></dd>
+<dt>Parameters:</dt>
+<dd>returnSimilar - The return-similar setting, 'true' or 'false'.</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/options.php.html#line558" class="location">Options.php at line 558</a>
+
+<h3 id="getSearchOptions()">getSearchOptions</h3>
+<code class="signature">public  array <strong>getSearchOptions</strong>()</code>
+<div class="details">
+<p>Get the search options.</p><dl>
+<dt>Returns:</dt>
+<dd>The search options.</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/options.php.html#line570" class="location">Options.php at line 570</a>
+
+<h3 id="setSearchOptions()">setSearchOptions</h3>
+<code class="signature">public  void <strong>setSearchOptions</strong>(string|array searchOptions)</code>
+<div class="details">
+<p>Set the search options.</p><dl>
+<dt>See Also:</dt>
+<dd><a href="http://docs.marklogic.com/search:search#opt-search-option">http://docs.marklogic.com/search:search#opt-search-option</a></dd>
+<dt>Parameters:</dt>
+<dd>searchOptions - The search options as a string (single option) or array of strings.</dd>
+</dl>
+</div>
+
+<hr>
+
+<div class="header">
+<h1><a href=../../index.php target=_top>MLPHP</a></h1>
+<ul>
+<li><a href="../../overview-summary.html">Overview</a></li>
+<li><a href="../../mlphp/options/package-summary.html">Namespace</a></li>
+<li class="active">Class</li>
+<li><a href="../../mlphp/options/package-tree.html">Tree</a></li>
+<li><a href="../../overview-files.html">Files</a></li>
+<li><a href="../../deprecated-list.html">Deprecated</a></li>
+<li><a href="../../todo-list.html">Todo</a></li>
+<li><a href="../../index-all.html">Index</a></li>
+</ul>
+</div>
+
+<div class="small_links">
+<a href="../../index.html" target="_top">Frames</a>
+<a href="../../mlphp/options/options.html" target="_top">No frames</a>
+</div>
+<div class="small_links">
+Summary: <a href="#summary_field">Field</a> | <a href="#summary_method">Method</a> | <a href="#summary_constr">Constr</a>
+Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> | <a href="#summary_constr">Constr</a>
+</div>
+<hr>
+
+<p id="footer">Copyright 2002-2012 MarkLogic Corporation.  All Rights Reserved.</p>
+
+</body>
+
+</html>
