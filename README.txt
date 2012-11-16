@@ -30,20 +30,17 @@ of PHP)
 
 ## Set Up MLPHP
 
-1. [MAKE SURE WHAT IS DOWNLOADED IS AN mlphp DIRECTORY, NOT mlphp-master!]
-   Put the mlphp directory inside your PHP-enabled server's web directory. You
+1. Put the mlphp directory inside your PHP-enabled server's web directory. You
    can then access the files, for example, like this:
 
    http://localhost/~user/mlphp/
 
-   To test that PHP is running, access:
+   If PHP is working, you should be able to access that URL and see the MLPHP
+   home page. The applications linked to from that page will not work correctly
+   until you complete the steps that follow.
 
-   http://localhost/~user/mlphp/phpinfo.php
-
-   You should see PHP configuration information for your system.
-
-2. In the MarkLogic Admin interface (http://localhost:8001), set up two REST
-   users:
+2. Start your MarkLogic 6 server. In the MarkLogic Admin interface
+   (http://localhost:8001), set up two REST users:
 
    user name: rest-writer-user
    password: writer-pw
@@ -53,32 +50,32 @@ of PHP)
    password: admin-pw
    role: rest-admin
 
-   To set up the users, go to the Admin interface (http://localhost:8001/),
-   click Security, click Users, and then click the Create tab.
+   To set up the users, click Security, click Users, and then click the Create
+   tab.
 
    MLPHP requires these roles and expects these usernames and passwords. If
    needed, you can change the usernames and passwords here:
 
    mlphp/setup.php
 
-3. Access the MarkLogic configuration interface here:
+3. Access the MarkLogic Packaging interface here:
 
    http://localhost:8002/manage/v1/package/compare/
 
-   and load the configuration file located in the mlphp directory:
+   Load the configuration file located in the mlphp directory:
 
    mlphp/config.xml
 
    This will set up REST servers, databases, and database indexes. The API
    classes, examples, and demos require these in order to work.
 
-3a. There currently is a bug in the configuration tool sets the incorrect
-   modules setting for the REST servers. Until that bug is fixed, you need to
-   perform the following in the Admin interface (http://localhost:8001):
+3a. Currently, the Packaging tool sets the modules setting for the REST
+   servers incorrectly. Until that bug is fixed, you need to perform the
+   following in the Admin interface (http://localhost:8001):
 
    1. Click Configure and then click the "examples-REST" App Server.
    2. Change the modules setting from "(file system)" to
-      "examples-REST-modules".
+      "examples-REST-modules". Click ok.
    3. Repeat steps 1 and 2 for "photomap-REST" and "usbills-REST". Change
       their modules settings to "photomap-REST-modules" and
       "usbills-REST-modules" respectively.
@@ -92,11 +89,11 @@ of PHP)
    To set up roles, go to the Admin interface (http://localhost:8001/), click
    Security, click Roles, and then click the Create tab.
 
-5. The photomap application requires the following:
+5. Configure the permissions for the the mlphp/photomap/uploads directory so
+   PHP can read, write, and execute. For example, in your OS console, go to
+   mlphp/photomap and execute the following:
 
-   * Configure the permissions for the the mlphp/photomap/uploads directory so
-     PHP can read, write, and execute.</li>
-   * Add a Google Maps key to the photomap setup file: mlphp/photomap/setup.php
+   sudo chmod 777 uploads
 
 6. Setup is complete! To see MLPHP in action, access the following:
 
@@ -114,3 +111,6 @@ of PHP)
   libraries are enabled) here: http://localhost/~user/mlphp/phpinfo.php
 * The REST servers are set up on ports 8077, 8078, and 8079. You can test them
   directly, for example: http://localhost:8077
+* If you encounter XXX errors, make sure you have completed step 3a.
+* Clearing your PHP session can help if you're reinstalling MLPHP. You can
+  clear it here: http://localhost/~user/mlphp/clear_session.php.
