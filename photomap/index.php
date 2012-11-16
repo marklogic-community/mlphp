@@ -18,6 +18,7 @@ limitations under the License.
 session_start();
 require_once ('setup.php');
 require_once ('options.php');
+$mapsKey = (!empty($mlphp['maps_key'])) ? ('key=' . $mlphp['maps_key'] . '&') : '';
 ?>
 <!DOCTYPE html>
 <html lang="en-us">
@@ -26,7 +27,7 @@ require_once ('options.php');
 <title>MLPHP: iPhone Photomap</title>
 <link type="text/css" href="styles.css" rel="stylesheet">
 <script type="text/javascript" src="../external/jquery-1.7.1.min.js"></script>
-<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=<?php echo $mlphp['maps_key'] ?>&sensor=false"></script>
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?<?php echo $mapsKey ?>sensor=false"></script>
 <script type="text/javascript" src="scripts.js"></script>
 </head>
 <?php

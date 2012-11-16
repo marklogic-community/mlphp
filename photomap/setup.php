@@ -21,7 +21,7 @@ require_once ('../setup.php');
 $mlphp = array_merge($mlphp, array(
     'api_path'		=>		'../api/',
     'port'			=>		8078,
-    'maps_key'		=>		'AIzaSyDUsZCP04vN4oxSQBcHmz1YGbTq8RTMEvw',
+    'maps_key'		=>		'',
     'uploads_dir'	=>		__DIR__ . '/uploads' // Make accessible to PHP, e.g. chmod 700, chown www
 ));
 
