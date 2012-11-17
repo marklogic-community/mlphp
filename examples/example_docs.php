@@ -115,7 +115,7 @@ echo "Delete document '/example.txt'\n";
 $doc1->delete('/example.txt');
 
 // Attempt to read and display deleted document (error occurs)
-echo "Attempt to read:\n";
+echo "Attempt to read (will fail and throw error):\n";
 echo $doc1->read('/example.txt') . "\n";
 
 function displayImage($uri, $contentType) {
