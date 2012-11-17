@@ -37,7 +37,8 @@ steps in mlphp/README.md.
    Server Name: photomap-REST
    Port: 8078
 
-3. Set up the following indexes via the Admin interface (http://localhost:8001):
+3. Set up the following indexes for the photomap database via the Admin
+   interface (http://localhost:8001):
 
    Element Range Indexes:
 

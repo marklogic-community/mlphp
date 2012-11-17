@@ -37,8 +37,8 @@ steps in mlphp/README.md.
    Server Name: usbills-REST
    Port: 8079
 
-3. Set up the following indexes via the Admin interface
-   (http://localhost:8001).
+3. Set up the following indexes for the usbills database via the Admin
+   interface (http://localhost:8001).
 
    Attribute Range Indexes:
 
