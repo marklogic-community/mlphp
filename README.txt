@@ -30,14 +30,18 @@ of PHP)
 
 ## Set Up MLPHP
 
-1. Put the mlphp directory inside your PHP-enabled server's web directory. You
-   can then access the files, for example, like this:
+1. The main MLPHP directory (it contains an 'api' subdirectory among other
+   things) should be named 'mlphp'. Rename it if necessary and put it inside
+   your PHP-enabled server's web directory. You can then access the files like
+   this:
 
    http://localhost/~user/mlphp/
 
-   If PHP is working, you should be able to access that URL and see the MLPHP
-   home page. The applications linked to from that page will not work correctly
-   until you complete the steps that follow.
+   (Change the host and path information to reflect your server setup.)
+
+   If PHP is working, you should see the MLPHP home page at that URL. The
+   applications linked to from the home page will not work correctly until
+   you complete the steps that follow.
 
 2. Start your MarkLogic 6 server. In the MarkLogic Admin interface
    (http://localhost:8001), set up two REST users:
@@ -62,9 +66,10 @@ of PHP)
 
    http://localhost:8002/manage/v1/package/compare/
 
-   Load the configuration file located in the mlphp directory:
+   Load the appropriate configuration file located in the mlphp/install
+   directory. For example, if running MarkLogic version 6.0, load:
 
-   mlphp/config.xml
+   package-6_0.xml
 
    This will set up REST servers, databases, and database indexes. The API
    classes, examples, and demos require these in order to work.
