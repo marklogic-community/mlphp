@@ -113,9 +113,9 @@ of PHP)
 * If you encounter 403 errors, make sure your REST users are set up correctly
   in step 2.
 * You can check your PHP configuration (and see that the DOM and cURL
-  libraries are enabled) here: http://localhost/~user/mlphp/phpinfo.php
+  libraries are enabled) here: http://localhost/~user/mlphp/utils/phpinfo.php
 * The REST servers are set up on ports 8077, 8078, and 8079. You can test them
   directly, for example: http://localhost:8077
-* If you encounter XXX errors, make sure you have completed step 3a.
+* If you encounter 400 errors, make sure you have completed step 3a.
 * Clearing your PHP session can help if you're reinstalling MLPHP. You can
-  clear it here: http://localhost/~user/mlphp/clear_session.php.
+  clear it here: http://localhost/~user/mlphp/utils/clear_session.php.
