@@ -17,7 +17,7 @@ limitations under the License.
 
 // A Simple MLPHP Application
 
-// 1. Complete the setup steps: mlphp/README.md
+// 1. Complete the setup steps: mlphp/README.txt
 
 // 2. Tell the app how to talk to MarkLogic.
 $mlphp = array(

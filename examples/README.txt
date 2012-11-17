@@ -18,7 +18,7 @@ Example Code
 
 The following are setup steps specific to the example code in mlphp/examples.
 You DO NOT need to complete these steps if you completed the steps in
-mlphp/README.md.
+mlphp/README.txt.
 
 1. Set up a REST server on the Documents database via App Services
    (http://localhost:8000/appservices/).

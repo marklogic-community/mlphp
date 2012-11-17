@@ -18,7 +18,7 @@ US Bill Search MLPHP Application
 
 The following are setup steps specific to the usbills application in
 mlphp/usbills. You DO NOT need to complete these steps if you completed the
-steps in mlphp/README.md.
+steps in mlphp/README.txt.
 
 1. Set up a database:
 
