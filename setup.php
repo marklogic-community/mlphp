@@ -15,18 +15,23 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+define('PRODUCTION', 0);
+define('DEVELOPMENT', 1);
+define('DEBUG', 2);
+
+define('STATUS', DEVELOPMENT);
+
 // Global values (project values override in project/setup.php)
 $mlphp = array(
-    'api_path'					=>		'api/',
-    'username'					=>		'rest-writer-user',
-    'password'					=>		'writer-pw',
-    'username-admin'			=>		'rest-admin-user',
-    'password-admin'			=>		'admin-pw',
-    'host'						=>		'localhost',
-    'port'						=>		8077,
-    'path'						=>		'',
-    'version'					=>		'v1',
-    'auth'						=>		'digest',
+    'api_path'			=>	'api/',
+    'username'			=>	'rest-writer-user',
+    'password'			=>	'writer-pw',
+    'username-admin'	=>	'rest-admin-user',
+    'password-admin'	=>	'admin-pw',
+    'host'				=>	'localhost',
+    'path'				=>	'',
+    'version'			=>	'v1',
+    'auth'				=>	'digest',
 );
 
 function __autoload($classname) {
@@ -35,7 +40,23 @@ function __autoload($classname) {
     require_once($filename);
 }
 
-ini_set('display_errors', 1);
-ini_set('html_errors', 1);
-ini_set('docref_root', 'http://php.net/manual/en/');
-error_reporting(E_ALL);
+switch (STATUS) {
+    case PRODUCTION: {
+        ini_set('display_errors', 0);
+    }
+    case DEVELOPMENT: {
+        ini_set('display_errors', 1);
+        ini_set('html_errors', 1);
+        ini_set('docref_root', 'http://php.net/manual/en/');
+        error_reporting(E_ALL | E_STRICT);
+    }
+    case DEBUG: {
+        ini_set('display_errors', 1);
+        ini_set('html_errors', 1);
+        ini_set('docref_root', 'http://php.net/manual/en/');
+        error_reporting(E_ALL | E_STRICT);
+    }
+    default:
+        ini_set('display_errors', 0);
+        break;
+}
