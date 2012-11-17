@@ -5,7 +5,7 @@
       <user>admin</user>
       <group>Default</group>
       <host>mbp-15.local</host>
-      <timestamp>2012-11-16T16:19:28.439537-08:00</timestamp>
+      <timestamp>2012-11-16T23:33:28.256306-08:00</timestamp>
       <platform>macosx</platform>
     </metadata>
     <name>examples-REST-modules</name>
@@ -502,7 +502,7 @@
       <user>admin</user>
       <group>Default</group>
       <host>mbp-15.local</host>
-      <timestamp>2012-11-16T16:19:28.439537-08:00</timestamp>
+      <timestamp>2012-11-16T23:33:28.256306-08:00</timestamp>
       <platform>macosx</platform>
     </metadata>
     <name>photomap</name>
@@ -1039,7 +1039,7 @@
       <user>admin</user>
       <group>Default</group>
       <host>mbp-15.local</host>
-      <timestamp>2012-11-16T16:19:28.439537-08:00</timestamp>
+      <timestamp>2012-11-16T23:33:28.256306-08:00</timestamp>
       <platform>macosx</platform>
     </metadata>
     <name>photomap-REST-modules</name>
@@ -1536,7 +1536,7 @@
       <user>admin</user>
       <group>Default</group>
       <host>mbp-15.local</host>
-      <timestamp>2012-11-16T16:19:28.439537-08:00</timestamp>
+      <timestamp>2012-11-16T23:33:28.256306-08:00</timestamp>
       <platform>macosx</platform>
     </metadata>
     <name>usbills</name>
@@ -1998,25 +1998,25 @@
 	</range-element-index>
 	<range-element-index>
 	  <scalar-type>string</scalar-type>
-	  <collation>http://marklogic.com/collation/</collation>
 	  <namespace-uri/>
 	  <localname>status</localname>
-	  <range-value-positions>false</range-value-positions>
-	  <invalid-values>reject</invalid-values>
-	</range-element-index>
-	<range-element-index>
-	  <scalar-type>dayTimeDuration</scalar-type>
-	  <collation/>
-	  <namespace-uri/>
-	  <localname>subject</localname>
+	  <collation>http://marklogic.com/collation/</collation>
 	  <range-value-positions>false</range-value-positions>
 	  <invalid-values>reject</invalid-values>
 	</range-element-index>
 	<range-element-index>
 	  <scalar-type>string</scalar-type>
+	  <namespace-uri/>
+	  <localname>subject</localname>
 	  <collation>http://marklogic.com/collation/</collation>
+	  <range-value-positions>false</range-value-positions>
+	  <invalid-values>reject</invalid-values>
+	</range-element-index>
+	<range-element-index>
+	  <scalar-type>string</scalar-type>
 	  <namespace-uri/>
 	  <localname>title</localname>
+	  <collation>http://marklogic.com/collation/</collation>
 	  <range-value-positions>false</range-value-positions>
 	  <invalid-values>reject</invalid-values>
 	</range-element-index>
@@ -2027,7 +2027,7 @@
 	  <parent-namespace-uri/>
 	  <parent-localname>bill</parent-localname>
 	  <namespace-uri/>
-	  <localname>sesssion</localname>
+	  <localname>session</localname>
 	  <collation/>
 	  <range-value-positions>false</range-value-positions>
 	  <invalid-values>reject</invalid-values>
@@ -2118,7 +2118,7 @@
       <user>admin</user>
       <group>Default</group>
       <host>mbp-15.local</host>
-      <timestamp>2012-11-16T16:19:28.439537-08:00</timestamp>
+      <timestamp>2012-11-16T23:33:28.256306-08:00</timestamp>
       <platform>macosx</platform>
     </metadata>
     <name>usbills-REST-modules</name>
@@ -2615,7 +2615,7 @@
       <user>admin</user>
       <group>Default</group>
       <host>mbp-15.local</host>
-      <timestamp>2012-11-16T16:19:28.439537-08:00</timestamp>
+      <timestamp>2012-11-16T23:33:28.256306-08:00</timestamp>
       <platform>macosx</platform>
     </metadata>
     <server-type>http-server</server-type>
@@ -2694,7 +2694,7 @@
       <user>admin</user>
       <group>Default</group>
       <host>mbp-15.local</host>
-      <timestamp>2012-11-16T16:19:28.439537-08:00</timestamp>
+      <timestamp>2012-11-16T23:33:28.256306-08:00</timestamp>
       <platform>macosx</platform>
     </metadata>
     <server-type>http-server</server-type>
@@ -2773,7 +2773,7 @@
       <user>admin</user>
       <group>Default</group>
       <host>mbp-15.local</host>
-      <timestamp>2012-11-16T16:19:28.439537-08:00</timestamp>
+      <timestamp>2012-11-16T23:33:28.256306-08:00</timestamp>
       <platform>macosx</platform>
     </metadata>
     <server-type>http-server</server-type>
