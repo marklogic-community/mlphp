@@ -39,6 +39,7 @@ $client = new RESTClient($mlphp['host'], $mlphp['port'], $mlphp['path'], $mlphp[
 <link type="text/css" href="../external/prettify/prettify.css" rel="stylesheet">
 <script type="text/javascript" src="../external/prettify/prettify.js"></script>
 </head>
+<body onload="prettyPrint()">
 
 <div id="wrapper">
 
@@ -58,8 +59,11 @@ $client = new RESTClient($mlphp['host'], $mlphp['port'], $mlphp['path'], $mlphp[
 <?php
 $pattern = '/\/\*([^*]|[\r\n])*\*\//';
 $replacement = '';
-echo trim(preg_replace($pattern, $replacement, str_replace('<?php', '', file_get_contents($id_decoded)), 1));
-//echo str_replace('<?php', '', file_get_contents('example_' . $id . '.php'));
+echo trim(htmlspecialchars(preg_replace(
+    $pattern, 
+    $replacement, 
+    str_replace('?>', "", str_replace('<?php', '', file_get_contents($id_decoded)))
+)));
 ?>
 </pre>
 <?php } else { ?>
