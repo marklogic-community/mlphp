@@ -14,6 +14,7 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
+use MarkLogic\MLPHP as MLPHP;
 
 require_once ('setup.php');
 
@@ -27,32 +28,32 @@ if (!empty($redirect)) {
 if (!isset($_SESSION['options_loaded_photomap']) || !$_SESSION['options_loaded_photomap'] === TRUE) {
     echo '<!-- Loading search options -->' . PHP_EOL;
 
-    $client = new RESTClient($mlphp['host'], $mlphp['port'], $mlphp['path'], $mlphp['version'], $mlphp['username-admin'], $mlphp['password-admin'], $mlphp['auth']);
+    $client = new MLPHP\RESTClient($mlphp['host'], $mlphp['port'], $mlphp['path'], $mlphp['version'], $mlphp['username-admin'], $mlphp['password-admin'], $mlphp['auth']);
 
     // Set up options node
-    $options = new Options($client);
+    $options = new MLPHP\Options($client);
 
-    $latConstraint = new RangeConstraint('latitude', 'xs:float', 'false', 'latitude');
+    $latConstraint = new MLPHP\RangeConstraint('latitude', 'xs:float', 'false', 'latitude');
     $latConstraint->setFragmentScrope('properties');
     $options->addConstraint($latConstraint);
 
-    $lonConstraint = new RangeConstraint('longitude', 'xs:float', 'false', 'longitude');
+    $lonConstraint = new MLPHP\RangeConstraint('longitude', 'xs:float', 'false', 'longitude');
     $lonConstraint->setFragmentScrope('properties');
     $options->addConstraint($lonConstraint);
 
-    $hConstraint = new RangeConstraint('height', 'xs:int', 'false', 'height');
+    $hConstraint = new MLPHP\RangeConstraint('height', 'xs:int', 'false', 'height');
     $hConstraint->setFragmentScrope('properties');
     $options->addConstraint($hConstraint);
 
-    $wConstraint = new RangeConstraint('width', 'xs:int', 'false', 'width');
+    $wConstraint = new MLPHP\RangeConstraint('width', 'xs:int', 'false', 'width');
     $wConstraint->setFragmentScrope('properties');
     $options->addConstraint($wConstraint);
 
-    $fConstraint = new RangeConstraint('filename', 'xs:string', 'false', 'filename');
+    $fConstraint = new MLPHP\RangeConstraint('filename', 'xs:string', 'false', 'filename');
     $fConstraint->setFragmentScrope('properties');
     $options->addConstraint($fConstraint);
 
-    $extracts = new Extracts();
+    $extracts = new MLPHP\Extracts();
     $extracts->addConstraints(array('latitude', 'longitude', 'height', 'width', 'filename'));
     $options->setExtracts($extracts);
 

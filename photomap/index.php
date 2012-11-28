@@ -14,6 +14,7 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
+use MarkLogic\MLPHP as MLPHP;
 
 session_start();
 require_once ('setup.php');
@@ -32,7 +33,8 @@ $mapsKey = (!empty($mlphp['maps_key'])) ? ('key=' . $mlphp['maps_key'] . '&') : 
 </head>
 <?php
 
-$client = new RESTClient($mlphp['host'], $mlphp['port'], $mlphp['path'], $mlphp['version'], $mlphp['username'], $mlphp['password'], $mlphp['auth']);
+$client = new MLPHP\RESTClient($mlphp['host'], $mlphp['port'], $mlphp['path'], $mlphp['version'],
+                               $mlphp['username'], $mlphp['password'], $mlphp['auth']);
 
 if (isset($_FILES['upload'])) {
     try {
@@ -51,11 +53,11 @@ if (isset($_FILES['upload'])) {
                     try {
                         // Write image file
                         require_once ('IPhoneImageDocument.php');
-                        $image = new IPhoneImageDocument($client);
+                        $image = new MLPHP\IPhoneImageDocument($client);
                         $image->setContentFile($dest);
                         $image->write($name);
                         // Write image metadata
-                        $metadata = new Metadata();
+                        $metadata = new MLPHP\Metadata();
                         $metadata->addProperties(array(
                             'latitude' => $image->getLatitude(),
                             'longitude' => $image->getLongitude(),
@@ -76,7 +78,7 @@ if (isset($_FILES['upload'])) {
 }
 
 // Get search results
-$search = new Search($client);
+$search = new MLPHP\Search($client);
 $params = array(
     'pageLength' => 1000,
     'view' => 'all',
