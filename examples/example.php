@@ -14,6 +14,7 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
+use MarkLogic\MLPHP as MLPHP;
 
 $title = array(
     'example_docs.php' => 'Read/Write/Delete Documents',
@@ -23,20 +24,21 @@ $title = array(
     '../my_first_app.php' => 'Simple Application',
 );
 $id = (!empty($_REQUEST['id']) ? $_REQUEST['id'] : '');
-$id_decoded = urldecode($id);
+// Make sure page ID is in list, otherwise set default
+$id_decoded = (in_array(urldecode($id), array_keys($title))) ? urldecode($id) : 'example_docs.php';
 $view = (!empty($_REQUEST['view']) ? $_REQUEST['view'] : 'code');
 
 require_once ('setup.php');	// Define $mlphp properties
 
-$client = new RESTClient($mlphp['host'], $mlphp['port'], $mlphp['path'], $mlphp['version'],
-                         $mlphp['username-admin'], $mlphp['password-admin'], $mlphp['auth']);
+$client = new MLPHP\RESTClient($mlphp['host'], $mlphp['port'], $mlphp['path'], $mlphp['version'],
+                               $mlphp['username-admin'], $mlphp['password-admin'], $mlphp['auth']);
 ?>
 <!DOCTYPE html>
 <html lang="en-us">
 <head>
 <title>Example Code: <?php echo $title[$id]; ?></title>
-<link type="text/css" href="styles.css" rel="stylesheet">
 <link type="text/css" href="../external/prettify/prettify.css" rel="stylesheet">
+<link type="text/css" href="styles.css" rel="stylesheet">
 <script type="text/javascript" src="../external/prettify/prettify.js"></script>
 </head>
 <body onload="prettyPrint()">
@@ -60,8 +62,8 @@ $client = new RESTClient($mlphp['host'], $mlphp['port'], $mlphp['path'], $mlphp[
 $pattern = '/\/\*([^*]|[\r\n])*\*\//';
 $replacement = '';
 echo trim(htmlspecialchars(preg_replace(
-    $pattern, 
-    $replacement, 
+    $pattern,
+    $replacement,
     str_replace('?>', "", str_replace('<?php', '', file_get_contents($id_decoded)))
 )));
 ?>
