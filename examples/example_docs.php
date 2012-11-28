@@ -14,12 +14,13 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
+use MarkLogic\MLPHP as MLPHP;
 
 // Text as a document
-$doc1 = new Document($client);			// Create a Document object (passing the REST client)
-$xml1 = 'Hello, PHP';				// Define document text
+$doc1 = new MLPHP\Document($client);		// Create a Document object (passing the REST client)
+$text1 = 'Hello, PHP';				// Define document text
 $doc1->setContentType('text/text');		// Set the content type for the document
-$doc1->setContent($xml1);			// Set the text as the document content
+$doc1->setContent($text1);			// Set the text as the document content
 $uri1 = '/example.txt';				// Define the URI for the document
 $doc1->write($uri1);				// Write the document to the database
 
@@ -29,7 +30,7 @@ echo $doc1->read($uri1) . "\n\n";
 
 
 // XML file
-$doc2 = new Document($client);			// Create a Document object (passing the REST client)
+$doc2 = new MLPHP\Document($client);		// Create a Document object (passing the REST client)
 $file2 = 'example.xml';				// Define the path to the file to write
 $doc2->setContentType('application/xml');	// Set the content type for the document
 $doc2->setContentFile($file2);			// Set the file as the document content
@@ -42,7 +43,7 @@ echo htmlspecialchars($doc2->read($uri2)) . "\n";
 
 
 // JSON file
-$doc3 = new Document($client);			// Create a Document object (passing the REST client)
+$doc3 = new MLPHP\Document($client);		// Create a Document object (passing the REST client)
 $file3 = 'example.json';				// Define the path to the file to write
 $doc3->setContentType('application/json');	// Set the content type for the document
 $doc3->setContentFile($file3);			// Set the file as the document content
@@ -55,7 +56,7 @@ echo $doc3->read($uri3) . "\n\n";
 
 
 // Binary image file
-$doc4 = new Document($client);			// Create a Document object (passing the REST client)
+$doc4 = new MLPHP\Document($client);		// Create a Document object (passing the REST client)
 $file4 = 'example.jpg';				// Define the path to the file to write
 $doc4->setContentType('image/jpeg');		// Set the content type for the document
 $doc4->setContentFile($file4);			// Set the file as the document content
@@ -69,7 +70,7 @@ echo "\n\n";
 
 
 // Binary PDF file
-$doc5 = new Document($client);			// Create a Document object (passing the REST client)
+$doc5 = new MLPHP\Document($client);		// Create a Document object (passing the REST client)
 $file5 = 'example.pdf';				// Define the path to the file to write
 $doc5->setContentType('application/pdf');	// Set the content type for the document
 $doc5->setContentFile($file5);			// Set the file as the document content
@@ -84,7 +85,7 @@ echo "\n\n";
 
 // Files from a directory
 $dir = __DIR__ . '/several';				// Get directory relative to current directory
-$doc6 = new Document($client);				// Create a Document object (passing the REST client)
+$doc6 = new MLPHP\Document($client);			// Create a Document object (passing the REST client)
 if ($handle = opendir($dir)) {				// Create a directory handle for reading
     echo 'Reading files from directory: ' . $dir . "\n\n";
     $files = array();
@@ -115,8 +116,17 @@ echo "Delete document '/example.txt'\n";
 $doc1->delete('/example.txt');
 
 // Attempt to read and display deleted document (error occurs)
-echo "Attempt to read (will fail and throw error):\n";
-echo $doc1->read('/example.txt') . "\n";
+echo "Attempt to read:\n";
+try {
+    echo $doc1->read('/example.txt') . "\n";
+} catch(Exception $e) {
+    if ($e->getCode() === 404) {
+        echo 'Error code 404, resource not available';
+    } else {
+        echo 'Error code ' . $e->getCode();
+    }
+}
+
 
 function displayImage($uri, $contentType) {
     echo '<img src="binary.php?uri=' . $uri . '&type=' . $contentType . '"/>';
