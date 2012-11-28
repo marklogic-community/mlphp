@@ -14,7 +14,11 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
+// Setup
 use MarkLogic\MLPHP as MLPHP;
+require_once ('setup.php');
+$client = new MLPHP\RESTClient($mlphp['host'], $mlphp['port'], $mlphp['path'], $mlphp['version'],
+                               $mlphp['username-admin'], $mlphp['password-admin'], $mlphp['auth']);
 
 // Range constraint and extracted metadata
 $options1 = new MLPHP\Options($client);	// Create an Options object (passing the REST client)

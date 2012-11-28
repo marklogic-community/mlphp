@@ -27,11 +27,6 @@ $id = (!empty($_REQUEST['id']) ? $_REQUEST['id'] : '');
 // Make sure page ID is in list, otherwise set default
 $id_decoded = (in_array(urldecode($id), array_keys($title))) ? urldecode($id) : 'example_docs.php';
 $view = (!empty($_REQUEST['view']) ? $_REQUEST['view'] : 'code');
-
-require_once ('setup.php');	// Define $mlphp properties
-
-$client = new MLPHP\RESTClient($mlphp['host'], $mlphp['port'], $mlphp['path'], $mlphp['version'],
-                               $mlphp['username-admin'], $mlphp['password-admin'], $mlphp['auth']);
 ?>
 <!DOCTYPE html>
 <html lang="en-us">
