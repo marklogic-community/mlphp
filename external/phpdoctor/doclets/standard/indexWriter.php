@@ -25,21 +25,22 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 class IndexWriter extends HTMLWriter
 {
 
-	/** Build the element index.
-	 *
-	 * @param Doclet doclet
-	 */
-	function indexWriter(&$doclet)
+    /** Build the element index.
+     *
+     * @param Doclet doclet
+     */
+    function indexWriter(&$doclet)
     {
-	
-		parent::HTMLWriter($doclet);
-		
-		//$this->_id = 'definition';
-        
-		$rootDoc =& $this->_doclet->rootDoc();
-        
+
+        parent::HTMLWriter($doclet);
+
+        //$this->_id = 'definition';
+
+        $rootDoc =& $this->_doclet->rootDoc();
+
         $this->_sections[0] = array('title' => 'Overview', 'url' => 'overview-summary.html');
-        $this->_sections[1] = array('title' => 'Namespace');
+        //$this->_sections[1] = array('title' => 'Namespace'); // Package not Namespace
+        $this->_sections[1] = array('title' => 'Package');
         $this->_sections[2] = array('title' => 'Class');
         //$this->_sections[3] = array('title' => 'Use');
         $this->_sections[4] = array('title' => 'Tree', 'url' => 'overview-tree.html');
@@ -47,10 +48,10 @@ class IndexWriter extends HTMLWriter
         $this->_sections[6] = array('title' => 'Deprecated', 'url' => 'deprecated-list.html');
         $this->_sections[7] = array('title' => 'Todo', 'url' => 'todo-list.html');
         $this->_sections[8] = array('title' => 'Index', 'selected' => TRUE);
-        
+
         $classes =& $rootDoc->classes();
         if($classes == NULL) $classes = array();
-        
+
         $methods = array();
         foreach ($classes as $class) {
             foreach ($class->methods(TRUE) as $name => $method) {
@@ -58,18 +59,18 @@ class IndexWriter extends HTMLWriter
             }
         }
         if($methods == NULL) $methods = array();
-        
+
         $functions =& $rootDoc->functions();
         if($functions == NULL) $functions = array();
-        
+
         $globals =& $rootDoc->globals();
         if($globals == NULL) $globals = array();
-        
+
         $elements = array_merge($classes, $methods, $functions, $globals);
         uasort($elements, array($this, 'compareElements'));
-        
+
         ob_start();
-        
+
         $letter = 64;
         foreach ($elements as $name => $element) {
             $firstChar = strtoupper(substr($element->name(), 0, 1));
@@ -80,7 +81,7 @@ class IndexWriter extends HTMLWriter
         }
 
         echo "<hr>\n\n";
-        
+
         $first = TRUE;
         foreach ($elements as $element) {
             if (is_object($element)) {
@@ -98,7 +99,8 @@ class IndexWriter extends HTMLWriter
                     $in = 'class <a href="'.$parent->asPath().'">'.$parent->qualifiedName().'</a>';
                 } else {
                     $package =& $element->containingPackage();
-                    $in = 'namespace <a href="'.$package->asPath().'/package-summary.html">'.$package->name().'</a>';
+                    //$in = 'namespace <a href="'.$package->asPath().'/package-summary.html">'.$package->name().'</a>'; // package not namespace
+                    $in = 'package <a href="'.$package->asPath().'/package-summary.html">'.$package->name().'</a>';
                 }
                 switch (strtolower(get_class($element))) {
                 case 'classdoc':
@@ -133,14 +135,14 @@ class IndexWriter extends HTMLWriter
             }
         }
         echo "</dl>\n";
-                
+
         $this->_output = ob_get_contents();
         ob_end_clean();
 
         $this->_write('index-all.html', 'Index', TRUE);
-	
-	}
-    
+
+    }
+
     function compareElements($element1, $element2)
     {
         $e1 = strtolower($element1->name());

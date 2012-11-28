@@ -27,45 +27,46 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 class PackageIndexFrameWriter extends HTMLWriter
 {
 
-	/** Build the package frame index.
-	 *
-	 * @param Doclet doclet
-	 */
-	function packageIndexFrameWriter(&$doclet)
+    /** Build the package frame index.
+     *
+     * @param Doclet doclet
+     */
+    function packageIndexFrameWriter(&$doclet)
     {
-	
-		parent::HTMLWriter($doclet);
-		
-		ob_start();
-		
-		echo '<body id="frame">', "\n\n";
-		
-		echo '<h1>'.$this->_doclet->getHeader()."</h1>\n\n";
-		
-		echo "<ul>\n";
-		echo '<li><a href="allitems-frame.html" target="index">All Items</a></li>'."\n";
-		echo "</ul>\n\n";
-		
-		echo "<h1>Namespaces</h1>\n\n";
 
-		$rootDoc =& $this->_doclet->rootDoc();
+        parent::HTMLWriter($doclet);
 
-		echo "<ul>\n";
+        ob_start();
+
+        echo '<body id="frame">', "\n\n";
+
+        echo '<h1>'.$this->_doclet->getHeader()."</h1>\n\n";
+
+        echo "<ul>\n";
+        echo '<li><a href="allitems-frame.html" target="index">All Items</a></li>'."\n";
+        echo "</ul>\n\n";
+
+        //echo "<h1>Namespaces</h1>\n\n"; // Categories are Packages not Namespaces (the two are independent)
+        echo "<h1>Packages</h1>\n\n";
+
+        $rootDoc =& $this->_doclet->rootDoc();
+
+        echo "<ul>\n";
         $packages =& $rootDoc->packages();
         ksort($packages);
-		foreach($packages as $name => $package) {
-			echo '<li><a href="'.$package->asPath().'/package-frame.html" target="index">'.$package->name().'</a></li>'."\n";
-		}
-		echo "</ul>\n\n";
-		
-		echo '</body>', "\n\n";
+        foreach($packages as $name => $package) {
+            echo '<li><a href="'.$package->asPath().'/package-frame.html" target="index">'.$package->name().'</a></li>'."\n";
+        }
+        echo "</ul>\n\n";
 
-		$this->_output = ob_get_contents();
-		ob_end_clean();
-		
-		$this->_write('overview-frame.html', 'Overview', FALSE);
-	
-	}
+        echo '</body>', "\n\n";
+
+        $this->_output = ob_get_contents();
+        ob_end_clean();
+
+        $this->_write('overview-frame.html', 'Overview', FALSE);
+
+    }
 
 }
 

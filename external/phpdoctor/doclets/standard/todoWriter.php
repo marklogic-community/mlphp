@@ -25,19 +25,20 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 class TodoWriter extends HTMLWriter
 {
 
-	/** Build the todo index.
-	 *
-	 * @param Doclet doclet
-	 */
-	function todoWriter(&$doclet)
+    /** Build the todo index.
+     *
+     * @param Doclet doclet
+     */
+    function todoWriter(&$doclet)
     {
-	
-		parent::HTMLWriter($doclet);
-		
-		$rootDoc =& $this->_doclet->rootDoc();
+
+        parent::HTMLWriter($doclet);
+
+        $rootDoc =& $this->_doclet->rootDoc();
 
         $this->_sections[0] = array('title' => 'Overview', 'url' => 'overview-summary.html');
-        $this->_sections[1] = array('title' => 'Namespace');
+        //$this->_sections[1] = array('title' => 'Namespace'); // Package not Namespace
+        $this->_sections[1] = array('title' => 'Package');
         $this->_sections[2] = array('title' => 'Class');
         //$this->_sections[3] = array('title' => 'Use');
         $this->_sections[4] = array('title' => 'Tree', 'url' => 'overview-tree.html');
@@ -45,7 +46,7 @@ class TodoWriter extends HTMLWriter
         $this->_sections[6] = array('title' => 'Deprecated', 'url' => 'deprecated-list.html');
         $this->_sections[7] = array('title' => 'Todo', 'selected' => TRUE);
         $this->_sections[8] = array('title' => 'Index', 'url' => 'index-all.html');
-        
+
         $todoClasses = array();
         $classes =& $rootDoc->classes();
         $todoFields = array();
@@ -91,15 +92,15 @@ class TodoWriter extends HTMLWriter
                 }
             }
         }
-        
+
         ob_start();
-        
+
         echo "<hr>\n\n";
-        
+
         echo '<h1>Todo</h1>';
 
         echo "<hr>\n\n";
-        
+
         if ($todoClasses || $todoFields || $todoMethods || $todoGlobals || $todoFunctions) {
             echo "<h2>Contents</h2>\n";
             echo "<ul>\n";
@@ -120,7 +121,7 @@ class TodoWriter extends HTMLWriter
             }
             echo "</ul>\n";
         }
-        
+
         if ($todoClasses) {
             echo '<table id="todo_class" class="detail">', "\n";
             echo '<tr><th colspan="2" class="title">Todo Classes</th></tr>', "\n";
@@ -133,7 +134,7 @@ class TodoWriter extends HTMLWriter
             }
             echo "</table>\n\n";
         }
-        
+
         if ($todoFields) {
             echo '<table id="todo_field" class="detail">', "\n";
             echo '<tr><th colspan="2" class="title">Todo Fields</th></tr>', "\n";
@@ -148,7 +149,7 @@ class TodoWriter extends HTMLWriter
             }
             echo "</table>\n\n";
         }
-        
+
         if ($todoMethods) {
             echo '<table id="todo_method" class="detail">', "\n";
             echo '<tr><th colspan="2" class="title">Todo Methods</th></tr>', "\n";
@@ -163,7 +164,7 @@ class TodoWriter extends HTMLWriter
             }
             echo "</table>\n\n";
         }
-        
+
         if ($todoGlobals) {
             echo '<table id="todo_global" class="detail">', "\n";
             echo '<tr><th colspan="2" class="title">Todo Globals</th></tr>', "\n";
@@ -177,8 +178,8 @@ class TodoWriter extends HTMLWriter
                 echo "</tr>\n";
             }
             echo "</table>\n\n";
-		}
-        
+        }
+
         if ($todoFunctions) {
             echo '<table id="todo_function" class="detail">', "\n";
             echo '<tr><th colspan="2" class="title">Todo Functions</th></tr>', "\n";
@@ -198,9 +199,9 @@ class TodoWriter extends HTMLWriter
         ob_end_clean();
 
         $this->_write('todo-list.html', 'Todo', TRUE);
-	
-	}
-  
+
+    }
+
 }
 
 ?>

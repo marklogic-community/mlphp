@@ -25,21 +25,22 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 class DeprecatedWriter extends HTMLWriter
 {
 
-	/** Build the deprecated index.
-	 *
-	 * @param Doclet doclet
-	 */
-	function deprecatedWriter(&$doclet)
+    /** Build the deprecated index.
+     *
+     * @param Doclet doclet
+     */
+    function deprecatedWriter(&$doclet)
     {
-	
-		parent::HTMLWriter($doclet);
-		
-		//$this->_id = 'definition';
 
-		$rootDoc =& $this->_doclet->rootDoc();
+        parent::HTMLWriter($doclet);
+
+        //$this->_id = 'definition';
+
+        $rootDoc =& $this->_doclet->rootDoc();
 
         $this->_sections[0] = array('title' => 'Overview', 'url' => 'overview-summary.html');
-        $this->_sections[1] = array('title' => 'Namespace');
+        //$this->_sections[1] = array('title' => 'Namespace'); // Package not Namespace
+        $this->_sections[1] = array('title' => 'Package');
         $this->_sections[2] = array('title' => 'Class');
         //$this->_sections[3] = array('title' => 'Use');
         $this->_sections[4] = array('title' => 'Tree', 'url' => 'overview-tree.html');
@@ -47,7 +48,7 @@ class DeprecatedWriter extends HTMLWriter
         $this->_sections[6] = array('title' => 'Deprecated', 'selected' => TRUE);
         $this->_sections[7] = array('title' => 'Todo', 'url' => 'todo-list.html');
         $this->_sections[8] = array('title' => 'Index', 'url' => 'index-all.html');
-        
+
         $deprecatedClasses = array();
         $classes =& $rootDoc->classes();
         $deprecatedFields = array();
@@ -93,15 +94,15 @@ class DeprecatedWriter extends HTMLWriter
                 }
             }
         }
-        
+
         ob_start();
-        
+
         echo "<hr>\n\n";
-        
+
         echo '<h1>Deprecated API</h1>';
 
         echo "<hr>\n\n";
-        
+
         if ($deprecatedClasses || $deprecatedFields || $deprecatedMethods || $deprecatedGlobals || $deprecatedFunctions) {
             echo "<h2>Contents</h2>\n";
             echo "<ul>\n";
@@ -122,7 +123,7 @@ class DeprecatedWriter extends HTMLWriter
             }
             echo "</ul>\n";
         }
-        
+
         if ($deprecatedClasses) {
             echo '<table id="deprecated_class" class="detail">', "\n";
             echo '<tr><th colspan="2" class="title">Deprecated Classes</th></tr>', "\n";
@@ -135,7 +136,7 @@ class DeprecatedWriter extends HTMLWriter
             }
             echo "</table>\n\n";
         }
-        
+
         if ($deprecatedFields) {
             echo '<table id="deprecated_field" class="detail">', "\n";
             echo '<tr><th colspan="2" class="title">Deprecated Fields</th></tr>', "\n";
@@ -150,7 +151,7 @@ class DeprecatedWriter extends HTMLWriter
             }
             echo "</table>\n\n";
         }
-        
+
         if ($deprecatedMethods) {
             echo '<table id="deprecated_method" class="detail">', "\n";
             echo '<tr><th colspan="2" class="title">Deprecated Methods</th></tr>', "\n";
@@ -165,7 +166,7 @@ class DeprecatedWriter extends HTMLWriter
             }
             echo "</table>\n\n";
         }
-        
+
         if ($deprecatedGlobals) {
             echo '<table id="deprecated_global" class="detail">', "\n";
             echo '<tr><th colspan="2" class="title">Deprecated Globals</th></tr>', "\n";
@@ -179,8 +180,8 @@ class DeprecatedWriter extends HTMLWriter
                 echo "</tr>\n";
             }
             echo "</table>\n\n";
-		}
-        
+        }
+
         if ($deprecatedFunctions) {
             echo '<table id="deprecated_function" class="detail">', "\n";
             echo '<tr><th colspan="2" class="title">Deprecated Functions</th></tr>', "\n";
@@ -200,9 +201,9 @@ class DeprecatedWriter extends HTMLWriter
         ob_end_clean();
 
         $this->_write('deprecated-list.html', 'Deprecated', TRUE);
-	
-	}
-  
+
+    }
+
 }
 
 ?>
