@@ -14,6 +14,7 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
+use MarkLogic\MLPHP as MLPHP;
 
 session_start();
 require_once ('setup.php');
@@ -27,7 +28,7 @@ if (!empty($redirect)) {
     echo "<script>$(window).load(function () { document.write('" . $items . " loaded') });</script>";
 }
 
-$restClient = new RESTClient($mlphp['host'], $mlphp['port'], $mlphp['path'], $mlphp['version'], $mlphp['username'], $mlphp['password'], $mlphp['auth']);
+$restClient = new MLPHP\RESTClient($mlphp['host'], $mlphp['port'], $mlphp['path'], $mlphp['version'], $mlphp['username'], $mlphp['password'], $mlphp['auth']);
 
 $rootdir = 'bills';
 $subdirs = array('110', '111', '112'); // directories to import from
@@ -38,7 +39,7 @@ foreach($subdirs as $subdir) {
     $dir = $rootdir . '/' . $subdir;
     if ($handle = opendir($dir)) {
         //echo "Writing files from directory: " . $dir . "<br />";
-        $doc = new Document($restClient);
+        $doc = new MLPHP\Document($restClient);
         while (false !== ($file = readdir($handle))) {
             if (substr($file, 0, 1) !== ".") {
                 $doc->setContentType("application/xml");

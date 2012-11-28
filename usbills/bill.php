@@ -14,10 +14,11 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
+use MarkLogic\MLPHP as MLPHP;
 
 session_start();
 require_once ('setup.php');
-$restClient = new RESTClient($mlphp['host'], $mlphp['port'], $mlphp['path'], $mlphp['version'], $mlphp['username'], $mlphp['password'], $mlphp['auth']);
+$restClient = new MLPHP\RESTClient($mlphp['host'], $mlphp['port'], $mlphp['path'], $mlphp['version'], $mlphp['username'], $mlphp['password'], $mlphp['auth']);
 $uri = (!empty($_REQUEST['uri'])) ? $_REQUEST['uri'] : exit;
 $query = (!empty($_REQUEST['query'])) ? $_REQUEST['query'] : '';
 $session = (!empty($_REQUEST['session'])) ? $_REQUEST['session'] : '';
@@ -45,7 +46,7 @@ $link = 'index.php?q=' . $query . '&session=' . $session . '&start=' . $start;
 
 <?php
 // Load the XML source
-$doc = new Document($restClient, $uri);
+$doc = new MLPHP\Document($restClient, $uri);
 $xml = new DOMDocument;
 $xml->loadXML($doc->read());
 

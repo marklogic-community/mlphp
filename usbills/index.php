@@ -14,11 +14,12 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
+use MarkLogic\MLPHP as MLPHP;
 
 session_start();
 require_once ('setup.php');
 require_once ('options.php');
-$restClient = new RESTClient($mlphp['host'], $mlphp['port'], $mlphp['path'], $mlphp['version'], $mlphp['username'], $mlphp['password'], $mlphp['auth']);
+$restClient = new MLPHP\RESTClient($mlphp['host'], $mlphp['port'], $mlphp['path'], $mlphp['version'], $mlphp['username'], $mlphp['password'], $mlphp['auth']);
 $query = (!empty($_REQUEST['query'])) ? $_REQUEST['query'] : '';
 $session = (!empty($_REQUEST['session'])) ? $_REQUEST['session'] : '';
 $start = (!empty($_REQUEST['start'])) ? $_REQUEST['start'] : '';
@@ -59,7 +60,7 @@ $pageLength = (!empty($_REQUEST['pageLength'])) ? $_REQUEST['pageLength'] : '';
 if (TRUE) { // TODO Change TRUE to not execute search following in some cases?
 
     // Get search results
-    $search = new Search($restClient);
+    $search = new MLPHP\Search($restClient);
     $start = (isset($_REQUEST['start'])) ? $_REQUEST['start'] : 1;
     $pageLength = (isset($_REQUEST['pageLength'])) ? $_REQUEST['pageLength'] : 10;
     $params = array(
