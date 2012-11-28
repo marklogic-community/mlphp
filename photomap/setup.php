@@ -19,8 +19,7 @@ require_once ('../setup.php');
 
 // Project values (these override and supplement global values in ../setup.php)
 $mlphp = array_merge($mlphp, array(
-    'api_path'		=>		'../api/',
     'port'			=>		8078,
-    'maps_key'		=>		'', // Options Google Maps key
+    'maps_key'		=>		'', // Optional Google Maps key
     'uploads_dir'	=>		__DIR__ . '/uploads' // Make accessible to PHP, e.g. chmod 700, chown www
 ));

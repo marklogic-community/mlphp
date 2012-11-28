@@ -15,15 +15,15 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-define('PRODUCTION', 0);
-define('DEVELOPMENT', 1);
-define('DEBUG', 2);
-
-define('STATUS', DEVELOPMENT);
+define('PRODUCTION', 'prod');
+define('DEVELOPMENT', 'dev');
+define('DEBUG', 'debug');
+define('ROOT_DIR', __DIR__ . DIRECTORY_SEPARATOR);
 
 // Global values (project values override in project/setup.php)
 $mlphp = array(
-    'api_path'			=>	'api/',
+    'status'			=>	DEVELOPMENT,
+    'api_path'			=>	ROOT_DIR . 'api/',
     'username'			=>	'rest-writer-user',
     'password'			=>	'writer-pw',
     'username-admin'	=>	'rest-admin-user',
@@ -34,13 +34,35 @@ $mlphp = array(
     'auth'				=>	'digest',
 );
 
-function __autoload($classname) {
+function __autoload($className)
+{
     global $mlphp;
-    $filename = $mlphp['api_path'] . $classname . '.php';
-    require_once($filename);
+    $className = ltrim($className, '\\');
+    $filePath  = '';
+    $namespace = '';
+    if ($lastNsPos = strripos($className, '\\')) {
+        $namespace = substr($className, 0, $lastNsPos);
+        $className = substr($className, $lastNsPos + 1);
+        $filePath  = str_replace('\\', DIRECTORY_SEPARATOR, $namespace) . DIRECTORY_SEPARATOR;
+    }
+    $fileName = $mlphp['api_path'] .
+                $filePath .
+                str_replace('_', DIRECTORY_SEPARATOR, $className) . '.php';
+    if (is_readable($fileName)) {
+        require_once $fileName;
+        logMessage('Class loaded: ' . $fileName);
+    }
 }
 
-switch (STATUS) {
+function logMessage($msg)
+{
+    global $mlphp;
+    if ($mlphp['status'] === DEBUG) {
+        echo $msg . '<br />' . PHP_EOL;
+    }
+}
+
+switch ($mlphp['status']) {
     case PRODUCTION: {
         ini_set('display_errors', 0);
     }
@@ -57,6 +79,5 @@ switch (STATUS) {
         error_reporting(E_ALL | E_STRICT);
     }
     default:
-        ini_set('display_errors', 0);
         break;
 }
