@@ -17,7 +17,7 @@ limitations under the License.
 ## Requirements
 
 * MarkLogic 6
-* PHP-enabled web server (e.g., Apache running PHP)
+* PHP 5.3-enabled web server (e.g., Apache running PHP)
 * DOM and cURL libraries enabled in PHP (this is the default in newer versions
   of PHP)
 
