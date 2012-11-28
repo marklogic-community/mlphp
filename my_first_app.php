@@ -17,10 +17,12 @@ limitations under the License.
 
 // A Simple MLPHP Application
 
-// 1. Complete the setup steps: mlphp/README.txt
+// 1. Complete the installation steps, see: mlphp/INSTALL.txt
 
 // 2. Tell the app how to talk to MarkLogic.
+use MarkLogic\MLPHP as MLPHP;
 $mlphp = array(
+    'api_path' => 'api/MarkLogic/MLPHP/',
     'username' => 'rest-writer-user',
     'password' => 'writer-pw',
     'host'     => 'localhost',
@@ -30,27 +32,26 @@ $mlphp = array(
 );
 
 // 3. Create a REST client that talks to MarkLogic.
-require_once('api/RESTClient.php');
-$client = new RESTClient($mlphp['host'], $mlphp['port'], '',
-                         $mlphp['version'], $mlphp['username'],
-                         $mlphp['password'], $mlphp['auth']);
+require_once($mlphp['api_path'] . 'RESTClient.php');
+$client = new MLPHP\RESTClient($mlphp['host'], $mlphp['port'], '', $mlphp['version'],
+                               $mlphp['username'], $mlphp['password'], $mlphp['auth']);
 
 // 4. Add a document to the MarkLogic database.
-require_once('api/Document.php');
-$document = new Document($client);
+require_once($mlphp['api_path'] . 'Document.php');
+$document = new MLPHP\Document($client);
 $document->setContent('<app><description>My first MLPHP app.</description></app>');
 $document->write('/myfirstapp.xml');
 
 // 5. Search the MarkLogic database.
-require_once('api/Search.php');
-$search = new Search($client);
+require_once($mlphp['api_path'] . 'Search.php');
+$search = new MLPHP\Search($client);
 $results = $search->retrieve('MLPHP');
 
 // 6. Display a result.
 echo '<html>';
 echo '<style>.highlight { background-color: yellow; }</style>';
 if ($results->getTotal() > 0) {
-    $matches = $results->getResultByIndex(1)->getMatches(); //->getMatches();
+    $matches = $results->getResultByIndex(1)->getMatches();
     echo $matches[0]->getContent();
 } else {
     echo 'No results found.';
