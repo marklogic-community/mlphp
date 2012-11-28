@@ -14,18 +14,20 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
+use MarkLogic\MLPHP as MLPHP;
 
 // Set up global vars and class autoloading
 require_once ('setup.php');
 
 // Create a REST client object for the MarkLogic database
-$client = new RESTClient($mlphp['host'], $mlphp['port'], $mlphp['path'], $mlphp['version'],
-                         $mlphp['username'], $mlphp['password'], $mlphp['auth']);
+$client = new MLPHP\RESTClient($mlphp['host'], $mlphp['port'], $mlphp['path'], $mlphp['version'],
+                               $mlphp['username'], $mlphp['password'], $mlphp['auth']);
 
-$doc = new Document($client);
+$doc = new MLPHP\Document($client);
 $uri = $_REQUEST['uri'];
-$content = $doc->read($_REQUEST['uri']);
-$filename = end(explode('/', $uri));
+$parts = explode('/', $uri);
+$filename = end($parts);
+$content = $doc->read($uri);
 header('Content-Type: ' . $doc->getContentType());
 header('Content-Disposition: attachment; filename=' . $filename);
 echo $content;

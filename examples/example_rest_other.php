@@ -14,6 +14,8 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
+use MarkLogic\MLPHP as MLPHP;
+
 ?>
 <!DOCTYPE html>
 <html lang="en-us">
@@ -26,12 +28,12 @@ limitations under the License.
 require_once ('setup.php');
 
 // Client for govtrack.us
-$client1 = new RESTClient('www.govtrack.us', 0, 'api', 'v1');
+$client1 = new MLPHP\RESTClient('www.govtrack.us', 0, 'api', 'v1');
 
 // Get Senate bills from bill endpoint
 try {
     $params = array('bill_type' => 'senate_bill');
-    $request = new RESTRequest('GET', 'bill/', $params);
+    $request = new MLPHP\RESTRequest('GET', 'bill/', $params);
     $response = $client1->send($request);
     //print_r($response->getBody());
     echo 'Title of second bill object: <br />';
@@ -44,7 +46,7 @@ try {
 // Get people named 'John' from person endpoint.
 try {
     $params = array('firstname' => 'John');
-    $request = new RESTRequest('GET', 'person', $params);
+    $request = new MLPHP\RESTRequest('GET', 'person', $params);
     $response = $client1->send($request);
     //print_r($response->getBody());
     echo 'Current role description of first person object: <br />';
@@ -55,16 +57,16 @@ try {
 }
 
 // Client for Flickr
-$client2 = new RESTClient('api.flickr.com', 0, 'services/rest', '');
+$client2 = new MLPHP\RESTClient('api.flickr.com', 0, 'services/rest', '');
 
 // Get recent public photos
 try {
     $params = array('method' => 'flickr.photos.getRecent',
-                    'api_key' => 'YOUR_FLICKR_API_KEY', // Add your's
+                    'api_key' => 'YOUR_FLICKR_API_KEY', // Add yours
                     'format' => 'rest');
-    $request = new RESTRequest('GET', '', $params);
+    $request = new MLPHP\RESTRequest('GET', '', $params);
     $response = $client2->send($request);
-    //print_r($response->getBody());
+    print_r($response->getBody());
     echo 'ID of fourth photo: <br />';
     $dom = new DOMDocument();
     $dom->loadXML($response->getBody());

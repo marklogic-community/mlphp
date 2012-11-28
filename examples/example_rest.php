@@ -14,6 +14,8 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
+use MarkLogic\MLPHP as MLPHP;
+
 ?>
 <!DOCTYPE html>
 <html lang="en-us">
@@ -25,26 +27,29 @@ limitations under the License.
 // Set up global vars and class autoloading
 require_once ('setup.php');
 
+$client = new MLPHP\RESTClient($mlphp['host'], $mlphp['port'], $mlphp['path'], $mlphp['version'],
+                               $mlphp['username-admin'], $mlphp['password-admin'], $mlphp['auth']);
+
 // Write a doc via PUT
-$doc = new Document($mlphp['client']);
-$file = "example.xml";
+$doc = new MLPHP\Document($client);
+$file = 'example.xml';
 $doc->setContentFile($file);
 $uri = "/" . $file;
-echo '<br />Write: ' . $doc->write($uri) . '<br />' . PHP_EOL;
+echo '<br />Write: ' . $doc->write($uri)->getUri() . '<br />' . PHP_EOL;
 
 // Read a doc via GET
 echo '<br />Read: ' . $doc->read($uri) . '<br />' . PHP_EOL;
 
 // Delete a doc via DELETE
-echo '<br />Delete: ' . $doc->delete($uri) . '<br />' . PHP_EOL;
+echo '<br />Delete: ' . $doc->delete($uri)->getUri() . '<br />' . PHP_EOL;
 
 // Test 301 redirect
-$govTrackClient = new RESTClient('www.govtrack.us', 0, 'api', 'v1');
+$govTrackClient = new MLPHP\RESTClient('www.govtrack.us', 0, 'api', 'v1');
 
 // Get Senate bills from bill endpoint
 $params = array('bill_type' => 'senate_bill');
 // 'bill' resource results in redirect ('bill/' does not)
-$request = new RESTRequest('GET', 'bill', $params);
+$request = new MLPHP\RESTRequest('GET', 'bill', $params);
 $response = $govTrackClient->send($request);
 //print_r($response->getBody());
 echo '<br />Title of second bill object: <br />';

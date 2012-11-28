@@ -14,6 +14,8 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
+use MarkLogic\MLPHP as MLPHP;
+
 ?>
 <!DOCTYPE html>
 <html lang="en-us">
@@ -25,13 +27,16 @@ limitations under the License.
 // Set up global vars and class autoloading
 require_once ('setup.php');
 
+$client = new MLPHP\RESTClient($mlphp['host'], $mlphp['port'], $mlphp['path'], $mlphp['version'],
+                               $mlphp['username-admin'], $mlphp['password-admin'], $mlphp['auth']);
+
 // Write text as a document to the database
-$doc = new Document($mlphp['client']);
+$doc = new MLPHP\Document($client);
 echo $doc->setContent('Hello, PHP!')->write('/chained1.txt')->getContent();
 echo '<br />';
 echo $doc->setContentFile('example.xml')->write('/chained2.xml')->getContent();
 echo '<br />';
-$doc2 = new Document($mlphp['client']);
+$doc2 = new MLPHP\Document($client);
 echo $doc2->write();
 
 ?>

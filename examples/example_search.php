@@ -14,16 +14,17 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
+use MarkLogic\MLPHP as MLPHP;
 
 // Load some documents
-$doc = new Document($client);
+$doc = new MLPHP\Document($client);
 $doc->setContentFile("hamlet.xml")->write("/" . "hamlet.xml");
 $doc->setContentFile("macbeth.xml")->write("/" . "macbeth.xml");
 $doc->setContentFile("example.json")->write("/" . "example.json");
 
 
 // Search for a string
-$search = new Search($client);
+$search = new MLPHP\Search($client);
 $search->setPageLength(2);
 $results = $search->retrieve('donalbain');
 echo "Simple text search results:\n\n";

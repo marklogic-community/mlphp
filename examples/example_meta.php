@@ -14,9 +14,10 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
+use MarkLogic\MLPHP as MLPHP;
 
 // Write a sample document
-$doc1 = new Document($client);
+$doc1 = new MLPHP\Document($client);
 $file1 = 'example.xml';
 $doc1->setContentFile($file1);
 $doc1->setContentType('application/xml');
@@ -75,8 +76,8 @@ echo "\n\n\n";
 
 // Permissions
 // PREREQUISITE: Create 'doc-reader', 'doc-admin', and 'doc-editor' roles in Admin interface
-$perm1 = new Permission('doc-reader', 'read');	// Create a new Permission object for doc-reader
-$perm2 = new Permission('doc-admin', 		// Create a new Permission object for doc-admin
+$perm1 = new MLPHP\Permission('doc-reader', 'read');	// Create a new Permission object for doc-reader
+$perm2 = new MLPHP\Permission('doc-admin', 		// Create a new Permission object for doc-admin
                         array('read',
                               'update',
                               'insert')
@@ -85,7 +86,7 @@ $perm_arr = array($perm1, $perm2);		// Store the permissions objects in an array
 $meta1->addPermissions($perm_arr);		// Add the permissions to the metadata object
 echo "Permissions added for doc-reader and doc-admin:\n";
 print_r($meta1->getPermissions());		// Read and display the permissions in the metadata object
-$perm3 = new Permission('doc-editor', 		// Create a new Permission object for doc-editor
+$perm3 = new MLPHP\Permission('doc-editor', 	// Create a new Permission object for doc-editor
                         array('read',
                               'update')
                         );
@@ -115,8 +116,8 @@ echo "\n\n\n";
 
 
 // Update multiple metadata at once via method chaining
-$meta1->addCollections(array('sugary', 'fresh'))->addProperties(array('created' => '2012-11-10', 'rating' => '9/10'));
-$perm4 = new Permission('doc-editor', array('read', 'update', 'insert'));
+$meta1->addCollections(array('sugary', 'fresh'))->addProperties(array('rating' => '9/10'));
+$perm4 = new MLPHP\Permission('doc-editor', array('read', 'update', 'insert'));
 $meta1->addPermissions($perm4)->setQuality($meta1->getQuality() + 1);
 echo "Metadata (collections, properties, permissions, and quality) updated via method chaining:\n";
 // Write, read, and display
@@ -126,7 +127,7 @@ echo "\n\n\n";
 
 
 // Update metadata simultaneously with document write
-$doc2 = new Document($client);
+$doc2 = new MLPHP\Document($client);
 $doc2->setContent('More content');
 $uri2 = '/example_updated.xml';
 // Add metadata as params
