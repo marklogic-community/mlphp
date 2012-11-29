@@ -1,0 +1,25 @@
+To generate a clean set of new docs
+
+Update master branch
+
+% cd $PATH_TO_MLPHP/mlphp/api/docs
+% git rm -rf *
+% cd $PATH_TO_MLPHP/mlphp/external/phpdoctor
+% php phpdoctor.php mlphp.ini
+% cd $PATH_TO_MLPHP/mlphp/api/docs
+% git add .
+% git commit -a -m "New docs"
+% git push origin master
+
+Update gh-pages copy 
+
+% cd $PATH_TO_MLPHP_GHPAGES/mlphp-ghpages
+% git rm -rf [a-z]*
+% cd $PATH_TO_MLPHP/mlphp/external/phpdoctor
+% php phpdoctor.php mlphp-ghpages.ini
+% cp -r $PATH_TO_MLPHP/mlphp/api/docs/* .
+% git add .
+% git commit -a -m "New docs"
+% git push origin gh-pages
+
+
