@@ -13,13 +13,16 @@ Update master branch
 
 Update gh-pages copy 
 
-% cd $PATH_TO_MLPHP_GHPAGES/mlphp-ghpages
+% cd $PATH_TO_MLPHP/mlphp/api
+
+If this is the first time,
+% git clone -b gh-pages --single-branch git@github.com:marklogic/mlphp docs-ghpages
+
+Otherwise
 % git rm -rf [a-z]*
+
 % cd $PATH_TO_MLPHP/mlphp/external/phpdoctor
 % php phpdoctor.php mlphp-ghpages.ini
-% cp -r $PATH_TO_MLPHP/mlphp/api/docs/* .
-% git add .
+% cd PATH_TO_MLPHP/mlphp/api/docs-ghpages
 % git commit -a -m "New docs"
 % git push origin gh-pages
-
-
