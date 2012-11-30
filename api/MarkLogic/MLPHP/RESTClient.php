@@ -155,7 +155,17 @@ class RESTClient
         $this->prefix = $prefix;
     }
 
-  /**
+    /**
+     * Get the URL prefix.
+     *
+     * @return string The URL prefix.
+     */
+    public function getPrefix()
+    {
+        return $this->prefix;
+    }
+
+    /**
      * Send a REST request.
      *
      * @param RESTRequest $request A RESTRequest object
@@ -329,7 +339,9 @@ class RESTClient
         $response->setBody(curl_exec($ch));
         $response->setInfo(curl_getinfo($ch));
         //print_r($response);
-        if ($response->getHttpCode() == 301) {
+        if ($response->getHttpCode() === 0) {
+            throw new \Exception('No connection: ' . $response->getUrl(), $response->getHttpCode());
+        } else if ($response->getHttpCode() == 301) {
             // Redirect to specified URL
             curl_setopt($ch, CURLOPT_URL, $response->getRedirectUrl());
             return $this->execute($ch);
