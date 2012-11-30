@@ -29,6 +29,7 @@ $mlphp = array(
     'username-admin'	=>	'rest-admin-user',
     'password-admin'	=>	'admin-pw',
     'host'				=>	'localhost',
+    'port'				=>	8077,
     'path'				=>	'',
     'version'			=>	'v1',
     'auth'				=>	'digest',
