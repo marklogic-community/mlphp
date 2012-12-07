@@ -20,7 +20,9 @@ define('DEVELOPMENT', 'dev');
 define('DEBUG', 'debug');
 define('ROOT_DIR', __DIR__ . DIRECTORY_SEPARATOR);
 
-// Global values (project values override in project/setup.php)
+/**
+ * Global values (project values override in <project>/setup.php)
+ */
 $mlphp = array(
     'status'			=>	DEVELOPMENT,
     'api_path'			=>	ROOT_DIR . 'api/',
@@ -35,25 +37,13 @@ $mlphp = array(
     'auth'				=>	'digest',
 );
 
-function __autoload($className)
-{
-    global $mlphp;
-    $className = ltrim($className, '\\');
-    $filePath  = '';
-    $namespace = '';
-    if ($lastNsPos = strripos($className, '\\')) {
-        $namespace = substr($className, 0, $lastNsPos);
-        $className = substr($className, $lastNsPos + 1);
-        $filePath  = str_replace('\\', DIRECTORY_SEPARATOR, $namespace) . DIRECTORY_SEPARATOR;
-    }
-    $fileName = $mlphp['api_path'] .
-                $filePath .
-                str_replace('_', DIRECTORY_SEPARATOR, $className) . '.php';
-    if (is_readable($fileName)) {
-        require_once $fileName;
-        logMessage('Class loaded: ' . $fileName);
-    }
-}
+/**
+ * Set up autoloading of classes. Since API classes in one directory, can use 
+ * default.
+ * @see http://php.net/manual/en/function.spl-autoload-register.php
+ */
+set_include_path(get_include_path() . PATH_SEPARATOR . $mlphp['api_path']);
+spl_autoload_register();
 
 function logMessage($msg)
 {
