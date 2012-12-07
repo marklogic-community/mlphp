@@ -187,3 +187,9 @@ $options9->write('options9');		// Write the search options to the database
 echo "Term options:\n\n";
 echo htmlspecialchars($options9->read('options9'));
 echo "\n\n";
+
+// Delete the example options from the database
+$num = 9;
+for ($i = 1; $i <= $num; $i++) {
+    $options1->delete('options' . $i);
+}
