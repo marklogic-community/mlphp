@@ -50,8 +50,8 @@ limitations under the License.
    To set up the users, click Security, click Users, and then click the Create
    tab.
 
-   MLPHP requires these roles and expects these usernames and passwords. If
-   needed, you can change the usernames and passwords here:
+   MLPHP requires these roles and expects these usernames and passwords. To
+   secure MLPHP, you can change the usernames and passwords here:
 
    mlphp/setup.php
 
