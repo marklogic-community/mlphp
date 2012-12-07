@@ -208,8 +208,27 @@ class Options
     }
 
     /**
+     * Read the search options from the database.
+     *
+     * @param string $name The search options name.
+     * @return string The search options as XML.
+     */
+    public function read($name = 'all')
+    {
+        try {
+            $params = array('format' => 'xml');
+            $request = new RESTRequest('GET', 'config/query/' . $name, $params);
+            $response = $this->restClient->send($request);
+            return $response->getBody();
+        } catch(Exception $e) {
+            echo $e->getMessage() . ' in ' . $e->getFile() . ' on line ' . $e->getLine() . PHP_EOL;
+        }
+    }
+
+    /**
      * Write the search options to the database.
      *
+     * @param string $name The search options name.
      * @return RESTResponse RESTResponse object.
      */
     public function write($name = 'all')
@@ -227,17 +246,17 @@ class Options
     }
 
     /**
-     * Read the search options from the database.
+     * Delete the search options from the database.
      *
-     * @return string The search options as XML.
+     * @param string $name The search options name.
+     * @return Options $this
      */
-    public function read($name = 'all')
+    public function delete($name)
     {
         try {
-            $params = array('format' => 'xml');
-            $request = new RESTRequest('GET', 'config/query/' . $name, $params);
+            $request = new RESTRequest('DELETE', 'config/query/' . $name);
             $response = $this->restClient->send($request);
-            return $response->getBody();
+            return $this;
         } catch(Exception $e) {
             echo $e->getMessage() . ' in ' . $e->getFile() . ' on line ' . $e->getLine() . PHP_EOL;
         }
