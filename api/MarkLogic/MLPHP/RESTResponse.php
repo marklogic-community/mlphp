@@ -123,14 +123,19 @@ class RESTResponse
             $statusCode = $obj->error->{'status-code'};
             $status = $obj->error->status;
             $message = $obj->error->message;
-        } else {
+            $result = 'Error ' . $statusCode . ': ' . $status . ' - ' . $message;
+        } else if (substr(trim($this->body), 0, 1) === '<') {
             // response body is XML
             $dom = new \DOMDocument($this->body);
             $dom->loadXML($this->body);
             $statusCode = $dom->getElementsByTagNameNS('http://marklogic.com/rest-api', 'status-code')->item(0)->nodeValue;
             $status = $dom->getElementsByTagNameNS('http://marklogic.com/rest-api', 'status')->item(0)->nodeValue;
             $message = $dom->getElementsByTagNameNS('http://marklogic.com/rest-api', 'message')->item(0)->nodeValue;
+            $result = 'Error ' . $statusCode . ': ' . $status . ' - ' . $message;
+        } else {
+            // response is text or something else
+            $result = 'Error: ' . $this->body;
         }
-        return 'Error ' . $statusCode . ': ' . $status . ' - ' . $message;
+        return $result;
     }
 }
