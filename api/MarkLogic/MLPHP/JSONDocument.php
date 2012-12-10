@@ -35,7 +35,35 @@ class JSONDocument extends Document
     public function __construct($restClient, $uri = null)
     {
         parent::__construct($restClient, $uri);
-        $this->contentType = 'application/json';
+        $this->setContentType('application/json');
+    }
+
+    /**
+     * Read a JSON document from the database.
+     *
+     * @param string $uri A document URI.
+     * @param array $params Optional additional parameters to pass when reading.
+     * @return string The document content.
+     */
+    public function read($uri = null, $params = array())
+    {
+        $this->uri = (isset($uri)) ? (string)$uri : $this->uri;
+        $params = array_merge(array('format' => 'json'), $params);
+        return parent::read($this->uri, $params);
+    }
+
+    /**
+     * Write a JSON document to the database.
+     *
+     * @param string $uri A document URI.
+     * @param array $params Optional additional parameters to pass when writing.
+     * @return Document $this
+     */
+    public function write($uri = null, $params = array())
+    {
+        $this->uri = (isset($uri)) ? (string)$uri : $this->uri;
+        $params = array_merge(array('format' => 'json'), $params);
+        return parent::write($this->uri, $params);
     }
 
     /**
