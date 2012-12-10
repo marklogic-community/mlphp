@@ -47,7 +47,10 @@ class ImageDocument extends Document
      */
     public function setContentFile($file)
     {
-        $this->exif = exif_read_data((string)$file);
+        $type = $this->getFileMimeType($file);
+        if ($type === 'image/jpeg' || $type === 'image/tiff') {
+            $this->exif = exif_read_data((string)$file);
+        }
         parent::setContentFile((string)$file);
     }
 
