@@ -21,7 +21,7 @@ define('DEBUG', 'debug');
 define('ROOT_DIR', __DIR__ . DIRECTORY_SEPARATOR);
 
 /**
- * Global values (project values override in <project>/setup.php)
+ * Global settings (project settings override in <project>/setup.php)
  */
 $mlphp = array(
     'status'			=>	DEVELOPMENT,
@@ -38,7 +38,7 @@ $mlphp = array(
 );
 
 /**
- * Set up autoloading of classes. Since API classes in one directory, can use 
+ * Set up autoloading of classes. Since API classes in one directory, can use
  * default.
  * @see http://php.net/manual/en/function.spl-autoload-register.php
  */

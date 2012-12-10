@@ -17,7 +17,7 @@ limitations under the License.
 
 require_once ('../setup.php');
 
-// Project values (these override and supplement global values in ../setup.php)
+// Project settings (these override and supplement global settings in ../setup.php)
 $mlphp = array_merge($mlphp, array(
     'port'			=>		8078,
     'maps_key'		=>		'', // Optional Google Maps key
