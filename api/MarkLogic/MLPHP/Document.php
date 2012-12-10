@@ -51,13 +51,14 @@ class Document
      * @see Document::getContent()
      *
      * @param string $uri A document URI.
-   * @return string The document content.
+     * @param array $params Optional additional parameters to pass when reading.
+     * @return string The document content.
      */
-    public function read($uri = null)
+    public function read($uri = null, $params = array())
     {
         $this->uri = (isset($uri)) ? (string)$uri : $this->uri;
         try {
-            $params = array('uri' => $this->uri);
+            $params = array_merge(array('uri' => $this->uri), $params);
             $request = new RESTRequest('GET', 'documents', $params);
             $response = $this->restClient->send($request);
             $this->content = $response->getBody();
@@ -291,7 +292,7 @@ class Document
      * @param string $file The file.
      * @return string The the mimetype of the file.
      */
-    private function getFileMimeType($file)
+    protected function getFileMimeType($file)
     {
         if (function_exists('finfo_file')) {
             $finfo = finfo_open(FILEINFO_MIME_TYPE);
