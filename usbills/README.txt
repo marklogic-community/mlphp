@@ -44,7 +44,7 @@ steps in mlphp/README.txt.
 
    scalar type: int
    parent localname: bill
-   localname: sesssion
+   localname: session
 
    scalar type: string
    parent localname: bill
