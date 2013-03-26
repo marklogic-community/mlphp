@@ -38,40 +38,35 @@ $client = new MLPHP\RESTClient($mlphp['host'], $mlphp['port'], $mlphp['path'], $
 
 if (isset($_FILES['upload'])) {
     try {
-        // Check folder permissions
-        if (!is_readable($mlphp['uploads_dir']) || !is_writable($mlphp['uploads_dir']) || !is_executable($mlphp['uploads_dir'])) {
-            throw new Exception('Error: Photo uploads directory not readable, writable, and executable.');
-        } else {
-            // Load files
-            foreach ($_FILES['upload']['error'] as $key => $error) {
-                if ($error == UPLOAD_ERR_OK) {
-                    // Move file to upload directory
-                    $tmpName = $_FILES['upload']['tmp_name'][$key];
-                    $name = $_FILES['upload']['name'][$key];
-                    $dest = $mlphp['uploads_dir'] . '/' . $name;
-                    move_uploaded_file($tmpName, $dest);
-                    try {
-                        // Write image file
-                        require_once ('IPhoneImageDocument.php');
-                        $image = new MLPHP\IPhoneImageDocument($client);
-                        $image->setContentFile($dest);
-                        $image->write($name);
-                        // Write image metadata
-                        $metadata = new MLPHP\Metadata();
-                        $metadata->addProperties(array(
-                            'latitude' => $image->getLatitude(),
-                            'longitude' => $image->getLongitude(),
-                            'height' => $image->getHeight(),
-                            'width' => $image->getWidth(),
-                            'filename' => $image->getFilename()
-                        ));
-                        $image->writeMetadata($metadata);
-                    } catch(Exception $e) {
-                        echo 'Error: ' . $e->getMessage();
-                    }
-                }
-            }
-        }
+    	// Load files
+    	foreach ($_FILES['upload']['error'] as $key => $error) {
+			if ($error == UPLOAD_ERR_OK) {
+				// Move file to upload directory
+				$tmpName = $_FILES['upload']['tmp_name'][$key];
+				$name = $_FILES['upload']['name'][$key];
+				$dest = $mlphp['uploads_dir'] . '/' . $name;
+				move_uploaded_file($tmpName, $dest);
+				try {
+					// Write image file
+					require_once ('IPhoneImageDocument.php');
+					$image = new MLPHP\IPhoneImageDocument($client);
+					$image->setContentFile($dest);
+					$image->write($name);
+					// Write image metadata
+					$metadata = new MLPHP\Metadata();
+					$metadata->addProperties(array(
+						'latitude' => $image->getLatitude(),
+						'longitude' => $image->getLongitude(),
+						'height' => $image->getHeight(),
+						'width' => $image->getWidth(),
+						'filename' => $image->getFilename()
+					));
+					$image->writeMetadata($metadata);
+				} catch(Exception $e) {
+					echo 'Error: ' . $e->getMessage();
+				}
+			}
+    	}
     } catch (Exception $e) {
         echo $e->getMessage() . ' in ' . $e->getFile() . ' on line ' . $e->getLine() . PHP_EOL;
     }
