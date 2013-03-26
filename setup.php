@@ -25,7 +25,7 @@ define('ROOT_DIR', __DIR__ . DIRECTORY_SEPARATOR);
  */
 $mlphp = array(
     'status'			=>	DEVELOPMENT,
-    'api_path'			=>	ROOT_DIR . 'api/',
+    'api_path'			=>	ROOT_DIR . 'api' . DIRECTORY_SEPARATOR,
     'username'			=>	'rest-writer-user',
     'password'			=>	'writer-pw',
     'username-admin'	=>	'rest-admin-user',

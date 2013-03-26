@@ -15,7 +15,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-require_once ('../setup.php');
+require_once ('..' . DIRECTORY_SEPARATOR . 'setup.php');
 
 // Project settings (these override and supplement global settings in ../setup.php)
 $mlphp = array_merge($mlphp, array(
