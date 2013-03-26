@@ -19,12 +19,12 @@ Searching is just as easy:
     $search = new MLPHP\Search($client);
     $results = $search->retrieve('cat');
 
-MLPHP requires MarkLogic 6. To download the server and use the free Express
+MLPHP requires MarkLogic 6 or later. To download the server and use the free Developer or Express
 license, see:
 
-http://developer.marklogic.com/express
+http://developer.marklogic.com/licensing
 
-If you want to build applications in Java, MarkLogic 6 also has a Java API.
+If you want to build applications in Java, MarkLogic also has a Java API.
 
 MLPHP is licensed under the Apache License, Version 2.0 (see LICENSE.txt).
 
