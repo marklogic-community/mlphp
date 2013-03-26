@@ -18,8 +18,8 @@ limitations under the License.
 
 * MarkLogic 6 (available here: http://developer.marklogic.com/express)
 * PHP 5.3-enabled web server (e.g., Apache running PHP)
-* DOM and cURL libraries enabled in PHP (this is the default in newer versions
-  of PHP)
+* DOM, cURL, and XSL libraries enabled in PHP (this is the default in most
+  newer versions of PHP)
 
 ## Set Up MLPHP
 
