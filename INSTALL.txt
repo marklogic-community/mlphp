@@ -105,7 +105,7 @@ limitations under the License.
 
 * If you encounter 403 errors, make sure your REST users are set up correctly
   in step 2.
-* You can check your PHP configuration (and see that the DOM and cURL
+* You can check your PHP configuration (and see that the DOM, cURL, and XSL
   libraries are enabled) here: http://localhost/~user/mlphp/utils/phpinfo.php
 * The REST servers are set up on ports 8077, 8078, and 8079. You can test them
   directly, for example: http://localhost:8077
