@@ -251,7 +251,7 @@ class RESTClient
 
         // Handle PUT body
         $requestLength = strlen($request->getBody());
-        $fh = fopen('php://memory', 'rw');
+        $fh = fopen('php://temp', 'rw');
         fwrite($fh, $request->getBody());
         rewind($fh);
 
@@ -338,7 +338,9 @@ class RESTClient
         $response = new RESTResponse();
         $response->setBody(curl_exec($ch));
         $response->setInfo(curl_getinfo($ch));
-        //print_r($response);
+        /* echo '<pre>';
+        print_r($response);
+        echo '</pre>'; */
         if ($response->getHttpCode() === 0) {
             throw new \Exception('No connection: ' . $response->getUrl(), $response->getHttpCode());
         } else if ($response->getHttpCode() == 301) {
