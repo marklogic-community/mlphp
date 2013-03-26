@@ -297,8 +297,10 @@ class Document
             $finfo = finfo_open(FILEINFO_MIME_TYPE);
             $type = finfo_file($finfo, $file);
             finfo_close($finfo);
-        } else {
+        } else if (function_exists('mime_content_type')) {
             $type = mime_content_type($file);
+        } else {
+        	$type = '';
         }
         return $type;
     }
