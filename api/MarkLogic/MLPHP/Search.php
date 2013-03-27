@@ -15,6 +15,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 namespace MarkLogic\MLPHP;
+//use MarkLogic\MLPHP\SearchResult;
 
 require_once ('SearchResults.php');
 
@@ -88,6 +89,7 @@ class Search
      * Retrieve the search results using the REST client.
      *
      * @param string $query The search query.
+     * @return SearchResults A search results object.
      */
     public function retrieve($query, $params = array())
     {
@@ -102,7 +104,7 @@ class Search
             $results = new SearchResults($response->getBody());
             return $results;
         } catch(Exception $e) {
-                echo $e->getMessage() . ' in ' . $e->getFile() . ' on line ' . $e->getLine() . PHP_EOL;
+            echo $e->getMessage() . ' in ' . $e->getFile() . ' on line ' . $e->getLine() . PHP_EOL;
         }
     }
 
@@ -111,6 +113,7 @@ class Search
      *
      * @param string $key The key (property name) in JSON content.
      * @param string $value The value (property value) in JSON content.
+     * @return SearchResults A search results object.
      */
     public function retrieveKeyValue($key, $value, $params = array())
     {
@@ -125,7 +128,7 @@ class Search
             $results = new SearchResults($response->getBody());
             return $results;
         } catch(Exception $e) {
-                echo $e->getMessage() . ' in ' . $e->getFile() . ' on line ' . $e->getLine() . PHP_EOL;
+            echo $e->getMessage() . ' in ' . $e->getFile() . ' on line ' . $e->getLine() . PHP_EOL;
         }
     }
 
@@ -135,6 +138,7 @@ class Search
      * @param string $element The element name.
      * @param string $attribute The attribute for the element, to search for attribute content.
      * @param string $value The value for that element (or attribute).
+     * @return SearchResults A search results object.
      */
     public function retrieveKeyValueElement($element, $attribute, $value, $params = array())
     {
@@ -152,7 +156,7 @@ class Search
             $results = new SearchResults($response->getBody());
             return $results;
         } catch(Exception $e) {
-                echo $e->getMessage() . ' in ' . $e->getFile() . ' on line ' . $e->getLine() . PHP_EOL;
+            echo $e->getMessage() . ' in ' . $e->getFile() . ' on line ' . $e->getLine() . PHP_EOL;
         }
     }
 
