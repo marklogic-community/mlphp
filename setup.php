@@ -21,7 +21,7 @@ define('DEBUG', 'debug');
 define('ROOT_DIR', __DIR__ . DIRECTORY_SEPARATOR);
 
 /**
- * Global settings (project settings override in <project>/setup.php)
+ * Global settings (project settings can override in <project>/setup.php)
  */
 $mlphp = array(
     'status'			=>	DEVELOPMENT,
@@ -38,13 +38,34 @@ $mlphp = array(
 );
 
 /**
- * Set up autoloading of classes. Since API classes in one directory, can use
- * default.
+ * Set up autoloading of classes.
  * @see http://php.net/manual/en/function.spl-autoload-register.php
+ * @see https://gist.github.com/jwage/221634
  */
-set_include_path(get_include_path() . PATH_SEPARATOR . $mlphp['api_path']);
-spl_autoload_register();
+function loadClass($className)
+{
+    global $mlphp;
+    $className = ltrim($className, '\\');
+    $filePath  = '';
+    $namespace = '';
+    if ($lastNsPos = strripos($className, '\\')) {
+        $namespace = substr($className, 0, $lastNsPos);
+        $className = substr($className, $lastNsPos + 1);
+        $filePath  = str_replace('\\', DIRECTORY_SEPARATOR, $namespace) . DIRECTORY_SEPARATOR;
+    }
+    $fileName = $mlphp['api_path'] .
+                $filePath .
+                str_replace('_', DIRECTORY_SEPARATOR, $className) . '.php';
+    if (is_readable($fileName)) {
+        require_once $fileName;
+        logMessage('Class loaded: ' . $fileName);
+    }
+}
+spl_autoload_register('loadClass');
 
+/**
+ * Log a message when in debug status.
+ */
 function logMessage($msg)
 {
     global $mlphp;
@@ -53,6 +74,9 @@ function logMessage($msg)
     }
 }
 
+/**
+ * Configure status-specific settings.
+ */
 switch ($mlphp['status']) {
     case PRODUCTION: {
         ini_set('display_errors', 0);
