@@ -54,7 +54,7 @@ $view = (!empty($_REQUEST['view']) ? $_REQUEST['view'] : 'code');
 <?php if ($view === 'code') { ?>
 <pre class="prettyprint">
 <?php
-$pattern = '/\/\*([^*]|[\r\n])*\*\//';
+$pattern = '/\/\*([^*]|[\r\n])*?\*\//';
 $replacement = '';
 echo trim(htmlspecialchars(preg_replace(
     $pattern,
