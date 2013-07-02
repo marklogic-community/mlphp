@@ -47,7 +47,7 @@ Alternatively, you can just grab a copy of the [MLPHP GitHub repository](https:/
 MLPHP comes with a series of examples. To run them, see the [instructions](https://github.com/marklogic/mlphp/blob/master/examples/README.md).  
 
 ## API Documentation
-API docs are available [online](https://marklogic.github.io/mlphp).  A copy is also provided inside the MLPHP repo under `api/docs` and surfaces from the examples index.
+API docs are available [online](http://marklogic.github.io/mlphp).  A copy is also provided inside the MLPHP repo under `api/docs` and surfaces from the examples index.
 
 ## License 
 MLPHP is licensed under the Apache License, Version 2.0 (see LICENSE.txt).
