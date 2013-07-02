@@ -1,0 +1,186 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="generator" content="PHPDoctor 2.0.5 (http://peej.github.com/phpdoctor/)">
+<meta name="when" content="Tue, 02 Jul 2013 17:04:32 +0000">
+
+<link rel="stylesheet" type="text/css" href="../../../stylesheet.css">
+<link rel="start" href="../../../overview-summary.html">
+
+<title>MarkLogic/MLPHP/AbstractConstraint.php (MLPHP)</title>
+
+</head>
+<body id="file" onload="parent.document.title=document.title;">
+
+<div class="header">
+<h1><a href=https://github.com/marklogic/mlphp target=_top>MLPHP</a></h1>
+<ul>
+<li><a href="../../../overview-summary.html">Overview</a></li>
+<li>Package</li><li>Class</li><li>Tree</li><li><a href="../../../overview-files.html">Files</a></li>
+<li><a href="../../../deprecated-list.html">Deprecated</a></li>
+<li><a href="../../../todo-list.html">Todo</a></li>
+<li><a href="../../../index-all.html">Index</a></li>
+</ul>
+</div>
+
+<div class="small_links">
+<a href="../../../index.html" target="_top">Frames</a>
+<a href="../../../source/marklogic/mlphp/abstractconstraint.php.html" target="_top">No frames</a>
+</div>
+<hr>
+
+<h1>MarkLogic/MLPHP/AbstractConstraint.php</h1>
+<hr>
+
+<a name="line1"></a><pre><?php
+<a name="line2"></a>/*
+<a name="line3"></a>Copyright 2002-2012 MarkLogic Corporation.  All Rights Reserved.
+<a name="line4"></a>
+<a name="line5"></a>Licensed under the Apache License, Version 2.0 (the "License");
+<a name="line6"></a>you may not use this file except in compliance with the License.
+<a name="line7"></a>You may obtain a copy of the License at
+<a name="line8"></a>
+<a name="line9"></a>     http://www.apache.org/licenses/LICENSE-2.0
+<a name="line10"></a>
+<a name="line11"></a>Unless required by applicable law or agreed to in writing, software
+<a name="line12"></a>distributed under the License is distributed on an "AS IS" BASIS,
+<a name="line13"></a>WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+<a name="line14"></a>See the License for the specific language governing permissions and
+<a name="line15"></a>limitations under the License.
+<a name="line16"></a>*/
+<a name="line17"></a>namespace MarkLogic\MLPHP;
+<a name="line18"></a>
+<a name="line19"></a>/**
+<a name="line20"></a> * Represents a abstraction of a search-options constraint that specific constraints can extend.
+<a name="line21"></a> *
+<a name="line22"></a> * @package Options
+<a name="line23"></a> * @author Mike Wooldridge <mike.wooldridge@marklogic.com>
+<a name="line24"></a> */
+<a name="line25"></a>class AbstractConstraint
+<a name="line26"></a>{
+<a name="line27"></a>    protected $name; // @var string
+<a name="line28"></a>
+<a name="line29"></a>    /**
+<a name="line30"></a>     * Create a Constraint object.
+<a name="line31"></a>     *
+<a name="line32"></a>     * @see http://docs.marklogic.com/search:search#opt-constraint
+<a name="line33"></a>     *
+<a name="line34"></a>     * @param string $name Constraint name.
+<a name="line35"></a>     */
+<a name="line36"></a>    public function __construct($name)
+<a name="line37"></a>    {
+<a name="line38"></a>        $this->name = (string)$name;
+<a name="line39"></a>    }
+<a name="line40"></a>
+<a name="line41"></a>    /**
+<a name="line42"></a>     * Set term options.
+<a name="line43"></a>     *
+<a name="line44"></a>     * @param array $termOptions An array of term options.
+<a name="line45"></a>     */
+<a name="line46"></a>    public function setTermOptions($termOptions)
+<a name="line47"></a>    {
+<a name="line48"></a>        $this->termOptions = $termOptions;
+<a name="line49"></a>    }
+<a name="line50"></a>
+<a name="line51"></a>    /**
+<a name="line52"></a>     * Set facet options.
+<a name="line53"></a>     *
+<a name="line54"></a>     * @param array $facetOptions An array of facet options.
+<a name="line55"></a>     */
+<a name="line56"></a>    public function setFacetOptions($facetOptions)
+<a name="line57"></a>    {
+<a name="line58"></a>        $this->facetOptions = $facetOptions;
+<a name="line59"></a>    }
+<a name="line60"></a>
+<a name="line61"></a>    /**
+<a name="line62"></a>     * Set fragment scope.
+<a name="line63"></a>     *
+<a name="line64"></a>     * @param string $scope The fragment scope ('documents' or 'properties').
+<a name="line65"></a>     */
+<a name="line66"></a>    public function setFragmentScrope($scope)
+<a name="line67"></a>    {
+<a name="line68"></a>        $this->fragmentScope = $scope;
+<a name="line69"></a>    }
+<a name="line70"></a>
+<a name="line71"></a>    /**
+<a name="line72"></a>     * Add term options to an element.
+<a name="line73"></a>     *
+<a name="line74"></a>     * @param DOMDocument $dom A DOM document.
+<a name="line75"></a>     * @param DOMElement $elem A DOM element.
+<a name="line76"></a>     * @return DOMElement The updated element.
+<a name="line77"></a>     */
+<a name="line78"></a>    protected function addTermOptions($dom, $elem)
+<a name="line79"></a>    {
+<a name="line80"></a>        if (!empty($this->termOptions)) {
+<a name="line81"></a>            foreach ($this->termOptions as $opt) {
+<a name="line82"></a>                $termElem = $dom->createElement('term-option');
+<a name="line83"></a>                $termElem->nodeValue = $opt;
+<a name="line84"></a>                $elem->appendChild($termElem);
+<a name="line85"></a>            }
+<a name="line86"></a>        }
+<a name="line87"></a>        return $elem;
+<a name="line88"></a>    }
+<a name="line89"></a>
+<a name="line90"></a>    /**
+<a name="line91"></a>     * Add facet options to an element.
+<a name="line92"></a>     *
+<a name="line93"></a>     * @param DOMDocument $dom A DOM document.
+<a name="line94"></a>     * @param DOMElement $elem A DOM element.
+<a name="line95"></a>     * @return DOMElement The updated element.
+<a name="line96"></a>     */
+<a name="line97"></a>    protected function addFacetOptions($dom, $elem)
+<a name="line98"></a>    {
+<a name="line99"></a>        if (!empty($this->facetOptions)) {
+<a name="line100"></a>            foreach ($this->facetOptions as $opt) {
+<a name="line101"></a>                $facetElem = $dom->createElement('facet-option');
+<a name="line102"></a>                $facetElem->nodeValue = $opt;
+<a name="line103"></a>                $elem->appendChild($facetElem);
+<a name="line104"></a>            }
+<a name="line105"></a>        }
+<a name="line106"></a>        return $elem;
+<a name="line107"></a>    }
+<a name="line108"></a>
+<a name="line109"></a>    /**
+<a name="line110"></a>     * Add a fragment-scope setting to an element.
+<a name="line111"></a>     *
+<a name="line112"></a>     * @param DOMDocument $dom A DOM document.
+<a name="line113"></a>     * @param DOMElement $elem A DOM element.
+<a name="line114"></a>     * @return DOMElement The updated element.
+<a name="line115"></a>     */
+<a name="line116"></a>    protected function addFragmentScope($dom, $elem)
+<a name="line117"></a>    {
+<a name="line118"></a>        if (!empty($this->fragmentScope)) {
+<a name="line119"></a>            $fragScopeElem = $dom->createElement('fragment-scope');
+<a name="line120"></a>            $fragScopeElem->nodeValue = $this->fragmentScope;
+<a name="line121"></a>            $elem->appendChild($fragScopeElem);
+<a name="line122"></a>        }
+<a name="line123"></a>        return $elem;
+<a name="line124"></a>    }
+<a name="line125"></a>}
+<a name="line126"></a></pre>
+<div class="header">
+<h1><a href=https://github.com/marklogic/mlphp target=_top>MLPHP</a></h1>
+<ul>
+<li><a href="../../../overview-summary.html">Overview</a></li>
+<li>Package</li><li>Class</li><li>Tree</li><li><a href="../../../overview-files.html">Files</a></li>
+<li><a href="../../../deprecated-list.html">Deprecated</a></li>
+<li><a href="../../../todo-list.html">Todo</a></li>
+<li><a href="../../../index-all.html">Index</a></li>
+</ul>
+</div>
+
+<div class="small_links">
+<a href="../../../index.html" target="_top">Frames</a>
+<a href="../../../source/marklogic/mlphp/abstractconstraint.php.html" target="_top">No frames</a>
+</div>
+<hr>
+
+<p id="footer">Copyright 2002-2012 MarkLogic Corporation.  All Rights Reserved.</p>
+
+</body>
+
+</html>
