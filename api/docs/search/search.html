@@ -1,12 +1,12 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<!doctype html>
 
 <html lang="en">
 <head>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-<meta name="generator" content="PHPDoctor 2RC4 (http://peej.github.com/phpdoctor/)">
-<meta name="when" content="Thu, 29 Nov 2012 19:16:40 +0000">
+<meta name="generator" content="PHPDoctor 2.0.5 (http://peej.github.com/phpdoctor/)">
+<meta name="when" content="Tue, 02 Jul 2013 17:00:59 +0000">
 
 <link rel="stylesheet" type="text/css" href="../stylesheet.css">
 <link rel="start" href="../overview-summary.html">
@@ -20,7 +20,7 @@
 <h1><a href=../../index.php target=_top>MLPHP</a></h1>
 <ul>
 <li><a href="../overview-summary.html">Overview</a></li>
-<li><a href="../search/package-summary.html">Package</a></li>
+<li><a href="../search/package-summary.html">Namespace</a></li>
 <li class="active">Class</li>
 <li><a href="../search/package-tree.html">Tree</a></li>
 <li><a href="../overview-files.html">Files</a></li>
@@ -41,7 +41,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 <hr>
 
 <div class="qualifiedName">Search\Search</div>
-<a href="../source/marklogic/mlphp/search.php.html#line27" class="location">MarkLogic/MLPHP/Search.php at line 27</a>
+<a href="../source/marklogic/mlphp/search.php.html#line26" class="location">MarkLogic/MLPHP/Search.php at line 26</a>
 
 <h1>Class Search</h1>
 
@@ -78,15 +78,15 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 <td class="description"><p class="name"><a href="#getParams()">getParams</a>()</p><p class="description">Get the common search parameters as an associated array.</p></td>
 </tr>
 <tr>
-<td class="type"> void</td>
+<td class="type"> <a href="../search/searchresults.html">SearchResults</a></td>
 <td class="description"><p class="name"><a href="#retrieve()">retrieve</a>(string query, mixed params)</p><p class="description">Retrieve the search results using the REST client.</p></td>
 </tr>
 <tr>
-<td class="type"> void</td>
+<td class="type"> <a href="../search/searchresults.html">SearchResults</a></td>
 <td class="description"><p class="name"><a href="#retrieveKeyValue()">retrieveKeyValue</a>(string key, string value, mixed params)</p><p class="description">Retrieve the key-value search results for JSON content using the REST client.</p></td>
 </tr>
 <tr>
-<td class="type"> void</td>
+<td class="type"> <a href="../search/searchresults.html">SearchResults</a></td>
 <td class="description"><p class="name"><a href="#retrieveKeyValueElement()">retrieveKeyValueElement</a>(string element, string attribute, string value, mixed params)</p><p class="description">Retrieve the key-value search results, where the key is an element name, for XML content using the REST client.</p></td>
 </tr>
 <tr>
@@ -148,7 +148,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 </table>
 
 <h2 id="detail_method">Constructor Detail</h2>
-<a href="../source/marklogic/mlphp/search.php.html#line48" class="location">MarkLogic/MLPHP/Search.php at line 48</a>
+<a href="../source/marklogic/mlphp/search.php.html#line47" class="location">MarkLogic/MLPHP/Search.php at line 47</a>
 
 <h3 id="__construct()">__construct</h3>
 <code class="signature">public  void <strong>__construct</strong>(<a href="../rest/restclient.html">RESTClient</a> restClient, int start, int pageLength, str view, str format)</code>
@@ -162,7 +162,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 <hr>
 
 <h2 id="detail_method">Method Detail</h2>
-<a href="../source/marklogic/mlphp/search.php.html#line62" class="location">MarkLogic/MLPHP/Search.php at line 62</a>
+<a href="../source/marklogic/mlphp/search.php.html#line61" class="location">MarkLogic/MLPHP/Search.php at line 61</a>
 
 <h3 id="setConnection()">setConnection</h3>
 <code class="signature">public  void <strong>setConnection</strong>(<a href="../rest/restclient.html">RESTClient</a> restClient)</code>
@@ -175,7 +175,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/search.php.html#line72" class="location">MarkLogic/MLPHP/Search.php at line 72</a>
+<a href="../source/marklogic/mlphp/search.php.html#line71" class="location">MarkLogic/MLPHP/Search.php at line 71</a>
 
 <h3 id="getParams()">getParams</h3>
 <code class="signature">public  array <strong>getParams</strong>()</code>
@@ -191,46 +191,52 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 <a href="../source/marklogic/mlphp/search.php.html#line92" class="location">MarkLogic/MLPHP/Search.php at line 92</a>
 
 <h3 id="retrieve()">retrieve</h3>
-<code class="signature">public  void <strong>retrieve</strong>(string query, mixed params)</code>
+<code class="signature">public  <a href="../search/searchresults.html">SearchResults</a> <strong>retrieve</strong>(string query, mixed params)</code>
 <div class="details">
 <p>Retrieve the search results using the REST client.</p><dl>
 <dt>Parameters:</dt>
 <dd>query - The search query.</dd>
+<dt>Returns:</dt>
+<dd>A search results object.</dd>
 </dl>
 </div>
 
 <hr>
 
-<a href="../source/marklogic/mlphp/search.php.html#line115" class="location">MarkLogic/MLPHP/Search.php at line 115</a>
+<a href="../source/marklogic/mlphp/search.php.html#line116" class="location">MarkLogic/MLPHP/Search.php at line 116</a>
 
 <h3 id="retrieveKeyValue()">retrieveKeyValue</h3>
-<code class="signature">public  void <strong>retrieveKeyValue</strong>(string key, string value, mixed params)</code>
+<code class="signature">public  <a href="../search/searchresults.html">SearchResults</a> <strong>retrieveKeyValue</strong>(string key, string value, mixed params)</code>
 <div class="details">
 <p>Retrieve the key-value search results for JSON content using the REST client.</p><dl>
 <dt>Parameters:</dt>
 <dd>key - The key (property name) in JSON content.</dd>
 <dd>value - The value (property value) in JSON content.</dd>
+<dt>Returns:</dt>
+<dd>A search results object.</dd>
 </dl>
 </div>
 
 <hr>
 
-<a href="../source/marklogic/mlphp/search.php.html#line139" class="location">MarkLogic/MLPHP/Search.php at line 139</a>
+<a href="../source/marklogic/mlphp/search.php.html#line141" class="location">MarkLogic/MLPHP/Search.php at line 141</a>
 
 <h3 id="retrieveKeyValueElement()">retrieveKeyValueElement</h3>
-<code class="signature">public  void <strong>retrieveKeyValueElement</strong>(string element, string attribute, string value, mixed params)</code>
+<code class="signature">public  <a href="../search/searchresults.html">SearchResults</a> <strong>retrieveKeyValueElement</strong>(string element, string attribute, string value, mixed params)</code>
 <div class="details">
 <p>Retrieve the key-value search results, where the key is an element name, for XML content using the REST client.</p><dl>
 <dt>Parameters:</dt>
 <dd>element - The element name.</dd>
 <dd>attribute - The attribute for the element, to search for attribute content.</dd>
 <dd>value - The value for that element (or attribute).</dd>
+<dt>Returns:</dt>
+<dd>A search results object.</dd>
 </dl>
 </div>
 
 <hr>
 
-<a href="../source/marklogic/mlphp/search.php.html#line164" class="location">MarkLogic/MLPHP/Search.php at line 164</a>
+<a href="../source/marklogic/mlphp/search.php.html#line166" class="location">MarkLogic/MLPHP/Search.php at line 166</a>
 
 <h3 id="getStart()">getStart</h3>
 <code class="signature">public  string <strong>getStart</strong>()</code>
@@ -243,7 +249,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/search.php.html#line174" class="location">MarkLogic/MLPHP/Search.php at line 174</a>
+<a href="../source/marklogic/mlphp/search.php.html#line176" class="location">MarkLogic/MLPHP/Search.php at line 176</a>
 
 <h3 id="setStart()">setStart</h3>
 <code class="signature">public  void <strong>setStart</strong>(string start)</code>
@@ -256,7 +262,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/search.php.html#line184" class="location">MarkLogic/MLPHP/Search.php at line 184</a>
+<a href="../source/marklogic/mlphp/search.php.html#line186" class="location">MarkLogic/MLPHP/Search.php at line 186</a>
 
 <h3 id="getPageLength()">getPageLength</h3>
 <code class="signature">public  int <strong>getPageLength</strong>()</code>
@@ -269,7 +275,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/search.php.html#line196" class="location">MarkLogic/MLPHP/Search.php at line 196</a>
+<a href="../source/marklogic/mlphp/search.php.html#line198" class="location">MarkLogic/MLPHP/Search.php at line 198</a>
 
 <h3 id="setPageLength()">setPageLength</h3>
 <code class="signature">public  void <strong>setPageLength</strong>(int pageLength)</code>
@@ -284,7 +290,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/search.php.html#line206" class="location">MarkLogic/MLPHP/Search.php at line 206</a>
+<a href="../source/marklogic/mlphp/search.php.html#line208" class="location">MarkLogic/MLPHP/Search.php at line 208</a>
 
 <h3 id="getOptions()">getOptions</h3>
 <code class="signature">public  string <strong>getOptions</strong>()</code>
@@ -297,7 +303,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/search.php.html#line216" class="location">MarkLogic/MLPHP/Search.php at line 216</a>
+<a href="../source/marklogic/mlphp/search.php.html#line218" class="location">MarkLogic/MLPHP/Search.php at line 218</a>
 
 <h3 id="setOptions()">setOptions</h3>
 <code class="signature">public  void <strong>setOptions</strong>(string option, mixed options)</code>
@@ -310,7 +316,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/search.php.html#line226" class="location">MarkLogic/MLPHP/Search.php at line 226</a>
+<a href="../source/marklogic/mlphp/search.php.html#line228" class="location">MarkLogic/MLPHP/Search.php at line 228</a>
 
 <h3 id="getView()">getView</h3>
 <code class="signature">public  string <strong>getView</strong>()</code>
@@ -323,7 +329,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/search.php.html#line238" class="location">MarkLogic/MLPHP/Search.php at line 238</a>
+<a href="../source/marklogic/mlphp/search.php.html#line240" class="location">MarkLogic/MLPHP/Search.php at line 240</a>
 
 <h3 id="setView()">setView</h3>
 <code class="signature">public  void <strong>setView</strong>(string view)</code>
@@ -338,7 +344,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/search.php.html#line248" class="location">MarkLogic/MLPHP/Search.php at line 248</a>
+<a href="../source/marklogic/mlphp/search.php.html#line250" class="location">MarkLogic/MLPHP/Search.php at line 250</a>
 
 <h3 id="getFormat()">getFormat</h3>
 <code class="signature">public  string <strong>getFormat</strong>()</code>
@@ -351,7 +357,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/search.php.html#line260" class="location">MarkLogic/MLPHP/Search.php at line 260</a>
+<a href="../source/marklogic/mlphp/search.php.html#line262" class="location">MarkLogic/MLPHP/Search.php at line 262</a>
 
 <h3 id="setFormat()">setFormat</h3>
 <code class="signature">public  void <strong>setFormat</strong>(string format)</code>
@@ -366,7 +372,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/search.php.html#line270" class="location">MarkLogic/MLPHP/Search.php at line 270</a>
+<a href="../source/marklogic/mlphp/search.php.html#line272" class="location">MarkLogic/MLPHP/Search.php at line 272</a>
 
 <h3 id="getCollection()">getCollection</h3>
 <code class="signature">public  string <strong>getCollection</strong>()</code>
@@ -379,7 +385,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/search.php.html#line283" class="location">MarkLogic/MLPHP/Search.php at line 283</a>
+<a href="../source/marklogic/mlphp/search.php.html#line285" class="location">MarkLogic/MLPHP/Search.php at line 285</a>
 
 <h3 id="setCollection()">setCollection</h3>
 <code class="signature">public  void <strong>setCollection</strong>(string collection)</code>
@@ -396,7 +402,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/search.php.html#line293" class="location">MarkLogic/MLPHP/Search.php at line 293</a>
+<a href="../source/marklogic/mlphp/search.php.html#line295" class="location">MarkLogic/MLPHP/Search.php at line 295</a>
 
 <h3 id="getDirectory()">getDirectory</h3>
 <code class="signature">public  string <strong>getDirectory</strong>()</code>
@@ -409,7 +415,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/search.php.html#line306" class="location">MarkLogic/MLPHP/Search.php at line 306</a>
+<a href="../source/marklogic/mlphp/search.php.html#line308" class="location">MarkLogic/MLPHP/Search.php at line 308</a>
 
 <h3 id="setDirectory()">setDirectory</h3>
 <code class="signature">public  void <strong>setDirectory</strong>(string directory)</code>
@@ -430,7 +436,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 <h1><a href=../../index.php target=_top>MLPHP</a></h1>
 <ul>
 <li><a href="../overview-summary.html">Overview</a></li>
-<li><a href="../search/package-summary.html">Package</a></li>
+<li><a href="../search/package-summary.html">Namespace</a></li>
 <li class="active">Class</li>
 <li><a href="../search/package-tree.html">Tree</a></li>
 <li><a href="../overview-files.html">Files</a></li>

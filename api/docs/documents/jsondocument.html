@@ -1,12 +1,12 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<!doctype html>
 
 <html lang="en">
 <head>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-<meta name="generator" content="PHPDoctor 2RC4 (http://peej.github.com/phpdoctor/)">
-<meta name="when" content="Thu, 29 Nov 2012 19:16:40 +0000">
+<meta name="generator" content="PHPDoctor 2.0.5 (http://peej.github.com/phpdoctor/)">
+<meta name="when" content="Tue, 02 Jul 2013 17:00:59 +0000">
 
 <link rel="stylesheet" type="text/css" href="../stylesheet.css">
 <link rel="start" href="../overview-summary.html">
@@ -20,7 +20,7 @@
 <h1><a href=../../index.php target=_top>MLPHP</a></h1>
 <ul>
 <li><a href="../overview-summary.html">Overview</a></li>
-<li><a href="../documents/package-summary.html">Package</a></li>
+<li><a href="../documents/package-summary.html">Namespace</a></li>
 <li class="active">Class</li>
 <li><a href="../documents/package-tree.html">Tree</a></li>
 <li><a href="../overview-files.html">Files</a></li>
@@ -41,7 +41,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 <hr>
 
 <div class="qualifiedName">Documents\JSONDocument</div>
-<a href="../source/marklogic/mlphp/jsondocument.php.html#line27" class="location">MarkLogic/MLPHP/JSONDocument.php at line 27</a>
+<a href="../source/marklogic/mlphp/jsondocument.php.html#line25" class="location">MarkLogic/MLPHP/JSONDocument.php at line 25</a>
 
 <h1>Class JSONDocument</h1>
 
@@ -72,6 +72,14 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 <table id="summary_method">
 <tr><th colspan="2">Method Summary</th></tr>
 <tr>
+<td class="type"> string</td>
+<td class="description"><p class="name"><a href="#read()">read</a>(string uri, array params)</p><p class="description">Read a JSON document from the database.</p></td>
+</tr>
+<tr>
+<td class="type"> <a href="../documents/document.html">Document</a></td>
+<td class="description"><p class="name"><a href="#write()">write</a>(string uri, array params)</p><p class="description">Write a JSON document to the database.</p></td>
+</tr>
+<tr>
 <td class="type"> Object</td>
 <td class="description"><p class="name"><a href="#getAsObject()">getAsObject</a>()</p><p class="description">Get the document as a PHP object.</p></td>
 </tr>
@@ -83,10 +91,10 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <table class="inherit">
 <tr><th colspan="2">Methods inherited from Documents\Document</th></tr>
-<tr><td><a href="../documents/document.html#__construct()">__construct</a>, <a href="../documents/document.html#delete()">delete</a>, <a href="../documents/document.html#deleteMetadata()">deleteMetadata</a>, <a href="../documents/document.html#getConnection()">getConnection</a>, <a href="../documents/document.html#getContent()">getContent</a>, <a href="../documents/document.html#getContentType()">getContentType</a>, <a href="../documents/document.html#getURI()">getURI</a>, <a href="../documents/document.html#hasContent()">hasContent</a>, <a href="../documents/document.html#read()">read</a>, <a href="../documents/document.html#readMetadata()">readMetadata</a>, <a href="../documents/document.html#setConnection()">setConnection</a>, <a href="../documents/document.html#setContent()">setContent</a>, <a href="../documents/document.html#setContentFile()">setContentFile</a>, <a href="../documents/document.html#setContentType()">setContentType</a>, <a href="../documents/document.html#setURI()">setURI</a>, <a href="../documents/document.html#write()">write</a>, <a href="../documents/document.html#writeMetadata()">writeMetadata</a></td></tr></table>
+<tr><td><a href="../documents/document.html#__construct()">__construct</a>, <a href="../documents/document.html#delete()">delete</a>, <a href="../documents/document.html#deleteMetadata()">deleteMetadata</a>, <a href="../documents/document.html#getConnection()">getConnection</a>, <a href="../documents/document.html#getContent()">getContent</a>, <a href="../documents/document.html#getContentType()">getContentType</a>, <a href="../documents/document.html#getFileMimeType()">getFileMimeType</a>, <a href="../documents/document.html#getURI()">getURI</a>, <a href="../documents/document.html#hasContent()">hasContent</a>, <a href="../documents/document.html#read()">read</a>, <a href="../documents/document.html#readMetadata()">readMetadata</a>, <a href="../documents/document.html#setConnection()">setConnection</a>, <a href="../documents/document.html#setContent()">setContent</a>, <a href="../documents/document.html#setContentFile()">setContentFile</a>, <a href="../documents/document.html#setContentType()">setContentType</a>, <a href="../documents/document.html#setURI()">setURI</a>, <a href="../documents/document.html#write()">write</a>, <a href="../documents/document.html#writeMetadata()">writeMetadata</a></td></tr></table>
 
 <h2 id="detail_method">Constructor Detail</h2>
-<a href="../source/marklogic/mlphp/jsondocument.php.html#line35" class="location">MarkLogic/MLPHP/JSONDocument.php at line 35</a>
+<a href="../source/marklogic/mlphp/jsondocument.php.html#line33" class="location">MarkLogic/MLPHP/JSONDocument.php at line 33</a>
 
 <h3 id="__construct()">__construct</h3>
 <code class="signature">public  void <strong>__construct</strong>(<a href="../rest/restclient.html">RESTClient</a> restClient, string uri)</code>
@@ -103,6 +111,42 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 <h2 id="detail_method">Method Detail</h2>
 <a href="../source/marklogic/mlphp/jsondocument.php.html#line46" class="location">MarkLogic/MLPHP/JSONDocument.php at line 46</a>
 
+<h3 id="read()">read</h3>
+<code class="signature">public  string <strong>read</strong>(string uri, array params)</code>
+<div class="details">
+<p>Read a JSON document from the database.</p><dl>
+<dt>Parameters:</dt>
+<dd>uri - A document URI.</dd>
+<dd>params - Optional additional parameters to pass when reading.</dd>
+<dt>Returns:</dt>
+<dd>The document content.</dd>
+<dt>See Also:</dt>
+<dd><a href="../documents/document.html#getContent()">Document::getContent()</a></dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../source/marklogic/mlphp/jsondocument.php.html#line60" class="location">MarkLogic/MLPHP/JSONDocument.php at line 60</a>
+
+<h3 id="write()">write</h3>
+<code class="signature">public  <a href="../documents/document.html">Document</a> <strong>write</strong>(string uri, array params)</code>
+<div class="details">
+<p>Write a JSON document to the database.</p><dl>
+<dt>Parameters:</dt>
+<dd>uri - A document URI.</dd>
+<dd>params - Optional additional parameters to pass when writing.</dd>
+<dt>Returns:</dt>
+<dd>$this</dd>
+<dt>Todo:</dt>
+<dd>Allow passing multiple params of same key (e.g., collections).</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../source/marklogic/mlphp/jsondocument.php.html#line72" class="location">MarkLogic/MLPHP/JSONDocument.php at line 72</a>
+
 <h3 id="getAsObject()">getAsObject</h3>
 <code class="signature">public  Object <strong>getAsObject</strong>()</code>
 <div class="details">
@@ -114,7 +158,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/jsondocument.php.html#line56" class="location">MarkLogic/MLPHP/JSONDocument.php at line 56</a>
+<a href="../source/marklogic/mlphp/jsondocument.php.html#line82" class="location">MarkLogic/MLPHP/JSONDocument.php at line 82</a>
 
 <h3 id="getAsArray()">getAsArray</h3>
 <code class="signature">public  array <strong>getAsArray</strong>()</code>
@@ -131,7 +175,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 <h1><a href=../../index.php target=_top>MLPHP</a></h1>
 <ul>
 <li><a href="../overview-summary.html">Overview</a></li>
-<li><a href="../documents/package-summary.html">Package</a></li>
+<li><a href="../documents/package-summary.html">Namespace</a></li>
 <li class="active">Class</li>
 <li><a href="../documents/package-tree.html">Tree</a></li>
 <li><a href="../overview-files.html">Files</a></li>

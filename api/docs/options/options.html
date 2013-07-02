@@ -1,12 +1,12 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<!doctype html>
 
 <html lang="en">
 <head>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-<meta name="generator" content="PHPDoctor 2RC4 (http://peej.github.com/phpdoctor/)">
-<meta name="when" content="Thu, 29 Nov 2012 19:16:40 +0000">
+<meta name="generator" content="PHPDoctor 2.0.5 (http://peej.github.com/phpdoctor/)">
+<meta name="when" content="Tue, 02 Jul 2013 17:00:59 +0000">
 
 <link rel="stylesheet" type="text/css" href="../stylesheet.css">
 <link rel="start" href="../overview-summary.html">
@@ -20,7 +20,7 @@
 <h1><a href=../../index.php target=_top>MLPHP</a></h1>
 <ul>
 <li><a href="../overview-summary.html">Overview</a></li>
-<li><a href="../options/package-summary.html">Package</a></li>
+<li><a href="../options/package-summary.html">Namespace</a></li>
 <li class="active">Class</li>
 <li><a href="../options/package-tree.html">Tree</a></li>
 <li><a href="../overview-files.html">Files</a></li>
@@ -41,7 +41,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 <hr>
 
 <div class="qualifiedName">Options\Options</div>
-<a href="../source/marklogic/mlphp/options.php.html#line29" class="location">MarkLogic/MLPHP/Options.php at line 29</a>
+<a href="../source/marklogic/mlphp/options.php.html#line27" class="location">MarkLogic/MLPHP/Options.php at line 27</a>
 
 <h1>Class Options</h1>
 
@@ -102,12 +102,16 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 <td class="description"><p class="name"><a href="#addOption()">addOption</a>(DOMElement root, string name, string value)</p><p class="description">If an option value is set, create a DOM element with an option name and value and append it to the root element of the options node.</p></td>
 </tr>
 <tr>
-<td class="type"> <a href="../rest/restresponse.html">RESTResponse</a></td>
-<td class="description"><p class="name"><a href="#write()">write</a>(str name)</p><p class="description">Write the search options to the database.</p></td>
+<td class="type"> string</td>
+<td class="description"><p class="name"><a href="#read()">read</a>(string name)</p><p class="description">Read the search options from the database.</p></td>
 </tr>
 <tr>
-<td class="type"> string</td>
-<td class="description"><p class="name"><a href="#read()">read</a>(str name)</p><p class="description">Read the search options from the database.</p></td>
+<td class="type"> <a href="../rest/restresponse.html">RESTResponse</a></td>
+<td class="description"><p class="name"><a href="#write()">write</a>(string name)</p><p class="description">Write the search options to the database.</p></td>
+</tr>
+<tr>
+<td class="type"> <a href="../options/options.html">Options</a></td>
+<td class="description"><p class="name"><a href="#delete()">delete</a>(string name)</p><p class="description">Delete the search options from the database.</p></td>
 </tr>
 <tr>
 <td class="type"> string</td>
@@ -232,7 +236,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 </table>
 
 <h2 id="detail_method">Constructor Detail</h2>
-<a href="../source/marklogic/mlphp/options.php.html#line73" class="location">MarkLogic/MLPHP/Options.php at line 73</a>
+<a href="../source/marklogic/mlphp/options.php.html#line71" class="location">MarkLogic/MLPHP/Options.php at line 71</a>
 
 <h3 id="__construct()">__construct</h3>
 <code class="signature">public  void <strong>__construct</strong>(<a href="../rest/restclient.html">RESTClient</a> restClient)</code>
@@ -246,7 +250,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 <hr>
 
 <h2 id="detail_method">Method Detail</h2>
-<a href="../source/marklogic/mlphp/options.php.html#line86" class="location">MarkLogic/MLPHP/Options.php at line 86</a>
+<a href="../source/marklogic/mlphp/options.php.html#line84" class="location">MarkLogic/MLPHP/Options.php at line 84</a>
 
 <h3 id="addConstraint()">addConstraint</h3>
 <code class="signature">public  void <strong>addConstraint</strong>(mixed constraint)</code>
@@ -259,7 +263,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/options.php.html#line96" class="location">MarkLogic/MLPHP/Options.php at line 96</a>
+<a href="../source/marklogic/mlphp/options.php.html#line94" class="location">MarkLogic/MLPHP/Options.php at line 94</a>
 
 <h3 id="addValues()">addValues</h3>
 <code class="signature">public  void <strong>addValues</strong>(<a href="../options/values.html">Values</a> values)</code>
@@ -272,7 +276,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/options.php.html#line106" class="location">MarkLogic/MLPHP/Options.php at line 106</a>
+<a href="../source/marklogic/mlphp/options.php.html#line104" class="location">MarkLogic/MLPHP/Options.php at line 104</a>
 
 <h3 id="setExtracts()">setExtracts</h3>
 <code class="signature">public  void <strong>setExtracts</strong>(<a href="../options/extracts.html">Extracts</a> extracts)</code>
@@ -285,7 +289,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/options.php.html#line116" class="location">MarkLogic/MLPHP/Options.php at line 116</a>
+<a href="../source/marklogic/mlphp/options.php.html#line114" class="location">MarkLogic/MLPHP/Options.php at line 114</a>
 
 <h3 id="setTransformResults()">setTransformResults</h3>
 <code class="signature">public  void <strong>setTransformResults</strong>(<a href="../options/transformresults.html">TransformResults</a> transformResults)</code>
@@ -298,7 +302,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/options.php.html#line126" class="location">MarkLogic/MLPHP/Options.php at line 126</a>
+<a href="../source/marklogic/mlphp/options.php.html#line124" class="location">MarkLogic/MLPHP/Options.php at line 124</a>
 
 <h3 id="setTerm()">setTerm</h3>
 <code class="signature">public  void <strong>setTerm</strong>(<a href="../options/term.html">Term</a> term)</code>
@@ -311,7 +315,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/options.php.html#line136" class="location">MarkLogic/MLPHP/Options.php at line 136</a>
+<a href="../source/marklogic/mlphp/options.php.html#line134" class="location">MarkLogic/MLPHP/Options.php at line 134</a>
 
 <h3 id="getAsXML()">getAsXML</h3>
 <code class="signature">public  string <strong>getAsXML</strong>()</code>
@@ -324,7 +328,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/options.php.html#line201" class="location">MarkLogic/MLPHP/Options.php at line 201</a>
+<a href="../source/marklogic/mlphp/options.php.html#line199" class="location">MarkLogic/MLPHP/Options.php at line 199</a>
 
 <h3 id="addOption()">addOption</h3>
 <code class="signature">public  void <strong>addOption</strong>(DOMElement root, string name, string value)</code>
@@ -339,25 +343,14 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/options.php.html#line215" class="location">MarkLogic/MLPHP/Options.php at line 215</a>
-
-<h3 id="write()">write</h3>
-<code class="signature">public  <a href="../rest/restresponse.html">RESTResponse</a> <strong>write</strong>(str name)</code>
-<div class="details">
-<p>Write the search options to the database.</p><dl>
-<dt>Returns:</dt>
-<dd>RESTResponse object.</dd>
-</dl>
-</div>
-
-<hr>
-
-<a href="../source/marklogic/mlphp/options.php.html#line234" class="location">MarkLogic/MLPHP/Options.php at line 234</a>
+<a href="../source/marklogic/mlphp/options.php.html#line214" class="location">MarkLogic/MLPHP/Options.php at line 214</a>
 
 <h3 id="read()">read</h3>
-<code class="signature">public  string <strong>read</strong>(str name)</code>
+<code class="signature">public  string <strong>read</strong>(string name)</code>
 <div class="details">
 <p>Read the search options from the database.</p><dl>
+<dt>Parameters:</dt>
+<dd>name - The search options name.</dd>
 <dt>Returns:</dt>
 <dd>The search options as XML.</dd>
 </dl>
@@ -365,7 +358,37 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/options.php.html#line251" class="location">MarkLogic/MLPHP/Options.php at line 251</a>
+<a href="../source/marklogic/mlphp/options.php.html#line232" class="location">MarkLogic/MLPHP/Options.php at line 232</a>
+
+<h3 id="write()">write</h3>
+<code class="signature">public  <a href="../rest/restresponse.html">RESTResponse</a> <strong>write</strong>(string name)</code>
+<div class="details">
+<p>Write the search options to the database.</p><dl>
+<dt>Parameters:</dt>
+<dd>name - The search options name.</dd>
+<dt>Returns:</dt>
+<dd>RESTResponse object.</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../source/marklogic/mlphp/options.php.html#line252" class="location">MarkLogic/MLPHP/Options.php at line 252</a>
+
+<h3 id="delete()">delete</h3>
+<code class="signature">public  <a href="../options/options.html">Options</a> <strong>delete</strong>(string name)</code>
+<div class="details">
+<p>Delete the search options from the database.</p><dl>
+<dt>Parameters:</dt>
+<dd>name - The search options name.</dd>
+<dt>Returns:</dt>
+<dd>$this</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../source/marklogic/mlphp/options.php.html#line268" class="location">MarkLogic/MLPHP/Options.php at line 268</a>
 
 <h3 id="getAdditionalQuery()">getAdditionalQuery</h3>
 <code class="signature">public  string <strong>getAdditionalQuery</strong>()</code>
@@ -378,7 +401,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/options.php.html#line263" class="location">MarkLogic/MLPHP/Options.php at line 263</a>
+<a href="../source/marklogic/mlphp/options.php.html#line280" class="location">MarkLogic/MLPHP/Options.php at line 280</a>
 
 <h3 id="setAdditionalQuery()">setAdditionalQuery</h3>
 <code class="signature">public  void <strong>setAdditionalQuery</strong>(string additionalQuery)</code>
@@ -393,7 +416,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/options.php.html#line273" class="location">MarkLogic/MLPHP/Options.php at line 273</a>
+<a href="../source/marklogic/mlphp/options.php.html#line290" class="location">MarkLogic/MLPHP/Options.php at line 290</a>
 
 <h3 id="getConcurrencyLevel()">getConcurrencyLevel</h3>
 <code class="signature">public  int <strong>getConcurrencyLevel</strong>()</code>
@@ -406,7 +429,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/options.php.html#line285" class="location">MarkLogic/MLPHP/Options.php at line 285</a>
+<a href="../source/marklogic/mlphp/options.php.html#line302" class="location">MarkLogic/MLPHP/Options.php at line 302</a>
 
 <h3 id="setConcurrencyLevel()">setConcurrencyLevel</h3>
 <code class="signature">public  void <strong>setConcurrencyLevel</strong>(int concurrencyLevel)</code>
@@ -421,7 +444,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/options.php.html#line295" class="location">MarkLogic/MLPHP/Options.php at line 295</a>
+<a href="../source/marklogic/mlphp/options.php.html#line312" class="location">MarkLogic/MLPHP/Options.php at line 312</a>
 
 <h3 id="getDebug()">getDebug</h3>
 <code class="signature">public  string <strong>getDebug</strong>()</code>
@@ -434,7 +457,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/options.php.html#line307" class="location">MarkLogic/MLPHP/Options.php at line 307</a>
+<a href="../source/marklogic/mlphp/options.php.html#line324" class="location">MarkLogic/MLPHP/Options.php at line 324</a>
 
 <h3 id="setDebug()">setDebug</h3>
 <code class="signature">public  void <strong>setDebug</strong>(string debug)</code>
@@ -449,7 +472,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/options.php.html#line317" class="location">MarkLogic/MLPHP/Options.php at line 317</a>
+<a href="../source/marklogic/mlphp/options.php.html#line334" class="location">MarkLogic/MLPHP/Options.php at line 334</a>
 
 <h3 id="getForest()">getForest</h3>
 <code class="signature">public  int <strong>getForest</strong>()</code>
@@ -462,7 +485,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/options.php.html#line329" class="location">MarkLogic/MLPHP/Options.php at line 329</a>
+<a href="../source/marklogic/mlphp/options.php.html#line346" class="location">MarkLogic/MLPHP/Options.php at line 346</a>
 
 <h3 id="setForest()">setForest</h3>
 <code class="signature">public  void <strong>setForest</strong>(int forest)</code>
@@ -477,7 +500,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/options.php.html#line339" class="location">MarkLogic/MLPHP/Options.php at line 339</a>
+<a href="../source/marklogic/mlphp/options.php.html#line356" class="location">MarkLogic/MLPHP/Options.php at line 356</a>
 
 <h3 id="getPageLength()">getPageLength</h3>
 <code class="signature">public  int <strong>getPageLength</strong>()</code>
@@ -490,7 +513,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/options.php.html#line351" class="location">MarkLogic/MLPHP/Options.php at line 351</a>
+<a href="../source/marklogic/mlphp/options.php.html#line368" class="location">MarkLogic/MLPHP/Options.php at line 368</a>
 
 <h3 id="setPageLength()">setPageLength</h3>
 <code class="signature">public  void <strong>setPageLength</strong>(int pageLength)</code>
@@ -505,7 +528,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/options.php.html#line361" class="location">MarkLogic/MLPHP/Options.php at line 361</a>
+<a href="../source/marklogic/mlphp/options.php.html#line378" class="location">MarkLogic/MLPHP/Options.php at line 378</a>
 
 <h3 id="getQualityWeight()">getQualityWeight</h3>
 <code class="signature">public  float <strong>getQualityWeight</strong>()</code>
@@ -518,7 +541,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/options.php.html#line373" class="location">MarkLogic/MLPHP/Options.php at line 373</a>
+<a href="../source/marklogic/mlphp/options.php.html#line390" class="location">MarkLogic/MLPHP/Options.php at line 390</a>
 
 <h3 id="setQualityWeight()">setQualityWeight</h3>
 <code class="signature">public  void <strong>setQualityWeight</strong>(float qualityWeight)</code>
@@ -533,7 +556,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/options.php.html#line383" class="location">MarkLogic/MLPHP/Options.php at line 383</a>
+<a href="../source/marklogic/mlphp/options.php.html#line400" class="location">MarkLogic/MLPHP/Options.php at line 400</a>
 
 <h3 id="getReturnConstraints()">getReturnConstraints</h3>
 <code class="signature">public  string <strong>getReturnConstraints</strong>()</code>
@@ -546,7 +569,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/options.php.html#line395" class="location">MarkLogic/MLPHP/Options.php at line 395</a>
+<a href="../source/marklogic/mlphp/options.php.html#line412" class="location">MarkLogic/MLPHP/Options.php at line 412</a>
 
 <h3 id="setReturnConstraints()">setReturnConstraints</h3>
 <code class="signature">public  void <strong>setReturnConstraints</strong>(string returnConstraints)</code>
@@ -561,7 +584,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/options.php.html#line405" class="location">MarkLogic/MLPHP/Options.php at line 405</a>
+<a href="../source/marklogic/mlphp/options.php.html#line422" class="location">MarkLogic/MLPHP/Options.php at line 422</a>
 
 <h3 id="getReturnFacets()">getReturnFacets</h3>
 <code class="signature">public  string <strong>getReturnFacets</strong>()</code>
@@ -574,7 +597,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/options.php.html#line417" class="location">MarkLogic/MLPHP/Options.php at line 417</a>
+<a href="../source/marklogic/mlphp/options.php.html#line434" class="location">MarkLogic/MLPHP/Options.php at line 434</a>
 
 <h3 id="setReturnFacets()">setReturnFacets</h3>
 <code class="signature">public  void <strong>setReturnFacets</strong>(string returnFacets)</code>
@@ -589,7 +612,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/options.php.html#line427" class="location">MarkLogic/MLPHP/Options.php at line 427</a>
+<a href="../source/marklogic/mlphp/options.php.html#line444" class="location">MarkLogic/MLPHP/Options.php at line 444</a>
 
 <h3 id="getReturnMetrics()">getReturnMetrics</h3>
 <code class="signature">public  string <strong>getReturnMetrics</strong>()</code>
@@ -602,7 +625,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/options.php.html#line439" class="location">MarkLogic/MLPHP/Options.php at line 439</a>
+<a href="../source/marklogic/mlphp/options.php.html#line456" class="location">MarkLogic/MLPHP/Options.php at line 456</a>
 
 <h3 id="setReturnMetrics()">setReturnMetrics</h3>
 <code class="signature">public  void <strong>setReturnMetrics</strong>(string returnMetrics)</code>
@@ -617,7 +640,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/options.php.html#line449" class="location">MarkLogic/MLPHP/Options.php at line 449</a>
+<a href="../source/marklogic/mlphp/options.php.html#line466" class="location">MarkLogic/MLPHP/Options.php at line 466</a>
 
 <h3 id="getReturnPlan()">getReturnPlan</h3>
 <code class="signature">public  string <strong>getReturnPlan</strong>()</code>
@@ -630,7 +653,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/options.php.html#line461" class="location">MarkLogic/MLPHP/Options.php at line 461</a>
+<a href="../source/marklogic/mlphp/options.php.html#line478" class="location">MarkLogic/MLPHP/Options.php at line 478</a>
 
 <h3 id="setReturnPlan()">setReturnPlan</h3>
 <code class="signature">public  void <strong>setReturnPlan</strong>(string returnPlan)</code>
@@ -645,7 +668,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/options.php.html#line471" class="location">MarkLogic/MLPHP/Options.php at line 471</a>
+<a href="../source/marklogic/mlphp/options.php.html#line488" class="location">MarkLogic/MLPHP/Options.php at line 488</a>
 
 <h3 id="getReturnQtext()">getReturnQtext</h3>
 <code class="signature">public  string <strong>getReturnQtext</strong>()</code>
@@ -658,7 +681,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/options.php.html#line483" class="location">MarkLogic/MLPHP/Options.php at line 483</a>
+<a href="../source/marklogic/mlphp/options.php.html#line500" class="location">MarkLogic/MLPHP/Options.php at line 500</a>
 
 <h3 id="setReturnQtext()">setReturnQtext</h3>
 <code class="signature">public  void <strong>setReturnQtext</strong>(string returnQtext)</code>
@@ -673,7 +696,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/options.php.html#line493" class="location">MarkLogic/MLPHP/Options.php at line 493</a>
+<a href="../source/marklogic/mlphp/options.php.html#line510" class="location">MarkLogic/MLPHP/Options.php at line 510</a>
 
 <h3 id="getReturnQuery()">getReturnQuery</h3>
 <code class="signature">public  string <strong>getReturnQuery</strong>()</code>
@@ -686,7 +709,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/options.php.html#line505" class="location">MarkLogic/MLPHP/Options.php at line 505</a>
+<a href="../source/marklogic/mlphp/options.php.html#line522" class="location">MarkLogic/MLPHP/Options.php at line 522</a>
 
 <h3 id="setReturnQuery()">setReturnQuery</h3>
 <code class="signature">public  void <strong>setReturnQuery</strong>(string returnQuery)</code>
@@ -701,7 +724,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/options.php.html#line515" class="location">MarkLogic/MLPHP/Options.php at line 515</a>
+<a href="../source/marklogic/mlphp/options.php.html#line532" class="location">MarkLogic/MLPHP/Options.php at line 532</a>
 
 <h3 id="getReturnResults()">getReturnResults</h3>
 <code class="signature">public  string <strong>getReturnResults</strong>()</code>
@@ -714,7 +737,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/options.php.html#line527" class="location">MarkLogic/MLPHP/Options.php at line 527</a>
+<a href="../source/marklogic/mlphp/options.php.html#line544" class="location">MarkLogic/MLPHP/Options.php at line 544</a>
 
 <h3 id="setReturnResults()">setReturnResults</h3>
 <code class="signature">public  void <strong>setReturnResults</strong>(string returnResults)</code>
@@ -729,7 +752,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/options.php.html#line537" class="location">MarkLogic/MLPHP/Options.php at line 537</a>
+<a href="../source/marklogic/mlphp/options.php.html#line554" class="location">MarkLogic/MLPHP/Options.php at line 554</a>
 
 <h3 id="getReturnSimilar()">getReturnSimilar</h3>
 <code class="signature">public  string <strong>getReturnSimilar</strong>()</code>
@@ -742,7 +765,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/options.php.html#line549" class="location">MarkLogic/MLPHP/Options.php at line 549</a>
+<a href="../source/marklogic/mlphp/options.php.html#line566" class="location">MarkLogic/MLPHP/Options.php at line 566</a>
 
 <h3 id="setReturnSimilar()">setReturnSimilar</h3>
 <code class="signature">public  void <strong>setReturnSimilar</strong>(string returnSimilar)</code>
@@ -757,7 +780,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/options.php.html#line559" class="location">MarkLogic/MLPHP/Options.php at line 559</a>
+<a href="../source/marklogic/mlphp/options.php.html#line576" class="location">MarkLogic/MLPHP/Options.php at line 576</a>
 
 <h3 id="getSearchOptions()">getSearchOptions</h3>
 <code class="signature">public  array <strong>getSearchOptions</strong>()</code>
@@ -770,7 +793,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/options.php.html#line571" class="location">MarkLogic/MLPHP/Options.php at line 571</a>
+<a href="../source/marklogic/mlphp/options.php.html#line588" class="location">MarkLogic/MLPHP/Options.php at line 588</a>
 
 <h3 id="setSearchOptions()">setSearchOptions</h3>
 <code class="signature">public  void <strong>setSearchOptions</strong>(string|array searchOptions)</code>
@@ -789,7 +812,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 <h1><a href=../../index.php target=_top>MLPHP</a></h1>
 <ul>
 <li><a href="../overview-summary.html">Overview</a></li>
-<li><a href="../options/package-summary.html">Package</a></li>
+<li><a href="../options/package-summary.html">Namespace</a></li>
 <li class="active">Class</li>
 <li><a href="../options/package-tree.html">Tree</a></li>
 <li><a href="../overview-files.html">Files</a></li>

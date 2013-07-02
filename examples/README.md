@@ -9,6 +9,7 @@
 	* cURL 
 	* XSL 
 * [MLPHP](https://github.com/marklogic/mlphp)
+* [Composer](http://getcomposer.org)
   
 
 ## Instructions
@@ -18,15 +19,18 @@ To run the MLPHP Examples, you need to grab a copy of MLPHP with the examples in
 1. Download a copy of MLPHP.  With git, you can do
 
 	    % git clone git@github.com:marklogic/mlphp mlphp
-	      
-2. The main MLPHP directory (it contains an 'api' subdirectory among other things) should be named 'mlphp'. Rename it if necessary and put it inside your PHP-enabled server's web directory. You can then access the files like this: 
+	 
+2. Use composer to pull down dependencies
 
-        http://localhost/~user/mlphp/examples 
+        % cd mlphp
+        % composer install
+      
+3. The main MLPHP directory (it contains an 'api' subdirectory among other things) should be named 'mlphp'. Rename it if necessary and put it inside your PHP-enabled server's web directory. You can then browse to the examples like this: `http://localhost/~user/mlphp/examples`. 
         
    (Change the host and path information to reflect your server setup.) If PHP is working, you should see the MLPHP home page at that URL. The applications linked to from the home page will not work correctly until you complete the steps that follow.
 
-3. Start your MarkLogic 6 server. In the MarkLogic Admin interface
-   (http://localhost:8001), set up two REST users:
+4. Start MarkLogic Server. In the MarkLogic Admin interface
+   (http://localhost:8001), set up two users:
 
        user name: rest-writer-user
        password: writer-pw
@@ -38,9 +42,9 @@ To run the MLPHP Examples, you need to grab a copy of MLPHP with the examples in
 
    To set up the users, click Security, click Users, and then click the Create tab.
 
-   The examples require these specific roles and expects these specific usernames and passwords. (If you want to use different values, you can change the usernames and passwords, by editing `mlphp/examples/setup.php`.)
+   The examples require these specific usernames and passwords with these specific roles. (If you want, you can change the usernames and passwords, by editing `mlphp/examples/setup.php`.)
 
-4. To create and configure MarkLogic databases and REST interfaces, navigate to the MarkLogic Packaging interface here:
+5. To create and configure MarkLogic databases and REST interfaces needed by the examples, navigate to the MarkLogic Packaging interface here:
 
    `http://localhost:8002/manage/v1/package/compare/`
 
@@ -50,9 +54,7 @@ To run the MLPHP Examples, you need to grab a copy of MLPHP with the examples in
 
    This will set up REST servers, databases, and database indexes needed by the MLPHP examples. 
 
-   Currently, the Packaging tool sets the modules setting for the REST
-   servers incorrectly. Until that bug is fixed, you need to perform the
-   following in the [Admin interface](http://localhost:8001):
+   NB.  As of MarkLogic 6, the Packaging tool sets the modules setting for the REST servers incorrectly. Until that bug is fixed, you need to perform the following in the [Admin interface](http://localhost:8001):
 
    1. Click Configure and then click the "examples-REST" App Server.
    2. Change the modules setting from "(file system)" to
@@ -61,7 +63,7 @@ To run the MLPHP Examples, you need to grab a copy of MLPHP with the examples in
       their modules settings to `photomap-REST-modules` and
       `usbills-REST-modules` respectively.
 
-5. The MLPHP examples require the following roles:
+6. The MLPHP examples require the following roles:
 
         doc-reader
         doc-admin
@@ -69,11 +71,11 @@ To run the MLPHP Examples, you need to grab a copy of MLPHP with the examples in
 
    To set up roles, go to the MarkLogic [Admin interface](http://localhost:8001/), click Security, click Roles, and then click the Create tab.
 
-6. Configure the permissions for the the `mlphp/examples/photomap/uploads` directory so PHP can read, write, and execute. For example, for Unix, in your OS console, go to `mlphp/examples/photomap` and execute the following:
+7. Configure the permissions for the the `mlphp/examples/photomap/uploads` directory so PHP can read, write, and execute. For example, for Unix, in your OS console, go to `mlphp/examples/photomap` and execute the following:
 
        % sudo chmod 777 uploads
 
-7. Setup is complete! To see MLPHP in action, access the following:
+8. Setup is complete! To see MLPHP in action, browse to:
 
         http://localhost/~user/mlphp/examples
 
@@ -83,17 +85,14 @@ To run the MLPHP Examples, you need to grab a copy of MLPHP with the examples in
 
 ## Troubleshooting
 
-* If you encounter 403 errors, make sure your REST users are set up correctly
-  in step 3.
+* If you encounter 403 errors, make sure your REST users are set up correctly in step 4.
 * You can check your PHP configuration (and see that the DOM, cURL, and XSL libraries are enabled) here: `http://localhost/~user/mlphp/examples/utils/phpinfo.php`
 * The REST servers are set up on ports 8077, 8078, and 8079. You can test them directly, for example: `http://localhost:8077`
-* If you encounter 400 errors, make sure you have completed step 5.
-* Clearing your PHP session can help if you're reinstalling MLPHP. You can clear it here:
-        
-        http://localhost/~user/mlphp/examples/utils/clear_session.php.
+* If you encounter 400 errors, make sure you have completed step 6.
+* Clearing your PHP session can help if you're reinstalling MLPHP. You can clear it here `http://localhost/~user/mlphp/examples/utils/clear_session.php`.
   
-## COPYRIGHT
-Copyright 2002-2012 MarkLogic Corporation.  All Rights Reserved.
+## Copyright
+Copyright 2002-2013 MarkLogic Corporation.  All Rights Reserved.
 
 ## License
 Licensed under the Apache License, Version 2.0 (the "License");
