@@ -20,9 +20,13 @@ limitations under the License.
 // 1. Complete the installation steps, see: mlphp/INSTALL.txt
 
 // 2. Tell the app how to talk to MarkLogic.
+require_once dirname(dirname(__FILE__)) 
+    .  DIRECTORY_SEPARATOR . 'vendor' 
+    .  DIRECTORY_SEPARATOR . 'autoload.php';
+
 use MarkLogic\MLPHP as MLPHP;
+
 $mlphp = array(
-    'api_path' => 'api/MarkLogic/MLPHP/',
     'username' => 'rest-writer-user',
     'password' => 'writer-pw',
     'host'     => 'localhost',
@@ -32,18 +36,15 @@ $mlphp = array(
 );
 
 // 3. Create a REST client that talks to MarkLogic.
-require_once($mlphp['api_path'] . 'RESTClient.php');
 $client = new MLPHP\RESTClient($mlphp['host'], $mlphp['port'], '', $mlphp['version'],
                                $mlphp['username'], $mlphp['password'], $mlphp['auth']);
 
 // 4. Add a document to the MarkLogic database.
-require_once($mlphp['api_path'] . 'Document.php');
 $document = new MLPHP\Document($client);
 $document->setContent('<app><description>My first MLPHP app.</description></app>');
 $document->write('/myfirstapp.xml');
 
 // 5. Search the MarkLogic database.
-require_once($mlphp['api_path'] . 'Search.php');
 $search = new MLPHP\Search($client);
 $results = $search->retrieve('MLPHP');
 

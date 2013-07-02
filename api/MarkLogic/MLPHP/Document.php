@@ -16,9 +16,6 @@ limitations under the License.
 */
 namespace MarkLogic\MLPHP;
 
-require_once 'Metadata.php';
-require_once 'RESTRequest.php';
-
 /**
  * Represents a document.
  *

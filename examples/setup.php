@@ -15,9 +15,45 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-require_once ('..' . DIRECTORY_SEPARATOR . 'setup.php');
+define('PRODUCTION', 'prod');
+define('DEVELOPMENT', 'dev');
+define('DEBUG', 'debug');
 
-// Project values (these override and supplement global values in ../setup.php)
-$mlphp = array_merge($mlphp, array(
-    'port'			=>		8077
-));
+/**
+ * Global settings (project settings can override in <project>/setup.php)
+ */
+$mlphp = array(
+    'status'			=>	DEVELOPMENT,
+    'username'			=>	'rest-writer-user',
+    'password'			=>	'writer-pw',
+    'username-admin'	=>	'rest-admin-user',
+    'password-admin'	=>	'admin-pw',
+    'host'				=>	'localhost',
+    'port'				=>	8077,
+    'path'				=>	'',
+    'version'			=>	'v1',
+    'auth'				=>	'digest',
+);
+
+require_once dirname(dirname(__FILE__)) 
+    .  DIRECTORY_SEPARATOR . 'vendor' 
+    .  DIRECTORY_SEPARATOR . 'autoload.php';
+
+/**
+ * Configure status-specific settings.
+ */
+switch ($mlphp['status']) {
+    case PRODUCTION: {
+        ini_set('display_errors', 0);
+        break;
+    }
+    case DEBUG: 
+    case DEVELOPMENT: {
+        ini_set('display_errors', 1);
+        ini_set('html_errors', 1);
+        ini_set('docref_root', 'http://php.net/manual/en/');
+        error_reporting(E_ALL | E_STRICT);
+    }
+    default:
+        break;
+}

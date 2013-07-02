@@ -18,28 +18,49 @@ limitations under the License.
 <!DOCTYPE html>
 <html lang="en-us">
 <head>
-<title>MLPHP: Example Code</title>
+<meta charset="UTF-8">
+<title>MLPHP: MarkLogic + PHP</title>
 <link type="text/css" href="styles.css" rel="stylesheet">
 </head>
-
 <body>
 
 <div id="wrapper">
 
-<div class="examples-subtitle"><a href="../index.php">MLPHP</a></div>
-<h1>Example Code</h1>
+<div id="home-title">MLPHP</div>
 
-<p>Check out example code that shows you how to load documents, read and write metadata, build search options nodes, and search the MarkLogic database:</p>
+<div id="home-intro">Build powerful web applications with <a href="http://www.marklogic.com" target="_blank">MarkLogic</a> quickly and easily using the <a href="http://www.php.net" target="_blank">PHP</a> scripting language.</div>
 
-<ul>
-<li><a href="example.php?id=example_docs.php&view=code">Read/Write/Delete Documents</a></li>
-<li><a href="example.php?id=example_meta.php&view=code">Manage Document Metadata</a></li>
-<li><a href="example.php?id=example_opts.php&view=code">Define Search Options</a></li>
-<li><a href="example.php?id=example_search.php&view=code">Perform Searches</a></li>
-<li><a href="example.php?id=../my_first_app.php&view=code">Simple Application</a></li>
-</ul>
+<div class="home-row">
 
-<p>For more details, see the <a href="../api/docs">API documentation</a>.</p>
+<div class="home-section">
+<div class="home-section-thumb"><img src="images/thumb_examples.png" /></div>
+<div class="home-section-title"><a href="code-examples/">Example Code</a></div>
+<div class="home-section-desc">Check out code examples that show you how to use MLPHP to load documents, read and write metadata, build search options nodes, and search the MarkLogic database.</div>
+</div>
+
+<div class="home-section">
+<div class="home-section-thumb"><img src="images/thumb_api.png" /></div>
+<div class="home-section-title"><a href="../api/docs/">API Documentation</a></div>
+<div class="home-section-desc">Browse the MLPHP scripts that let you connect to the MarkLogic database using PHP. Explore the classes and class methods.</div>
+</div>
+
+</div>
+
+<div class="home-row">
+
+<div class="home-section">
+<div class="home-section-thumb"><img src="images/thumb_usbills.png" /></div>
+<div class="home-section-title"><a href="usbills/">Demo: US Bill Search</a></div>
+<div class="home-section-desc">Search legislation from the U.S. House of Representatives.</div>
+</div>
+
+<div class="home-section">
+<div class="home-section-thumb"><img src="images/thumb_photomap.png" /></div>
+<div class="home-section-title"><a href="photomap/">Demo: iPhone Photo Map</a></div>
+<div class="home-section-desc">Load iPhone images into a MarkLogic database and then interact with them on a Google map.</div>
+</div>
+
+</div>
 
 </div>
 

@@ -49,7 +49,7 @@ if (isset($_FILES['upload'])) {
 				try {
 					// Write image file
 					require_once ('IPhoneImageDocument.php');
-					$image = new MLPHP\IPhoneImageDocument($client);
+					$image = new IPhoneImageDocument($client);
 					$image->setContentFile($dest);
 					$image->write($name);
 					// Write image metadata

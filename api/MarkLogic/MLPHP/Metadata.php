@@ -16,8 +16,6 @@ limitations under the License.
 */
 namespace MarkLogic\MLPHP;
 
-require_once 'Metadata.php';
-
 /**
  * Represents document metadata.
  *

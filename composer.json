@@ -1,0 +1,23 @@
+{
+    "name": "marklogic/mlphp",
+    "description": "PHP Client for MarkLogic",
+    "keywords": ["marklogic", "nosql", "database", "search"],
+    "homepage": "http://github.com/marklogic/mlphp",
+    "type": "library",
+    "license": "Apache-2.0",
+    "authors": [
+        {
+            "name": "Michael Wooldridge",
+            "email": "mike.wooldridge@marklogic.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.0",
+        "ext-curl": "*",
+        "ext-dom": "*",
+        "ext-xsl": "*"
+    },
+    "autoload": {
+        "psr-0": { "MarkLogic\\MLPHP": "api/" }
+    }
+}

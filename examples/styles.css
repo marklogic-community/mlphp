@@ -13,14 +13,17 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
+
+html {
+    height: 100%;
+}
 body {
     font-family: Helvetica, Verdana, Arial, sans-serif;
-    font-size: 110%;
+    font-size: 90%;
     height: 100%;
     margin: 0;
     padding: 0;
     color: #666666;
-    line-height: 1.2em;
 }
 #wrapper {
     position:relative;
@@ -30,19 +33,43 @@ body {
     width:960px;
     background-color: #FFFFFF;
 }
-.code-section {
-    font-size: 1.2em;
+#home-title {
+    font-family: Helvetica, Verdana, Arial, sans-serif;
+    font-size: 7em;
     font-weight: bold;
+    /* color: #AAAAAA; */
+    margin-bottom: 0;
+    margin-top: 50px;
+    padding: 5px;
 }
-.code-links {
-    margin-bottom: 40px;
-}
-.examples-subtitle {
+#home-intro {
+    padding: 10px 10px;
     font-size: 1.2em;
-    font-weight: bold;
-    margin: 30px 0 -10px 0;
 }
-pre, pre.prettyprint {
-    border: 1px solid #888888;
-    padding: 10px;
+.home-row {
+    position: relative;
+    width:960px;
+}
+.home-section {
+    padding: 20px 10px 20px 10px;
+    width:455px;
+    position: relative;
+    float: left;
+}
+.home-section-title {
+    padding: 5px;
+    font-size: 1.6em;
+}
+.home-section-desc {
+    padding: 5px;
+    font-size: 1.2em;
+}
+.home-section-thumb {
+    position: relative;
+    float: left;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+.home-section-thumb img {
+    border: solid 1px gray;
 }

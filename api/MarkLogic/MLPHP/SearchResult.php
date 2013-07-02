@@ -16,8 +16,6 @@ limitations under the License.
 */
 namespace MarkLogic\MLPHP;
 
-require_once ('Match.php');
-
 /**
  * Represents a search result.
  *

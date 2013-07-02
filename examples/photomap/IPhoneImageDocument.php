@@ -14,15 +14,14 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-namespace MarkLogic\MLPHP;
 
-require_once('../api/MarkLogic/MLPHP/ImageDocument.php');
+use MarkLogic\MLPHP;
 
 /**
  * Represents an iPhone image.
  * @package mlphp\document
  */
-class IPhoneImageDocument extends ImageDocument
+class IPhoneImageDocument extends MLPHP\ImageDocument
 {
     /**
      * Create an iPhone Image object.

@@ -17,8 +17,6 @@ limitations under the License.
 namespace MarkLogic\MLPHP;
 //use MarkLogic\MLPHP\SearchResult;
 
-require_once ('SearchResults.php');
-
 /**
  * Represents a search.
  *

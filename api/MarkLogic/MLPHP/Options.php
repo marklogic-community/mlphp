@@ -16,8 +16,6 @@ limitations under the License.
 */
 namespace MarkLogic\MLPHP;
 
-require_once 'Extracts.php';
-
 /**
  * Represents search options.
  *

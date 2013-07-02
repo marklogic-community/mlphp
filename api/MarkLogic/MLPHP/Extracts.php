@@ -16,8 +16,6 @@ limitations under the License.
 */
 namespace MarkLogic\MLPHP;
 
-require_once('QName.php');
-
 /**
  * Represents a set of metadata extracts in a search options node.
  *
