@@ -37,7 +37,7 @@ You can add MLPHP to your project via [Composer](http://getcomposer.org) by addi
 
     {
         requires: {
-            "MarkLogic\MLPHP" : "*"
+            "MarkLogic\MLPHP" : "dev-master"
         }
     }
 
