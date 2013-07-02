@@ -11,11 +11,18 @@
             "email": "mike.wooldridge@marklogic.com"
         }
     ],
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/peej/phpdoctor"
+        }
+    ],
     "require": {
         "php": ">=5.3.0",
         "ext-curl": "*",
         "ext-dom": "*",
-        "ext-xsl": "*"
+        "ext-xsl": "*",
+        "peej/phpdoctor" : "*"
     },
     "autoload": {
         "psr-0": { "MarkLogic\\MLPHP": "api/" }
