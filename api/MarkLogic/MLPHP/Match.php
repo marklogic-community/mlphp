@@ -19,7 +19,7 @@ namespace MarkLogic\MLPHP;
 /**
  * Represents a snippet match.
  *
- * @package Search
+ * @package MLPHP
  * @author Mike Wooldridge <mike.wooldridge@marklogic.com>
  */
 class Match

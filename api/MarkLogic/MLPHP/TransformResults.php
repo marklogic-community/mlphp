@@ -19,7 +19,7 @@ namespace MarkLogic\MLPHP;
 /**
  * Represents results transformation option.
  *
- * @package Options
+ * @package MLPHP
  * @author Mike Wooldridge <mike.wooldridge@marklogic.com>
  * @see http://docs.marklogic.com/guide/rest-dev/appendixb#id_29258
  * @todo Handle custom snippetting.

@@ -19,7 +19,7 @@ namespace MarkLogic\MLPHP;
 /**
  * Represents a REST request.
  *
- * @package REST
+ * @package MLPHP
  * @author Mike Wooldridge <mike.wooldridge@marklogic.com>
  */
 class RESTRequest

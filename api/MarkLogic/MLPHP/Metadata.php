@@ -19,7 +19,7 @@ namespace MarkLogic\MLPHP;
 /**
  * Represents document metadata.
  *
- * @package Documents
+ * @package MLPHP
  * @author Mike Wooldridge <mike.wooldridge@marklogic.com>
  */
 class Metadata

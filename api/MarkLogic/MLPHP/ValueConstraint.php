@@ -19,7 +19,7 @@ namespace MarkLogic\MLPHP;
 /**
  * Represents a value constraint for search.
  *
- * @package Options
+ * @package MLPHP
  * @author Mike Wooldridge <mike.wooldridge@marklogic.com>
  */
 class ValueConstraint extends AbstractConstraint

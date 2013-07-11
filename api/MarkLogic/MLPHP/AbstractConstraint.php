@@ -19,7 +19,7 @@ namespace MarkLogic\MLPHP;
 /**
  * Represents a abstraction of a search-options constraint that specific constraints can extend.
  *
- * @package Options
+ * @package MLPHP
  * @author Mike Wooldridge <mike.wooldridge@marklogic.com>
  */
 class AbstractConstraint

@@ -19,7 +19,7 @@ namespace MarkLogic\MLPHP;
 /**
  * Represents a term element in search options.
  *
- * @package Options
+ * @package MLPHP
  * @author Mike Wooldridge <mike.wooldridge@marklogic.com>
  * @see http://docs.marklogic.com/guide/rest-dev/appendixb#id_70754
  * @todo Handle term options, additional default behavior, etc.

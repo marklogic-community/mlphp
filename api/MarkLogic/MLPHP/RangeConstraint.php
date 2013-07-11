@@ -19,7 +19,7 @@ namespace MarkLogic\MLPHP;
 /**
  * Represents a range constraint for search.
  *
- * @package Options
+ * @package MLPHP
  * @author Mike Wooldridge <mike.wooldridge@marklogic.com>
  */
 class RangeConstraint extends AbstractConstraint

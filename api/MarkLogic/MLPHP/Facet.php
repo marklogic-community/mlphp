@@ -19,7 +19,7 @@ namespace MarkLogic\MLPHP;
 /**
  * Represents a search facet.
  *
- * @package Search
+ * @package MLPHP
  * @author Mike Wooldridge <mike.wooldridge@marklogic.com>
  */
 class Facet

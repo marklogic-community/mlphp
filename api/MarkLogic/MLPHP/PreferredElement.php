@@ -19,7 +19,7 @@ namespace MarkLogic\MLPHP;
 /**
  * Represents a preferred element for a search snippet.
  *
- * @package Options
+ * @package MLPHP
  * @author Mike Wooldridge <mike.wooldridge@marklogic.com>
  */
 class PreferredElement

@@ -19,7 +19,7 @@ namespace MarkLogic\MLPHP;
 /**
  * Represents a set of metadata extracts in a search options node.
  *
- * @package Options
+ * @package MLPHP
  * @author Mike Wooldridge <mike.wooldridge@marklogic.com>
  */
 class Extracts

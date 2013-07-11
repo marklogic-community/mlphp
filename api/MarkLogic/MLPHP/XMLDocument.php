@@ -19,7 +19,7 @@ namespace MarkLogic\MLPHP;
 /**
  * Represents an XML document.
  *
- * @package Documents
+ * @package MLPHP
  * @author Mike Wooldridge <mike.wooldridge@marklogic.com>
  */
 class XMLDocument extends Document

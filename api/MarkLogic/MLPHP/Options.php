@@ -19,7 +19,7 @@ namespace MarkLogic\MLPHP;
 /**
  * Represents search options.
  *
- * @package Options
+ * @package MLPHP
  * @author Mike Wooldridge <mike.wooldridge@marklogic.com>
  * @see Parameter list: http://docs.marklogic.com/search:search
  * @todo Support complete of properties (see below)

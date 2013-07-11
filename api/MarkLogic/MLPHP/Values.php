@@ -19,7 +19,7 @@ namespace MarkLogic\MLPHP;
 /**
  * Represents a values setting in a search options node.
  *
- * @package Options
+ * @package MLPHP
  * @author Mike Wooldridge <mike.wooldridge@marklogic.com>
  */
 class Values

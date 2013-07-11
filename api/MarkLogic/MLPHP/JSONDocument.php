@@ -19,7 +19,7 @@ namespace MarkLogic\MLPHP;
 /**
  * Represents a JSON document.
  *
- * @package Documents
+ * @package MLPHP
  * @author Mike Wooldridge <mike.wooldridge@marklogic.com>
  */
 class JSONDocument extends Document

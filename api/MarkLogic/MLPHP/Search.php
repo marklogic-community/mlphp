@@ -20,7 +20,7 @@ namespace MarkLogic\MLPHP;
 /**
  * Represents a search.
  *
- * @package Search
+ * @package MLPHP
  * @author Mike Wooldridge <mike.wooldridge@marklogic.com>
  */
 class Search

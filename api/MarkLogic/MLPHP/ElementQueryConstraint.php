@@ -19,7 +19,7 @@ namespace MarkLogic\MLPHP;
 /**
  * Represents an element-query constraint for search.
  *
- * @package Options
+ * @package MLPHP
  * @author Mike Wooldridge <mike.wooldridge@marklogic.com>
  */
 class ElementQueryConstraint extends AbstractConstraint

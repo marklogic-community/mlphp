@@ -19,7 +19,7 @@ namespace MarkLogic\MLPHP;
 /**
  * Represents an image.
  *
- * @package Documents
+ * @package MLPHP
  * @author Mike Wooldridge <mike.wooldridge@marklogic.com>
  */
 class ImageDocument extends Document
