@@ -41,7 +41,20 @@ You can add MLPHP to your project via [Composer](http://getcomposer.org) by addi
         }
     }
 
-Alternatively, you can just grab a copy of the [MLPHP GitHub repository](https://github.com/marklogic/mlphp).
+This is the recommended way to include MLPHP in your project.
+
+Alternatively, you can just grab a copy of the [MLPHP GitHub repository](https://github.com/marklogic/mlphp) and 
+manually include the MLPHP loader as
+
+    // Adjust the path below as needed to find the MLPHP project's MLPHP class.  
+    require_once 'api/MarkLogic/MLPHP/MLPHP.php';
+    
+    use MarkLogic\MLPHP as MLPHP;
+    
+    MLPHP\MLPHP::registerAutoloader();
+
+(If and when MLPHP depends on additional PHP libraries, you will need to insure they get loaded as well.
+Composer does this for you, which is why we recommend it)
 
 ## Examples
 MLPHP comes with a series of examples. To run them, see the [instructions](https://github.com/marklogic/mlphp/blob/master/examples/README.md).  
