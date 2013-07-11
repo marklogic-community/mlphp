@@ -19,7 +19,8 @@ use MarkLogic\MLPHP as MLPHP;
 session_start();
 require_once ('setup.php');
 require_once ('options.php');
-$mapsKey = (!empty($mlphp['maps_key'])) ? ('key=' . $mlphp['maps_key'] . '&') : '';
+
+$mapsKey = (!empty($mlphp->getConfig()['maps_key'])) ? ('key=' . $mlphp->getConfig()['maps_key'] . '&') : '';
 ?>
 <!DOCTYPE html>
 <html lang="en-us">
@@ -33,8 +34,7 @@ $mapsKey = (!empty($mlphp['maps_key'])) ? ('key=' . $mlphp['maps_key'] . '&') : 
 </head>
 <?php
 
-$client = new MLPHP\RESTClient($mlphp['host'], $mlphp['port'], $mlphp['path'], $mlphp['version'],
-                               $mlphp['username'], $mlphp['password'], $mlphp['auth']);
+$client = $mlphp->newClient();
 
 if (isset($_FILES['upload'])) {
     try {
@@ -44,7 +44,7 @@ if (isset($_FILES['upload'])) {
 				// Move file to upload directory
 				$tmpName = $_FILES['upload']['tmp_name'][$key];
 				$name = $_FILES['upload']['name'][$key];
-				$dest = $mlphp['uploads_dir'] . '/' . $name;
+				$dest = $mlphp->getConfig()['uploads_dir'] . '/' . $name;
 				move_uploaded_file($tmpName, $dest);
 				try {
 					// Write image file

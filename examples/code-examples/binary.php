@@ -20,8 +20,7 @@ use MarkLogic\MLPHP as MLPHP;
 require_once ('setup.php');
 
 // Create a REST client object for the MarkLogic database
-$client = new MLPHP\RESTClient($mlphp['host'], $mlphp['port'], $mlphp['path'], $mlphp['version'],
-                               $mlphp['username'], $mlphp['password'], $mlphp['auth']);
+$client = $mlphp->newClient();
 
 $doc = new MLPHP\Document($client);
 $uri = $_REQUEST['uri'];

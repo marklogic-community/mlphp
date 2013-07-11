@@ -27,8 +27,9 @@ use MarkLogic\MLPHP as MLPHP;
 // Set up global vars and class autoloading
 require_once ('setup.php');
 
-$client = new MLPHP\RESTClient($mlphp['host'], $mlphp['port'], $mlphp['path'], $mlphp['version'],
-                               $mlphp['username-admin'], $mlphp['password-admin'], $mlphp['auth']);
+$client = $mlphp->newClient();
+$client->setUsername($mlphp->config['username-admin']);
+$client->setPassword($mlphp->config['password-admin']);
 
 // Write a doc via PUT
 $doc = new MLPHP\Document($client);

@@ -19,7 +19,7 @@ use MarkLogic\MLPHP as MLPHP;
 // Set up global vars and class autoloading
 require_once ('setup.php');
 
-$client = new MLPHP\RESTClient($mlphp['host'], $mlphp['port'], $mlphp['path'], $mlphp['version'], $mlphp['username'], $mlphp['password'], $mlphp['auth']);
+$client = $mlphp->newClient();
 
 $img = new MLPHP\ImageDocument($client);
 $uri = $_REQUEST['uri'];

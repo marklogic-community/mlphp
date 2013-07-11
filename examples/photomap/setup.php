@@ -15,11 +15,11 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-require_once ('..' . DIRECTORY_SEPARATOR . 'setup.php');
+require_once ('../setup.php');
 
 // Project settings (these override and supplement global settings in ../setup.php)
-$mlphp = array_merge($mlphp, array(
+$mlphp->mergeConfig(array(
     'port'			=>		8078,
     'maps_key'		=>		'', // Optional Google Maps key
-    'uploads_dir'	=>		__DIR__ . DIRECTORY_SEPARATOR . 'uploads' // Make accessible to PHP, e.g. chmod 700, chown www
+    'uploads_dir'	=>		'uploads' // Make accessible to PHP, e.g. chmod 700, chown www
 ));

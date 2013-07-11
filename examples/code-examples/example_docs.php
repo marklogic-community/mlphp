@@ -17,8 +17,9 @@ limitations under the License.
 // Setup
 use MarkLogic\MLPHP as MLPHP;
 require_once ('setup.php');
-$client = new MLPHP\RESTClient($mlphp['host'], $mlphp['port'], $mlphp['path'], $mlphp['version'],
-                               $mlphp['username-admin'], $mlphp['password-admin'], $mlphp['auth']);
+$client = $mlphp->newClient();
+$client->setUsername($mlphp->config['username-admin']);
+$client->setPassword($mlphp->config['password-admin']);
 
 // Text as a document
 $doc1 = new MLPHP\Document($client);		// Create a Document object (passing the REST client)

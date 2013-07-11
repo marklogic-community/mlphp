@@ -19,30 +19,31 @@ define('PRODUCTION', 'prod');
 define('DEVELOPMENT', 'dev');
 define('DEBUG', 'debug');
 
+/* Use the Composer autoloader */
+require('../../vendor/autoload.php');
+
+use MarkLogic\MLPHP;
+
 /**
  * Global settings (project settings can override in <project>/setup.php)
  */
-$mlphp = array(
-    'status'			=>	DEVELOPMENT,
-    'username'			=>	'rest-writer-user',
-    'password'			=>	'writer-pw',
-    'username-admin'	=>	'rest-admin-user',
-    'password-admin'	=>	'admin-pw',
-    'host'				=>	'localhost',
-    'port'				=>	8077,
-    'path'				=>	'',
-    'version'			=>	'v1',
-    'auth'				=>	'digest',
-);
-
-require_once dirname(dirname(__FILE__)) 
-    .  DIRECTORY_SEPARATOR . 'vendor' 
-    .  DIRECTORY_SEPARATOR . 'autoload.php';
+$mlphp = new MLPHP\MLPHP(array(
+    'status'            =>    DEVELOPMENT,
+    'username'          =>    'admin',
+    'password'          =>    'adm1n',
+    'username-admin'    =>    'admin',
+    'password-admin'    =>    'adm1n',
+    'host'              =>    'localhost',
+    'port'              =>    8077,
+    'path'              =>    '',
+    'version'           =>    'v1',
+    'auth'              =>    'digest'
+));
 
 /**
  * Configure status-specific settings.
  */
-switch ($mlphp['status']) {
+switch ($mlphp->config['status']) {
     case PRODUCTION: {
         ini_set('display_errors', 0);
         break;

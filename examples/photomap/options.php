@@ -28,7 +28,9 @@ if (!empty($redirect)) {
 if (!isset($_SESSION['options_loaded_photomap']) || !$_SESSION['options_loaded_photomap'] === TRUE) {
     echo '<!-- Loading search options -->' . PHP_EOL;
 
-    $client = new MLPHP\RESTClient($mlphp['host'], $mlphp['port'], $mlphp['path'], $mlphp['version'], $mlphp['username-admin'], $mlphp['password-admin'], $mlphp['auth']);
+    $client = $mlphp->newClient();
+    $client->setUsername($mlphp->config['username-admin']);
+    $client->setPassword($mlphp->config['password-admin']);
 
     // Set up options node
     $options = new MLPHP\Options($client);

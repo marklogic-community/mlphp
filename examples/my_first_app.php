@@ -17,27 +17,30 @@ limitations under the License.
 
 // A Simple MLPHP Application
 
-// 1. Complete the installation steps, see: mlphp/INSTALL.txt
+// 1. Complete the installation steps, see: mlphp/README.md
 
-// 2. Tell the app how to talk to MarkLogic.
-require_once dirname(dirname(__FILE__)) 
-    .  DIRECTORY_SEPARATOR . 'vendor' 
-    .  DIRECTORY_SEPARATOR . 'autoload.php';
+// 2. Tell the app how to talk to MarkLogic.  
+// This simple app does not use Composer so it must regsiter MLPHP's autoloader.
+
+// Adjust the path below as needed to find the MLPHP project's MLPHP class.  
+require_once '../api/MarkLogic/MLPHP/MLPHP.php';
 
 use MarkLogic\MLPHP as MLPHP;
 
-$mlphp = array(
+MLPHP\MLPHP::registerAutoloader();
+
+// 3. Create a REST client that talks to MarkLogic.
+
+$mlphp = new MLPHP\MLPHP(array(
     'username' => 'rest-writer-user',
     'password' => 'writer-pw',
     'host'     => 'localhost',
     'port'     => 8077,
     'version'  => 'v1',
     'auth'     => 'digest'
-);
+));
 
-// 3. Create a REST client that talks to MarkLogic.
-$client = new MLPHP\RESTClient($mlphp['host'], $mlphp['port'], '', $mlphp['version'],
-                               $mlphp['username'], $mlphp['password'], $mlphp['auth']);
+$client = $mlphp->newClient();
 
 // 4. Add a document to the MarkLogic database.
 $document = new MLPHP\Document($client);
