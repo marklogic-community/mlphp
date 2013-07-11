@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="generator" content="PHPDoctor 2.0.5 (http://peej.github.com/phpdoctor/)">
-<meta name="when" content="Tue, 02 Jul 2013 17:00:59 +0000">
+<meta name="when" content="Thu, 11 Jul 2013 17:29:40 +0000">
 
 <link rel="stylesheet" type="text/css" href="../../../stylesheet.css">
 <link rel="start" href="../../../overview-summary.html">
@@ -17,7 +17,7 @@
 <body id="file" onload="parent.document.title=document.title;">
 
 <div class="header">
-<h1><a href=../../index.php target=_top>MLPHP</a></h1>
+<h1><a href=../../examples/index.php target=_top>MLPHP</a></h1>
 <ul>
 <li><a href="../../../overview-summary.html">Overview</a></li>
 <li>Package</li><li>Class</li><li>Tree</li><li><a href="../../../overview-files.html">Files</a></li>
@@ -36,47 +36,47 @@
 <h1>MarkLogic/MLPHP/Values.php</h1>
 <hr>
 
-<a name="line1"></a><pre><?php
-<a name="line2"></a>/*
+<a name="line1"></a><pre class="php" style="font-family:monospace;"><span style="color: #000000; font-weight: bold;">&lt;?php</span>
+<a name="line2"></a><span style="color: #666666; font-style: italic;">/*
 <a name="line3"></a>Copyright 2002-2012 MarkLogic Corporation.  All Rights Reserved.
-<a name="line4"></a>
-<a name="line5"></a>Licensed under the Apache License, Version 2.0 (the "License");
+<a name="line4"></a>&nbsp;
+<a name="line5"></a>Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
 <a name="line6"></a>you may not use this file except in compliance with the License.
 <a name="line7"></a>You may obtain a copy of the License at
-<a name="line8"></a>
+<a name="line8"></a>&nbsp;
 <a name="line9"></a>     http://www.apache.org/licenses/LICENSE-2.0
-<a name="line10"></a>
+<a name="line10"></a>&nbsp;
 <a name="line11"></a>Unless required by applicable law or agreed to in writing, software
-<a name="line12"></a>distributed under the License is distributed on an "AS IS" BASIS,
+<a name="line12"></a>distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
 <a name="line13"></a>WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 <a name="line14"></a>See the License for the specific language governing permissions and
 <a name="line15"></a>limitations under the License.
-<a name="line16"></a>*/
-<a name="line17"></a>namespace MarkLogic\MLPHP;
-<a name="line18"></a>
-<a name="line19"></a>/**
+<a name="line16"></a>*/</span>
+<a name="line17"></a><span style="color: #000000; font-weight: bold;">namespace</span> MarkLogic\MLPHP<span style="color: #339933;">;</span>
+<a name="line18"></a>&nbsp;
+<a name="line19"></a><span style="color: #009933; font-style: italic;">/**
 <a name="line20"></a> * Represents a values setting in a search options node.
 <a name="line21"></a> *
-<a name="line22"></a> * @package Options
-<a name="line23"></a> * @author Mike Wooldridge <mike.wooldridge@marklogic.com>
-<a name="line24"></a> */
-<a name="line25"></a>class Values
-<a name="line26"></a>{
-<a name="line27"></a>    private $name; // @var string
-<a name="line28"></a>    private $type; // @var string
-<a name="line29"></a>    private $elem; // @var string
-<a name="line30"></a>    private $ns; // @var string
-<a name="line31"></a>    private $attr; // @var string
-<a name="line32"></a>    private $attrNs; // @var string
-<a name="line33"></a>    private $field; // @var string
-<a name="line34"></a>    private $index; // @var string
-<a name="line35"></a>    private $datatype; // @var string
-<a name="line36"></a>
-<a name="line37"></a>    private $aggregate; // @var string
-<a name="line38"></a>
-<a name="line39"></a>    private $valuesOptions; // @var array
-<a name="line40"></a>
-<a name="line41"></a>    /**
+<a name="line22"></a> * @package MLPHP
+<a name="line23"></a> * @author Mike Wooldridge &lt;mike.wooldridge@marklogic.com&gt;
+<a name="line24"></a> */</span>
+<a name="line25"></a><span style="color: #000000; font-weight: bold;">class</span> Values
+<a name="line26"></a><span style="color: #009900;">&#123;</span>
+<a name="line27"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$name</span><span style="color: #339933;">;</span> <span style="color: #666666; font-style: italic;">// @var string</span>
+<a name="line28"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$type</span><span style="color: #339933;">;</span> <span style="color: #666666; font-style: italic;">// @var string</span>
+<a name="line29"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$elem</span><span style="color: #339933;">;</span> <span style="color: #666666; font-style: italic;">// @var string</span>
+<a name="line30"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$ns</span><span style="color: #339933;">;</span> <span style="color: #666666; font-style: italic;">// @var string</span>
+<a name="line31"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$attr</span><span style="color: #339933;">;</span> <span style="color: #666666; font-style: italic;">// @var string</span>
+<a name="line32"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$attrNs</span><span style="color: #339933;">;</span> <span style="color: #666666; font-style: italic;">// @var string</span>
+<a name="line33"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$field</span><span style="color: #339933;">;</span> <span style="color: #666666; font-style: italic;">// @var string</span>
+<a name="line34"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$index</span><span style="color: #339933;">;</span> <span style="color: #666666; font-style: italic;">// @var string</span>
+<a name="line35"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$datatype</span><span style="color: #339933;">;</span> <span style="color: #666666; font-style: italic;">// @var string</span>
+<a name="line36"></a>&nbsp;
+<a name="line37"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$aggregate</span><span style="color: #339933;">;</span> <span style="color: #666666; font-style: italic;">// @var string</span>
+<a name="line38"></a>&nbsp;
+<a name="line39"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$valuesOptions</span><span style="color: #339933;">;</span> <span style="color: #666666; font-style: italic;">// @var array</span>
+<a name="line40"></a>&nbsp;
+<a name="line41"></a>    <span style="color: #009933; font-style: italic;">/**
 <a name="line42"></a>     * Create a Values object.
 <a name="line43"></a>     *
 <a name="line44"></a>     * @see http://docs.marklogic.com/guide/rest-dev/search#id_53938
@@ -84,13 +84,13 @@
 <a name="line46"></a>     * @see http://docs.marklogic.com/guide/admin/range_index
 <a name="line47"></a>     *
 <a name="line48"></a>     * @param string $name Values name.
-<a name="line49"></a>     */
-<a name="line50"></a>    public function __construct($name)
-<a name="line51"></a>    {
-<a name="line52"></a>        $this->name = (string)$name;
-<a name="line53"></a>    }
-<a name="line54"></a>
-<a name="line55"></a>    /**
+<a name="line49"></a>     */</span>
+<a name="line50"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> __construct<span style="color: #009900;">&#40;</span><span style="color: #000088;">$name</span><span style="color: #009900;">&#41;</span>
+<a name="line51"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line52"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">name</span> <span style="color: #339933;">=</span> <span style="color: #009900;">&#40;</span>string<span style="color: #009900;">&#41;</span><span style="color: #000088;">$name</span><span style="color: #339933;">;</span>
+<a name="line53"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line54"></a>&nbsp;
+<a name="line55"></a>    <span style="color: #009933; font-style: italic;">/**
 <a name="line56"></a>     * Set up range values.
 <a name="line57"></a>     *
 <a name="line58"></a>     * @param string $elem Name of the element.
@@ -98,150 +98,150 @@
 <a name="line60"></a>     * @param string $attr Attribute name.
 <a name="line61"></a>     * @param string $attrNs An attribute namespace.
 <a name="line62"></a>     * @param string $datatype Constraint datatype.
-<a name="line63"></a>     */
-<a name="line64"></a>    public function setUpRange($elem, $ns = '', $attr = '', $attrNs = '', $datatype = 'xs:string')
-<a name="line65"></a>    {
-<a name="line66"></a>        $this->type = 'range';
-<a name="line67"></a>        $this->elem = (string)$elem;
-<a name="line68"></a>        $this->ns = (string)$ns;
-<a name="line69"></a>        $this->attr = (string)$attr;
-<a name="line70"></a>        $this->attrNs = (string)$attrNs;
-<a name="line71"></a>        $this->datatype = (string)$datatype;
-<a name="line72"></a>    }
-<a name="line73"></a>
-<a name="line74"></a>    /**
+<a name="line63"></a>     */</span>
+<a name="line64"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> setUpRange<span style="color: #009900;">&#40;</span><span style="color: #000088;">$elem</span><span style="color: #339933;">,</span> <span style="color: #000088;">$ns</span> <span style="color: #339933;">=</span> <span style="color: #0000ff;">''</span><span style="color: #339933;">,</span> <span style="color: #000088;">$attr</span> <span style="color: #339933;">=</span> <span style="color: #0000ff;">''</span><span style="color: #339933;">,</span> <span style="color: #000088;">$attrNs</span> <span style="color: #339933;">=</span> <span style="color: #0000ff;">''</span><span style="color: #339933;">,</span> <span style="color: #000088;">$datatype</span> <span style="color: #339933;">=</span> <span style="color: #0000ff;">'xs:string'</span><span style="color: #009900;">&#41;</span>
+<a name="line65"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line66"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">type</span> <span style="color: #339933;">=</span> <span style="color: #0000ff;">'range'</span><span style="color: #339933;">;</span>
+<a name="line67"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">elem</span> <span style="color: #339933;">=</span> <span style="color: #009900;">&#40;</span>string<span style="color: #009900;">&#41;</span><span style="color: #000088;">$elem</span><span style="color: #339933;">;</span>
+<a name="line68"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">ns</span> <span style="color: #339933;">=</span> <span style="color: #009900;">&#40;</span>string<span style="color: #009900;">&#41;</span><span style="color: #000088;">$ns</span><span style="color: #339933;">;</span>
+<a name="line69"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">attr</span> <span style="color: #339933;">=</span> <span style="color: #009900;">&#40;</span>string<span style="color: #009900;">&#41;</span><span style="color: #000088;">$attr</span><span style="color: #339933;">;</span>
+<a name="line70"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">attrNs</span> <span style="color: #339933;">=</span> <span style="color: #009900;">&#40;</span>string<span style="color: #009900;">&#41;</span><span style="color: #000088;">$attrNs</span><span style="color: #339933;">;</span>
+<a name="line71"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">datatype</span> <span style="color: #339933;">=</span> <span style="color: #009900;">&#40;</span>string<span style="color: #009900;">&#41;</span><span style="color: #000088;">$datatype</span><span style="color: #339933;">;</span>
+<a name="line72"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line73"></a>&nbsp;
+<a name="line74"></a>    <span style="color: #009933; font-style: italic;">/**
 <a name="line75"></a>     * Set up uri values.
-<a name="line76"></a>     */
-<a name="line77"></a>    public function setUpUri()
-<a name="line78"></a>    {
-<a name="line79"></a>        $this->type = 'uri';
-<a name="line80"></a>    }
-<a name="line81"></a>
-<a name="line82"></a>    /**
+<a name="line76"></a>     */</span>
+<a name="line77"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> setUpUri<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
+<a name="line78"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line79"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">type</span> <span style="color: #339933;">=</span> <span style="color: #0000ff;">'uri'</span><span style="color: #339933;">;</span>
+<a name="line80"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line81"></a>&nbsp;
+<a name="line82"></a>    <span style="color: #009933; font-style: italic;">/**
 <a name="line83"></a>     * Set up collection values.
-<a name="line84"></a>     */
-<a name="line85"></a>    public function setUpCollection()
-<a name="line86"></a>    {
-<a name="line87"></a>        $this->type = 'collection';
-<a name="line88"></a>    }
-<a name="line89"></a>
-<a name="line90"></a>    /**
+<a name="line84"></a>     */</span>
+<a name="line85"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> setUpCollection<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
+<a name="line86"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line87"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">type</span> <span style="color: #339933;">=</span> <span style="color: #0000ff;">'collection'</span><span style="color: #339933;">;</span>
+<a name="line88"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line89"></a>&nbsp;
+<a name="line90"></a>    <span style="color: #009933; font-style: italic;">/**
 <a name="line91"></a>     * Set values options.
 <a name="line92"></a>     *
 <a name="line93"></a>     * @param array $valuesOptions An array of values options.
-<a name="line94"></a>     */
-<a name="line95"></a>    public function setValuesOptions($valuesOptions)
-<a name="line96"></a>    {
-<a name="line97"></a>        $this->valuesOptions = $valuesOptions;
-<a name="line98"></a>    }
-<a name="line99"></a>
-<a name="line100"></a>    /**
+<a name="line94"></a>     */</span>
+<a name="line95"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> setValuesOptions<span style="color: #009900;">&#40;</span><span style="color: #000088;">$valuesOptions</span><span style="color: #009900;">&#41;</span>
+<a name="line96"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line97"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">valuesOptions</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$valuesOptions</span><span style="color: #339933;">;</span>
+<a name="line98"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line99"></a>&nbsp;
+<a name="line100"></a>    <span style="color: #009933; font-style: italic;">/**
 <a name="line101"></a>     * Set aggregate operation to apply.
 <a name="line102"></a>     *
 <a name="line103"></a>     * @param string $aggregate Aggregate operation to apply.
-<a name="line104"></a>     */
-<a name="line105"></a>    public function setAggregate($aggregate)
-<a name="line106"></a>    {
-<a name="line107"></a>        $this->aggregate = $aggregate;
-<a name="line108"></a>    }
-<a name="line109"></a>
-<a name="line110"></a>    /**
+<a name="line104"></a>     */</span>
+<a name="line105"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> setAggregate<span style="color: #009900;">&#40;</span><span style="color: #000088;">$aggregate</span><span style="color: #009900;">&#41;</span>
+<a name="line106"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line107"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><a href="http://www.php.net/aggregate"><span style="color: #990000;">aggregate</span></a> <span style="color: #339933;">=</span> <span style="color: #000088;">$aggregate</span><span style="color: #339933;">;</span>
+<a name="line108"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line109"></a>&nbsp;
+<a name="line110"></a>    <span style="color: #009933; font-style: italic;">/**
 <a name="line111"></a>     * Get the values setting as a DOMElement object.
 <a name="line112"></a>     *
 <a name="line113"></a>     * @param DOMDocument $dom The DOMDocument object in which to create the element.
-<a name="line114"></a>     */
-<a name="line115"></a>    public function getValuesAsElem($dom)
-<a name="line116"></a>    {
-<a name="line117"></a>        $valsElem = $dom->createElement('values');
-<a name="line118"></a>        $valsElem->setAttribute('name', $this->name);
-<a name="line119"></a>
-<a name="line120"></a>        switch ($this->type) {
-<a name="line121"></a>            case 'range':
-<a name="line122"></a>                $rangeElem = $dom->createElement('range');
-<a name="line123"></a>                $rangeElem->setAttribute('type', $this->datatype);
-<a name="line124"></a>                $elemElem = $dom->createElement('element');
-<a name="line125"></a>                $elemElem->setAttribute('ns', $this->ns);
-<a name="line126"></a>                $elemElem->setAttribute('name', $this->elem);
-<a name="line127"></a>                $rangeElem->appendChild($elemElem);
-<a name="line128"></a>                if($this->attr) {
-<a name="line129"></a>                    $attrElem = $dom->createElement('attribute');
-<a name="line130"></a>                    $attrElem->setAttribute('ns', $this->attrNs);
-<a name="line131"></a>                    $attrElem->setAttribute('name', $this->attr);
-<a name="line132"></a>                    $rangeElem->appendChild($attrElem);
-<a name="line133"></a>                }
-<a name="line134"></a>                $this->addValuesOptions($dom, $rangeElem);
-<a name="line135"></a>                $this->addAggregate($dom, $rangeElem);
-<a name="line136"></a>                $valsElem->appendChild($rangeElem);
-<a name="line137"></a>                break;
-<a name="line138"></a>                /* <values name='example'>
-<a name="line139"></a>                    <range type='xs:integer'>
-<a name="line140"></a>                        <element ns='' name='game'/>
-<a name="line141"></a>                        <attribute ns='' name='runs'/>
-<a name="line142"></a>                    </range>
-<a name="line143"></a>                    <aggregate apply='sum'/>
-<a name="line144"></a>                </values> */
-<a name="line145"></a>            case 'uri':
-<a name="line146"></a>                $uriElem = $dom->createElement('uri');
-<a name="line147"></a>                $this->addValuesOptions($dom, $uriElem);
-<a name="line148"></a>                $this->addAggregate($dom, $uriElem);
-<a name="line149"></a>                $valsElem->appendChild($uriElem);
-<a name="line150"></a>                break;
-<a name="line151"></a>               /* <values name='uri'>
-<a name="line152"></a>                      <uri/>
-<a name="line153"></a>                      <values-option>limit=10</values-option>
-<a name="line154"></a>                    </values> */
-<a name="line155"></a>            case 'collection':
-<a name="line156"></a>                $collectionElem = $dom->createElement('collection');
-<a name="line157"></a>                $this->addValuesOptions($dom, $collectionElem);
-<a name="line158"></a>                $this->addAggregate($dom, $collectionElem);
-<a name="line159"></a>                $valsElem->appendChild($collectionElem);
-<a name="line160"></a>                break;
-<a name="line161"></a>               /* <constraint name='type'>
-<a name="line162"></a>                    <collection prefix=''/>
-<a name="line163"></a>                  </constraint> */
-<a name="line164"></a>        }
-<a name="line165"></a>        return $valsElem;
-<a name="line166"></a>    }
-<a name="line167"></a>
-<a name="line168"></a>    /**
+<a name="line114"></a>     */</span>
+<a name="line115"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getValuesAsElem<span style="color: #009900;">&#40;</span><span style="color: #000088;">$dom</span><span style="color: #009900;">&#41;</span>
+<a name="line116"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line117"></a>        <span style="color: #000088;">$valsElem</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$dom</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">createElement</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'values'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line118"></a>        <span style="color: #000088;">$valsElem</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">setAttribute</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'name'</span><span style="color: #339933;">,</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">name</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line119"></a>&nbsp;
+<a name="line120"></a>        <span style="color: #b1b100;">switch</span> <span style="color: #009900;">&#40;</span><span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">type</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+<a name="line121"></a>            <span style="color: #b1b100;">case</span> <span style="color: #0000ff;">'range'</span><span style="color: #339933;">:</span>
+<a name="line122"></a>                <span style="color: #000088;">$rangeElem</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$dom</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">createElement</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'range'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line123"></a>                <span style="color: #000088;">$rangeElem</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">setAttribute</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'type'</span><span style="color: #339933;">,</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">datatype</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line124"></a>                <span style="color: #000088;">$elemElem</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$dom</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">createElement</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'element'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line125"></a>                <span style="color: #000088;">$elemElem</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">setAttribute</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'ns'</span><span style="color: #339933;">,</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">ns</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line126"></a>                <span style="color: #000088;">$elemElem</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">setAttribute</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'name'</span><span style="color: #339933;">,</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">elem</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line127"></a>                <span style="color: #000088;">$rangeElem</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">appendChild</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$elemElem</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line128"></a>                <span style="color: #b1b100;">if</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">attr</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+<a name="line129"></a>                    <span style="color: #000088;">$attrElem</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$dom</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">createElement</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'attribute'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line130"></a>                    <span style="color: #000088;">$attrElem</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">setAttribute</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'ns'</span><span style="color: #339933;">,</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">attrNs</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line131"></a>                    <span style="color: #000088;">$attrElem</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">setAttribute</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'name'</span><span style="color: #339933;">,</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">attr</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line132"></a>                    <span style="color: #000088;">$rangeElem</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">appendChild</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$attrElem</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line133"></a>                <span style="color: #009900;">&#125;</span>
+<a name="line134"></a>                <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">addValuesOptions</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$dom</span><span style="color: #339933;">,</span> <span style="color: #000088;">$rangeElem</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line135"></a>                <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">addAggregate</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$dom</span><span style="color: #339933;">,</span> <span style="color: #000088;">$rangeElem</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line136"></a>                <span style="color: #000088;">$valsElem</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">appendChild</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$rangeElem</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line137"></a>                <span style="color: #b1b100;">break</span><span style="color: #339933;">;</span>
+<a name="line138"></a>                <span style="color: #666666; font-style: italic;">/* &lt;values name='example'&gt;
+<a name="line139"></a>                    &lt;range type='xs:integer'&gt;
+<a name="line140"></a>                        &lt;element ns='' name='game'/&gt;
+<a name="line141"></a>                        &lt;attribute ns='' name='runs'/&gt;
+<a name="line142"></a>                    &lt;/range&gt;
+<a name="line143"></a>                    &lt;aggregate apply='sum'/&gt;
+<a name="line144"></a>                &lt;/values&gt; */</span>
+<a name="line145"></a>            <span style="color: #b1b100;">case</span> <span style="color: #0000ff;">'uri'</span><span style="color: #339933;">:</span>
+<a name="line146"></a>                <span style="color: #000088;">$uriElem</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$dom</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">createElement</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'uri'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line147"></a>                <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">addValuesOptions</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$dom</span><span style="color: #339933;">,</span> <span style="color: #000088;">$uriElem</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line148"></a>                <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">addAggregate</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$dom</span><span style="color: #339933;">,</span> <span style="color: #000088;">$uriElem</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line149"></a>                <span style="color: #000088;">$valsElem</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">appendChild</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$uriElem</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line150"></a>                <span style="color: #b1b100;">break</span><span style="color: #339933;">;</span>
+<a name="line151"></a>               <span style="color: #666666; font-style: italic;">/* &lt;values name='uri'&gt;
+<a name="line152"></a>                      &lt;uri/&gt;
+<a name="line153"></a>                      &lt;values-option&gt;limit=10&lt;/values-option&gt;
+<a name="line154"></a>                    &lt;/values&gt; */</span>
+<a name="line155"></a>            <span style="color: #b1b100;">case</span> <span style="color: #0000ff;">'collection'</span><span style="color: #339933;">:</span>
+<a name="line156"></a>                <span style="color: #000088;">$collectionElem</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$dom</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">createElement</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'collection'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line157"></a>                <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">addValuesOptions</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$dom</span><span style="color: #339933;">,</span> <span style="color: #000088;">$collectionElem</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line158"></a>                <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">addAggregate</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$dom</span><span style="color: #339933;">,</span> <span style="color: #000088;">$collectionElem</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line159"></a>                <span style="color: #000088;">$valsElem</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">appendChild</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$collectionElem</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line160"></a>                <span style="color: #b1b100;">break</span><span style="color: #339933;">;</span>
+<a name="line161"></a>               <span style="color: #666666; font-style: italic;">/* &lt;constraint name='type'&gt;
+<a name="line162"></a>                    &lt;collection prefix=''/&gt;
+<a name="line163"></a>                  &lt;/constraint&gt; */</span>
+<a name="line164"></a>        <span style="color: #009900;">&#125;</span>
+<a name="line165"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$valsElem</span><span style="color: #339933;">;</span>
+<a name="line166"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line167"></a>&nbsp;
+<a name="line168"></a>    <span style="color: #009933; font-style: italic;">/**
 <a name="line169"></a>     * Add values options to an element.
 <a name="line170"></a>     *
 <a name="line171"></a>     * @param DOMDocument $dom A DOM document.
 <a name="line172"></a>     * @param DOMElement $elem A DOM element.
 <a name="line173"></a>     * @return DOMElement The updated element.
-<a name="line174"></a>     */
-<a name="line175"></a>    private function addValuesOptions($dom, $elem)
-<a name="line176"></a>    {
-<a name="line177"></a>        if (!empty($this->valuesOptions)) {
-<a name="line178"></a>            foreach($this->valuesOptions as $opt) {
-<a name="line179"></a>                $valuesElem = $dom->createElement('values-option');
-<a name="line180"></a>                $valuesElem->nodeValue = $opt;
-<a name="line181"></a>                $elem->appendChild($valuesElem);
-<a name="line182"></a>            }
-<a name="line183"></a>        }
-<a name="line184"></a>        return $elem;
-<a name="line185"></a>    }
-<a name="line186"></a>
-<a name="line187"></a>    /**
+<a name="line174"></a>     */</span>
+<a name="line175"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000000; font-weight: bold;">function</span> addValuesOptions<span style="color: #009900;">&#40;</span><span style="color: #000088;">$dom</span><span style="color: #339933;">,</span> <span style="color: #000088;">$elem</span><span style="color: #009900;">&#41;</span>
+<a name="line176"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line177"></a>        <span style="color: #b1b100;">if</span> <span style="color: #009900;">&#40;</span><span style="color: #339933;">!</span><a href="http://www.php.net/empty"><span style="color: #990000;">empty</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">valuesOptions</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+<a name="line178"></a>            <span style="color: #b1b100;">foreach</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">valuesOptions</span> <span style="color: #b1b100;">as</span> <span style="color: #000088;">$opt</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+<a name="line179"></a>                <span style="color: #000088;">$valuesElem</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$dom</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">createElement</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'values-option'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line180"></a>                <span style="color: #000088;">$valuesElem</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">nodeValue</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$opt</span><span style="color: #339933;">;</span>
+<a name="line181"></a>                <span style="color: #000088;">$elem</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">appendChild</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$valuesElem</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line182"></a>            <span style="color: #009900;">&#125;</span>
+<a name="line183"></a>        <span style="color: #009900;">&#125;</span>
+<a name="line184"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$elem</span><span style="color: #339933;">;</span>
+<a name="line185"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line186"></a>&nbsp;
+<a name="line187"></a>    <span style="color: #009933; font-style: italic;">/**
 <a name="line188"></a>     * Add aggregate setting to an element.
 <a name="line189"></a>     *
 <a name="line190"></a>     * @param DOMDocument $dom A DOM document.
 <a name="line191"></a>     * @param DOMElement $elem A DOM element.
 <a name="line192"></a>     * @return DOMElement The updated element.
-<a name="line193"></a>     */
-<a name="line194"></a>    private function addAggregate($dom, $elem)
-<a name="line195"></a>    {
-<a name="line196"></a>        if(!empty($this->aggregate)) {
-<a name="line197"></a>            $aggregateElem = $dom->createElement('aggregate');
-<a name="line198"></a>            $aggregateElem->setAttribute('apply', $this->aggregate);
-<a name="line199"></a>            $elem->appendChild($aggregateElem);
-<a name="line200"></a>        }
-<a name="line201"></a>        return $elem;
-<a name="line202"></a>    }
-<a name="line203"></a>}
-<a name="line204"></a></pre>
+<a name="line193"></a>     */</span>
+<a name="line194"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000000; font-weight: bold;">function</span> addAggregate<span style="color: #009900;">&#40;</span><span style="color: #000088;">$dom</span><span style="color: #339933;">,</span> <span style="color: #000088;">$elem</span><span style="color: #009900;">&#41;</span>
+<a name="line195"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line196"></a>        <span style="color: #b1b100;">if</span><span style="color: #009900;">&#40;</span><span style="color: #339933;">!</span><a href="http://www.php.net/empty"><span style="color: #990000;">empty</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><a href="http://www.php.net/aggregate"><span style="color: #990000;">aggregate</span></a><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+<a name="line197"></a>            <span style="color: #000088;">$aggregateElem</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$dom</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">createElement</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'aggregate'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line198"></a>            <span style="color: #000088;">$aggregateElem</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">setAttribute</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'apply'</span><span style="color: #339933;">,</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><a href="http://www.php.net/aggregate"><span style="color: #990000;">aggregate</span></a><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line199"></a>            <span style="color: #000088;">$elem</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">appendChild</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$aggregateElem</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line200"></a>        <span style="color: #009900;">&#125;</span>
+<a name="line201"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$elem</span><span style="color: #339933;">;</span>
+<a name="line202"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line203"></a><span style="color: #009900;">&#125;</span>
+<a name="line204"></a>&nbsp;</pre>
 <div class="header">
-<h1><a href=../../index.php target=_top>MLPHP</a></h1>
+<h1><a href=../../examples/index.php target=_top>MLPHP</a></h1>
 <ul>
 <li><a href="../../../overview-summary.html">Overview</a></li>
 <li>Package</li><li>Class</li><li>Tree</li><li><a href="../../../overview-files.html">Files</a></li>
@@ -257,7 +257,7 @@
 </div>
 <hr>
 
-<p id="footer">Copyright 2002-2012 MarkLogic Corporation.  All Rights Reserved.</p>
+<p id="footer">Copyright 2002-2013 MarkLogic Corporation.  All Rights Reserved.</p>
 
 </body>
 

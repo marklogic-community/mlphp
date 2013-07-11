@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="generator" content="PHPDoctor 2.0.5 (http://peej.github.com/phpdoctor/)">
-<meta name="when" content="Tue, 02 Jul 2013 17:00:59 +0000">
+<meta name="when" content="Thu, 11 Jul 2013 17:29:40 +0000">
 
 <link rel="stylesheet" type="text/css" href="../../../stylesheet.css">
 <link rel="start" href="../../../overview-summary.html">
@@ -17,7 +17,7 @@
 <body id="file" onload="parent.document.title=document.title;">
 
 <div class="header">
-<h1><a href=../../index.php target=_top>MLPHP</a></h1>
+<h1><a href=../../examples/index.php target=_top>MLPHP</a></h1>
 <ul>
 <li><a href="../../../overview-summary.html">Overview</a></li>
 <li>Package</li><li>Class</li><li>Tree</li><li><a href="../../../overview-files.html">Files</a></li>
@@ -36,42 +36,42 @@
 <h1>MarkLogic/MLPHP/RangeConstraint.php</h1>
 <hr>
 
-<a name="line1"></a><pre><?php
-<a name="line2"></a>/*
+<a name="line1"></a><pre class="php" style="font-family:monospace;"><span style="color: #000000; font-weight: bold;">&lt;?php</span>
+<a name="line2"></a><span style="color: #666666; font-style: italic;">/*
 <a name="line3"></a>Copyright 2002-2012 MarkLogic Corporation.  All Rights Reserved.
-<a name="line4"></a>
-<a name="line5"></a>Licensed under the Apache License, Version 2.0 (the "License");
+<a name="line4"></a>&nbsp;
+<a name="line5"></a>Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
 <a name="line6"></a>you may not use this file except in compliance with the License.
 <a name="line7"></a>You may obtain a copy of the License at
-<a name="line8"></a>
+<a name="line8"></a>&nbsp;
 <a name="line9"></a>     http://www.apache.org/licenses/LICENSE-2.0
-<a name="line10"></a>
+<a name="line10"></a>&nbsp;
 <a name="line11"></a>Unless required by applicable law or agreed to in writing, software
-<a name="line12"></a>distributed under the License is distributed on an "AS IS" BASIS,
+<a name="line12"></a>distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
 <a name="line13"></a>WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 <a name="line14"></a>See the License for the specific language governing permissions and
 <a name="line15"></a>limitations under the License.
-<a name="line16"></a>*/
-<a name="line17"></a>namespace MarkLogic\MLPHP;
-<a name="line18"></a>
-<a name="line19"></a>/**
+<a name="line16"></a>*/</span>
+<a name="line17"></a><span style="color: #000000; font-weight: bold;">namespace</span> MarkLogic\MLPHP<span style="color: #339933;">;</span>
+<a name="line18"></a>&nbsp;
+<a name="line19"></a><span style="color: #009933; font-style: italic;">/**
 <a name="line20"></a> * Represents a range constraint for search.
 <a name="line21"></a> *
-<a name="line22"></a> * @package Options
-<a name="line23"></a> * @author Mike Wooldridge <mike.wooldridge@marklogic.com>
-<a name="line24"></a> */
-<a name="line25"></a>class RangeConstraint extends AbstractConstraint
-<a name="line26"></a>{
-<a name="line27"></a>    private $elem; // @var string
-<a name="line28"></a>    private $ns; // @var string
-<a name="line29"></a>    private $attr; // @var string
-<a name="line30"></a>    private $attrNs; // @var string
-<a name="line31"></a>    private $datatype; // @var string
-<a name="line32"></a>    private $facet; // @var bool
-<a name="line33"></a>    protected $fragmentScope; // @var string
-<a name="line34"></a>    protected $facetOptions; // @var array
-<a name="line35"></a>
-<a name="line36"></a>    /**
+<a name="line22"></a> * @package MLPHP
+<a name="line23"></a> * @author Mike Wooldridge &lt;mike.wooldridge@marklogic.com&gt;
+<a name="line24"></a> */</span>
+<a name="line25"></a><span style="color: #000000; font-weight: bold;">class</span> RangeConstraint <span style="color: #000000; font-weight: bold;">extends</span> AbstractConstraint
+<a name="line26"></a><span style="color: #009900;">&#123;</span>
+<a name="line27"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$elem</span><span style="color: #339933;">;</span> <span style="color: #666666; font-style: italic;">// @var string</span>
+<a name="line28"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$ns</span><span style="color: #339933;">;</span> <span style="color: #666666; font-style: italic;">// @var string</span>
+<a name="line29"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$attr</span><span style="color: #339933;">;</span> <span style="color: #666666; font-style: italic;">// @var string</span>
+<a name="line30"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$attrNs</span><span style="color: #339933;">;</span> <span style="color: #666666; font-style: italic;">// @var string</span>
+<a name="line31"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$datatype</span><span style="color: #339933;">;</span> <span style="color: #666666; font-style: italic;">// @var string</span>
+<a name="line32"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$facet</span><span style="color: #339933;">;</span> <span style="color: #666666; font-style: italic;">// @var bool</span>
+<a name="line33"></a>    <span style="color: #000000; font-weight: bold;">protected</span> <span style="color: #000088;">$fragmentScope</span><span style="color: #339933;">;</span> <span style="color: #666666; font-style: italic;">// @var string</span>
+<a name="line34"></a>    <span style="color: #000000; font-weight: bold;">protected</span> <span style="color: #000088;">$facetOptions</span><span style="color: #339933;">;</span> <span style="color: #666666; font-style: italic;">// @var array</span>
+<a name="line35"></a>&nbsp;
+<a name="line36"></a>    <span style="color: #009933; font-style: italic;">/**
 <a name="line37"></a>     * Create a RangeConstraint object.
 <a name="line38"></a>     *
 <a name="line39"></a>     * @see http://docs.marklogic.com/search:search#opt-constraint
@@ -83,55 +83,55 @@
 <a name="line45"></a>     * @param string $ns Element namespace.
 <a name="line46"></a>     * @param string $attr Attribute name.
 <a name="line47"></a>     * @param string $attrNs An attribute namespace.
-<a name="line48"></a>     */
-<a name="line49"></a>    public function __construct($name, $datatype, $facet = 'true', $elem, $ns = '', $attr = '', $attrNs = '')
-<a name="line50"></a>    {
-<a name="line51"></a>        $this->elem = (string)$elem;
-<a name="line52"></a>        $this->ns = (string)$ns;
-<a name="line53"></a>        $this->attr = (string)$attr;
-<a name="line54"></a>        $this->attrNs = (string)$attrNs;
-<a name="line55"></a>        $this->datatype = (string)$datatype;
-<a name="line56"></a>        $this->facet = (string)$facet;
-<a name="line57"></a>        parent::__construct($name);
-<a name="line58"></a>    }
-<a name="line59"></a>
-<a name="line60"></a>    /**
+<a name="line48"></a>     */</span>
+<a name="line49"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> __construct<span style="color: #009900;">&#40;</span><span style="color: #000088;">$name</span><span style="color: #339933;">,</span> <span style="color: #000088;">$datatype</span><span style="color: #339933;">,</span> <span style="color: #000088;">$facet</span> <span style="color: #339933;">=</span> <span style="color: #0000ff;">'true'</span><span style="color: #339933;">,</span> <span style="color: #000088;">$elem</span><span style="color: #339933;">,</span> <span style="color: #000088;">$ns</span> <span style="color: #339933;">=</span> <span style="color: #0000ff;">''</span><span style="color: #339933;">,</span> <span style="color: #000088;">$attr</span> <span style="color: #339933;">=</span> <span style="color: #0000ff;">''</span><span style="color: #339933;">,</span> <span style="color: #000088;">$attrNs</span> <span style="color: #339933;">=</span> <span style="color: #0000ff;">''</span><span style="color: #009900;">&#41;</span>
+<a name="line50"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line51"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">elem</span> <span style="color: #339933;">=</span> <span style="color: #009900;">&#40;</span>string<span style="color: #009900;">&#41;</span><span style="color: #000088;">$elem</span><span style="color: #339933;">;</span>
+<a name="line52"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">ns</span> <span style="color: #339933;">=</span> <span style="color: #009900;">&#40;</span>string<span style="color: #009900;">&#41;</span><span style="color: #000088;">$ns</span><span style="color: #339933;">;</span>
+<a name="line53"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">attr</span> <span style="color: #339933;">=</span> <span style="color: #009900;">&#40;</span>string<span style="color: #009900;">&#41;</span><span style="color: #000088;">$attr</span><span style="color: #339933;">;</span>
+<a name="line54"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">attrNs</span> <span style="color: #339933;">=</span> <span style="color: #009900;">&#40;</span>string<span style="color: #009900;">&#41;</span><span style="color: #000088;">$attrNs</span><span style="color: #339933;">;</span>
+<a name="line55"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">datatype</span> <span style="color: #339933;">=</span> <span style="color: #009900;">&#40;</span>string<span style="color: #009900;">&#41;</span><span style="color: #000088;">$datatype</span><span style="color: #339933;">;</span>
+<a name="line56"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">facet</span> <span style="color: #339933;">=</span> <span style="color: #009900;">&#40;</span>string<span style="color: #009900;">&#41;</span><span style="color: #000088;">$facet</span><span style="color: #339933;">;</span>
+<a name="line57"></a>        parent<span style="color: #339933;">::</span>__construct<span style="color: #009900;">&#40;</span><span style="color: #000088;">$name</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line58"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line59"></a>&nbsp;
+<a name="line60"></a>    <span style="color: #009933; font-style: italic;">/**
 <a name="line61"></a>     * Get the constraint as a DOMElement object.
 <a name="line62"></a>     *
 <a name="line63"></a>     * @param DOMDocument $dom The DOMDocument object with which to create the element.
-<a name="line64"></a>     */
-<a name="line65"></a>    public function getAsElem($dom)
-<a name="line66"></a>    {
-<a name="line67"></a>        $constElem = $dom->createElement('constraint');
-<a name="line68"></a>        $constElem->setAttribute('name', $this->name);
-<a name="line69"></a>        $rangeElem = $dom->createElement('range');
-<a name="line70"></a>        $rangeElem->setAttribute('type', $this->datatype);
-<a name="line71"></a>        $rangeElem->setAttribute('facet', $this->facet);
-<a name="line72"></a>        $elemElem = $dom->createElement('element');
-<a name="line73"></a>        $elemElem->setAttribute('ns', $this->ns);
-<a name="line74"></a>        $elemElem->setAttribute('name', $this->elem);
-<a name="line75"></a>        $rangeElem->appendChild($elemElem);
-<a name="line76"></a>        if($this->attr) {
-<a name="line77"></a>            $attrElem = $dom->createElement('attribute');
-<a name="line78"></a>            $attrElem->setAttribute('ns', $this->attrNs);
-<a name="line79"></a>            $attrElem->setAttribute('name', $this->attr);
-<a name="line80"></a>            $rangeElem->appendChild($attrElem);
-<a name="line81"></a>        }
-<a name="line82"></a>        // Note: No term options for range constraints
-<a name="line83"></a>        $this->addFacetOptions($dom, $rangeElem);
-<a name="line84"></a>        $this->addFragmentScope($dom, $rangeElem);
-<a name="line85"></a>        $constElem->appendChild($rangeElem);
-<a name="line86"></a>    /* <constraint name='rating'>
-<a name="line87"></a>               <range type='xs:decimal'>
-<a name="line88"></a>                   <element ns='http://example.com' name='rating'/>
-<a name="line89"></a>               </range>
-<a name="line90"></a>           </constraint> */
-<a name="line91"></a>        return $constElem;
-<a name="line92"></a>    }
-<a name="line93"></a>}
-<a name="line94"></a></pre>
+<a name="line64"></a>     */</span>
+<a name="line65"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getAsElem<span style="color: #009900;">&#40;</span><span style="color: #000088;">$dom</span><span style="color: #009900;">&#41;</span>
+<a name="line66"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line67"></a>        <span style="color: #000088;">$constElem</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$dom</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">createElement</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'constraint'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line68"></a>        <span style="color: #000088;">$constElem</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">setAttribute</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'name'</span><span style="color: #339933;">,</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">name</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line69"></a>        <span style="color: #000088;">$rangeElem</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$dom</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">createElement</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'range'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line70"></a>        <span style="color: #000088;">$rangeElem</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">setAttribute</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'type'</span><span style="color: #339933;">,</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">datatype</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line71"></a>        <span style="color: #000088;">$rangeElem</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">setAttribute</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'facet'</span><span style="color: #339933;">,</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">facet</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line72"></a>        <span style="color: #000088;">$elemElem</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$dom</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">createElement</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'element'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line73"></a>        <span style="color: #000088;">$elemElem</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">setAttribute</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'ns'</span><span style="color: #339933;">,</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">ns</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line74"></a>        <span style="color: #000088;">$elemElem</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">setAttribute</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'name'</span><span style="color: #339933;">,</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">elem</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line75"></a>        <span style="color: #000088;">$rangeElem</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">appendChild</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$elemElem</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line76"></a>        <span style="color: #b1b100;">if</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">attr</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+<a name="line77"></a>            <span style="color: #000088;">$attrElem</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$dom</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">createElement</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'attribute'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line78"></a>            <span style="color: #000088;">$attrElem</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">setAttribute</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'ns'</span><span style="color: #339933;">,</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">attrNs</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line79"></a>            <span style="color: #000088;">$attrElem</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">setAttribute</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'name'</span><span style="color: #339933;">,</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">attr</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line80"></a>            <span style="color: #000088;">$rangeElem</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">appendChild</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$attrElem</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line81"></a>        <span style="color: #009900;">&#125;</span>
+<a name="line82"></a>        <span style="color: #666666; font-style: italic;">// Note: No term options for range constraints</span>
+<a name="line83"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">addFacetOptions</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$dom</span><span style="color: #339933;">,</span> <span style="color: #000088;">$rangeElem</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line84"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">addFragmentScope</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$dom</span><span style="color: #339933;">,</span> <span style="color: #000088;">$rangeElem</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line85"></a>        <span style="color: #000088;">$constElem</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">appendChild</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$rangeElem</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line86"></a>    <span style="color: #666666; font-style: italic;">/* &lt;constraint name='rating'&gt;
+<a name="line87"></a>               &lt;range type='xs:decimal'&gt;
+<a name="line88"></a>                   &lt;element ns='http://example.com' name='rating'/&gt;
+<a name="line89"></a>               &lt;/range&gt;
+<a name="line90"></a>           &lt;/constraint&gt; */</span>
+<a name="line91"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$constElem</span><span style="color: #339933;">;</span>
+<a name="line92"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line93"></a><span style="color: #009900;">&#125;</span>
+<a name="line94"></a>&nbsp;</pre>
 <div class="header">
-<h1><a href=../../index.php target=_top>MLPHP</a></h1>
+<h1><a href=../../examples/index.php target=_top>MLPHP</a></h1>
 <ul>
 <li><a href="../../../overview-summary.html">Overview</a></li>
 <li>Package</li><li>Class</li><li>Tree</li><li><a href="../../../overview-files.html">Files</a></li>
@@ -147,7 +147,7 @@
 </div>
 <hr>
 
-<p id="footer">Copyright 2002-2012 MarkLogic Corporation.  All Rights Reserved.</p>
+<p id="footer">Copyright 2002-2013 MarkLogic Corporation.  All Rights Reserved.</p>
 
 </body>
 

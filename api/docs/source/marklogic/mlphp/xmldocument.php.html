@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="generator" content="PHPDoctor 2.0.5 (http://peej.github.com/phpdoctor/)">
-<meta name="when" content="Tue, 02 Jul 2013 17:00:59 +0000">
+<meta name="when" content="Thu, 11 Jul 2013 17:29:40 +0000">
 
 <link rel="stylesheet" type="text/css" href="../../../stylesheet.css">
 <link rel="start" href="../../../overview-summary.html">
@@ -17,7 +17,7 @@
 <body id="file" onload="parent.document.title=document.title;">
 
 <div class="header">
-<h1><a href=../../index.php target=_top>MLPHP</a></h1>
+<h1><a href=../../examples/index.php target=_top>MLPHP</a></h1>
 <ul>
 <li><a href="../../../overview-summary.html">Overview</a></li>
 <li>Package</li><li>Class</li><li>Tree</li><li><a href="../../../overview-files.html">Files</a></li>
@@ -36,89 +36,89 @@
 <h1>MarkLogic/MLPHP/XMLDocument.php</h1>
 <hr>
 
-<a name="line1"></a><pre><?php
-<a name="line2"></a>/*
+<a name="line1"></a><pre class="php" style="font-family:monospace;"><span style="color: #000000; font-weight: bold;">&lt;?php</span>
+<a name="line2"></a><span style="color: #666666; font-style: italic;">/*
 <a name="line3"></a>Copyright 2002-2012 MarkLogic Corporation.  All Rights Reserved.
-<a name="line4"></a>
-<a name="line5"></a>Licensed under the Apache License, Version 2.0 (the "License");
+<a name="line4"></a>&nbsp;
+<a name="line5"></a>Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
 <a name="line6"></a>you may not use this file except in compliance with the License.
 <a name="line7"></a>You may obtain a copy of the License at
-<a name="line8"></a>
+<a name="line8"></a>&nbsp;
 <a name="line9"></a>     http://www.apache.org/licenses/LICENSE-2.0
-<a name="line10"></a>
+<a name="line10"></a>&nbsp;
 <a name="line11"></a>Unless required by applicable law or agreed to in writing, software
-<a name="line12"></a>distributed under the License is distributed on an "AS IS" BASIS,
+<a name="line12"></a>distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
 <a name="line13"></a>WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 <a name="line14"></a>See the License for the specific language governing permissions and
 <a name="line15"></a>limitations under the License.
-<a name="line16"></a>*/
-<a name="line17"></a>namespace MarkLogic\MLPHP;
-<a name="line18"></a>
-<a name="line19"></a>/**
+<a name="line16"></a>*/</span>
+<a name="line17"></a><span style="color: #000000; font-weight: bold;">namespace</span> MarkLogic\MLPHP<span style="color: #339933;">;</span>
+<a name="line18"></a>&nbsp;
+<a name="line19"></a><span style="color: #009933; font-style: italic;">/**
 <a name="line20"></a> * Represents an XML document.
 <a name="line21"></a> *
-<a name="line22"></a> * @package Documents
-<a name="line23"></a> * @author Mike Wooldridge <mike.wooldridge@marklogic.com>
-<a name="line24"></a> */
-<a name="line25"></a>class XMLDocument extends Document
-<a name="line26"></a>{
-<a name="line27"></a>    private $dom; // @var DOMDocument object
-<a name="line28"></a>
-<a name="line29"></a>    /**
+<a name="line22"></a> * @package MLPHP
+<a name="line23"></a> * @author Mike Wooldridge &lt;mike.wooldridge@marklogic.com&gt;
+<a name="line24"></a> */</span>
+<a name="line25"></a><span style="color: #000000; font-weight: bold;">class</span> XMLDocument <span style="color: #000000; font-weight: bold;">extends</span> Document
+<a name="line26"></a><span style="color: #009900;">&#123;</span>
+<a name="line27"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$dom</span><span style="color: #339933;">;</span> <span style="color: #666666; font-style: italic;">// @var DOMDocument object</span>
+<a name="line28"></a>&nbsp;
+<a name="line29"></a>    <span style="color: #009933; font-style: italic;">/**
 <a name="line30"></a>     * Create an XML document object.
 <a name="line31"></a>     *
 <a name="line32"></a>     * @param RESTClient $restClient A REST client object.
 <a name="line33"></a>     * @param string $uri A document URI.
-<a name="line34"></a>     */
-<a name="line35"></a>    public function __construct($restClient, $uri = null)
-<a name="line36"></a>    {
-<a name="line37"></a>        parent::__construct($restClient, $uri);
-<a name="line38"></a>        $this->dom = new \DOMDocument();
-<a name="line39"></a>        $this->contentType = 'application/xml';
-<a name="line40"></a>    }
-<a name="line41"></a>
-<a name="line42"></a>    /**
+<a name="line34"></a>     */</span>
+<a name="line35"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> __construct<span style="color: #009900;">&#40;</span><span style="color: #000088;">$restClient</span><span style="color: #339933;">,</span> <span style="color: #000088;">$uri</span> <span style="color: #339933;">=</span> <span style="color: #009900; font-weight: bold;">null</span><span style="color: #009900;">&#41;</span>
+<a name="line36"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line37"></a>        parent<span style="color: #339933;">::</span>__construct<span style="color: #009900;">&#40;</span><span style="color: #000088;">$restClient</span><span style="color: #339933;">,</span> <span style="color: #000088;">$uri</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line38"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">dom</span> <span style="color: #339933;">=</span> <span style="color: #000000; font-weight: bold;">new</span> \DOMDocument<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line39"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">contentType</span> <span style="color: #339933;">=</span> <span style="color: #0000ff;">'application/xml'</span><span style="color: #339933;">;</span>
+<a name="line40"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line41"></a>&nbsp;
+<a name="line42"></a>    <span style="color: #009933; font-style: italic;">/**
 <a name="line43"></a>     * Read an XML document from the database.
 <a name="line44"></a>     *
 <a name="line45"></a>     * @param string $uri A document URI.
 <a name="line46"></a>     * @param array $params Optional additional parameters to pass when reading.
 <a name="line47"></a>     * @return string The document content.
-<a name="line48"></a>     */
-<a name="line49"></a>    public function read($uri = null, $params = array())
-<a name="line50"></a>    {
-<a name="line51"></a>        $this->uri = (isset($uri)) ? (string)$uri : $this->uri;
-<a name="line52"></a>        $params = array_merge(array('format' => 'xml'), $params);
-<a name="line53"></a>        return parent::read($this->uri, $params);
-<a name="line54"></a>    }
-<a name="line55"></a>
-<a name="line56"></a>    /**
+<a name="line48"></a>     */</span>
+<a name="line49"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> read<span style="color: #009900;">&#40;</span><span style="color: #000088;">$uri</span> <span style="color: #339933;">=</span> <span style="color: #009900; font-weight: bold;">null</span><span style="color: #339933;">,</span> <span style="color: #000088;">$params</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/array"><span style="color: #990000;">array</span></a><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span>
+<a name="line50"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line51"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">uri</span> <span style="color: #339933;">=</span> <span style="color: #009900;">&#40;</span><a href="http://www.php.net/isset"><span style="color: #990000;">isset</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$uri</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span> ? <span style="color: #009900;">&#40;</span>string<span style="color: #009900;">&#41;</span><span style="color: #000088;">$uri</span> <span style="color: #339933;">:</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">uri</span><span style="color: #339933;">;</span>
+<a name="line52"></a>        <span style="color: #000088;">$params</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/array_merge"><span style="color: #990000;">array_merge</span></a><span style="color: #009900;">&#40;</span><a href="http://www.php.net/array"><span style="color: #990000;">array</span></a><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'format'</span> <span style="color: #339933;">=&gt;</span> <span style="color: #0000ff;">'xml'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">,</span> <span style="color: #000088;">$params</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line53"></a>        <span style="color: #b1b100;">return</span> parent<span style="color: #339933;">::</span><span style="color: #004000;">read</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">uri</span><span style="color: #339933;">,</span> <span style="color: #000088;">$params</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line54"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line55"></a>&nbsp;
+<a name="line56"></a>    <span style="color: #009933; font-style: italic;">/**
 <a name="line57"></a>     * Write an XML document to the database.
 <a name="line58"></a>     *
 <a name="line59"></a>     * @param string $uri A document URI.
 <a name="line60"></a>     * @param array $params Optional additional parameters to pass when writing.
 <a name="line61"></a>     * @return Document $this
-<a name="line62"></a>     */
-<a name="line63"></a>    public function write($uri = null, $params = array())
-<a name="line64"></a>    {
-<a name="line65"></a>        $this->uri = (isset($uri)) ? (string)$uri : $this->uri;
-<a name="line66"></a>        $params = array_merge(array('format' => 'xml'), $params);
-<a name="line67"></a>        return parent::write($this->uri, $params);
-<a name="line68"></a>    }
-<a name="line69"></a>
-<a name="line70"></a>    /**
+<a name="line62"></a>     */</span>
+<a name="line63"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> write<span style="color: #009900;">&#40;</span><span style="color: #000088;">$uri</span> <span style="color: #339933;">=</span> <span style="color: #009900; font-weight: bold;">null</span><span style="color: #339933;">,</span> <span style="color: #000088;">$params</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/array"><span style="color: #990000;">array</span></a><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span>
+<a name="line64"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line65"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">uri</span> <span style="color: #339933;">=</span> <span style="color: #009900;">&#40;</span><a href="http://www.php.net/isset"><span style="color: #990000;">isset</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$uri</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span> ? <span style="color: #009900;">&#40;</span>string<span style="color: #009900;">&#41;</span><span style="color: #000088;">$uri</span> <span style="color: #339933;">:</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">uri</span><span style="color: #339933;">;</span>
+<a name="line66"></a>        <span style="color: #000088;">$params</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/array_merge"><span style="color: #990000;">array_merge</span></a><span style="color: #009900;">&#40;</span><a href="http://www.php.net/array"><span style="color: #990000;">array</span></a><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'format'</span> <span style="color: #339933;">=&gt;</span> <span style="color: #0000ff;">'xml'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">,</span> <span style="color: #000088;">$params</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line67"></a>        <span style="color: #b1b100;">return</span> parent<span style="color: #339933;">::</span><span style="color: #004000;">write</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">uri</span><span style="color: #339933;">,</span> <span style="color: #000088;">$params</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line68"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line69"></a>&nbsp;
+<a name="line70"></a>    <span style="color: #009933; font-style: italic;">/**
 <a name="line71"></a>     * Get the document as a DOMDocument object.
 <a name="line72"></a>     *
 <a name="line73"></a>     * @return DOMDocument|null A DOMDocument object.
-<a name="line74"></a>     */
-<a name="line75"></a>    public function getAsDOMDocument()
-<a name="line76"></a>    {
-<a name="line77"></a>        return $this->dom->loadXML($this->getContent());
-<a name="line78"></a>    }
-<a name="line79"></a>
-<a name="line80"></a>}
-<a name="line81"></a></pre>
+<a name="line74"></a>     */</span>
+<a name="line75"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getAsDOMDocument<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
+<a name="line76"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line77"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">dom</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">loadXML</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getContent</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line78"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line79"></a>&nbsp;
+<a name="line80"></a><span style="color: #009900;">&#125;</span>
+<a name="line81"></a>&nbsp;</pre>
 <div class="header">
-<h1><a href=../../index.php target=_top>MLPHP</a></h1>
+<h1><a href=../../examples/index.php target=_top>MLPHP</a></h1>
 <ul>
 <li><a href="../../../overview-summary.html">Overview</a></li>
 <li>Package</li><li>Class</li><li>Tree</li><li><a href="../../../overview-files.html">Files</a></li>
@@ -134,7 +134,7 @@
 </div>
 <hr>
 
-<p id="footer">Copyright 2002-2012 MarkLogic Corporation.  All Rights Reserved.</p>
+<p id="footer">Copyright 2002-2013 MarkLogic Corporation.  All Rights Reserved.</p>
 
 </body>
 
