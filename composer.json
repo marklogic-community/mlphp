@@ -18,13 +18,15 @@
         }
     ],
     "require": {
+        "psr/log": "*",
         "php": ">=5.3.0",
         "ext-curl": "*",
         "ext-dom": "*",
         "ext-xsl": "*"
     },
     "require-dev": {
-        "peej/phpdoctor" : "*"
+        "peej/phpdoctor" : "*",
+        "easybook/geshi" : "*"
     },
     "autoload": {
         "psr-0": { "MarkLogic\\MLPHP": "api/" }
