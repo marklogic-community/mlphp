@@ -2,7 +2,7 @@
 
 ## PHP API for MarkLogic
 
-Developers can now build powerful search applications in PHP using MarkLogic Server with an open source PHP API. The PHP API makes it easy to store documents, manage document metadata, and create sophisticated search queries on a web server running PHP (version 5.3 or greater). The PHP classes communicate with the MarkLogic via the [MarkLogic REST API](http://developer.marklogic.com/learn/rest).
+MLPHP is a PHP API for MarkLogic that makes it easy to store documents, manage document metadata, and create sophisticated search queries on a web server running PHP (version 5.3 or greater). The PHP classes communicate with the MarkLogic via the [MarkLogic REST API](http://developer.marklogic.com/learn/rest).
 
 After installing MLPHP (see below), you can load documents into
 MarkLogic with just a couple lines of PHP code:
@@ -70,7 +70,7 @@ MLPHP is in early-stage development, but ready-for-use.  The API is subject to c
         % cd $PATH_TO_MLPHP/mlphp/api/docs
         % git rm -rf *
         % cd $PATH_TO_MLPHP/mlphp/
-        % php vendor/bin/phpdoc.php mlphp.ini
+        % vendor/bin/phpdoc mlphp.ini
         % cd $PATH_TO_MLPHP/mlphp/api/docs
         % git add .
         % git commit -a -m "New docs"
@@ -90,8 +90,9 @@ MLPHP is in early-stage development, but ready-for-use.  The API is subject to c
         % cd $PATH_TO_MLPHP/mlphp/api/docs-ghpages
         % git rm -rf [a-z]*
         % cd $PATH_TO_MLPHP/mlphp
-        % php vendor/bin/phpdoc.php mlphp-ghpages.ini
+        % vendor/bin/phpdoc mlphp-ghpages.ini
         % cd PATH_TO_MLPHP/mlphp/api/docs-ghpages
+        % git add .
         % git commit -a -m "New docs"
         % git push origin gh-pages
         
