@@ -1,4 +1,3 @@
-
 # MLPHP Examples
 
 ## Prerequisites
@@ -32,13 +31,13 @@ To run the MLPHP Examples, you need to grab a copy of MLPHP with the examples in
 4. Start MarkLogic Server. In the MarkLogic Admin interface
    (http://localhost:8001), set up two users:
 
-       user name: rest-writer-user
-       password: writer-pw
-       role: rest-writer
-
-       user name: rest-admin-user
-       password: admin-pw
-       role: rest-admin
+           user name: rest-writer-user
+           password: writer-pw
+           role: rest-writer
+           
+           user name: rest-admin-user
+           password: admin-pw
+           role: rest-admin
 
    To set up the users, click Security, click Users, and then click the Create tab.
 
@@ -73,7 +72,7 @@ To run the MLPHP Examples, you need to grab a copy of MLPHP with the examples in
 
 7. Configure the permissions for the the `mlphp/examples/photomap/uploads` directory so PHP can read, write, and execute. For example, for Unix, in your OS console, go to `mlphp/examples/photomap` and execute the following:
 
-       % sudo chmod 777 uploads
+        % sudo chmod 777 uploads
 
 8. Setup is complete! To see MLPHP in action, browse to:
 
