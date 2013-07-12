@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="generator" content="PHPDoctor 2.0.5 (http://peej.github.com/phpdoctor/)">
-<meta name="when" content="Thu, 11 Jul 2013 17:29:39 +0000">
+<meta name="when" content="Fri, 12 Jul 2013 03:20:41 +0000">
 
 <link rel="stylesheet" type="text/css" href="../../../stylesheet.css">
 <link rel="start" href="../../../overview-summary.html">
@@ -63,7 +63,7 @@
 <a name="line25"></a><span style="color: #000000; font-weight: bold;">class</span> MLPHP
 <a name="line26"></a><span style="color: #009900;">&#123;</span>   
 <a name="line27"></a>    <span style="color: #009933; font-style: italic;">/**
-<a name="line28"></a>     *  Array of configuration parameters used to create clients
+<a name="line28"></a>     *  Array of configuration parameters used to create clients.
 <a name="line29"></a>     *  @var mixed[] 
 <a name="line30"></a>     *  @see MLPHP#__construct
 <a name="line31"></a>     */</span>
@@ -137,25 +137,25 @@
 <a name="line99"></a>        <span style="color: #009900;">&#125;</span>
 <a name="line100"></a>&nbsp;
 <a name="line101"></a>        <span style="color: #000088;">$className</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/ltrim"><span style="color: #990000;">ltrim</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$className</span><span style="color: #339933;">,</span> <span style="color: #0000ff;">'\\'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
-<a name="line102"></a><span style="color: #666666; font-style: italic;">// echo &quot;class &quot; . $className;</span>
-<a name="line103"></a><span style="color: #666666; font-style: italic;">// echo '&lt;br/&gt;';</span>
+<a name="line102"></a>           <span style="color: #666666; font-style: italic;">// echo &quot;class &quot; . $className;</span>
+<a name="line103"></a>           <span style="color: #666666; font-style: italic;">// echo '&lt;br/&gt;';</span>
 <a name="line104"></a>        <span style="color: #000088;">$fileName</span>  <span style="color: #339933;">=</span> <span style="color: #009900;">&#40;</span><a href="http://www.php.net/dirname"><span style="color: #990000;">dirname</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$baseDir</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span> <span style="color: #339933;">.</span> <span style="color: #009900; font-weight: bold;">DIRECTORY_SEPARATOR</span><span style="color: #339933;">;</span>
-<a name="line105"></a><span style="color: #666666; font-style: italic;">// echo &quot;file &quot; . $fileName;</span>
-<a name="line106"></a><span style="color: #666666; font-style: italic;">// echo '&lt;br/&gt;';</span>
+<a name="line105"></a>                <span style="color: #666666; font-style: italic;">// echo &quot;file &quot; . $fileName;</span>
+<a name="line106"></a>                <span style="color: #666666; font-style: italic;">// echo '&lt;br/&gt;';</span>
 <a name="line107"></a>        <span style="color: #b1b100;">if</span> <span style="color: #009900;">&#40;</span><span style="color: #000088;">$lastNsPos</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/strripos"><span style="color: #990000;">strripos</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$className</span><span style="color: #339933;">,</span> <span style="color: #0000ff;">'\\'</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
 <a name="line108"></a>            <span style="color: #000088;">$namespace</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/substr"><span style="color: #990000;">substr</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$className</span><span style="color: #339933;">,</span> <span style="color: #cc66cc;">0</span><span style="color: #339933;">,</span> <span style="color: #000088;">$lastNsPos</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
-<a name="line109"></a><span style="color: #666666; font-style: italic;">// echo &quot;ns &quot; . $namespace;</span>
-<a name="line110"></a><span style="color: #666666; font-style: italic;">// echo '&lt;br/&gt;';</span>
+<a name="line109"></a>               <span style="color: #666666; font-style: italic;">// echo &quot;ns &quot; . $namespace;</span>
+<a name="line110"></a>               <span style="color: #666666; font-style: italic;">// echo '&lt;br/&gt;';</span>
 <a name="line111"></a>            <span style="color: #000088;">$className</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/substr"><span style="color: #990000;">substr</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$className</span><span style="color: #339933;">,</span> <span style="color: #000088;">$lastNsPos</span> <span style="color: #339933;">+</span> <span style="color: #cc66cc;">1</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
-<a name="line112"></a><span style="color: #666666; font-style: italic;">// echo &quot;class &quot; . $className;</span>
-<a name="line113"></a><span style="color: #666666; font-style: italic;">// echo '&lt;br/&gt;';</span>
+<a name="line112"></a>               <span style="color: #666666; font-style: italic;">// echo &quot;class &quot; . $className;</span>
+<a name="line113"></a>               <span style="color: #666666; font-style: italic;">// echo '&lt;br/&gt;';</span>
 <a name="line114"></a>            <span style="color: #000088;">$fileName</span> <span style="color: #339933;">.=</span> <a href="http://www.php.net/str_replace"><span style="color: #990000;">str_replace</span></a><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'\\'</span><span style="color: #339933;">,</span> <span style="color: #009900; font-weight: bold;">DIRECTORY_SEPARATOR</span><span style="color: #339933;">,</span> <span style="color: #000088;">$namespace</span><span style="color: #009900;">&#41;</span> <span style="color: #339933;">.</span> <span style="color: #009900; font-weight: bold;">DIRECTORY_SEPARATOR</span><span style="color: #339933;">;</span>
-<a name="line115"></a><span style="color: #666666; font-style: italic;">// echo &quot;file &quot; . $fileName;</span>
-<a name="line116"></a><span style="color: #666666; font-style: italic;">// echo '&lt;br/&gt;';</span>
+<a name="line115"></a>               <span style="color: #666666; font-style: italic;">// echo &quot;file &quot; . $fileName;</span>
+<a name="line116"></a>               <span style="color: #666666; font-style: italic;">// echo '&lt;br/&gt;';</span>
 <a name="line117"></a>        <span style="color: #009900;">&#125;</span>
 <a name="line118"></a>        <span style="color: #000088;">$fileName</span> <span style="color: #339933;">.=</span> <a href="http://www.php.net/str_replace"><span style="color: #990000;">str_replace</span></a><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'_'</span><span style="color: #339933;">,</span> <span style="color: #009900; font-weight: bold;">DIRECTORY_SEPARATOR</span><span style="color: #339933;">,</span> <span style="color: #000088;">$className</span><span style="color: #009900;">&#41;</span> <span style="color: #339933;">.</span> <span style="color: #0000ff;">'.php'</span><span style="color: #339933;">;</span>
 <a name="line119"></a>&nbsp;
-<a name="line120"></a><span style="color: #666666; font-style: italic;">// echo &quot;FILE: &quot; . $fileName;</span>
+<a name="line120"></a>           <span style="color: #666666; font-style: italic;">// echo &quot;FILE: &quot; . $fileName;</span>
 <a name="line121"></a>&nbsp;
 <a name="line122"></a>        <span style="color: #b1b100;">if</span> <span style="color: #009900;">&#40;</span><a href="http://www.php.net/file_exists"><span style="color: #990000;">file_exists</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$fileName</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
 <a name="line123"></a>            <span style="color: #b1b100;">require</span> <span style="color: #000088;">$fileName</span><span style="color: #339933;">;</span>
