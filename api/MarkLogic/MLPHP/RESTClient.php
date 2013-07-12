@@ -16,6 +16,8 @@ limitations under the License.
 */
 namespace MarkLogic\MLPHP;
 
+use Psr\Log\LoggerInterface;
+
 /**
  * Represents a REST client.
  *
@@ -32,20 +34,28 @@ class RESTClient
     private $auth; // @var string
     private $prefix; // @var string
     private $request; // @var RESTRequest
+    private $logger; // @var LoggerInterface
 
     /*
      * Create a REST client object and configure REST server and authentication information.
      *
-     * @param string $host The host (examples: 'localhost', 'test.marklogic.com', '192.162.5.1').
-     * @param int $port The port (example: 8003). Set to 0 for no port.
-     * @param string $path An additional path prefix.
-     * @param string $version The API version (example: 'v1').
-     * @param string $username The username for REST authentication.
-     * @param string $password The password for REST authentication.
-     * @param string $auth The authentication scheme (examples: 'basic', 'digest').
+     * @param string host The host (examples: 'localhost', 'test.marklogic.com', '192.162.5.1').
+     * @param int port The port (example: 8003). Set to 0 for no port.
+     * @param string path An additional path prefix.
+     * @param string version The API version (example: 'v1').
+     * @param string username The username for REST authentication.
+     * @param string password The password for REST authentication.
+     * @param string auth The authentication scheme (examples: 'basic', 'digest').
+     * @param LoggerInterface logger 
      */
-    public function __construct($host = '', $port = 0, $path = '', $version = '', $username = '', $password = '', $auth = '')
+    public function __construct($host = '', $port = 0, $path = '', $version = '', $username = '', $password = '', $auth = '',
+        $logger)
     {
+        if ($logger) {
+            $this->logger = $logger;
+        } else {
+            $this->logger = new NullLogger();
+        }
         $this->host = (string)$host;
         $this->port = (int)$port;
         $this->path = (string)$path;
@@ -76,7 +86,7 @@ class RESTClient
     /**
      * Set the host.
      *
-     * @param string $host The host (examples: 'localhost', 'test.marklogic.com', '192.162.5.1').
+     * @param string host The host (examples: 'localhost', 'test.marklogic.com', '192.162.5.1').
      */
     public function setHost($host)
     {
@@ -86,7 +96,7 @@ class RESTClient
     /**
      * Set the port.
      *
-     * @param string $port The port (example: 8003).
+     * @param string port The port (example: 8003).
      */
     public function setPort($port)
     {
@@ -96,7 +106,7 @@ class RESTClient
     /**
      * Set the path.
      *
-     * @param string $path The path (example: 'api').
+     * @param string path The path (example: 'api').
      */
     public function setPath($path)
     {
@@ -106,7 +116,7 @@ class RESTClient
     /**
      * Set the version.
      *
-     * @param string $version The API version (example: 'v1').
+     * @param string version The API version (example: 'v1').
      */
     public function setVersion($version)
     {
@@ -116,7 +126,7 @@ class RESTClient
     /**
      * Set the username.
      *
-     * @param string $username The username for REST authentication.
+     * @param string username The username for REST authentication.
      */
     public function setUsername($username)
     {
@@ -126,7 +136,7 @@ class RESTClient
     /**
      * Set the password.
      *
-     * @param string $password The password for REST authentication.
+     * @param string password The password for REST authentication.
      */
     public function setPassword($password)
     {
@@ -136,7 +146,7 @@ class RESTClient
     /**
      * Set the authentication scheme.
      *
-     * @param string $auth The authentication scheme (examples: 'basic', 'digest').
+     * @param string auth The authentication scheme (examples: 'basic', 'digest').
      */
     public function setAuth($auth)
     {
@@ -146,7 +156,7 @@ class RESTClient
     /**
      * Set the URL prefix. Allows you to create a custom URL when no arguments are passed at construction.
      *
-     * @param string $prefix The URL prefix.
+     * @param string prefix The URL prefix.
      */
     public function setPrefix($prefix)
     {
@@ -164,15 +174,37 @@ class RESTClient
     }
 
     /**
+     * Set the logger.
+     *
+     * @param LoggerInterface logger
+     */
+    public function setLogger($logger)
+    {
+        $this->logger = $logger;
+    }
+
+    /**
+     * Get the logger.
+     *
+     * @return LoggerInterface
+     */
+    public function getLogger()
+    {
+        return $this->logger;
+    }
+
+    /**
      * Send a REST request.
      *
-     * @param RESTRequest $request A RESTRequest object
+     * @param RESTRequest request A RESTRequest object
      * @result RESTResponse A RESTResponse object.
      */
     public function send($request)
     {
 
         $this->request = $request;
+
+        $this->logger->debug("Method: " . $request->getVerb());
 
         switch (strtoupper($request->getVerb())) {
             case 'GET':
@@ -193,14 +225,14 @@ class RESTClient
             default:
                 throw new \Exception($verb . ' is an invalid or unsupported REST verb.');
         }
-    return $this->response;
+        return $this->response;
     }
 
     /**
      * Set cURL options common to all requests
      *
-     * @param resource $ch The cURL handle.
-     * @param string $url The REST URL string (example: 'documents').
+     * @param resource ch The cURL handle.
+     * @param string url The REST URL string (example: 'documents').
      * @result array An array of cURL options.
      */
     protected function setOptions(&$ch, $urlStr, $headers)
@@ -220,7 +252,7 @@ class RESTClient
   /**
      * Perform a GET request with cURL
      *
-     * @param RESTRequest $request A REST request.
+     * @param RESTRequest request A REST request.
      * @result RESTResponse A REST response.
      */
     public function get($request)
@@ -239,7 +271,7 @@ class RESTClient
     /**
      * Perform a PUT request with cURL
      *
-     * @param RESTRequest $request A REST request.
+     * @param RESTRequest request A REST request.
      * @result RESTResponse A REST response.
      */
     public function put($request)
@@ -266,7 +298,7 @@ class RESTClient
     /**
      * Perform a DELETE request with cURL
      *
-     * @param RESTRequest $request A REST request.
+     * @param RESTRequest request A REST request.
      * @result RESTResponse A REST response.
      */
     public function delete($request)
@@ -285,14 +317,14 @@ class RESTClient
     /**
      * Perform a POST request with cURL
      *
-     * @param RESTRequest $request A REST request.
+     * @param RESTRequest request A REST request.
      * @result RESTResponse A REST response.
      */
     public function post($request)
     {
         $ch = curl_init();
 
-      $requestBody = http_build_query($requestBody, '', '&');
+        $requestBody = http_build_query($requestBody, '', '&');
 
         $this->setOptions($ch, $request->getUrlStr(), $request->getHeaders());
 
@@ -306,7 +338,7 @@ class RESTClient
     /**
      * Perform a HEAD request with cURL
      *
-     * @param RESTRequest $request A REST request.
+     * @param RESTRequest request A REST request.
      * @result RESTResponse A REST response.
      */
     public function head($request)
@@ -328,17 +360,18 @@ class RESTClient
      *
      * @todo Handle more response codes
      *
-     * @param resource $ch The REST URL string (example: 'documents')
+     * @param resource ch The REST URL string (example: 'documents')
      * @result RESTResponse A RESTResponse object.
      */
     public function execute(&$ch)
     {
         $response = new RESTResponse();
+        $this->logger->debug("URL: " . curl_getinfo($ch, CURLINFO_EFFECTIVE_URL));
+        $this->logger->debug("Request body size: " . curl_getinfo($ch, CURLINFO_CONTENT_LENGTH_UPLOAD));
         $response->setBody(curl_exec($ch));
         $response->setInfo(curl_getinfo($ch));
-        /* echo '<pre>';
-        print_r($response);
-        echo '</pre>'; */
+        $this->logger->debug("Response length: " . curl_getinfo($ch, CURLINFO_CONTENT_LENGTH_DOWNLOAD));
+        $this->logger->debug("Response content type: " . curl_getinfo($ch, CURLINFO_CONTENT_TYPE));
         if ($response->getHttpCode() === 0) {
             throw new \Exception('No connection: ' . $response->getUrl(), $response->getHttpCode());
         } else if ($response->getHttpCode() == 301) {

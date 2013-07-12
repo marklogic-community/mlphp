@@ -20,14 +20,11 @@ limitations under the License.
 // 1. Complete the installation steps, see: mlphp/README.md
 
 // 2. Tell the app how to talk to MarkLogic.  
-// This simple app does not use Composer so it must regsiter MLPHP's autoloader.
 
-// Adjust the path below as needed to find the MLPHP project's MLPHP class.  
-require_once '../api/MarkLogic/MLPHP/MLPHP.php';
+// Adjust the path below as needed to find the MLPHP project's vendor directory.
+require_once __DIR__ . '/../vendor/autoload.php';
 
-use MarkLogic\MLPHP as MLPHP;
-
-MLPHP\MLPHP::registerAutoloader();
+use MarkLogic\MLPHP;
 
 // 3. Create a REST client that talks to MarkLogic.
 

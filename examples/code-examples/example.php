@@ -27,10 +27,6 @@ $id = (!empty($_REQUEST['id']) ? $_REQUEST['id'] : '');
 // Make sure page ID is in list, otherwise set default
 $id_decoded = (in_array(urldecode($id), array_keys($title))) ? urldecode($id) : 'example_docs.php';
 $view = (!empty($_REQUEST['view']) ? $_REQUEST['view'] : 'code');
-if ($id == "../my_first_app.php" && $view != 'code') {
-    header('Location: ' . $id_decoded, true, 301);
-    exit();
-} 
 ?>
 <!DOCTYPE html>
 <html lang="en-us">

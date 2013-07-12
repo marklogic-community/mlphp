@@ -18,7 +18,7 @@ To run the MLPHP Examples, you need to grab a copy of MLPHP with the examples in
 1. Download a copy of MLPHP.  With git, you can do
 
 	    % git clone git@github.com:marklogic/mlphp mlphp
-	 
+
 2. Use composer to pull down dependencies
 
         % cd mlphp

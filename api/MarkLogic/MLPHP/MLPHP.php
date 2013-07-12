@@ -16,6 +16,8 @@ limitations under the License.
 */
 namespace MarkLogic\MLPHP;
 
+use Psr\Log\NullLogger;
+
 /**
  * MLPHP Global State
  *
@@ -43,6 +45,7 @@ class MLPHP
      * auth-type (digest or basic) - default to basic<br/>
      * path - default to /<br/>
      * version - default to v1<br/>
+     * logger - default to Psr\Log\NullLogger
      * </pre>
      *
      * Additional array members are ignored.
@@ -50,7 +53,17 @@ class MLPHP
      */
     public function __construct($config)
     {
-        $this->config = $config;
+        $this->config = array_merge(array(
+            'host' => 'localhost',
+            'port' => 7009,
+            'user' => 'admin',
+            'password' => 'admin',
+            'path' => '',
+            'version' => 'v1',
+            'auth' => 'digest',
+            'logger' => new NullLogger()
+        ), $config);
+
     }
 
     /**
@@ -77,7 +90,8 @@ class MLPHP
             $this->config['version'],
             $this->config['username'], 
             $this->config['password'], 
-            $this->config['auth']
+            $this->config['auth'],
+            $this->config['logger']
         );
     }
 
@@ -132,6 +146,7 @@ class MLPHP
      */
     public static function registerAutoloader()
     {
-        spl_autoload_register('MLPHP\\MLPHP::autoload');
+        $n = __NAMESPACE__; // workaround for bug in phpdoctor
+        spl_autoload_register($n . '\\MLPHP::autoload');
     }
 }
