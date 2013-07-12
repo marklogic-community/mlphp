@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="generator" content="PHPDoctor 2.0.5 (http://peej.github.com/phpdoctor/)">
-<meta name="when" content="Tue, 02 Jul 2013 17:04:32 +0000">
+<meta name="when" content="Fri, 12 Jul 2013 05:04:21 +0000">
 
 <link rel="stylesheet" type="text/css" href="../../../stylesheet.css">
 <link rel="start" href="../../../overview-summary.html">
@@ -36,604 +36,604 @@
 <h1>MarkLogic/MLPHP/Options.php</h1>
 <hr>
 
-<a name="line1"></a><pre><?php
-<a name="line2"></a>/*
+<a name="line1"></a><pre class="php" style="font-family:monospace;"><span style="color: #000000; font-weight: bold;">&lt;?php</span>
+<a name="line2"></a><span style="color: #666666; font-style: italic;">/*
 <a name="line3"></a>Copyright 2002-2012 MarkLogic Corporation.  All Rights Reserved.
-<a name="line4"></a>
-<a name="line5"></a>Licensed under the Apache License, Version 2.0 (the "License");
+<a name="line4"></a>&nbsp;
+<a name="line5"></a>Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
 <a name="line6"></a>you may not use this file except in compliance with the License.
 <a name="line7"></a>You may obtain a copy of the License at
-<a name="line8"></a>
+<a name="line8"></a>&nbsp;
 <a name="line9"></a>     http://www.apache.org/licenses/LICENSE-2.0
-<a name="line10"></a>
+<a name="line10"></a>&nbsp;
 <a name="line11"></a>Unless required by applicable law or agreed to in writing, software
-<a name="line12"></a>distributed under the License is distributed on an "AS IS" BASIS,
+<a name="line12"></a>distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
 <a name="line13"></a>WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 <a name="line14"></a>See the License for the specific language governing permissions and
 <a name="line15"></a>limitations under the License.
-<a name="line16"></a>*/
-<a name="line17"></a>namespace MarkLogic\MLPHP;
-<a name="line18"></a>
-<a name="line19"></a>/**
+<a name="line16"></a>*/</span>
+<a name="line17"></a><span style="color: #000000; font-weight: bold;">namespace</span> MarkLogic\MLPHP<span style="color: #339933;">;</span>
+<a name="line18"></a>&nbsp;
+<a name="line19"></a><span style="color: #009933; font-style: italic;">/**
 <a name="line20"></a> * Represents search options.
 <a name="line21"></a> *
-<a name="line22"></a> * @package Options
-<a name="line23"></a> * @author Mike Wooldridge <mike.wooldridge@marklogic.com>
+<a name="line22"></a> * @package MLPHP
+<a name="line23"></a> * @author Mike Wooldridge &lt;mike.wooldridge@marklogic.com&gt;
 <a name="line24"></a> * @see Parameter list: http://docs.marklogic.com/search:search
 <a name="line25"></a> * @todo Support complete of properties (see below)
-<a name="line26"></a> */
-<a name="line27"></a>class Options
-<a name="line28"></a>{
-<a name="line29"></a>    private $dom; // @var DOMDocument
-<a name="line30"></a>    private $restClient; // @var RESTClient
-<a name="line31"></a>
-<a name="line32"></a>    private $constraints; // @var array of constraint objects
-<a name="line33"></a>    private $values; // @var array of Values objects
-<a name="line34"></a>    private $extracts; // @var Extracts object (handles 'extract-metadata' parameter)
-<a name="line35"></a>    private $transformResults; // @var TransformResults object
-<a name="line36"></a>    private $term; // @var Term object
-<a name="line37"></a>
-<a name="line38"></a>    private $additionalQuery; // @var string
-<a name="line39"></a>    private $concurrencyLevel; // @var int
-<a name="line40"></a>    private $debug; // @var bool
-<a name="line41"></a>    private $forest; // @var int
-<a name="line42"></a>    private $pageLength; // @var int
-<a name="line43"></a>    private $qualityWeight; // @var float
-<a name="line44"></a>    private $returnConstraints; // @var string
-<a name="line45"></a>    private $returnFacets; // @var string
-<a name="line46"></a>    private $returnMetrics; // @var string
-<a name="line47"></a>    private $returnPlan; // @var string
-<a name="line48"></a>    private $returnQtext; // @var string
-<a name="line49"></a>    private $returnQuery; // @var string
-<a name="line50"></a>    private $returnResults; // @var string
-<a name="line51"></a>    private $returnSimilar; // @var string
-<a name="line52"></a>    private $searchOption; // @var array
-<a name="line53"></a>
-<a name="line54"></a>    // TODO (*** higher priority):
-<a name="line55"></a>    // custom constraint
-<a name="line56"></a>    // bucketed range constraint ***
-<a name="line57"></a>    // default-suggestion-source
-<a name="line58"></a>    // grammar
-<a name="line59"></a>    // operator ***
-<a name="line60"></a>    // searchable-expression
-<a name="line61"></a>    // sort-order ***
-<a name="line62"></a>    // suggestion-source
-<a name="line63"></a>    // term ***
-<a name="line64"></a>    // tuples
-<a name="line65"></a>
-<a name="line66"></a>    /**
+<a name="line26"></a> */</span>
+<a name="line27"></a><span style="color: #000000; font-weight: bold;">class</span> Options
+<a name="line28"></a><span style="color: #009900;">&#123;</span>
+<a name="line29"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$dom</span><span style="color: #339933;">;</span> <span style="color: #666666; font-style: italic;">// @var DOMDocument</span>
+<a name="line30"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$restClient</span><span style="color: #339933;">;</span> <span style="color: #666666; font-style: italic;">// @var RESTClient</span>
+<a name="line31"></a>&nbsp;
+<a name="line32"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$constraints</span><span style="color: #339933;">;</span> <span style="color: #666666; font-style: italic;">// @var array of constraint objects</span>
+<a name="line33"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$values</span><span style="color: #339933;">;</span> <span style="color: #666666; font-style: italic;">// @var array of Values objects</span>
+<a name="line34"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$extracts</span><span style="color: #339933;">;</span> <span style="color: #666666; font-style: italic;">// @var Extracts object (handles 'extract-metadata' parameter)</span>
+<a name="line35"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$transformResults</span><span style="color: #339933;">;</span> <span style="color: #666666; font-style: italic;">// @var TransformResults object</span>
+<a name="line36"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$term</span><span style="color: #339933;">;</span> <span style="color: #666666; font-style: italic;">// @var Term object</span>
+<a name="line37"></a>&nbsp;
+<a name="line38"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$additionalQuery</span><span style="color: #339933;">;</span> <span style="color: #666666; font-style: italic;">// @var string</span>
+<a name="line39"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$concurrencyLevel</span><span style="color: #339933;">;</span> <span style="color: #666666; font-style: italic;">// @var int</span>
+<a name="line40"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$debug</span><span style="color: #339933;">;</span> <span style="color: #666666; font-style: italic;">// @var bool</span>
+<a name="line41"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$forest</span><span style="color: #339933;">;</span> <span style="color: #666666; font-style: italic;">// @var int</span>
+<a name="line42"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$pageLength</span><span style="color: #339933;">;</span> <span style="color: #666666; font-style: italic;">// @var int</span>
+<a name="line43"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$qualityWeight</span><span style="color: #339933;">;</span> <span style="color: #666666; font-style: italic;">// @var float</span>
+<a name="line44"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$returnConstraints</span><span style="color: #339933;">;</span> <span style="color: #666666; font-style: italic;">// @var string</span>
+<a name="line45"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$returnFacets</span><span style="color: #339933;">;</span> <span style="color: #666666; font-style: italic;">// @var string</span>
+<a name="line46"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$returnMetrics</span><span style="color: #339933;">;</span> <span style="color: #666666; font-style: italic;">// @var string</span>
+<a name="line47"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$returnPlan</span><span style="color: #339933;">;</span> <span style="color: #666666; font-style: italic;">// @var string</span>
+<a name="line48"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$returnQtext</span><span style="color: #339933;">;</span> <span style="color: #666666; font-style: italic;">// @var string</span>
+<a name="line49"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$returnQuery</span><span style="color: #339933;">;</span> <span style="color: #666666; font-style: italic;">// @var string</span>
+<a name="line50"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$returnResults</span><span style="color: #339933;">;</span> <span style="color: #666666; font-style: italic;">// @var string</span>
+<a name="line51"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$returnSimilar</span><span style="color: #339933;">;</span> <span style="color: #666666; font-style: italic;">// @var string</span>
+<a name="line52"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$searchOption</span><span style="color: #339933;">;</span> <span style="color: #666666; font-style: italic;">// @var array</span>
+<a name="line53"></a>&nbsp;
+<a name="line54"></a>    <span style="color: #666666; font-style: italic;">// TODO (*** higher priority):</span>
+<a name="line55"></a>    <span style="color: #666666; font-style: italic;">// custom constraint</span>
+<a name="line56"></a>    <span style="color: #666666; font-style: italic;">// bucketed range constraint ***</span>
+<a name="line57"></a>    <span style="color: #666666; font-style: italic;">// default-suggestion-source</span>
+<a name="line58"></a>    <span style="color: #666666; font-style: italic;">// grammar</span>
+<a name="line59"></a>    <span style="color: #666666; font-style: italic;">// operator ***</span>
+<a name="line60"></a>    <span style="color: #666666; font-style: italic;">// searchable-expression</span>
+<a name="line61"></a>    <span style="color: #666666; font-style: italic;">// sort-order ***</span>
+<a name="line62"></a>    <span style="color: #666666; font-style: italic;">// suggestion-source</span>
+<a name="line63"></a>    <span style="color: #666666; font-style: italic;">// term ***</span>
+<a name="line64"></a>    <span style="color: #666666; font-style: italic;">// tuples</span>
+<a name="line65"></a>&nbsp;
+<a name="line66"></a>    <span style="color: #009933; font-style: italic;">/**
 <a name="line67"></a>     * Create an Options object.
 <a name="line68"></a>     *
 <a name="line69"></a>     * @param RESTClient $restClient A REST client object.
-<a name="line70"></a>     */
-<a name="line71"></a>    public function __construct($restClient)
-<a name="line72"></a>    {
-<a name="line73"></a>        $this->restClient = $restClient;
-<a name="line74"></a>        $this->dom = new \DOMDocument();
-<a name="line75"></a>        $this->constraints = array();
-<a name="line76"></a>        $this->values = array();
-<a name="line77"></a>    }
-<a name="line78"></a>
-<a name="line79"></a>    /**
+<a name="line70"></a>     */</span>
+<a name="line71"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> __construct<span style="color: #009900;">&#40;</span><span style="color: #000088;">$restClient</span><span style="color: #009900;">&#41;</span>
+<a name="line72"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line73"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">restClient</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$restClient</span><span style="color: #339933;">;</span>
+<a name="line74"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">dom</span> <span style="color: #339933;">=</span> <span style="color: #000000; font-weight: bold;">new</span> \DOMDocument<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line75"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">constraints</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/array"><span style="color: #990000;">array</span></a><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line76"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">values</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/array"><span style="color: #990000;">array</span></a><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line77"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line78"></a>&nbsp;
+<a name="line79"></a>    <span style="color: #009933; font-style: italic;">/**
 <a name="line80"></a>     * Add a constraint.
 <a name="line81"></a>     *
 <a name="line82"></a>     * @param mixed $constraint constraint object.
-<a name="line83"></a>     */
-<a name="line84"></a>    public function addConstraint($constraint)
-<a name="line85"></a>    {
-<a name="line86"></a>        $this->constraints[] = $constraint;
-<a name="line87"></a>    }
-<a name="line88"></a>
-<a name="line89"></a>    /**
+<a name="line83"></a>     */</span>
+<a name="line84"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> addConstraint<span style="color: #009900;">&#40;</span><span style="color: #000088;">$constraint</span><span style="color: #009900;">&#41;</span>
+<a name="line85"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line86"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">constraints</span><span style="color: #009900;">&#91;</span><span style="color: #009900;">&#93;</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$constraint</span><span style="color: #339933;">;</span>
+<a name="line87"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line88"></a>&nbsp;
+<a name="line89"></a>    <span style="color: #009933; font-style: italic;">/**
 <a name="line90"></a>     * Add a values setting.
 <a name="line91"></a>     *
 <a name="line92"></a>     * @param Values $values Values object.
-<a name="line93"></a>     */
-<a name="line94"></a>    public function addValues($values)
-<a name="line95"></a>    {
-<a name="line96"></a>        $this->values[] = $values;
-<a name="line97"></a>    }
-<a name="line98"></a>
-<a name="line99"></a>    /**
+<a name="line93"></a>     */</span>
+<a name="line94"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> addValues<span style="color: #009900;">&#40;</span><span style="color: #000088;">$values</span><span style="color: #009900;">&#41;</span>
+<a name="line95"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line96"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">values</span><span style="color: #009900;">&#91;</span><span style="color: #009900;">&#93;</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$values</span><span style="color: #339933;">;</span>
+<a name="line97"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line98"></a>&nbsp;
+<a name="line99"></a>    <span style="color: #009933; font-style: italic;">/**
 <a name="line100"></a>     * Set the metadata extracts.
 <a name="line101"></a>     *
 <a name="line102"></a>     * @param Extracts $extracts A metadata extracts object.
-<a name="line103"></a>     */
-<a name="line104"></a>    public function setExtracts($extracts)
-<a name="line105"></a>    {
-<a name="line106"></a>        $this->extracts = $extracts;
-<a name="line107"></a>    }
-<a name="line108"></a>
-<a name="line109"></a>    /**
+<a name="line103"></a>     */</span>
+<a name="line104"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> setExtracts<span style="color: #009900;">&#40;</span><span style="color: #000088;">$extracts</span><span style="color: #009900;">&#41;</span>
+<a name="line105"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line106"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">extracts</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$extracts</span><span style="color: #339933;">;</span>
+<a name="line107"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line108"></a>&nbsp;
+<a name="line109"></a>    <span style="color: #009933; font-style: italic;">/**
 <a name="line110"></a>     * Set the transform-results setting.
 <a name="line111"></a>     *
 <a name="line112"></a>     * @param TransformResults $transformResults A TransformResults object.
-<a name="line113"></a>     */
-<a name="line114"></a>    public function setTransformResults($transformResults)
-<a name="line115"></a>    {
-<a name="line116"></a>        $this->transformResults = $transformResults;
-<a name="line117"></a>    }
-<a name="line118"></a>
-<a name="line119"></a>    /**
+<a name="line113"></a>     */</span>
+<a name="line114"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> setTransformResults<span style="color: #009900;">&#40;</span><span style="color: #000088;">$transformResults</span><span style="color: #009900;">&#41;</span>
+<a name="line115"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line116"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">transformResults</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$transformResults</span><span style="color: #339933;">;</span>
+<a name="line117"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line118"></a>&nbsp;
+<a name="line119"></a>    <span style="color: #009933; font-style: italic;">/**
 <a name="line120"></a>     * Set the term setting.
 <a name="line121"></a>     *
 <a name="line122"></a>     * @param Term $term A Term object.
-<a name="line123"></a>     */
-<a name="line124"></a>    public function setTerm($term)
-<a name="line125"></a>    {
-<a name="line126"></a>        $this->term = $term;
-<a name="line127"></a>    }
-<a name="line128"></a>
-<a name="line129"></a>    /**
+<a name="line123"></a>     */</span>
+<a name="line124"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> setTerm<span style="color: #009900;">&#40;</span><span style="color: #000088;">$term</span><span style="color: #009900;">&#41;</span>
+<a name="line125"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line126"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">term</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$term</span><span style="color: #339933;">;</span>
+<a name="line127"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line128"></a>&nbsp;
+<a name="line129"></a>    <span style="color: #009933; font-style: italic;">/**
 <a name="line130"></a>     * Get the search options as XML.
 <a name="line131"></a>     *
 <a name="line132"></a>     * @return string The search options as XML.
-<a name="line133"></a>     */
-<a name="line134"></a>    public function getAsXML()
-<a name="line135"></a>    {
-<a name="line136"></a>        // root
-<a name="line137"></a>        $this->dom = new \DOMDocument(); // reset so we don't continually to add to the options node
-<a name="line138"></a>        $root = $this->dom->createElement('options');
-<a name="line139"></a>        $root->setAttribute('xmlns', 'http://marklogic.com/appservices/search');
-<a name="line140"></a>        $this->dom->appendChild($root);
-<a name="line141"></a>
-<a name="line142"></a>        // constraints
-<a name="line143"></a>        foreach ($this->constraints as $constraint) {
-<a name="line144"></a>            $root->appendChild($constraint->getAsElem($this->dom));
-<a name="line145"></a>        }
-<a name="line146"></a>
-<a name="line147"></a>        // values
-<a name="line148"></a>        foreach ($this->values as $value) {
-<a name="line149"></a>            $root->appendChild($value->getValuesAsElem($this->dom));
-<a name="line150"></a>        }
-<a name="line151"></a>
-<a name="line152"></a>        // metadata extracts
-<a name="line153"></a>        if(isset($this->extracts)) {
-<a name="line154"></a>            $extractsElem = $this->extracts->getExtractsAsElem($this->dom);
-<a name="line155"></a>            $root->appendChild($extractsElem);
-<a name="line156"></a>        }
-<a name="line157"></a>
-<a name="line158"></a>        // transform results (snippetting)
-<a name="line159"></a>        if(isset($this->transformResults)) {
-<a name="line160"></a>            $transElem = $this->transformResults->getTransformResultsAsElem($this->dom);
-<a name="line161"></a>            $root->appendChild($transElem);
-<a name="line162"></a>        }
-<a name="line163"></a>
-<a name="line164"></a>        // term
-<a name="line165"></a>        if(isset($this->term)) {
-<a name="line166"></a>            $termElem = $this->term->getAsElem($this->dom);
-<a name="line167"></a>            $root->appendChild($termElem);
-<a name="line168"></a>        }
-<a name="line169"></a>
-<a name="line170"></a>        $this->addOption($root, 'additional-query', $this->additionalQuery);
-<a name="line171"></a>        $this->addOption($root, 'concurrency-level', $this->concurrencyLevel);
-<a name="line172"></a>        $this->addOption($root, 'debug', $this->debug);
-<a name="line173"></a>        $this->addOption($root, 'forest', $this->forest);
-<a name="line174"></a>        $this->addOption($root, 'page-length', $this->pageLength);
-<a name="line175"></a>        $this->addOption($root, 'quality-weight', $this->qualityWeight);
-<a name="line176"></a>        $this->addOption($root, 'return-constraints', $this->returnConstraints);
-<a name="line177"></a>        $this->addOption($root, 'return-facets', $this->returnFacets);
-<a name="line178"></a>        $this->addOption($root, 'return-metrics', $this->returnMetrics);
-<a name="line179"></a>        $this->addOption($root, 'return-plan', $this->returnPlan);
-<a name="line180"></a>        $this->addOption($root, 'return-qtext', $this->returnQtext);
-<a name="line181"></a>        $this->addOption($root, 'return-query', $this->returnQuery);
-<a name="line182"></a>        $this->addOption($root, 'return-results', $this->returnResults);
-<a name="line183"></a>        $this->addOption($root, 'return-similar', $this->returnSimilar);
-<a name="line184"></a>        if (!empty($this->searchOptions)) {
-<a name="line185"></a>            foreach($this->searchOptions as $opt) {
-<a name="line186"></a>                $this->addOption($root, 'search-option', $this->returnSimilar);
-<a name="line187"></a>            }
-<a name="line188"></a>        }
-<a name="line189"></a>        return $this->dom->saveXML();
-<a name="line190"></a>    }
-<a name="line191"></a>
-<a name="line192"></a>    /**
+<a name="line133"></a>     */</span>
+<a name="line134"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getAsXML<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
+<a name="line135"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line136"></a>        <span style="color: #666666; font-style: italic;">// root</span>
+<a name="line137"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">dom</span> <span style="color: #339933;">=</span> <span style="color: #000000; font-weight: bold;">new</span> \DOMDocument<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span> <span style="color: #666666; font-style: italic;">// reset so we don't continually to add to the options node</span>
+<a name="line138"></a>        <span style="color: #000088;">$root</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">dom</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">createElement</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'options'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line139"></a>        <span style="color: #000088;">$root</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">setAttribute</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'xmlns'</span><span style="color: #339933;">,</span> <span style="color: #0000ff;">'http://marklogic.com/appservices/search'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line140"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">dom</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">appendChild</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$root</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line141"></a>&nbsp;
+<a name="line142"></a>        <span style="color: #666666; font-style: italic;">// constraints</span>
+<a name="line143"></a>        <span style="color: #b1b100;">foreach</span> <span style="color: #009900;">&#40;</span><span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">constraints</span> <span style="color: #b1b100;">as</span> <span style="color: #000088;">$constraint</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+<a name="line144"></a>            <span style="color: #000088;">$root</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">appendChild</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$constraint</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getAsElem</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">dom</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line145"></a>        <span style="color: #009900;">&#125;</span>
+<a name="line146"></a>&nbsp;
+<a name="line147"></a>        <span style="color: #666666; font-style: italic;">// values</span>
+<a name="line148"></a>        <span style="color: #b1b100;">foreach</span> <span style="color: #009900;">&#40;</span><span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">values</span> <span style="color: #b1b100;">as</span> <span style="color: #000088;">$value</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+<a name="line149"></a>            <span style="color: #000088;">$root</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">appendChild</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$value</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getValuesAsElem</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">dom</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line150"></a>        <span style="color: #009900;">&#125;</span>
+<a name="line151"></a>&nbsp;
+<a name="line152"></a>        <span style="color: #666666; font-style: italic;">// metadata extracts</span>
+<a name="line153"></a>        <span style="color: #b1b100;">if</span><span style="color: #009900;">&#40;</span><a href="http://www.php.net/isset"><span style="color: #990000;">isset</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">extracts</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+<a name="line154"></a>            <span style="color: #000088;">$extractsElem</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">extracts</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getExtractsAsElem</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">dom</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line155"></a>            <span style="color: #000088;">$root</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">appendChild</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$extractsElem</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line156"></a>        <span style="color: #009900;">&#125;</span>
+<a name="line157"></a>&nbsp;
+<a name="line158"></a>        <span style="color: #666666; font-style: italic;">// transform results (snippetting)</span>
+<a name="line159"></a>        <span style="color: #b1b100;">if</span><span style="color: #009900;">&#40;</span><a href="http://www.php.net/isset"><span style="color: #990000;">isset</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">transformResults</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+<a name="line160"></a>            <span style="color: #000088;">$transElem</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">transformResults</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getTransformResultsAsElem</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">dom</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line161"></a>            <span style="color: #000088;">$root</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">appendChild</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$transElem</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line162"></a>        <span style="color: #009900;">&#125;</span>
+<a name="line163"></a>&nbsp;
+<a name="line164"></a>        <span style="color: #666666; font-style: italic;">// term</span>
+<a name="line165"></a>        <span style="color: #b1b100;">if</span><span style="color: #009900;">&#40;</span><a href="http://www.php.net/isset"><span style="color: #990000;">isset</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">term</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+<a name="line166"></a>            <span style="color: #000088;">$termElem</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">term</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getAsElem</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">dom</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line167"></a>            <span style="color: #000088;">$root</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">appendChild</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$termElem</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line168"></a>        <span style="color: #009900;">&#125;</span>
+<a name="line169"></a>&nbsp;
+<a name="line170"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">addOption</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$root</span><span style="color: #339933;">,</span> <span style="color: #0000ff;">'additional-query'</span><span style="color: #339933;">,</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">additionalQuery</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line171"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">addOption</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$root</span><span style="color: #339933;">,</span> <span style="color: #0000ff;">'concurrency-level'</span><span style="color: #339933;">,</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">concurrencyLevel</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line172"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">addOption</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$root</span><span style="color: #339933;">,</span> <span style="color: #0000ff;">'debug'</span><span style="color: #339933;">,</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">debug</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line173"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">addOption</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$root</span><span style="color: #339933;">,</span> <span style="color: #0000ff;">'forest'</span><span style="color: #339933;">,</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">forest</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line174"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">addOption</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$root</span><span style="color: #339933;">,</span> <span style="color: #0000ff;">'page-length'</span><span style="color: #339933;">,</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">pageLength</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line175"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">addOption</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$root</span><span style="color: #339933;">,</span> <span style="color: #0000ff;">'quality-weight'</span><span style="color: #339933;">,</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">qualityWeight</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line176"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">addOption</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$root</span><span style="color: #339933;">,</span> <span style="color: #0000ff;">'return-constraints'</span><span style="color: #339933;">,</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">returnConstraints</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line177"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">addOption</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$root</span><span style="color: #339933;">,</span> <span style="color: #0000ff;">'return-facets'</span><span style="color: #339933;">,</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">returnFacets</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line178"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">addOption</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$root</span><span style="color: #339933;">,</span> <span style="color: #0000ff;">'return-metrics'</span><span style="color: #339933;">,</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">returnMetrics</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line179"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">addOption</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$root</span><span style="color: #339933;">,</span> <span style="color: #0000ff;">'return-plan'</span><span style="color: #339933;">,</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">returnPlan</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line180"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">addOption</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$root</span><span style="color: #339933;">,</span> <span style="color: #0000ff;">'return-qtext'</span><span style="color: #339933;">,</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">returnQtext</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line181"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">addOption</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$root</span><span style="color: #339933;">,</span> <span style="color: #0000ff;">'return-query'</span><span style="color: #339933;">,</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">returnQuery</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line182"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">addOption</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$root</span><span style="color: #339933;">,</span> <span style="color: #0000ff;">'return-results'</span><span style="color: #339933;">,</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">returnResults</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line183"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">addOption</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$root</span><span style="color: #339933;">,</span> <span style="color: #0000ff;">'return-similar'</span><span style="color: #339933;">,</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">returnSimilar</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line184"></a>        <span style="color: #b1b100;">if</span> <span style="color: #009900;">&#40;</span><span style="color: #339933;">!</span><a href="http://www.php.net/empty"><span style="color: #990000;">empty</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">searchOptions</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+<a name="line185"></a>            <span style="color: #b1b100;">foreach</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">searchOptions</span> <span style="color: #b1b100;">as</span> <span style="color: #000088;">$opt</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+<a name="line186"></a>                <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">addOption</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$root</span><span style="color: #339933;">,</span> <span style="color: #0000ff;">'search-option'</span><span style="color: #339933;">,</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">returnSimilar</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line187"></a>            <span style="color: #009900;">&#125;</span>
+<a name="line188"></a>        <span style="color: #009900;">&#125;</span>
+<a name="line189"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">dom</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">saveXML</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line190"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line191"></a>&nbsp;
+<a name="line192"></a>    <span style="color: #009933; font-style: italic;">/**
 <a name="line193"></a>     * If an option value is set, create a DOM element with an option name and value and append it to the root element of the options node.
 <a name="line194"></a>     *
 <a name="line195"></a>     * @param DOMElement $root The root element of the options node.
 <a name="line196"></a>     * @param string $name The element name (option name).
 <a name="line197"></a>     * @param string $value The node value.
-<a name="line198"></a>     */
-<a name="line199"></a>    public function addOption($root, $name, $value)
-<a name="line200"></a>    {
-<a name="line201"></a>        if (isset($value)) {
-<a name="line202"></a>            $elem = $this->dom->createElement($name);
-<a name="line203"></a>            $elem->nodeValue = $value;
-<a name="line204"></a>            $root->appendChild($elem);
-<a name="line205"></a>        }
-<a name="line206"></a>    }
-<a name="line207"></a>
-<a name="line208"></a>    /**
+<a name="line198"></a>     */</span>
+<a name="line199"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> addOption<span style="color: #009900;">&#40;</span><span style="color: #000088;">$root</span><span style="color: #339933;">,</span> <span style="color: #000088;">$name</span><span style="color: #339933;">,</span> <span style="color: #000088;">$value</span><span style="color: #009900;">&#41;</span>
+<a name="line200"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line201"></a>        <span style="color: #b1b100;">if</span> <span style="color: #009900;">&#40;</span><a href="http://www.php.net/isset"><span style="color: #990000;">isset</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$value</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+<a name="line202"></a>            <span style="color: #000088;">$elem</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">dom</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">createElement</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$name</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line203"></a>            <span style="color: #000088;">$elem</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">nodeValue</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$value</span><span style="color: #339933;">;</span>
+<a name="line204"></a>            <span style="color: #000088;">$root</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">appendChild</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$elem</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line205"></a>        <span style="color: #009900;">&#125;</span>
+<a name="line206"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line207"></a>&nbsp;
+<a name="line208"></a>    <span style="color: #009933; font-style: italic;">/**
 <a name="line209"></a>     * Read the search options from the database.
 <a name="line210"></a>     *
 <a name="line211"></a>     * @param string $name The search options name.
 <a name="line212"></a>     * @return string The search options as XML.
-<a name="line213"></a>     */
-<a name="line214"></a>    public function read($name = 'all')
-<a name="line215"></a>    {
-<a name="line216"></a>        try {
-<a name="line217"></a>            $params = array('format' => 'xml');
-<a name="line218"></a>            $request = new RESTRequest('GET', 'config/query/' . $name, $params);
-<a name="line219"></a>            $response = $this->restClient->send($request);
-<a name="line220"></a>            return $response->getBody();
-<a name="line221"></a>        } catch(Exception $e) {
-<a name="line222"></a>            echo $e->getMessage() . ' in ' . $e->getFile() . ' on line ' . $e->getLine() . PHP_EOL;
-<a name="line223"></a>        }
-<a name="line224"></a>    }
-<a name="line225"></a>
-<a name="line226"></a>    /**
+<a name="line213"></a>     */</span>
+<a name="line214"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> read<span style="color: #009900;">&#40;</span><span style="color: #000088;">$name</span> <span style="color: #339933;">=</span> <span style="color: #0000ff;">'all'</span><span style="color: #009900;">&#41;</span>
+<a name="line215"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line216"></a>        try <span style="color: #009900;">&#123;</span>
+<a name="line217"></a>            <span style="color: #000088;">$params</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/array"><span style="color: #990000;">array</span></a><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'format'</span> <span style="color: #339933;">=&gt;</span> <span style="color: #0000ff;">'xml'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line218"></a>            <span style="color: #000088;">$request</span> <span style="color: #339933;">=</span> <span style="color: #000000; font-weight: bold;">new</span> RESTRequest<span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'GET'</span><span style="color: #339933;">,</span> <span style="color: #0000ff;">'config/query/'</span> <span style="color: #339933;">.</span> <span style="color: #000088;">$name</span><span style="color: #339933;">,</span> <span style="color: #000088;">$params</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line219"></a>            <span style="color: #000088;">$response</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">restClient</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">send</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$request</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line220"></a>            <span style="color: #b1b100;">return</span> <span style="color: #000088;">$response</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getBody</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line221"></a>        <span style="color: #009900;">&#125;</span> catch<span style="color: #009900;">&#40;</span>Exception <span style="color: #000088;">$e</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+<a name="line222"></a>            <span style="color: #b1b100;">echo</span> <span style="color: #000088;">$e</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getMessage</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span> <span style="color: #339933;">.</span> <span style="color: #0000ff;">' in '</span> <span style="color: #339933;">.</span> <span style="color: #000088;">$e</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getFile</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span> <span style="color: #339933;">.</span> <span style="color: #0000ff;">' on line '</span> <span style="color: #339933;">.</span> <span style="color: #000088;">$e</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getLine</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span> <span style="color: #339933;">.</span> PHP_EOL<span style="color: #339933;">;</span>
+<a name="line223"></a>        <span style="color: #009900;">&#125;</span>
+<a name="line224"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line225"></a>&nbsp;
+<a name="line226"></a>    <span style="color: #009933; font-style: italic;">/**
 <a name="line227"></a>     * Write the search options to the database.
 <a name="line228"></a>     *
 <a name="line229"></a>     * @param string $name The search options name.
 <a name="line230"></a>     * @return RESTResponse RESTResponse object.
-<a name="line231"></a>     */
-<a name="line232"></a>    public function write($name = 'all')
-<a name="line233"></a>    {
-<a name="line234"></a>        try {
-<a name="line235"></a>            $params = array('format' => 'xml');
-<a name="line236"></a>            $headers = array('Content-type' => 'application/xml');
-<a name="line237"></a>            $request = new RESTRequest('PUT', 'config/query/' . $name, $params, $this->getAsXML(), $headers);
-<a name="line238"></a>            $response = $this->restClient->send($request);
-<a name="line239"></a>            //print_r($response);
-<a name="line240"></a>            return $response;
-<a name="line241"></a>        } catch(Exception $e) {
-<a name="line242"></a>            echo $e->getMessage() . ' in ' . $e->getFile() . ' on line ' . $e->getLine() . PHP_EOL;
-<a name="line243"></a>        }
-<a name="line244"></a>    }
-<a name="line245"></a>
-<a name="line246"></a>    /**
+<a name="line231"></a>     */</span>
+<a name="line232"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> write<span style="color: #009900;">&#40;</span><span style="color: #000088;">$name</span> <span style="color: #339933;">=</span> <span style="color: #0000ff;">'all'</span><span style="color: #009900;">&#41;</span>
+<a name="line233"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line234"></a>        try <span style="color: #009900;">&#123;</span>
+<a name="line235"></a>            <span style="color: #000088;">$params</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/array"><span style="color: #990000;">array</span></a><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'format'</span> <span style="color: #339933;">=&gt;</span> <span style="color: #0000ff;">'xml'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line236"></a>            <span style="color: #000088;">$headers</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/array"><span style="color: #990000;">array</span></a><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'Content-type'</span> <span style="color: #339933;">=&gt;</span> <span style="color: #0000ff;">'application/xml'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line237"></a>            <span style="color: #000088;">$request</span> <span style="color: #339933;">=</span> <span style="color: #000000; font-weight: bold;">new</span> RESTRequest<span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'PUT'</span><span style="color: #339933;">,</span> <span style="color: #0000ff;">'config/query/'</span> <span style="color: #339933;">.</span> <span style="color: #000088;">$name</span><span style="color: #339933;">,</span> <span style="color: #000088;">$params</span><span style="color: #339933;">,</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getAsXML</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">,</span> <span style="color: #000088;">$headers</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line238"></a>            <span style="color: #000088;">$response</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">restClient</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">send</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$request</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line239"></a>            <span style="color: #666666; font-style: italic;">//print_r($response);</span>
+<a name="line240"></a>            <span style="color: #b1b100;">return</span> <span style="color: #000088;">$response</span><span style="color: #339933;">;</span>
+<a name="line241"></a>        <span style="color: #009900;">&#125;</span> catch<span style="color: #009900;">&#40;</span>Exception <span style="color: #000088;">$e</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+<a name="line242"></a>            <span style="color: #b1b100;">echo</span> <span style="color: #000088;">$e</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getMessage</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span> <span style="color: #339933;">.</span> <span style="color: #0000ff;">' in '</span> <span style="color: #339933;">.</span> <span style="color: #000088;">$e</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getFile</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span> <span style="color: #339933;">.</span> <span style="color: #0000ff;">' on line '</span> <span style="color: #339933;">.</span> <span style="color: #000088;">$e</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getLine</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span> <span style="color: #339933;">.</span> PHP_EOL<span style="color: #339933;">;</span>
+<a name="line243"></a>        <span style="color: #009900;">&#125;</span>
+<a name="line244"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line245"></a>&nbsp;
+<a name="line246"></a>    <span style="color: #009933; font-style: italic;">/**
 <a name="line247"></a>     * Delete the search options from the database.
 <a name="line248"></a>     *
 <a name="line249"></a>     * @param string $name The search options name.
 <a name="line250"></a>     * @return Options $this
-<a name="line251"></a>     */
-<a name="line252"></a>    public function delete($name)
-<a name="line253"></a>    {
-<a name="line254"></a>        try {
-<a name="line255"></a>            $request = new RESTRequest('DELETE', 'config/query/' . $name);
-<a name="line256"></a>            $response = $this->restClient->send($request);
-<a name="line257"></a>            return $this;
-<a name="line258"></a>        } catch(Exception $e) {
-<a name="line259"></a>            echo $e->getMessage() . ' in ' . $e->getFile() . ' on line ' . $e->getLine() . PHP_EOL;
-<a name="line260"></a>        }
-<a name="line261"></a>    }
-<a name="line262"></a>
-<a name="line263"></a>    /**
+<a name="line251"></a>     */</span>
+<a name="line252"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> delete<span style="color: #009900;">&#40;</span><span style="color: #000088;">$name</span><span style="color: #009900;">&#41;</span>
+<a name="line253"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line254"></a>        try <span style="color: #009900;">&#123;</span>
+<a name="line255"></a>            <span style="color: #000088;">$request</span> <span style="color: #339933;">=</span> <span style="color: #000000; font-weight: bold;">new</span> RESTRequest<span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'DELETE'</span><span style="color: #339933;">,</span> <span style="color: #0000ff;">'config/query/'</span> <span style="color: #339933;">.</span> <span style="color: #000088;">$name</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line256"></a>            <span style="color: #000088;">$response</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">restClient</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">send</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$request</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line257"></a>            <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">;</span>
+<a name="line258"></a>        <span style="color: #009900;">&#125;</span> catch<span style="color: #009900;">&#40;</span>Exception <span style="color: #000088;">$e</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+<a name="line259"></a>            <span style="color: #b1b100;">echo</span> <span style="color: #000088;">$e</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getMessage</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span> <span style="color: #339933;">.</span> <span style="color: #0000ff;">' in '</span> <span style="color: #339933;">.</span> <span style="color: #000088;">$e</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getFile</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span> <span style="color: #339933;">.</span> <span style="color: #0000ff;">' on line '</span> <span style="color: #339933;">.</span> <span style="color: #000088;">$e</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getLine</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span> <span style="color: #339933;">.</span> PHP_EOL<span style="color: #339933;">;</span>
+<a name="line260"></a>        <span style="color: #009900;">&#125;</span>
+<a name="line261"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line262"></a>&nbsp;
+<a name="line263"></a>    <span style="color: #009933; font-style: italic;">/**
 <a name="line264"></a>     * Get the additional-query setting.
 <a name="line265"></a>     *
 <a name="line266"></a>     * @return string The additional-query setting.
-<a name="line267"></a>     */
-<a name="line268"></a>    public function getAdditionalQuery()
-<a name="line269"></a>    {
-<a name="line270"></a>        return $this->additionalQuery;
-<a name="line271"></a>    }
-<a name="line272"></a>
-<a name="line273"></a>    /**
+<a name="line267"></a>     */</span>
+<a name="line268"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getAdditionalQuery<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
+<a name="line269"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line270"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">additionalQuery</span><span style="color: #339933;">;</span>
+<a name="line271"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line272"></a>&nbsp;
+<a name="line273"></a>    <span style="color: #009933; font-style: italic;">/**
 <a name="line274"></a>     * Set The additional-query setting.
 <a name="line275"></a>     *
 <a name="line276"></a>     * @see http://docs.marklogic.com/search:search#opt-additional-query
 <a name="line277"></a>     *
 <a name="line278"></a>     * @param string $additionalQuery The additional-query setting.
-<a name="line279"></a>     */
-<a name="line280"></a>    public function setAdditionalQuery($additionalQuery)
-<a name="line281"></a>    {
-<a name="line282"></a>        $this->additionalQuery = (string)$additionalQuery;
-<a name="line283"></a>    }
-<a name="line284"></a>
-<a name="line285"></a>    /**
+<a name="line279"></a>     */</span>
+<a name="line280"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> setAdditionalQuery<span style="color: #009900;">&#40;</span><span style="color: #000088;">$additionalQuery</span><span style="color: #009900;">&#41;</span>
+<a name="line281"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line282"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">additionalQuery</span> <span style="color: #339933;">=</span> <span style="color: #009900;">&#40;</span>string<span style="color: #009900;">&#41;</span><span style="color: #000088;">$additionalQuery</span><span style="color: #339933;">;</span>
+<a name="line283"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line284"></a>&nbsp;
+<a name="line285"></a>    <span style="color: #009933; font-style: italic;">/**
 <a name="line286"></a>     * Get the concurrency level.
 <a name="line287"></a>     *
 <a name="line288"></a>     * @return int The concurrency level.
-<a name="line289"></a>     */
-<a name="line290"></a>    public function getConcurrencyLevel()
-<a name="line291"></a>    {
-<a name="line292"></a>        return $this->concurrencyLevel;
-<a name="line293"></a>    }
-<a name="line294"></a>
-<a name="line295"></a>    /**
+<a name="line289"></a>     */</span>
+<a name="line290"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getConcurrencyLevel<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
+<a name="line291"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line292"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">concurrencyLevel</span><span style="color: #339933;">;</span>
+<a name="line293"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line294"></a>&nbsp;
+<a name="line295"></a>    <span style="color: #009933; font-style: italic;">/**
 <a name="line296"></a>     * Set The concurrency level.
 <a name="line297"></a>     *
 <a name="line298"></a>     * @see http://docs.marklogic.com/search:search#opt-concurrency-level
 <a name="line299"></a>     *
 <a name="line300"></a>     * @param int $concurrencyLevel The concurrency level.
-<a name="line301"></a>     */
-<a name="line302"></a>    public function setConcurrencyLevel($concurrencyLevel)
-<a name="line303"></a>    {
-<a name="line304"></a>        $this->concurrencyLevel = (int)$concurrencyLevel;
-<a name="line305"></a>    }
-<a name="line306"></a>
-<a name="line307"></a>    /**
+<a name="line301"></a>     */</span>
+<a name="line302"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> setConcurrencyLevel<span style="color: #009900;">&#40;</span><span style="color: #000088;">$concurrencyLevel</span><span style="color: #009900;">&#41;</span>
+<a name="line303"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line304"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">concurrencyLevel</span> <span style="color: #339933;">=</span> <span style="color: #009900;">&#40;</span>int<span style="color: #009900;">&#41;</span><span style="color: #000088;">$concurrencyLevel</span><span style="color: #339933;">;</span>
+<a name="line305"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line306"></a>&nbsp;
+<a name="line307"></a>    <span style="color: #009933; font-style: italic;">/**
 <a name="line308"></a>     * Get the debug setting.
 <a name="line309"></a>     *
 <a name="line310"></a>     * @return string The debug setting, 'true' or 'false'.
-<a name="line311"></a>     */
-<a name="line312"></a>    public function getDebug()
-<a name="line313"></a>    {
-<a name="line314"></a>        return $this->debug;
-<a name="line315"></a>    }
-<a name="line316"></a>
-<a name="line317"></a>    /**
+<a name="line311"></a>     */</span>
+<a name="line312"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getDebug<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
+<a name="line313"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line314"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">debug</span><span style="color: #339933;">;</span>
+<a name="line315"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line316"></a>&nbsp;
+<a name="line317"></a>    <span style="color: #009933; font-style: italic;">/**
 <a name="line318"></a>     * Set the debug setting.
 <a name="line319"></a>     *
 <a name="line320"></a>     * @see http://docs.marklogic.com/search:search#opt-debug
 <a name="line321"></a>     *
 <a name="line322"></a>     * @param string $debug The debug setting, 'true' or 'false'.
-<a name="line323"></a>     */
-<a name="line324"></a>    public function setDebug($debug)
-<a name="line325"></a>    {
-<a name="line326"></a>        $this->debug = (string)$debug;
-<a name="line327"></a>    }
-<a name="line328"></a>
-<a name="line329"></a>    /**
+<a name="line323"></a>     */</span>
+<a name="line324"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> setDebug<span style="color: #009900;">&#40;</span><span style="color: #000088;">$debug</span><span style="color: #009900;">&#41;</span>
+<a name="line325"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line326"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">debug</span> <span style="color: #339933;">=</span> <span style="color: #009900;">&#40;</span>string<span style="color: #009900;">&#41;</span><span style="color: #000088;">$debug</span><span style="color: #339933;">;</span>
+<a name="line327"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line328"></a>&nbsp;
+<a name="line329"></a>    <span style="color: #009933; font-style: italic;">/**
 <a name="line330"></a>     * Get the forest ID.
 <a name="line331"></a>     *
 <a name="line332"></a>     * @return int The forest ID.
-<a name="line333"></a>     */
-<a name="line334"></a>    public function getForest()
-<a name="line335"></a>    {
-<a name="line336"></a>        return $this->forest;
-<a name="line337"></a>    }
-<a name="line338"></a>
-<a name="line339"></a>    /**
+<a name="line333"></a>     */</span>
+<a name="line334"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getForest<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
+<a name="line335"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line336"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">forest</span><span style="color: #339933;">;</span>
+<a name="line337"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line338"></a>&nbsp;
+<a name="line339"></a>    <span style="color: #009933; font-style: italic;">/**
 <a name="line340"></a>     * Set the forest ID.
 <a name="line341"></a>     *
 <a name="line342"></a>     * @see http://docs.marklogic.com/search:search#opt-forest
 <a name="line343"></a>     *
 <a name="line344"></a>     * @param int $forest The forest ID.
-<a name="line345"></a>     */
-<a name="line346"></a>    public function setForest($forest)
-<a name="line347"></a>    {
-<a name="line348"></a>        $this->forest = (int)$forest;
-<a name="line349"></a>    }
-<a name="line350"></a>
-<a name="line351"></a>    /**
+<a name="line345"></a>     */</span>
+<a name="line346"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> setForest<span style="color: #009900;">&#40;</span><span style="color: #000088;">$forest</span><span style="color: #009900;">&#41;</span>
+<a name="line347"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line348"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">forest</span> <span style="color: #339933;">=</span> <span style="color: #009900;">&#40;</span>int<span style="color: #009900;">&#41;</span><span style="color: #000088;">$forest</span><span style="color: #339933;">;</span>
+<a name="line349"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line350"></a>&nbsp;
+<a name="line351"></a>    <span style="color: #009933; font-style: italic;">/**
 <a name="line352"></a>     * Get the page length.
 <a name="line353"></a>     *
 <a name="line354"></a>     * @return int The page length.
-<a name="line355"></a>     */
-<a name="line356"></a>    public function getPageLength()
-<a name="line357"></a>    {
-<a name="line358"></a>        return $this->pageLength;
-<a name="line359"></a>    }
-<a name="line360"></a>
-<a name="line361"></a>    /**
+<a name="line355"></a>     */</span>
+<a name="line356"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getPageLength<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
+<a name="line357"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line358"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">pageLength</span><span style="color: #339933;">;</span>
+<a name="line359"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line360"></a>&nbsp;
+<a name="line361"></a>    <span style="color: #009933; font-style: italic;">/**
 <a name="line362"></a>     * Set the page length.
 <a name="line363"></a>     *
 <a name="line364"></a>     * @see http://docs.marklogic.com/search:search#opt-page-length
 <a name="line365"></a>     *
 <a name="line366"></a>     * @param int $pageLength The page length.
-<a name="line367"></a>     */
-<a name="line368"></a>    public function setPageLength($pageLength)
-<a name="line369"></a>    {
-<a name="line370"></a>        $this->pageLength = (int)$pageLength;
-<a name="line371"></a>    }
-<a name="line372"></a>
-<a name="line373"></a>    /**
+<a name="line367"></a>     */</span>
+<a name="line368"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> setPageLength<span style="color: #009900;">&#40;</span><span style="color: #000088;">$pageLength</span><span style="color: #009900;">&#41;</span>
+<a name="line369"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line370"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">pageLength</span> <span style="color: #339933;">=</span> <span style="color: #009900;">&#40;</span>int<span style="color: #009900;">&#41;</span><span style="color: #000088;">$pageLength</span><span style="color: #339933;">;</span>
+<a name="line371"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line372"></a>&nbsp;
+<a name="line373"></a>    <span style="color: #009933; font-style: italic;">/**
 <a name="line374"></a>     * Get the quality weight.
 <a name="line375"></a>     *
 <a name="line376"></a>     * @return float The quality weight.
-<a name="line377"></a>     */
-<a name="line378"></a>    public function getQualityWeight()
-<a name="line379"></a>    {
-<a name="line380"></a>        return $this->qualityWeight;
-<a name="line381"></a>    }
-<a name="line382"></a>
-<a name="line383"></a>    /**
+<a name="line377"></a>     */</span>
+<a name="line378"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getQualityWeight<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
+<a name="line379"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line380"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">qualityWeight</span><span style="color: #339933;">;</span>
+<a name="line381"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line382"></a>&nbsp;
+<a name="line383"></a>    <span style="color: #009933; font-style: italic;">/**
 <a name="line384"></a>     * Set the quality weight.
 <a name="line385"></a>     *
 <a name="line386"></a>     * @see http://docs.marklogic.com/search:search#opt-quality-weight
 <a name="line387"></a>     *
 <a name="line388"></a>     * @param float $qualityWeight The quality weight.
-<a name="line389"></a>     */
-<a name="line390"></a>    public function setQualityWeight($qualityWeight)
-<a name="line391"></a>    {
-<a name="line392"></a>        $this->qualityWeight = (float)$qualityWeight;
-<a name="line393"></a>    }
-<a name="line394"></a>
-<a name="line395"></a>    /**
+<a name="line389"></a>     */</span>
+<a name="line390"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> setQualityWeight<span style="color: #009900;">&#40;</span><span style="color: #000088;">$qualityWeight</span><span style="color: #009900;">&#41;</span>
+<a name="line391"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line392"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">qualityWeight</span> <span style="color: #339933;">=</span> <span style="color: #009900;">&#40;</span>float<span style="color: #009900;">&#41;</span><span style="color: #000088;">$qualityWeight</span><span style="color: #339933;">;</span>
+<a name="line393"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line394"></a>&nbsp;
+<a name="line395"></a>    <span style="color: #009933; font-style: italic;">/**
 <a name="line396"></a>     * Get the return-constraints setting.
 <a name="line397"></a>     *
 <a name="line398"></a>     * @return string The return-constraints setting.
-<a name="line399"></a>     */
-<a name="line400"></a>    public function getReturnConstraints()
-<a name="line401"></a>    {
-<a name="line402"></a>        return $this->returnConstraints;
-<a name="line403"></a>    }
-<a name="line404"></a>
-<a name="line405"></a>    /**
+<a name="line399"></a>     */</span>
+<a name="line400"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getReturnConstraints<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
+<a name="line401"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line402"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">returnConstraints</span><span style="color: #339933;">;</span>
+<a name="line403"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line404"></a>&nbsp;
+<a name="line405"></a>    <span style="color: #009933; font-style: italic;">/**
 <a name="line406"></a>     * Set the return-constraints setting.
 <a name="line407"></a>     *
 <a name="line408"></a>     * @see http://docs.marklogic.com/search:search#opt-return-constraints
 <a name="line409"></a>     *
 <a name="line410"></a>     * @param string $returnConstraints The return-constraints setting, 'true' or 'false'.
-<a name="line411"></a>     */
-<a name="line412"></a>    public function setReturnConstraints($returnConstraints)
-<a name="line413"></a>    {
-<a name="line414"></a>        $this->returnConstraints = (string)$returnConstraints;
-<a name="line415"></a>    }
-<a name="line416"></a>
-<a name="line417"></a>    /**
+<a name="line411"></a>     */</span>
+<a name="line412"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> setReturnConstraints<span style="color: #009900;">&#40;</span><span style="color: #000088;">$returnConstraints</span><span style="color: #009900;">&#41;</span>
+<a name="line413"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line414"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">returnConstraints</span> <span style="color: #339933;">=</span> <span style="color: #009900;">&#40;</span>string<span style="color: #009900;">&#41;</span><span style="color: #000088;">$returnConstraints</span><span style="color: #339933;">;</span>
+<a name="line415"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line416"></a>&nbsp;
+<a name="line417"></a>    <span style="color: #009933; font-style: italic;">/**
 <a name="line418"></a>     * Get the return-facets setting.
 <a name="line419"></a>     *
 <a name="line420"></a>     * @return string The return-facets setting.
-<a name="line421"></a>     */
-<a name="line422"></a>    public function getReturnFacets()
-<a name="line423"></a>    {
-<a name="line424"></a>        return $this->returnFacets;
-<a name="line425"></a>    }
-<a name="line426"></a>
-<a name="line427"></a>    /**
+<a name="line421"></a>     */</span>
+<a name="line422"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getReturnFacets<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
+<a name="line423"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line424"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">returnFacets</span><span style="color: #339933;">;</span>
+<a name="line425"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line426"></a>&nbsp;
+<a name="line427"></a>    <span style="color: #009933; font-style: italic;">/**
 <a name="line428"></a>     * Set the return-facets setting.
 <a name="line429"></a>     *
 <a name="line430"></a>     * @see http://docs.marklogic.com/search:search#opt-return-facets
 <a name="line431"></a>     *
 <a name="line432"></a>     * @param string $returnFacets The return-facets setting, 'true' or 'false'.
-<a name="line433"></a>     */
-<a name="line434"></a>    public function setReturnFacets($returnFacets)
-<a name="line435"></a>    {
-<a name="line436"></a>        $this->returnFacets = (string)$returnFacets;
-<a name="line437"></a>    }
-<a name="line438"></a>
-<a name="line439"></a>    /**
+<a name="line433"></a>     */</span>
+<a name="line434"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> setReturnFacets<span style="color: #009900;">&#40;</span><span style="color: #000088;">$returnFacets</span><span style="color: #009900;">&#41;</span>
+<a name="line435"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line436"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">returnFacets</span> <span style="color: #339933;">=</span> <span style="color: #009900;">&#40;</span>string<span style="color: #009900;">&#41;</span><span style="color: #000088;">$returnFacets</span><span style="color: #339933;">;</span>
+<a name="line437"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line438"></a>&nbsp;
+<a name="line439"></a>    <span style="color: #009933; font-style: italic;">/**
 <a name="line440"></a>     * Get the return-metrics setting.
 <a name="line441"></a>     *
 <a name="line442"></a>     * @return string The return-metrics setting.
-<a name="line443"></a>     */
-<a name="line444"></a>    public function getReturnMetrics()
-<a name="line445"></a>    {
-<a name="line446"></a>        return $this->returnMetrics;
-<a name="line447"></a>    }
-<a name="line448"></a>
-<a name="line449"></a>    /**
+<a name="line443"></a>     */</span>
+<a name="line444"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getReturnMetrics<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
+<a name="line445"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line446"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">returnMetrics</span><span style="color: #339933;">;</span>
+<a name="line447"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line448"></a>&nbsp;
+<a name="line449"></a>    <span style="color: #009933; font-style: italic;">/**
 <a name="line450"></a>     * Set the return-metrics setting.
 <a name="line451"></a>     *
 <a name="line452"></a>     * @see http://docs.marklogic.com/search:search#opt-return-metrics
 <a name="line453"></a>     *
 <a name="line454"></a>     * @param string $returnMetrics The return-metrics setting, 'true' or 'false'.
-<a name="line455"></a>     */
-<a name="line456"></a>    public function setReturnMetrics($returnMetrics)
-<a name="line457"></a>    {
-<a name="line458"></a>        $this->returnMetrics = (string)$returnMetrics;
-<a name="line459"></a>    }
-<a name="line460"></a>
-<a name="line461"></a>    /**
+<a name="line455"></a>     */</span>
+<a name="line456"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> setReturnMetrics<span style="color: #009900;">&#40;</span><span style="color: #000088;">$returnMetrics</span><span style="color: #009900;">&#41;</span>
+<a name="line457"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line458"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">returnMetrics</span> <span style="color: #339933;">=</span> <span style="color: #009900;">&#40;</span>string<span style="color: #009900;">&#41;</span><span style="color: #000088;">$returnMetrics</span><span style="color: #339933;">;</span>
+<a name="line459"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line460"></a>&nbsp;
+<a name="line461"></a>    <span style="color: #009933; font-style: italic;">/**
 <a name="line462"></a>     * Get the return-plan setting.
 <a name="line463"></a>     *
 <a name="line464"></a>     * @return string The return-plan setting.
-<a name="line465"></a>     */
-<a name="line466"></a>    public function getReturnPlan()
-<a name="line467"></a>    {
-<a name="line468"></a>        return $this->returnPlan;
-<a name="line469"></a>    }
-<a name="line470"></a>
-<a name="line471"></a>    /**
+<a name="line465"></a>     */</span>
+<a name="line466"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getReturnPlan<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
+<a name="line467"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line468"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">returnPlan</span><span style="color: #339933;">;</span>
+<a name="line469"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line470"></a>&nbsp;
+<a name="line471"></a>    <span style="color: #009933; font-style: italic;">/**
 <a name="line472"></a>     * Set the return-plan setting.
 <a name="line473"></a>     *
 <a name="line474"></a>     * @see http://docs.marklogic.com/search:search#opt-return-plan
 <a name="line475"></a>     *
 <a name="line476"></a>     * @param string $returnPlan The return-plan setting, 'true' or 'false'.
-<a name="line477"></a>     */
-<a name="line478"></a>    public function setReturnPlan($returnPlan)
-<a name="line479"></a>    {
-<a name="line480"></a>        $this->returnPlan = (string)$returnPlan;
-<a name="line481"></a>    }
-<a name="line482"></a>
-<a name="line483"></a>    /**
+<a name="line477"></a>     */</span>
+<a name="line478"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> setReturnPlan<span style="color: #009900;">&#40;</span><span style="color: #000088;">$returnPlan</span><span style="color: #009900;">&#41;</span>
+<a name="line479"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line480"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">returnPlan</span> <span style="color: #339933;">=</span> <span style="color: #009900;">&#40;</span>string<span style="color: #009900;">&#41;</span><span style="color: #000088;">$returnPlan</span><span style="color: #339933;">;</span>
+<a name="line481"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line482"></a>&nbsp;
+<a name="line483"></a>    <span style="color: #009933; font-style: italic;">/**
 <a name="line484"></a>     * Get the return-qtext setting.
 <a name="line485"></a>     *
 <a name="line486"></a>     * @return string The return-qtext setting.
-<a name="line487"></a>     */
-<a name="line488"></a>    public function getReturnQtext()
-<a name="line489"></a>    {
-<a name="line490"></a>        return $this->returnQtext;
-<a name="line491"></a>    }
-<a name="line492"></a>
-<a name="line493"></a>    /**
+<a name="line487"></a>     */</span>
+<a name="line488"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getReturnQtext<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
+<a name="line489"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line490"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">returnQtext</span><span style="color: #339933;">;</span>
+<a name="line491"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line492"></a>&nbsp;
+<a name="line493"></a>    <span style="color: #009933; font-style: italic;">/**
 <a name="line494"></a>     * Set the return-qtext setting.
 <a name="line495"></a>     *
 <a name="line496"></a>     * @see http://docs.marklogic.com/search:search#opt-return-qtext
 <a name="line497"></a>     *
 <a name="line498"></a>     * @param string $returnQtext The return-qtext setting, 'true' or 'false'.
-<a name="line499"></a>     */
-<a name="line500"></a>    public function setReturnQtext($returnQtext)
-<a name="line501"></a>    {
-<a name="line502"></a>        $this->returnQtext = (string)$returnQtext;
-<a name="line503"></a>    }
-<a name="line504"></a>
-<a name="line505"></a>    /**
+<a name="line499"></a>     */</span>
+<a name="line500"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> setReturnQtext<span style="color: #009900;">&#40;</span><span style="color: #000088;">$returnQtext</span><span style="color: #009900;">&#41;</span>
+<a name="line501"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line502"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">returnQtext</span> <span style="color: #339933;">=</span> <span style="color: #009900;">&#40;</span>string<span style="color: #009900;">&#41;</span><span style="color: #000088;">$returnQtext</span><span style="color: #339933;">;</span>
+<a name="line503"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line504"></a>&nbsp;
+<a name="line505"></a>    <span style="color: #009933; font-style: italic;">/**
 <a name="line506"></a>     * Get the return-query setting.
 <a name="line507"></a>     *
 <a name="line508"></a>     * @return string The return-query setting.
-<a name="line509"></a>     */
-<a name="line510"></a>    public function getReturnQuery()
-<a name="line511"></a>    {
-<a name="line512"></a>        return $this->returnQuery;
-<a name="line513"></a>    }
-<a name="line514"></a>
-<a name="line515"></a>    /**
+<a name="line509"></a>     */</span>
+<a name="line510"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getReturnQuery<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
+<a name="line511"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line512"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">returnQuery</span><span style="color: #339933;">;</span>
+<a name="line513"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line514"></a>&nbsp;
+<a name="line515"></a>    <span style="color: #009933; font-style: italic;">/**
 <a name="line516"></a>     * Set the return-query setting.
 <a name="line517"></a>     *
 <a name="line518"></a>     * @see http://docs.marklogic.com/search:search#opt-return-query
 <a name="line519"></a>     *
 <a name="line520"></a>     * @param string $returnQuery The return-query setting, 'true' or 'false'.
-<a name="line521"></a>     */
-<a name="line522"></a>    public function setReturnQuery($returnQuery)
-<a name="line523"></a>    {
-<a name="line524"></a>        $this->returnQuery = (string)$returnQuery;
-<a name="line525"></a>    }
-<a name="line526"></a>
-<a name="line527"></a>    /**
+<a name="line521"></a>     */</span>
+<a name="line522"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> setReturnQuery<span style="color: #009900;">&#40;</span><span style="color: #000088;">$returnQuery</span><span style="color: #009900;">&#41;</span>
+<a name="line523"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line524"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">returnQuery</span> <span style="color: #339933;">=</span> <span style="color: #009900;">&#40;</span>string<span style="color: #009900;">&#41;</span><span style="color: #000088;">$returnQuery</span><span style="color: #339933;">;</span>
+<a name="line525"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line526"></a>&nbsp;
+<a name="line527"></a>    <span style="color: #009933; font-style: italic;">/**
 <a name="line528"></a>     * Get the return-results setting.
 <a name="line529"></a>     *
 <a name="line530"></a>     * @return string The return-results setting.
-<a name="line531"></a>     */
-<a name="line532"></a>    public function getReturnResults()
-<a name="line533"></a>    {
-<a name="line534"></a>        return $this->returnResults;
-<a name="line535"></a>    }
-<a name="line536"></a>
-<a name="line537"></a>    /**
+<a name="line531"></a>     */</span>
+<a name="line532"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getReturnResults<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
+<a name="line533"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line534"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">returnResults</span><span style="color: #339933;">;</span>
+<a name="line535"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line536"></a>&nbsp;
+<a name="line537"></a>    <span style="color: #009933; font-style: italic;">/**
 <a name="line538"></a>     * Set the return-results setting.
 <a name="line539"></a>     *
 <a name="line540"></a>     * @see http://docs.marklogic.com/search:search#opt-return-results
 <a name="line541"></a>     *
 <a name="line542"></a>     * @param string $returnResults The return-results setting, 'true' or 'false'.
-<a name="line543"></a>     */
-<a name="line544"></a>    public function setReturnResults($returnResults)
-<a name="line545"></a>    {
-<a name="line546"></a>        $this->returnResults = (string)$returnResults;
-<a name="line547"></a>    }
-<a name="line548"></a>
-<a name="line549"></a>    /**
+<a name="line543"></a>     */</span>
+<a name="line544"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> setReturnResults<span style="color: #009900;">&#40;</span><span style="color: #000088;">$returnResults</span><span style="color: #009900;">&#41;</span>
+<a name="line545"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line546"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">returnResults</span> <span style="color: #339933;">=</span> <span style="color: #009900;">&#40;</span>string<span style="color: #009900;">&#41;</span><span style="color: #000088;">$returnResults</span><span style="color: #339933;">;</span>
+<a name="line547"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line548"></a>&nbsp;
+<a name="line549"></a>    <span style="color: #009933; font-style: italic;">/**
 <a name="line550"></a>     * Get the return-similar setting.
 <a name="line551"></a>     *
 <a name="line552"></a>     * @return string The return-similar setting.
-<a name="line553"></a>     */
-<a name="line554"></a>    public function getReturnSimilar()
-<a name="line555"></a>    {
-<a name="line556"></a>        return $this->returnSimilar;
-<a name="line557"></a>    }
-<a name="line558"></a>
-<a name="line559"></a>    /**
+<a name="line553"></a>     */</span>
+<a name="line554"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getReturnSimilar<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
+<a name="line555"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line556"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">returnSimilar</span><span style="color: #339933;">;</span>
+<a name="line557"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line558"></a>&nbsp;
+<a name="line559"></a>    <span style="color: #009933; font-style: italic;">/**
 <a name="line560"></a>     * Set the return-similar setting.
 <a name="line561"></a>     *
 <a name="line562"></a>     * @see http://docs.marklogic.com/search:search#opt-return-similar
 <a name="line563"></a>     *
 <a name="line564"></a>     * @param string $returnSimilar The return-similar setting, 'true' or 'false'.
-<a name="line565"></a>     */
-<a name="line566"></a>    public function setReturnSimilar($returnSimilar)
-<a name="line567"></a>    {
-<a name="line568"></a>        $this->returnSimilar = (string)$returnSimilar;
-<a name="line569"></a>    }
-<a name="line570"></a>
-<a name="line571"></a>    /**
+<a name="line565"></a>     */</span>
+<a name="line566"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> setReturnSimilar<span style="color: #009900;">&#40;</span><span style="color: #000088;">$returnSimilar</span><span style="color: #009900;">&#41;</span>
+<a name="line567"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line568"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">returnSimilar</span> <span style="color: #339933;">=</span> <span style="color: #009900;">&#40;</span>string<span style="color: #009900;">&#41;</span><span style="color: #000088;">$returnSimilar</span><span style="color: #339933;">;</span>
+<a name="line569"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line570"></a>&nbsp;
+<a name="line571"></a>    <span style="color: #009933; font-style: italic;">/**
 <a name="line572"></a>     * Get the search options.
 <a name="line573"></a>     *
 <a name="line574"></a>     * @return array The search options.
-<a name="line575"></a>     */
-<a name="line576"></a>    public function getSearchOptions()
-<a name="line577"></a>    {
-<a name="line578"></a>        return $this->searchOptions;
-<a name="line579"></a>    }
-<a name="line580"></a>
-<a name="line581"></a>    /**
+<a name="line575"></a>     */</span>
+<a name="line576"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getSearchOptions<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
+<a name="line577"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line578"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">searchOptions</span><span style="color: #339933;">;</span>
+<a name="line579"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line580"></a>&nbsp;
+<a name="line581"></a>    <span style="color: #009933; font-style: italic;">/**
 <a name="line582"></a>     * Set the search options.
 <a name="line583"></a>     *
 <a name="line584"></a>     * @see http://docs.marklogic.com/search:search#opt-search-option
 <a name="line585"></a>     *
 <a name="line586"></a>     * @param string|array $searchOptions The search options as a string (single option) or array of strings.
-<a name="line587"></a>     */
-<a name="line588"></a>    public function setSearchOptions($searchOptions)
-<a name="line589"></a>    {
-<a name="line590"></a>        if (is_array($searchOptions)) {
-<a name="line591"></a>            $this->searchOptions = array_unique(array_merge($this->searchOptions, $searchOptions));
-<a name="line592"></a>        } else {
-<a name="line593"></a>            $this->searchOptions[] = $searchOptions;
-<a name="line594"></a>            $this->searchOptions = array_unique($this->searchOptions);
-<a name="line595"></a>        }
-<a name="line596"></a>    }
-<a name="line597"></a>}
-<a name="line598"></a></pre>
+<a name="line587"></a>     */</span>
+<a name="line588"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> setSearchOptions<span style="color: #009900;">&#40;</span><span style="color: #000088;">$searchOptions</span><span style="color: #009900;">&#41;</span>
+<a name="line589"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line590"></a>        <span style="color: #b1b100;">if</span> <span style="color: #009900;">&#40;</span><a href="http://www.php.net/is_array"><span style="color: #990000;">is_array</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$searchOptions</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+<a name="line591"></a>            <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">searchOptions</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/array_unique"><span style="color: #990000;">array_unique</span></a><span style="color: #009900;">&#40;</span><a href="http://www.php.net/array_merge"><span style="color: #990000;">array_merge</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">searchOptions</span><span style="color: #339933;">,</span> <span style="color: #000088;">$searchOptions</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line592"></a>        <span style="color: #009900;">&#125;</span> <span style="color: #b1b100;">else</span> <span style="color: #009900;">&#123;</span>
+<a name="line593"></a>            <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">searchOptions</span><span style="color: #009900;">&#91;</span><span style="color: #009900;">&#93;</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$searchOptions</span><span style="color: #339933;">;</span>
+<a name="line594"></a>            <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">searchOptions</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/array_unique"><span style="color: #990000;">array_unique</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">searchOptions</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line595"></a>        <span style="color: #009900;">&#125;</span>
+<a name="line596"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line597"></a><span style="color: #009900;">&#125;</span>
+<a name="line598"></a>&nbsp;</pre>
 <div class="header">
 <h1><a href=https://github.com/marklogic/mlphp target=_top>MLPHP</a></h1>
 <ul>
@@ -651,7 +651,7 @@
 </div>
 <hr>
 
-<p id="footer">Copyright 2002-2012 MarkLogic Corporation.  All Rights Reserved.</p>
+<p id="footer">Copyright 2002-2013 MarkLogic Corporation.  All Rights Reserved.</p>
 
 </body>
 

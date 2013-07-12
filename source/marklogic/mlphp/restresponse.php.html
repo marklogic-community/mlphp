@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="generator" content="PHPDoctor 2.0.5 (http://peej.github.com/phpdoctor/)">
-<meta name="when" content="Tue, 02 Jul 2013 17:04:32 +0000">
+<meta name="when" content="Fri, 12 Jul 2013 05:04:21 +0000">
 
 <link rel="stylesheet" type="text/css" href="../../../stylesheet.css">
 <link rel="start" href="../../../overview-summary.html">
@@ -36,148 +36,148 @@
 <h1>MarkLogic/MLPHP/RESTResponse.php</h1>
 <hr>
 
-<a name="line1"></a><pre><?php
-<a name="line2"></a>/*
+<a name="line1"></a><pre class="php" style="font-family:monospace;"><span style="color: #000000; font-weight: bold;">&lt;?php</span>
+<a name="line2"></a><span style="color: #666666; font-style: italic;">/*
 <a name="line3"></a>Copyright 2002-2012 MarkLogic Corporation.  All Rights Reserved.
-<a name="line4"></a>
-<a name="line5"></a>Licensed under the Apache License, Version 2.0 (the "License");
+<a name="line4"></a>&nbsp;
+<a name="line5"></a>Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
 <a name="line6"></a>you may not use this file except in compliance with the License.
 <a name="line7"></a>You may obtain a copy of the License at
-<a name="line8"></a>
+<a name="line8"></a>&nbsp;
 <a name="line9"></a>     http://www.apache.org/licenses/LICENSE-2.0
-<a name="line10"></a>
+<a name="line10"></a>&nbsp;
 <a name="line11"></a>Unless required by applicable law or agreed to in writing, software
-<a name="line12"></a>distributed under the License is distributed on an "AS IS" BASIS,
+<a name="line12"></a>distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
 <a name="line13"></a>WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 <a name="line14"></a>See the License for the specific language governing permissions and
 <a name="line15"></a>limitations under the License.
-<a name="line16"></a>*/
-<a name="line17"></a>namespace MarkLogic\MLPHP;
-<a name="line18"></a>
-<a name="line19"></a>/**
+<a name="line16"></a>*/</span>
+<a name="line17"></a><span style="color: #000000; font-weight: bold;">namespace</span> MarkLogic\MLPHP<span style="color: #339933;">;</span>
+<a name="line18"></a>&nbsp;
+<a name="line19"></a><span style="color: #009933; font-style: italic;">/**
 <a name="line20"></a> * Represents a REST response.
 <a name="line21"></a> *
-<a name="line22"></a> * @package REST
-<a name="line23"></a> * @author Mike Wooldridge <mike.wooldridge@marklogic.com>
-<a name="line24"></a> */
-<a name="line25"></a>class RESTResponse
-<a name="line26"></a>{
-<a name="line27"></a>    private $body; // @var mixed
-<a name="line28"></a>    private $info; // @var array
-<a name="line29"></a>
-<a name="line30"></a>    private $url; // @var string
-<a name="line31"></a>    private $contentType; // @var string
-<a name="line32"></a>    private $httpCode; // @var int
-<a name="line33"></a>
-<a name="line34"></a>    /**
+<a name="line22"></a> * @package MLPHP
+<a name="line23"></a> * @author Mike Wooldridge &lt;mike.wooldridge@marklogic.com&gt;
+<a name="line24"></a> */</span>
+<a name="line25"></a><span style="color: #000000; font-weight: bold;">class</span> RESTResponse
+<a name="line26"></a><span style="color: #009900;">&#123;</span>
+<a name="line27"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$body</span><span style="color: #339933;">;</span> <span style="color: #666666; font-style: italic;">// @var mixed</span>
+<a name="line28"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$info</span><span style="color: #339933;">;</span> <span style="color: #666666; font-style: italic;">// @var array</span>
+<a name="line29"></a>&nbsp;
+<a name="line30"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$url</span><span style="color: #339933;">;</span> <span style="color: #666666; font-style: italic;">// @var string</span>
+<a name="line31"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$contentType</span><span style="color: #339933;">;</span> <span style="color: #666666; font-style: italic;">// @var string</span>
+<a name="line32"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$httpCode</span><span style="color: #339933;">;</span> <span style="color: #666666; font-style: italic;">// @var int</span>
+<a name="line33"></a>&nbsp;
+<a name="line34"></a>    <span style="color: #009933; font-style: italic;">/**
 <a name="line35"></a>     * Set the response body.
 <a name="line36"></a>     *
 <a name="line37"></a>     * @param mixed $result The REST result.
-<a name="line38"></a>     */
-<a name="line39"></a>    public function setBody($result)
-<a name="line40"></a>    {
-<a name="line41"></a>        $this->body = $result;
-<a name="line42"></a>    }
-<a name="line43"></a>
-<a name="line44"></a>    /**
+<a name="line38"></a>     */</span>
+<a name="line39"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> setBody<span style="color: #009900;">&#40;</span><span style="color: #000088;">$result</span><span style="color: #009900;">&#41;</span>
+<a name="line40"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line41"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">body</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$result</span><span style="color: #339933;">;</span>
+<a name="line42"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line43"></a>&nbsp;
+<a name="line44"></a>    <span style="color: #009933; font-style: italic;">/**
 <a name="line45"></a>     * Get the response body.
 <a name="line46"></a>     *
 <a name="line47"></a>     * @return mixed The REST result.
-<a name="line48"></a>     */
-<a name="line49"></a>    public function getBody()
-<a name="line50"></a>    {
-<a name="line51"></a>        return $this->body;
-<a name="line52"></a>    }
-<a name="line53"></a>
-<a name="line54"></a>    /**
+<a name="line48"></a>     */</span>
+<a name="line49"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getBody<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
+<a name="line50"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line51"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">body</span><span style="color: #339933;">;</span>
+<a name="line52"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line53"></a>&nbsp;
+<a name="line54"></a>    <span style="color: #009933; font-style: italic;">/**
 <a name="line55"></a>     * Set the response information.
 <a name="line56"></a>     *
 <a name="line57"></a>     * @param array $result The REST information.
-<a name="line58"></a>     */
-<a name="line59"></a>    public function setInfo($info)
-<a name="line60"></a>    {
-<a name="line61"></a>        $this->info = $info;
-<a name="line62"></a>    }
-<a name="line63"></a>
-<a name="line64"></a>    /**
+<a name="line58"></a>     */</span>
+<a name="line59"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> setInfo<span style="color: #009900;">&#40;</span><span style="color: #000088;">$info</span><span style="color: #009900;">&#41;</span>
+<a name="line60"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line61"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">info</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$info</span><span style="color: #339933;">;</span>
+<a name="line62"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line63"></a>&nbsp;
+<a name="line64"></a>    <span style="color: #009933; font-style: italic;">/**
 <a name="line65"></a>     * Get the response information.
 <a name="line66"></a>     *
 <a name="line67"></a>     * @param $index Index to info property.
 <a name="line68"></a>     * @return array The REST information.
-<a name="line69"></a>     */
-<a name="line70"></a>    public function getInfo($key = '')
-<a name="line71"></a>    {
-<a name="line72"></a>        return $this->info;
-<a name="line73"></a>    }
-<a name="line74"></a>    /**
+<a name="line69"></a>     */</span>
+<a name="line70"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getInfo<span style="color: #009900;">&#40;</span><span style="color: #000088;">$key</span> <span style="color: #339933;">=</span> <span style="color: #0000ff;">''</span><span style="color: #009900;">&#41;</span>
+<a name="line71"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line72"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">info</span><span style="color: #339933;">;</span>
+<a name="line73"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line74"></a>    <span style="color: #009933; font-style: italic;">/**
 <a name="line75"></a>     * Get the URL.
 <a name="line76"></a>     *
 <a name="line77"></a>     * @return array The URL.
-<a name="line78"></a>     */
-<a name="line79"></a>    public function getUrl()
-<a name="line80"></a>    {
-<a name="line81"></a>        return $this->info['url'];
-<a name="line82"></a>    }
-<a name="line83"></a>
-<a name="line84"></a>    /**
+<a name="line78"></a>     */</span>
+<a name="line79"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getUrl<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
+<a name="line80"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line81"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">info</span><span style="color: #009900;">&#91;</span><span style="color: #0000ff;">'url'</span><span style="color: #009900;">&#93;</span><span style="color: #339933;">;</span>
+<a name="line82"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line83"></a>&nbsp;
+<a name="line84"></a>    <span style="color: #009933; font-style: italic;">/**
 <a name="line85"></a>     * Get the content type.
 <a name="line86"></a>     *
 <a name="line87"></a>     * @return array The REST information.
-<a name="line88"></a>     */
-<a name="line89"></a>    public function getContentType()
-<a name="line90"></a>    {
-<a name="line91"></a>        return $this->info['content_type'];
-<a name="line92"></a>    }
-<a name="line93"></a>
-<a name="line94"></a>    /**
+<a name="line88"></a>     */</span>
+<a name="line89"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getContentType<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
+<a name="line90"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line91"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">info</span><span style="color: #009900;">&#91;</span><span style="color: #0000ff;">'content_type'</span><span style="color: #009900;">&#93;</span><span style="color: #339933;">;</span>
+<a name="line92"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line93"></a>&nbsp;
+<a name="line94"></a>    <span style="color: #009933; font-style: italic;">/**
 <a name="line95"></a>     * Get the HTTP response code.
 <a name="line96"></a>     *
 <a name="line97"></a>     * @return array The HTTP response code.
-<a name="line98"></a>     */
-<a name="line99"></a>    public function getHttpCode()
-<a name="line100"></a>    {
-<a name="line101"></a>        return $this->info['http_code'];
-<a name="line102"></a>    }
-<a name="line103"></a>
-<a name="line104"></a>    /**
+<a name="line98"></a>     */</span>
+<a name="line99"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getHttpCode<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
+<a name="line100"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line101"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">info</span><span style="color: #009900;">&#91;</span><span style="color: #0000ff;">'http_code'</span><span style="color: #009900;">&#93;</span><span style="color: #339933;">;</span>
+<a name="line102"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line103"></a>&nbsp;
+<a name="line104"></a>    <span style="color: #009933; font-style: italic;">/**
 <a name="line105"></a>     * Get the redirect URL.
 <a name="line106"></a>     *
 <a name="line107"></a>     * @return array The redirect URL.
-<a name="line108"></a>     */
-<a name="line109"></a>    public function getRedirectUrl()
-<a name="line110"></a>    {
-<a name="line111"></a>        return $this->info['redirect_url'];
-<a name="line112"></a>    }
-<a name="line113"></a>
-<a name="line114"></a>    /**
+<a name="line108"></a>     */</span>
+<a name="line109"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getRedirectUrl<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
+<a name="line110"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line111"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">info</span><span style="color: #009900;">&#91;</span><span style="color: #0000ff;">'redirect_url'</span><span style="color: #009900;">&#93;</span><span style="color: #339933;">;</span>
+<a name="line112"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line113"></a>&nbsp;
+<a name="line114"></a>    <span style="color: #009933; font-style: italic;">/**
 <a name="line115"></a>     * Get error message from REST response body.
 <a name="line116"></a>     *
 <a name="line117"></a>     * @return array The message.
-<a name="line118"></a>     */
-<a name="line119"></a>    public function getErrorMessage()
-<a name="line120"></a>    {
-<a name="line121"></a>        if ($obj = json_decode($this->body)) {
-<a name="line122"></a>            // response body is JSON
-<a name="line123"></a>            $statusCode = $obj->error->{'status-code'};
-<a name="line124"></a>            $status = $obj->error->status;
-<a name="line125"></a>            $message = $obj->error->message;
-<a name="line126"></a>            $result = 'Error ' . $statusCode . ': ' . $status . ' - ' . $message;
-<a name="line127"></a>        } else if (substr(trim($this->body), 0, 1) === '<') {
-<a name="line128"></a>            // response body is XML
-<a name="line129"></a>            $dom = new \DOMDocument($this->body);
-<a name="line130"></a>            $dom->loadXML($this->body);
-<a name="line131"></a>            $statusCode = $dom->getElementsByTagNameNS('http://marklogic.com/rest-api', 'status-code')->item(0)->nodeValue;
-<a name="line132"></a>            $status = $dom->getElementsByTagNameNS('http://marklogic.com/rest-api', 'status')->item(0)->nodeValue;
-<a name="line133"></a>            $message = $dom->getElementsByTagNameNS('http://marklogic.com/rest-api', 'message')->item(0)->nodeValue;
-<a name="line134"></a>            $result = 'Error ' . $statusCode . ': ' . $status . ' - ' . $message;
-<a name="line135"></a>        } else {
-<a name="line136"></a>            // response is text or something else
-<a name="line137"></a>            $result = 'Error: ' . $this->body;
-<a name="line138"></a>        }
-<a name="line139"></a>        return $result;
-<a name="line140"></a>    }
-<a name="line141"></a>}
-<a name="line142"></a></pre>
+<a name="line118"></a>     */</span>
+<a name="line119"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getErrorMessage<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
+<a name="line120"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line121"></a>        <span style="color: #b1b100;">if</span> <span style="color: #009900;">&#40;</span><span style="color: #000088;">$obj</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/json_decode"><span style="color: #990000;">json_decode</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">body</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+<a name="line122"></a>            <span style="color: #666666; font-style: italic;">// response body is JSON</span>
+<a name="line123"></a>            <span style="color: #000088;">$statusCode</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$obj</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">error</span><span style="color: #339933;">-&gt;</span><span style="color: #009900;">&#123;</span><span style="color: #0000ff;">'status-code'</span><span style="color: #009900;">&#125;</span><span style="color: #339933;">;</span>
+<a name="line124"></a>            <span style="color: #000088;">$status</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$obj</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">error</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">status</span><span style="color: #339933;">;</span>
+<a name="line125"></a>            <span style="color: #000088;">$message</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$obj</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">error</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">message</span><span style="color: #339933;">;</span>
+<a name="line126"></a>            <span style="color: #000088;">$result</span> <span style="color: #339933;">=</span> <span style="color: #0000ff;">'Error '</span> <span style="color: #339933;">.</span> <span style="color: #000088;">$statusCode</span> <span style="color: #339933;">.</span> <span style="color: #0000ff;">': '</span> <span style="color: #339933;">.</span> <span style="color: #000088;">$status</span> <span style="color: #339933;">.</span> <span style="color: #0000ff;">' - '</span> <span style="color: #339933;">.</span> <span style="color: #000088;">$message</span><span style="color: #339933;">;</span>
+<a name="line127"></a>        <span style="color: #009900;">&#125;</span> <span style="color: #b1b100;">else</span> <span style="color: #b1b100;">if</span> <span style="color: #009900;">&#40;</span><a href="http://www.php.net/substr"><span style="color: #990000;">substr</span></a><span style="color: #009900;">&#40;</span><a href="http://www.php.net/trim"><span style="color: #990000;">trim</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">body</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">,</span> <span style="color: #cc66cc;">0</span><span style="color: #339933;">,</span> <span style="color: #cc66cc;">1</span><span style="color: #009900;">&#41;</span> <span style="color: #339933;">===</span> <span style="color: #0000ff;">'&lt;'</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+<a name="line128"></a>            <span style="color: #666666; font-style: italic;">// response body is XML</span>
+<a name="line129"></a>            <span style="color: #000088;">$dom</span> <span style="color: #339933;">=</span> <span style="color: #000000; font-weight: bold;">new</span> \DOMDocument<span style="color: #009900;">&#40;</span><span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">body</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line130"></a>            <span style="color: #000088;">$dom</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">loadXML</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">body</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line131"></a>            <span style="color: #000088;">$statusCode</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$dom</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getElementsByTagNameNS</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'http://marklogic.com/rest-api'</span><span style="color: #339933;">,</span> <span style="color: #0000ff;">'status-code'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">item</span><span style="color: #009900;">&#40;</span><span style="color: #cc66cc;">0</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">nodeValue</span><span style="color: #339933;">;</span>
+<a name="line132"></a>            <span style="color: #000088;">$status</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$dom</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getElementsByTagNameNS</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'http://marklogic.com/rest-api'</span><span style="color: #339933;">,</span> <span style="color: #0000ff;">'status'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">item</span><span style="color: #009900;">&#40;</span><span style="color: #cc66cc;">0</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">nodeValue</span><span style="color: #339933;">;</span>
+<a name="line133"></a>            <span style="color: #000088;">$message</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$dom</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getElementsByTagNameNS</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'http://marklogic.com/rest-api'</span><span style="color: #339933;">,</span> <span style="color: #0000ff;">'message'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">item</span><span style="color: #009900;">&#40;</span><span style="color: #cc66cc;">0</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">nodeValue</span><span style="color: #339933;">;</span>
+<a name="line134"></a>            <span style="color: #000088;">$result</span> <span style="color: #339933;">=</span> <span style="color: #0000ff;">'Error '</span> <span style="color: #339933;">.</span> <span style="color: #000088;">$statusCode</span> <span style="color: #339933;">.</span> <span style="color: #0000ff;">': '</span> <span style="color: #339933;">.</span> <span style="color: #000088;">$status</span> <span style="color: #339933;">.</span> <span style="color: #0000ff;">' - '</span> <span style="color: #339933;">.</span> <span style="color: #000088;">$message</span><span style="color: #339933;">;</span>
+<a name="line135"></a>        <span style="color: #009900;">&#125;</span> <span style="color: #b1b100;">else</span> <span style="color: #009900;">&#123;</span>
+<a name="line136"></a>            <span style="color: #666666; font-style: italic;">// response is text or something else</span>
+<a name="line137"></a>            <span style="color: #000088;">$result</span> <span style="color: #339933;">=</span> <span style="color: #0000ff;">'Error: '</span> <span style="color: #339933;">.</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">body</span><span style="color: #339933;">;</span>
+<a name="line138"></a>        <span style="color: #009900;">&#125;</span>
+<a name="line139"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$result</span><span style="color: #339933;">;</span>
+<a name="line140"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line141"></a><span style="color: #009900;">&#125;</span>
+<a name="line142"></a>&nbsp;</pre>
 <div class="header">
 <h1><a href=https://github.com/marklogic/mlphp target=_top>MLPHP</a></h1>
 <ul>
@@ -195,7 +195,7 @@
 </div>
 <hr>
 
-<p id="footer">Copyright 2002-2012 MarkLogic Corporation.  All Rights Reserved.</p>
+<p id="footer">Copyright 2002-2013 MarkLogic Corporation.  All Rights Reserved.</p>
 
 </body>
 

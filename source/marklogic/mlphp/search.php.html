@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="generator" content="PHPDoctor 2.0.5 (http://peej.github.com/phpdoctor/)">
-<meta name="when" content="Tue, 02 Jul 2013 17:04:32 +0000">
+<meta name="when" content="Fri, 12 Jul 2013 05:04:21 +0000">
 
 <link rel="stylesheet" type="text/css" href="../../../stylesheet.css">
 <link rel="start" href="../../../overview-summary.html">
@@ -36,319 +36,319 @@
 <h1>MarkLogic/MLPHP/Search.php</h1>
 <hr>
 
-<a name="line1"></a><pre><?php
-<a name="line2"></a>/*
+<a name="line1"></a><pre class="php" style="font-family:monospace;"><span style="color: #000000; font-weight: bold;">&lt;?php</span>
+<a name="line2"></a><span style="color: #666666; font-style: italic;">/*
 <a name="line3"></a>Copyright 2002-2012 MarkLogic Corporation.  All Rights Reserved.
-<a name="line4"></a>
-<a name="line5"></a>Licensed under the Apache License, Version 2.0 (the "License");
+<a name="line4"></a>&nbsp;
+<a name="line5"></a>Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
 <a name="line6"></a>you may not use this file except in compliance with the License.
 <a name="line7"></a>You may obtain a copy of the License at
-<a name="line8"></a>
+<a name="line8"></a>&nbsp;
 <a name="line9"></a>     http://www.apache.org/licenses/LICENSE-2.0
-<a name="line10"></a>
+<a name="line10"></a>&nbsp;
 <a name="line11"></a>Unless required by applicable law or agreed to in writing, software
-<a name="line12"></a>distributed under the License is distributed on an "AS IS" BASIS,
+<a name="line12"></a>distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
 <a name="line13"></a>WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 <a name="line14"></a>See the License for the specific language governing permissions and
 <a name="line15"></a>limitations under the License.
-<a name="line16"></a>*/
-<a name="line17"></a>namespace MarkLogic\MLPHP;
-<a name="line18"></a>//use MarkLogic\MLPHP\SearchResult;
-<a name="line19"></a>
-<a name="line20"></a>/**
+<a name="line16"></a>*/</span>
+<a name="line17"></a><span style="color: #000000; font-weight: bold;">namespace</span> MarkLogic\MLPHP<span style="color: #339933;">;</span>
+<a name="line18"></a><span style="color: #666666; font-style: italic;">//use MarkLogic\MLPHP\SearchResult;</span>
+<a name="line19"></a>&nbsp;
+<a name="line20"></a><span style="color: #009933; font-style: italic;">/**
 <a name="line21"></a> * Represents a search.
 <a name="line22"></a> *
-<a name="line23"></a> * @package Search
-<a name="line24"></a> * @author Mike Wooldridge <mike.wooldridge@marklogic.com>
-<a name="line25"></a> */
-<a name="line26"></a>class Search
-<a name="line27"></a>{
-<a name="line28"></a>    private $restClient; // @var RESTClient
-<a name="line29"></a>    private $query; // @var string
-<a name="line30"></a>    private $key; // @var string
-<a name="line31"></a>    private $element; // @var string
-<a name="line32"></a>    private $attribute; // @var string
-<a name="line33"></a>    private $value; // @var string
-<a name="line34"></a>    private $start; // @var int
-<a name="line35"></a>    private $pageLength; // @var int
-<a name="line36"></a>    private $options; // @var string
-<a name="line37"></a>    private $view; // @var string
-<a name="line38"></a>    private $format; // @var string
-<a name="line39"></a>    private $collection; // @var string
-<a name="line40"></a>    private $directory; // @var string
-<a name="line41"></a>
-<a name="line42"></a>    /**
+<a name="line23"></a> * @package MLPHP
+<a name="line24"></a> * @author Mike Wooldridge &lt;mike.wooldridge@marklogic.com&gt;
+<a name="line25"></a> */</span>
+<a name="line26"></a><span style="color: #000000; font-weight: bold;">class</span> Search
+<a name="line27"></a><span style="color: #009900;">&#123;</span>
+<a name="line28"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$restClient</span><span style="color: #339933;">;</span> <span style="color: #666666; font-style: italic;">// @var RESTClient</span>
+<a name="line29"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$query</span><span style="color: #339933;">;</span> <span style="color: #666666; font-style: italic;">// @var string</span>
+<a name="line30"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$key</span><span style="color: #339933;">;</span> <span style="color: #666666; font-style: italic;">// @var string</span>
+<a name="line31"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$element</span><span style="color: #339933;">;</span> <span style="color: #666666; font-style: italic;">// @var string</span>
+<a name="line32"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$attribute</span><span style="color: #339933;">;</span> <span style="color: #666666; font-style: italic;">// @var string</span>
+<a name="line33"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$value</span><span style="color: #339933;">;</span> <span style="color: #666666; font-style: italic;">// @var string</span>
+<a name="line34"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$start</span><span style="color: #339933;">;</span> <span style="color: #666666; font-style: italic;">// @var int</span>
+<a name="line35"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$pageLength</span><span style="color: #339933;">;</span> <span style="color: #666666; font-style: italic;">// @var int</span>
+<a name="line36"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$options</span><span style="color: #339933;">;</span> <span style="color: #666666; font-style: italic;">// @var string</span>
+<a name="line37"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$view</span><span style="color: #339933;">;</span> <span style="color: #666666; font-style: italic;">// @var string</span>
+<a name="line38"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$format</span><span style="color: #339933;">;</span> <span style="color: #666666; font-style: italic;">// @var string</span>
+<a name="line39"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$collection</span><span style="color: #339933;">;</span> <span style="color: #666666; font-style: italic;">// @var string</span>
+<a name="line40"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$directory</span><span style="color: #339933;">;</span> <span style="color: #666666; font-style: italic;">// @var string</span>
+<a name="line41"></a>&nbsp;
+<a name="line42"></a>    <span style="color: #009933; font-style: italic;">/**
 <a name="line43"></a>     * Create a Search object.
 <a name="line44"></a>     *
 <a name="line45"></a>     * @param RESTClient $restClient A REST client object.
-<a name="line46"></a>     */
-<a name="line47"></a>    public function __construct($restClient = null, $start = 1, $pageLength = 10, $view = 'all', $format = 'xml')
-<a name="line48"></a>    {
-<a name="line49"></a>        $this->restClient = $restClient;
-<a name="line50"></a>        $this->start = (int)$start;
-<a name="line51"></a>        $this->pageLength = (int)$pageLength;
-<a name="line52"></a>        $this->view = (string)$view;
-<a name="line53"></a>        $this->format = (string)$format;
-<a name="line54"></a>    }
-<a name="line55"></a>
-<a name="line56"></a>    /**
+<a name="line46"></a>     */</span>
+<a name="line47"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> __construct<span style="color: #009900;">&#40;</span><span style="color: #000088;">$restClient</span> <span style="color: #339933;">=</span> <span style="color: #009900; font-weight: bold;">null</span><span style="color: #339933;">,</span> <span style="color: #000088;">$start</span> <span style="color: #339933;">=</span> <span style="color: #cc66cc;">1</span><span style="color: #339933;">,</span> <span style="color: #000088;">$pageLength</span> <span style="color: #339933;">=</span> <span style="color: #cc66cc;">10</span><span style="color: #339933;">,</span> <span style="color: #000088;">$view</span> <span style="color: #339933;">=</span> <span style="color: #0000ff;">'all'</span><span style="color: #339933;">,</span> <span style="color: #000088;">$format</span> <span style="color: #339933;">=</span> <span style="color: #0000ff;">'xml'</span><span style="color: #009900;">&#41;</span>
+<a name="line48"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line49"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">restClient</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$restClient</span><span style="color: #339933;">;</span>
+<a name="line50"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">start</span> <span style="color: #339933;">=</span> <span style="color: #009900;">&#40;</span>int<span style="color: #009900;">&#41;</span><span style="color: #000088;">$start</span><span style="color: #339933;">;</span>
+<a name="line51"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">pageLength</span> <span style="color: #339933;">=</span> <span style="color: #009900;">&#40;</span>int<span style="color: #009900;">&#41;</span><span style="color: #000088;">$pageLength</span><span style="color: #339933;">;</span>
+<a name="line52"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">view</span> <span style="color: #339933;">=</span> <span style="color: #009900;">&#40;</span>string<span style="color: #009900;">&#41;</span><span style="color: #000088;">$view</span><span style="color: #339933;">;</span>
+<a name="line53"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">format</span> <span style="color: #339933;">=</span> <span style="color: #009900;">&#40;</span>string<span style="color: #009900;">&#41;</span><span style="color: #000088;">$format</span><span style="color: #339933;">;</span>
+<a name="line54"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line55"></a>&nbsp;
+<a name="line56"></a>    <span style="color: #009933; font-style: italic;">/**
 <a name="line57"></a>     * Set the REST client connection.
 <a name="line58"></a>     *
 <a name="line59"></a>     * @param RESTClient $restClient The RestClient object.
-<a name="line60"></a>     */
-<a name="line61"></a>    public function setConnection($restClient)
-<a name="line62"></a>    {
-<a name="line63"></a>        $this->restClient = $restClient;
-<a name="line64"></a>    }
-<a name="line65"></a>
-<a name="line66"></a>    /**
+<a name="line60"></a>     */</span>
+<a name="line61"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> setConnection<span style="color: #009900;">&#40;</span><span style="color: #000088;">$restClient</span><span style="color: #009900;">&#41;</span>
+<a name="line62"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line63"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">restClient</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$restClient</span><span style="color: #339933;">;</span>
+<a name="line64"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line65"></a>&nbsp;
+<a name="line66"></a>    <span style="color: #009933; font-style: italic;">/**
 <a name="line67"></a>     * Get the common search parameters as an associated array.
 <a name="line68"></a>     *
 <a name="line69"></a>     * @return array An associated array of name/value pairs.
-<a name="line70"></a>     */
-<a name="line71"></a>    public function getParams()
-<a name="line72"></a>    {
-<a name="line73"></a>            $params = array('start' => $this->start, 'pageLength' => $this->pageLength, 'view' => $this->view, 'format' => $this->format);
-<a name="line74"></a>            if(!empty($this->options)) {
-<a name="line75"></a>                $params['options'] = $this->options;
-<a name="line76"></a>            }
-<a name="line77"></a>            if(!empty($this->collection)) {
-<a name="line78"></a>                $params['collection'] = $this->collection;
-<a name="line79"></a>            }
-<a name="line80"></a>            if(!empty($this->directory)) {
-<a name="line81"></a>                $params['directory'] = $this->directory;
-<a name="line82"></a>            }
-<a name="line83"></a>            return $params;
-<a name="line84"></a>    }
-<a name="line85"></a>
-<a name="line86"></a>    /**
+<a name="line70"></a>     */</span>
+<a name="line71"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getParams<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
+<a name="line72"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line73"></a>            <span style="color: #000088;">$params</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/array"><span style="color: #990000;">array</span></a><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'start'</span> <span style="color: #339933;">=&gt;</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">start</span><span style="color: #339933;">,</span> <span style="color: #0000ff;">'pageLength'</span> <span style="color: #339933;">=&gt;</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">pageLength</span><span style="color: #339933;">,</span> <span style="color: #0000ff;">'view'</span> <span style="color: #339933;">=&gt;</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">view</span><span style="color: #339933;">,</span> <span style="color: #0000ff;">'format'</span> <span style="color: #339933;">=&gt;</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">format</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line74"></a>            <span style="color: #b1b100;">if</span><span style="color: #009900;">&#40;</span><span style="color: #339933;">!</span><a href="http://www.php.net/empty"><span style="color: #990000;">empty</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">options</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+<a name="line75"></a>                <span style="color: #000088;">$params</span><span style="color: #009900;">&#91;</span><span style="color: #0000ff;">'options'</span><span style="color: #009900;">&#93;</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">options</span><span style="color: #339933;">;</span>
+<a name="line76"></a>            <span style="color: #009900;">&#125;</span>
+<a name="line77"></a>            <span style="color: #b1b100;">if</span><span style="color: #009900;">&#40;</span><span style="color: #339933;">!</span><a href="http://www.php.net/empty"><span style="color: #990000;">empty</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">collection</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+<a name="line78"></a>                <span style="color: #000088;">$params</span><span style="color: #009900;">&#91;</span><span style="color: #0000ff;">'collection'</span><span style="color: #009900;">&#93;</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">collection</span><span style="color: #339933;">;</span>
+<a name="line79"></a>            <span style="color: #009900;">&#125;</span>
+<a name="line80"></a>            <span style="color: #b1b100;">if</span><span style="color: #009900;">&#40;</span><span style="color: #339933;">!</span><a href="http://www.php.net/empty"><span style="color: #990000;">empty</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">directory</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+<a name="line81"></a>                <span style="color: #000088;">$params</span><span style="color: #009900;">&#91;</span><span style="color: #0000ff;">'directory'</span><span style="color: #009900;">&#93;</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">directory</span><span style="color: #339933;">;</span>
+<a name="line82"></a>            <span style="color: #009900;">&#125;</span>
+<a name="line83"></a>            <span style="color: #b1b100;">return</span> <span style="color: #000088;">$params</span><span style="color: #339933;">;</span>
+<a name="line84"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line85"></a>&nbsp;
+<a name="line86"></a>    <span style="color: #009933; font-style: italic;">/**
 <a name="line87"></a>     * Retrieve the search results using the REST client.
 <a name="line88"></a>     *
 <a name="line89"></a>     * @param string $query The search query.
 <a name="line90"></a>     * @return SearchResults A search results object.
-<a name="line91"></a>     */
-<a name="line92"></a>    public function retrieve($query, $params = array())
-<a name="line93"></a>    {
-<a name="line94"></a>
-<a name="line95"></a>        $this->query = (string)$query;
-<a name="line96"></a>
-<a name="line97"></a>        try {
-<a name="line98"></a>            $params = array_merge(array('q' => $this->query), $this->getParams(), $params);
-<a name="line99"></a>            $request = new RESTRequest('GET', 'search', $params);
-<a name="line100"></a>            $response = $this->restClient->send($request);
-<a name="line101"></a>            //print_r($response);
-<a name="line102"></a>            $results = new SearchResults($response->getBody());
-<a name="line103"></a>            return $results;
-<a name="line104"></a>        } catch(Exception $e) {
-<a name="line105"></a>            echo $e->getMessage() . ' in ' . $e->getFile() . ' on line ' . $e->getLine() . PHP_EOL;
-<a name="line106"></a>        }
-<a name="line107"></a>    }
-<a name="line108"></a>
-<a name="line109"></a>    /**
+<a name="line91"></a>     */</span>
+<a name="line92"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> retrieve<span style="color: #009900;">&#40;</span><span style="color: #000088;">$query</span><span style="color: #339933;">,</span> <span style="color: #000088;">$params</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/array"><span style="color: #990000;">array</span></a><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span>
+<a name="line93"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line94"></a>&nbsp;
+<a name="line95"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">query</span> <span style="color: #339933;">=</span> <span style="color: #009900;">&#40;</span>string<span style="color: #009900;">&#41;</span><span style="color: #000088;">$query</span><span style="color: #339933;">;</span>
+<a name="line96"></a>&nbsp;
+<a name="line97"></a>        try <span style="color: #009900;">&#123;</span>
+<a name="line98"></a>            <span style="color: #000088;">$params</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/array_merge"><span style="color: #990000;">array_merge</span></a><span style="color: #009900;">&#40;</span><a href="http://www.php.net/array"><span style="color: #990000;">array</span></a><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'q'</span> <span style="color: #339933;">=&gt;</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">query</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">,</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getParams</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">,</span> <span style="color: #000088;">$params</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line99"></a>            <span style="color: #000088;">$request</span> <span style="color: #339933;">=</span> <span style="color: #000000; font-weight: bold;">new</span> RESTRequest<span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'GET'</span><span style="color: #339933;">,</span> <span style="color: #0000ff;">'search'</span><span style="color: #339933;">,</span> <span style="color: #000088;">$params</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line100"></a>            <span style="color: #000088;">$response</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">restClient</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">send</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$request</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line101"></a>            <span style="color: #666666; font-style: italic;">//print_r($response);</span>
+<a name="line102"></a>            <span style="color: #000088;">$results</span> <span style="color: #339933;">=</span> <span style="color: #000000; font-weight: bold;">new</span> SearchResults<span style="color: #009900;">&#40;</span><span style="color: #000088;">$response</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getBody</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line103"></a>            <span style="color: #b1b100;">return</span> <span style="color: #000088;">$results</span><span style="color: #339933;">;</span>
+<a name="line104"></a>        <span style="color: #009900;">&#125;</span> catch<span style="color: #009900;">&#40;</span>Exception <span style="color: #000088;">$e</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+<a name="line105"></a>            <span style="color: #b1b100;">echo</span> <span style="color: #000088;">$e</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getMessage</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span> <span style="color: #339933;">.</span> <span style="color: #0000ff;">' in '</span> <span style="color: #339933;">.</span> <span style="color: #000088;">$e</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getFile</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span> <span style="color: #339933;">.</span> <span style="color: #0000ff;">' on line '</span> <span style="color: #339933;">.</span> <span style="color: #000088;">$e</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getLine</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span> <span style="color: #339933;">.</span> PHP_EOL<span style="color: #339933;">;</span>
+<a name="line106"></a>        <span style="color: #009900;">&#125;</span>
+<a name="line107"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line108"></a>&nbsp;
+<a name="line109"></a>    <span style="color: #009933; font-style: italic;">/**
 <a name="line110"></a>     * Retrieve the key-value search results for JSON content using the REST client.
 <a name="line111"></a>     *
 <a name="line112"></a>     * @param string $key The key (property name) in JSON content.
 <a name="line113"></a>     * @param string $value The value (property value) in JSON content.
 <a name="line114"></a>     * @return SearchResults A search results object.
-<a name="line115"></a>     */
-<a name="line116"></a>    public function retrieveKeyValue($key, $value, $params = array())
-<a name="line117"></a>    {
-<a name="line118"></a>
-<a name="line119"></a>        $this->key = (string)$key;
-<a name="line120"></a>        $this->value = (string)$value;
-<a name="line121"></a>
-<a name="line122"></a>        try {
-<a name="line123"></a>            $params = array_merge(array('key' => $this->key, 'value' => $this->value), $this->getParams(), $params);
-<a name="line124"></a>            $request = new RESTRequest('GET', 'keyvalue', $params);
-<a name="line125"></a>            $response = $this->restClient->send($request);
-<a name="line126"></a>            $results = new SearchResults($response->getBody());
-<a name="line127"></a>            return $results;
-<a name="line128"></a>        } catch(Exception $e) {
-<a name="line129"></a>            echo $e->getMessage() . ' in ' . $e->getFile() . ' on line ' . $e->getLine() . PHP_EOL;
-<a name="line130"></a>        }
-<a name="line131"></a>    }
-<a name="line132"></a>
-<a name="line133"></a>    /**
+<a name="line115"></a>     */</span>
+<a name="line116"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> retrieveKeyValue<span style="color: #009900;">&#40;</span><span style="color: #000088;">$key</span><span style="color: #339933;">,</span> <span style="color: #000088;">$value</span><span style="color: #339933;">,</span> <span style="color: #000088;">$params</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/array"><span style="color: #990000;">array</span></a><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span>
+<a name="line117"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line118"></a>&nbsp;
+<a name="line119"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><a href="http://www.php.net/key"><span style="color: #990000;">key</span></a> <span style="color: #339933;">=</span> <span style="color: #009900;">&#40;</span>string<span style="color: #009900;">&#41;</span><span style="color: #000088;">$key</span><span style="color: #339933;">;</span>
+<a name="line120"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">value</span> <span style="color: #339933;">=</span> <span style="color: #009900;">&#40;</span>string<span style="color: #009900;">&#41;</span><span style="color: #000088;">$value</span><span style="color: #339933;">;</span>
+<a name="line121"></a>&nbsp;
+<a name="line122"></a>        try <span style="color: #009900;">&#123;</span>
+<a name="line123"></a>            <span style="color: #000088;">$params</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/array_merge"><span style="color: #990000;">array_merge</span></a><span style="color: #009900;">&#40;</span><a href="http://www.php.net/array"><span style="color: #990000;">array</span></a><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'key'</span> <span style="color: #339933;">=&gt;</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><a href="http://www.php.net/key"><span style="color: #990000;">key</span></a><span style="color: #339933;">,</span> <span style="color: #0000ff;">'value'</span> <span style="color: #339933;">=&gt;</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">value</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">,</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getParams</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">,</span> <span style="color: #000088;">$params</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line124"></a>            <span style="color: #000088;">$request</span> <span style="color: #339933;">=</span> <span style="color: #000000; font-weight: bold;">new</span> RESTRequest<span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'GET'</span><span style="color: #339933;">,</span> <span style="color: #0000ff;">'keyvalue'</span><span style="color: #339933;">,</span> <span style="color: #000088;">$params</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line125"></a>            <span style="color: #000088;">$response</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">restClient</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">send</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$request</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line126"></a>            <span style="color: #000088;">$results</span> <span style="color: #339933;">=</span> <span style="color: #000000; font-weight: bold;">new</span> SearchResults<span style="color: #009900;">&#40;</span><span style="color: #000088;">$response</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getBody</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line127"></a>            <span style="color: #b1b100;">return</span> <span style="color: #000088;">$results</span><span style="color: #339933;">;</span>
+<a name="line128"></a>        <span style="color: #009900;">&#125;</span> catch<span style="color: #009900;">&#40;</span>Exception <span style="color: #000088;">$e</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+<a name="line129"></a>            <span style="color: #b1b100;">echo</span> <span style="color: #000088;">$e</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getMessage</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span> <span style="color: #339933;">.</span> <span style="color: #0000ff;">' in '</span> <span style="color: #339933;">.</span> <span style="color: #000088;">$e</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getFile</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span> <span style="color: #339933;">.</span> <span style="color: #0000ff;">' on line '</span> <span style="color: #339933;">.</span> <span style="color: #000088;">$e</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getLine</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span> <span style="color: #339933;">.</span> PHP_EOL<span style="color: #339933;">;</span>
+<a name="line130"></a>        <span style="color: #009900;">&#125;</span>
+<a name="line131"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line132"></a>&nbsp;
+<a name="line133"></a>    <span style="color: #009933; font-style: italic;">/**
 <a name="line134"></a>     * Retrieve the key-value search results, where the key is an element name, for XML content using the REST client.
 <a name="line135"></a>     *
 <a name="line136"></a>     * @param string $element The element name.
 <a name="line137"></a>     * @param string $attribute The attribute for the element, to search for attribute content.
 <a name="line138"></a>     * @param string $value The value for that element (or attribute).
 <a name="line139"></a>     * @return SearchResults A search results object.
-<a name="line140"></a>     */
-<a name="line141"></a>    public function retrieveKeyValueElement($element, $attribute, $value, $params = array())
-<a name="line142"></a>    {
-<a name="line143"></a>
-<a name="line144"></a>        $this->element = (string)$element;
-<a name="line145"></a>        $this->attribute = (string)$attribute;
-<a name="line146"></a>        $this->value = (string)$value;
-<a name="line147"></a>
-<a name="line148"></a>        try {
-<a name="line149"></a>            // Only include attribute in final array if it is set
-<a name="line150"></a>            $array_attr = (!empty($attribute)) ? array('attribute' => $this->attribute) : array();
-<a name="line151"></a>            $params = array_merge(array('element' => $this->element, 'value' => $this->value), $array_attr, $this->getParams(), $params);
-<a name="line152"></a>            $request = new RESTRequest('GET', 'keyvalue', $params);
-<a name="line153"></a>            $response = $this->restClient->send($request);
-<a name="line154"></a>            $results = new SearchResults($response->getBody());
-<a name="line155"></a>            return $results;
-<a name="line156"></a>        } catch(Exception $e) {
-<a name="line157"></a>            echo $e->getMessage() . ' in ' . $e->getFile() . ' on line ' . $e->getLine() . PHP_EOL;
-<a name="line158"></a>        }
-<a name="line159"></a>    }
-<a name="line160"></a>
-<a name="line161"></a>    /**
+<a name="line140"></a>     */</span>
+<a name="line141"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> retrieveKeyValueElement<span style="color: #009900;">&#40;</span><span style="color: #000088;">$element</span><span style="color: #339933;">,</span> <span style="color: #000088;">$attribute</span><span style="color: #339933;">,</span> <span style="color: #000088;">$value</span><span style="color: #339933;">,</span> <span style="color: #000088;">$params</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/array"><span style="color: #990000;">array</span></a><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span>
+<a name="line142"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line143"></a>&nbsp;
+<a name="line144"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">element</span> <span style="color: #339933;">=</span> <span style="color: #009900;">&#40;</span>string<span style="color: #009900;">&#41;</span><span style="color: #000088;">$element</span><span style="color: #339933;">;</span>
+<a name="line145"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">attribute</span> <span style="color: #339933;">=</span> <span style="color: #009900;">&#40;</span>string<span style="color: #009900;">&#41;</span><span style="color: #000088;">$attribute</span><span style="color: #339933;">;</span>
+<a name="line146"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">value</span> <span style="color: #339933;">=</span> <span style="color: #009900;">&#40;</span>string<span style="color: #009900;">&#41;</span><span style="color: #000088;">$value</span><span style="color: #339933;">;</span>
+<a name="line147"></a>&nbsp;
+<a name="line148"></a>        try <span style="color: #009900;">&#123;</span>
+<a name="line149"></a>            <span style="color: #666666; font-style: italic;">// Only include attribute in final array if it is set</span>
+<a name="line150"></a>            <span style="color: #000088;">$array_attr</span> <span style="color: #339933;">=</span> <span style="color: #009900;">&#40;</span><span style="color: #339933;">!</span><a href="http://www.php.net/empty"><span style="color: #990000;">empty</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$attribute</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span> ? <a href="http://www.php.net/array"><span style="color: #990000;">array</span></a><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'attribute'</span> <span style="color: #339933;">=&gt;</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">attribute</span><span style="color: #009900;">&#41;</span> <span style="color: #339933;">:</span> <a href="http://www.php.net/array"><span style="color: #990000;">array</span></a><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line151"></a>            <span style="color: #000088;">$params</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/array_merge"><span style="color: #990000;">array_merge</span></a><span style="color: #009900;">&#40;</span><a href="http://www.php.net/array"><span style="color: #990000;">array</span></a><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'element'</span> <span style="color: #339933;">=&gt;</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">element</span><span style="color: #339933;">,</span> <span style="color: #0000ff;">'value'</span> <span style="color: #339933;">=&gt;</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">value</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">,</span> <span style="color: #000088;">$array_attr</span><span style="color: #339933;">,</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getParams</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">,</span> <span style="color: #000088;">$params</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line152"></a>            <span style="color: #000088;">$request</span> <span style="color: #339933;">=</span> <span style="color: #000000; font-weight: bold;">new</span> RESTRequest<span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'GET'</span><span style="color: #339933;">,</span> <span style="color: #0000ff;">'keyvalue'</span><span style="color: #339933;">,</span> <span style="color: #000088;">$params</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line153"></a>            <span style="color: #000088;">$response</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">restClient</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">send</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$request</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line154"></a>            <span style="color: #000088;">$results</span> <span style="color: #339933;">=</span> <span style="color: #000000; font-weight: bold;">new</span> SearchResults<span style="color: #009900;">&#40;</span><span style="color: #000088;">$response</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getBody</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line155"></a>            <span style="color: #b1b100;">return</span> <span style="color: #000088;">$results</span><span style="color: #339933;">;</span>
+<a name="line156"></a>        <span style="color: #009900;">&#125;</span> catch<span style="color: #009900;">&#40;</span>Exception <span style="color: #000088;">$e</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+<a name="line157"></a>            <span style="color: #b1b100;">echo</span> <span style="color: #000088;">$e</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getMessage</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span> <span style="color: #339933;">.</span> <span style="color: #0000ff;">' in '</span> <span style="color: #339933;">.</span> <span style="color: #000088;">$e</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getFile</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span> <span style="color: #339933;">.</span> <span style="color: #0000ff;">' on line '</span> <span style="color: #339933;">.</span> <span style="color: #000088;">$e</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getLine</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span> <span style="color: #339933;">.</span> PHP_EOL<span style="color: #339933;">;</span>
+<a name="line158"></a>        <span style="color: #009900;">&#125;</span>
+<a name="line159"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line160"></a>&nbsp;
+<a name="line161"></a>    <span style="color: #009933; font-style: italic;">/**
 <a name="line162"></a>     * Get the start setting.
 <a name="line163"></a>     *
 <a name="line164"></a>     * @return string The debug setting, 'true' or 'false'.
-<a name="line165"></a>     */
-<a name="line166"></a>    public function getStart()
-<a name="line167"></a>    {
-<a name="line168"></a>        return $this->start;
-<a name="line169"></a>    }
-<a name="line170"></a>
-<a name="line171"></a>    /**
+<a name="line165"></a>     */</span>
+<a name="line166"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getStart<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
+<a name="line167"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line168"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">start</span><span style="color: #339933;">;</span>
+<a name="line169"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line170"></a>&nbsp;
+<a name="line171"></a>    <span style="color: #009933; font-style: italic;">/**
 <a name="line172"></a>     * Set the start setting.
 <a name="line173"></a>     *
 <a name="line174"></a>     * @param string $start The debug setting, 'true' or 'false'.
-<a name="line175"></a>     */
-<a name="line176"></a>    public function setStart($start)
-<a name="line177"></a>    {
-<a name="line178"></a>        $this->start = (int)$start;
-<a name="line179"></a>    }
-<a name="line180"></a>
-<a name="line181"></a>    /**
+<a name="line175"></a>     */</span>
+<a name="line176"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> setStart<span style="color: #009900;">&#40;</span><span style="color: #000088;">$start</span><span style="color: #009900;">&#41;</span>
+<a name="line177"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line178"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">start</span> <span style="color: #339933;">=</span> <span style="color: #009900;">&#40;</span>int<span style="color: #009900;">&#41;</span><span style="color: #000088;">$start</span><span style="color: #339933;">;</span>
+<a name="line179"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line180"></a>&nbsp;
+<a name="line181"></a>    <span style="color: #009933; font-style: italic;">/**
 <a name="line182"></a>     * Get the page length.
 <a name="line183"></a>     *
 <a name="line184"></a>     * @return int The page length.
-<a name="line185"></a>     */
-<a name="line186"></a>    public function getPageLength()
-<a name="line187"></a>    {
-<a name="line188"></a>        return $this->pageLength;
-<a name="line189"></a>    }
-<a name="line190"></a>
-<a name="line191"></a>    /**
+<a name="line185"></a>     */</span>
+<a name="line186"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getPageLength<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
+<a name="line187"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line188"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">pageLength</span><span style="color: #339933;">;</span>
+<a name="line189"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line190"></a>&nbsp;
+<a name="line191"></a>    <span style="color: #009933; font-style: italic;">/**
 <a name="line192"></a>     * Set the page length.
 <a name="line193"></a>     *
 <a name="line194"></a>     * @see http://docs.marklogic.com/REST/GET/v1/search
 <a name="line195"></a>     *
 <a name="line196"></a>     * @param int $pageLength The page length.
-<a name="line197"></a>     */
-<a name="line198"></a>    public function setPageLength($pageLength)
-<a name="line199"></a>    {
-<a name="line200"></a>        $this->pageLength = (int)$pageLength;
-<a name="line201"></a>    }
-<a name="line202"></a>
-<a name="line203"></a>    /**
+<a name="line197"></a>     */</span>
+<a name="line198"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> setPageLength<span style="color: #009900;">&#40;</span><span style="color: #000088;">$pageLength</span><span style="color: #009900;">&#41;</span>
+<a name="line199"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line200"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">pageLength</span> <span style="color: #339933;">=</span> <span style="color: #009900;">&#40;</span>int<span style="color: #009900;">&#41;</span><span style="color: #000088;">$pageLength</span><span style="color: #339933;">;</span>
+<a name="line201"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line202"></a>&nbsp;
+<a name="line203"></a>    <span style="color: #009933; font-style: italic;">/**
 <a name="line204"></a>     * Get the search-options name.
 <a name="line205"></a>     *
 <a name="line206"></a>     * @return string The search-options name.
-<a name="line207"></a>     */
-<a name="line208"></a>    public function getOptions()
-<a name="line209"></a>    {
-<a name="line210"></a>        return $this->options;
-<a name="line211"></a>    }
-<a name="line212"></a>
-<a name="line213"></a>    /**
+<a name="line207"></a>     */</span>
+<a name="line208"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getOptions<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
+<a name="line209"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line210"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">options</span><span style="color: #339933;">;</span>
+<a name="line211"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line212"></a>&nbsp;
+<a name="line213"></a>    <span style="color: #009933; font-style: italic;">/**
 <a name="line214"></a>     * Set the search-options name.
 <a name="line215"></a>     *
 <a name="line216"></a>     * @param string $option The search-options name.
-<a name="line217"></a>     */
-<a name="line218"></a>    public function setOptions($options)
-<a name="line219"></a>    {
-<a name="line220"></a>        $this->options = (string)$options;
-<a name="line221"></a>    }
-<a name="line222"></a>
-<a name="line223"></a>    /**
+<a name="line217"></a>     */</span>
+<a name="line218"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> setOptions<span style="color: #009900;">&#40;</span><span style="color: #000088;">$options</span><span style="color: #009900;">&#41;</span>
+<a name="line219"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line220"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">options</span> <span style="color: #339933;">=</span> <span style="color: #009900;">&#40;</span>string<span style="color: #009900;">&#41;</span><span style="color: #000088;">$options</span><span style="color: #339933;">;</span>
+<a name="line221"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line222"></a>&nbsp;
+<a name="line223"></a>    <span style="color: #009933; font-style: italic;">/**
 <a name="line224"></a>     * Get the view setting.
 <a name="line225"></a>     *
 <a name="line226"></a>     * @return string The search options as XML.
-<a name="line227"></a>     */
-<a name="line228"></a>    public function getView()
-<a name="line229"></a>    {
-<a name="line230"></a>        return $this->view;
-<a name="line231"></a>    }
-<a name="line232"></a>
-<a name="line233"></a>    /**
+<a name="line227"></a>     */</span>
+<a name="line228"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getView<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
+<a name="line229"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line230"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">view</span><span style="color: #339933;">;</span>
+<a name="line231"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line232"></a>&nbsp;
+<a name="line233"></a>    <span style="color: #009933; font-style: italic;">/**
 <a name="line234"></a>     * Set the view setting ('facets', 'results', 'metadata', or 'all').
 <a name="line235"></a>     *
 <a name="line236"></a>     * @see http://docs.marklogic.com/REST/GET/v1/search
 <a name="line237"></a>     *
 <a name="line238"></a>     * @param string $view The search options as XML.
-<a name="line239"></a>     */
-<a name="line240"></a>    public function setView($view)
-<a name="line241"></a>    {
-<a name="line242"></a>        $this->view = (int)$view;
-<a name="line243"></a>    }
-<a name="line244"></a>
-<a name="line245"></a>    /**
+<a name="line239"></a>     */</span>
+<a name="line240"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> setView<span style="color: #009900;">&#40;</span><span style="color: #000088;">$view</span><span style="color: #009900;">&#41;</span>
+<a name="line241"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line242"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">view</span> <span style="color: #339933;">=</span> <span style="color: #009900;">&#40;</span>int<span style="color: #009900;">&#41;</span><span style="color: #000088;">$view</span><span style="color: #339933;">;</span>
+<a name="line243"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line244"></a>&nbsp;
+<a name="line245"></a>    <span style="color: #009933; font-style: italic;">/**
 <a name="line246"></a>     * Get the format setting.
 <a name="line247"></a>     *
 <a name="line248"></a>     * @return string The format setting.
-<a name="line249"></a>     */
-<a name="line250"></a>    public function getFormat()
-<a name="line251"></a>    {
-<a name="line252"></a>        return $this->format;
-<a name="line253"></a>    }
-<a name="line254"></a>
-<a name="line255"></a>    /**
+<a name="line249"></a>     */</span>
+<a name="line250"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getFormat<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
+<a name="line251"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line252"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">format</span><span style="color: #339933;">;</span>
+<a name="line253"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line254"></a>&nbsp;
+<a name="line255"></a>    <span style="color: #009933; font-style: italic;">/**
 <a name="line256"></a>     * Set the format setting ('xml' or 'json'). MLPHP only supports 'xml' currently.
 <a name="line257"></a>     *
 <a name="line258"></a>     * @see http://docs.marklogic.com/REST/GET/v1/search
 <a name="line259"></a>     *
 <a name="line260"></a>     * @param string $format The format setting.
-<a name="line261"></a>     */
-<a name="line262"></a>    public function setFormat($format)
-<a name="line263"></a>    {
-<a name="line264"></a>        $this->format = (int)$format;
-<a name="line265"></a>    }
-<a name="line266"></a>
-<a name="line267"></a>    /**
+<a name="line261"></a>     */</span>
+<a name="line262"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> setFormat<span style="color: #009900;">&#40;</span><span style="color: #000088;">$format</span><span style="color: #009900;">&#41;</span>
+<a name="line263"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line264"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">format</span> <span style="color: #339933;">=</span> <span style="color: #009900;">&#40;</span>int<span style="color: #009900;">&#41;</span><span style="color: #000088;">$format</span><span style="color: #339933;">;</span>
+<a name="line265"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line266"></a>&nbsp;
+<a name="line267"></a>    <span style="color: #009933; font-style: italic;">/**
 <a name="line268"></a>     * Get the collection to filter by.
 <a name="line269"></a>     *
 <a name="line270"></a>     * @return string A collection string.
-<a name="line271"></a>     */
-<a name="line272"></a>    public function getCollection()
-<a name="line273"></a>    {
-<a name="line274"></a>        return $this->collection;
-<a name="line275"></a>    }
-<a name="line276"></a>
-<a name="line277"></a>    /**
+<a name="line271"></a>     */</span>
+<a name="line272"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getCollection<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
+<a name="line273"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line274"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">collection</span><span style="color: #339933;">;</span>
+<a name="line275"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line276"></a>&nbsp;
+<a name="line277"></a>    <span style="color: #009933; font-style: italic;">/**
 <a name="line278"></a>     * Set the collection to filter by.
 <a name="line279"></a>     *
 <a name="line280"></a>     * @see http://docs.marklogic.com/guide/rest-dev/search#id_74024
 <a name="line281"></a>     * @todo Allow filtering by multiple collections.
 <a name="line282"></a>     *
 <a name="line283"></a>     * @param string $collection A collection string .
-<a name="line284"></a>     */
-<a name="line285"></a>    public function setCollection($collection)
-<a name="line286"></a>    {
-<a name="line287"></a>        $this->collection = collection;
-<a name="line288"></a>    }
-<a name="line289"></a>
-<a name="line290"></a>    /**
+<a name="line284"></a>     */</span>
+<a name="line285"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> setCollection<span style="color: #009900;">&#40;</span><span style="color: #000088;">$collection</span><span style="color: #009900;">&#41;</span>
+<a name="line286"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line287"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">collection</span> <span style="color: #339933;">=</span> collection<span style="color: #339933;">;</span>
+<a name="line288"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line289"></a>&nbsp;
+<a name="line290"></a>    <span style="color: #009933; font-style: italic;">/**
 <a name="line291"></a>     * Get the directory to filter by.
 <a name="line292"></a>     *
 <a name="line293"></a>     * @return string A directory string.
-<a name="line294"></a>     */
-<a name="line295"></a>    public function getDirectory()
-<a name="line296"></a>    {
-<a name="line297"></a>        return $this->directory;
-<a name="line298"></a>    }
-<a name="line299"></a>
-<a name="line300"></a>    /**
+<a name="line294"></a>     */</span>
+<a name="line295"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getDirectory<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
+<a name="line296"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line297"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">directory</span><span style="color: #339933;">;</span>
+<a name="line298"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line299"></a>&nbsp;
+<a name="line300"></a>    <span style="color: #009933; font-style: italic;">/**
 <a name="line301"></a>     * Set the directory to filter by.
 <a name="line302"></a>     *
 <a name="line303"></a>     * @see http://docs.marklogic.com/guide/rest-dev/search#id_74024
 <a name="line304"></a>     * @todo Allow filtering by multiple directories.
 <a name="line305"></a>     *
 <a name="line306"></a>     * @param string $directory A directory string.
-<a name="line307"></a>     */
-<a name="line308"></a>    public function setDirectory($directory)
-<a name="line309"></a>    {
-<a name="line310"></a>        $this->directory = $directory;
-<a name="line311"></a>    }
-<a name="line312"></a>}
-<a name="line313"></a></pre>
+<a name="line307"></a>     */</span>
+<a name="line308"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> setDirectory<span style="color: #009900;">&#40;</span><span style="color: #000088;">$directory</span><span style="color: #009900;">&#41;</span>
+<a name="line309"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line310"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">directory</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$directory</span><span style="color: #339933;">;</span>
+<a name="line311"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line312"></a><span style="color: #009900;">&#125;</span>
+<a name="line313"></a>&nbsp;</pre>
 <div class="header">
 <h1><a href=https://github.com/marklogic/mlphp target=_top>MLPHP</a></h1>
 <ul>
@@ -366,7 +366,7 @@
 </div>
 <hr>
 
-<p id="footer">Copyright 2002-2012 MarkLogic Corporation.  All Rights Reserved.</p>
+<p id="footer">Copyright 2002-2013 MarkLogic Corporation.  All Rights Reserved.</p>
 
 </body>
 

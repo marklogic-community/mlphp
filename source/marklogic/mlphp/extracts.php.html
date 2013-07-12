@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="generator" content="PHPDoctor 2.0.5 (http://peej.github.com/phpdoctor/)">
-<meta name="when" content="Tue, 02 Jul 2013 17:04:32 +0000">
+<meta name="when" content="Fri, 12 Jul 2013 05:04:20 +0000">
 
 <link rel="stylesheet" type="text/css" href="../../../stylesheet.css">
 <link rel="start" href="../../../overview-summary.html">
@@ -36,99 +36,99 @@
 <h1>MarkLogic/MLPHP/Extracts.php</h1>
 <hr>
 
-<a name="line1"></a><pre><?php
-<a name="line2"></a>/*
+<a name="line1"></a><pre class="php" style="font-family:monospace;"><span style="color: #000000; font-weight: bold;">&lt;?php</span>
+<a name="line2"></a><span style="color: #666666; font-style: italic;">/*
 <a name="line3"></a>Copyright 2002-2012 MarkLogic Corporation.  All Rights Reserved.
-<a name="line4"></a>
-<a name="line5"></a>Licensed under the Apache License, Version 2.0 (the "License");
+<a name="line4"></a>&nbsp;
+<a name="line5"></a>Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
 <a name="line6"></a>you may not use this file except in compliance with the License.
 <a name="line7"></a>You may obtain a copy of the License at
-<a name="line8"></a>
+<a name="line8"></a>&nbsp;
 <a name="line9"></a>     http://www.apache.org/licenses/LICENSE-2.0
-<a name="line10"></a>
+<a name="line10"></a>&nbsp;
 <a name="line11"></a>Unless required by applicable law or agreed to in writing, software
-<a name="line12"></a>distributed under the License is distributed on an "AS IS" BASIS,
+<a name="line12"></a>distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
 <a name="line13"></a>WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 <a name="line14"></a>See the License for the specific language governing permissions and
 <a name="line15"></a>limitations under the License.
-<a name="line16"></a>*/
-<a name="line17"></a>namespace MarkLogic\MLPHP;
-<a name="line18"></a>
-<a name="line19"></a>/**
+<a name="line16"></a>*/</span>
+<a name="line17"></a><span style="color: #000000; font-weight: bold;">namespace</span> MarkLogic\MLPHP<span style="color: #339933;">;</span>
+<a name="line18"></a>&nbsp;
+<a name="line19"></a><span style="color: #009933; font-style: italic;">/**
 <a name="line20"></a> * Represents a set of metadata extracts in a search options node.
 <a name="line21"></a> *
-<a name="line22"></a> * @package Options
-<a name="line23"></a> * @author Mike Wooldridge <mike.wooldridge@marklogic.com>
-<a name="line24"></a> */
-<a name="line25"></a>class Extracts
-<a name="line26"></a>{
-<a name="line27"></a>    private $constraints; // @var array of strings
-<a name="line28"></a>    private $qnames; // @var array of QName objects
-<a name="line29"></a>
-<a name="line30"></a>    /**
+<a name="line22"></a> * @package MLPHP
+<a name="line23"></a> * @author Mike Wooldridge &lt;mike.wooldridge@marklogic.com&gt;
+<a name="line24"></a> */</span>
+<a name="line25"></a><span style="color: #000000; font-weight: bold;">class</span> Extracts
+<a name="line26"></a><span style="color: #009900;">&#123;</span>
+<a name="line27"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$constraints</span><span style="color: #339933;">;</span> <span style="color: #666666; font-style: italic;">// @var array of strings</span>
+<a name="line28"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$qnames</span><span style="color: #339933;">;</span> <span style="color: #666666; font-style: italic;">// @var array of QName objects</span>
+<a name="line29"></a>&nbsp;
+<a name="line30"></a>    <span style="color: #009933; font-style: italic;">/**
 <a name="line31"></a>     * Create an Extracts object.
 <a name="line32"></a>     *
 <a name="line33"></a>     * @see http://docs.marklogic.com/search:search#opt-extract-metadata
-<a name="line34"></a>     */
-<a name="line35"></a>    public function __construct() {
-<a name="line36"></a>        $this->constraints = array();
-<a name="line37"></a>        $this->qnames = array();
-<a name="line38"></a>    }
-<a name="line39"></a>
-<a name="line40"></a>    /**
+<a name="line34"></a>     */</span>
+<a name="line35"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> __construct<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+<a name="line36"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">constraints</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/array"><span style="color: #990000;">array</span></a><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line37"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">qnames</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/array"><span style="color: #990000;">array</span></a><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line38"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line39"></a>&nbsp;
+<a name="line40"></a>    <span style="color: #009933; font-style: italic;">/**
 <a name="line41"></a>     * Add constraint metadata.
 <a name="line42"></a>     *
 <a name="line43"></a>     * @param array|string $constraints An array of constraint names or a constraint name.
-<a name="line44"></a>     */
-<a name="line45"></a>    public function addConstraints($constraints) {
-<a name="line46"></a>        if (is_array($constraints)) {
-<a name="line47"></a>            $this->constraints = array_merge($this->constraints, $constraints);
-<a name="line48"></a>        } else {
-<a name="line49"></a>            $this->constraints[] = (string)$constraints;
-<a name="line50"></a>        }
-<a name="line51"></a>    }
-<a name="line52"></a>
-<a name="line53"></a>    /**
+<a name="line44"></a>     */</span>
+<a name="line45"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> addConstraints<span style="color: #009900;">&#40;</span><span style="color: #000088;">$constraints</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+<a name="line46"></a>        <span style="color: #b1b100;">if</span> <span style="color: #009900;">&#40;</span><a href="http://www.php.net/is_array"><span style="color: #990000;">is_array</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$constraints</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+<a name="line47"></a>            <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">constraints</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/array_merge"><span style="color: #990000;">array_merge</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">constraints</span><span style="color: #339933;">,</span> <span style="color: #000088;">$constraints</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line48"></a>        <span style="color: #009900;">&#125;</span> <span style="color: #b1b100;">else</span> <span style="color: #009900;">&#123;</span>
+<a name="line49"></a>            <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">constraints</span><span style="color: #009900;">&#91;</span><span style="color: #009900;">&#93;</span> <span style="color: #339933;">=</span> <span style="color: #009900;">&#40;</span>string<span style="color: #009900;">&#41;</span><span style="color: #000088;">$constraints</span><span style="color: #339933;">;</span>
+<a name="line50"></a>        <span style="color: #009900;">&#125;</span>
+<a name="line51"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line52"></a>&nbsp;
+<a name="line53"></a>    <span style="color: #009933; font-style: italic;">/**
 <a name="line54"></a>     * Add QName metadata.
 <a name="line55"></a>     *
 <a name="line56"></a>     * @param string $element An element name.
 <a name="line57"></a>     * @param string $ns An element namespace.
 <a name="line58"></a>     * @param string $attribute An attribute name.
 <a name="line59"></a>     * @param string $attributeNs An attribute namespace.
-<a name="line60"></a>     */
-<a name="line61"></a>    public function addQName($element, $ns = '', $attribute = '', $attributeNs = '') {
-<a name="line62"></a>        $qname = new QName($element, $ns, $attribute, $attributeNs);
-<a name="line63"></a>        $this->qnames[] = $qname;
-<a name="line64"></a>    }
-<a name="line65"></a>
-<a name="line66"></a>    /**
+<a name="line60"></a>     */</span>
+<a name="line61"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> addQName<span style="color: #009900;">&#40;</span><span style="color: #000088;">$element</span><span style="color: #339933;">,</span> <span style="color: #000088;">$ns</span> <span style="color: #339933;">=</span> <span style="color: #0000ff;">''</span><span style="color: #339933;">,</span> <span style="color: #000088;">$attribute</span> <span style="color: #339933;">=</span> <span style="color: #0000ff;">''</span><span style="color: #339933;">,</span> <span style="color: #000088;">$attributeNs</span> <span style="color: #339933;">=</span> <span style="color: #0000ff;">''</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+<a name="line62"></a>        <span style="color: #000088;">$qname</span> <span style="color: #339933;">=</span> <span style="color: #000000; font-weight: bold;">new</span> QName<span style="color: #009900;">&#40;</span><span style="color: #000088;">$element</span><span style="color: #339933;">,</span> <span style="color: #000088;">$ns</span><span style="color: #339933;">,</span> <span style="color: #000088;">$attribute</span><span style="color: #339933;">,</span> <span style="color: #000088;">$attributeNs</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line63"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">qnames</span><span style="color: #009900;">&#91;</span><span style="color: #009900;">&#93;</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$qname</span><span style="color: #339933;">;</span>
+<a name="line64"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line65"></a>&nbsp;
+<a name="line66"></a>    <span style="color: #009933; font-style: italic;">/**
 <a name="line67"></a>     * Get the metadata extracts as a DOMElement object.
 <a name="line68"></a>     *
 <a name="line69"></a>     * @param DOMDocument $dom The DOMDocument object in which to create the element.
-<a name="line70"></a>     */
-<a name="line71"></a>    public function getExtractsAsElem($dom) {
-<a name="line72"></a>        $extractsElem = $dom->createElement('extract-metadata');
-<a name="line73"></a>        // constraints
-<a name="line74"></a>        foreach ($this->constraints as $constraint) {
-<a name="line75"></a>            $constraintValElem = $dom->createElement('constraint-value');
-<a name="line76"></a>            $constraintValElem->setAttribute('ref', $constraint);
-<a name="line77"></a>            $extractsElem->appendChild($constraintValElem);
-<a name="line78"></a>        }
-<a name="line79"></a>        // qnames
-<a name="line80"></a>        foreach ($this->qnames as $qname) {
-<a name="line81"></a>            $qnameElem = $dom->createElement('qname');
-<a name="line82"></a>            $qnameElem->setAttribute('elem-name', $qname->getElement());
-<a name="line83"></a>            $qnameElem->setAttribute('elem-ns', $qname->getNs());
-<a name="line84"></a>            if($qname->getAttribute() !== '') {
-<a name="line85"></a>                $qnameElem->setAttribute('attr-name', $qname->getAttribute());
-<a name="line86"></a>                $qnameElem->setAttribute('attr-ns', $qname->getAttributeNs());
-<a name="line87"></a>            }
-<a name="line88"></a>            $extractsElem->appendChild($qnameElem);
-<a name="line89"></a>        }
-<a name="line90"></a>        return $extractsElem;
-<a name="line91"></a>    }
-<a name="line92"></a>}
-<a name="line93"></a></pre>
+<a name="line70"></a>     */</span>
+<a name="line71"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getExtractsAsElem<span style="color: #009900;">&#40;</span><span style="color: #000088;">$dom</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+<a name="line72"></a>        <span style="color: #000088;">$extractsElem</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$dom</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">createElement</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'extract-metadata'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line73"></a>        <span style="color: #666666; font-style: italic;">// constraints</span>
+<a name="line74"></a>        <span style="color: #b1b100;">foreach</span> <span style="color: #009900;">&#40;</span><span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">constraints</span> <span style="color: #b1b100;">as</span> <span style="color: #000088;">$constraint</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+<a name="line75"></a>            <span style="color: #000088;">$constraintValElem</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$dom</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">createElement</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'constraint-value'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line76"></a>            <span style="color: #000088;">$constraintValElem</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">setAttribute</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'ref'</span><span style="color: #339933;">,</span> <span style="color: #000088;">$constraint</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line77"></a>            <span style="color: #000088;">$extractsElem</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">appendChild</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$constraintValElem</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line78"></a>        <span style="color: #009900;">&#125;</span>
+<a name="line79"></a>        <span style="color: #666666; font-style: italic;">// qnames</span>
+<a name="line80"></a>        <span style="color: #b1b100;">foreach</span> <span style="color: #009900;">&#40;</span><span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">qnames</span> <span style="color: #b1b100;">as</span> <span style="color: #000088;">$qname</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+<a name="line81"></a>            <span style="color: #000088;">$qnameElem</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$dom</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">createElement</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'qname'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line82"></a>            <span style="color: #000088;">$qnameElem</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">setAttribute</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'elem-name'</span><span style="color: #339933;">,</span> <span style="color: #000088;">$qname</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getElement</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line83"></a>            <span style="color: #000088;">$qnameElem</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">setAttribute</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'elem-ns'</span><span style="color: #339933;">,</span> <span style="color: #000088;">$qname</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getNs</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line84"></a>            <span style="color: #b1b100;">if</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$qname</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getAttribute</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span> <span style="color: #339933;">!==</span> <span style="color: #0000ff;">''</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+<a name="line85"></a>                <span style="color: #000088;">$qnameElem</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">setAttribute</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'attr-name'</span><span style="color: #339933;">,</span> <span style="color: #000088;">$qname</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getAttribute</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line86"></a>                <span style="color: #000088;">$qnameElem</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">setAttribute</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'attr-ns'</span><span style="color: #339933;">,</span> <span style="color: #000088;">$qname</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getAttributeNs</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line87"></a>            <span style="color: #009900;">&#125;</span>
+<a name="line88"></a>            <span style="color: #000088;">$extractsElem</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">appendChild</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$qnameElem</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line89"></a>        <span style="color: #009900;">&#125;</span>
+<a name="line90"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$extractsElem</span><span style="color: #339933;">;</span>
+<a name="line91"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line92"></a><span style="color: #009900;">&#125;</span>
+<a name="line93"></a>&nbsp;</pre>
 <div class="header">
 <h1><a href=https://github.com/marklogic/mlphp target=_top>MLPHP</a></h1>
 <ul>
@@ -146,7 +146,7 @@
 </div>
 <hr>
 
-<p id="footer">Copyright 2002-2012 MarkLogic Corporation.  All Rights Reserved.</p>
+<p id="footer">Copyright 2002-2013 MarkLogic Corporation.  All Rights Reserved.</p>
 
 </body>
 

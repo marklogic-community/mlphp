@@ -1,0 +1,250 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="generator" content="PHPDoctor 2.0.5 (http://peej.github.com/phpdoctor/)">
+<meta name="when" content="Fri, 12 Jul 2013 05:04:19 +0000">
+
+<link rel="stylesheet" type="text/css" href="../stylesheet.css">
+<link rel="start" href="../overview-summary.html">
+
+<title>RESTResponse (MLPHP)</title>
+
+</head>
+<body id="definition" onload="parent.document.title=document.title;">
+
+<div class="header">
+<h1><a href=https://github.com/marklogic/mlphp target=_top>MLPHP</a></h1>
+<ul>
+<li><a href="../overview-summary.html">Overview</a></li>
+<li><a href="../mlphp/package-summary.html">Namespace</a></li>
+<li class="active">Class</li>
+<li><a href="../mlphp/package-tree.html">Tree</a></li>
+<li><a href="../overview-files.html">Files</a></li>
+<li><a href="../deprecated-list.html">Deprecated</a></li>
+<li><a href="../todo-list.html">Todo</a></li>
+<li><a href="../index-all.html">Index</a></li>
+</ul>
+</div>
+
+<div class="small_links">
+<a href="../index.html" target="_top">Frames</a>
+<a href="../mlphp/restresponse.html" target="_top">No frames</a>
+</div>
+<div class="small_links">
+Summary: <a href="#summary_field">Field</a> | <a href="#summary_method">Method</a> | <a href="#summary_constr">Constr</a>
+Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> | <a href="#summary_constr">Constr</a>
+</div>
+<hr>
+
+<div class="qualifiedName">MLPHP\RESTResponse</div>
+<a href="../source/marklogic/mlphp/restresponse.php.html#line25" class="location">MarkLogic/MLPHP/RESTResponse.php at line 25</a>
+
+<h1>Class RESTResponse</h1>
+
+<pre class="tree"><strong>RESTResponse</strong><br /></pre>
+
+<hr>
+
+<p class="signature">public  class <strong>RESTResponse</strong></p>
+
+<div class="comment" id="overview_description"><p>Represents a REST response.</p></div>
+
+<dl>
+<dt>Author:</dt>
+<dd>Mike Wooldridge <mike.wooldridge@marklogic.com></dd>
+</dl>
+<hr>
+
+<table id="summary_method">
+<tr><th colspan="2">Method Summary</th></tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#setBody()">setBody</a>(mixed result)</p><p class="description">Set the response body.</p></td>
+</tr>
+<tr>
+<td class="type"> mixed</td>
+<td class="description"><p class="name"><a href="#getBody()">getBody</a>()</p><p class="description">Get the response body.</p></td>
+</tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#setInfo()">setInfo</a>(array result, mixed info)</p><p class="description">Set the response information.</p></td>
+</tr>
+<tr>
+<td class="type"> array</td>
+<td class="description"><p class="name"><a href="#getInfo()">getInfo</a>($index Index, str key)</p><p class="description">Get the response information.</p></td>
+</tr>
+<tr>
+<td class="type"> array</td>
+<td class="description"><p class="name"><a href="#getUrl()">getUrl</a>()</p><p class="description">Get the URL.</p></td>
+</tr>
+<tr>
+<td class="type"> array</td>
+<td class="description"><p class="name"><a href="#getContentType()">getContentType</a>()</p><p class="description">Get the content type.</p></td>
+</tr>
+<tr>
+<td class="type"> array</td>
+<td class="description"><p class="name"><a href="#getHttpCode()">getHttpCode</a>()</p><p class="description">Get the HTTP response code.</p></td>
+</tr>
+<tr>
+<td class="type"> array</td>
+<td class="description"><p class="name"><a href="#getRedirectUrl()">getRedirectUrl</a>()</p><p class="description">Get the redirect URL.</p></td>
+</tr>
+<tr>
+<td class="type"> array</td>
+<td class="description"><p class="name"><a href="#getErrorMessage()">getErrorMessage</a>()</p><p class="description">Get error message from REST response body.</p></td>
+</tr>
+</table>
+
+<h2 id="detail_method">Method Detail</h2>
+<a href="../source/marklogic/mlphp/restresponse.php.html#line39" class="location">MarkLogic/MLPHP/RESTResponse.php at line 39</a>
+
+<h3 id="setBody()">setBody</h3>
+<code class="signature">public  void <strong>setBody</strong>(mixed result)</code>
+<div class="details">
+<p>Set the response body.</p><dl>
+<dt>Parameters:</dt>
+<dd>result - The REST result.</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../source/marklogic/mlphp/restresponse.php.html#line49" class="location">MarkLogic/MLPHP/RESTResponse.php at line 49</a>
+
+<h3 id="getBody()">getBody</h3>
+<code class="signature">public  mixed <strong>getBody</strong>()</code>
+<div class="details">
+<p>Get the response body.</p><dl>
+<dt>Returns:</dt>
+<dd>The REST result.</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../source/marklogic/mlphp/restresponse.php.html#line59" class="location">MarkLogic/MLPHP/RESTResponse.php at line 59</a>
+
+<h3 id="setInfo()">setInfo</h3>
+<code class="signature">public  void <strong>setInfo</strong>(array result, mixed info)</code>
+<div class="details">
+<p>Set the response information.</p><dl>
+<dt>Parameters:</dt>
+<dd>result - The REST information.</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../source/marklogic/mlphp/restresponse.php.html#line70" class="location">MarkLogic/MLPHP/RESTResponse.php at line 70</a>
+
+<h3 id="getInfo()">getInfo</h3>
+<code class="signature">public  array <strong>getInfo</strong>($index Index, str key)</code>
+<div class="details">
+<p>Get the response information.</p><dl>
+<dt>Parameters:</dt>
+<dd>Index - to info property.</dd>
+<dt>Returns:</dt>
+<dd>The REST information.</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../source/marklogic/mlphp/restresponse.php.html#line79" class="location">MarkLogic/MLPHP/RESTResponse.php at line 79</a>
+
+<h3 id="getUrl()">getUrl</h3>
+<code class="signature">public  array <strong>getUrl</strong>()</code>
+<div class="details">
+<p>Get the URL.</p><dl>
+<dt>Returns:</dt>
+<dd>The URL.</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../source/marklogic/mlphp/restresponse.php.html#line89" class="location">MarkLogic/MLPHP/RESTResponse.php at line 89</a>
+
+<h3 id="getContentType()">getContentType</h3>
+<code class="signature">public  array <strong>getContentType</strong>()</code>
+<div class="details">
+<p>Get the content type.</p><dl>
+<dt>Returns:</dt>
+<dd>The REST information.</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../source/marklogic/mlphp/restresponse.php.html#line99" class="location">MarkLogic/MLPHP/RESTResponse.php at line 99</a>
+
+<h3 id="getHttpCode()">getHttpCode</h3>
+<code class="signature">public  array <strong>getHttpCode</strong>()</code>
+<div class="details">
+<p>Get the HTTP response code.</p><dl>
+<dt>Returns:</dt>
+<dd>The HTTP response code.</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../source/marklogic/mlphp/restresponse.php.html#line109" class="location">MarkLogic/MLPHP/RESTResponse.php at line 109</a>
+
+<h3 id="getRedirectUrl()">getRedirectUrl</h3>
+<code class="signature">public  array <strong>getRedirectUrl</strong>()</code>
+<div class="details">
+<p>Get the redirect URL.</p><dl>
+<dt>Returns:</dt>
+<dd>The redirect URL.</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../source/marklogic/mlphp/restresponse.php.html#line119" class="location">MarkLogic/MLPHP/RESTResponse.php at line 119</a>
+
+<h3 id="getErrorMessage()">getErrorMessage</h3>
+<code class="signature">public  array <strong>getErrorMessage</strong>()</code>
+<div class="details">
+<p>Get error message from REST response body.</p><dl>
+<dt>Returns:</dt>
+<dd>The message.</dd>
+</dl>
+</div>
+
+<hr>
+
+<div class="header">
+<h1><a href=https://github.com/marklogic/mlphp target=_top>MLPHP</a></h1>
+<ul>
+<li><a href="../overview-summary.html">Overview</a></li>
+<li><a href="../mlphp/package-summary.html">Namespace</a></li>
+<li class="active">Class</li>
+<li><a href="../mlphp/package-tree.html">Tree</a></li>
+<li><a href="../overview-files.html">Files</a></li>
+<li><a href="../deprecated-list.html">Deprecated</a></li>
+<li><a href="../todo-list.html">Todo</a></li>
+<li><a href="../index-all.html">Index</a></li>
+</ul>
+</div>
+
+<div class="small_links">
+<a href="../index.html" target="_top">Frames</a>
+<a href="../mlphp/restresponse.html" target="_top">No frames</a>
+</div>
+<div class="small_links">
+Summary: <a href="#summary_field">Field</a> | <a href="#summary_method">Method</a> | <a href="#summary_constr">Constr</a>
+Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> | <a href="#summary_constr">Constr</a>
+</div>
+<hr>
+
+<p id="footer">Copyright 2002-2013 MarkLogic Corporation.  All Rights Reserved.</p>
+
+</body>
+
+</html>

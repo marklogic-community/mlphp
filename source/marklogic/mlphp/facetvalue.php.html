@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="generator" content="PHPDoctor 2.0.5 (http://peej.github.com/phpdoctor/)">
-<meta name="when" content="Tue, 02 Jul 2013 17:04:32 +0000">
+<meta name="when" content="Fri, 12 Jul 2013 05:04:20 +0000">
 
 <link rel="stylesheet" type="text/css" href="../../../stylesheet.css">
 <link rel="start" href="../../../overview-summary.html">
@@ -36,81 +36,81 @@
 <h1>MarkLogic/MLPHP/FacetValue.php</h1>
 <hr>
 
-<a name="line1"></a><pre><?php
-<a name="line2"></a>/*
+<a name="line1"></a><pre class="php" style="font-family:monospace;"><span style="color: #000000; font-weight: bold;">&lt;?php</span>
+<a name="line2"></a><span style="color: #666666; font-style: italic;">/*
 <a name="line3"></a>Copyright 2002-2012 MarkLogic Corporation.  All Rights Reserved.
-<a name="line4"></a>
-<a name="line5"></a>Licensed under the Apache License, Version 2.0 (the "License");
+<a name="line4"></a>&nbsp;
+<a name="line5"></a>Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
 <a name="line6"></a>you may not use this file except in compliance with the License.
 <a name="line7"></a>You may obtain a copy of the License at
-<a name="line8"></a>
+<a name="line8"></a>&nbsp;
 <a name="line9"></a>     http://www.apache.org/licenses/LICENSE-2.0
-<a name="line10"></a>
+<a name="line10"></a>&nbsp;
 <a name="line11"></a>Unless required by applicable law or agreed to in writing, software
-<a name="line12"></a>distributed under the License is distributed on an "AS IS" BASIS,
+<a name="line12"></a>distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
 <a name="line13"></a>WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 <a name="line14"></a>See the License for the specific language governing permissions and
 <a name="line15"></a>limitations under the License.
-<a name="line16"></a>*/
-<a name="line17"></a>namespace MarkLogic\MLPHP;
-<a name="line18"></a>
-<a name="line19"></a>/**
+<a name="line16"></a>*/</span>
+<a name="line17"></a><span style="color: #000000; font-weight: bold;">namespace</span> MarkLogic\MLPHP<span style="color: #339933;">;</span>
+<a name="line18"></a>&nbsp;
+<a name="line19"></a><span style="color: #009933; font-style: italic;">/**
 <a name="line20"></a> * Represents a search-facet value.
 <a name="line21"></a> *
-<a name="line22"></a> * @package Search
-<a name="line23"></a> * @author Mike Wooldridge <mike.wooldridge@marklogic.com>
-<a name="line24"></a> */
-<a name="line25"></a>class FacetValue
-<a name="line26"></a>{
-<a name="line27"></a>    private $name; // @var string
-<a name="line28"></a>    private $count; // @var string
-<a name="line29"></a>    private $value; // @var array
-<a name="line30"></a>
-<a name="line31"></a>    /**
+<a name="line22"></a> * @package MLPHP
+<a name="line23"></a> * @author Mike Wooldridge &lt;mike.wooldridge@marklogic.com&gt;
+<a name="line24"></a> */</span>
+<a name="line25"></a><span style="color: #000000; font-weight: bold;">class</span> FacetValue
+<a name="line26"></a><span style="color: #009900;">&#123;</span>
+<a name="line27"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$name</span><span style="color: #339933;">;</span> <span style="color: #666666; font-style: italic;">// @var string</span>
+<a name="line28"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$count</span><span style="color: #339933;">;</span> <span style="color: #666666; font-style: italic;">// @var string</span>
+<a name="line29"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$value</span><span style="color: #339933;">;</span> <span style="color: #666666; font-style: italic;">// @var array</span>
+<a name="line30"></a>&nbsp;
+<a name="line31"></a>    <span style="color: #009933; font-style: italic;">/**
 <a name="line32"></a>     * Create a FacetValue object.
 <a name="line33"></a>     *
 <a name="line34"></a>     * @param string $name The name.
 <a name="line35"></a>     * @param string $count The count.
 <a name="line36"></a>     * @param string $value The value.
-<a name="line37"></a>     */
-<a name="line38"></a>    public function __construct($name, $count, $value)
-<a name="line39"></a>    {
-<a name="line40"></a>        $this->name = $name;
-<a name="line41"></a>        $this->count = $count;
-<a name="line42"></a>        $this->value = $value;
-<a name="line43"></a>    }
-<a name="line44"></a>
-<a name="line45"></a>    /**
+<a name="line37"></a>     */</span>
+<a name="line38"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> __construct<span style="color: #009900;">&#40;</span><span style="color: #000088;">$name</span><span style="color: #339933;">,</span> <span style="color: #000088;">$count</span><span style="color: #339933;">,</span> <span style="color: #000088;">$value</span><span style="color: #009900;">&#41;</span>
+<a name="line39"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line40"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">name</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$name</span><span style="color: #339933;">;</span>
+<a name="line41"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><a href="http://www.php.net/count"><span style="color: #990000;">count</span></a> <span style="color: #339933;">=</span> <span style="color: #000088;">$count</span><span style="color: #339933;">;</span>
+<a name="line42"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">value</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$value</span><span style="color: #339933;">;</span>
+<a name="line43"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line44"></a>&nbsp;
+<a name="line45"></a>    <span style="color: #009933; font-style: italic;">/**
 <a name="line46"></a>     * Get the facet-value name.
 <a name="line47"></a>     *
 <a name="line48"></a>     * @return string The name.
-<a name="line49"></a>     */
-<a name="line50"></a>    public function getName()
-<a name="line51"></a>    {
-<a name="line52"></a>        return $this->name;
-<a name="line53"></a>    }
-<a name="line54"></a>
-<a name="line55"></a>    /**
+<a name="line49"></a>     */</span>
+<a name="line50"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getName<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
+<a name="line51"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line52"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">name</span><span style="color: #339933;">;</span>
+<a name="line53"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line54"></a>&nbsp;
+<a name="line55"></a>    <span style="color: #009933; font-style: italic;">/**
 <a name="line56"></a>     * Get the facet-value count.
 <a name="line57"></a>     *
 <a name="line58"></a>     * @return int The count.
-<a name="line59"></a>     */
-<a name="line60"></a>    public function getCount()
-<a name="line61"></a>    {
-<a name="line62"></a>        return $this->count;
-<a name="line63"></a>    }
-<a name="line64"></a>
-<a name="line65"></a>    /**
+<a name="line59"></a>     */</span>
+<a name="line60"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getCount<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
+<a name="line61"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line62"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><a href="http://www.php.net/count"><span style="color: #990000;">count</span></a><span style="color: #339933;">;</span>
+<a name="line63"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line64"></a>&nbsp;
+<a name="line65"></a>    <span style="color: #009933; font-style: italic;">/**
 <a name="line66"></a>     * Get the facet-value value.
 <a name="line67"></a>     *
 <a name="line68"></a>     * @return string The value.
-<a name="line69"></a>     */
-<a name="line70"></a>    public function getValue()
-<a name="line71"></a>    {
-<a name="line72"></a>        return $this->value;
-<a name="line73"></a>    }
-<a name="line74"></a>}
-<a name="line75"></a></pre>
+<a name="line69"></a>     */</span>
+<a name="line70"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getValue<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
+<a name="line71"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line72"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">value</span><span style="color: #339933;">;</span>
+<a name="line73"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line74"></a><span style="color: #009900;">&#125;</span>
+<a name="line75"></a>&nbsp;</pre>
 <div class="header">
 <h1><a href=https://github.com/marklogic/mlphp target=_top>MLPHP</a></h1>
 <ul>
@@ -128,7 +128,7 @@
 </div>
 <hr>
 
-<p id="footer">Copyright 2002-2012 MarkLogic Corporation.  All Rights Reserved.</p>
+<p id="footer">Copyright 2002-2013 MarkLogic Corporation.  All Rights Reserved.</p>
 
 </body>
 
