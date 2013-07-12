@@ -1,0 +1,186 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="generator" content="PHPDoctor 2.0.5 (http://peej.github.com/phpdoctor/)">
+<meta name="when" content="Fri, 12 Jul 2013 03:23:04 +0000">
+
+<link rel="stylesheet" type="text/css" href="../stylesheet.css">
+<link rel="start" href="../overview-summary.html">
+
+<title>Permission (MLPHP)</title>
+
+</head>
+<body id="definition" onload="parent.document.title=document.title;">
+
+<div class="header">
+<h1><a href=https://github.com/marklogic/mlphp target=_top>MLPHP</a></h1>
+<ul>
+<li><a href="../overview-summary.html">Overview</a></li>
+<li><a href="../mlphp/package-summary.html">Namespace</a></li>
+<li class="active">Class</li>
+<li><a href="../mlphp/package-tree.html">Tree</a></li>
+<li><a href="../overview-files.html">Files</a></li>
+<li><a href="../deprecated-list.html">Deprecated</a></li>
+<li><a href="../todo-list.html">Todo</a></li>
+<li><a href="../index-all.html">Index</a></li>
+</ul>
+</div>
+
+<div class="small_links">
+<a href="../index.html" target="_top">Frames</a>
+<a href="../mlphp/permission.html" target="_top">No frames</a>
+</div>
+<div class="small_links">
+Summary: <a href="#summary_field">Field</a> | <a href="#summary_method">Method</a> | <a href="#summary_constr">Constr</a>
+Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> | <a href="#summary_constr">Constr</a>
+</div>
+<hr>
+
+<div class="qualifiedName">MLPHP\Permission</div>
+<a href="../source/marklogic/mlphp/permission.php.html#line25" class="location">MarkLogic/MLPHP/Permission.php at line 25</a>
+
+<h1>Class Permission</h1>
+
+<pre class="tree"><strong>Permission</strong><br /></pre>
+
+<hr>
+
+<p class="signature">public  class <strong>Permission</strong></p>
+
+<div class="comment" id="overview_description"><p>Represents permission metadata.</p></div>
+
+<dl>
+<dt>Author:</dt>
+<dd>Mike Wooldridge <mike.wooldridge@marklogic.com></dd>
+</dl>
+<hr>
+
+<table id="summary_constructor">
+<tr><th colspan="2">Constructor Summary</th></tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#__construct()">__construct</a>(string roleName, array|string capabilities)</p><p class="description">Create a Permission object.</p></td>
+</tr>
+</table>
+
+<table id="summary_method">
+<tr><th colspan="2">Method Summary</th></tr>
+<tr>
+<td class="type"> string</td>
+<td class="description"><p class="name"><a href="#getRoleName()">getRoleName</a>()</p><p class="description">Get the role name.</p></td>
+</tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#setRoleName()">setRoleName</a>(string roleName)</p><p class="description">Set the role name.</p></td>
+</tr>
+<tr>
+<td class="type"> array</td>
+<td class="description"><p class="name"><a href="#getCapabilities()">getCapabilities</a>()</p><p class="description">Get the capabilities.</p></td>
+</tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#addCapabilities()">addCapabilities</a>(array|string capabilities)</p><p class="description">Add capabilities.</p></td>
+</tr>
+</table>
+
+<h2 id="detail_method">Constructor Detail</h2>
+<a href="../source/marklogic/mlphp/permission.php.html#line36" class="location">MarkLogic/MLPHP/Permission.php at line 36</a>
+
+<h3 id="__construct()">__construct</h3>
+<code class="signature">public  void <strong>__construct</strong>(string roleName, array|string capabilities)</code>
+<div class="details">
+<p>Create a Permission object.</p><dl>
+<dt>Parameters:</dt>
+<dd>roleName - The role name for the permission.</dd>
+<dd>capabilities - An array of capability strings or a single capability string.</dd>
+</dl>
+</div>
+
+<hr>
+
+<h2 id="detail_method">Method Detail</h2>
+<a href="../source/marklogic/mlphp/permission.php.html#line47" class="location">MarkLogic/MLPHP/Permission.php at line 47</a>
+
+<h3 id="getRoleName()">getRoleName</h3>
+<code class="signature">public  string <strong>getRoleName</strong>()</code>
+<div class="details">
+<p>Get the role name.</p><dl>
+<dt>Returns:</dt>
+<dd>A role name.</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../source/marklogic/mlphp/permission.php.html#line57" class="location">MarkLogic/MLPHP/Permission.php at line 57</a>
+
+<h3 id="setRoleName()">setRoleName</h3>
+<code class="signature">public  void <strong>setRoleName</strong>(string roleName)</code>
+<div class="details">
+<p>Set the role name.</p><dl>
+<dt>Parameters:</dt>
+<dd>roleName - The role name.</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../source/marklogic/mlphp/permission.php.html#line67" class="location">MarkLogic/MLPHP/Permission.php at line 67</a>
+
+<h3 id="getCapabilities()">getCapabilities</h3>
+<code class="signature">public  array <strong>getCapabilities</strong>()</code>
+<div class="details">
+<p>Get the capabilities.</p><dl>
+<dt>Returns:</dt>
+<dd>An array of capability strings.</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../source/marklogic/mlphp/permission.php.html#line77" class="location">MarkLogic/MLPHP/Permission.php at line 77</a>
+
+<h3 id="addCapabilities()">addCapabilities</h3>
+<code class="signature">public  void <strong>addCapabilities</strong>(array|string capabilities)</code>
+<div class="details">
+<p>Add capabilities.</p><dl>
+<dt>Parameters:</dt>
+<dd>capabilities - An array of capability strings or a single capability string.</dd>
+</dl>
+</div>
+
+<hr>
+
+<div class="header">
+<h1><a href=https://github.com/marklogic/mlphp target=_top>MLPHP</a></h1>
+<ul>
+<li><a href="../overview-summary.html">Overview</a></li>
+<li><a href="../mlphp/package-summary.html">Namespace</a></li>
+<li class="active">Class</li>
+<li><a href="../mlphp/package-tree.html">Tree</a></li>
+<li><a href="../overview-files.html">Files</a></li>
+<li><a href="../deprecated-list.html">Deprecated</a></li>
+<li><a href="../todo-list.html">Todo</a></li>
+<li><a href="../index-all.html">Index</a></li>
+</ul>
+</div>
+
+<div class="small_links">
+<a href="../index.html" target="_top">Frames</a>
+<a href="../mlphp/permission.html" target="_top">No frames</a>
+</div>
+<div class="small_links">
+Summary: <a href="#summary_field">Field</a> | <a href="#summary_method">Method</a> | <a href="#summary_constr">Constr</a>
+Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> | <a href="#summary_constr">Constr</a>
+</div>
+<hr>
+
+<p id="footer">Copyright 2002-2013 MarkLogic Corporation.  All Rights Reserved.</p>
+
+</body>
+
+</html>

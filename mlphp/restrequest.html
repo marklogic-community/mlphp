@@ -1,0 +1,302 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="generator" content="PHPDoctor 2.0.5 (http://peej.github.com/phpdoctor/)">
+<meta name="when" content="Fri, 12 Jul 2013 03:23:04 +0000">
+
+<link rel="stylesheet" type="text/css" href="../stylesheet.css">
+<link rel="start" href="../overview-summary.html">
+
+<title>RESTRequest (MLPHP)</title>
+
+</head>
+<body id="definition" onload="parent.document.title=document.title;">
+
+<div class="header">
+<h1><a href=https://github.com/marklogic/mlphp target=_top>MLPHP</a></h1>
+<ul>
+<li><a href="../overview-summary.html">Overview</a></li>
+<li><a href="../mlphp/package-summary.html">Namespace</a></li>
+<li class="active">Class</li>
+<li><a href="../mlphp/package-tree.html">Tree</a></li>
+<li><a href="../overview-files.html">Files</a></li>
+<li><a href="../deprecated-list.html">Deprecated</a></li>
+<li><a href="../todo-list.html">Todo</a></li>
+<li><a href="../index-all.html">Index</a></li>
+</ul>
+</div>
+
+<div class="small_links">
+<a href="../index.html" target="_top">Frames</a>
+<a href="../mlphp/restrequest.html" target="_top">No frames</a>
+</div>
+<div class="small_links">
+Summary: <a href="#summary_field">Field</a> | <a href="#summary_method">Method</a> | <a href="#summary_constr">Constr</a>
+Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> | <a href="#summary_constr">Constr</a>
+</div>
+<hr>
+
+<div class="qualifiedName">MLPHP\RESTRequest</div>
+<a href="../source/marklogic/mlphp/restrequest.php.html#line25" class="location">MarkLogic/MLPHP/RESTRequest.php at line 25</a>
+
+<h1>Class RESTRequest</h1>
+
+<pre class="tree"><strong>RESTRequest</strong><br /></pre>
+
+<hr>
+
+<p class="signature">public  class <strong>RESTRequest</strong></p>
+
+<div class="comment" id="overview_description"><p>Represents a REST request.</p></div>
+
+<dl>
+<dt>Author:</dt>
+<dd>Mike Wooldridge <mike.wooldridge@marklogic.com></dd>
+</dl>
+<hr>
+
+<table id="summary_constructor">
+<tr><th colspan="2">Constructor Summary</th></tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#__construct()">__construct</a>(mixed verb, mixed resource, mixed params)</p></td>
+</tr>
+</table>
+
+<table id="summary_method">
+<tr><th colspan="2">Method Summary</th></tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#setVerb()">setVerb</a>(string verb)</p><p class="description">Set the REST verb.</p></td>
+</tr>
+<tr>
+<td class="type"> string</td>
+<td class="description"><p class="name"><a href="#getVerb()">getVerb</a>()</p><p class="description">Get the REST verb.</p></td>
+</tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#setResource()">setResource</a>(string resource, mixed verb)</p><p class="description">Set the REST resource.</p></td>
+</tr>
+<tr>
+<td class="type"> string</td>
+<td class="description"><p class="name"><a href="#getResource()">getResource</a>()</p><p class="description">Get the REST resource.</p></td>
+</tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#setParams()">setParams</a>(array params)</p><p class="description">Set the parameters.</p></td>
+</tr>
+<tr>
+<td class="type"> array</td>
+<td class="description"><p class="name"><a href="#getParams()">getParams</a>()</p><p class="description">Get the parameters.</p></td>
+</tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#setBody()">setBody</a>(string body)</p><p class="description">Set the request body.</p></td>
+</tr>
+<tr>
+<td class="type"> string</td>
+<td class="description"><p class="name"><a href="#getBody()">getBody</a>()</p><p class="description">Get the request body.</p></td>
+</tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#setHeaders()">setHeaders</a>(array headers)</p><p class="description">Set the request headers.</p></td>
+</tr>
+<tr>
+<td class="type"> array</td>
+<td class="description"><p class="name"><a href="#getHeaders()">getHeaders</a>()</p><p class="description">Get the request headers.</p></td>
+</tr>
+<tr>
+<td class="type"> string</td>
+<td class="description"><p class="name"><a href="#getUrlStr()">getUrlStr</a>()</p><p class="description">Get the resource and params as a URL string.</p></td>
+</tr>
+</table>
+
+<h2 id="detail_method">Constructor Detail</h2>
+<a href="../source/marklogic/mlphp/restrequest.php.html#line41" class="location">MarkLogic/MLPHP/RESTRequest.php at line 41</a>
+
+<h3 id="__construct()">__construct</h3>
+<code class="signature">public  void <strong>__construct</strong>(mixed verb, mixed resource, mixed params)</code>
+<div class="details">
+</div>
+
+<hr>
+
+<h2 id="detail_method">Method Detail</h2>
+<a href="../source/marklogic/mlphp/restrequest.php.html#line55" class="location">MarkLogic/MLPHP/RESTRequest.php at line 55</a>
+
+<h3 id="setVerb()">setVerb</h3>
+<code class="signature">public  void <strong>setVerb</strong>(string verb)</code>
+<div class="details">
+<p>Set the REST verb.</p><dl>
+<dt>Parameters:</dt>
+<dd>verb - The REST verb (example: 'GET')</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../source/marklogic/mlphp/restrequest.php.html#line65" class="location">MarkLogic/MLPHP/RESTRequest.php at line 65</a>
+
+<h3 id="getVerb()">getVerb</h3>
+<code class="signature">public  string <strong>getVerb</strong>()</code>
+<div class="details">
+<p>Get the REST verb.</p><dl>
+<dt>Returns:</dt>
+<dd>The REST verb.</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../source/marklogic/mlphp/restrequest.php.html#line75" class="location">MarkLogic/MLPHP/RESTRequest.php at line 75</a>
+
+<h3 id="setResource()">setResource</h3>
+<code class="signature">public  void <strong>setResource</strong>(string resource, mixed verb)</code>
+<div class="details">
+<p>Set the REST resource.</p><dl>
+<dt>Parameters:</dt>
+<dd>resource - The REST resource (example: 'documents').</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../source/marklogic/mlphp/restrequest.php.html#line85" class="location">MarkLogic/MLPHP/RESTRequest.php at line 85</a>
+
+<h3 id="getResource()">getResource</h3>
+<code class="signature">public  string <strong>getResource</strong>()</code>
+<div class="details">
+<p>Get the REST resource.</p><dl>
+<dt>Returns:</dt>
+<dd>The REST resource.</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../source/marklogic/mlphp/restrequest.php.html#line95" class="location">MarkLogic/MLPHP/RESTRequest.php at line 95</a>
+
+<h3 id="setParams()">setParams</h3>
+<code class="signature">public  void <strong>setParams</strong>(array params)</code>
+<div class="details">
+<p>Set the parameters.</p><dl>
+<dt>Parameters:</dt>
+<dd>params - An array of parameters.</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../source/marklogic/mlphp/restrequest.php.html#line105" class="location">MarkLogic/MLPHP/RESTRequest.php at line 105</a>
+
+<h3 id="getParams()">getParams</h3>
+<code class="signature">public  array <strong>getParams</strong>()</code>
+<div class="details">
+<p>Get the parameters.</p><dl>
+<dt>Returns:</dt>
+<dd>An array of parameters.</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../source/marklogic/mlphp/restrequest.php.html#line115" class="location">MarkLogic/MLPHP/RESTRequest.php at line 115</a>
+
+<h3 id="setBody()">setBody</h3>
+<code class="signature">public  void <strong>setBody</strong>(string body)</code>
+<div class="details">
+<p>Set the request body.</p><dl>
+<dt>Parameters:</dt>
+<dd>body - The request body.</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../source/marklogic/mlphp/restrequest.php.html#line125" class="location">MarkLogic/MLPHP/RESTRequest.php at line 125</a>
+
+<h3 id="getBody()">getBody</h3>
+<code class="signature">public  string <strong>getBody</strong>()</code>
+<div class="details">
+<p>Get the request body.</p><dl>
+<dt>Returns:</dt>
+<dd>The request body.</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../source/marklogic/mlphp/restrequest.php.html#line135" class="location">MarkLogic/MLPHP/RESTRequest.php at line 135</a>
+
+<h3 id="setHeaders()">setHeaders</h3>
+<code class="signature">public  void <strong>setHeaders</strong>(array headers)</code>
+<div class="details">
+<p>Set the request headers.</p><dl>
+<dt>Parameters:</dt>
+<dd>headers - An array of request headers (example: 'Content-type' => 'appliation/xml').</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../source/marklogic/mlphp/restrequest.php.html#line145" class="location">MarkLogic/MLPHP/RESTRequest.php at line 145</a>
+
+<h3 id="getHeaders()">getHeaders</h3>
+<code class="signature">public  array <strong>getHeaders</strong>()</code>
+<div class="details">
+<p>Get the request headers.</p><dl>
+<dt>Returns:</dt>
+<dd>An array of request headers.</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../source/marklogic/mlphp/restrequest.php.html#line157" class="location">MarkLogic/MLPHP/RESTRequest.php at line 157</a>
+
+<h3 id="getUrlStr()">getUrlStr</h3>
+<code class="signature">public  string <strong>getUrlStr</strong>()</code>
+<div class="details">
+<p>Get the resource and params as a URL string.</p><dl>
+<dt>Todo:</dt>
+<dd>Allow for multiple params of same name (e.g., when filtering by collections or directories for search).</dd>
+<dt>Returns:</dt>
+<dd>The request body.</dd>
+</dl>
+</div>
+
+<hr>
+
+<div class="header">
+<h1><a href=https://github.com/marklogic/mlphp target=_top>MLPHP</a></h1>
+<ul>
+<li><a href="../overview-summary.html">Overview</a></li>
+<li><a href="../mlphp/package-summary.html">Namespace</a></li>
+<li class="active">Class</li>
+<li><a href="../mlphp/package-tree.html">Tree</a></li>
+<li><a href="../overview-files.html">Files</a></li>
+<li><a href="../deprecated-list.html">Deprecated</a></li>
+<li><a href="../todo-list.html">Todo</a></li>
+<li><a href="../index-all.html">Index</a></li>
+</ul>
+</div>
+
+<div class="small_links">
+<a href="../index.html" target="_top">Frames</a>
+<a href="../mlphp/restrequest.html" target="_top">No frames</a>
+</div>
+<div class="small_links">
+Summary: <a href="#summary_field">Field</a> | <a href="#summary_method">Method</a> | <a href="#summary_constr">Constr</a>
+Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> | <a href="#summary_constr">Constr</a>
+</div>
+<hr>
+
+<p id="footer">Copyright 2002-2013 MarkLogic Corporation.  All Rights Reserved.</p>
+
+</body>
+
+</html>
