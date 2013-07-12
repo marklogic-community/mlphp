@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="generator" content="PHPDoctor 2.0.5 (http://peej.github.com/phpdoctor/)">
-<meta name="when" content="Fri, 12 Jul 2013 03:20:40 +0000">
+<meta name="when" content="Fri, 12 Jul 2013 04:33:38 +0000">
 
 <link rel="stylesheet" type="text/css" href="stylesheet.css">
 <link rel="start" href="overview-summary.html">
@@ -96,10 +96,10 @@
 </dl>
 <h1 id="letterD">D</h1>
 <dl>
-<dt><a href="mlphp/document.html#delete()">delete()</a> - Method in class <a href="mlphp/document.html">MLPHP\Document</a></dt>
-<dd>Delete a document from the database. </dd>
 <dt><a href="mlphp/restclient.html#delete()">delete()</a> - Method in class <a href="mlphp/restclient.html">MLPHP\RESTClient</a></dt>
 <dd>Perform a DELETE request with cURL</dd>
+<dt><a href="mlphp/document.html#delete()">delete()</a> - Method in class <a href="mlphp/document.html">MLPHP\Document</a></dt>
+<dd>Delete a document from the database. </dd>
 <dt><a href="mlphp/options.html#delete()">delete()</a> - Method in class <a href="mlphp/options.html">MLPHP\Options</a></dt>
 <dd>Delete the search options from the database.</dd>
 <dt><a href="mlphp/metadata.html#deleteCollections()">deleteCollections()</a> - Method in class <a href="mlphp/metadata.html">MLPHP\Metadata</a></dt>
@@ -147,6 +147,8 @@
 <dd>Get the document as a DOMDocument object.</dd>
 <dt><a href="mlphp/rangeconstraint.html#getAsElem()">getAsElem()</a> - Method in class <a href="mlphp/rangeconstraint.html">MLPHP\RangeConstraint</a></dt>
 <dd>Get the constraint as a DOMElement object.</dd>
+<dt><a href="mlphp/term.html#getAsElem()">getAsElem()</a> - Method in class <a href="mlphp/term.html">MLPHP\Term</a></dt>
+<dd>Get the term as a DOMElement object.</dd>
 <dt><a href="mlphp/propertiesconstraint.html#getAsElem()">getAsElem()</a> - Method in class <a href="mlphp/propertiesconstraint.html">MLPHP\PropertiesConstraint</a></dt>
 <dd>Get the constraint as a DOMElement object.</dd>
 <dt><a href="mlphp/fieldwordconstraint.html#getAsElem()">getAsElem()</a> - Method in class <a href="mlphp/fieldwordconstraint.html">MLPHP\FieldWordConstraint</a></dt>
@@ -155,20 +157,18 @@
 <dd>Get the constraint as a DOMElement object.</dd>
 <dt><a href="mlphp/elementqueryconstraint.html#getAsElem()">getAsElem()</a> - Method in class <a href="mlphp/elementqueryconstraint.html">MLPHP\ElementQueryConstraint</a></dt>
 <dd>Get the constraint as a DOMElement object.</dd>
-<dt><a href="mlphp/valueconstraint.html#getAsElem()">getAsElem()</a> - Method in class <a href="mlphp/valueconstraint.html">MLPHP\ValueConstraint</a></dt>
+<dt><a href="mlphp/collectionconstraint.html#getAsElem()">getAsElem()</a> - Method in class <a href="mlphp/collectionconstraint.html">MLPHP\CollectionConstraint</a></dt>
 <dd>Get the constraint as a DOMElement object.</dd>
 <dt><a href="mlphp/wordconstraint.html#getAsElem()">getAsElem()</a> - Method in class <a href="mlphp/wordconstraint.html">MLPHP\WordConstraint</a></dt>
 <dd>Get the constraint as a DOMElement object.</dd>
-<dt><a href="mlphp/term.html#getAsElem()">getAsElem()</a> - Method in class <a href="mlphp/term.html">MLPHP\Term</a></dt>
-<dd>Get the term as a DOMElement object.</dd>
-<dt><a href="mlphp/collectionconstraint.html#getAsElem()">getAsElem()</a> - Method in class <a href="mlphp/collectionconstraint.html">MLPHP\CollectionConstraint</a></dt>
+<dt><a href="mlphp/valueconstraint.html#getAsElem()">getAsElem()</a> - Method in class <a href="mlphp/valueconstraint.html">MLPHP\ValueConstraint</a></dt>
 <dd>Get the constraint as a DOMElement object.</dd>
 <dt><a href="mlphp/jsondocument.html#getAsObject()">getAsObject()</a> - Method in class <a href="mlphp/jsondocument.html">MLPHP\JSONDocument</a></dt>
 <dd>Get the document as a PHP object.</dd>
-<dt><a href="mlphp/options.html#getAsXML()">getAsXML()</a> - Method in class <a href="mlphp/options.html">MLPHP\Options</a></dt>
-<dd>Get the search options as XML.</dd>
 <dt><a href="mlphp/metadata.html#getAsXML()">getAsXML()</a> - Method in class <a href="mlphp/metadata.html">MLPHP\Metadata</a></dt>
 <dd>Get the metadata object as XML.</dd>
+<dt><a href="mlphp/options.html#getAsXML()">getAsXML()</a> - Method in class <a href="mlphp/options.html">MLPHP\Options</a></dt>
+<dd>Get the search options as XML.</dd>
 <dt><a href="mlphp/qname.html#getAttribute()">getAttribute()</a> - Method in class <a href="mlphp/qname.html">MLPHP\QName</a></dt>
 <dd>Get the attribute name.</dd>
 <dt><a href="mlphp/qname.html#getAttributeNs()">getAttributeNs()</a> - Method in class <a href="mlphp/qname.html">MLPHP\QName</a></dt>
@@ -189,10 +189,10 @@
 <dd>Get the result confidence.</dd>
 <dt><a href="mlphp/document.html#getConnection()">getConnection()</a> - Method in class <a href="mlphp/document.html">MLPHP\Document</a></dt>
 <dd>Get the REST client for the document.</dd>
-<dt><a href="mlphp/document.html#getContent()">getContent()</a> - Method in class <a href="mlphp/document.html">MLPHP\Document</a></dt>
-<dd>Get the document content.</dd>
 <dt><a href="mlphp/match.html#getContent()">getContent()</a> - Method in class <a href="mlphp/match.html">MLPHP\Match</a></dt>
 <dd>Get the content.</dd>
+<dt><a href="mlphp/document.html#getContent()">getContent()</a> - Method in class <a href="mlphp/document.html">MLPHP\Document</a></dt>
+<dd>Get the document content.</dd>
 <dt><a href="mlphp/document.html#getContentType()">getContentType()</a> - Method in class <a href="mlphp/document.html">MLPHP\Document</a></dt>
 <dd>Get the document content type.</dd>
 <dt><a href="mlphp/restresponse.html#getContentType()">getContentType()</a> - Method in class <a href="mlphp/restresponse.html">MLPHP\RESTResponse</a></dt>
@@ -205,9 +205,9 @@
 <dd>Get the debug setting.</dd>
 <dt><a href="mlphp/search.html#getDirectory()">getDirectory()</a> - Method in class <a href="mlphp/search.html">MLPHP\Search</a></dt>
 <dd>Get the directory to filter by.</dd>
-<dt><a href="mlphp/qname.html#getElement()">getElement()</a> - Method in class <a href="mlphp/qname.html">MLPHP\QName</a></dt>
-<dd>Get the element name.</dd>
 <dt><a href="mlphp/preferredelement.html#getElement()">getElement()</a> - Method in class <a href="mlphp/preferredelement.html">MLPHP\PreferredElement</a></dt>
+<dd>Get the element name.</dd>
+<dt><a href="mlphp/qname.html#getElement()">getElement()</a> - Method in class <a href="mlphp/qname.html">MLPHP\QName</a></dt>
 <dd>Get the element name.</dd>
 <dt><a href="mlphp/preferredelement.html#getElementNs()">getElementNs()</a> - Method in class <a href="mlphp/preferredelement.html">MLPHP\PreferredElement</a></dt>
 <dd>Get the element namespace.</dd>
@@ -241,6 +241,8 @@
 <dd>Get the result index.</dd>
 <dt><a href="mlphp/restresponse.html#getInfo()">getInfo()</a> - Method in class <a href="mlphp/restresponse.html">MLPHP\RESTResponse</a></dt>
 <dd>Get the response information.</dd>
+<dt><a href="mlphp/restclient.html#getLogger()">getLogger()</a> - Method in class <a href="mlphp/restclient.html">MLPHP\RESTClient</a></dt>
+<dd>Get the logger.</dd>
 <dt><a href="mlphp/searchresult.html#getMatches()">getMatches()</a> - Method in class <a href="mlphp/searchresult.html">MLPHP\SearchResult</a></dt>
 <dd>Get matches.</dd>
 <dt><a href="mlphp/searchresult.html#getMetadata()">getMetadata()</a> - Method in class <a href="mlphp/searchresult.html">MLPHP\SearchResult</a></dt>
@@ -257,20 +259,20 @@
 <dd>Get the element namespace.</dd>
 <dt><a href="mlphp/search.html#getOptions()">getOptions()</a> - Method in class <a href="mlphp/search.html">MLPHP\Search</a></dt>
 <dd>Get the search-options name.</dd>
-<dt><a href="mlphp/search.html#getPageLength()">getPageLength()</a> - Method in class <a href="mlphp/search.html">MLPHP\Search</a></dt>
-<dd>Get the page length.</dd>
-<dt><a href="mlphp/options.html#getPageLength()">getPageLength()</a> - Method in class <a href="mlphp/options.html">MLPHP\Options</a></dt>
-<dd>Get the page length.</dd>
 <dt><a href="mlphp/searchresults.html#getPageLength()">getPageLength()</a> - Method in class <a href="mlphp/searchresults.html">MLPHP\SearchResults</a></dt>
 <dd>Get the page length (number of results in results set).</dd>
-<dt><a href="mlphp/restrequest.html#getParams()">getParams()</a> - Method in class <a href="mlphp/restrequest.html">MLPHP\RESTRequest</a></dt>
-<dd>Get the parameters.</dd>
+<dt><a href="mlphp/options.html#getPageLength()">getPageLength()</a> - Method in class <a href="mlphp/options.html">MLPHP\Options</a></dt>
+<dd>Get the page length.</dd>
+<dt><a href="mlphp/search.html#getPageLength()">getPageLength()</a> - Method in class <a href="mlphp/search.html">MLPHP\Search</a></dt>
+<dd>Get the page length.</dd>
 <dt><a href="mlphp/search.html#getParams()">getParams()</a> - Method in class <a href="mlphp/search.html">MLPHP\Search</a></dt>
 <dd>Get the common search parameters as an associated array.</dd>
-<dt><a href="mlphp/searchresult.html#getPath()">getPath()</a> - Method in class <a href="mlphp/searchresult.html">MLPHP\SearchResult</a></dt>
-<dd>Get the result path.</dd>
+<dt><a href="mlphp/restrequest.html#getParams()">getParams()</a> - Method in class <a href="mlphp/restrequest.html">MLPHP\RESTRequest</a></dt>
+<dd>Get the parameters.</dd>
 <dt><a href="mlphp/match.html#getPath()">getPath()</a> - Method in class <a href="mlphp/match.html">MLPHP\Match</a></dt>
 <dd>Get the path.</dd>
+<dt><a href="mlphp/searchresult.html#getPath()">getPath()</a> - Method in class <a href="mlphp/searchresult.html">MLPHP\SearchResult</a></dt>
+<dd>Get the result path.</dd>
 <dt><a href="mlphp/metadata.html#getPermissions()">getPermissions()</a> - Method in class <a href="mlphp/metadata.html">MLPHP\Metadata</a></dt>
 <dd>Get the permissions metadata.</dd>
 <dt><a href="mlphp/restclient.html#getPrefix()">getPrefix()</a> - Method in class <a href="mlphp/restclient.html">MLPHP\RESTClient</a></dt>
@@ -317,10 +319,10 @@
 <dd>Get the search options.</dd>
 <dt><a href="mlphp/searchresult.html#getSimilar()">getSimilar()</a> - Method in class <a href="mlphp/searchresult.html">MLPHP\SearchResult</a></dt>
 <dd>Get similar documents.</dd>
-<dt><a href="mlphp/searchresults.html#getStart()">getStart()</a> - Method in class <a href="mlphp/searchresults.html">MLPHP\SearchResults</a></dt>
-<dd>Get the result starting index.</dd>
 <dt><a href="mlphp/search.html#getStart()">getStart()</a> - Method in class <a href="mlphp/search.html">MLPHP\Search</a></dt>
 <dd>Get the start setting.</dd>
+<dt><a href="mlphp/searchresults.html#getStart()">getStart()</a> - Method in class <a href="mlphp/searchresults.html">MLPHP\SearchResults</a></dt>
+<dd>Get the result starting index.</dd>
 <dt><a href="mlphp/searchresults.html#getTotal()">getTotal()</a> - Method in class <a href="mlphp/searchresults.html">MLPHP\SearchResults</a></dt>
 <dd>Get the total number of results.</dd>
 <dt><a href="mlphp/searchresults.html#getTotalPages()">getTotalPages()</a> - Method in class <a href="mlphp/searchresults.html">MLPHP\SearchResults</a></dt>
@@ -413,14 +415,14 @@
 <dl>
 <dt><a href="mlphp/rangeconstraint.html">RangeConstraint()</a> - Class in namespace <a href="mlphp/package-summary.html">MLPHP</a></dt>
 <dd>Represents a range constraint for search.</dd>
-<dt><a href="mlphp/options.html#read()">read()</a> - Method in class <a href="mlphp/options.html">MLPHP\Options</a></dt>
-<dd>Read the search options from the database.</dd>
+<dt><a href="mlphp/document.html#read()">read()</a> - Method in class <a href="mlphp/document.html">MLPHP\Document</a></dt>
+<dd>Read a document from the database.</dd>
 <dt><a href="mlphp/xmldocument.html#read()">read()</a> - Method in class <a href="mlphp/xmldocument.html">MLPHP\XMLDocument</a></dt>
 <dd>Read an XML document from the database.</dd>
 <dt><a href="mlphp/jsondocument.html#read()">read()</a> - Method in class <a href="mlphp/jsondocument.html">MLPHP\JSONDocument</a></dt>
 <dd>Read a JSON document from the database.</dd>
-<dt><a href="mlphp/document.html#read()">read()</a> - Method in class <a href="mlphp/document.html">MLPHP\Document</a></dt>
-<dd>Read a document from the database.</dd>
+<dt><a href="mlphp/options.html#read()">read()</a> - Method in class <a href="mlphp/options.html">MLPHP\Options</a></dt>
+<dd>Read the search options from the database.</dd>
 <dt><a href="mlphp/document.html#readMetadata()">readMetadata()</a> - Method in class <a href="mlphp/document.html">MLPHP\Document</a></dt>
 <dd>Read document metadata from the database.</dd>
 <dt><a href="mlphp/mlphp.html#registerAutoloader()">registerAutoloader()</a> - Method in class <a href="mlphp/mlphp.html">MLPHP\MLPHP</a></dt>
@@ -468,10 +470,10 @@
 <dd>Set the REST client connection.</dd>
 <dt><a href="mlphp/document.html#setConnection()">setConnection()</a> - Method in class <a href="mlphp/document.html">MLPHP\Document</a></dt>
 <dd>Set the REST client for the document.</dd>
-<dt><a href="mlphp/match.html#setContent()">setContent()</a> - Method in class <a href="mlphp/match.html">MLPHP\Match</a></dt>
-<dd>Set the content.</dd>
 <dt><a href="mlphp/document.html#setContent()">setContent()</a> - Method in class <a href="mlphp/document.html">MLPHP\Document</a></dt>
 <dd>Set the document content.</dd>
+<dt><a href="mlphp/match.html#setContent()">setContent()</a> - Method in class <a href="mlphp/match.html">MLPHP\Match</a></dt>
+<dd>Set the content.</dd>
 <dt><a href="mlphp/document.html#setContentFile()">setContentFile()</a> - Method in class <a href="mlphp/document.html">MLPHP\Document</a></dt>
 <dd>Set the document content from the file system.</dd>
 <dt><a href="mlphp/imagedocument.html#setContentFile()">setContentFile()</a> - Method in class <a href="mlphp/imagedocument.html">MLPHP\ImageDocument</a></dt>
@@ -504,13 +506,15 @@
 <dd>Set the host.</dd>
 <dt><a href="mlphp/restresponse.html#setInfo()">setInfo()</a> - Method in class <a href="mlphp/restresponse.html">MLPHP\RESTResponse</a></dt>
 <dd>Set the response information.</dd>
-<dt><a href="mlphp/restclient.html#setOptions()">setOptions()</a> - Method in class <a href="mlphp/restclient.html">MLPHP\RESTClient</a></dt>
-<dd>Set cURL options common to all requests</dd>
+<dt><a href="mlphp/restclient.html#setLogger()">setLogger()</a> - Method in class <a href="mlphp/restclient.html">MLPHP\RESTClient</a></dt>
+<dd>Set the logger.</dd>
 <dt><a href="mlphp/search.html#setOptions()">setOptions()</a> - Method in class <a href="mlphp/search.html">MLPHP\Search</a></dt>
 <dd>Set the search-options name.</dd>
-<dt><a href="mlphp/search.html#setPageLength()">setPageLength()</a> - Method in class <a href="mlphp/search.html">MLPHP\Search</a></dt>
-<dd>Set the page length.</dd>
+<dt><a href="mlphp/restclient.html#setOptions()">setOptions()</a> - Method in class <a href="mlphp/restclient.html">MLPHP\RESTClient</a></dt>
+<dd>Set cURL options common to all requests</dd>
 <dt><a href="mlphp/options.html#setPageLength()">setPageLength()</a> - Method in class <a href="mlphp/options.html">MLPHP\Options</a></dt>
+<dd>Set the page length.</dd>
+<dt><a href="mlphp/search.html#setPageLength()">setPageLength()</a> - Method in class <a href="mlphp/search.html">MLPHP\Search</a></dt>
 <dd>Set the page length.</dd>
 <dt><a href="mlphp/restrequest.html#setParams()">setParams()</a> - Method in class <a href="mlphp/restrequest.html">MLPHP\RESTRequest</a></dt>
 <dd>Set the parameters.</dd>
@@ -554,9 +558,9 @@
 <dd>Set the start setting.</dd>
 <dt><a href="mlphp/options.html#setTerm()">setTerm()</a> - Method in class <a href="mlphp/options.html">MLPHP\Options</a></dt>
 <dd>Set the term setting.</dd>
-<dt><a href="mlphp/term.html#setTermOptions()">setTermOptions()</a> - Method in class <a href="mlphp/term.html">MLPHP\Term</a></dt>
-<dd>Set term options.</dd>
 <dt><a href="mlphp/abstractconstraint.html#setTermOptions()">setTermOptions()</a> - Method in class <a href="mlphp/abstractconstraint.html">MLPHP\AbstractConstraint</a></dt>
+<dd>Set term options.</dd>
+<dt><a href="mlphp/term.html#setTermOptions()">setTermOptions()</a> - Method in class <a href="mlphp/term.html">MLPHP\Term</a></dt>
 <dd>Set term options.</dd>
 <dt><a href="mlphp/options.html#setTransformResults()">setTransformResults()</a> - Method in class <a href="mlphp/options.html">MLPHP\Options</a></dt>
 <dd>Set the transform-results setting.</dd>

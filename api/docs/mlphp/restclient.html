@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="generator" content="PHPDoctor 2.0.5 (http://peej.github.com/phpdoctor/)">
-<meta name="when" content="Fri, 12 Jul 2013 03:20:40 +0000">
+<meta name="when" content="Fri, 12 Jul 2013 04:33:37 +0000">
 
 <link rel="stylesheet" type="text/css" href="../stylesheet.css">
 <link rel="start" href="../overview-summary.html">
@@ -41,7 +41,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 <hr>
 
 <div class="qualifiedName">MLPHP\RESTClient</div>
-<a href="../source/marklogic/mlphp/restclient.php.html#line25" class="location">MarkLogic/MLPHP/RESTClient.php at line 25</a>
+<a href="../source/marklogic/mlphp/restclient.php.html#line27" class="location">MarkLogic/MLPHP/RESTClient.php at line 27</a>
 
 <h1>Class RESTClient</h1>
 
@@ -63,7 +63,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 <tr><th colspan="2">Constructor Summary</th></tr>
 <tr>
 <td class="type"> void</td>
-<td class="description"><p class="name"><a href="#__construct()">__construct</a>(str host, int port, str path, str version, str username, str password, str auth)</p></td>
+<td class="description"><p class="name"><a href="#__construct()">__construct</a>(str host, int port, str path, str version, str username, str password, str auth, mixed logger)</p></td>
 </tr>
 </table>
 
@@ -107,6 +107,14 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 </tr>
 <tr>
 <td class="type"> void</td>
+<td class="description"><p class="name"><a href="#setLogger()">setLogger</a>(LoggerInterface logger)</p><p class="description">Set the logger.</p></td>
+</tr>
+<tr>
+<td class="type"> LoggerInterface</td>
+<td class="description"><p class="name"><a href="#getLogger()">getLogger</a>()</p><p class="description">Get the logger.</p></td>
+</tr>
+<tr>
+<td class="type"> void</td>
 <td class="description"><p class="name"><a href="#send()">send</a>(<a href="../mlphp/restrequest.html">RESTRequest</a> request)</p><p class="description">Send a REST request.</p></td>
 </tr>
 <tr>
@@ -140,17 +148,17 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 </table>
 
 <h2 id="detail_method">Constructor Detail</h2>
-<a href="../source/marklogic/mlphp/restclient.php.html#line47" class="location">MarkLogic/MLPHP/RESTClient.php at line 47</a>
+<a href="../source/marklogic/mlphp/restclient.php.html#line51" class="location">MarkLogic/MLPHP/RESTClient.php at line 51</a>
 
 <h3 id="__construct()">__construct</h3>
-<code class="signature">public  void <strong>__construct</strong>(str host, int port, str path, str version, str username, str password, str auth)</code>
+<code class="signature">public  void <strong>__construct</strong>(str host, int port, str path, str version, str username, str password, str auth, mixed logger)</code>
 <div class="details">
 </div>
 
 <hr>
 
 <h2 id="detail_method">Method Detail</h2>
-<a href="../source/marklogic/mlphp/restclient.php.html#line81" class="location">MarkLogic/MLPHP/RESTClient.php at line 81</a>
+<a href="../source/marklogic/mlphp/restclient.php.html#line90" class="location">MarkLogic/MLPHP/RESTClient.php at line 90</a>
 
 <h3 id="setHost()">setHost</h3>
 <code class="signature">public  void <strong>setHost</strong>(string host)</code>
@@ -163,7 +171,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/restclient.php.html#line91" class="location">MarkLogic/MLPHP/RESTClient.php at line 91</a>
+<a href="../source/marklogic/mlphp/restclient.php.html#line100" class="location">MarkLogic/MLPHP/RESTClient.php at line 100</a>
 
 <h3 id="setPort()">setPort</h3>
 <code class="signature">public  void <strong>setPort</strong>(string port)</code>
@@ -176,7 +184,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/restclient.php.html#line101" class="location">MarkLogic/MLPHP/RESTClient.php at line 101</a>
+<a href="../source/marklogic/mlphp/restclient.php.html#line110" class="location">MarkLogic/MLPHP/RESTClient.php at line 110</a>
 
 <h3 id="setPath()">setPath</h3>
 <code class="signature">public  void <strong>setPath</strong>(string path)</code>
@@ -189,7 +197,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/restclient.php.html#line111" class="location">MarkLogic/MLPHP/RESTClient.php at line 111</a>
+<a href="../source/marklogic/mlphp/restclient.php.html#line120" class="location">MarkLogic/MLPHP/RESTClient.php at line 120</a>
 
 <h3 id="setVersion()">setVersion</h3>
 <code class="signature">public  void <strong>setVersion</strong>(string version)</code>
@@ -202,7 +210,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/restclient.php.html#line121" class="location">MarkLogic/MLPHP/RESTClient.php at line 121</a>
+<a href="../source/marklogic/mlphp/restclient.php.html#line130" class="location">MarkLogic/MLPHP/RESTClient.php at line 130</a>
 
 <h3 id="setUsername()">setUsername</h3>
 <code class="signature">public  void <strong>setUsername</strong>(string username)</code>
@@ -215,7 +223,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/restclient.php.html#line131" class="location">MarkLogic/MLPHP/RESTClient.php at line 131</a>
+<a href="../source/marklogic/mlphp/restclient.php.html#line140" class="location">MarkLogic/MLPHP/RESTClient.php at line 140</a>
 
 <h3 id="setPassword()">setPassword</h3>
 <code class="signature">public  void <strong>setPassword</strong>(string password)</code>
@@ -228,7 +236,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/restclient.php.html#line141" class="location">MarkLogic/MLPHP/RESTClient.php at line 141</a>
+<a href="../source/marklogic/mlphp/restclient.php.html#line150" class="location">MarkLogic/MLPHP/RESTClient.php at line 150</a>
 
 <h3 id="setAuth()">setAuth</h3>
 <code class="signature">public  void <strong>setAuth</strong>(string auth)</code>
@@ -241,7 +249,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/restclient.php.html#line151" class="location">MarkLogic/MLPHP/RESTClient.php at line 151</a>
+<a href="../source/marklogic/mlphp/restclient.php.html#line160" class="location">MarkLogic/MLPHP/RESTClient.php at line 160</a>
 
 <h3 id="setPrefix()">setPrefix</h3>
 <code class="signature">public  void <strong>setPrefix</strong>(string prefix)</code>
@@ -254,7 +262,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/restclient.php.html#line161" class="location">MarkLogic/MLPHP/RESTClient.php at line 161</a>
+<a href="../source/marklogic/mlphp/restclient.php.html#line170" class="location">MarkLogic/MLPHP/RESTClient.php at line 170</a>
 
 <h3 id="getPrefix()">getPrefix</h3>
 <code class="signature">public  string <strong>getPrefix</strong>()</code>
@@ -267,7 +275,25 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/restclient.php.html#line172" class="location">MarkLogic/MLPHP/RESTClient.php at line 172</a>
+<a href="../source/marklogic/mlphp/restclient.php.html#line180" class="location">MarkLogic/MLPHP/RESTClient.php at line 180</a>
+
+<h3 id="setLogger()">setLogger</h3>
+<code class="signature">public  void <strong>setLogger</strong>(LoggerInterface logger)</code>
+<div class="details">
+<p>Set the logger.</p></div>
+
+<hr>
+
+<a href="../source/marklogic/mlphp/restclient.php.html#line190" class="location">MarkLogic/MLPHP/RESTClient.php at line 190</a>
+
+<h3 id="getLogger()">getLogger</h3>
+<code class="signature">public  LoggerInterface <strong>getLogger</strong>()</code>
+<div class="details">
+<p>Get the logger.</p></div>
+
+<hr>
+
+<a href="../source/marklogic/mlphp/restclient.php.html#line201" class="location">MarkLogic/MLPHP/RESTClient.php at line 201</a>
 
 <h3 id="send()">send</h3>
 <code class="signature">public  void <strong>send</strong>(<a href="../mlphp/restrequest.html">RESTRequest</a> request)</code>
@@ -282,7 +308,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/restclient.php.html#line206" class="location">MarkLogic/MLPHP/RESTClient.php at line 206</a>
+<a href="../source/marklogic/mlphp/restclient.php.html#line237" class="location">MarkLogic/MLPHP/RESTClient.php at line 237</a>
 
 <h3 id="setOptions()">setOptions</h3>
 <code class="signature">protected  void <strong>setOptions</strong>(resource ch, string url, mixed urlStr, mixed headers)</code>
@@ -298,7 +324,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/restclient.php.html#line226" class="location">MarkLogic/MLPHP/RESTClient.php at line 226</a>
+<a href="../source/marklogic/mlphp/restclient.php.html#line257" class="location">MarkLogic/MLPHP/RESTClient.php at line 257</a>
 
 <h3 id="get()">get</h3>
 <code class="signature">public  void <strong>get</strong>(<a href="../mlphp/restrequest.html">RESTRequest</a> request)</code>
@@ -313,7 +339,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/restclient.php.html#line245" class="location">MarkLogic/MLPHP/RESTClient.php at line 245</a>
+<a href="../source/marklogic/mlphp/restclient.php.html#line276" class="location">MarkLogic/MLPHP/RESTClient.php at line 276</a>
 
 <h3 id="put()">put</h3>
 <code class="signature">public  void <strong>put</strong>(<a href="../mlphp/restrequest.html">RESTRequest</a> request)</code>
@@ -328,7 +354,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/restclient.php.html#line272" class="location">MarkLogic/MLPHP/RESTClient.php at line 272</a>
+<a href="../source/marklogic/mlphp/restclient.php.html#line303" class="location">MarkLogic/MLPHP/RESTClient.php at line 303</a>
 
 <h3 id="delete()">delete</h3>
 <code class="signature">public  void <strong>delete</strong>(<a href="../mlphp/restrequest.html">RESTRequest</a> request)</code>
@@ -343,7 +369,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/restclient.php.html#line291" class="location">MarkLogic/MLPHP/RESTClient.php at line 291</a>
+<a href="../source/marklogic/mlphp/restclient.php.html#line322" class="location">MarkLogic/MLPHP/RESTClient.php at line 322</a>
 
 <h3 id="post()">post</h3>
 <code class="signature">public  void <strong>post</strong>(<a href="../mlphp/restrequest.html">RESTRequest</a> request)</code>
@@ -358,7 +384,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/restclient.php.html#line312" class="location">MarkLogic/MLPHP/RESTClient.php at line 312</a>
+<a href="../source/marklogic/mlphp/restclient.php.html#line343" class="location">MarkLogic/MLPHP/RESTClient.php at line 343</a>
 
 <h3 id="head()">head</h3>
 <code class="signature">public  void <strong>head</strong>(<a href="../mlphp/restrequest.html">RESTRequest</a> request)</code>
@@ -373,7 +399,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/restclient.php.html#line334" class="location">MarkLogic/MLPHP/RESTClient.php at line 334</a>
+<a href="../source/marklogic/mlphp/restclient.php.html#line365" class="location">MarkLogic/MLPHP/RESTClient.php at line 365</a>
 
 <h3 id="execute()">execute</h3>
 <code class="signature">public  void <strong>execute</strong>(resource ch)</code>
