@@ -94,7 +94,7 @@ class RESTRequest
      */
     public function setParams($params)
     {
-        $this->verb = $verb;
+        $this->params = $params;
     }
 
     /**
@@ -148,6 +148,28 @@ class RESTRequest
     }
 
     /**
+     * @return true if the request is a POST with Content-type application/x-www-form-urlencoded
+     */
+    public function isWWWFormURLEncodedPost() 
+    {
+        if (strtolower($this->verb) != "post") {
+            return false;
+        }
+
+        if (!empty($this->headers["Content-type"])) {
+            return false;
+        }
+
+        // XXX Do I need to check for other cases of Content-Type content-type, etc?
+        switch (strtolower($this->headers["Content-type"])) {
+            case "application/x-www-form-urlencoded":
+                return true;
+            default:    
+                return false;
+        }
+    }
+
+    /**
      * Get the resource and params as a URL string.
      *
      * @todo Allow for multiple params of same name (e.g., when filtering by collections or directories for search).
@@ -157,7 +179,11 @@ class RESTRequest
     public function getUrlStr()
     {
         $str = (!empty($this->resource)) ? $this->resource : '';
-        $str .= (!empty($this->params)) ? ('?' . http_build_query($this->params)) : '';
+
+        /* x-www-form-encoded posts encodes query params in the body */
+        if (! $this->isWWWFormURLEncodedPost()) {
+            $str .= (!empty($this->params)) ? ('?' . http_build_query($this->params)) : '';
+        }
         return $str;
     }
 }

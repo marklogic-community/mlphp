@@ -29,7 +29,6 @@ class RESTResponse
 
     private $url; // @var string
     private $contentType; // @var string
-    private $httpCode; // @var int
 
     /**
      * Set the response body.

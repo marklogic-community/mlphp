@@ -25,7 +25,10 @@
         "ext-xsl": "*"
     },
     "require-dev": {
-        "peej/phpdoctor" : "dev-dev-eedeebee"
+        "peej/phpdoctor" : "dev-dev-eedeebee",
+        "phpunit/phpunit": "3.7.*",
+        "monolog/monolog": "*"
+
     },
     "autoload": {
         "psr-0": { "MarkLogic\\MLPHP": "api/" }

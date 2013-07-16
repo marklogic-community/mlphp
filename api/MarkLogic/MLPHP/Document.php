@@ -1,6 +1,6 @@
 <?php
 /*
-Copyright 2002-2012 MarkLogic Corporation.  All Rights Reserved.
+Copyright 2002-2013 MarkLogic Corporation.  All Rights Reserved.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -28,6 +28,7 @@ class Document
     private $content; // @var string
     private $contentType; // @var string
     private $restClient; // @var RESTClient
+    private $logger; // @var LoggerInterface
 
     /**
      * Create a Document object.
@@ -38,6 +39,7 @@ class Document
     public function __construct($restClient, $uri = null)
     {
         $this->restClient = $restClient;
+        $this->logger = $restClient->getLogger();
         $this->uri = (string)$uri;
     }
 
@@ -48,7 +50,7 @@ class Document
      *
      * @param string $uri A document URI.
      * @param array $params Optional additional parameters to pass when reading.
-     * @return string The document content.
+     * @return string|bool The document content or false on failure.
      */
     public function read($uri = null, $params = array())
     {
@@ -60,8 +62,8 @@ class Document
             $this->content = $response->getBody();
             $this->contentType = $response->getContentType();
             return $this->content;
-        } catch(Exception $e) {
-            echo $e->getMessage() . ' in ' . $e->getFile() . ' on line ' . $e->getLine() . PHP_EOL;
+        } catch(\Exception $e) {
+            $this->logger->warning( $e->getMessage() . ' in ' . $e->getFile() . ' on line ' . $e->getLine() );
             return false;
         }
     }
@@ -86,10 +88,10 @@ class Document
             }
             $request = new RESTRequest('PUT', 'documents', $params, $this->content, $headers);
             $response = $this->restClient->send($request);
-            return $this;
-        } catch(Exception $e) {
-            echo $e->getMessage() . ' in ' . $e->getFile() . ' on line ' . $e->getLine() . PHP_EOL;
+        } catch(\Exception $e) {
+            $this->logger->error( $e->getMessage() . ' in ' . $e->getFile() . ' on line ' . $e->getLine() );
         }
+        return $this;
     }
 
     /**
@@ -105,10 +107,10 @@ class Document
             $params = array('uri' => $this->uri);
             $request = new RESTRequest('DELETE', 'documents', $params);
             $response = $this->restClient->send($request);
-            return $this;
-        } catch(Exception $e) {
-            echo $e->getMessage() . ' in ' . $e->getFile() . ' on line ' . $e->getLine() . PHP_EOL;
+        } catch(\Exception $e) {
+            $this->logger->error(  $e->getMessage() . ' in ' . $e->getFile() . ' on line ' . $e->getLine() );
         }
+        return $this;
     }
 
     /**
@@ -125,8 +127,9 @@ class Document
             $metadata = new Metadata();
             $metadata->loadFromXML($response->getBody());
             return $metadata;
-        } catch(Exception $e) {
-            echo $e->getMessage() . ' in ' . $e->getFile() . ' on line ' . $e->getLine() . PHP_EOL;
+        } catch(\Exception $e) {
+            $this->logger->error( $e->getMessage() . ' in ' . $e->getFile() . ' on line ' . $e->getLine() );
+            return null;
         }
     }
 
@@ -144,10 +147,10 @@ class Document
             $headers = array('Content-type' => 'application/xml');
             $request = new RESTRequest('PUT', 'documents', $params, $metaxml, $headers);
             $response = $this->restClient->send($request);
-            return $this;
-        } catch(Exception $e) {
-            echo $e->getMessage() . ' in ' . $e->getFile() . ' on line ' . $e->getLine() . PHP_EOL;
+        } catch(\Exception $e) {
+            $this->logger->error( $e->getMessage() . ' in ' . $e->getFile() . ' on line ' . $e->getLine() );
         }
+        return $this;
     }
 
     /**
@@ -161,10 +164,10 @@ class Document
             $params = array('uri' => $this->uri, 'category' => 'metadata');
             $request = new RESTRequest('DELETE', 'documents', $params);
             $response = $this->restClient->send($request);
-            return $this;
-        } catch(Exception $e) {
-            echo $e->getMessage() . ' in ' . $e->getFile() . ' on line ' . $e->getLine() . PHP_EOL;
+        } catch(\Exception $e) {
+            $this->logger->error( $e->getMessage() . ' in ' . $e->getFile() . ' on line ' . $e->getLine() );
         }
+        return $this;
     }
 
     /**
@@ -243,8 +246,8 @@ class Document
     {
         try {
             $content = file_get_contents((string)$file);
-        } catch(Exception $e) {
-            echo $e->getMessage();
+        } catch(\Exception $e) {
+            $this->logger->error( $e->getMessage() );
         }
         $this->setContent($content);
         return $this;

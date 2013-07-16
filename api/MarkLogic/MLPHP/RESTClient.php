@@ -17,6 +17,7 @@ limitations under the License.
 namespace MarkLogic\MLPHP;
 
 use Psr\Log\LoggerInterface;
+use Psr\Log\NullLogger;
 
 /**
  * Represents a REST client.
@@ -42,19 +43,19 @@ class RESTClient
      * @param string host The host (examples: 'localhost', 'test.marklogic.com', '192.162.5.1').
      * @param int port The port (example: 8003). Set to 0 for no port.
      * @param string path An additional path prefix.
-     * @param string version The API version (example: 'v1').
+     * @param string version The API version (example: 'v1' (default)).
      * @param string username The username for REST authentication.
      * @param string password The password for REST authentication.
-     * @param string auth The authentication scheme (examples: 'basic', 'digest').
+     * @param string auth The authentication scheme ('basic' or 'digest' (default)).
      * @param LoggerInterface logger 
      */
-    public function __construct($host = '', $port = 0, $path = '', $version = '', $username = '', $password = '', $auth = '',
-        $logger)
+    public function __construct($host = '', $port = 0, $path = '', $version = '', $username = '', $password = '', $auth = 'digest',
+        $logger = null)
     {
-        if ($logger) {
-            $this->logger = $logger;
-        } else {
+        if (is_null($logger)) {
             $this->logger = new NullLogger();
+        } else {
+            $this->logger = $logger;
         }
         $this->host = (string)$host;
         $this->port = (int)$port;
@@ -204,8 +205,6 @@ class RESTClient
 
         $this->request = $request;
 
-        $this->logger->debug("Method: " . $request->getVerb());
-
         switch (strtoupper($request->getVerb())) {
             case 'GET':
                 $this->response = $this->get($request);
@@ -265,6 +264,8 @@ class RESTClient
         // Options specific to GET
         curl_setopt($ch, CURLOPT_HTTPGET, true);
 
+        $this->logger->debug("GET");
+
         return $this->execute($ch);
     }
 
@@ -276,13 +277,19 @@ class RESTClient
      */
     public function put($request)
     {
+        $this->logger->debug("PUT " . $request->headers['Content-type']);
 
         $ch = curl_init();
 
-        // Handle PUT body
-        $requestLength = strlen($request->getBody());
+        // Handle body
+        $body = $request->getBody();
+        $requestLength = strlen($body);
         $fh = fopen('php://temp', 'rw');
-        fwrite($fh, $request->getBody());
+
+        $this->logger->debug("Request body: " . $body);
+        $this->logger->debug("Request body size: " . $requestLength);
+
+        fwrite($fh, $body);
         rewind($fh);
 
         $this->setOptions($ch, $request->getUrlStr(), $request->getHeaders());
@@ -292,7 +299,11 @@ class RESTClient
         curl_setopt($ch, CURLOPT_INFILESIZE, $requestLength);
         curl_setopt($ch, CURLOPT_PUT, true);
 
-        return $this->execute($ch);
+        $ret = $this->execute($ch);
+
+        fclose($fh);
+
+        return $ret;
     }
 
     /**
@@ -303,10 +314,12 @@ class RESTClient
      */
     public function delete($request)
     {
+        $this->logger->debug("DELETE");
 
         $ch = curl_init();
 
         $this->setOptions($ch, $request->getUrlStr(), $request->getHeaders());
+
 
         // Options specific to DELETE
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'DELETE');
@@ -324,15 +337,33 @@ class RESTClient
     {
         $ch = curl_init();
 
-        $requestBody = http_build_query($requestBody, '', '&');
-
         $this->setOptions($ch, $request->getUrlStr(), $request->getHeaders());
 
-        // Options specific to POST
-        curl_setopt($ch, CURLOPT_POST, true);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $requestBody);
+        if ($request->isWWWFormURLEncodedPost()) {
 
-        return $this->execute($ch);
+            $this->logger->debug("POST www-form-urlencoded");
+            $requestBody = http_build_query($request->getParams());
+
+            curl_setopt($ch, CURLOPT_POST, true);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $requestBody);
+            $this->logger->debug("Request body: " . $requestBody);
+
+            return $this->execute($ch);
+
+        } else {
+
+            $this->logger->debug("POST " . $request->headers['Content-type']);
+
+            $requestLength = strlen($request->getBody());
+
+            $this->logger->debug("Request body: " . $request->getBody());
+            $this->logger->debug("Request body size: " . $requestLength);
+
+            curl_setopt($ch, CURLOPT_POST, true);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $request->getBody());
+
+            return $this->execute($ch);
+        }
     }
 
     /**
@@ -352,6 +383,8 @@ class RESTClient
         curl_setopt($ch, CURLOPT_HEADER, true);
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'HEAD');
 
+        $this->logger->debug("HEAD");
+
         return $this->execute($ch);
     }
 
@@ -367,15 +400,17 @@ class RESTClient
     {
         $response = new RESTResponse();
         $this->logger->debug("URL: " . curl_getinfo($ch, CURLINFO_EFFECTIVE_URL));
-        $this->logger->debug("Request body size: " . curl_getinfo($ch, CURLINFO_CONTENT_LENGTH_UPLOAD));
         $response->setBody(curl_exec($ch));
         $response->setInfo(curl_getinfo($ch));
+        $this->logger->debug("Response code: " . $response->getHttpCode());
         $this->logger->debug("Response length: " . curl_getinfo($ch, CURLINFO_CONTENT_LENGTH_DOWNLOAD));
         $this->logger->debug("Response content type: " . curl_getinfo($ch, CURLINFO_CONTENT_TYPE));
+        $this->logger->debug("Response body: " . $response->getBody());
         if ($response->getHttpCode() === 0) {
             throw new \Exception('No connection: ' . $response->getUrl(), $response->getHttpCode());
-        } else if ($response->getHttpCode() == 301) {
+        } else if ($response->getHttpCode() == 301 || $response->getHttpCode() == 302) {
             // Redirect to specified URL
+            // XXX - limit infinite redirects.
             curl_setopt($ch, CURLOPT_URL, $response->getRedirectUrl());
             return $this->execute($ch);
         } else if ($response->getHttpCode() >= 400) {
