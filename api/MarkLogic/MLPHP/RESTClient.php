@@ -43,13 +43,13 @@ class RESTClient
      * @param string host The host (examples: 'localhost', 'test.marklogic.com', '192.162.5.1').
      * @param int port The port (example: 8003). Set to 0 for no port.
      * @param string path An additional path prefix.
-     * @param string version The API version (example: 'v1').
+     * @param string version The API version (example: 'v1' (default)).
      * @param string username The username for REST authentication.
      * @param string password The password for REST authentication.
-     * @param string auth The authentication scheme (examples: 'basic', 'digest').
+     * @param string auth The authentication scheme ('basic' or 'digest' (default)).
      * @param LoggerInterface logger 
      */
-    public function __construct($host = '', $port = 0, $path = '', $version = '', $username = '', $password = '', $auth = '',
+    public function __construct($host = '', $port = 0, $path = '', $version = '', $username = '', $password = '', $auth = 'digest',
         $logger = null)
     {
         if ($logger) {
