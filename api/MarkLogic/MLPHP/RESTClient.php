@@ -50,7 +50,7 @@ class RESTClient
      * @param LoggerInterface logger 
      */
     public function __construct($host = '', $port = 0, $path = '', $version = '', $username = '', $password = '', $auth = '',
-        $logger)
+        $logger = null)
     {
         if ($logger) {
             $this->logger = $logger;
