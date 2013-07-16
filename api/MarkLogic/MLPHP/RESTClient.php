@@ -17,6 +17,7 @@ limitations under the License.
 namespace MarkLogic\MLPHP;
 
 use Psr\Log\LoggerInterface;
+use Psr\Log\NullLogger;
 
 /**
  * Represents a REST client.
