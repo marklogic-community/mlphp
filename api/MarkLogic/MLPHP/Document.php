@@ -1,6 +1,6 @@
 <?php
 /*
-Copyright 2002-2012 MarkLogic Corporation.  All Rights Reserved.
+Copyright 2002-2013 MarkLogic Corporation.  All Rights Reserved.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -28,6 +28,7 @@ class Document
     private $content; // @var string
     private $contentType; // @var string
     private $restClient; // @var RESTClient
+    private $logger; // @var LoggerInterface
 
     /**
      * Create a Document object.
@@ -38,6 +39,7 @@ class Document
     public function __construct($restClient, $uri = null)
     {
         $this->restClient = $restClient;
+        $this->logger = $restClient->getLogger();
         $this->uri = (string)$uri;
     }
 
@@ -61,7 +63,7 @@ class Document
             $this->contentType = $response->getContentType();
             return $this->content;
         } catch(Exception $e) {
-            echo $e->getMessage() . ' in ' . $e->getFile() . ' on line ' . $e->getLine() . PHP_EOL;
+            $logger->error( $e->getMessage() . ' in ' . $e->getFile() . ' on line ' . $e->getLine() );
             return false;
         }
     }
@@ -88,7 +90,7 @@ class Document
             $response = $this->restClient->send($request);
             return $this;
         } catch(Exception $e) {
-            echo $e->getMessage() . ' in ' . $e->getFile() . ' on line ' . $e->getLine() . PHP_EOL;
+            $logger->error( $e->getMessage() . ' in ' . $e->getFile() . ' on line ' . $e->getLine() );
         }
     }
 
@@ -107,7 +109,7 @@ class Document
             $response = $this->restClient->send($request);
             return $this;
         } catch(Exception $e) {
-            echo $e->getMessage() . ' in ' . $e->getFile() . ' on line ' . $e->getLine() . PHP_EOL;
+            $logger->error(  $e->getMessage() . ' in ' . $e->getFile() . ' on line ' . $e->getLine() );
         }
     }
 
@@ -126,7 +128,7 @@ class Document
             $metadata->loadFromXML($response->getBody());
             return $metadata;
         } catch(Exception $e) {
-            echo $e->getMessage() . ' in ' . $e->getFile() . ' on line ' . $e->getLine() . PHP_EOL;
+            $logger->error( $e->getMessage() . ' in ' . $e->getFile() . ' on line ' . $e->getLine() );
         }
     }
 
@@ -146,7 +148,7 @@ class Document
             $response = $this->restClient->send($request);
             return $this;
         } catch(Exception $e) {
-            echo $e->getMessage() . ' in ' . $e->getFile() . ' on line ' . $e->getLine() . PHP_EOL;
+            $logger->error( $e->getMessage() . ' in ' . $e->getFile() . ' on line ' . $e->getLine() );
         }
     }
 
@@ -163,7 +165,7 @@ class Document
             $response = $this->restClient->send($request);
             return $this;
         } catch(Exception $e) {
-            echo $e->getMessage() . ' in ' . $e->getFile() . ' on line ' . $e->getLine() . PHP_EOL;
+            $logger->error( $e->getMessage() . ' in ' . $e->getFile() . ' on line ' . $e->getLine() );
         }
     }
 
@@ -244,7 +246,7 @@ class Document
         try {
             $content = file_get_contents((string)$file);
         } catch(Exception $e) {
-            echo $e->getMessage();
+            $logger->error( $e->getMessage() );
         }
         $this->setContent($content);
         return $this;
