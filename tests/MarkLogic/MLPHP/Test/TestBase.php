@@ -14,19 +14,21 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-namespace MarkLogic\MLPHP;
+namespace MarkLogic\MLPHP\Test;
+
+use MarkLogic\MLPHP;
 
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
 
 /**
- * @package MLPHP
+ * @package MLPHP\Test
  * @author Eric Bloch <eric.bloch@gmail.com>
  */
-class SetupTest extends \PHPUnit_Framework_TestCase
+abstract class TestBase extends \PHPUnit_Framework_TestCase
 {
-    private $apiclient;
-    private $client;
+    static private $apiclient;
+    protected $client;
 
     private $db;
     private $host;
@@ -34,7 +36,7 @@ class SetupTest extends \PHPUnit_Framework_TestCase
     private $user;
     private $pass;
 
-    private $logger;
+    protected $logger;
 
     function createAPI() 
     {
@@ -57,11 +59,15 @@ class SetupTest extends \PHPUnit_Framework_TestCase
             }
         ';
 
-        $request = new RESTRequest($method, $resource, $params, $body, $headers);
+        $request = new MLPHP\RESTRequest($method, $resource, $params, $body, $headers);
+
+        if (! $this->apiclient) {
+            $this->apiclient = new MLPHP\RESTClient($this->host, $this->mgmt_port, '', 'v1', $this->user, $this->pass, 'digest', $this->logger);
+        }
 
         $this->apiclient->post($request);
 
-        $this->client = new RESTClient($this->host, $this->port, '', 'v1', $this->user, $this->pass, 'digest', $this->logger);
+        $this->client = new MLPHP\RESTClient($this->host, $this->port, '', 'v1', $this->user, $this->pass, 'digest', $this->logger);
 
         $this->installExtensions();
     }
@@ -78,7 +84,7 @@ class SetupTest extends \PHPUnit_Framework_TestCase
             'Content-type' => 'application/xquery'
         );
         $body = file_get_contents(__DIR__ . DIRECTORY_SEPARATOR . "clear-db.xqy");
-        $request = new RESTRequest($method, $resource, $params, $body, $headers);
+        $request = new MLPHP\RESTRequest($method, $resource, $params, $body, $headers);
         $this->client->put($request);
     }
 
@@ -91,7 +97,7 @@ class SetupTest extends \PHPUnit_Framework_TestCase
         $headers = array();
         $body = null;
 
-        $request = new RESTRequest($method, $resource, $params, $body, $headers);
+        $request = new MLPHP\RESTRequest($method, $resource, $params, $body, $headers);
         $this->client->post($request);
     }
 
@@ -102,9 +108,12 @@ class SetupTest extends \PHPUnit_Framework_TestCase
         $params = array();
         $body = null;
         $headers = array();
-        $request = new RESTRequest($method, $resource, $params, $body, $headers);
+        $request = new MLPHP\RESTRequest($method, $resource, $params, $body, $headers);
 
         $this->apiclient->delete($request);
+    
+        // Wait for server reboot :(
+        sleep(3);
     }
 
     function setUp()
@@ -125,20 +134,12 @@ class SetupTest extends \PHPUnit_Framework_TestCase
 
         $this->logger->debug("setUp");
 
-        $this->apiclient = new RESTClient($this->host, $this->mgmt_port, '', 'v1', $this->user, $this->pass, 'digest', $this->logger);
-
         /* Create a fresh REST API instance for us */
         $this->createAPI();
 
         /* Clear the attached DB */
         $this->clearDB();
         
-    }
-
-    function test404()
-    {
-        $doc = new Document($this->client, "/not-there");
-        $this->assertFalse($doc->read());
     }
 
     function tearDown()

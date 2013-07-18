@@ -241,8 +241,13 @@ class RESTClient
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_HTTPAUTH, $this->auth);
         curl_setopt($ch, CURLOPT_USERPWD, $this->username . ':' . $this->password);
-        curl_setopt($ch, CURLOPT_TIMEOUT, 10);
-        curl_setopt($ch, CURLOPT_URL, $url);
+
+        curl_setopt($ch, CURLINFO_HEADER_OUT, true); // For debugging; TODO otherwise disable
+
+        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true );
+        curl_setopt($ch, CURLOPT_MAXREDIRS, 10); // Expose ?
+        curl_setopt($ch, CURLOPT_TIMEOUT, 10); // Expose ?
+
         foreach ($headers as $key => $val) {
             curl_setopt($ch, CURLOPT_HTTPHEADER, array($key . ': ' . $val));
         }
@@ -339,16 +344,15 @@ class RESTClient
 
         $this->setOptions($ch, $request->getUrlStr(), $request->getHeaders());
 
+        curl_setopt($ch, CURLOPT_POST, true);
+
         if ($request->isWWWFormURLEncodedPost()) {
 
             $this->logger->debug("POST www-form-urlencoded");
             $requestBody = http_build_query($request->getParams());
 
-            curl_setopt($ch, CURLOPT_POST, true);
             curl_setopt($ch, CURLOPT_POSTFIELDS, $requestBody);
             $this->logger->debug("Request body: " . $requestBody);
-
-            return $this->execute($ch);
 
         } else {
 
@@ -359,11 +363,10 @@ class RESTClient
             $this->logger->debug("Request body: " . $request->getBody());
             $this->logger->debug("Request body size: " . $requestLength);
 
-            curl_setopt($ch, CURLOPT_POST, true);
             curl_setopt($ch, CURLOPT_POSTFIELDS, $request->getBody());
-
-            return $this->execute($ch);
         }
+
+        return $this->execute($ch);
     }
 
     /**
@@ -402,18 +405,17 @@ class RESTClient
         $this->logger->debug("URL: " . curl_getinfo($ch, CURLINFO_EFFECTIVE_URL));
         $response->setBody(curl_exec($ch));
         $response->setInfo(curl_getinfo($ch));
+        $this->logger->debug("Request headers : " . curl_getinfo($ch, CURLINFO_HEADER_OUT)); 
         $this->logger->debug("Response code: " . $response->getHttpCode());
         $this->logger->debug("Response length: " . curl_getinfo($ch, CURLINFO_CONTENT_LENGTH_DOWNLOAD));
         $this->logger->debug("Response content type: " . curl_getinfo($ch, CURLINFO_CONTENT_TYPE));
         $this->logger->debug("Response body: " . $response->getBody());
         if ($response->getHttpCode() === 0) {
+            curl_close ($ch);
             throw new \Exception('No connection: ' . $response->getUrl(), $response->getHttpCode());
-        } else if ($response->getHttpCode() == 301 || $response->getHttpCode() == 302) {
-            // Redirect to specified URL
-            // XXX - limit infinite redirects.
-            curl_setopt($ch, CURLOPT_URL, $response->getRedirectUrl());
-            return $this->execute($ch);
         } else if ($response->getHttpCode() >= 400) {
+            curl_close ($ch);
+            $this->logger->debug("HTTP Error " . $response->getHttpCode());
             throw new \Exception($response->getErrorMessage(), $response->getHttpCode());
         } else {
             curl_close ($ch);

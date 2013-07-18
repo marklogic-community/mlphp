@@ -26,7 +26,7 @@ class Document
 {
     private $uri; // @var string
     private $content; // @var string
-    private $contentType; // @var string
+    protected $contentType; // @var string
     private $restClient; // @var RESTClient
     private $logger; // @var LoggerInterface
 
@@ -63,6 +63,7 @@ class Document
             $this->contentType = $response->getContentType();
             return $this->content;
         } catch(\Exception $e) {
+            // TODO: error codes for not-found and other reasonable, unexceptional errors.
             $this->logger->warning( $e->getMessage() . ' in ' . $e->getFile() . ' on line ' . $e->getLine() );
             return false;
         }

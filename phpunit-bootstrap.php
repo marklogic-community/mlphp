@@ -2,6 +2,8 @@
 
 use Monolog\Logger;
 
+$loader = require 'vendor/autoload.php';
+
 $mlphp = array(
     'log_level' => Logger::DEBUG,
 
@@ -15,5 +17,4 @@ $mlphp = array(
 
     'unused'       => foo
 )
-
 ?>

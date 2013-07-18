@@ -107,10 +107,10 @@ Beginnings of unit tests can be found under `tests`.  To run,
 
 #. Create a database for the tests, named mlphp-tests.  You can do this by importing the DB configuration via the MarkLogic 
 Configuration manager UI at `http://localhost:8002` (change your hostname as you need) found under `tests/setup/package.xml`.
-#. Edit bootstrap.php and set any configuration variables.
+#. Edit phpunit-bootstrap.php and set any configuration variables.
 #. Run the tests
 
-        % vendor/bin/phpunit --bootstrap bootstrap.php tests/MarkLogic/MLPHP/SetupTest.php  
+        % vendor/bin/phpunit --bootstrap phpunit-bootstrap.php tests
 
 ### Contributing
 TBD...
