@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="generator" content="PHPDoctor 2.0.5 (http://peej.github.com/phpdoctor/)">
-<meta name="when" content="Fri, 12 Jul 2013 04:33:39 +0000">
+<meta name="when" content="Thu, 18 Jul 2013 20:16:51 +0000">
 
 <link rel="stylesheet" type="text/css" href="../../../stylesheet.css">
 <link rel="start" href="../../../overview-summary.html">
@@ -132,7 +132,7 @@
 <a name="line94"></a>     */</span>
 <a name="line95"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> setParams<span style="color: #009900;">&#40;</span><span style="color: #000088;">$params</span><span style="color: #009900;">&#41;</span>
 <a name="line96"></a>    <span style="color: #009900;">&#123;</span>
-<a name="line97"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">verb</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$verb</span><span style="color: #339933;">;</span>
+<a name="line97"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">params</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$params</span><span style="color: #339933;">;</span>
 <a name="line98"></a>    <span style="color: #009900;">&#125;</span>
 <a name="line99"></a>&nbsp;
 <a name="line100"></a>    <span style="color: #009933; font-style: italic;">/**
@@ -186,20 +186,46 @@
 <a name="line148"></a>    <span style="color: #009900;">&#125;</span>
 <a name="line149"></a>&nbsp;
 <a name="line150"></a>    <span style="color: #009933; font-style: italic;">/**
-<a name="line151"></a>     * Get the resource and params as a URL string.
-<a name="line152"></a>     *
-<a name="line153"></a>     * @todo Allow for multiple params of same name (e.g., when filtering by collections or directories for search).
-<a name="line154"></a>     *
-<a name="line155"></a>     * @return string The request body.
-<a name="line156"></a>     */</span>
-<a name="line157"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getUrlStr<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
-<a name="line158"></a>    <span style="color: #009900;">&#123;</span>
-<a name="line159"></a>        <span style="color: #000088;">$str</span> <span style="color: #339933;">=</span> <span style="color: #009900;">&#40;</span><span style="color: #339933;">!</span><a href="http://www.php.net/empty"><span style="color: #990000;">empty</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">resource</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span> ? <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">resource</span> <span style="color: #339933;">:</span> <span style="color: #0000ff;">''</span><span style="color: #339933;">;</span>
-<a name="line160"></a>        <span style="color: #000088;">$str</span> <span style="color: #339933;">.=</span> <span style="color: #009900;">&#40;</span><span style="color: #339933;">!</span><a href="http://www.php.net/empty"><span style="color: #990000;">empty</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">params</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span> ? <span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'?'</span> <span style="color: #339933;">.</span> <a href="http://www.php.net/http_build_query"><span style="color: #990000;">http_build_query</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">params</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span> <span style="color: #339933;">:</span> <span style="color: #0000ff;">''</span><span style="color: #339933;">;</span>
-<a name="line161"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$str</span><span style="color: #339933;">;</span>
-<a name="line162"></a>    <span style="color: #009900;">&#125;</span>
-<a name="line163"></a><span style="color: #009900;">&#125;</span>
-<a name="line164"></a>&nbsp;</pre>
+<a name="line151"></a>     * @return true if the request is a POST with Content-type application/x-www-form-urlencoded
+<a name="line152"></a>     */</span>
+<a name="line153"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> isWWWFormURLEncodedPost<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span> 
+<a name="line154"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line155"></a>        <span style="color: #b1b100;">if</span> <span style="color: #009900;">&#40;</span><a href="http://www.php.net/strtolower"><span style="color: #990000;">strtolower</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">verb</span><span style="color: #009900;">&#41;</span> <span style="color: #339933;">!=</span> <span style="color: #0000ff;">&quot;post&quot;</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+<a name="line156"></a>            <span style="color: #b1b100;">return</span> <span style="color: #009900; font-weight: bold;">false</span><span style="color: #339933;">;</span>
+<a name="line157"></a>        <span style="color: #009900;">&#125;</span>
+<a name="line158"></a>&nbsp;
+<a name="line159"></a>        <span style="color: #b1b100;">if</span> <span style="color: #009900;">&#40;</span><span style="color: #339933;">!</span><a href="http://www.php.net/empty"><span style="color: #990000;">empty</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">headers</span><span style="color: #009900;">&#91;</span><span style="color: #0000ff;">&quot;Content-type&quot;</span><span style="color: #009900;">&#93;</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+<a name="line160"></a>            <span style="color: #b1b100;">return</span> <span style="color: #009900; font-weight: bold;">false</span><span style="color: #339933;">;</span>
+<a name="line161"></a>        <span style="color: #009900;">&#125;</span>
+<a name="line162"></a>&nbsp;
+<a name="line163"></a>        <span style="color: #666666; font-style: italic;">// XXX Do I need to check for other cases of Content-Type content-type, etc?</span>
+<a name="line164"></a>        <span style="color: #b1b100;">switch</span> <span style="color: #009900;">&#40;</span><a href="http://www.php.net/strtolower"><span style="color: #990000;">strtolower</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">headers</span><span style="color: #009900;">&#91;</span><span style="color: #0000ff;">&quot;Content-type&quot;</span><span style="color: #009900;">&#93;</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+<a name="line165"></a>            <span style="color: #b1b100;">case</span> <span style="color: #0000ff;">&quot;application/x-www-form-urlencoded&quot;</span><span style="color: #339933;">:</span>
+<a name="line166"></a>                <span style="color: #b1b100;">return</span> <span style="color: #009900; font-weight: bold;">true</span><span style="color: #339933;">;</span>
+<a name="line167"></a>            <span style="color: #b1b100;">default</span><span style="color: #339933;">:</span>    
+<a name="line168"></a>                <span style="color: #b1b100;">return</span> <span style="color: #009900; font-weight: bold;">false</span><span style="color: #339933;">;</span>
+<a name="line169"></a>        <span style="color: #009900;">&#125;</span>
+<a name="line170"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line171"></a>&nbsp;
+<a name="line172"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line173"></a>     * Get the resource and params as a URL string.
+<a name="line174"></a>     *
+<a name="line175"></a>     * @todo Allow for multiple params of same name (e.g., when filtering by collections or directories for search).
+<a name="line176"></a>     *
+<a name="line177"></a>     * @return string The request body.
+<a name="line178"></a>     */</span>
+<a name="line179"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getUrlStr<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
+<a name="line180"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line181"></a>        <span style="color: #000088;">$str</span> <span style="color: #339933;">=</span> <span style="color: #009900;">&#40;</span><span style="color: #339933;">!</span><a href="http://www.php.net/empty"><span style="color: #990000;">empty</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">resource</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span> ? <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">resource</span> <span style="color: #339933;">:</span> <span style="color: #0000ff;">''</span><span style="color: #339933;">;</span>
+<a name="line182"></a>&nbsp;
+<a name="line183"></a>        <span style="color: #666666; font-style: italic;">/* x-www-form-encoded posts encodes query params in the body */</span>
+<a name="line184"></a>        <span style="color: #b1b100;">if</span> <span style="color: #009900;">&#40;</span><span style="color: #339933;">!</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">isWWWFormURLEncodedPost</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+<a name="line185"></a>            <span style="color: #000088;">$str</span> <span style="color: #339933;">.=</span> <span style="color: #009900;">&#40;</span><span style="color: #339933;">!</span><a href="http://www.php.net/empty"><span style="color: #990000;">empty</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">params</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span> ? <span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'?'</span> <span style="color: #339933;">.</span> <a href="http://www.php.net/http_build_query"><span style="color: #990000;">http_build_query</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">params</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span> <span style="color: #339933;">:</span> <span style="color: #0000ff;">''</span><span style="color: #339933;">;</span>
+<a name="line186"></a>        <span style="color: #009900;">&#125;</span>
+<a name="line187"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$str</span><span style="color: #339933;">;</span>
+<a name="line188"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line189"></a><span style="color: #009900;">&#125;</span>
+<a name="line190"></a>&nbsp;</pre>
 <div class="header">
 <h1><a href=../../examples/index.php target=_top>MLPHP</a></h1>
 <ul>
