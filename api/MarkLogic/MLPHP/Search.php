@@ -86,17 +86,18 @@ class Search
     /**
      * Retrieve the search results using the REST client.
      *
-     * @param string $query The search query.
+     * @param string $query The search query.  
+     * @param array $params
+     * @param bool $structured defaults to false
      * @return SearchResults A search results object.
      */
-    public function retrieve($query, $params = array())
+    public function retrieve($query, $params = array(), $structured = false)
     {
-
         $this->query = (string)$query;
+        $params = array_merge(array(($structured ? 'structuredQuery' : 'q') => $this->query), $this->getParams(), $params);
+        $request = new RESTRequest('GET', 'search', $params);
 
         try {
-            $params = array_merge(array('q' => $this->query), $this->getParams(), $params);
-            $request = new RESTRequest('GET', 'search', $params);
             $response = $this->restClient->send($request);
             //print_r($response);
             $results = new SearchResults($response->getBody());
