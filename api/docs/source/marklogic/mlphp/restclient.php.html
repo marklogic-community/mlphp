@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="generator" content="PHPDoctor 2.0.5 (http://peej.github.com/phpdoctor/)">
-<meta name="when" content="Thu, 18 Jul 2013 20:16:51 +0000">
+<meta name="when" content="Fri, 19 Jul 2013 21:45:32 +0000">
 
 <link rel="stylesheet" type="text/css" href="../../../stylesheet.css">
 <link rel="start" href="../../../overview-summary.html">
@@ -460,8 +460,29 @@
 <a name="line422"></a>            <span style="color: #b1b100;">return</span> <span style="color: #000088;">$response</span><span style="color: #339933;">;</span>
 <a name="line423"></a>        <span style="color: #009900;">&#125;</span>
 <a name="line424"></a>    <span style="color: #009900;">&#125;</span>
-<a name="line425"></a><span style="color: #009900;">&#125;</span>
-<a name="line426"></a>&nbsp;</pre>
+<a name="line425"></a>&nbsp;
+<a name="line426"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line427"></a>     * Install a REST API XQuery extension 
+<a name="line428"></a>     *
+<a name="line429"></a>     * @todo caching via memoization of resource, params, body
+<a name="line430"></a>     *
+<a name="line431"></a>     * @param $resource URL 
+<a name="line432"></a>     * @param $params resource parameters
+<a name="line433"></a>     * @param $path file system path to the contents of the XQuery module
+<a name="line434"></a>     */</span>
+<a name="line435"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> installExtension<span style="color: #009900;">&#40;</span><span style="color: #000088;">$resource</span><span style="color: #339933;">,</span> <span style="color: #000088;">$params</span><span style="color: #339933;">,</span> <span style="color: #000088;">$path</span><span style="color: #009900;">&#41;</span>
+<a name="line436"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line437"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">logger</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">debug</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">&quot;installExtension&quot;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line438"></a>        <span style="color: #000088;">$method</span> <span style="color: #339933;">=</span> <span style="color: #0000ff;">'put'</span><span style="color: #339933;">;</span>
+<a name="line439"></a>        <span style="color: #000088;">$headers</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/array"><span style="color: #990000;">array</span></a><span style="color: #009900;">&#40;</span>
+<a name="line440"></a>            <span style="color: #0000ff;">'Content-type'</span> <span style="color: #339933;">=&gt;</span> <span style="color: #0000ff;">'application/xquery'</span>
+<a name="line441"></a>        <span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line442"></a>        <span style="color: #000088;">$body</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/file_get_contents"><span style="color: #990000;">file_get_contents</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$path</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line443"></a>        <span style="color: #000088;">$request</span> <span style="color: #339933;">=</span> <span style="color: #000000; font-weight: bold;">new</span> RESTRequest<span style="color: #009900;">&#40;</span><span style="color: #000088;">$method</span><span style="color: #339933;">,</span> <span style="color: #000088;">$resource</span><span style="color: #339933;">,</span> <span style="color: #000088;">$params</span><span style="color: #339933;">,</span> <span style="color: #000088;">$body</span><span style="color: #339933;">,</span> <span style="color: #000088;">$headers</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line444"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">put</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$request</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line445"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line446"></a><span style="color: #009900;">&#125;</span>
+<a name="line447"></a>&nbsp;</pre>
 <div class="header">
 <h1><a href=../../examples/index.php target=_top>MLPHP</a></h1>
 <ul>

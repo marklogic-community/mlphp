@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="generator" content="PHPDoctor 2.0.5 (http://peej.github.com/phpdoctor/)">
-<meta name="when" content="Thu, 18 Jul 2013 20:16:50 +0000">
+<meta name="when" content="Fri, 19 Jul 2013 21:45:31 +0000">
 
 <link rel="stylesheet" type="text/css" href="../stylesheet.css">
 <link rel="start" href="../overview-summary.html">
@@ -144,6 +144,10 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 <tr>
 <td class="type"> void</td>
 <td class="description"><p class="name"><a href="#execute()">execute</a>(resource ch)</p><p class="description">Execute a cURL request.</p></td>
+</tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#installExtension()">installExtension</a>($resource URL, $params resource, $path file, mixed params, mixed path)</p><p class="description">Install a REST API XQuery extension</p></td>
 </tr>
 </table>
 
@@ -411,6 +415,23 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 <dd>ch - The REST URL string (example: 'documents')</dd>
 <dt>Result:</dt>
 <dd>RESTResponse A RESTResponse object.</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../source/marklogic/mlphp/restclient.php.html#line434" class="location">MarkLogic/MLPHP/RESTClient.php at line 434</a>
+
+<h3 id="installExtension()">installExtension</h3>
+<code class="signature">public  void <strong>installExtension</strong>($resource URL, $params resource, $path file, mixed params, mixed path)</code>
+<div class="details">
+<p>Install a REST API XQuery extension</p><dl>
+<dt>Todo:</dt>
+<dd>caching via memoization of resource, params, body</dd>
+<dt>Parameters:</dt>
+<dd></dd>
+<dd>resource - parameters</dd>
+<dd>file - system path to the contents of the XQuery module</dd>
 </dl>
 </div>
 
