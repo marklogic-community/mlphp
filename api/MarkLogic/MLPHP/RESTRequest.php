@@ -156,8 +156,8 @@ class RESTRequest
             return false;
         }
 
-        if (!empty($this->headers["Content-type"])) {
-            return false;
+        if (empty($this->headers["Content-type"])) {
+            return true;
         }
 
         // XXX Do I need to check for other cases of Content-Type content-type, etc?
