@@ -422,4 +422,25 @@ class RESTClient
             return $response;
         }
     }
+
+    /**
+     * Install a REST API XQuery extension 
+     *
+     * @todo caching via memoization of resource, params, body
+     *
+     * @param $resource URL 
+     * @param $params resource parameters
+     * @param $path file system path to the contents of the XQuery module
+     */
+    public function installExtension($resource, $params, $path)
+    {
+        $this->logger->debug("installExtension");
+        $method = 'put';
+        $headers = array(
+            'Content-type' => 'application/xquery'
+        );
+        $body = file_get_contents($path);
+        $request = new RESTRequest($method, $resource, $params, $body, $headers);
+        $this->put($request);
+    }
 }

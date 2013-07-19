@@ -53,6 +53,18 @@ class SearchTest extends TestBase
             </query>
         ', array(), true);
         $this->assertEquals($results->getTotal(), 0);
+
+        $search = new MLPHP\Search($this->client, 0, 100);
+        $results = $search->highlight('<hello>World</hello>', 'text/plain', 'hit', 'world');
+        $this->assertEquals('<hello><span class="hit">World</span></hello>', $results);
+
+        $search = new MLPHP\Search($this->client, 0, 100);
+        $results = $search->highlight('<g>I like spinach pie</g>', 'text/plain', 'hot', 'liked');
+        $this->assertEquals('<g>I <span class="hot">like</span> spinach pie</g>', $results);
+
+        $search = new MLPHP\Search($this->client, 0, 100);
+        $results = $search->highlight('<g>I like spinach pie</g>', 'text/xml', 'hot', 'liked');
+        $this->assertXmlStringEqualsXmlString('<g>I <span class="hot">like</span> spinach pie</g>', $results); 
     }
 
     function setUp() {

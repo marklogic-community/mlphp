@@ -160,6 +160,61 @@ class Search
     }
 
     /**
+     * Highlight hits in the given content based on the given query
+     *
+     * Implemented via a MarkLogic REST API resource extension.
+     *
+     * @param string $content
+     * @param string $contentType - describes content to be highlighted - support for application/xml and text'plain
+     * @param string $query The search query.  
+     * @param array $params
+     * @param bool $structured defaults to false (only false is supported today)
+     * @return string hit-highlighted content
+     */
+    public function highlight($content, $contentType, $class, $query, $params = array(), $structured = false)
+    {
+        // Install the API extension
+        $resource = "resources/highlight";
+        $this->restClient->installExtension("config/" . $resource, array(
+            'method' => 'post',
+            'post:q?' => 'string',
+            'post:class' => 'string',
+            'post:structuredQuery?' => 'string',
+            'post:c' => 'string',
+            'post:ct' => 'string',
+            'post:provider?' => 'string'
+        ), __DIR__ . DIRECTORY_SEPARATOR . "highlight.xqy");
+        
+        // Use it
+        $this->query = (string)$query;
+        $params = array_merge(array(
+            ($structured ? 'structuredQuery' : 'q') => $this->query,
+            'c' => $content,
+            'ct' => $contentType,
+            'class' => $class,
+            'provider' => 'MLPHP'
+        ), $this->getParams(), $params);
+
+        $request = new RESTRequest('POST', $resource, $params, "", array(
+            'Content-type' => 'application/x-www-form-urlencoded'
+        ));
+
+        try {
+            $response = $this->restClient->send($request);
+            //print_r($response);
+            $results = $response->getBody();
+            if ($contentType === "text/plain") {
+                return $results;
+            } else {
+                // Strip off anal XML decl 
+                return substr( $results, strpos($results, "\n")+1 );
+            }
+        } catch(Exception $e) {
+            echo $e->getMessage() . ' in ' . $e->getFile() . ' on line ' . $e->getLine() . PHP_EOL;
+        }
+    }
+
+    /**
      * Get the start setting.
      *
      * @return string The debug setting, 'true' or 'false'.
