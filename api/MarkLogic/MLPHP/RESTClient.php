@@ -36,6 +36,7 @@ class RESTClient
     private $prefix; // @var string
     private $request; // @var RESTRequest
     private $logger; // @var LoggerInterface
+    static protected $extension_cache = array();
 
     /*
      * Create a REST client object and configure REST server and authentication information.
@@ -426,21 +427,24 @@ class RESTClient
     /**
      * Install a REST API XQuery extension 
      *
-     * @todo caching via memoization of resource, params, body
-     *
      * @param $resource URL 
      * @param $params resource parameters
      * @param $path file system path to the contents of the XQuery module
      */
     public function installExtension($resource, $params, $path)
     {
+        $body = file_get_contents($path);
+        $key = serialize(array($this->host, $this->port, $resource, $params, $body));
+        if (array_key_exists($key, self::$extension_cache)) {
+            return;
+        }
         $this->logger->debug("installExtension");
         $method = 'put';
         $headers = array(
             'Content-type' => 'application/xquery'
         );
-        $body = file_get_contents($path);
         $request = new RESTRequest($method, $resource, $params, $body, $headers);
         $this->put($request);
+        self::$extension_cache[$key] = 1;
     }
 }
