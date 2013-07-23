@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="generator" content="PHPDoctor 2.0.5 (http://peej.github.com/phpdoctor/)">
-<meta name="when" content="Fri, 19 Jul 2013 21:45:26 +0000">
+<meta name="when" content="Tue, 23 Jul 2013 16:51:09 +0000">
 
 <link rel="stylesheet" type="text/css" href="../../../stylesheet.css">
 <link rel="start" href="../../../overview-summary.html">
@@ -66,64 +66,89 @@
 <a name="line28"></a><span style="color: #009900;">&#123;</span>
 <a name="line29"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$empty</span><span style="color: #339933;">;</span> <span style="color: #666666; font-style: italic;">// @var string</span>
 <a name="line30"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$termOptions</span><span style="color: #339933;">;</span> <span style="color: #666666; font-style: italic;">// @var array</span>
-<a name="line31"></a>&nbsp;
-<a name="line32"></a>    <span style="color: #009933; font-style: italic;">/**
-<a name="line33"></a>     * Create a Term object.
-<a name="line34"></a>     *
-<a name="line35"></a>     * @param string $empty Setting for resolving empty searches (example: 'no-results').
-<a name="line36"></a>     */</span>
-<a name="line37"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> __construct<span style="color: #009900;">&#40;</span><span style="color: #000088;">$empty</span> <span style="color: #339933;">=</span> <span style="color: #0000ff;">''</span><span style="color: #009900;">&#41;</span>
-<a name="line38"></a>    <span style="color: #009900;">&#123;</span>
-<a name="line39"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><a href="http://www.php.net/empty"><span style="color: #990000;">empty</span></a> <span style="color: #339933;">=</span> <span style="color: #009900;">&#40;</span>string<span style="color: #009900;">&#41;</span><span style="color: #000088;">$empty</span><span style="color: #339933;">;</span>
-<a name="line40"></a>    <span style="color: #009900;">&#125;</span>
-<a name="line41"></a>&nbsp;
-<a name="line42"></a>    <span style="color: #009933; font-style: italic;">/**
-<a name="line43"></a>     * Set the empty setting.
-<a name="line44"></a>     *
-<a name="line45"></a>     * @param string $empty Setting for resolving empty searches (example: 'no-results').
-<a name="line46"></a>     */</span>
-<a name="line47"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> setEmpty<span style="color: #009900;">&#40;</span><span style="color: #000088;">$empty</span><span style="color: #009900;">&#41;</span>
-<a name="line48"></a>    <span style="color: #009900;">&#123;</span>
-<a name="line49"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><a href="http://www.php.net/empty"><span style="color: #990000;">empty</span></a> <span style="color: #339933;">=</span> <span style="color: #009900;">&#40;</span>string<span style="color: #009900;">&#41;</span><span style="color: #000088;">$empty</span><span style="color: #339933;">;</span>
-<a name="line50"></a>    <span style="color: #009900;">&#125;</span>
-<a name="line51"></a>&nbsp;
-<a name="line52"></a>    <span style="color: #009933; font-style: italic;">/**
-<a name="line53"></a>     * Set term options.
-<a name="line54"></a>     *
-<a name="line55"></a>     * @param array $termOptions An array of term options.
-<a name="line56"></a>     */</span>
-<a name="line57"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> setTermOptions<span style="color: #009900;">&#40;</span><span style="color: #000088;">$termOptions</span><span style="color: #009900;">&#41;</span>
-<a name="line58"></a>    <span style="color: #009900;">&#123;</span>
-<a name="line59"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">termOptions</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$termOptions</span><span style="color: #339933;">;</span>
-<a name="line60"></a>    <span style="color: #009900;">&#125;</span>
-<a name="line61"></a>&nbsp;
-<a name="line62"></a>    <span style="color: #009933; font-style: italic;">/**
-<a name="line63"></a>     * Get the term as a DOMElement object.
-<a name="line64"></a>     *
-<a name="line65"></a>     * @param DOMDocument $dom The DOMDocument object with which to create the element.
-<a name="line66"></a>     */</span>
-<a name="line67"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getAsElem<span style="color: #009900;">&#40;</span><span style="color: #000088;">$dom</span><span style="color: #009900;">&#41;</span>
-<a name="line68"></a>    <span style="color: #009900;">&#123;</span>
-<a name="line69"></a>        <span style="color: #000088;">$termElem</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$dom</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">createElement</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'term'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
-<a name="line70"></a>        <span style="color: #000088;">$emptyElem</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$dom</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">createElement</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'empty'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
-<a name="line71"></a>        <span style="color: #000088;">$emptyElem</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">setAttribute</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'apply'</span><span style="color: #339933;">,</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><a href="http://www.php.net/empty"><span style="color: #990000;">empty</span></a><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
-<a name="line72"></a>        <span style="color: #000088;">$termElem</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">appendChild</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$emptyElem</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
-<a name="line73"></a>        <span style="color: #b1b100;">if</span> <span style="color: #009900;">&#40;</span><span style="color: #339933;">!</span><a href="http://www.php.net/empty"><span style="color: #990000;">empty</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">termOptions</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
-<a name="line74"></a>            <span style="color: #b1b100;">foreach</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">termOptions</span> <span style="color: #b1b100;">as</span> <span style="color: #000088;">$opt</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
-<a name="line75"></a>                <span style="color: #000088;">$termOptElem</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$dom</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">createElement</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'term-option'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
-<a name="line76"></a>                <span style="color: #000088;">$termOptElem</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">nodeValue</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$opt</span><span style="color: #339933;">;</span>
-<a name="line77"></a>                <span style="color: #000088;">$termElem</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">appendChild</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$termOptElem</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
-<a name="line78"></a>            <span style="color: #009900;">&#125;</span>
-<a name="line79"></a>        <span style="color: #009900;">&#125;</span>
-<a name="line80"></a>        <span style="color: #666666; font-style: italic;">/* &lt;term&gt;
-<a name="line81"></a>               &lt;empty apply=&quot;no-results&quot; /&gt;
-<a name="line82"></a>               &lt;term-option&gt;diacritic-insensitive&lt;/term-option&gt;
-<a name="line83"></a>               &lt;term-option&gt;unwildcarded&lt;/term-option&gt;
-<a name="line84"></a>            &lt;/term&gt; */</span>
-<a name="line85"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$termElem</span><span style="color: #339933;">;</span>
-<a name="line86"></a>    <span style="color: #009900;">&#125;</span>
-<a name="line87"></a><span style="color: #009900;">&#125;</span>
-<a name="line88"></a>&nbsp;</pre>
+<a name="line31"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$default</span><span style="color: #339933;">;</span> <span style="color: #666666; font-style: italic;">// @var Constraint</span>
+<a name="line32"></a>&nbsp;
+<a name="line33"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line34"></a>     * Create a Term object.
+<a name="line35"></a>     *
+<a name="line36"></a>     * @param string $empty Setting for resolving empty searches (example: 'no-results').
+<a name="line37"></a>     */</span>
+<a name="line38"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> __construct<span style="color: #009900;">&#40;</span><span style="color: #000088;">$empty</span> <span style="color: #339933;">=</span> <span style="color: #0000ff;">''</span><span style="color: #009900;">&#41;</span>
+<a name="line39"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line40"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><a href="http://www.php.net/empty"><span style="color: #990000;">empty</span></a> <span style="color: #339933;">=</span> <span style="color: #009900;">&#40;</span>string<span style="color: #009900;">&#41;</span><span style="color: #000088;">$empty</span><span style="color: #339933;">;</span>
+<a name="line41"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line42"></a>&nbsp;
+<a name="line43"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line44"></a>     * Set the empty setting.
+<a name="line45"></a>     *
+<a name="line46"></a>     * @param string $empty Setting for resolving empty searches (example: 'no-results').
+<a name="line47"></a>     */</span>
+<a name="line48"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> setEmpty<span style="color: #009900;">&#40;</span><span style="color: #000088;">$empty</span><span style="color: #009900;">&#41;</span>
+<a name="line49"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line50"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><a href="http://www.php.net/empty"><span style="color: #990000;">empty</span></a> <span style="color: #339933;">=</span> <span style="color: #009900;">&#40;</span>string<span style="color: #009900;">&#41;</span><span style="color: #000088;">$empty</span><span style="color: #339933;">;</span>
+<a name="line51"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line52"></a>&nbsp;
+<a name="line53"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line54"></a>     * Set term options.
+<a name="line55"></a>     *
+<a name="line56"></a>     * @param array $termOptions An array of term options.
+<a name="line57"></a>     */</span>
+<a name="line58"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> setTermOptions<span style="color: #009900;">&#40;</span><span style="color: #000088;">$termOptions</span><span style="color: #009900;">&#41;</span>
+<a name="line59"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line60"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">termOptions</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$termOptions</span><span style="color: #339933;">;</span>
+<a name="line61"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line62"></a>&nbsp;
+<a name="line63"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line64"></a>     * Set the default constraint
+<a name="line65"></a>     *
+<a name="line66"></a>     * @param Constraint $constraint for default term processing
+<a name="line67"></a>     */</span>
+<a name="line68"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> setDefault<span style="color: #009900;">&#40;</span><span style="color: #000088;">$constraint</span><span style="color: #009900;">&#41;</span>
+<a name="line69"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line70"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #b1b100;">default</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$constraint</span><span style="color: #339933;">;</span>
+<a name="line71"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line72"></a>&nbsp;
+<a name="line73"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line74"></a>     * Get the term as a DOMElement object.
+<a name="line75"></a>     *
+<a name="line76"></a>     * @param DOMDocument $dom The DOMDocument object with which to create the element.
+<a name="line77"></a>     */</span>
+<a name="line78"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getAsElem<span style="color: #009900;">&#40;</span><span style="color: #000088;">$dom</span><span style="color: #009900;">&#41;</span>
+<a name="line79"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line80"></a>        <span style="color: #000088;">$termElem</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$dom</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">createElement</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'term'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line81"></a>        <span style="color: #000088;">$emptyElem</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$dom</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">createElement</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'empty'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line82"></a>        <span style="color: #000088;">$emptyElem</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">setAttribute</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'apply'</span><span style="color: #339933;">,</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><a href="http://www.php.net/empty"><span style="color: #990000;">empty</span></a><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line83"></a>        <span style="color: #000088;">$termElem</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">appendChild</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$emptyElem</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line84"></a>        <span style="color: #b1b100;">if</span> <span style="color: #009900;">&#40;</span><span style="color: #339933;">!</span><a href="http://www.php.net/empty"><span style="color: #990000;">empty</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">termOptions</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+<a name="line85"></a>            <span style="color: #b1b100;">foreach</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">termOptions</span> <span style="color: #b1b100;">as</span> <span style="color: #000088;">$opt</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+<a name="line86"></a>                <span style="color: #000088;">$termOptElem</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$dom</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">createElement</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'term-option'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line87"></a>                <span style="color: #000088;">$termOptElem</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">nodeValue</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$opt</span><span style="color: #339933;">;</span>
+<a name="line88"></a>                <span style="color: #000088;">$termElem</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">appendChild</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$termOptElem</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line89"></a>            <span style="color: #009900;">&#125;</span>
+<a name="line90"></a>        <span style="color: #009900;">&#125;</span>
+<a name="line91"></a>        <span style="color: #b1b100;">if</span> <span style="color: #009900;">&#40;</span><span style="color: #339933;">!</span><a href="http://www.php.net/empty"><span style="color: #990000;">empty</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #b1b100;">default</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+<a name="line92"></a>            <span style="color: #000088;">$constraint</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">default</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getAsElem</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$dom</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line93"></a>            <span style="color: #666666; font-style: italic;">/* pluck out child nodes of the &lt;constraint/&gt; */</span>
+<a name="line94"></a>            <span style="color: #b1b100;">if</span> <span style="color: #009900;">&#40;</span><span style="color: #000088;">$constraint</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">hasChildNodes</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+<a name="line95"></a>                <span style="color: #000088;">$defElem</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$dom</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">createElement</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'default'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line96"></a>                <span style="color: #b1b100;">foreach</span> <span style="color: #009900;">&#40;</span><span style="color: #000088;">$constraint</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">childNodes</span> <span style="color: #b1b100;">as</span> <span style="color: #000088;">$child</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+<a name="line97"></a>                    <span style="color: #b1b100;">if</span> <span style="color: #009900;">&#40;</span><span style="color: #000088;">$child</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">nodeType</span> <span style="color: #339933;">==</span> XML_ELEMENT_NODE<span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+<a name="line98"></a>                        <span style="color: #000088;">$defElem</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">appendChild</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$child</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line99"></a>                    <span style="color: #009900;">&#125;</span>
+<a name="line100"></a>                <span style="color: #009900;">&#125;</span>
+<a name="line101"></a>                <span style="color: #000088;">$termElem</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">appendChild</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$defElem</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line102"></a>            <span style="color: #009900;">&#125;</span>
+<a name="line103"></a>        <span style="color: #009900;">&#125;</span>
+<a name="line104"></a>        <span style="color: #666666; font-style: italic;">/* &lt;term&gt;
+<a name="line105"></a>               &lt;empty apply=&quot;no-results&quot; /&gt;
+<a name="line106"></a>               &lt;term-option&gt;diacritic-insensitive&lt;/term-option&gt;
+<a name="line107"></a>               &lt;term-option&gt;unwildcarded&lt;/term-option&gt;
+<a name="line108"></a>               &lt;default&gt;....&lt;/default&gt;
+<a name="line109"></a>            &lt;/term&gt; */</span>
+<a name="line110"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$termElem</span><span style="color: #339933;">;</span>
+<a name="line111"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line112"></a><span style="color: #009900;">&#125;</span>
+<a name="line113"></a>&nbsp;</pre>
 <div class="header">
 <h1><a href=https://github.com/marklogic/mlphp target=_top>MLPHP</a></h1>
 <ul>
