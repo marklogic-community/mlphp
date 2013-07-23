@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="generator" content="PHPDoctor 2.0.5 (http://peej.github.com/phpdoctor/)">
-<meta name="when" content="Fri, 19 Jul 2013 21:45:31 +0000">
+<meta name="when" content="Tue, 23 Jul 2013 16:50:59 +0000">
 
 <link rel="stylesheet" type="text/css" href="../../../stylesheet.css">
 <link rel="start" href="../../../overview-summary.html">
@@ -60,7 +60,7 @@
 <a name="line22"></a> * @package MLPHP
 <a name="line23"></a> * @author Mike Wooldridge &lt;mike.wooldridge@marklogic.com&gt;
 <a name="line24"></a> */</span>
-<a name="line25"></a><span style="color: #000000; font-weight: bold;">class</span> AbstractConstraint
+<a name="line25"></a><span style="color: #000000; font-weight: bold;">abstract</span> <span style="color: #000000; font-weight: bold;">class</span> AbstractConstraint implements Constraint
 <a name="line26"></a><span style="color: #009900;">&#123;</span>
 <a name="line27"></a>    <span style="color: #000000; font-weight: bold;">protected</span> <span style="color: #000088;">$name</span><span style="color: #339933;">;</span> <span style="color: #666666; font-style: italic;">// @var string</span>
 <a name="line28"></a>&nbsp;
@@ -160,8 +160,15 @@
 <a name="line122"></a>        <span style="color: #009900;">&#125;</span>
 <a name="line123"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$elem</span><span style="color: #339933;">;</span>
 <a name="line124"></a>    <span style="color: #009900;">&#125;</span>
-<a name="line125"></a><span style="color: #009900;">&#125;</span>
-<a name="line126"></a>&nbsp;</pre>
+<a name="line125"></a>&nbsp;
+<a name="line126"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line127"></a>     * Get the constraint as a DOMElement object.
+<a name="line128"></a>     *
+<a name="line129"></a>     * @param DOMDocument $dom The DOMDocument object with which to create the element.
+<a name="line130"></a>     */</span>
+<a name="line131"></a>    <span style="color: #000000; font-weight: bold;">abstract</span> <span style="color: #000000; font-weight: bold;">function</span> getAsElem<span style="color: #009900;">&#40;</span><span style="color: #000088;">$dom</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line132"></a><span style="color: #009900;">&#125;</span>
+<a name="line133"></a>&nbsp;</pre>
 <div class="header">
 <h1><a href=../../examples/index.php target=_top>MLPHP</a></h1>
 <ul>

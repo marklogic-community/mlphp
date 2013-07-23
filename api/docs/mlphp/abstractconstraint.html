@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="generator" content="PHPDoctor 2.0.5 (http://peej.github.com/phpdoctor/)">
-<meta name="when" content="Fri, 19 Jul 2013 21:45:31 +0000">
+<meta name="when" content="Tue, 23 Jul 2013 16:50:59 +0000">
 
 <link rel="stylesheet" type="text/css" href="../stylesheet.css">
 <link rel="start" href="../overview-summary.html">
@@ -54,7 +54,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<p class="signature">public  class <strong>AbstractConstraint</strong></p>
+<p class="signature">public abstract  class <strong>AbstractConstraint</strong></p>
 
 <div class="comment" id="overview_description"><p>Represents a abstraction of a search-options constraint that specific constraints can extend.</p></div>
 
@@ -97,6 +97,10 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 <tr>
 <td class="type">protected  DOMElement</td>
 <td class="description"><p class="name"><a href="#addFragmentScope()">addFragmentScope</a>(DOMDocument dom, DOMElement elem)</p><p class="description">Add a fragment-scope setting to an element.</p></td>
+</tr>
+<tr>
+<td class="type">abstract  void</td>
+<td class="description"><p class="name"><a href="#getAsElem()">getAsElem</a>(DOMDocument dom)</p><p class="description">Get the constraint as a DOMElement object.</p></td>
 </tr>
 </table>
 
@@ -199,6 +203,19 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 <dd>elem - A DOM element.</dd>
 <dt>Returns:</dt>
 <dd>The updated element.</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../source/marklogic/mlphp/abstractconstraint.php.html#line131" class="location">MarkLogic/MLPHP/AbstractConstraint.php at line 131</a>
+
+<h3 id="getAsElem()">getAsElem</h3>
+<code class="signature">public abstract  void <strong>getAsElem</strong>(DOMDocument dom)</code>
+<div class="details">
+<p>Get the constraint as a DOMElement object.</p><dl>
+<dt>Parameters:</dt>
+<dd>dom - The DOMDocument object with which to create the element.</dd>
 </dl>
 </div>
 
