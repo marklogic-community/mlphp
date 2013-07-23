@@ -28,6 +28,7 @@ class Term
 {
     private $empty; // @var string
     private $termOptions; // @var array
+    private $default; // @var Constraint
 
     /**
      * Create a Term object.
@@ -60,6 +61,16 @@ class Term
     }
 
     /**
+     * Set the default constraint
+     *
+     * @param Constraint $constraint for default term processing
+     */
+    public function setDefault($constraint)
+    {
+        $this->default = $constraint;
+    }
+
+    /**
      * Get the term as a DOMElement object.
      *
      * @param DOMDocument $dom The DOMDocument object with which to create the element.
@@ -77,10 +88,24 @@ class Term
                 $termElem->appendChild($termOptElem);
             }
         }
+        if (!empty($this->default)) {
+            $constraint = $this->default->getAsElem($dom);
+            /* pluck out child nodes of the <constraint/> */
+            if ($constraint->hasChildNodes()) {
+                $defElem = $dom->createElement('default');
+                foreach ($constraint->childNodes as $child) {
+                    if ($child->nodeType == XML_ELEMENT_NODE) {
+                        $defElem->appendChild($child);
+                    }
+                }
+                $termElem->appendChild($defElem);
+            }
+        }
         /* <term>
                <empty apply="no-results" />
                <term-option>diacritic-insensitive</term-option>
                <term-option>unwildcarded</term-option>
+               <default>....</default>
             </term> */
         return $termElem;
     }

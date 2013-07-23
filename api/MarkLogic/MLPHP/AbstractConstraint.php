@@ -22,7 +22,7 @@ namespace MarkLogic\MLPHP;
  * @package MLPHP
  * @author Mike Wooldridge <mike.wooldridge@marklogic.com>
  */
-class AbstractConstraint
+abstract class AbstractConstraint implements Constraint
 {
     protected $name; // @var string
 
@@ -122,4 +122,11 @@ class AbstractConstraint
         }
         return $elem;
     }
+
+    /**
+     * Get the constraint as a DOMElement object.
+     *
+     * @param DOMDocument $dom The DOMDocument object with which to create the element.
+     */
+    abstract function getAsElem($dom);
 }
