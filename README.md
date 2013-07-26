@@ -35,8 +35,8 @@ More details are available in the examples described below.
 To add MLPHP to your project, simply add MLPHP to your Composer requirement in composer.json:
 
     {
-        requires: {
-            "MarkLogic\MLPHP" : "dev-master"
+        require: {
+            "marklogic\mlphp" : "dev-master"
         }
     }
 
