@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="generator" content="PHPDoctor 2.0.5 (http://peej.github.com/phpdoctor/)">
-<meta name="when" content="Tue, 23 Jul 2013 16:50:59 +0000">
+<meta name="when" content="Mon, 29 Jul 2013 22:11:19 +0000">
 
 <link rel="stylesheet" type="text/css" href="../stylesheet.css">
 <link rel="start" href="../overview-summary.html">
@@ -147,7 +147,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 </tr>
 <tr>
 <td class="type"> void</td>
-<td class="description"><p class="name"><a href="#installExtension()">installExtension</a>($resource URL, $params resource, $path file, mixed params, mixed path)</p><p class="description">Install a REST API XQuery extension</p></td>
+<td class="description"><p class="name"><a href="#installExtension()">installExtension</a>($resource URL, $params resource, $filename file, mixed params, mixed filename)</p><p class="description">Install a REST API XQuery extension</p></td>
 </tr>
 </table>
 
@@ -423,13 +423,13 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 <a href="../source/marklogic/mlphp/restclient.php.html#line433" class="location">MarkLogic/MLPHP/RESTClient.php at line 433</a>
 
 <h3 id="installExtension()">installExtension</h3>
-<code class="signature">public  void <strong>installExtension</strong>($resource URL, $params resource, $path file, mixed params, mixed path)</code>
+<code class="signature">public  void <strong>installExtension</strong>($resource URL, $params resource, $filename file, mixed params, mixed filename)</code>
 <div class="details">
 <p>Install a REST API XQuery extension</p><dl>
 <dt>Parameters:</dt>
 <dd></dd>
-<dd>resource - parameters</dd>
-<dd>file - system path to the contents of the XQuery module</dd>
+<dd>resource - parameters (adds in provider=MLPHP if provider not set)</dd>
+<dd>file - system name of contents of the XQuery module.</dd>
 </dl>
 </div>
 
