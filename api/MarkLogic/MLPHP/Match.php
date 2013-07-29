@@ -34,7 +34,7 @@ class Match
      */
     public function __construct($elem)
     {
-        $this->path = $elem->getAttribute('patch');
+        $this->path = $elem->getAttribute('path');
         $this->content = '';
         foreach($elem->childNodes as $node) {
             if($node->nodeName === 'search:highlight') {
