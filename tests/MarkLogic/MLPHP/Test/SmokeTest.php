@@ -27,10 +27,11 @@ use Monolog\Handler\StreamHandler;
  */
 class SmokeTest extends TestBase
 {
-    function test404()
+    function testDBName()
     {
-        $doc = new MLPHP\Document($this->client, "/not-there");
-        $this->assertFalse($doc->read());
+        $db = new MLPHP\Database($this->client);
+        $name = $db->getName();
+        $this->assertNotNull($name);
     }
 }
 

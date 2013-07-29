@@ -9,6 +9,6 @@ declare function mlphp-clear-db:post(
 ) as document-node()*
 {
 
-xdmp:forest-clear(xdmp:database-forests(xdmp:database("mlphp-test")))
+xdmp:forest-clear(xdmp:database-forests(xdmp:database()))
 
 };

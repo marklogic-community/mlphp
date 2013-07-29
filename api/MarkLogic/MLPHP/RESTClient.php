@@ -428,11 +428,17 @@ class RESTClient
      * Install a REST API XQuery extension 
      *
      * @param $resource URL 
-     * @param $params resource parameters
-     * @param $path file system path to the contents of the XQuery module
+     * @param $params resource parameters (adds in provider=MLPHP if provider not set)
+     * @param $filename file system name of contents of the XQuery module.
      */
-    public function installExtension($resource, $params, $path)
+    public function installExtension($resource, $params, $filename)
     {
+        if (!isset($params["provider"])) {
+            $params["provider"] = 'MLPHP';
+        }
+        
+        $path = __DIR__ . DIRECTORY_SEPARATOR . "xquery" . DIRECTORY_SEPARATOR . $filename;
+
         $body = file_get_contents($path);
         $key = serialize(array($this->host, $this->port, $resource, $params, $body));
         if (array_key_exists($key, self::$extension_cache)) {

@@ -183,7 +183,7 @@ class Search
             'post:c' => 'string',
             'post:ct' => 'string',
             'post:provider?' => 'string'
-        ), __DIR__ . DIRECTORY_SEPARATOR . "highlight.xqy");
+        ), "highlight.xqy");
         
         // Use it
         $this->query = (string)$query;
@@ -191,8 +191,7 @@ class Search
             ($structured ? 'structuredQuery' : 'q') => $this->query,
             'c' => $content,
             'ct' => $contentType,
-            'class' => $class,
-            'provider' => 'MLPHP'
+            'class' => $class
         ), $this->getParams(), $params);
 
         $request = new RESTRequest('POST', $resource, $params, "", array(

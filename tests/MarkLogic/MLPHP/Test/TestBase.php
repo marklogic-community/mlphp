@@ -68,37 +68,12 @@ abstract class TestBase extends \PHPUnit_Framework_TestCase
         $this->apiclient->post($request);
 
         $this->client = new MLPHP\RESTClient($this->host, $this->port, '', 'v1', $this->user, $this->pass, 'digest', $this->logger);
-
-        $this->installExtensions();
-    }
-
-    function installExtensions() 
-    {
-        $this->logger->debug("installExtensions");
-        $method = 'put';
-        $resource = "config/resources/clear-db";
-        $params = array(
-            'method' => 'post'
-        );
-        $headers = array(
-            'Content-type' => 'application/xquery'
-        );
-        $body = file_get_contents(__DIR__ . DIRECTORY_SEPARATOR . "clear-db.xqy");
-        $request = new MLPHP\RESTRequest($method, $resource, $params, $body, $headers);
-        $this->client->put($request);
     }
 
     function clearDB() 
     {
-        $this->logger->debug("clearDB");
-        $method = 'post';
-        $resource = "resources/clear-db";
-        $params = array();
-        $headers = array();
-        $body = null;
-
-        $request = new MLPHP\RESTRequest($method, $resource, $params, $body, $headers);
-        $this->client->post($request);
+        $db = new MLPHP\Database($this->client);
+        $db->clear();
     }
 
     function deleteAPI()
