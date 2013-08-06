@@ -105,10 +105,10 @@ MLPHP is in early-stage development, but ready-for-use.  The API is subject to c
 ### Unit tests
 Beginnings of unit tests can be found under `tests`.  To run, 
 
-#. Create a database for the tests, named mlphp-tests.  You can do this by importing the DB configuration via the MarkLogic 
-Configuration manager UI at `http://localhost:8002` (change your hostname as you need) found under `tests/setup/package.xml`.
-#. Edit phpunit-bootstrap.php and set any configuration variables.
-#. Run the tests
+1. Create a database for the tests, named `mlphp-tests` and attache a REST API instance to it. You can do this by importing the DB configuration via the MarkLogic Configuration manager 
+UI at `http://localhost:8002` (change your hostname as you need) found under `tests/setup/package.xml`.
+2. Edit `phpunit-bootstrap.php` and set configuration variables specific to your REST API instance.
+3. Run the tests 
 
         % vendor/bin/phpunit --bootstrap phpunit-bootstrap.php tests
 
