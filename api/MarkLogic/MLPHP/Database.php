@@ -50,10 +50,10 @@ class Database
         // Install the API extension
         $resource = "resources/clear-db";
         $this->restClient->installExtension("config/" . $resource, array(
-            'method' => 'post'
+            'method' => 'get'
         ), "clear-db.xqy");
         
-        $request = new RESTRequest('POST', $resource, array(), "", array());
+        $request = new RESTRequest('GET', $resource, array(), "", array());
 
         try {
             $response = $this->restClient->send($request);
