@@ -27,7 +27,7 @@ use Monolog\Handler\StreamHandler;
  */
 abstract class TestBase extends \PHPUnit_Framework_TestCase
 {
-    static private $apiclient;
+    private $apiclient;
     protected $client;
 
     private $db;
@@ -38,7 +38,7 @@ abstract class TestBase extends \PHPUnit_Framework_TestCase
 
     protected $logger;
 
-    function createAPI() 
+    function createAPI()
     {
         $method = 'post';
         $resource = "rest-apis";
@@ -70,7 +70,7 @@ abstract class TestBase extends \PHPUnit_Framework_TestCase
         $this->client = new MLPHP\RESTClient($this->host, $this->port, '', 'v1', $this->user, $this->pass, 'digest', $this->logger);
     }
 
-    function clearDB() 
+    function clearDB()
     {
         $db = new MLPHP\Database($this->client);
         $db->clear();
@@ -86,7 +86,7 @@ abstract class TestBase extends \PHPUnit_Framework_TestCase
         $request = new MLPHP\RESTRequest($method, $resource, $params, $body, $headers);
 
         $this->apiclient->delete($request);
-    
+
         // Wait for server reboot :(
         sleep(3);
     }
@@ -114,7 +114,7 @@ abstract class TestBase extends \PHPUnit_Framework_TestCase
 
         /* Clear the attached DB */
         $this->clearDB();
-        
+
     }
 
     function tearDown()
