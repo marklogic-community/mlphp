@@ -99,7 +99,7 @@ abstract class TestBase extends \PHPUnit_Framework_TestCase
         $this->port = $mlphp['port'] ? $mlphp['port'] : '8234';
         $this->db =   $mlphp['db']   ? $mlphp['db']   : 'mlphp-test';
         $this->user = $mlphp['user'] ? $mlphp['user'] : 'admin';
-        $this->pass = $mlphp['pass'] ? $mlphp['pass'] : 'adm1n';
+        $this->pass = $mlphp['pass'] ? $mlphp['pass'] : 'admin';
         $this->mgmt_port = $mlphp['mgmt_port'] ? $mlphp['mgmt_port'] : '8002';
 
         $log_level = $mlphp['log_level'] ? $mlphp['log_level'] : Logger::INFO;
