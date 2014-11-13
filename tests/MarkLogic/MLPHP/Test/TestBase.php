@@ -95,7 +95,7 @@ abstract class TestBase extends \PHPUnit_Framework_TestCase
     {
         global $mlphp;
 
-        $this->host = $mlphp['host'] ? $mlphp['host'] : 'localhost';
+        $this->host = $mlphp['host'] ? $mlphp['host'] : '127.0.0.1';
         $this->port = $mlphp['port'] ? $mlphp['port'] : '8234';
         $this->db =   $mlphp['db']   ? $mlphp['db']   : 'mlphp-test';
         $this->user = $mlphp['user'] ? $mlphp['user'] : 'admin';
