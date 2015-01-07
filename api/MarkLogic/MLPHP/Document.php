@@ -29,6 +29,7 @@ class Document
     protected $contentType; // @var string
     private $restClient; // @var RESTClient
     private $logger; // @var LoggerInterface
+    private $response; // @var RESTResponse
 
     /**
      * Create a Document object.
@@ -58,9 +59,9 @@ class Document
         try {
             $params = array_merge(array('uri' => $this->uri), $params);
             $request = new RESTRequest('GET', 'documents', $params);
-            $response = $this->restClient->send($request);
-            $this->content = $response->getBody();
-            $this->contentType = $response->getContentType();
+            $this->response = $this->restClient->send($request);
+            $this->content = $this->response->getBody();
+            $this->contentType = $this->response->getContentType();
             return $this->content;
         } catch(\Exception $e) {
             // TODO: error codes for not-found and other reasonable, unexceptional errors.
@@ -88,7 +89,7 @@ class Document
                 $headers = array('Content-type' => $this->getContentType());
             }
             $request = new RESTRequest('PUT', 'documents', $params, $this->content, $headers);
-            $response = $this->restClient->send($request);
+            $this->response = $this->restClient->send($request);
         } catch(\Exception $e) {
             $this->logger->error( $e->getMessage() . ' in ' . $e->getFile() . ' on line ' . $e->getLine() );
         }
@@ -107,7 +108,7 @@ class Document
         try {
             $params = array('uri' => $this->uri);
             $request = new RESTRequest('DELETE', 'documents', $params);
-            $response = $this->restClient->send($request);
+            $this->response = $this->restClient->send($request);
         } catch(\Exception $e) {
             $this->logger->error(  $e->getMessage() . ' in ' . $e->getFile() . ' on line ' . $e->getLine() );
         }
@@ -124,9 +125,9 @@ class Document
         try {
             $params = array('uri' => $this->uri, 'category' => 'metadata');
             $request = new RESTRequest('GET', 'documents', $params);
-            $response = $this->restClient->send($request);
+            $this->response = $this->restClient->send($request);
             $metadata = new Metadata();
-            $metadata->loadFromXML($response->getBody());
+            $metadata->loadFromXML($this->response->getBody());
             return $metadata;
         } catch(\Exception $e) {
             $this->logger->error( $e->getMessage() . ' in ' . $e->getFile() . ' on line ' . $e->getLine() );
@@ -147,7 +148,7 @@ class Document
             $params = array('uri' => $this->uri, 'category' => 'metadata', 'format' => 'xml');
             $headers = array('Content-type' => 'application/xml');
             $request = new RESTRequest('PUT', 'documents', $params, $metaxml, $headers);
-            $response = $this->restClient->send($request);
+            $this->response = $this->restClient->send($request);
         } catch(\Exception $e) {
             $this->logger->error( $e->getMessage() . ' in ' . $e->getFile() . ' on line ' . $e->getLine() );
         }
@@ -164,7 +165,7 @@ class Document
         try {
             $params = array('uri' => $this->uri, 'category' => 'metadata');
             $request = new RESTRequest('DELETE', 'documents', $params);
-            $response = $this->restClient->send($request);
+            $this->response = $this->restClient->send($request);
         } catch(\Exception $e) {
             $this->logger->error( $e->getMessage() . ' in ' . $e->getFile() . ' on line ' . $e->getLine() );
         }
@@ -304,5 +305,15 @@ class Document
         	$type = '';
         }
         return $type;
+    }
+
+    /**
+     * Get the last REST response received. Useful for testing.
+     *
+     * @return RESTRresponse A REST response object.
+     */
+    public function getResponse()
+    {
+        return $this->response;
     }
 }
