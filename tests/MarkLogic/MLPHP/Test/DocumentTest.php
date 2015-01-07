@@ -22,15 +22,85 @@ use Monolog\Handler\StreamHandler;
 
 /**
  * @package MLPHP\Test
+ * @author Mike Wooldridge <mike.wooldridge@marklogic.com>
  * @author Eric Bloch <eric.bloch@gmail.com>
  */
 class DocumentTest extends TestBase
 {
+
     function testWrite()
     {
-        $doc = new MLPHP\JSONDocument($this->client, "/one.json");
-        $doc->setContent('{"Hello": "World"}');
-        $doc->write("/one.json");
+        $uri = '/text.txt';
+        $content = 'Text content';
+        $doc = new MLPHP\Document(parent::$client);
+        $doc->setContent($content)->setContentType('text/text');
+        $doc->write($uri);
+        $response = $doc->getResponse();
+        $this->assertEquals(201, $response->getHttpCode());
+        return $doc;
     }
+
+    /**
+     * @depends testWrite
+     */
+    function testRead($doc)
+    {
+        $result = $doc->read($doc->getURI());
+        $this->assertEquals($result, $doc->getContent());
+    }
+
+    /**
+     * @depends testWrite
+     */
+    function testWriteMetadata($doc)
+    {
+        $meta = new MLPHP\Metadata(parent::$client);
+        $meta->setQuality(1);
+        $doc->writeMetadata($meta);
+        $response = $doc->getResponse();
+        $this->assertEquals(204, $response->getHttpCode());
+        return $doc;
+    }
+
+    /**
+     * @depends testWriteMetadata
+     */
+    function testReadMetadata($doc)
+    {
+        $meta = $doc->readMetadata();
+        $this->assertEquals($meta->getQuality(), 1);
+    }
+
+    /**
+     * @depends testWriteMetadata
+     */
+    function testDeleteMetadata($doc)
+    {
+        $doc->deleteMetadata();
+        $meta = $doc->readMetadata();
+        $this->assertEquals($meta->getQuality(), 0);
+    }
+
+    /**
+     * @depends testWrite
+     */
+    function testSetContentFile($doc)
+    {
+        $doc->setContentFile(__DIR__ . '/example.json');
+        $obj = json_decode($doc->getContent());
+        // check for known JSON property
+        $this->assertEquals($obj->planet, 'Earth');
+    }
+
+    /**
+     * @depends testWrite
+     */
+    function testDelete($doc)
+    {
+        $doc->delete();
+        // non-existent file returns false
+        $this->assertEquals($doc->read(), false);
+    }
+
 }
 
