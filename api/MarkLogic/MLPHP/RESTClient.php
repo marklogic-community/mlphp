@@ -48,7 +48,7 @@ class RESTClient
      * @param string username The username for REST authentication.
      * @param string password The password for REST authentication.
      * @param string auth The authentication scheme ('basic' or 'digest' (default)).
-     * @param LoggerInterface logger 
+     * @param LoggerInterface logger
      */
     public function __construct($host = '', $port = 0, $path = '', $version = '', $username = '', $password = '', $auth = 'digest',
         $logger = null)
@@ -292,9 +292,6 @@ class RESTClient
         $requestLength = strlen($body);
         $fh = fopen('php://temp', 'rw');
 
-        $this->logger->debug("Request body: " . $body);
-        $this->logger->debug("Request body size: " . $requestLength);
-
         fwrite($fh, $body);
         rewind($fh);
 
@@ -353,16 +350,12 @@ class RESTClient
             $requestBody = http_build_query($request->getParams());
 
             curl_setopt($ch, CURLOPT_POSTFIELDS, $requestBody);
-            $this->logger->debug("Request body: " . $requestBody);
 
         } else {
 
             $this->logger->debug("POST " . $request->headers['Content-type']);
 
             $requestLength = strlen($request->getBody());
-
-            $this->logger->debug("Request body: " . $request->getBody());
-            $this->logger->debug("Request body size: " . $requestLength);
 
             curl_setopt($ch, CURLOPT_POSTFIELDS, $request->getBody());
         }
@@ -382,7 +375,7 @@ class RESTClient
 
         $this->setOptions($ch, $request->getUrlStr(), $request->getHeaders());
 
-        // Options specific to POST
+        // Options specific to HEAD
         curl_setopt($ch, CURLOPT_NOBODY, true);
         curl_setopt($ch, CURLOPT_HEADER, true);
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'HEAD');
@@ -403,14 +396,9 @@ class RESTClient
     public function execute(&$ch)
     {
         $response = new RESTResponse();
-        $this->logger->debug("URL: " . curl_getinfo($ch, CURLINFO_EFFECTIVE_URL));
         $response->setBody(curl_exec($ch));
         $response->setInfo(curl_getinfo($ch));
-        $this->logger->debug("Request headers : " . curl_getinfo($ch, CURLINFO_HEADER_OUT)); 
         $this->logger->debug("Response code: " . $response->getHttpCode());
-        $this->logger->debug("Response length: " . curl_getinfo($ch, CURLINFO_CONTENT_LENGTH_DOWNLOAD));
-        $this->logger->debug("Response content type: " . curl_getinfo($ch, CURLINFO_CONTENT_TYPE));
-        $this->logger->debug("Response body: " . $response->getBody());
         if ($response->getHttpCode() === 0) {
             curl_close ($ch);
             throw new \Exception('No connection: ' . $response->getUrl(), $response->getHttpCode());
@@ -425,9 +413,9 @@ class RESTClient
     }
 
     /**
-     * Install a REST API XQuery extension 
+     * Install a REST API XQuery extension
      *
-     * @param $resource URL 
+     * @param $resource URL
      * @param $params resource parameters (adds in provider=MLPHP if provider not set)
      * @param $filename file system name of contents of the XQuery module.
      */
@@ -436,7 +424,7 @@ class RESTClient
         if (!isset($params["provider"])) {
             $params["provider"] = 'MLPHP';
         }
-        
+
         $path = __DIR__ . DIRECTORY_SEPARATOR . "xquery" . DIRECTORY_SEPARATOR . $filename;
 
         $body = file_get_contents($path);

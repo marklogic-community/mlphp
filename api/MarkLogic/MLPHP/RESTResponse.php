@@ -119,9 +119,9 @@ class RESTResponse
     {
         if ($obj = json_decode($this->body)) {
             // response body is JSON
-            $statusCode = $obj->error->{'status-code'};
-            $status = $obj->error->status;
-            $message = $obj->error->message;
+            $statusCode = $obj->errorResponse->statusCode;
+            $status = $obj->errorResponse->status;
+            $message = $obj->errorResponse->message;
             $result = 'Error ' . $statusCode . ': ' . $status . ' - ' . $message;
         } else if (substr(trim($this->body), 0, 1) === '<') {
             // response body is XML
