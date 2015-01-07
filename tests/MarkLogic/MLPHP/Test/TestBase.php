@@ -24,104 +24,91 @@ use Monolog\Handler\StreamHandler;
 /**
  * @package MLPHP\Test
  * @author Eric Bloch <eric.bloch@gmail.com>
+ * @author Mike Wooldridge <mike.wooldridge@marklogic.com>
  */
 abstract class TestBase extends \PHPUnit_Framework_TestCase
 {
-    private $apiclient;
-    protected $client;
+    protected static $logger;
+    private static $api;
+    protected static $client;
+    private static $config = array(
+        'host' => '127.0.0.1',
+        'port' => 8234,
+        'db' => 'mlphp-test',
+        'user' => 'admin',
+        'pass' => 'admin',
+        'mgmt_port' => 8002
+    );
 
-    private $db;
-    private $host;
-    private $port;
-    private $user;
-    private $pass;
-
-    protected $logger;
-
-    function createAPI()
+    // Runs before each test class
+    // https://phpunit.de/manual/current/en/fixtures.html#fixtures.variations
+    public static function setUpBeforeClass()
     {
-        $method = 'post';
-        $resource = "rest-apis";
-        $params = array();
-        $headers = array(
-            'Content-type' => 'application/json'
+        // Create a logger for tests
+        self::$logger = new Logger('test');
+        self::$logger->pushHandler(new StreamHandler('php://stderr', Logger::DEBUG));
+
+        // Create a REST API for tests
+        self::$api = new MLPHP\RESTClient(
+            self::$config['host'],
+            self::$config['mgmt_port'],
+            '',
+            'v1',
+            self::$config['user'],
+            self::$config['pass'],
+            'digest',
+            self::$logger
         );
 
-
+        $params = array();
+        $headers = array('Content-type' => 'application/json');
         $body = '
             {
                 "rest-api": {
                     "name": "test-mlphp-rest-api",
-                    "database": "'.$this->db.'",
-                    "modules-database": "'.$this->db.'-modules",
-                    "port": "'.$this->port.'"
+                    "database": "' . self::$config['db'] . '",
+                    "modules-database": "' . self::$config['db'] . '-modules",
+                    "port": "' . self::$config['port'] . '"
                 }
             }
         ';
+        $request = new MLPHP\RESTRequest('POST', 'rest-apis', array(), $body, $headers);
+        self::$api->post($request); // POST to set up REST API
 
-        $request = new MLPHP\RESTRequest($method, $resource, $params, $body, $headers);
+        // Create a REST client for tests
+        self::$client = new MLPHP\RESTClient(
+            self::$config['host'],
+            self::$config['port'],
+            '',
+            'v1',
+            self::$config['user'],
+            self::$config['pass'],
+            'digest',
+            self::$logger
+        );
 
-        if (! $this->apiclient) {
-            $this->apiclient = new MLPHP\RESTClient($this->host, $this->mgmt_port, '', 'v1', $this->user, $this->pass, 'digest', $this->logger);
-        }
-
-        $this->apiclient->post($request);
-
-        $this->client = new MLPHP\RESTClient($this->host, $this->port, '', 'v1', $this->user, $this->pass, 'digest', $this->logger);
-    }
-
-    function clearDB()
-    {
-        $db = new MLPHP\Database($this->client);
+        // Clear the REST API database
+        $db = new MLPHP\Database(self::$client);
         $db->clear();
+
     }
 
-    function deleteAPI()
+    // Runs after each test class
+    // https://phpunit.de/manual/current/en/fixtures.html#fixtures.variations
+    public static function tearDownAfterClass()
     {
-        $method = 'delete';
-        $resource = "rest-apis/test-mlphp-rest-api";
         $params = array();
         $body = null;
         $headers = array();
-        $request = new MLPHP\RESTRequest($method, $resource, $params, $body, $headers);
+        $request = new MLPHP\RESTRequest(
+            'DELETE', 'rest-apis/test-mlphp-rest-api', $params, $body, $headers
+        );
 
-        $this->apiclient->delete($request);
+        self::$api->delete($request);
 
-        // Wait for server reboot :(
-        sleep(3);
+        // Wait for server reboot
+        sleep(5); // increase time if "no connection" exceptions
     }
 
-    function setUp()
-    {
-        global $mlphp;
-
-        $this->host = $mlphp['host'] ? $mlphp['host'] : '127.0.0.1';
-        $this->port = $mlphp['port'] ? $mlphp['port'] : '8234';
-        $this->db =   $mlphp['db']   ? $mlphp['db']   : 'mlphp-test';
-        $this->user = $mlphp['user'] ? $mlphp['user'] : 'admin';
-        $this->pass = $mlphp['pass'] ? $mlphp['pass'] : 'admin';
-        $this->mgmt_port = $mlphp['mgmt_port'] ? $mlphp['mgmt_port'] : '8002';
-
-        $log_level = $mlphp['log_level'] ? $mlphp['log_level'] : Logger::INFO;
-
-        $this->logger = new Logger('test');
-        $this->logger->pushHandler(new StreamHandler('php://stderr', $log_level));
-
-        $this->logger->debug("setUp");
-
-        /* Create a fresh REST API instance for us */
-        $this->createAPI();
-
-        /* Clear the attached DB */
-        $this->clearDB();
-
-    }
-
-    function tearDown()
-    {
-        $this->logger->debug("tearDown");
-
-        $this->deleteAPI();
-    }
 }
 
