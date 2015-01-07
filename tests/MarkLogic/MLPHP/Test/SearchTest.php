@@ -26,16 +26,29 @@ use Monolog\Handler\StreamHandler;
  */
 class SearchTest extends TestBase
 {
+
+    function setUp()
+    {
+        parent::setUp();
+
+        $doc = new MLPHP\XMLDocument(parent::$client, "/one.xml");
+        $doc->setContent('<Hello>World</Hello>');
+        $doc->write("/one.xml");
+    }
+
     function testSearch()
     {
-        $search = new MLPHP\Search($this->client, 0, 100);
+        $search = new MLPHP\Search(parent::$client, 0, 100);
+
+        // results
         $results = $search->retrieve("world");
-    
         $this->assertEquals($results->getTotal(), 1);
 
-        $results = $search->retrieve("poop");
+        // no results
+        $results = $search->retrieve("universe");
         $this->assertEquals($results->getTotal(), 0);
-    
+
+        // results, structured query
         $results = $search->retrieve('
             <query xmlns="http://marklogic.com/appservices/search">
                 <term-query>
@@ -45,10 +58,11 @@ class SearchTest extends TestBase
         ', array(), true);
         $this->assertEquals($results->getTotal(), 1);
 
+        // no results, structured query
         $results = $search->retrieve('
             <query xmlns="http://marklogic.com/appservices/search">
                 <term-query>
-                    <text>poop</text>
+                    <text>universe</text>
                 </term-query>
             </query>
         ', array(), true);
@@ -65,16 +79,8 @@ class SearchTest extends TestBase
 
         $search = new MLPHP\Search($this->client, 0, 100);
         $results = $search->highlight('<g>I like spinach pie</g>', 'text/xml', 'hot', 'liked');
-        $this->assertXmlStringEqualsXmlString('<g>I <span class="hot">like</span> spinach pie</g>', $results); 
+        $this->assertXmlStringEqualsXmlString('<g>I <span class="hot">like</span> spinach pie</g>', $results);
         */
-    }
-
-    function setUp() {
-        parent::setUp();
-
-        $doc = new MLPHP\XMLDocument($this->client, "/one.xml");
-        $doc->setContent('<Hello>World</Hello>');
-        $doc->write("/one.xml");
     }
 }
 

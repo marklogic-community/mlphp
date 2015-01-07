@@ -26,27 +26,36 @@ use Monolog\Handler\StreamHandler;
  */
 class TermTest extends TestBase
 {
+
+    function setUp() {
+        parent::setUp();
+
+        $doc = new MLPHP\XMLDocument(parent::$client, "/one.xml");
+        $doc->setContent('<Hello><one>Foo</one><two>Bar</two></Hello>');
+        $doc->write("/one.xml");
+    }
+
     function testTerm()
     {
-        $options = new MLPHP\Options($this->client);
+        $options = new MLPHP\Options(parent::$client);
         $term = new MLPHP\Term("all-results");
         $options->setTerm($term);
-        
+
         $this->assertXmlStringEqualsXmlString('
             <options xmlns="http://marklogic.com/appservices/search">
                 <term>
-                    <empty apply="all-results"/> 
+                    <empty apply="all-results"/>
                 </term>
             </options>
         ', $options->getAsXML());
 
-        $wc = new MLPHP\WordConstraint("wc", "one", ""); 
+        $wc = new MLPHP\WordConstraint("wc", "one", "");
         $term->setDefault($wc);
         $options->setTerm($term);
         $this->assertXmlStringEqualsXmlString('
             <options xmlns="http://marklogic.com/appservices/search">
                 <term>
-                    <empty apply="all-results"/> 
+                    <empty apply="all-results"/>
                     <default>
                         <word>
                             <element ns="" name="one"/>
@@ -55,15 +64,7 @@ class TermTest extends TestBase
                 </term>
             </options>
         ', $options->getAsXML());
-        
-    }
 
-    function setUp() {
-        parent::setUp();
-
-        $doc = new MLPHP\XMLDocument($this->client, "/one.xml");
-        $doc->setContent('<Hello><one>Foo</one><two>Bar</two></Hello>');
-        $doc->write("/one.xml");
     }
 }
 

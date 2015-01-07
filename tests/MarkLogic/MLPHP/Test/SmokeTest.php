@@ -29,7 +29,7 @@ class SmokeTest extends TestBase
 {
     function testDBName()
     {
-        $db = new MLPHP\Database($this->client);
+        $db = new MLPHP\Database(parent::$client);
         $name = $db->getName();
         $this->assertNotNull($name);
     }
