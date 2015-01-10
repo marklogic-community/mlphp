@@ -23,39 +23,45 @@ use Psr\Log\NullLogger;
  *
  * @package MLPHP
  * @author Eric Bloch <eric.bloch@gmail.com>
+ * @author Mike Wooldridge <mike.wooldridge@marklogic.com>
  */
 class MLPHP
-{   
+{
     /**
-     *  Array of configuration parameters used to create clients.
-     *  @var mixed[] 
+     *  Array of configuration parameters used to create clients and REST APIs.
+     *  @var mixed[]
      *  @see MLPHP#__construct
      */
-    public $config = array(); 
+    public $config = array();
 
     /**
-     * Constructor, used to set configuration parameters for creating clients
+     * Constructor, used to set configuration parameters.
      *
      * @param array config configuration settings, including
      * <pre> <br/>
-     * host - default to localhost<br/>
-     * port - default to 7009<br/>
-     * username - default to admin<br/>
-     * password - default admin<br/>
-     * auth-type (digest or basic) - default to basic<br/>
-     * path - default to /<br/>
-     * version - default to v1<br/>
-     * logger - default to Psr\Log\NullLogger
+     * host - defaults to '127.0.0.1'<br/>
+     * port - defaults to 7009<br/>
+     * managePort - default to 8002<br/>
+     * api - name of REST API, defaults to 'mlphp-rest-api'
+     * username - defaults to 'admin'<br/>
+     * password - defaults 'admin'<br/>
+     * auth - 'digest' or 'basic', defaults to 'digest'<br/>
+     * path - defaults to ''<br/>
+     * version - defaults to 'v1'<br/>
+     * logger - defaults to Psr\Log\NullLogger
      * </pre>
      *
      * Additional array members are ignored.
-     *  
+     *
      */
     public function __construct($config)
     {
         $this->config = array_merge(array(
-            'host' => 'localhost',
+            'host' => '127.0.0.1',
             'port' => 7009,
+            'managePort' => 8002,
+            'api' => 'mlphp-rest-api',
+            'db' => 'mlphp-db',
             'user' => 'admin',
             'password' => 'admin',
             'path' => '',
@@ -71,33 +77,61 @@ class MLPHP
      *
      * @param config
      */
-    public function mergeConfig($config) 
+    public function mergeConfig($config)
     {
         $this->config = array_merge($this->config, $config);
     }
 
     /**
-     * Return a REST client based on current configuration
+     * Return a REST client based on current configuration.
      *
      * @return RESTClient
      */
-    public function newClient() 
+    public function newClient()
     {
-        return new RESTClient(
-            $this->config['host'], 
-            $this->config['port'], 
-            $this->config['path'], 
+        return new MLPHP\RESTClient(
+            $this->config['host'],
+            $this->config['port'],
+            $this->config['path'],
             $this->config['version'],
-            $this->config['username'], 
-            $this->config['password'], 
+            $this->config['username'],
+            $this->config['password'],
             $this->config['auth'],
             $this->config['logger']
         );
     }
 
     /**
+     * Create a REST API based on current configuration.
+     */
+    public function newAPI()
+    {
+        $client = new MLPHP\RESTClient(
+            $this->config['host'],
+            $this->config['managePort'],
+            $this->config['path'],
+            $this->config['version'],
+            $this->config['username'],
+            $this->config['password'],
+            $this->config['auth'],
+            $this->config['logger']
+        );
+
+        $api = new MLPHP\RESTAPI(
+            $this->config['api'],
+            $this->config['host'],
+            $this->config['db'],
+            $this->config['port'],
+            $this->config['username'],
+            $this->config['password']
+        );
+
+        $api->post($client);
+    }
+
+    /**
      * PSR-0 autoloader.
-     * 
+     *
      * Do NOT use if you are using Composer to autoload dependencies.
      *
      * @param $className
@@ -139,9 +173,9 @@ class MLPHP
     }
 
     /**
-     * Register PSR-0 autoloader. 
-     * 
-     * Do NOT use if you are using Composer to 
+     * Register PSR-0 autoloader.
+     *
+     * Do NOT use if you are using Composer to
      * autoload dependencies.
      */
     public static function registerAutoloader()
