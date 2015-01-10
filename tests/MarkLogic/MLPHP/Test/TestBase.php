@@ -35,9 +35,9 @@ abstract class TestBase extends \PHPUnit_Framework_TestCase
         'host' => '127.0.0.1',
         'port' => 8234,
         'db' => 'mlphp-test',
-        'user' => 'admin',
-        'pass' => 'admin',
-        'mgmt_port' => 8002
+        'username' => 'admin',
+        'password' => 'admin',
+        'apiName' => 'test-mlphp-rest-api'
     );
 
     // Runs before each test class
@@ -49,31 +49,22 @@ abstract class TestBase extends \PHPUnit_Framework_TestCase
         self::$logger->pushHandler(new StreamHandler('php://stderr', Logger::DEBUG));
 
         // Create a REST API for tests
-        self::$api = new MLPHP\RESTClient(
+        self::$api = new MLPHP\RESTAPI(
+            self::$config['apiName'],
             self::$config['host'],
-            self::$config['mgmt_port'],
-            '',
-            'v1',
-            self::$config['user'],
-            self::$config['pass'],
-            'digest',
+            self::$config['db'],
+            self::$config['port'],
+            self::$config['username'],
+            self::$config['password'],
             self::$logger
         );
-
-        $params = array();
-        $headers = array('Content-type' => 'application/json');
-        $body = '
-            {
-                "rest-api": {
-                    "name": "test-mlphp-rest-api",
-                    "database": "' . self::$config['db'] . '",
-                    "modules-database": "' . self::$config['db'] . '-modules",
-                    "port": "' . self::$config['port'] . '"
-                }
-            }
-        ';
-        $request = new MLPHP\RESTRequest('POST', 'rest-apis', array(), $body, $headers);
-        self::$api->post($request); // POST to set up REST API
+        if (!self::$api->exists()) {
+            self::$api->create();
+        } else {
+            self::$logger->debug(
+              'REST API ' . self::$config['apiName'] . ' already exists'
+            );
+        }
 
         // Create a REST client for tests
         self::$client = new MLPHP\RESTClient(
@@ -81,8 +72,8 @@ abstract class TestBase extends \PHPUnit_Framework_TestCase
             self::$config['port'],
             '',
             'v1',
-            self::$config['user'],
-            self::$config['pass'],
+            self::$config['username'],
+            self::$config['password'],
             'digest',
             self::$logger
         );
@@ -97,17 +88,7 @@ abstract class TestBase extends \PHPUnit_Framework_TestCase
     // https://phpunit.de/manual/current/en/fixtures.html#fixtures.variations
     public static function tearDownAfterClass()
     {
-        $params = array();
-        $body = null;
-        $headers = array();
-        $request = new MLPHP\RESTRequest(
-            'DELETE', 'rest-apis/test-mlphp-rest-api', $params, $body, $headers
-        );
-
-        self::$api->delete($request);
-
-        // Wait for server reboot
-        sleep(5); // increase time if "no connection" exceptions
+        self::$api->delete();
     }
 
 }
