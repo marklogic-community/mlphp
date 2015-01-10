@@ -29,7 +29,7 @@ class RESTRequest
     private $params; // @var array
     private $body; // @var string
 
-    /*
+    /**
      * Create a REST request object.
      *
      * @param string $verb The REST verb (example: 'GET').
@@ -150,7 +150,7 @@ class RESTRequest
     /**
      * @return true if the request is a POST with Content-type application/x-www-form-urlencoded
      */
-    public function isWWWFormURLEncodedPost() 
+    public function isWWWFormURLEncodedPost()
     {
         if (strtolower($this->verb) != "post") {
             return false;
@@ -164,7 +164,7 @@ class RESTRequest
         switch (strtolower($this->headers["Content-type"])) {
             case "application/x-www-form-urlencoded":
                 return true;
-            default:    
+            default:
                 return false;
         }
     }

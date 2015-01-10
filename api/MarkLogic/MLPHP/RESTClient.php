@@ -199,7 +199,7 @@ class RESTClient
      * Send a REST request.
      *
      * @param RESTRequest request A RESTRequest object
-     * @result RESTResponse A RESTResponse object.
+     * @return RESTResponse A RESTResponse object.
      */
     public function send($request)
     {
@@ -233,7 +233,7 @@ class RESTClient
      *
      * @param resource ch The cURL handle.
      * @param string url The REST URL string (example: 'documents').
-     * @result array An array of cURL options.
+     * @return array An array of cURL options.
      */
     protected function setOptions(&$ch, $urlStr, $headers)
     {
@@ -254,11 +254,11 @@ class RESTClient
         }
     }
 
-  /**
+    /**
      * Perform a GET request with cURL
      *
      * @param RESTRequest request A REST request.
-     * @result RESTResponse A REST response.
+     * @return RESTResponse A REST response.
      */
     public function get($request)
     {
@@ -279,7 +279,7 @@ class RESTClient
      * Perform a PUT request with cURL
      *
      * @param RESTRequest request A REST request.
-     * @result RESTResponse A REST response.
+     * @return RESTResponse A REST response.
      */
     public function put($request)
     {
@@ -313,7 +313,7 @@ class RESTClient
      * Perform a DELETE request with cURL
      *
      * @param RESTRequest request A REST request.
-     * @result RESTResponse A REST response.
+     * @return RESTResponse A REST response.
      */
     public function delete($request)
     {
@@ -334,7 +334,7 @@ class RESTClient
      * Perform a POST request with cURL
      *
      * @param RESTRequest request A REST request.
-     * @result RESTResponse A REST response.
+     * @return RESTResponse A REST response.
      */
     public function post($request)
     {
@@ -367,7 +367,7 @@ class RESTClient
      * Perform a HEAD request with cURL
      *
      * @param RESTRequest request A REST request.
-     * @result RESTResponse A REST response.
+     * @return RESTResponse A REST response.
      */
     public function head($request)
     {
@@ -391,7 +391,7 @@ class RESTClient
      * @todo Handle more response codes
      *
      * @param resource ch The REST URL string (example: 'documents')
-     * @result RESTResponse A RESTResponse object.
+     * @return RESTResponse A RESTResponse object.
      */
     public function execute(&$ch)
     {
