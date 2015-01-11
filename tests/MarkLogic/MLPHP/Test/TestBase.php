@@ -31,6 +31,7 @@ abstract class TestBase extends \PHPUnit_Framework_TestCase
     protected static $logger;
     private static $api;
     protected static $client;
+    protected static $manageClient;
     private static $config = array(
         'host' => '127.0.0.1',
         'port' => 8234,
@@ -78,8 +79,20 @@ abstract class TestBase extends \PHPUnit_Framework_TestCase
             self::$logger
         );
 
+        // Create a manage client for tests
+        self::$manageClient = new MLPHP\RESTClient(
+            self::$config['host'],
+            8002,
+            'manage',
+            'v2',
+            self::$config['username'],
+            self::$config['password'],
+            'digest',
+            self::$logger
+        );
+
         // Clear the REST API database
-        $db = new MLPHP\Database(self::$client);
+        $db = new MLPHP\Database(self::$config['db'], self::$manageClient);
         $db->clear();
 
     }
