@@ -65,7 +65,9 @@ class MLPHP
             'user' => 'admin',
             'password' => 'admin',
             'path' => '',
+            'managePath' => 'manage',
             'version' => 'v1',
+            'manageVersion' => 'v2',
             'auth' => 'digest',
             'logger' => new NullLogger()
         ), $config);
@@ -94,6 +96,25 @@ class MLPHP
             $this->config['port'],
             $this->config['path'],
             $this->config['version'],
+            $this->config['username'],
+            $this->config['password'],
+            $this->config['auth'],
+            $this->config['logger']
+        );
+    }
+
+    /**
+     * Return a REST client to the management API.
+     *
+     * @return RESTClient
+     */
+    public function newManageClient()
+    {
+        return new MLPHP\RESTClient(
+            $this->config['host'],
+            $this->config['managePort'],
+            $this->config['managePath'],
+            $this->config['manageVersion'],
             $this->config['username'],
             $this->config['password'],
             $this->config['auth'],
