@@ -283,7 +283,7 @@ class RESTClient
      */
     public function put($request)
     {
-        $this->logger->debug("PUT " . $request->headers['Content-type']);
+        $this->logger->debug("PUT ");
 
         $ch = curl_init();
 
@@ -353,7 +353,7 @@ class RESTClient
 
         } else {
 
-            $this->logger->debug("POST " . $request->headers['Content-type']);
+            $this->logger->debug("POST ");
 
             $requestLength = strlen($request->getBody());
 

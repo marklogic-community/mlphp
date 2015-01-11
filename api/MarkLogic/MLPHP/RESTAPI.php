@@ -124,7 +124,7 @@ class RESTAPI
     }
 
     /**
-     * Check if a REST API exists.
+     * Check if a REST API exists on the server.
      *
      * @param string name Name of the REST API to check.
      * @return boolean true|false
@@ -144,4 +144,5 @@ class RESTAPI
         }
         return $response;
     }
+
 }

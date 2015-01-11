@@ -28,6 +28,7 @@ class RESTRequest
     private $resource; // @var string
     private $params; // @var array
     private $body; // @var string
+    private $headers; // @var array
 
     /**
      * Create a REST request object.
