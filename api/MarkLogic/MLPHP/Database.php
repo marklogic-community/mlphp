@@ -211,7 +211,7 @@ class Database
 
     /**
      *
-     * Set an range element attribute index.
+     * Add an range element attribute index.
      * @see http://docs-ea.marklogic.com/guide/admin/range_index#id_51346
      *
      * @param string scalarType The scalar type (example: 'int' or 'string').
@@ -249,6 +249,104 @@ class Database
         array_push($indexes, $obj);
         // wrap in outer property
         $new = (object) ['range-element-attribute-index' => $indexes];
+        // set the updated properties
+        return $this->setProperties(json_encode($new));
+    }
+
+    /**
+     *
+     * Add a field.
+     * @todo generalize this for all complex properties
+     *
+     * @param string field The Field object.
+     */
+    public function addField($field)
+    {
+        // get existing fields
+        $properties = $this->getProperties();
+        if (property_exists($properties, 'field')) {
+          $fields = $properties->{'field'};
+        } else {
+          $fields = array();
+        }
+        // remove any existing with same name
+        foreach ($fields as $k=>$v) {
+            if ($v->{'field-name'} == $field->properties['field-name']) {
+                unset($fields[$k]);
+                $fields = array_values($fields);
+            }
+        }
+        // add the new field
+        array_push($fields, $field->properties);
+        // wrap in outer property
+        $new = (object) ['field' => $fields];
+        // set the updated properties
+        return $this->setProperties(json_encode($new));
+    }
+
+    /**
+     *
+     * Remove a field.
+     * @todo generalize this for all complex properties
+     *
+     * @param string name The name of the field to remove.
+     */
+    public function removeField($name)
+    {
+        // get existing fields
+        $properties = $this->getProperties();
+        if (property_exists($properties, 'field')) {
+            $fields = $properties->{'field'};
+            foreach ($fields as $k=>$v) {
+                if ($v->{'field-name'} == $name) {
+                    unset($fields[$k]);
+                    $fields = array_values($fields); // reindex
+                    // wrap in outer property
+                    $new = (object) ['field' => $fields];
+                    // set the updated properties
+                    $this->setProperties(json_encode($new));
+                }
+            }
+        }
+        return $this;
+    }
+
+    /**
+     *
+     * Add an range field index.
+     *
+     * @param string scalarType The scalar type (example: 'int' or 'string').
+     * @param string parentLocalname The local name of the parent element.
+     * @param string localname The local name of the attribute.
+     * @param string parentNamespaceURI The namespace URI of the parent (for XML content).
+     * @param string namespaceURI The namespace URI of the attribute (for XML content).
+     * @param boolean rangeValuePositions Whether to index range values positions (default is false).
+     * @param string invalidValues "ignore" or "reject" (default).
+     * @param string collation The collation value.
+     */
+    public function addRangeFieldIndex(
+        $scalarType, $fieldName, $rangeValuePositions = false,
+        $invalidValues = 'reject', $collation = ''
+    )
+    {
+        $obj = (object) [
+            'scalar-type' => $scalarType,
+            'field-name' => $parentLocalname,
+            'range-value-positions' => $rangeValuePositions,
+            'invalid-values' => $invalidValues,
+            'collation' => $collation
+        ];
+        // get any existing indexes
+        $properties = $this->getProperties();
+        if (property_exists($properties, 'range-field-index')) {
+          $indexes = $properties->{'range-field-index'};
+        } else {
+          $indexes = array();
+        }
+        // add the new index
+        array_push($indexes, $obj);
+        // wrap in outer property
+        $new = (object) ['range-field-index' => $indexes];
         // set the updated properties
         return $this->setProperties(json_encode($new));
     }
