@@ -169,14 +169,14 @@ class Database
      *
      * Set properties of the database.
      *
-     * @param string json The JSON string representing one or more properties.
+     * @param array arr Assoc array representing one or more properties.
      */
-    public function setProperties($json)
+    public function setProperties($arr)
     {
         $headers = array('Content-type' => 'application/json');
         $request = new RESTRequest(
           'PUT', 'databases/' . $this->name . '/properties',
-          array(), $json, $headers
+          array(), json_encode($arr), $headers
         );
         try {
             $this->response = $this->manageClient->send($request);
@@ -208,7 +208,7 @@ class Database
     public function setProperty($key, $value)
     {
         $new = array($key => $value);
-        return $this->setProperties(json_encode($new));
+        return $this->setProperties($new);
     }
 
     /**
@@ -248,7 +248,7 @@ class Database
         // wrap in type property
         $new = (object) [$type => $existingProperties];
         // set the updated properties
-        return $this->setProperties(json_encode($new));
+        return $this->setProperties($new);
     }
 
     /**
@@ -422,7 +422,7 @@ class Database
         // wrap in outer property
         $new = (object) ['field' => $fields];
         // set the updated properties
-        return $this->setProperties(json_encode($new));
+        return $this->setProperties($new);
     }
 
     /**
@@ -445,7 +445,7 @@ class Database
                     // wrap in outer property
                     $new = (object) ['field' => $fields];
                     // set the updated properties
-                    $this->setProperties(json_encode($new));
+                    $this->setProperties($new);
                 }
             }
         }
