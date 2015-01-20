@@ -102,6 +102,8 @@ abstract class TestBase extends \PHPUnit_Framework_TestCase
     public static function tearDownAfterClass()
     {
         self::$api->delete();
+        $db = new MLPHP\Database(self::$config['db'], self::$manageClient);
+        $db->delete();
     }
 
 }
