@@ -316,74 +316,62 @@ class Database
      * Add a range element index.
      * @see http://docs-ea.marklogic.com/guide/admin/range_index#id_51346
      *
-     * @param array properties The properties.
+     * @param array arr Assoc array of properties.
      */
-    public function addRangeElementIndex($properties)
+    public function addRangeElementIndex($arr)
     {
-        $properties = array_merge(array(
+        $arr = array_merge(array(
             'scalar-type' => 'string',
             'localname' => '',
             'namespace-uri' => '',
             'range-value-positions' => false,
             'invalid-values' => 'reject',
             'collation' => ''
-        ), $properties);
-        $this->addProperty('range-element-index', $properties, 'localname');
+        ), $arr);
+        $this->addProperty('range-element-index', $arr, 'localname');
     }
 
     /**
      *
      * Remove a range element index.
      *
-     * @param string localname The localname of the index to remove.
+     * @param array arr Assoc array representing index to remove.
      */
-    public function removeRangeElementIndex($localname)
+    public function removeRangeElementIndex($arr)
     {
-        $this->removeProperty('range-element-index', 'localname', $localname);
+        $this->removeProperty('range-element-index', $arr);
     }
 
     /**
      *
      * Add a range element attribute index.
-     * @see http://docs-ea.marklogic.com/guide/admin/range_index#id_51346
      *
-     * @param string scalarType The scalar type (example: 'int' or 'string').
-     * @param string parentLocalname The local name of the parent element.
-     * @param string localname The local name of the attribute.
-     * @param string parentNamespaceURI The namespace URI of the parent (for XML content).
-     * @param string namespaceURI The namespace URI of the attribute (for XML content).
-     * @param boolean rangeValuePositions Whether to index range values positions (default is false).
-     * @param string invalidValues "ignore" or "reject" (default).
-     * @param string collation The collation value.
+     * @param array arr Assoc array of properties.
      */
-    public function addRangeAttributeIndex(
-        $scalarType, $parentLocalname, $localname, $parentNamespaceURI = '', $namespaceURI = '',
-        $rangeValuePositions = false, $invalidValues = 'reject', $collation = ''
-    )
+    public function addRangeAttributeIndex($arr)
     {
-        $obj = (object) [
-            'scalar-type' => $scalarType,
-            'parent-localname' => $parentLocalname,
-            'localname' => $localname,
-            'parent-namespace-uri' => $parentNamespaceURI,
-            'namespace-uri' => $namespaceURI,
-            'range-value-positions' => $rangeValuePositions,
-            'invalid-values' => $invalidValues,
-            'collation' => $collation
-        ];
-        // get any existing indexes
-        $properties = $this->getProperties();
-        if (property_exists($properties, 'range-element-attribute-index')) {
-          $indexes = $properties->{'range-element-attribute-index'};
-        } else {
-          $indexes = array();
-        }
-        // add the new index
-        array_push($indexes, $obj);
-        // wrap in outer property
-        $new = (object) ['range-element-attribute-index' => $indexes];
-        // set the updated properties
-        return $this->setProperties(json_encode($new));
+        $arr = array_merge(array(
+            'scalar-type' => 'string',
+            'parent-localname' => '',
+            'localname' => '',
+            'parent-namespace-uri' => '',
+            'namespace-uri' => '',
+            'range-value-positions' => false,
+            'invalid-values' => 'reject',
+            'collation' => ''
+        ), $arr);
+        $this->addProperty('range-element-attribute-index', $arr);
+    }
+
+    /**
+     *
+     * Remove a range element attribute index.
+     *
+     * @param array arr Assoc array representing index to remove.
+     */
+    public function removeRangeAttributeIndex($arr)
+    {
+        $this->removeProperty('range-element-attribute-index', $arr);
     }
 
     /**
@@ -448,102 +436,51 @@ class Database
      *
      * Add a range field index.
      *
-     * @param string scalarType The scalar type (example: 'int' or 'string').
-     * @param string fieldName The name of the field.
-     * @param boolean rangeValuePositions Whether to index range values positions (default is false).
-     * @param string invalidValues "ignore" or "reject" (default).
-     * @param string collation The collation value.
+     * @param array arr Assoc array of properties.
      */
-    public function addRangeFieldIndex(
-        $scalarType, $fieldName, $rangeValuePositions = false,
-        $invalidValues = 'reject', $collation = ''
-    )
+    public function addRangeFieldIndex($arr)
     {
-        $obj = (object) [
-            'scalar-type' => $scalarType,
-            'field-name' => $fieldName,
-            'range-value-positions' => $rangeValuePositions,
-            'invalid-values' => $invalidValues,
-            'collation' => $collation
-        ];
-        // get any existing indexes
-        $properties = $this->getProperties();
-        if (property_exists($properties, 'range-field-index')) {
-          $indexes = $properties->{'range-field-index'};
-        } else {
-          $indexes = array();
-        }
-        // add the new index
-        array_push($indexes, $obj);
-        // wrap in outer property
-        $new = (object) ['range-field-index' => $indexes];
-        // set the updated properties
-        return $this->setProperties(json_encode($new));
+        $arr = array_merge(array(
+            'scalar-type' => 'string',
+            'field-name' => '',
+            'range-value-positions' => false,
+            'invalid-values' => 'reject',
+            'collation' => ''
+        ), $arr);
+        $this->addProperty('range-field-index', $arr);
     }
 
     /**
      *
      * Add path namespace.
      *
-     * @param string prefix The prefix of the namespace.
-     * @param string namespaceURI The namespace URI.
+     * @param array arr Assoc array of properties.
      */
-    public function addPathNamespace($prefix, $namespaceURI = '')
+    public function addPathNamespace($arr)
     {
-        $obj = (object) [
-            'prefix' => $prefix,
-            'namespace-uri' => $namespaceURI
-        ];
-        // get any existing indexes
-        $properties = $this->getProperties();
-        if (property_exists($properties, 'path-namespace')) {
-          $namespaces = $properties->{'path-namespace'};
-        } else {
-          $namespaces = array();
-        }
-        // add the new namespace
-        array_push($namespaces, $obj);
-        // wrap in outer property
-        $new = (object) ['path-namespace' => $namespaces];
-        // set the updated properties
-        return $this->setProperties(json_encode($new));
+        $arr = array_merge(array(
+            'prefix' => '',
+            'namespace-uri' => ''
+        ), $arr);
+        $this->addProperty('path-namespace', $arr);
     }
 
     /**
      *
      * Add a range path index.
      *
-     * @param string scalarType The scalar type (example: 'int' or 'string').
-     * @param string pathExpression The path expression.
-     * @param boolean rangeValuePositions Whether to index range values positions (default is false).
-     * @param string invalidValues "ignore" or "reject" (default).
-     * @param string collation The collation value.
+     * @param array arr Assoc array of properties.
      */
-    public function addRangePathIndex(
-        $scalarType, $pathExpression, $rangeValuePositions = false,
-        $invalidValues = 'reject', $collation = ''
-    )
+    public function addRangePathIndex($arr)
     {
-        $obj = (object) [
-            'scalar-type' => $scalarType,
-            'path-expression' => $pathExpression,
-            'range-value-positions' => $rangeValuePositions,
-            'invalid-values' => $invalidValues,
-            'collation' => $collation
-        ];
-        // get any existing indexes
-        $properties = $this->getProperties();
-        if (property_exists($properties, 'range-path-index')) {
-          $indexes = $properties->{'range-path-index'};
-        } else {
-          $indexes = array();
-        }
-        // add the new index
-        array_push($indexes, $obj);
-        // wrap in outer property
-        $new = (object) ['range-path-index' => $indexes];
-        // set the updated properties
-        return $this->setProperties(json_encode($new));
+        $arr = array_merge(array(
+            'scalar-type' => 'string',
+            'path-expression' => '',
+            'range-value-positions' => false,
+            'invalid-values' => 'reject',
+            'collation' => ''
+        ), $arr);
+        $this->addProperty('range-path-index', $arr);
     }
 
     /**
