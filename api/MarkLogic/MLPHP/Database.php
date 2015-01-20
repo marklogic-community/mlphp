@@ -285,6 +285,40 @@ class Database
         return $this;
     }
 
+
+    /**
+     *
+     * Check if a complex property exists.
+     *
+     * @param string type The property type (key).
+     * @param array arr Assoc array representing property to check.
+     */
+    public function propertyExists($type, $arr)
+    {
+        // get existing
+        $properties = $this->getProperties();
+        if (property_exists($properties, $type)) {
+            $existingProperties = $properties->$type;
+            // cycle through each property of type
+            foreach ($existingProperties as $k1=>$v1) {
+                $found = true;
+                // check if any properties don't match
+                foreach ($arr as $k2=>$v2) {
+                    if ($v1->$k2 != $v2) {
+                        $found = false;
+                        break;
+                    }
+                }
+                // match found
+                if ($found) {
+                    return true;
+                }
+            }
+        }
+        // none matched
+        return false;
+    }
+
     /**
      *
      * Add a range element index.
