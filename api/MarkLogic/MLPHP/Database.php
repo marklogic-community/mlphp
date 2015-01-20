@@ -241,33 +241,38 @@ class Database
     /**
      *
      * Remove a complex property.
-     * Generalized from removeField, example:
-     * $type = 'field'
-     * $key = 'field-name'
-     * $id = 'foo'
-     * @todo handle instances where property to remove is based
-     *       on multiple property definitions (e.g., localname and namespace)
+     *
+     * @todo This doesn't work when trying to remove only complex property
+     *       an the array, e.g. the remaining Range Element Attribute Index.
      *
      * @param string type The property type (key).
-     * @param mixed key The key for the object's unique ID.
-     * @param string id The ID of the property to remove.
+     * @param array arr Assoc array representing property to remove.
      */
-    public function removeProperty($type, $key, $id)
+    public function removeProperty($type, $arr)
     {
         // get existing
         $properties = $this->getProperties();
         if (property_exists($properties, $type)) {
-            $existingProperties = $properties->{$type};
-            foreach ($existingProperties as $k=>$v) {
-                if ($v->$key == $id) {
-                    unset($existingProperties[$k]);
+            $existingProperties = $properties->$type;
+            // cycle through each property of type
+            foreach ($existingProperties as $k1=>$v1) {
+                $found = true;
+                // if any property doesn't match, don't remove
+                foreach ($arr as $k2=>$v2) {
+                    if ($v1->$k2 != $v2) {
+                        $found = false;
+                        break;
+                    }
+                }
+                if ($found) {
+                    unset($existingProperties[$k1]);
                     $existingProperties = array_values($existingProperties); // reindex
-                    // wrap in outer property
-                    $new = (object) [$type => $existingProperties];
-                    // set the updated properties
-                    $this->setProperties(json_encode($new));
                 }
             }
+            // wrap in outer property
+            $new = (object) [$type => $existingProperties];
+            // set the updated properties
+            $this->setProperties($new);
         }
         return $this;
     }
