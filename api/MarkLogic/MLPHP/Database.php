@@ -199,29 +199,35 @@ class Database
      * Add a complex property.
      * Generalized from addField, example:
      * $type = 'field'
-     * $obj = instance of Field
+     * $arr = instance of Field as an assoc array of properties
      * $idKey = 'field-name'
+     * @todo handle instances where property to substitute is based
+     *       on multiple property definitions (e.g., localname and namespace)
      *
      * @param string type The property type (key).
-     * @param mixed obj The complex object.
-     * @param string key The key representing the object's unique ID.
+     * @param array arr The assoc array representing the property to add.
+     * @param string key The key representing the object's unique ID (optional).
      */
-    public function addProperty($type, $obj, $key)
+    public function addProperty($type, $arr, $key = null)
     {
         // get existing
         $properties = $this->getProperties();
         if (property_exists($properties, $type)) {
           $existingProperties = $properties->{$type};
+        } else {
+          $existingProperties = array();
         }
         // remove any existing with same name
-        foreach ($existingProperties as $k=>$v) {
-            if ($v->{$key} == $obj->properties[$key]) {
-                unset($existingProperties[$k]);
-                $existingProperties = array_values($existingProperties);
-            }
+        if ($key) {
+          foreach ($existingProperties as $k=>$v) {
+              if ($v->$key == $arr[$key]) {
+                  unset($existingProperties[$k]);
+                  $existingProperties = array_values($existingProperties);
+              }
+          }
         }
         // add the new field
-        array_push($existingProperties, $obj->properties);
+        array_push($existingProperties, $arr);
         // wrap in type property
         $new = (object) [$type => $existingProperties];
         // set the updated properties
@@ -235,6 +241,8 @@ class Database
      * $type = 'field'
      * $key = 'field-name'
      * $id = 'foo'
+     * @todo handle instances where property to remove is based
+     *       on multiple property definitions (e.g., localname and namespace)
      *
      * @param string type The property type (key).
      * @param mixed key The key for the object's unique ID.
@@ -247,7 +255,7 @@ class Database
         if (property_exists($properties, $type)) {
             $existingProperties = $properties->{$type};
             foreach ($existingProperties as $k=>$v) {
-                if ($v->{$key} == $id) {
+                if ($v->$key == $id) {
                     unset($existingProperties[$k]);
                     $existingProperties = array_values($existingProperties); // reindex
                     // wrap in outer property
@@ -265,39 +273,30 @@ class Database
      * Add a range element index.
      * @see http://docs-ea.marklogic.com/guide/admin/range_index#id_51346
      *
-     * @param string scalarType The scalar type (example: 'int' or 'string').
-     * @param string localname The local name of the element.
-     * @param string namespaceURI The namespace URI (for XML content).
-     * @param boolean rangeValuePositions Whether to index range values positions (default is false).
-     * @param string invalidValues "ignore" or "reject" (default).
-     * @param string collation The collation value.
+     * @param array properties The properties.
      */
-    public function addRangeElementIndex(
-        $scalarType, $localname, $namespaceURI = '',
-        $rangeValuePositions = false, $invalidValues = 'reject', $collation = ''
-    )
+    public function addRangeElementIndex($properties)
     {
-        $obj = (object) [
-            'scalar-type' => $scalarType,
-            'localname' => $localname,
-            'namespace-uri' => $namespaceURI,
-            'range-value-positions' => $rangeValuePositions,
-            'invalid-values' => $invalidValues,
-            'collation' => $collation
-        ];
-        // get any existing indexes
-        $properties = $this->getProperties();
-        if (property_exists($properties, 'range-element-index')) {
-          $indexes = $properties->{'range-element-index'};
-        } else {
-          $indexes = array();
-        }
-        // add the new index
-        array_push($indexes, $obj);
-        // wrap in outer property
-        $new = (object) ['range-element-index' => $indexes];
-        // set the updated properties
-        return $this->setProperties(json_encode($new));
+        $properties = array_merge(array(
+            'scalar-type' => 'string',
+            'localname' => '',
+            'namespace-uri' => '',
+            'range-value-positions' => false,
+            'invalid-values' => 'reject',
+            'collation' => ''
+        ), $properties);
+        $this->addProperty('range-element-index', $properties, 'localname');
+    }
+
+    /**
+     *
+     * Remove a range element index.
+     *
+     * @param string localname The localname of the index to remove.
+     */
+    public function removeRangeElementIndex($localname)
+    {
+        $this->removeProperty('range-element-index', 'localname', $localname);
     }
 
     /**
@@ -491,18 +490,15 @@ class Database
         ];
         // get any existing indexes
         $properties = $this->getProperties();
-        print_r($properties);
         if (property_exists($properties, 'range-path-index')) {
           $indexes = $properties->{'range-path-index'};
         } else {
           $indexes = array();
         }
-        print_r($indexes);
         // add the new index
         array_push($indexes, $obj);
         // wrap in outer property
         $new = (object) ['range-path-index' => $indexes];
-        print_r($new);
         // set the updated properties
         return $this->setProperties(json_encode($new));
     }
