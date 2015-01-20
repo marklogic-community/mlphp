@@ -125,24 +125,15 @@ class DatabaseTest extends TestBase
     {
         parent::$logger->debug('testAddRangeElementIndex');
         $db = new MLPHP\Database('mlphp-test', parent::$manageClient);
-        $props = new MLPHP\FieldPath(
-            array(
-              'path' => 'myPath',
-              'weight' => 1.5
-            )
+        $properties = array(
+            'scalar-type' => 'string',
+            'localname' => 'foo',
+            'range-value-positions' => true,
+            'invalid-values' => 'ignore',
         );
-        $scalarType = 'string';
-        $localname = 'foo';
-        $namespaceURI = '';
-        $rangeValuePositions = true;
-        $invalidValues = 'ignore';
-        $collation = '';
-        $db->addRangeElementIndex(
-            $scalarType, $localname, $namespaceURI, $rangeValuePositions,
-            $invalidValues, $collation
-        );
+        $db->addRangeElementIndex($properties);
         $properties = $db->getProperties();
-        // cycle through indexes, look for new one
+        // cycle through indexes, look for added one
         $indexExists = false;
         foreach ($properties->{'range-element-index'} as $index) {
             if ($index->localname == 'foo') {
@@ -151,6 +142,24 @@ class DatabaseTest extends TestBase
             }
         }
         $this->assertTrue($indexExists);
+        return $db;
+    }
+
+    function testRemoveRangeElementIndex()
+    {
+        parent::$logger->debug('testRemoveRangeElementIndex');
+        $db = new MLPHP\Database('mlphp-test', parent::$manageClient);
+        $db->removeRangeElementIndex('foo');
+        $properties = $db->getProperties();
+        // cycle through indexes, look for removed one
+        $indexExists = false;
+        foreach ($properties->{'range-element-index'} as $index) {
+            if ($index->localname == 'foo') {
+                $indexExists = true;
+                break;
+            }
+        }
+        $this->assertFalse($indexExists);
         return $db;
     }
 
