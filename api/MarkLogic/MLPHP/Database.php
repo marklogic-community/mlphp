@@ -440,6 +440,74 @@ class Database
     }
 
     /**
+     *
+     * Add path namespace.
+     *
+     * @param string prefix The prefix of the namespace.
+     * @param string namespaceURI The namespace URI.
+     */
+    public function addPathNamespace($prefix, $namespaceURI = '')
+    {
+        $obj = (object) [
+            'prefix' => $prefix,
+            'namespace-uri' => $namespaceURI
+        ];
+        // get any existing indexes
+        $properties = $this->getProperties();
+        if (property_exists($properties, 'path-namespace')) {
+          $namespaces = $properties->{'path-namespace'};
+        } else {
+          $namespaces = array();
+        }
+        // add the new namespace
+        array_push($namespaces, $obj);
+        // wrap in outer property
+        $new = (object) ['path-namespace' => $namespaces];
+        // set the updated properties
+        return $this->setProperties(json_encode($new));
+    }
+
+    /**
+     *
+     * Add a range path index.
+     *
+     * @param string scalarType The scalar type (example: 'int' or 'string').
+     * @param string pathExpression The path expression.
+     * @param boolean rangeValuePositions Whether to index range values positions (default is false).
+     * @param string invalidValues "ignore" or "reject" (default).
+     * @param string collation The collation value.
+     */
+    public function addRangePathIndex(
+        $scalarType, $pathExpression, $rangeValuePositions = false,
+        $invalidValues = 'reject', $collation = ''
+    )
+    {
+        $obj = (object) [
+            'scalar-type' => $scalarType,
+            'path-expression' => $pathExpression,
+            'range-value-positions' => $rangeValuePositions,
+            'invalid-values' => $invalidValues,
+            'collation' => $collation
+        ];
+        // get any existing indexes
+        $properties = $this->getProperties();
+        print_r($properties);
+        if (property_exists($properties, 'range-path-index')) {
+          $indexes = $properties->{'range-path-index'};
+        } else {
+          $indexes = array();
+        }
+        print_r($indexes);
+        // add the new index
+        array_push($indexes, $obj);
+        // wrap in outer property
+        $new = (object) ['range-path-index' => $indexes];
+        print_r($new);
+        // set the updated properties
+        return $this->setProperties(json_encode($new));
+    }
+
+    /**
      * Get the last REST response received. Useful for testing.
      *
      * @return RESTRresponse A REST response object.
