@@ -262,7 +262,7 @@ class Database
 
     /**
      *
-     * Add an range element index.
+     * Add a range element index.
      * @see http://docs-ea.marklogic.com/guide/admin/range_index#id_51346
      *
      * @param string scalarType The scalar type (example: 'int' or 'string').
@@ -302,7 +302,7 @@ class Database
 
     /**
      *
-     * Add an range element attribute index.
+     * Add a range element attribute index.
      * @see http://docs-ea.marklogic.com/guide/admin/range_index#id_51346
      *
      * @param string scalarType The scalar type (example: 'int' or 'string').
@@ -404,13 +404,10 @@ class Database
 
     /**
      *
-     * Add an range field index.
+     * Add a range field index.
      *
      * @param string scalarType The scalar type (example: 'int' or 'string').
-     * @param string parentLocalname The local name of the parent element.
-     * @param string localname The local name of the attribute.
-     * @param string parentNamespaceURI The namespace URI of the parent (for XML content).
-     * @param string namespaceURI The namespace URI of the attribute (for XML content).
+     * @param string fieldName The name of the field.
      * @param boolean rangeValuePositions Whether to index range values positions (default is false).
      * @param string invalidValues "ignore" or "reject" (default).
      * @param string collation The collation value.
@@ -422,7 +419,7 @@ class Database
     {
         $obj = (object) [
             'scalar-type' => $scalarType,
-            'field-name' => $parentLocalname,
+            'field-name' => $fieldName,
             'range-value-positions' => $rangeValuePositions,
             'invalid-values' => $invalidValues,
             'collation' => $collation
