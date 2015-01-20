@@ -137,23 +137,28 @@ class DatabaseTest extends TestBase
     {
         parent::$logger->debug('testAddRangeElementIndex');
         $db = new MLPHP\Database('mlphp-test', parent::$manageClient);
-        $properties = array(
+        $properties1 = array(
             'scalar-type' => 'string',
             'localname' => 'foo',
             'range-value-positions' => true,
             'invalid-values' => 'ignore',
         );
-        $db->addRangeElementIndex($properties);
-        $properties = $db->getProperties();
-        // cycle through indexes, look for added one
-        $indexExists = false;
-        foreach ($properties->{'range-element-index'} as $index) {
-            if ($index->localname == 'foo') {
-                $indexExists = true;
-                break;
-            }
-        }
-        $this->assertTrue($indexExists);
+        $properties2 = array(
+            'scalar-type' => 'string',
+            'localname' => 'one',
+            'range-value-positions' => false,
+            'invalid-values' => 'reject',
+        );
+        $db->addRangeElementIndex($properties1);
+        $db->addRangeElementIndex($properties2);
+        $this->assertTrue($db->propertyExists(
+            'range-element-index',
+            array('localname' => 'foo')
+        ));
+        $this->assertTrue($db->propertyExists(
+            'range-element-index',
+            array('localname' => 'one')
+        ));
         return $db;
     }
 
