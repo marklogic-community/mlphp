@@ -166,17 +166,11 @@ class DatabaseTest extends TestBase
     {
         parent::$logger->debug('testRemoveRangeElementIndex');
         $db = new MLPHP\Database('mlphp-test', parent::$manageClient);
-        $db->removeRangeElementIndex('foo');
-        $properties = $db->getProperties();
-        // cycle through indexes, look for removed one
-        $indexExists = false;
-        foreach ($properties->{'range-element-index'} as $index) {
-            if ($index->localname == 'foo') {
-                $indexExists = true;
-                break;
-            }
-        }
-        $this->assertFalse($indexExists);
+        $db->removeRangeElementIndex(array('localname' => 'foo'));
+        $this->assertFalse($db->propertyExists(
+            'range-element-index',
+            array('localname' => 'foo')
+        ));
         return $db;
     }
 
@@ -184,28 +178,28 @@ class DatabaseTest extends TestBase
     {
         parent::$logger->debug('testAddRangeAttributeIndex');
         $db = new MLPHP\Database('mlphp-test', parent::$manageClient);
-        $scalarType = 'string';
-        $parentLocalname = 'foo';
-        $localname = 'bar';
-        $parentNamespaceURI = '';
-        $namespaceURI = '';
-        $rangeValuePositions = true;
-        $invalidValues = 'ignore';
-        $collation = '';
-        $db->addRangeAttributeIndex(
-            $scalarType, $parentLocalname, $localname, $parentNamespaceURI,
-            $namespaceURI, $rangeValuePositions, $invalidValues, $collation
+        $properties = array(
+            'scalar-type' => 'string',
+            'parent-localname' => 'foo',
+            'localname' => 'bar'
         );
-        $properties = $db->getProperties();
-        // cycle through indexes, look for new one
-        $indexExists = false;
-        foreach ($properties->{'range-element-attribute-index'} as $index) {
-            if ($index->localname == 'bar') {
-                $indexExists = true;
-                break;
-            }
-        }
-        $this->assertTrue($indexExists);
+        $db->addRangeAttributeIndex($properties);
+        $this->assertTrue($db->propertyExists(
+            'range-element-attribute-index',
+            array('localname' => 'bar')
+        ));
+        return $db;
+    }
+
+    function testRemoveRangeAttributeIndex()
+    {
+        parent::$logger->debug('testRemoveRangeAttributeIndex');
+        $db = new MLPHP\Database('mlphp-test', parent::$manageClient);
+        $db->removeRangeAttributeIndex(array('localname' => 'bar'));
+        $this->assertFalse($db->propertyExists(
+            'range-element-attribute-index',
+            array('localname' => 'bar')
+        ));
         return $db;
     }
 
@@ -265,25 +259,15 @@ class DatabaseTest extends TestBase
     {
         parent::$logger->debug('testAddRangeFieldIndex');
         $db = new MLPHP\Database('mlphp-test', parent::$manageClient);
-        $scalarType = 'string';
-        $fieldName = 'myFieldIndex';
-        $rangeValuePositions = true;
-        $invalidValues = 'ignore';
-        $collation = '';
-        $db->addRangeFieldIndex(
-            $scalarType, $fieldName, $rangeValuePositions,
-            $invalidValues, $collation
+        $properties = array(
+            'scalar-type' => 'string',
+            'field-name' => 'myFieldIndex'
         );
-        $properties = $db->getProperties();
-        // cycle through indexes, look for new one
-        $indexExists = false;
-        foreach ($properties->{'range-field-index'} as $index) {
-            if ($index->{'field-name'} == 'myFieldIndex') {
-                $indexExists = true;
-                break;
-            }
-        }
-        $this->assertTrue($indexExists);
+        $db->addRangeFieldIndex($properties);
+        $this->assertTrue($db->propertyExists(
+            'range-field-index',
+            array('field-name' => 'myFieldIndex')
+        ));
         return $db;
     }
 
@@ -291,19 +275,15 @@ class DatabaseTest extends TestBase
     {
         parent::$logger->debug('testAddPathNamespace');
         $db = new MLPHP\Database('mlphp-test', parent::$manageClient);
-        $prefix = 'myNS';
-        $namespaceURI = 'http://www.example.com/mlphp';
-        $db->addPathNamespace($prefix, $namespaceURI);
-        $properties = $db->getProperties();
-        // cycle through namespaces, look for new one
-        $namespaceExists = false;
-        foreach ($properties->{'path-namespace'} as $namespace) {
-            if ($namespace->{'prefix'} == 'myNS') {
-                $namespaceExists = true;
-                break;
-            }
-        }
-        $this->assertTrue($namespaceExists);
+        $properties = array(
+            'prefix' => 'myNS',
+            'namespace-uri' => 'http://www.example.com/mlphp'
+        );
+        $db->addPathNamespace($properties);
+        $this->assertTrue($db->propertyExists(
+            'path-namespace',
+            array('prefix' => 'myNS')
+        ));
         return $db;
     }
 
@@ -311,25 +291,15 @@ class DatabaseTest extends TestBase
     {
         parent::$logger->debug('testAddRangePathIndex');
         $db = new MLPHP\Database('mlphp-test', parent::$manageClient);
-        $scalarType = 'string';
-        $pathExpression = 'one/@two';
-        $rangeValuePositions = true;
-        $invalidValues = 'ignore';
-        $collation = '';
-        $db->addRangePathIndex(
-            $scalarType, $pathExpression, $rangeValuePositions,
-            $invalidValues, $collation
+        $properties = array(
+            'scalar-type' => 'string',
+            'path-expression' => 'one/@two'
         );
-        $properties = $db->getProperties();
-        // cycle through indexes, look for new one
-        $indexExists = false;
-        foreach ($properties->{'range-path-index'} as $index) {
-            if ($index->{'path-expression'} == 'one/@two') {
-                $indexExists = true;
-                break;
-            }
-        }
-        $this->assertTrue($indexExists);
+        $db->addRangePathIndex($properties);
+        $this->assertTrue($db->propertyExists(
+            'range-path-index',
+            array('path-expression' => 'one/@two')
+        ));
         return $db;
     }
 
