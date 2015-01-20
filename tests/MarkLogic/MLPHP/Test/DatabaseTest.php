@@ -125,6 +125,12 @@ class DatabaseTest extends TestBase
     {
         parent::$logger->debug('testAddRangeElementIndex');
         $db = new MLPHP\Database('mlphp-test', parent::$manageClient);
+        $props = new MLPHP\FieldPath(
+            array(
+              'path' => 'myPath',
+              'weight' => 1.5
+            )
+        );
         $scalarType = 'string';
         $localname = 'foo';
         $namespaceURI = '';
@@ -177,7 +183,6 @@ class DatabaseTest extends TestBase
         return $db;
     }
 
-
     function testAddField()
     {
         parent::$logger->debug('testAddField');
@@ -211,12 +216,12 @@ class DatabaseTest extends TestBase
             'included-element' => array($included->properties),
             'excluded-element' => $excluded->properties
         ));
-        print_r($field);
+        //print_r($field);
         $db->addField($field);
         $response = $db->getResponse();
         //print_r($response);
         $properties = $db->getProperties();
-        print_r($properties);
+        //print_r($properties);
         // cycle through fields, look for new one
         $fieldExists = false;
         print('num fields: ' . count($properties->{'field'}));
@@ -227,6 +232,78 @@ class DatabaseTest extends TestBase
             }
         }
         $this->assertTrue($fieldExists);
+        return $db;
+    }
+
+    function testAddRangeFieldIndex()
+    {
+        parent::$logger->debug('testAddRangeFieldIndex');
+        $db = new MLPHP\Database('mlphp-test', parent::$manageClient);
+        $scalarType = 'string';
+        $fieldName = 'myFieldIndex';
+        $rangeValuePositions = true;
+        $invalidValues = 'ignore';
+        $collation = '';
+        $db->addRangeFieldIndex(
+            $scalarType, $fieldName, $rangeValuePositions,
+            $invalidValues, $collation
+        );
+        $properties = $db->getProperties();
+        // cycle through indexes, look for new one
+        $indexExists = false;
+        foreach ($properties->{'range-field-index'} as $index) {
+            if ($index->{'field-name'} == 'myFieldIndex') {
+                $indexExists = true;
+                break;
+            }
+        }
+        $this->assertTrue($indexExists);
+        return $db;
+    }
+
+    function testAddPathNamespace()
+    {
+        parent::$logger->debug('testAddPathNamespace');
+        $db = new MLPHP\Database('mlphp-test', parent::$manageClient);
+        $prefix = 'myNS';
+        $namespaceURI = 'http://www.example.com/mlphp';
+        $db->addPathNamespace($prefix, $namespaceURI);
+        $properties = $db->getProperties();
+        // cycle through namespaces, look for new one
+        $namespaceExists = false;
+        foreach ($properties->{'path-namespace'} as $namespace) {
+            if ($namespace->{'prefix'} == 'myNS') {
+                $namespaceExists = true;
+                break;
+            }
+        }
+        $this->assertTrue($namespaceExists);
+        return $db;
+    }
+
+    function testAddRangePathIndex()
+    {
+        parent::$logger->debug('testAddRangePathIndex');
+        $db = new MLPHP\Database('mlphp-test', parent::$manageClient);
+        $scalarType = 'string';
+        $pathExpression = 'one/@two';
+        $rangeValuePositions = true;
+        $invalidValues = 'ignore';
+        $collation = '';
+        $db->addRangePathIndex(
+            $scalarType, $pathExpression, $rangeValuePositions,
+            $invalidValues, $collation
+        );
+        $properties = $db->getProperties();
+        // cycle through indexes, look for new one
+        $indexExists = false;
+        foreach ($properties->{'range-path-index'} as $index) {
+            if ($index->{'path-expression'} == 'one/@two') {
+                $indexExists = true;
+                break;
+            }
+        }
+        $this->assertTrue($indexExists);
         return $db;
     }
 
