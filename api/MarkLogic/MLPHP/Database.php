@@ -149,7 +149,7 @@ class Database
 
     /**
      *
-     * Get the modifiable properties of the database as JSON.
+     * Get the modifiable properties of the database as a PHP object.
      *
      */
     public function getProperties()
@@ -217,34 +217,21 @@ class Database
      * Generalized from addField, example:
      * $type = 'field'
      * $arr = instance of Field as an assoc array of properties
-     * $idKey = 'field-name'
-     * @todo handle instances where property to substitute is based
-     *       on multiple property definitions (e.g., localname and namespace)
      *
      * @param string type The property type (key).
      * @param array arr The assoc array representing the property to add.
-     * @param string key The key representing the object's unique ID (optional).
      */
-    public function addProperty($type, $arr, $key = null)
+    public function addProperty($type, $arr)
     {
         // get existing
         $properties = $this->getProperties();
         if (property_exists($properties, $type)) {
-          $existingProperties = $properties->{$type};
+          $existingProperties = $properties->$type;
         } else {
           $existingProperties = array();
         }
-        // remove any existing with same name
-        if ($key) {
-          foreach ($existingProperties as $k=>$v) {
-              if ($v->$key == $arr[$key]) {
-                  unset($existingProperties[$k]);
-                  $existingProperties = array_values($existingProperties);
-              }
-          }
-        }
-        // add the new field
-        array_push($existingProperties, $arr);
+        // add the new field to beginning of array
+        array_unshift($existingProperties, $arr);
         // wrap in type property
         $new = (object) [$type => $existingProperties];
         // set the updated properties
