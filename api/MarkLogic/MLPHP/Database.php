@@ -67,6 +67,23 @@ class Database
 
     /**
      *
+     * Delete the database.
+     *
+     */
+    public function delete()
+    {
+        $headers = array('Content-type' => 'application/json');
+        $request = new RESTRequest('DELETE', 'databases/' . $this->name, array(), '', $headers);
+        try {
+            $this->response = $this->manageClient->send($request);
+            return $this;
+        } catch(Exception $e) {
+            echo $e->getMessage() . ' in ' . $e->getFile() . ' on line ' . $e->getLine() . PHP_EOL;
+        }
+    }
+
+    /**
+     *
      * Get the number of documents in the database.
      *
      */
