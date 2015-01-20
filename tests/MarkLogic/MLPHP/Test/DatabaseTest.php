@@ -121,6 +121,18 @@ class DatabaseTest extends TestBase
         return $db;
     }
 
+    function testPropertyExists()
+    {
+        parent::$logger->debug('testPropertyExists');
+        $db = new MLPHP\Database('mlphp-test', parent::$manageClient);
+        $result = $db->propertyExists(
+            'range-element-index',
+            array('localname' => 'created')
+        );
+        $this->assertTrue($result);
+        return $db;
+    }
+
     function testAddRangeElementIndex()
     {
         parent::$logger->debug('testAddRangeElementIndex');
