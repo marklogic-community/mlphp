@@ -87,8 +87,8 @@ class DatabaseTest extends TestBase
     {
         parent::$logger->debug('testSetProperties');
         $db = new MLPHP\Database('mlphp-test', parent::$manageClient);
-        $json = '{"word-searches":false}';
-        $properties = $db->setProperties($json)->getProperties();
+        $arr = array('word-searches' => false);
+        $properties = $db->setProperties($arr)->getProperties();
         $this->assertEquals($properties->{'word-searches'}, false);
         return $db;
     }
