@@ -27,6 +27,8 @@ use Monolog\Handler\StreamHandler;
 class DatabaseTest extends TestBase
 {
 
+    protected $db;
+
     function setUp() {
       $uri = '/text.xml';
       $content = '<doc>
@@ -37,106 +39,86 @@ class DatabaseTest extends TestBase
       $doc = new MLPHP\Document(parent::$client);
       $doc->setContent($content)->setContentType('application/xml');
       $doc->write($uri);
+      $this->db = new MLPHP\Database('mlphp-test', parent::$manageClient);
     }
 
     function testGetConfig()
     {
         parent::$logger->debug('testGetConfig');
-        $db = new MLPHP\Database('mlphp-test', parent::$manageClient);
-        $config = $db->getConfig();
+        $config = $this->db->getConfig();
         $this->assertObjectHasAttribute('database-config', $config);
-        return $db;
     }
 
     function testGetCounts()
     {
         parent::$logger->debug('testGetCounts');
-        $db = new MLPHP\Database('mlphp-test', parent::$manageClient);
-        $counts = $db->getCounts();
+        $counts = $this->db->getCounts();
         $this->assertObjectHasAttribute('database-counts', $counts);
-       return $db;
     }
 
     function testNumDocs()
     {
         parent::$logger->debug('testNumDocs');
-        $db = new MLPHP\Database('mlphp-test', parent::$manageClient);
-        $this->assertEquals($db->numDocs(), 1);
-        return $db;
+        $this->assertEquals($this->db->numDocs(), 1);
     }
 
     function testGetStatus()
     {
         parent::$logger->debug('testGetStatus');
-        $db = new MLPHP\Database('mlphp-test', parent::$manageClient);
-        $status = $db->getStatus();
+        $status = $this->db->getStatus();
         $this->assertObjectHasAttribute('database-status', $status);
-        return $db;
     }
 
     function testGetProperties()
     {
         parent::$logger->debug('testGetProperties');
-        $db = new MLPHP\Database('mlphp-test', parent::$manageClient);
-        $properties = $db->getProperties();
+        $properties = $this->db->getProperties();
         $this->assertEquals($properties->{'database-name'}, 'mlphp-test');
-        return $db;
     }
 
     function testSetProperties()
     {
         parent::$logger->debug('testSetProperties');
-        $db = new MLPHP\Database('mlphp-test', parent::$manageClient);
         $arr = array('word-searches' => false);
-        $properties = $db->setProperties($arr)->getProperties();
+        $properties = $this->db->setProperties($arr)->getProperties();
         $this->assertEquals($properties->{'word-searches'}, false);
-        return $db;
     }
 
     function testGetProperty()
     {
         parent::$logger->debug('testGetProperty');
-        $db = new MLPHP\Database('mlphp-test', parent::$manageClient);
-        $property = $db->getProperty('database-name');
+        $property = $this->db->getProperty('database-name');
         $this->assertEquals($property, 'mlphp-test');
-        return $db;
     }
 
     function testSetProperty()
     {
         parent::$logger->debug('testSetProperty');
-        $db = new MLPHP\Database('mlphp-test', parent::$manageClient);
         $key = 'word-searches';
-        $value = $db->setProperty($key, true)->getProperty($key);
+        $value = $this->db->setProperty($key, true)->getProperty($key);
         $this->assertEquals($value, true);
-        return $db;
     }
 
     function testClear()
     {
         parent::$logger->debug('testClear');
-        $db = new MLPHP\Database('mlphp-test', parent::$manageClient);
-        $counts = $db->clear()->getCounts();
+        $counts = $this->db->clear()->getCounts();
         $this->assertEquals($counts->{'database-counts'}->{'count-properties'}->documents->value, 0);
-        return $db;
     }
 
     function testPropertyExists()
     {
         parent::$logger->debug('testPropertyExists');
-        $db = new MLPHP\Database('mlphp-test', parent::$manageClient);
-        $result = $db->propertyExists(
+        $result = $this->db->propertyExists(
             'range-element-index',
             array('localname' => 'created')
         );
         $this->assertTrue($result);
-        return $db;
     }
 
     function testAddRangeElementIndex()
     {
         parent::$logger->debug('testAddRangeElementIndex');
-        $db = new MLPHP\Database('mlphp-test', parent::$manageClient);
         $properties1 = array(
             'scalar-type' => 'string',
             'localname' => 'foo',
@@ -149,65 +131,57 @@ class DatabaseTest extends TestBase
             'range-value-positions' => false,
             'invalid-values' => 'reject',
         );
-        $db->addRangeElementIndex($properties1);
-        $db->addRangeElementIndex($properties2);
-        $this->assertTrue($db->propertyExists(
+        $this->db->addRangeElementIndex($properties1);
+        $this->db->addRangeElementIndex($properties2);
+        $this->assertTrue($this->db->propertyExists(
             'range-element-index',
             array('localname' => 'foo')
         ));
-        $this->assertTrue($db->propertyExists(
+        $this->assertTrue($this->db->propertyExists(
             'range-element-index',
             array('localname' => 'one')
         ));
-        return $db;
     }
 
     function testRemoveRangeElementIndex()
     {
         parent::$logger->debug('testRemoveRangeElementIndex');
-        $db = new MLPHP\Database('mlphp-test', parent::$manageClient);
-        $db->removeRangeElementIndex(array('localname' => 'foo'));
-        $this->assertFalse($db->propertyExists(
+        $this->db->removeRangeElementIndex(array('localname' => 'foo'));
+        $this->assertFalse($this->db->propertyExists(
             'range-element-index',
             array('localname' => 'foo')
         ));
-        return $db;
     }
 
     function testAddRangeAttributeIndex()
     {
         parent::$logger->debug('testAddRangeAttributeIndex');
-        $db = new MLPHP\Database('mlphp-test', parent::$manageClient);
         $properties = array(
             'scalar-type' => 'string',
             'parent-localname' => 'foo',
             'localname' => 'bar'
         );
-        $db->addRangeAttributeIndex($properties);
-        $this->assertTrue($db->propertyExists(
+        $this->db->addRangeAttributeIndex($properties);
+        $this->assertTrue($this->db->propertyExists(
             'range-element-attribute-index',
             array('localname' => 'bar')
         ));
-        return $db;
     }
 
     function testRemoveRangeAttributeIndex()
     {
         parent::$logger->debug('testRemoveRangeAttributeIndex');
-        $db = new MLPHP\Database('mlphp-test', parent::$manageClient);
-        $db->removeRangeAttributeIndex(array('localname' => 'bar'));
-        $this->assertFalse($db->propertyExists(
+        $this->db->removeRangeAttributeIndex(array('localname' => 'bar'));
+        $this->assertFalse($this->db->propertyExists(
             'range-element-attribute-index',
             array('localname' => 'bar')
         ));
-        return $db;
     }
 
     function testAddField()
     {
         parent::$logger->debug('testAddField');
-        $db = new MLPHP\Database('mlphp-test', parent::$manageClient);
-        $fieldPath = new MLPHP\FieldPath(
+        $path = new MLPHP\FieldPath(
             array(
               'path' => 'myPath',
               'weight' => 1.5
@@ -258,49 +232,45 @@ class DatabaseTest extends TestBase
     function testAddRangeFieldIndex()
     {
         parent::$logger->debug('testAddRangeFieldIndex');
-        $db = new MLPHP\Database('mlphp-test', parent::$manageClient);
         $properties = array(
             'scalar-type' => 'string',
             'field-name' => 'myFieldIndex'
         );
-        $db->addRangeFieldIndex($properties);
-        $this->assertTrue($db->propertyExists(
+        $this->db->addRangeFieldIndex($properties);
+        $this->assertTrue($this->db->propertyExists(
             'range-field-index',
             array('field-name' => 'myFieldIndex')
         ));
-        return $db;
     }
 
     function testAddPathNamespace()
     {
         parent::$logger->debug('testAddPathNamespace');
-        $db = new MLPHP\Database('mlphp-test', parent::$manageClient);
         $properties = array(
             'prefix' => 'myNS',
             'namespace-uri' => 'http://www.example.com/mlphp'
         );
-        $db->addPathNamespace($properties);
-        $this->assertTrue($db->propertyExists(
+        $this->db->addPathNamespace($properties);
+        $this->assertTrue($this->db->propertyExists(
+        $this->db->removePathNamespace(array('prefix' => 'myNS'));
+        $this->assertFalse($this->db->propertyExists(
             'path-namespace',
             array('prefix' => 'myNS')
         ));
-        return $db;
     }
 
     function testAddRangePathIndex()
     {
         parent::$logger->debug('testAddRangePathIndex');
-        $db = new MLPHP\Database('mlphp-test', parent::$manageClient);
         $properties = array(
             'scalar-type' => 'string',
             'path-expression' => 'one/@two'
         );
-        $db->addRangePathIndex($properties);
-        $this->assertTrue($db->propertyExists(
+        $this->db->addRangePathIndex($properties);
+        $this->assertTrue($this->db->propertyExists(
             'range-path-index',
             array('path-expression' => 'one/@two')
         ));
-        return $db;
     }
 
 }
