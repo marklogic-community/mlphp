@@ -383,26 +383,7 @@ class Database
      */
     public function addField($field)
     {
-        // get existing fields
-        $properties = $this->getProperties();
-        if (property_exists($properties, 'field')) {
-          $fields = $properties->{'field'};
-        } else {
-          $fields = array();
-        }
-        // remove any existing with same name
-        foreach ($fields as $k=>$v) {
-            if ($v->{'field-name'} == $field->properties['field-name']) {
-                unset($fields[$k]);
-                $fields = array_values($fields);
-            }
-        }
-        // add the new field
-        array_push($fields, $field->properties);
-        // wrap in outer property
-        $new = (object) ['field' => $fields];
-        // set the updated properties
-        return $this->setProperties($new);
+        $this->addProperty('field', $field);
     }
 
     /**
@@ -414,22 +395,7 @@ class Database
      */
     public function removeField($name)
     {
-        // get existing fields
-        $properties = $this->getProperties();
-        if (property_exists($properties, 'field')) {
-            $fields = $properties->{'field'};
-            foreach ($fields as $k=>$v) {
-                if ($v->{'field-name'} == $name) {
-                    unset($fields[$k]);
-                    $fields = array_values($fields); // reindex
-                    // wrap in outer property
-                    $new = (object) ['field' => $fields];
-                    // set the updated properties
-                    $this->setProperties($new);
-                }
-            }
-        }
-        return $this;
+        $this->removeProperty('field', array('field-name' => $name));
     }
 
     /**
