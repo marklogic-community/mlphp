@@ -16,13 +16,15 @@ limitations under the License.
 */
 namespace MarkLogic\MLPHP;
 
+use JsonSerializable;
+
 /**
  * Represents a database field element to exclude.
  *
  * @package MLPHP
  * @author Mike Wooldridge <mike.wooldridge@marklogic.com>
  */
-class FieldElementExcluded
+class FieldElementExcluded implements JsonSerializable
 {
     public $properties = array(); // @var array
 
@@ -40,6 +42,10 @@ class FieldElementExcluded
             'namespace-uri' => '',
             'attribute-namespace-uri' => ''
         ), $properties);
+    }
+
+    public function jsonSerialize() {
+        return $this->properties;
     }
 
 }

@@ -16,13 +16,15 @@ limitations under the License.
 */
 namespace MarkLogic\MLPHP;
 
+use JsonSerializable;
+
 /**
  * Represents a database field.
  *
  * @package MLPHP
  * @author Mike Wooldridge <mike.wooldridge@marklogic.com>
  */
-class Field
+class Field implements JsonSerializable
 {
     public $properties = array(); // @var array
 
@@ -48,6 +50,10 @@ class Field
             'included-element' => '',
             'excluded-element' => ''
         ), $properties);
+    public function jsonSerialize() {
+        return $this->arr;
+    }
+
     }
 
 }

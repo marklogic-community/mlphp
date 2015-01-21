@@ -16,13 +16,15 @@ limitations under the License.
 */
 namespace MarkLogic\MLPHP;
 
+use JsonSerializable;
+
 /**
  * Represents a database field path.
  *
  * @package MLPHP
  * @author Mike Wooldridge <mike.wooldridge@marklogic.com>
  */
-class FieldPath
+class FieldPath implements JsonSerializable
 {
     public $properties = array(); // @var array
 
@@ -37,6 +39,10 @@ class FieldPath
             'path' => '',
             'weight' => 1
         ), $properties);
+    }
+
+    public function jsonSerialize() {
+        return $this->properties;
     }
 
 }
