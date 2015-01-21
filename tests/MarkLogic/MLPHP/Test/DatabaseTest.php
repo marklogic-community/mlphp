@@ -206,27 +206,15 @@ class DatabaseTest extends TestBase
         );
         $field = new MLPHP\Field(array(
             'field-name' => 'myField',
-            'field-path' => array($fieldPath->properties),
-            'included-element' => array($included->properties),
-            'excluded-element' => $excluded->properties
+            'field-path' => $path,
+            'excluded-element' => array($excluded, $excluded2)
         ));
-        //print_r($field);
-        $db->addField($field);
-        $response = $db->getResponse();
-        //print_r($response);
-        $properties = $db->getProperties();
-        //print_r($properties);
-        // cycle through fields, look for new one
-        $fieldExists = false;
-        print('num fields: ' . count($properties->{'field'}));
-        foreach ($properties->{'field'} as $field) {
-            if ($field->{'field-name'} == 'myField') {
-                $fieldExists = true;
-                break;
-            }
-        }
-        $this->assertTrue($fieldExists);
-        return $db;
+        $field->addIncluded($included);
+        $this->db->addField($field);
+        $this->assertTrue($this->db->propertyExists(
+            'field',
+            array('field-name' => 'myField')
+        ));
     }
 
     function testAddRangeFieldIndex()
