@@ -418,7 +418,18 @@ class Database
 
     /**
      *
-     * Add path namespace.
+     * Remove a range field index.
+     *
+     * @param array arr Assoc array representing index to remove.
+     */
+    public function removeRangeFieldIndex($arr)
+    {
+        $this->removeProperty('range-field-index', $arr);
+    }
+
+    /**
+     *
+     * Add a path namespace.
      *
      * @param array arr Assoc array of properties.
      */
@@ -429,6 +440,17 @@ class Database
             'namespace-uri' => ''
         ), $arr);
         $this->addProperty('path-namespace', $arr);
+    }
+
+    /**
+     *
+     * Remove a path namespace.
+     *
+     * @param array arr Assoc array representing index to remove.
+     */
+    public function removePathNamespace($arr)
+    {
+        $this->removeProperty('path-namespace', $arr);
     }
 
     /**
