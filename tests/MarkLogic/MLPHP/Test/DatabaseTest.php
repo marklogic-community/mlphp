@@ -231,6 +231,26 @@ class DatabaseTest extends TestBase
         ));
     }
 
+    function testRemoveRangeFieldIndex()
+    {
+        parent::$logger->debug('testRemoveRangeFieldIndex');
+        $this->db->removeRangeFieldIndex(array('field-name' => 'myFieldIndex'));
+        $this->assertFalse($this->db->propertyExists(
+            'range-field-index',
+            array('field-name' => 'myFieldIndex')
+        ));
+    }
+
+    function testRemoveField()
+    {
+        parent::$logger->debug('testRemoveField');
+        $this->db->removeField('myField');
+        $this->assertFalse($this->db->propertyExists(
+            'field',
+            array('field-name' => 'myField')
+        ));
+    }
+
     function testAddPathNamespace()
     {
         parent::$logger->debug('testAddPathNamespace');
@@ -240,6 +260,14 @@ class DatabaseTest extends TestBase
         );
         $this->db->addPathNamespace($properties);
         $this->assertTrue($this->db->propertyExists(
+            'path-namespace',
+            array('prefix' => 'myNS')
+        ));
+    }
+
+    function testRemovePathNamespace()
+    {
+        parent::$logger->debug('testRemovePathNamespace');
         $this->db->removePathNamespace(array('prefix' => 'myNS'));
         $this->assertFalse($this->db->propertyExists(
             'path-namespace',
@@ -256,6 +284,16 @@ class DatabaseTest extends TestBase
         );
         $this->db->addRangePathIndex($properties);
         $this->assertTrue($this->db->propertyExists(
+            'range-path-index',
+            array('path-expression' => 'one/@two')
+        ));
+    }
+
+    function testRemoveRangePathIndex()
+    {
+        parent::$logger->debug('testRemoveRangePathIndex');
+        $this->db->removeRangePathIndex(array('path-expression' => 'one/@two'));
+        $this->assertFalse($this->db->propertyExists(
             'range-path-index',
             array('path-expression' => 'one/@two')
         ));
