@@ -54,6 +54,37 @@ class Field implements JsonSerializable
         return $this->arr;
     }
 
+    /**
+     *
+     * Add a path to the field.
+     *
+     * @param FieldPath path A FieldPath object.
+     */
+    public function addPath($path)
+    {
+        array_unshift($this->arr['field-path'], $path);
+    }
+
+    /**
+     *
+     * Add an included element to the field.
+     *
+     * @param FieldElementIncluded incl A FieldElementIncluded object.
+     */
+    public function addIncluded($incl)
+    {
+        array_unshift($this->arr['included-element'], $incl);
+    }
+
+    /**
+     *
+     * Add an excluded element to the field.
+     *
+     * @param FieldElementExcluded excl A FieldElementExcluded object.
+     */
+    public function addExcluded($excl)
+    {
+        array_unshift($this->arr['excluded-element'], $excl);
     }
 
 }
