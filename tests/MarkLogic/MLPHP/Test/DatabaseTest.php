@@ -299,5 +299,56 @@ class DatabaseTest extends TestBase
         ));
     }
 
+    function testAddElementLexicon()
+    {
+        parent::$logger->debug('testAddElementLexicon');
+        $properties = array(
+            'localname' => 'foo',
+            'namespace-uri' => 'http://example/foo'
+        );
+        $this->db->addElementLexicon($properties);
+        $this->assertTrue($this->db->propertyExists(
+            'element-word-lexicon',
+            array('localname' => 'foo')
+        ));
+    }
+
+    function testRemoveElementLexicon()
+    {
+        parent::$logger->debug('testRemoveElementLexicon');
+        $this->db->removeElementLexicon(array('localname' => 'foo'));
+        $this->assertFalse($this->db->propertyExists(
+            'element-word-lexicon',
+            array('localname' => 'foo')
+        ));
+    }
+
+    function testAddAttributeLexicon()
+    {
+        parent::$logger->debug('testAddAttributeLexicon');
+        $properties = array(
+            'parent-localname' => 'one',
+            'parent-namespace-uri' => '',
+            'localname' => 'two',
+            'namespace-uri' => '',
+            'collation' => ''
+        );
+        $this->db->addAttributeLexicon($properties);
+        $this->assertTrue($this->db->propertyExists(
+            'element-attribute-word-lexicon',
+            array('localname' => 'two')
+        ));
+    }
+
+    function testRemoveAttributeLexicon()
+    {
+        parent::$logger->debug('testRemoveAttributeLexicon');
+        $this->db->removeAttributeLexicon(array('localname' => 'two'));
+        $this->assertFalse($this->db->propertyExists(
+            'element-attribute-word-lexicon',
+            array('localname' => 'two')
+        ));
+    }
+
 }
 
