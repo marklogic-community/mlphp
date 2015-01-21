@@ -26,30 +26,32 @@ use JsonSerializable;
  */
 class Field implements JsonSerializable
 {
-    public $properties = array(); // @var array
+    public $arr = array(); // @var array
 
     /**
      * Create a Field object.
      *
-     * @param array $properties Associative array of config properties.
+     * @param array $arr Associative array of config properties.
      */
-    public function __construct($properties)
+    public function __construct($arr)
     {
-        if (!is_array($properties['field-path'])) {
-            $properties['field-path'] = array($properties['field-path']);
+        if (key_exists('field-path', $arr) && !is_array($arr['field-path'])) {
+            $arr['field-path'] = array($arr['field-path']);
         }
-        if (!is_array($properties['included-element'])) {
-            $properties['included-element'] = array($properties['included-element']);
+        if (key_exists('included-element', $arr) && !is_array($arr['included-element'])) {
+            $arr['included-element'] = array($arr['included-element']);
         }
-        if (!is_array($properties['excluded-element'])) {
-            $properties['excluded-element'] = array($properties['excluded-element']);
+        if (key_exists('excluded-element', $arr) && !is_array($arr['excluded-element'])) {
+            $arr['excluded-element'] = array($arr['excluded-element']);
         }
-        $this->properties = array_merge(array(
+        $this->arr = array_merge(array(
             'field-name' => '',
-            'field-path' => '',
-            'included-element' => '',
-            'excluded-element' => ''
-        ), $properties);
+            'field-path' => array(),
+            'included-element' => array(),
+            'excluded-element' => array()
+        ), $arr);
+    }
+
     public function jsonSerialize() {
         return $this->arr;
     }
