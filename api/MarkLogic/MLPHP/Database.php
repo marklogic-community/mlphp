@@ -482,6 +482,63 @@ class Database
         $this->removeProperty('range-path-index', $arr);
     }
 
+    /**
+     *
+     * Add an element word lexicon.
+     *
+     * @param array arr Assoc array of properties.
+     */
+    public function addElementLexicon($arr)
+    {
+        $arr = array_merge(array(
+            'localname' => '',
+            'namespace-uri' => '',
+            'collation' => ''
+        ), $arr);
+        $this->addProperty('element-word-lexicon', $arr);
+    }
+
+    /**
+     *
+     * Remove an element word lexicon.
+     *
+     * @param array arr Assoc array of properties.
+     */
+    public function removeElementLexicon($arr)
+    {
+        $this->removeProperty('element-word-lexicon', $arr);
+    }
+
+    /**
+     *
+     * Add an element attribute word lexicon.
+     *
+     * @param array arr Assoc array of properties.
+     */
+    public function addAttributeLexicon($arr)
+    {
+        $arr = array_merge(array(
+            'parent-localname' => '',
+            'parent-namespace-uri' => '',
+            'localname' => '',
+            'namespace-uri' => '',
+            'collation' => ''
+        ), $arr);
+        $this->addProperty('element-attribute-word-lexicon', $arr);
+    }
+
+    /**
+     *
+     * Remove an element attribute word lexicon.
+     *
+     * @param array arr Assoc array of properties.
+     */
+    public function removeAttributeLexicon($arr)
+    {
+        $this->removeProperty('element-attribute-word-lexicon', $arr);
+    }
+
+    /**
      * Get the last REST response received. Useful for testing.
      *
      * @return RESTRresponse A REST response object.
