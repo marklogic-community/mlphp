@@ -472,6 +472,16 @@ class Database
     }
 
     /**
+     *
+     * Remove a range path index.
+     *
+     * @param array arr Assoc array representing index to remove.
+     */
+    public function removeRangePathIndex($arr)
+    {
+        $this->removeProperty('range-path-index', $arr);
+    }
+
      * Get the last REST response received. Useful for testing.
      *
      * @return RESTRresponse A REST response object.
