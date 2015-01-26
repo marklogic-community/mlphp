@@ -49,7 +49,7 @@ class Options
     private $returnQuery; // @var string
     private $returnResults; // @var string
     private $returnSimilar; // @var string
-    private $searchOption; // @var array
+    private $searchOptions; // @var array
 
     // TODO (*** higher priority):
     // custom constraint
