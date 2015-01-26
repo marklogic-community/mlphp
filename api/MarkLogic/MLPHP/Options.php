@@ -227,7 +227,7 @@ class Options
      * Write the search options to the database.
      *
      * @param string $name The search options name.
-     * @return RESTResponse RESTResponse object.
+     * @return Options $this
      */
     public function write($name = 'all')
     {
@@ -235,9 +235,9 @@ class Options
             $params = array('format' => 'xml');
             $headers = array('Content-type' => 'application/xml');
             $request = new RESTRequest('PUT', 'config/query/' . $name, $params, $this->getAsXML(), $headers);
-            $response = $this->restClient->send($request);
+            $this->response = $this->restClient->send($request);
             //print_r($response);
-            return $response;
+            return $this;
         } catch(Exception $e) {
             echo $e->getMessage() . ' in ' . $e->getFile() . ' on line ' . $e->getLine() . PHP_EOL;
         }
@@ -253,7 +253,7 @@ class Options
     {
         try {
             $request = new RESTRequest('DELETE', 'config/query/' . $name);
-            $response = $this->restClient->send($request);
+            $this->response = $response = $this->restClient->send($request);
             return $this;
         } catch(Exception $e) {
             echo $e->getMessage() . ' in ' . $e->getFile() . ' on line ' . $e->getLine() . PHP_EOL;
@@ -593,5 +593,15 @@ class Options
             $this->searchOptions[] = $searchOptions;
             $this->searchOptions = array_unique($this->searchOptions);
         }
+    }
+
+    /**
+     * Get the last REST response received. Useful for testing.
+     *
+     * @return RESTRresponse A REST response object.
+     */
+    public function getResponse()
+    {
+        return $this->response;
     }
 }
