@@ -20,6 +20,8 @@ use MarkLogic\MLPHP;
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
 
+use DOMDocument;
+
 /**
  * @package MLPHP\Test
  * @author Mike Wooldridge <mike.wooldridge@marklogic.com>
@@ -27,53 +29,46 @@ use Monolog\Handler\StreamHandler;
 class OptionsTest extends TestBase
 {
 
+    protected $options;
+
     function setUp()
     {
         parent::setUp();
+        $this->options = new MLPHP\Options(parent::$client);
     }
 
     function testWrite()
     {
-        $options = new MLPHP\Options(parent::$client);
-
-        // set the debug flag
+        // set the debug flag so we have some content
         parent::$logger->debug('debug');
-        $options->setDebug(true);
-        $this->assertEquals($options->getDebug(), true);
+        $this->options->setDebug(true);
+        $this->assertEquals($this->options->getDebug(), true);
 
         // write
         parent::$logger->debug('write');
-        $options->write('test');
-        $response = $options->getResponse();
+        $this->options->write('test');
+        $response = $this->options->getResponse();
         $this->assertEquals(201, $response->getHttpCode());
-
-        return $options;
-
     }
 
-    /**
-     * @depends testWrite
-     */
-    function testRead($options)
+    function testRead()
     {
-
         // read
         parent::$logger->debug('read');
-        $result = $options->read('test');
-        print($result);
-        $this->assertNotNull($result);
-
+        $resultAsXML = $this->options->read('test');
+        $doc = new DOMDocument();
+        $doc->loadXML($resultAsXML);
+        $this->assertEquals(
+          $doc->getElementsByTagName('debug')->item(0)->nodeValue, true
+        );
     }
 
-    /**
-     * @depends testWrite
-     */
-    function testOptions($options)
+    function testDelete()
     {
         // delete
         parent::$logger->debug('delete');
-        $result = $options->delete('test');
-        $response = $options->getResponse();
+        $result = $this->options->delete('test');
+        $response = $this->options->getResponse();
         $this->assertEquals(204, $response->getHttpCode());
     }
 
