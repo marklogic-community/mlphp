@@ -131,8 +131,6 @@ class Values
                     $attrElem->setAttribute('name', $this->attr);
                     $rangeElem->appendChild($attrElem);
                 }
-                $this->addValuesOptions($dom, $rangeElem);
-                $this->addAggregate($dom, $rangeElem);
                 $valsElem->appendChild($rangeElem);
                 break;
                 /* <values name='example'>
@@ -144,9 +142,8 @@ class Values
                 </values> */
             case 'uri':
                 $uriElem = $dom->createElement('uri');
-                $this->addValuesOptions($dom, $uriElem);
-                $this->addAggregate($dom, $uriElem);
                 $valsElem->appendChild($uriElem);
+
                 break;
                /* <values name='uri'>
                       <uri/>
@@ -154,14 +151,15 @@ class Values
                     </values> */
             case 'collection':
                 $collectionElem = $dom->createElement('collection');
-                $this->addValuesOptions($dom, $collectionElem);
-                $this->addAggregate($dom, $collectionElem);
                 $valsElem->appendChild($collectionElem);
                 break;
-               /* <constraint name='type'>
-                    <collection prefix=''/>
-                  </constraint> */
+               /* <values name="coll">
+                      <collection/>
+                      <values-option>limit=10</values-option>
+                    </values> */
         }
+        $this->addAggregate($dom, $valsElem);
+        $this->addValuesOptions($dom, $valsElem);
         return $valsElem;
     }
 
