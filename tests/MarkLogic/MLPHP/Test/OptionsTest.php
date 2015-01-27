@@ -17,8 +17,6 @@ limitations under the License.
 namespace MarkLogic\MLPHP\Test;
 
 use MarkLogic\MLPHP;
-use Monolog\Logger;
-use Monolog\Handler\StreamHandler;
 
 use DOMDocument;
 

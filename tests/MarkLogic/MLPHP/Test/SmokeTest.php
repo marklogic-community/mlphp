@@ -18,9 +18,6 @@ namespace MarkLogic\MLPHP\Test;
 
 use MarkLogic\MLPHP;
 
-use Monolog\Logger;
-use Monolog\Handler\StreamHandler;
-
 /**
  * @package MLPHP\Test
  * @author Eric Bloch <eric.bloch@gmail.com>
