@@ -61,7 +61,7 @@ class Values
      * @param string $attrNs An attribute namespace.
      * @param string $datatype Constraint datatype.
      */
-    public function setUpRange($elem, $ns = '', $attr = '', $attrNs = '', $datatype = 'xs:string')
+    public function setUpRange($elem, $ns = '', $attr = '', $attrNs = '', $datatype = 'string')
     {
         $this->type = 'range';
         $this->elem = (string)$elem;
