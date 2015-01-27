@@ -17,7 +17,7 @@ limitations under the License.
 namespace MarkLogic\MLPHP;
 
 /**
- * Represents a roperties constraint for search.
+ * Represents a properties constraint for search.
  *
  * @package MLPHP
  * @author Mike Wooldridge <mike.wooldridge@marklogic.com>
@@ -31,7 +31,7 @@ class PropertiesConstraint extends AbstractConstraint
      *
      * @param string $name Constraint name.
      */
-    public function __construct($name, $facet = 'true')
+    public function __construct($name)
     {
     parent::__construct($name);
     }
