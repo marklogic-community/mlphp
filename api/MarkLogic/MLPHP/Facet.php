@@ -39,7 +39,8 @@ class Facet
         $this->type = $facet->getAttribute('type');
         $values = $facet->getElementsByTagName('facet-value');
         foreach ($values as $val) {
-            $facetValue = new FacetValue($val->getAttribute('name'), $val->getAttribute('count'), $val->nodeValue);
+            $facetValue = new FacetValue($val->getAttribute('name'),
+              $val->getAttribute('count'), $val->nodeValue);
             $this->facetValues[] = $facetValue;
         }
     }

@@ -46,7 +46,9 @@ class RangeConstraint extends AbstractConstraint
      * @param string $attr Attribute name.
      * @param string $attrNs An attribute namespace.
      */
-    public function __construct($name, $datatype, $facet = 'true', $elem, $ns = '', $attr = '', $attrNs = '')
+    public function __construct(
+        $name, $datatype, $facet = 'true', $elem, $ns = '', $attr = '', $attrNs = ''
+    )
     {
         $this->elem = (string)$elem;
         $this->ns = (string)$ns;

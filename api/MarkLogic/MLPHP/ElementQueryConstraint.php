@@ -39,8 +39,8 @@ class ElementQueryConstraint extends AbstractConstraint
     public function __construct($name, $elem, $ns = '')
     {
         $this->elem = (string)$elem;
-      $this->ns = (string)$ns;
-    parent::__construct($name);
+        $this->ns = (string)$ns;
+        parent::__construct($name);
     }
 
     /**

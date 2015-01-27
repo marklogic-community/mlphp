@@ -33,7 +33,7 @@ class PropertiesConstraint extends AbstractConstraint
      */
     public function __construct($name)
     {
-    parent::__construct($name);
+        parent::__construct($name);
     }
 
     /**
