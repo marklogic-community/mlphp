@@ -26,7 +26,7 @@ use DOMDocument;
  * @package MLPHP\Test
  * @author Mike Wooldridge <mike.wooldridge@marklogic.com>
  */
-class OptionsTest extends TestBase
+class OptionsTest extends TestBaseDB
 {
 
     protected $options;

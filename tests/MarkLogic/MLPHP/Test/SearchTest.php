@@ -24,7 +24,7 @@ use Monolog\Handler\StreamHandler;
  * @package MLPHP\Test
  * @author Eric Bloch <eric.bloch@gmail.com>
  */
-class SearchTest extends TestBase
+class SearchTest extends TestBaseDB
 {
 
     function setUp()

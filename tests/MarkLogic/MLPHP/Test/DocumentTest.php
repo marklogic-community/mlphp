@@ -25,7 +25,7 @@ use Monolog\Handler\StreamHandler;
  * @author Mike Wooldridge <mike.wooldridge@marklogic.com>
  * @author Eric Bloch <eric.bloch@gmail.com>
  */
-class DocumentTest extends TestBase
+class DocumentTest extends TestBaseDB
 {
 
     function testWrite()

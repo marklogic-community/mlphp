@@ -24,7 +24,7 @@ use Monolog\Handler\StreamHandler;
  * @package MLPHP\Test
  * @author Mike Wooldridge <mike.wooldridge@marklogic.com>
  */
-class DatabaseTest extends TestBase
+class DatabaseTest extends TestBaseDB
 {
 
     protected $db;

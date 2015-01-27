@@ -28,82 +28,21 @@ use Monolog\Handler\StreamHandler;
  */
 abstract class TestBase extends \PHPUnit_Framework_TestCase
 {
-    protected static $logger;
-    private static $api;
     protected static $client;
-    protected static $manageClient;
-    private static $config = array(
-        'host' => '127.0.0.1',
-        'port' => 8234,
-        'db' => 'mlphp-test',
-        'username' => 'admin',
-        'password' => 'admin',
-        'apiName' => 'test-mlphp-rest-api'
-    );
+    protected static $logger;
 
     // Runs before each test class
     // https://phpunit.de/manual/current/en/fixtures.html#fixtures.variations
     public static function setUpBeforeClass()
     {
+
+        // Create a non-function REST client for tests when needed
+        // TestBaseDB can override with functional client
+        self::$client = new MLPHP\RESTClient();
+
         // Create a logger for tests
         self::$logger = new Logger('test');
         self::$logger->pushHandler(new StreamHandler('php://stderr', Logger::DEBUG));
-
-        // Create a REST API for tests
-        self::$api = new MLPHP\RESTAPI(
-            self::$config['apiName'],
-            self::$config['host'],
-            self::$config['db'],
-            self::$config['port'],
-            self::$config['username'],
-            self::$config['password'],
-            self::$logger
-        );
-        if (!self::$api->exists()) {
-            self::$api->create();
-        } else {
-            self::$logger->debug(
-              'REST API ' . self::$config['apiName'] . ' already exists'
-            );
-        }
-
-        // Create a REST client for tests
-        self::$client = new MLPHP\RESTClient(
-            self::$config['host'],
-            self::$config['port'],
-            '',
-            'v1',
-            self::$config['username'],
-            self::$config['password'],
-            'digest',
-            self::$logger
-        );
-
-        // Create a manage client for tests
-        self::$manageClient = new MLPHP\RESTClient(
-            self::$config['host'],
-            8002,
-            'manage',
-            'v2',
-            self::$config['username'],
-            self::$config['password'],
-            'digest',
-            self::$logger
-        );
-
-        // Clear the REST API database
-        $db = new MLPHP\Database(self::$config['db'], self::$manageClient);
-        $db->clear();
-
-    }
-
-    // Runs after each test class
-    // https://phpunit.de/manual/current/en/fixtures.html#fixtures.variations
-    public static function tearDownAfterClass()
-    {
-        self::$api->delete();
-        $db = new MLPHP\Database(self::$config['db'], self::$manageClient);
-        $db->delete();
     }
 
 }
