@@ -147,7 +147,7 @@ class MLPHP
             $this->config['password']
         );
 
-        $api->post($client);
+        $api->create($client);
     }
 
     /**
