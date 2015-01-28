@@ -326,8 +326,11 @@ class Database
             'namespace-uri' => '',
             'range-value-positions' => false,
             'invalid-values' => 'reject',
-            'collation' => 'http://marklogic.com/collation/'
+            'collation' => ''
         ), $arr);
+        // string types require a collation property, set if empty
+        $arr['collation'] = ($arr['scalar-type'] === 'string' &&
+            $arr['collation'] === '') ? 'http://marklogic.com/collation/' : '';
         $this->addProperty('range-element-index', $arr, 'localname');
     }
 
@@ -358,8 +361,11 @@ class Database
             'namespace-uri' => '',
             'range-value-positions' => false,
             'invalid-values' => 'reject',
-            'collation' => 'http://marklogic.com/collation/'
+            'collation' => ''
         ), $arr);
+        // string types require a collation property, set if empty
+        $arr['collation'] = ($arr['scalar-type'] === 'string' &&
+            $arr['collation'] === '') ? 'http://marklogic.com/collation/' : '';
         $this->addProperty('range-element-attribute-index', $arr);
     }
 
@@ -411,8 +417,11 @@ class Database
             'field-name' => '',
             'range-value-positions' => false,
             'invalid-values' => 'reject',
-            'collation' => 'http://marklogic.com/collation/'
+            'collation' => ''
         ), $arr);
+        // string types require a collation property, set if empty
+        $arr['collation'] = ($arr['scalar-type'] === 'string' &&
+            $arr['collation'] === '') ? 'http://marklogic.com/collation/' : '';
         $this->addProperty('range-field-index', $arr);
     }
 
@@ -466,8 +475,11 @@ class Database
             'path-expression' => '',
             'range-value-positions' => false,
             'invalid-values' => 'reject',
-            'collation' => 'http://marklogic.com/collation/'
+            'collation' => ''
         ), $arr);
+        // string types require a collation property, set if empty
+        $arr['collation'] = ($arr['scalar-type'] === 'string' &&
+            $arr['collation'] === '') ? 'http://marklogic.com/collation/' : '';
         $this->addProperty('range-path-index', $arr);
     }
 
@@ -493,8 +505,11 @@ class Database
         $arr = array_merge(array(
             'localname' => '',
             'namespace-uri' => '',
-            'collation' => 'http://marklogic.com/collation/'
+            'collation' => ''
         ), $arr);
+        // string types require a collation property, set if empty
+        $arr['collation'] = ($arr['scalar-type'] === 'string' &&
+            $arr['collation'] === '') ? 'http://marklogic.com/collation/' : '';
         $this->addProperty('element-word-lexicon', $arr);
     }
 
@@ -522,8 +537,11 @@ class Database
             'parent-namespace-uri' => '',
             'localname' => '',
             'namespace-uri' => '',
-            'collation' => 'http://marklogic.com/collation/'
+            'collation' => ''
         ), $arr);
+        // string types require a collation property, set if empty
+        $arr['collation'] = ($arr['scalar-type'] === 'string' &&
+            $arr['collation'] === '') ? 'http://marklogic.com/collation/' : '';
         $this->addProperty('element-attribute-word-lexicon', $arr);
     }
 
