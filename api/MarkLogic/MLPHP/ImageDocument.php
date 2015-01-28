@@ -48,7 +48,9 @@ class ImageDocument extends Document
         $type = $this->getFileMimeType($file);
         // Check for $type === '' to address MIME check not working on XAMPP Windows
         if ($type === 'image/jpeg' || $type === 'image/tiff' || $type === '') {
-            $this->exif = exif_read_data((string)$file);
+            if (function_exists('exif_read_data')) {
+                $this->exif = exif_read_data((string)$file);
+            }
         }
         parent::setContentFile((string)$file);
     }
