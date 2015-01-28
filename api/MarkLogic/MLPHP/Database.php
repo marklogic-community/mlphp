@@ -326,7 +326,7 @@ class Database
             'namespace-uri' => '',
             'range-value-positions' => false,
             'invalid-values' => 'reject',
-            'collation' => ''
+            'collation' => 'http://marklogic.com/collation/'
         ), $arr);
         $this->addProperty('range-element-index', $arr, 'localname');
     }
@@ -358,7 +358,7 @@ class Database
             'namespace-uri' => '',
             'range-value-positions' => false,
             'invalid-values' => 'reject',
-            'collation' => ''
+            'collation' => 'http://marklogic.com/collation/'
         ), $arr);
         $this->addProperty('range-element-attribute-index', $arr);
     }
@@ -411,7 +411,7 @@ class Database
             'field-name' => '',
             'range-value-positions' => false,
             'invalid-values' => 'reject',
-            'collation' => ''
+            'collation' => 'http://marklogic.com/collation/'
         ), $arr);
         $this->addProperty('range-field-index', $arr);
     }
@@ -466,7 +466,7 @@ class Database
             'path-expression' => '',
             'range-value-positions' => false,
             'invalid-values' => 'reject',
-            'collation' => ''
+            'collation' => 'http://marklogic.com/collation/'
         ), $arr);
         $this->addProperty('range-path-index', $arr);
     }
@@ -493,7 +493,7 @@ class Database
         $arr = array_merge(array(
             'localname' => '',
             'namespace-uri' => '',
-            'collation' => ''
+            'collation' => 'http://marklogic.com/collation/'
         ), $arr);
         $this->addProperty('element-word-lexicon', $arr);
     }
@@ -522,7 +522,7 @@ class Database
             'parent-namespace-uri' => '',
             'localname' => '',
             'namespace-uri' => '',
-            'collation' => ''
+            'collation' => 'http://marklogic.com/collation/'
         ), $arr);
         $this->addProperty('element-attribute-word-lexicon', $arr);
     }
