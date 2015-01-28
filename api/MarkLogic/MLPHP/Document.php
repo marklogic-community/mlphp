@@ -92,6 +92,7 @@ class Document
             $this->response = $this->restClient->send($request);
         } catch(\Exception $e) {
             $this->logger->error( $e->getMessage() . ' in ' . $e->getFile() . ' on line ' . $e->getLine() );
+            throw $e;
         }
         return $this;
     }
@@ -293,7 +294,7 @@ class Document
      * @param string $file The file.
      * @return string The the mimetype of the file.
      */
-    protected function getFileMimeType($file)
+    public function getFileMimeType($file)
     {
         if (function_exists('finfo_file')) {
             $finfo = finfo_open(FILEINFO_MIME_TYPE);
