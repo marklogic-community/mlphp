@@ -25,9 +25,23 @@ use MarkLogic\MLPHP;
 class ImageDocumentTest extends TestBaseDB
 {
 
-    /**
-     *
-     */
+    function testSetContentFile()
+    {
+        parent::$logger->debug('testSetContentFile');
+        if (function_exists('exif_read_data')) {
+            $imageDoc = new MLPHP\ImageDocument(parent::$client);
+            $imageDoc->setContentFile(__DIR__ . '/example2.jpg');
+            $exif = $imageDoc->getExif();
+            print_r($exif);
+            print($exif ? 'true' : 'false');
+            $this->assertNotFalse($exif);
+        } else {
+            $this->markTestSkipped(
+                'exif_read_data function not available.'
+            );
+        }
+    }
+
     function testWrite()
     {
         parent::$logger->debug('testWrite');
