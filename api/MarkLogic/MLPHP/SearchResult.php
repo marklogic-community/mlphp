@@ -54,12 +54,19 @@ class SearchResult
             $this->matches[] = $match;
         }
         $metadata = $result->getElementsByTagName('constraint-meta');
+        $this->metadata = array();
         foreach ($metadata as $meta) {
-            $key = $meta->getAttribute('name');
+            $name = $meta->getAttribute('name');
             $val = $meta->nodeValue;
-            $this->metadata[$key] = $val;
+            if (array_key_exists($name, $this->metadata)) {
+                $this->metadata[$name][] = $val;
+            } else {
+                $this->metadata[$name] = [$val];
+            }
+
         }
         $similar = $result->getElementsByTagName('similar');
+        $this->similar = array();
         foreach ($similar as $sim) {
             $this->similar[] = $sim->nodeValue;
         }
@@ -136,12 +143,12 @@ class SearchResult
     }
 
     /**
-     * Get an arbitrary metadata value based on its key.
+     * Get an arbitrary metadata array based on its key. A metadata key can be
+     * associated with multiple metadata values in a search result (e.g.,
+     * keywords) which is why the values are stored as arrays.
      *
-     * @todo Handle multiple instances of metadata (e.g., keywords).
-     *
-     * @param mixed $key The key for the metadata value.
-     * @return mixed The metadata value.
+     * @param mixed $key The key for the metadata value(s).
+     * @return array The array of metadata value(s) associated with the key.
      */
     public function getMetadata($key)
     {
