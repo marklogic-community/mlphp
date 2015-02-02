@@ -393,19 +393,31 @@ class RESTClient
      * @param resource ch The REST URL string (example: 'documents')
      * @return RESTResponse A RESTResponse object.
      */
-    public function execute(&$ch)
+    protected function execute(&$ch)
     {
         $response = new RESTResponse();
-        $response->setBody(curl_exec($ch));
-        $response->setInfo(curl_getinfo($ch));
+        $curl_exec = curl_exec($ch);
+        // print('******* $curl_exec *******');
+        // print_r($curl_exec);
+        $response->setBody($curl_exec);
+        $curl_getinfo = curl_getinfo($ch);
+        // print('******* $curl_getinfo *******');
+        // print_r($curl_getinfo);
+        $response->setInfo($curl_getinfo );
         $this->logger->debug("Response code: " . $response->getHttpCode());
         if ($response->getHttpCode() === 0) {
             curl_close ($ch);
-            throw new \Exception('No connection: ' . $response->getUrl(), $response->getHttpCode());
+            throw new \Exception(
+              'No connection: ' . $response->getUrl(),
+              $response->getHttpCode()
+            );
         } else if ($response->getHttpCode() >= 400) {
             curl_close ($ch);
             $this->logger->debug("HTTP Error " . $response->getHttpCode());
-            throw new \Exception($response->getErrorMessage(), $response->getHttpCode());
+            throw new \Exception(
+              $response->getErrorMessage(),
+              $response->getHttpCode()
+            );
         } else {
             curl_close ($ch);
             return $response;
