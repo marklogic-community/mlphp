@@ -75,12 +75,14 @@ class Metadata
     {
         if (is_array($collections)) {
             foreach($collections as $coll) {
-                if($pos = array_search($this->collections, $coll)) {
+                $pos = array_search($coll, $this->collections);
+                if($pos !== FALSE) {
                     array_splice($this->collections, $pos, 1);
                 }
             }
         } else {
-            if($pos = array_search($collections, $this->collections)) {
+            $pos = array_search($collections, $this->collections);
+            if($pos !== FALSE) {
                 array_splice($this->collections, $pos, 1);
             }
         }
