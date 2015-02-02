@@ -30,15 +30,13 @@ class ImageDocumentTest extends TestBaseDB
         parent::$logger->debug('testSetContentFile');
         if (function_exists('exif_read_data')) {
             $imageDoc = new MLPHP\ImageDocument(parent::$client);
-            $imageDoc->setContentFile(__DIR__ . '/example2.jpg');
+            $imageDoc->setContentFile(__DIR__ . DIRECTORY_SEPARATOR . 'example2.jpg');
             $exif = $imageDoc->getExif();
             print_r($exif);
             print($exif ? 'true' : 'false');
             $this->assertNotFalse($exif);
         } else {
-            $this->markTestSkipped(
-                'exif_read_data function not available.'
-            );
+            parent::$logger->debug('exif_read_data function not available');
         }
     }
 
@@ -46,7 +44,7 @@ class ImageDocumentTest extends TestBaseDB
     {
         parent::$logger->debug('testWrite');
         $imageDoc = new MLPHP\ImageDocument(parent::$client);
-        $imageDoc->setContentFile(__DIR__ . '/example.jpg');
+        $imageDoc->setContentFile(__DIR__ . DIRECTORY_SEPARATOR . 'example.jpg');
         $uri = '/example.jpg';
         $imageDoc->write($uri);
         $response = $imageDoc->getResponse();

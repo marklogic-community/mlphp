@@ -28,23 +28,13 @@ abstract class TestBaseSearch extends TestBaseDB
 
     public static function loadDocs($client)
     {
-        // $doc = new MLPHP\Document($client);
-        // $count = 0;
-        // foreach(scandir(__DIR__ . '/docs/') as $filename) {
-        //     print(__DIR__ . '/docs/' . $filename . PHP_EOL);
-        //     $doc->setContentFile(__DIR__ . '/docs/' . $filename);
-        //     $doc->write($filename);
-        //     $count++;
-        //     //parent::$logger->debug('Loaded: ' . $filename . PHP_EOL);
-        // }
-
-        $rootdir = __DIR__ . '/docs';
+        $rootdir = __DIR__ . DIRECTORY_SEPARATOR . 'docs';
         $subdirs = array('110', '111', '112'); // directories to import from
 
         // Loop through files from subdirectories
         foreach($subdirs as $subdir) {
             $count = 0;
-            $dir = $rootdir . '/' . $subdir;
+            $dir = $rootdir . DIRECTORY_SEPARATOR . $subdir;
             if ($handle = opendir($dir)) {
                 echo "Writing files from directory: " . $dir . "<br />";
                 $doc = new MLPHP\Document($client);
