@@ -120,7 +120,7 @@ class RESTAPI
         $this->client->delete($request);
 
         // Wait for server reboot
-        sleep(5); // increase time if "no connection" exceptions
+        sleep(7); // increase time if "no connection" exceptions
     }
 
     /**
