@@ -42,9 +42,20 @@ class SearchTest extends TestBaseSearch
     function testSearch()
     {
 
-        // print_r(json_decode(TestMocks::getSearchResult()));
+        // print('hello');
 
-        // return;
+        // $params = array('uri' => '/bills/112/h1208.xml', 'format' => 'xml');
+        // $headers = array('Content-type' => 'application/xml');
+        // $request = new MLPHP\RESTRequest('GET', 'documents', $params, '', $headers);
+        // $resp = parent::$client->send($request);
+
+        // print_r($resp);
+
+        //$results = $search->retrieve("act");
+
+        //print_r($results);
+
+        //return;
 
         $search = new MLPHP\Search(parent::$client, 0, 100);
 
