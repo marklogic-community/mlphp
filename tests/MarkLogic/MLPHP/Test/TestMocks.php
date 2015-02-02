@@ -140,5 +140,29 @@ class TestMocks
         return $result;
     }
 
+    public static function getMetadata()
+    {
+        $result = '
+          <metadata xmlns="http://marklogic.com/rest-api">
+            <collections>
+              <collection>coll1</collection>
+              <collection>coll2</collection>
+            </collections>
+            <permissions>
+              <permission>
+                <role-name>myRole</role-name>
+                <capability>myCap</capability>
+              </permission>
+            </permissions>
+            <prop:properties xmlns:prop="http://marklogic.com/xdmp/property">
+              <propKey xmlns="">propVal</propKey>
+            </prop:properties>
+            <quality>1</quality>
+          </metadata>
+        ';
+
+        return $result;
+    }
+
 }
 
