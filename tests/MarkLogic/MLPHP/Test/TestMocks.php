@@ -164,5 +164,91 @@ class TestMocks
         return $result;
     }
 
+    public static function getCurlExec()
+    {
+        $result = '
+          <rapi:rest-api xmlns:rapi="http://marklogic.com/rest-api">
+            <rapi:name>test-mlphp-rest-api</rapi:name>
+            <rapi:group>Default</rapi:group>
+            <rapi:database>mlphp-test</rapi:database>
+            <rapi:modules-database>mlphp-test-modules</rapi:modules-database>
+            <rapi:port>8234</rapi:port>
+            <rapi:error-format>json</rapi:error-format>
+            <rapi:xdbc-enabled>true</rapi:xdbc-enabled>
+          </rapi:rest-api>
+        ';
+
+        return $result;
+    }
+
+    public static function getCurlInfo()
+    {
+        $result = array (
+          'url' => 'http://127.0.0.1:8002/v1/rest-apis/test-mlphp-rest-api',
+          'content_type' => 'application/xml; charset=UTF-8',
+          'http_code' => '200',
+          'header_size' => '430',
+          'request_size' => '459',
+          'filetime' => '-1',
+          'ssl_verify_result' => '0',
+          'redirect_count' => '1',
+          'total_time' => '1.063445',
+          'namelookup_time' => '2.6E-5',
+          'connect_time' => '2.6E-5',
+          'pretransfer_time' => '0.000374',
+          'size_upload' => '0',
+          'size_download' => '390',
+          'speed_download' => '366',
+          'speed_upload' => '0',
+          'download_content_length' => '390',
+          'upload_content_length' => '-1',
+          'starttransfer_time' => '1.060233',
+          'redirect_time' => '0.003167',
+          'certinfo' => array(),
+          'primary_ip' => '127.0.0.1',
+          'primary_port' => '8002',
+          'local_ip' => '127.0.0.1',
+          'local_port' => '55845',
+          'redirect_url' => '',
+          'request_header' => 'GET /v1/rest-apis/test-mlphp-rest-api HTTP/1.1
+Authorization: Digest username="admin", realm="public", nonce="2e581af17ff67ab498f3e0e7f9a9f45b", uri="/v1/rest-apis/test-mlphp-rest-api", cnonce="YmE5MWZkNDQzOGM2OWNjYmY1MTg2MzM1MDZjZmZjNjI=", nc=00000001, qop=auth, response="e702918e7e630cc824bbc330cbb3e4f5", opaque="d3e0cdb1f14a80c4"
+Host: 127.0.0.1:8002
+Accept: */*'
+        );
+
+        return $result;
+    }
+
+
+
+    public static function getCurlExecErrorJSON()
+    {
+        // 404 response from documents request, unknown uri, uri = 'foo'
+        $result = '{"errorResponse":{"statusCode":404, "status":"Not Found", "messageCode":"RESTAPI-NODOCUMENT", "message":"RESTAPI-NODOCUMENT: (err:FOER0000) Resource or document does not exist:  category: content message: foo"}}';
+
+        return $result;
+    }
+
+    public static function getCurlExecErrorXML()
+    {
+        // 401 response from bad auth credentials
+        $result = '<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>401 Unauthorized</title>
+    <meta name="robots" content="noindex,nofollow"/>
+  </head>
+  <body>
+    <h1>401 Unauthorized</h1>
+  </body>
+</html>';
+
+        return $result;
+    }
+
+    public static function getCurlExecErrorText()
+    {
+        $result = 'Unstructured error message';
+        return $result;
+    }
 }
 
