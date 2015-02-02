@@ -84,7 +84,7 @@ class DocumentTest extends TestBaseDB
      */
     function testSetContentFile($doc)
     {
-        $doc->setContentFile(__DIR__ . '/example.json');
+        $doc->setContentFile(__DIR__ . DIRECTORY_SEPARATOR . 'example.json');
         $obj = json_decode($doc->getContent());
         // check for known JSON property
         $this->assertEquals($obj->planet, 'Earth');
