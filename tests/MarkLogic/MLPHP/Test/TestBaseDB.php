@@ -53,13 +53,13 @@ abstract class TestBaseDB extends TestBase
             self::$config['password'],
             parent::$logger
         );
-        if (!self::$api->exists()) {
-            self::$api->create();
-        } else {
+        if (self::$api->exists()) {
             parent::$logger->debug(
-              'REST API ' . self::$config['apiName'] . ' already exists'
+              'REST API ' . self::$config['apiName'] . ' exists, deleting...'
             );
+            self::$api->delete();
         }
+        self::$api->create();
 
         // Create a REST client for tests
         self::$client = new MLPHP\RESTClient(
@@ -95,9 +95,9 @@ abstract class TestBaseDB extends TestBase
     // https://phpunit.de/manual/current/en/fixtures.html#fixtures.variations
     public static function tearDownAfterClass()
     {
-        // self::$api->delete();
-        // $db = new MLPHP\Database(self::$config['db'], self::$manageClient);
-        // $db->delete();
+        self::$api->delete();
+        $db = new MLPHP\Database(self::$config['db'], self::$manageClient);
+        $db->delete();
     }
 
 }
