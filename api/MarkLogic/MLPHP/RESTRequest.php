@@ -73,7 +73,7 @@ class RESTRequest
      *
      * @param string $resource The REST resource (example: 'documents').
      */
-    public function setResource($verb)
+    public function setResource($resource)
     {
         $this->resource = $resource;
     }
@@ -157,11 +157,12 @@ class RESTRequest
             return false;
         }
 
+        // @todo Should this if return false?
         if (empty($this->headers["Content-type"])) {
             return true;
         }
 
-        // XXX Do I need to check for other cases of Content-Type content-type, etc?
+        // @todo Do I need to check for other cases of Content-Type content-type, etc?
         switch (strtolower($this->headers["Content-type"])) {
             case "application/x-www-form-urlencoded":
                 return true;
