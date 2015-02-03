@@ -105,24 +105,50 @@ class RESTAPI
     /**
      * Delete a REST API.
      *
-     * @param RESTClient client Optional custom REST client object.
+     * @param boolean module Optional custom REST client object.
      */
     public function delete($client = null)
     {
         $this->client = $client ?: $this->client;
-        $params = array();
+        // Delete content (database and forests) as well
+        // @todo how do we delete content and modules?
+        // http://docs.marklogic.com/REST/DELETE/v1/rest-apis/[name]
+        $params = array('include' => 'content');
         $body = null;
         $headers = array();
         $request = new RESTRequest(
             'DELETE', 'rest-apis/' . $this->name, $params, $body, $headers
         );
 
-        $this->client->delete($request);
+        $this->client->send($request);
 
         // Wait for server reboot
-        sleep(7); // increase time if "no connection" exceptions
+        $requestWait = new RESTRequest('GET', 'rest-apis');
+        $this->waitUntilSuccess($requestWait, 3, 10);
     }
 
+    /**
+     * Sleep until a request is successful.
+     *
+     * @param RESTRequest $request The request to send.
+     * @param int $time Time in secs to wait between requests.
+     * @param int $limit Cycles to complete before timing out.
+     */
+    protected function waitUntilSuccess($request, $secs, $limit)
+    {
+        sleep($secs);
+        $limit--;
+        try {
+            $response = $this->client->send($request);
+        } catch(\Exception $e) {
+            if ($limit > 0) {
+                $this->waitUntilSuccess($request, $secs, $limit);
+            } else {
+                throw new Exception('waitUntilSuccess() timed out');
+            }
+        }
+        return;
+    }
     /**
      * Check if a REST API exists on the server.
      *
@@ -140,9 +166,9 @@ class RESTAPI
             );
             $response = $this->client->send($request);
         } catch(\Exception $e) {
-            $response = false;
+            return false;
         }
-        return $response;
+        return true;
     }
 
 }
