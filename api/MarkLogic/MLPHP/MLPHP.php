@@ -54,15 +54,15 @@ class MLPHP
      * Additional array members are ignored.
      *
      */
-    public function __construct($config)
+    public function __construct($config = array())
     {
         $this->config = array_merge(array(
             'host' => '127.0.0.1',
-            'port' => 7009,
+            'port' => 8003,
             'managePort' => 8002,
             'api' => 'mlphp-rest-api',
             'db' => 'mlphp-db',
-            'user' => 'admin',
+            'username' => 'admin',
             'password' => 'admin',
             'path' => '',
             'managePath' => 'manage',
@@ -91,7 +91,7 @@ class MLPHP
      */
     public function newClient()
     {
-        return new MLPHP\RESTClient(
+        return new RESTClient(
             $this->config['host'],
             $this->config['port'],
             $this->config['path'],
@@ -110,7 +110,7 @@ class MLPHP
      */
     public function newManageClient()
     {
-        return new MLPHP\RESTClient(
+        return new RESTClient(
             $this->config['host'],
             $this->config['managePort'],
             $this->config['managePath'],
@@ -127,7 +127,7 @@ class MLPHP
      */
     public function newAPI()
     {
-        $client = new MLPHP\RESTClient(
+        $client = new RESTClient(
             $this->config['host'],
             $this->config['managePort'],
             $this->config['path'],
@@ -138,7 +138,7 @@ class MLPHP
             $this->config['logger']
         );
 
-        $api = new MLPHP\RESTAPI(
+        $api = new RESTAPI(
             $this->config['api'],
             $this->config['host'],
             $this->config['db'],
@@ -147,7 +147,11 @@ class MLPHP
             $this->config['password']
         );
 
-        $api->create($client);
+        // do not create if exists already
+        if (!$api->exists()) {
+            $api->create($client);
+        }
+        return $api;
     }
 
     /**
