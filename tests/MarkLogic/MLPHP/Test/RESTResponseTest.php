@@ -50,8 +50,6 @@ class RESTResponseTest extends TestBase
 
         $resp = new MLPHP\RESTResponse();
         $resp->setBody($curl_exec);
-        $error = $resp->getErrorMessage();
-        print($error);
 
         $this->assertEquals($resp->getBodyType(), 'json');
         $this->assertEquals(substr($resp->getErrorMessage(), 0, 9), 'Error 404');
@@ -65,8 +63,6 @@ class RESTResponseTest extends TestBase
 
         $resp = new MLPHP\RESTResponse();
         $resp->setBody($curl_exec);
-        $error = $resp->getErrorMessage();
-        print($error);
 
         $this->assertEquals($resp->getBodyType(), 'xml');
         $this->assertEquals(substr($resp->getErrorMessage(), 0, 6), 'Error:');
@@ -80,8 +76,6 @@ class RESTResponseTest extends TestBase
 
         $resp = new MLPHP\RESTResponse();
         $resp->setBody($curl_exec);
-        $error = $resp->getErrorMessage();
-        print($error);
 
         $this->assertEquals($resp->getBodyType(), 'other');
         $this->assertEquals(substr($resp->getErrorMessage(), 0, 6), 'Error:');
