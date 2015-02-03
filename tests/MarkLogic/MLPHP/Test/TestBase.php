@@ -42,7 +42,7 @@ abstract class TestBase extends \PHPUnit_Framework_TestCase
 
         // Create a logger for tests
         self::$logger = new Logger('test');
-        self::$logger->pushHandler(new StreamHandler('php://stderr', Logger::DEBUG));
+        self::$logger->pushHandler(new StreamHandler('php://stderr', Logger::ERROR));
     }
 
 }
