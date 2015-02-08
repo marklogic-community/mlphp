@@ -76,11 +76,19 @@ class RESTAPI
 
     /**
      * Create a REST API via a post to the MarkLogic rest-apis endpoint.
+     * It will not create an API if there already exists one with the
+     * same name.
      *
      * @param RESTClient client Optional custom REST client object.
      */
     public function create($client = null)
     {
+        if ($this->exists()) {
+            $this->logger->debug(
+                'A REST API named "' . $this->name . '" already exists'
+            );
+            return;
+        }
         $this->client = $client ?: $this->client;
         $params = array();
         $headers = array('Content-type' => 'application/json');
