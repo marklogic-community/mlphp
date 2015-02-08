@@ -20,27 +20,40 @@
 
 use MarkLogic\MLPHP;
 
-$test_api_name = 'mlphp-test-rest-api';
-$test_db_name = 'mlphp-test';
+use Monolog\Logger;
+use Monolog\Handler\StreamHandler;
 
-// Create a REST API for all tests
-$test_api = new MLPHP\RESTAPI(
-    $test_api_name,
-    '127.0.0.1',
-    $test_db_name,
-    8234,
-    'admin',
-    'admin'
-);
-if ($test_api->exists()) {
-    $test_api->delete();
-}
-$test_api->create();
+// Create a logger for tests
+$logger = new Logger('test');
+$logger->pushHandler(new StreamHandler('php://stderr', Logger::DEBUG));
 
-// Delete after all tests complete
+// Global config properties for tests
+$mlphp = new MLPHP\MLPHP([
+    'host' => '127.0.0.1',
+    'port' => 8234,
+    'managePort' => 8002,
+    'api' => 'mlphp-test-api',
+    'db' => 'mlphp-test-db',
+    'username' => 'admin',
+    'password' => 'admin',
+    'path' => '',
+    'managePath' => 'manage',
+    'version' => 'v1',
+    'manageVersion' => 'v2',
+    'auth' => 'digest',
+    'logger' => $logger
+]);
+
+    //$api =  $mlphp->getAPI()->create();
+
+// Run after all tests complete
 register_shutdown_function(function(){
-    global $test_api;
-    $test_api->delete();
+    global $mlphp;
+    // If API was created, delete it
+    $api = $mlphp->getAPI();
+    if ($api->exists()) {
+        $api->delete();
+    }
 });
 
 ?>
