@@ -28,9 +28,8 @@ class RESTAPITest extends TestBase
     function testCreate()
     {
         parent::$logger->debug('testCreate');
-        $name = 'test-api';
         $api = new MLPHP\RESTAPI(
-            $name,
+            'test-api',
             '127.0.0.1',
             'test-db',
             8345,
@@ -38,9 +37,6 @@ class RESTAPITest extends TestBase
             'admin',
             parent::$logger
         );
-        if ($api->exists()) {
-            $api->delete();
-        }
         $api->create();
         $this->assertTrue($api->exists());
         return $api;
