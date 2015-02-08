@@ -157,7 +157,7 @@ class RESTRequest
             return false;
         }
 
-        // @todo Should this if return false?
+        // @todo Should this return false?
         if (empty($this->headers["Content-type"])) {
             return true;
         }
@@ -172,10 +172,40 @@ class RESTRequest
     }
 
     /**
+     * Build query from resource and params. Account for the fact that some param
+     * keys may be associated with arrays, which will generate the same keys multiple
+     * times in the query, e.g.:
+     * params: array("foo"=>["bar", "baz"])
+     * query:  ?foo=bar&foo=baz
+     *
+     * @return string The built query.
+     */
+    public function buildQuery()
+    {
+        $query = '';
+        if (!empty($this->params)) {
+            foreach($this->params as $key => $val) {
+                if (!is_array($val)) {
+                    $query .= urlencode($key) . '=' . urlencode($val) . '&';
+                } else {
+                    foreach($val as $v) {
+                        $query .= urlencode($key) . '=' . urlencode($v) . '&';
+                    }
+                }
+            }
+            // Remove trailing '&'
+            $query = substr($query, 0, -1);
+        }
+        return $query;
+    }
+
+
+    /**
      * Get the resource and params as a URL string.
      *
      * @todo Allow for multiple params of same name (e.g., when filtering by collections or directories for search).
-     *
+     *       Done: User buildQuery() above, store as array values:
+     *             array('collection' => ['coll1', 'coll2'])
      * @return string The request body.
      */
     public function getUrlStr()
@@ -183,8 +213,8 @@ class RESTRequest
         $str = (!empty($this->resource)) ? $this->resource : '';
 
         /* x-www-form-encoded posts encodes query params in the body */
-        if (! $this->isWWWFormURLEncodedPost()) {
-            $str .= (!empty($this->params)) ? ('?' . http_build_query($this->params)) : '';
+        if (!$this->isWWWFormURLEncodedPost()) {
+            $str .= (!empty($this->params)) ? ('?' . $this->buildQuery()) : '';
         }
         return $str;
     }
