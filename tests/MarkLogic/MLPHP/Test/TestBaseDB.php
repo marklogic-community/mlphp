@@ -41,6 +41,8 @@ abstract class TestBaseDB extends TestBase
     // https://phpunit.de/manual/current/en/fixtures.html#fixtures.variations
     public static function setUpBeforeClass()
     {
+        global $mlphp;
+
         parent::setUpBeforeClass();
 
         // Create a REST API for tests
@@ -53,6 +55,8 @@ abstract class TestBaseDB extends TestBase
         //     self::$config['password'],
         //     parent::$logger
         // );
+        //self::$api =  $mlphp->getAPI()->create();
+
         // if (self::$api->exists()) {
         //     parent::$logger->debug(
         //       'REST API ' . self::$config['apiName'] . ' exists, deleting...'
@@ -62,32 +66,38 @@ abstract class TestBaseDB extends TestBase
         // self::$api->create();
 
         // Create a REST client for tests
-        self::$client = new MLPHP\RESTClient(
-            self::$config['host'],
-            self::$config['port'],
-            '',
-            'v1',
-            self::$config['username'],
-            self::$config['password'],
-            'digest',
-            parent::$logger
-        );
+        self::$client = $mlphp->getClient();
+
+        // self::$client = new MLPHP\RESTClient(
+        //     self::$config['host'],
+        //     self::$config['port'],
+        //     '',
+        //     'v1',
+        //     self::$config['username'],
+        //     self::$config['password'],
+        //     'digest',
+        //     parent::$logger
+        // );
 
         // Create a manage client for tests
-        self::$manageClient = new MLPHP\RESTClient(
-            self::$config['host'],
-            8002,
-            'manage',
-            'v2',
-            self::$config['username'],
-            self::$config['password'],
-            'digest',
-            parent::$logger
-        );
+        self::$manageClient = $mlphp->getManageClient();
+
+        // self::$manageClient = new MLPHP\RESTClient(
+        //     self::$config['host'],
+        //     8002,
+        //     'manage',
+        //     'v2',
+        //     self::$config['username'],
+        //     self::$config['password'],
+        //     'digest',
+        //     parent::$logger
+        // );
 
         // Clear the REST API database
-        $db = new MLPHP\Database(self::$config['db'], self::$manageClient);
-        $db->clear();
+        //$db = new MLPHP\Database($mlphp->config['db'], self::$manageClient);
+
+        // $db = new MLPHP\Database(self::$config['db'], self::$manageClient);
+        //  $db->clear();
 
     }
 
