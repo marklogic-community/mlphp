@@ -35,14 +35,16 @@ abstract class TestBase extends \PHPUnit_Framework_TestCase
     // https://phpunit.de/manual/current/en/fixtures.html#fixtures.variations
     public static function setUpBeforeClass()
     {
+        global $mlphp;
 
         // Create a non-function REST client for tests when needed
         // TestBaseDB can override with functional client
         self::$client = new MLPHP\RESTClient();
 
         // Create a logger for tests
-        self::$logger = new Logger('test');
-        self::$logger->pushHandler(new StreamHandler('php://stderr', Logger::ERROR));
+        self::$logger = $mlphp->config['logger'];
+        // self::$logger = new Logger('test');
+        // self::$logger->pushHandler(new StreamHandler('php://stderr', Logger::ERROR));
     }
 
 }
