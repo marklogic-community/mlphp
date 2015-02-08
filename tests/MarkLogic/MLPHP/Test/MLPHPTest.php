@@ -22,7 +22,7 @@ use MarkLogic\MLPHP;
  * @package MLPHP\Test
  * @author Mike Wooldridge <mike.wooldridge@marklogic.com>
  */
-class MLPHPTest extends TestBaseDB
+class MLPHPTest extends TestBase
 {
 
     function testConstructMerge()
@@ -44,10 +44,9 @@ class MLPHPTest extends TestBaseDB
     /**
      * @depends testConstructMerge
      */
-    function testNewAPI($mlphp)
+    function testGetAPI($mlphp)
     {
-        $api = $mlphp->newAPI();
-        $this->assertTrue($api->exists());
+        $api = $mlphp->getAPI();
         $this->assertInstanceOf('MarkLogic\MLPHP\RESTAPI', $api);
         $api->delete();
     }
@@ -57,8 +56,7 @@ class MLPHPTest extends TestBaseDB
      */
     function testNewClient($mlphp)
     {
-        $client = $mlphp->newClient();
-        $req = new MLPHP\RESTRequest('GET', 'config/properties');
+        $client = $mlphp->getClient();
         $this->assertInstanceOf('MarkLogic\MLPHP\RESTClient', $client);
     }
 
@@ -67,7 +65,7 @@ class MLPHPTest extends TestBaseDB
      */
     function testNewManageClient($mlphp)
     {
-        $manageClient = $mlphp->newManageClient();
+        $manageClient = $mlphp->getManageClient();
         $this->assertInstanceOf('MarkLogic\MLPHP\RESTClient', $manageClient);
     }
 
