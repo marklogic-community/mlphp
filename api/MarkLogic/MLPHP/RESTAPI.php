@@ -109,7 +109,7 @@ class RESTAPI
             "Setting up REST API: " . $this->name .
             ' (' . $this->db . ') port ' . $this->port
         );
-        $this->client->post($request); // Set up REST API
+        $this->client->send($request); // Set up REST API
     }
 
     /**
@@ -158,7 +158,7 @@ class RESTAPI
         return;
     }
     /**
-     * Check if a REST API exists on the server.
+     * Check if a REST API with the same name exists on the server.
      *
      * @param string name Name of the REST API to check.
      * @return boolean true|false
