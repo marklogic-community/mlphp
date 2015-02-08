@@ -58,5 +58,19 @@ class RESTRequestTest extends TestBase
         $this->assertEquals($req->getUrlStr(), 'foo');
     }
 
+
+    function testComplexParams()
+    {
+        parent::$logger->debug('testComplexParams');
+        $req = new MLPHP\RESTRequest(
+            'POST',
+            'documents',
+            array('foo' => ['bar', 'baz']),
+            '',
+            array('Content-type' => 'text/text')
+        );
+        $this->assertEquals($req->getUrlStr(), 'documents?foo=bar&foo=baz');
+    }
+
 }
 
