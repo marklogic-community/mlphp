@@ -90,7 +90,9 @@ class RESTAPI
                     "name": "' . $this->name . '",
                     "database": "' . $this->db . '",
                     "modules-database": "' . $this->db . '-modules",
-                    "port": "' . $this->port . '"
+                    "port": "' . $this->port . '",
+                    "forests-per-host": 1,
+                    "error-format": "json"
                 }
             }
         ';
