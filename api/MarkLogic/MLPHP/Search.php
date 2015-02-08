@@ -44,7 +44,10 @@ class Search
      *
      * @param RESTClient $restClient A REST client object.
      */
-    public function __construct($restClient = null, $start = 1, $pageLength = 10, $view = 'all', $format = 'xml')
+    public function __construct(
+        $restClient = null, $start = 1, $pageLength = 10,
+        $view = 'all', $format = 'xml'
+    )
     {
         $this->restClient = $restClient;
         $this->start = (int)$start;
@@ -70,7 +73,10 @@ class Search
      */
     public function getParams()
     {
-            $params = array('start' => $this->start, 'pageLength' => $this->pageLength, 'view' => $this->view, 'format' => $this->format);
+            $params = array(
+                'start' => $this->start, 'pageLength' => $this->pageLength,
+                'view' => $this->view, 'format' => $this->format
+            );
             if(!empty($this->options)) {
                 $params['options'] = $this->options;
             }
@@ -86,7 +92,7 @@ class Search
     /**
      * Retrieve the search results using the REST client.
      *
-     * @param string $query The search query.  
+     * @param string $query The search query.
      * @param array $params
      * @param bool $structured defaults to false
      * @return SearchResults A search results object.
@@ -94,7 +100,8 @@ class Search
     public function retrieve($query, $params = array(), $structured = false)
     {
         $this->query = (string)$query;
-        $params = array_merge(array(($structured ? 'structuredQuery' : 'q') => $this->query), $this->getParams(), $params);
+        $params = array_merge(array(($structured ? 'structuredQuery' : 'q') =>
+            $this->query), $this->getParams(), $params);
         $request = new RESTRequest('GET', 'search', $params);
 
         try {
@@ -103,12 +110,14 @@ class Search
             $results = new SearchResults($response->getBody());
             return $results;
         } catch(Exception $e) {
-            echo $e->getMessage() . ' in ' . $e->getFile() . ' on line ' . $e->getLine() . PHP_EOL;
+            echo $e->getMessage() . ' in ' . $e->getFile() .
+                ' on line ' . $e->getLine() . PHP_EOL;
         }
     }
 
     /**
-     * Retrieve the key-value search results for JSON content using the REST client.
+     * Retrieve the key-value search results for JSON content using the
+     * REST client.
      *
      * @param string $key The key (property name) in JSON content.
      * @param string $value The value (property value) in JSON content.
@@ -121,25 +130,33 @@ class Search
         $this->value = (string)$value;
 
         try {
-            $params = array_merge(array('key' => $this->key, 'value' => $this->value), $this->getParams(), $params);
+            $params = array_merge(
+                array('key' => $this->key, 'value' => $this->value),
+                $this->getParams(), $params
+            );
             $request = new RESTRequest('GET', 'keyvalue', $params);
             $response = $this->restClient->send($request);
             $results = new SearchResults($response->getBody());
             return $results;
         } catch(Exception $e) {
-            echo $e->getMessage() . ' in ' . $e->getFile() . ' on line ' . $e->getLine() . PHP_EOL;
+            echo $e->getMessage() . ' in ' . $e->getFile() .
+            ' on line ' . $e->getLine() . PHP_EOL;
         }
     }
 
     /**
-     * Retrieve the key-value search results, where the key is an element name, for XML content using the REST client.
+     * Retrieve the key-value search results, where the key is an element
+     * name, for XML content using the REST client.
      *
      * @param string $element The element name.
-     * @param string $attribute The attribute for the element, to search for attribute content.
+     * @param string $attribute The attribute for the element, to search for
+     *        attribute content.
      * @param string $value The value for that element (or attribute).
      * @return SearchResults A search results object.
      */
-    public function retrieveKeyValueElement($element, $attribute, $value, $params = array())
+    public function retrieveKeyValueElement(
+        $element, $attribute, $value, $params = array()
+    )
     {
 
         $this->element = (string)$element;
@@ -148,14 +165,18 @@ class Search
 
         try {
             // Only include attribute in final array if it is set
-            $array_attr = (!empty($attribute)) ? array('attribute' => $this->attribute) : array();
-            $params = array_merge(array('element' => $this->element, 'value' => $this->value), $array_attr, $this->getParams(), $params);
+            $array_attr = (!empty($attribute)) ?
+                array('attribute' => $this->attribute) : array();
+            $params = array_merge(
+                array('element' => $this->element, 'value' => $this->value),
+                $array_attr, $this->getParams(), $params);
             $request = new RESTRequest('GET', 'keyvalue', $params);
             $response = $this->restClient->send($request);
             $results = new SearchResults($response->getBody());
             return $results;
         } catch(Exception $e) {
-            echo $e->getMessage() . ' in ' . $e->getFile() . ' on line ' . $e->getLine() . PHP_EOL;
+            echo $e->getMessage() . ' in ' . $e->getFile() .
+            ' on line ' . $e->getLine() . PHP_EOL;
         }
     }
 
@@ -165,13 +186,19 @@ class Search
      * Implemented via a MarkLogic REST API resource extension.
      *
      * @param string $content
-     * @param string $contentType - describes content to be highlighted - support for application/xml and text'plain
-     * @param string $query The search query.  
+     * @param string $contentType
+     *        - describes content to be highlighted
+     *        - support for application/xml and text'plain
+     * @param string $query The search query.
      * @param array $params
-     * @param bool $structured defaults to false (only false is supported today)
+     * @param bool $structured defaults to false (only false is
+     *        supported today)
      * @return string hit-highlighted content
      */
-    public function highlight($content, $contentType, $class, $query, $params = array(), $structured = false)
+    public function highlight(
+        $content, $contentType, $class, $query,
+        $params = array(), $structured = false
+    )
     {
         // Install the API extension
         $resource = "resources/highlight";
@@ -184,7 +211,7 @@ class Search
             'post:ct' => 'string',
             'post:provider?' => 'string'
         ), "highlight.xqy");
-        
+
         // Use it
         $this->query = (string)$query;
         $params = array_merge(array(
@@ -205,11 +232,12 @@ class Search
             if ($contentType === "text/plain") {
                 return $results;
             } else {
-                // Strip off anal XML decl 
+                // Strip off XML decl
                 return substr( $results, strpos($results, "\n")+1 );
             }
         } catch(Exception $e) {
-            echo $e->getMessage() . ' in ' . $e->getFile() . ' on line ' . $e->getLine() . PHP_EOL;
+            echo $e->getMessage() . ' in ' . $e->getFile() .
+            ' on line ' . $e->getLine() . PHP_EOL;
         }
     }
 
@@ -231,6 +259,7 @@ class Search
     public function setStart($start)
     {
         $this->start = (int)$start;
+        return $this;
     }
 
     /**
@@ -253,6 +282,7 @@ class Search
     public function setPageLength($pageLength)
     {
         $this->pageLength = (int)$pageLength;
+        return $this;
     }
 
     /**
@@ -273,6 +303,7 @@ class Search
     public function setOptions($options)
     {
         $this->options = (string)$options;
+        return $this;
     }
 
     /**
@@ -295,6 +326,7 @@ class Search
     public function setView($view)
     {
         $this->view = (int)$view;
+        return $this;
     }
 
     /**
@@ -308,7 +340,8 @@ class Search
     }
 
     /**
-     * Set the format setting ('xml' or 'json'). MLPHP only supports 'xml' currently.
+     * Set the format setting ('xml' or 'json'). MLPHP only supports
+     * 'xml' currently.
      *
      * @see http://docs.marklogic.com/REST/GET/v1/search
      *
@@ -317,6 +350,7 @@ class Search
     public function setFormat($format)
     {
         $this->format = (int)$format;
+        return $this;
     }
 
     /**
@@ -333,13 +367,14 @@ class Search
      * Set the collection to filter by.
      *
      * @see http://docs.marklogic.com/guide/rest-dev/search#id_74024
-     * @todo Allow filtering by multiple collections.
      *
-     * @param string $collection A collection string .
+     * @param array|string $collection An array of collection strings or a
+     *        collection string.
      */
     public function setCollection($collection)
     {
-        $this->collection = collection;
+        $this->collection = $collection;
+        return $this;
     }
 
     /**
@@ -356,12 +391,13 @@ class Search
      * Set the directory to filter by.
      *
      * @see http://docs.marklogic.com/guide/rest-dev/search#id_74024
-     * @todo Allow filtering by multiple directories.
      *
-     * @param string $directory A directory string.
+     * @param array|string $directory An array of directory strings or a
+     *        directory string.
      */
     public function setDirectory($directory)
     {
         $this->directory = $directory;
+        return $this;
     }
 }
