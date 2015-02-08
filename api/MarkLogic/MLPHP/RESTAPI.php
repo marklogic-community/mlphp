@@ -120,10 +120,8 @@ class RESTAPI
     public function delete($client = null)
     {
         $this->client = $client ?: $this->client;
-        // Delete content (database and forests) as well
-        // @todo how do we delete content and modules?
-        // http://docs.marklogic.com/REST/DELETE/v1/rest-apis/[name]
-        $params = array('include' => 'content');
+        // Delete content and modules as well
+        $params = array('include' => ['content', 'modules']);
         $body = null;
         $headers = array();
         $request = new RESTRequest(
