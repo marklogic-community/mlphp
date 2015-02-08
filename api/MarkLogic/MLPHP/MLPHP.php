@@ -89,7 +89,7 @@ class MLPHP
      *
      * @return RESTClient
      */
-    public function newClient()
+    public function getClient()
     {
         return new RESTClient(
             $this->config['host'],
@@ -108,7 +108,7 @@ class MLPHP
      *
      * @return RESTClient
      */
-    public function newManageClient()
+    public function getManageClient()
     {
         return new RESTClient(
             $this->config['host'],
@@ -123,22 +123,11 @@ class MLPHP
     }
 
     /**
-     * Create a REST API based on current configuration.
+     * Create and return a REST API based on current configuration.
      */
-    public function newAPI()
+    public function getAPI()
     {
-        $client = new RESTClient(
-            $this->config['host'],
-            $this->config['managePort'],
-            $this->config['path'],
-            $this->config['version'],
-            $this->config['username'],
-            $this->config['password'],
-            $this->config['auth'],
-            $this->config['logger']
-        );
-
-        $api = new RESTAPI(
+        return new RESTAPI(
             $this->config['api'],
             $this->config['host'],
             $this->config['db'],
@@ -146,12 +135,6 @@ class MLPHP
             $this->config['username'],
             $this->config['password']
         );
-
-        // do not create if exists already
-        if (!$api->exists()) {
-            $api->create($client);
-        }
-        return $api;
     }
 
     /**
