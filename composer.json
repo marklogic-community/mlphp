@@ -26,12 +26,12 @@
     },
     "require-dev": {
         "peej/phpdoctor" : "dev-dev-eedeebee",
-        "phpunit/phpunit": "3.7.*",
+        "phpunit/phpunit": "4.5.*",
         "monolog/monolog": "*"
 
     },
     "autoload": {
-        "psr-0": { 
+        "psr-0": {
             "MarkLogic\\MLPHP": "api/",
             "MarkLogic\\MLPHP\\Test": "tests/"
         }
