@@ -71,7 +71,7 @@ class DatabaseTest extends TestBaseDB
     {
         parent::$logger->debug('testGetProperties');
         $properties = $this->db->getProperties();
-        $this->assertEquals($properties->{'database-name'}, 'mlphp-test');
+        $this->assertEquals($properties->{'database-name'}, 'mlphp-test-db');
     }
 
     function testSetProperties()
@@ -86,7 +86,7 @@ class DatabaseTest extends TestBaseDB
     {
         parent::$logger->debug('testGetProperty');
         $property = $this->db->getProperty('database-name');
-        $this->assertEquals($property, 'mlphp-test');
+        $this->assertEquals($property, 'mlphp-test-db');
     }
 
     function testSetProperty()
