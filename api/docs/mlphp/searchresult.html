@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="generator" content="PHPDoctor 2.0.5 (http://peej.github.com/phpdoctor/)">
-<meta name="when" content="Mon, 29 Jul 2013 22:11:19 +0000">
+<meta name="when" content="Mon, 09 Feb 2015 02:37:39 +0000">
 
 <link rel="stylesheet" type="text/css" href="../stylesheet.css">
 <link rel="start" href="../overview-summary.html">
@@ -98,8 +98,8 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 <td class="description"><p class="name"><a href="#getMatches()">getMatches</a>()</p><p class="description">Get matches.</p></td>
 </tr>
 <tr>
-<td class="type"> mixed</td>
-<td class="description"><p class="name"><a href="#getMetadata()">getMetadata</a>(mixed key)</p><p class="description">Get an arbitrary metadata value based on its key.</p></td>
+<td class="type"> array</td>
+<td class="description"><p class="name"><a href="#getMetadata()">getMetadata</a>(mixed key)</p><p class="description">Get an arbitrary metadata array based on its key. </p></td>
 </tr>
 <tr>
 <td class="type"> array</td>
@@ -126,7 +126,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 <hr>
 
 <h2 id="detail_method">Method Detail</h2>
-<a href="../source/marklogic/mlphp/searchresult.php.html#line73" class="location">MarkLogic/MLPHP/SearchResult.php at line 73</a>
+<a href="../source/marklogic/mlphp/searchresult.php.html#line80" class="location">MarkLogic/MLPHP/SearchResult.php at line 80</a>
 
 <h3 id="getIndex()">getIndex</h3>
 <code class="signature">public  int <strong>getIndex</strong>()</code>
@@ -139,7 +139,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/searchresult.php.html#line83" class="location">MarkLogic/MLPHP/SearchResult.php at line 83</a>
+<a href="../source/marklogic/mlphp/searchresult.php.html#line90" class="location">MarkLogic/MLPHP/SearchResult.php at line 90</a>
 
 <h3 id="getURI()">getURI</h3>
 <code class="signature">public  string <strong>getURI</strong>()</code>
@@ -152,7 +152,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/searchresult.php.html#line93" class="location">MarkLogic/MLPHP/SearchResult.php at line 93</a>
+<a href="../source/marklogic/mlphp/searchresult.php.html#line100" class="location">MarkLogic/MLPHP/SearchResult.php at line 100</a>
 
 <h3 id="getPath()">getPath</h3>
 <code class="signature">public  string <strong>getPath</strong>()</code>
@@ -165,7 +165,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/searchresult.php.html#line103" class="location">MarkLogic/MLPHP/SearchResult.php at line 103</a>
+<a href="../source/marklogic/mlphp/searchresult.php.html#line110" class="location">MarkLogic/MLPHP/SearchResult.php at line 110</a>
 
 <h3 id="getScore()">getScore</h3>
 <code class="signature">public  int <strong>getScore</strong>()</code>
@@ -178,7 +178,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/searchresult.php.html#line113" class="location">MarkLogic/MLPHP/SearchResult.php at line 113</a>
+<a href="../source/marklogic/mlphp/searchresult.php.html#line120" class="location">MarkLogic/MLPHP/SearchResult.php at line 120</a>
 
 <h3 id="getConfidence()">getConfidence</h3>
 <code class="signature">public  int <strong>getConfidence</strong>()</code>
@@ -191,7 +191,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/searchresult.php.html#line123" class="location">MarkLogic/MLPHP/SearchResult.php at line 123</a>
+<a href="../source/marklogic/mlphp/searchresult.php.html#line130" class="location">MarkLogic/MLPHP/SearchResult.php at line 130</a>
 
 <h3 id="getFitness()">getFitness</h3>
 <code class="signature">public  int <strong>getFitness</strong>()</code>
@@ -204,7 +204,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/searchresult.php.html#line133" class="location">MarkLogic/MLPHP/SearchResult.php at line 133</a>
+<a href="../source/marklogic/mlphp/searchresult.php.html#line140" class="location">MarkLogic/MLPHP/SearchResult.php at line 140</a>
 
 <h3 id="getMatches()">getMatches</h3>
 <code class="signature">public  array <strong>getMatches</strong>()</code>
@@ -217,24 +217,24 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/searchresult.php.html#line146" class="location">MarkLogic/MLPHP/SearchResult.php at line 146</a>
+<a href="../source/marklogic/mlphp/searchresult.php.html#line153" class="location">MarkLogic/MLPHP/SearchResult.php at line 153</a>
 
 <h3 id="getMetadata()">getMetadata</h3>
-<code class="signature">public  mixed <strong>getMetadata</strong>(mixed key)</code>
+<code class="signature">public  array <strong>getMetadata</strong>(mixed key)</code>
 <div class="details">
-<p>Get an arbitrary metadata value based on its key.</p><dl>
-<dt>Todo:</dt>
-<dd>Handle multiple instances of metadata (e.g., keywords).</dd>
+<p>Get an arbitrary metadata array based on its key. A metadata key can be
+associated with multiple metadata values in a search result (e.g.,
+keywords) which is why the values are stored as arrays.</p><dl>
 <dt>Parameters:</dt>
-<dd>key - The key for the metadata value.</dd>
+<dd>key - The key for the metadata value(s).</dd>
 <dt>Returns:</dt>
-<dd>The metadata value.</dd>
+<dd>The array of metadata value(s) associated with the key.</dd>
 </dl>
 </div>
 
 <hr>
 
-<a href="../source/marklogic/mlphp/searchresult.php.html#line156" class="location">MarkLogic/MLPHP/SearchResult.php at line 156</a>
+<a href="../source/marklogic/mlphp/searchresult.php.html#line163" class="location">MarkLogic/MLPHP/SearchResult.php at line 163</a>
 
 <h3 id="getMetadataKeys()">getMetadataKeys</h3>
 <code class="signature">public  array <strong>getMetadataKeys</strong>()</code>
@@ -247,7 +247,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/searchresult.php.html#line166" class="location">MarkLogic/MLPHP/SearchResult.php at line 166</a>
+<a href="../source/marklogic/mlphp/searchresult.php.html#line173" class="location">MarkLogic/MLPHP/SearchResult.php at line 173</a>
 
 <h3 id="getSimilar()">getSimilar</h3>
 <code class="signature">public  array <strong>getSimilar</strong>()</code>

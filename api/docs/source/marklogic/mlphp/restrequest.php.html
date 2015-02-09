@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="generator" content="PHPDoctor 2.0.5 (http://peej.github.com/phpdoctor/)">
-<meta name="when" content="Mon, 29 Jul 2013 22:11:20 +0000">
+<meta name="when" content="Mon, 09 Feb 2015 02:37:42 +0000">
 
 <link rel="stylesheet" type="text/css" href="../../../stylesheet.css">
 <link rel="start" href="../../../overview-summary.html">
@@ -66,166 +66,198 @@
 <a name="line28"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$resource</span><span style="color: #339933;">;</span> <span style="color: #666666; font-style: italic;">// @var string</span>
 <a name="line29"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$params</span><span style="color: #339933;">;</span> <span style="color: #666666; font-style: italic;">// @var array</span>
 <a name="line30"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$body</span><span style="color: #339933;">;</span> <span style="color: #666666; font-style: italic;">// @var string</span>
-<a name="line31"></a>&nbsp;
-<a name="line32"></a>    <span style="color: #666666; font-style: italic;">/*
-<a name="line33"></a>     * Create a REST request object.
-<a name="line34"></a>     *
-<a name="line35"></a>     * @param string $verb The REST verb (example: 'GET').
-<a name="line36"></a>     * @param string $resource The REST resource (example: 'documents').
-<a name="line37"></a>     * @param array $params Array of parameters for the REST request.
-<a name="line38"></a>     * @param string $body The REST request body;
-<a name="line39"></a>     * @param array $headers Array of request headers;
-<a name="line40"></a>     */</span>
-<a name="line41"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> __construct<span style="color: #009900;">&#40;</span><span style="color: #000088;">$verb</span><span style="color: #339933;">,</span> <span style="color: #000088;">$resource</span><span style="color: #339933;">,</span> <span style="color: #000088;">$params</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/array"><span style="color: #990000;">array</span></a><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">,</span> <span style="color: #000088;">$body</span> <span style="color: #339933;">=</span> <span style="color: #0000ff;">''</span><span style="color: #339933;">,</span> <span style="color: #000088;">$headers</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/array"><span style="color: #990000;">array</span></a><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span>
-<a name="line42"></a>    <span style="color: #009900;">&#123;</span>
-<a name="line43"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">verb</span> <span style="color: #339933;">=</span> <span style="color: #009900;">&#40;</span>string<span style="color: #009900;">&#41;</span><span style="color: #000088;">$verb</span><span style="color: #339933;">;</span>
-<a name="line44"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">resource</span> <span style="color: #339933;">=</span> <span style="color: #009900;">&#40;</span>string<span style="color: #009900;">&#41;</span><span style="color: #000088;">$resource</span><span style="color: #339933;">;</span>
-<a name="line45"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">params</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$params</span><span style="color: #339933;">;</span>
-<a name="line46"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">body</span> <span style="color: #339933;">=</span> <span style="color: #009900;">&#40;</span>string<span style="color: #009900;">&#41;</span><span style="color: #000088;">$body</span><span style="color: #339933;">;</span>
-<a name="line47"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">headers</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$headers</span><span style="color: #339933;">;</span>
-<a name="line48"></a>    <span style="color: #009900;">&#125;</span>
-<a name="line49"></a>&nbsp;
-<a name="line50"></a>    <span style="color: #009933; font-style: italic;">/**
-<a name="line51"></a>     * Set the REST verb.
-<a name="line52"></a>     *
-<a name="line53"></a>     * @param string $verb The REST verb (example: 'GET')
-<a name="line54"></a>     */</span>
-<a name="line55"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> setVerb<span style="color: #009900;">&#40;</span><span style="color: #000088;">$verb</span><span style="color: #009900;">&#41;</span>
-<a name="line56"></a>    <span style="color: #009900;">&#123;</span>
-<a name="line57"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">verb</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$verb</span><span style="color: #339933;">;</span>
-<a name="line58"></a>    <span style="color: #009900;">&#125;</span>
-<a name="line59"></a>&nbsp;
-<a name="line60"></a>    <span style="color: #009933; font-style: italic;">/**
-<a name="line61"></a>     * Get the REST verb.
-<a name="line62"></a>     *
-<a name="line63"></a>     * @return string The REST verb.
-<a name="line64"></a>     */</span>
-<a name="line65"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getVerb<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
-<a name="line66"></a>    <span style="color: #009900;">&#123;</span>
-<a name="line67"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">verb</span><span style="color: #339933;">;</span>
-<a name="line68"></a>    <span style="color: #009900;">&#125;</span>
-<a name="line69"></a>&nbsp;
-<a name="line70"></a>    <span style="color: #009933; font-style: italic;">/**
-<a name="line71"></a>     * Set the REST resource.
-<a name="line72"></a>     *
-<a name="line73"></a>     * @param string $resource The REST resource (example: 'documents').
-<a name="line74"></a>     */</span>
-<a name="line75"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> setResource<span style="color: #009900;">&#40;</span><span style="color: #000088;">$verb</span><span style="color: #009900;">&#41;</span>
-<a name="line76"></a>    <span style="color: #009900;">&#123;</span>
-<a name="line77"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">resource</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$resource</span><span style="color: #339933;">;</span>
-<a name="line78"></a>    <span style="color: #009900;">&#125;</span>
-<a name="line79"></a>&nbsp;
-<a name="line80"></a>    <span style="color: #009933; font-style: italic;">/**
-<a name="line81"></a>     * Get the REST resource.
-<a name="line82"></a>     *
-<a name="line83"></a>     * @return string The REST resource.
-<a name="line84"></a>     */</span>
-<a name="line85"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getResource<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
-<a name="line86"></a>    <span style="color: #009900;">&#123;</span>
-<a name="line87"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">resource</span><span style="color: #339933;">;</span>
-<a name="line88"></a>    <span style="color: #009900;">&#125;</span>
-<a name="line89"></a>&nbsp;
-<a name="line90"></a>    <span style="color: #009933; font-style: italic;">/**
-<a name="line91"></a>     * Set the parameters.
-<a name="line92"></a>     *
-<a name="line93"></a>     * @param array $params An array of parameters.
-<a name="line94"></a>     */</span>
-<a name="line95"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> setParams<span style="color: #009900;">&#40;</span><span style="color: #000088;">$params</span><span style="color: #009900;">&#41;</span>
-<a name="line96"></a>    <span style="color: #009900;">&#123;</span>
-<a name="line97"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">params</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$params</span><span style="color: #339933;">;</span>
-<a name="line98"></a>    <span style="color: #009900;">&#125;</span>
-<a name="line99"></a>&nbsp;
-<a name="line100"></a>    <span style="color: #009933; font-style: italic;">/**
-<a name="line101"></a>     * Get the parameters.
-<a name="line102"></a>     *
-<a name="line103"></a>     * @return array An array of parameters.
-<a name="line104"></a>     */</span>
-<a name="line105"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getParams<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
-<a name="line106"></a>    <span style="color: #009900;">&#123;</span>
-<a name="line107"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">params</span><span style="color: #339933;">;</span>
-<a name="line108"></a>    <span style="color: #009900;">&#125;</span>
-<a name="line109"></a>&nbsp;
-<a name="line110"></a>    <span style="color: #009933; font-style: italic;">/**
-<a name="line111"></a>     * Set the request body.
-<a name="line112"></a>     *
-<a name="line113"></a>     * @param string $body The request body.
-<a name="line114"></a>     */</span>
-<a name="line115"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> setBody<span style="color: #009900;">&#40;</span><span style="color: #000088;">$body</span><span style="color: #009900;">&#41;</span>
-<a name="line116"></a>    <span style="color: #009900;">&#123;</span>
-<a name="line117"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">body</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$body</span><span style="color: #339933;">;</span>
-<a name="line118"></a>    <span style="color: #009900;">&#125;</span>
-<a name="line119"></a>&nbsp;
-<a name="line120"></a>    <span style="color: #009933; font-style: italic;">/**
-<a name="line121"></a>     * Get the request body.
-<a name="line122"></a>     *
-<a name="line123"></a>     * @return string The request body.
-<a name="line124"></a>     */</span>
-<a name="line125"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getBody<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
-<a name="line126"></a>    <span style="color: #009900;">&#123;</span>
-<a name="line127"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">body</span><span style="color: #339933;">;</span>
-<a name="line128"></a>    <span style="color: #009900;">&#125;</span>
-<a name="line129"></a>&nbsp;
-<a name="line130"></a>    <span style="color: #009933; font-style: italic;">/**
-<a name="line131"></a>     * Set the request headers.
-<a name="line132"></a>     *
-<a name="line133"></a>     * @param array $headers An array of request headers (example: 'Content-type' =&gt; 'appliation/xml').
-<a name="line134"></a>     */</span>
-<a name="line135"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> setHeaders<span style="color: #009900;">&#40;</span><span style="color: #000088;">$headers</span><span style="color: #009900;">&#41;</span>
-<a name="line136"></a>    <span style="color: #009900;">&#123;</span>
-<a name="line137"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">headers</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$headers</span><span style="color: #339933;">;</span>
-<a name="line138"></a>    <span style="color: #009900;">&#125;</span>
-<a name="line139"></a>&nbsp;
-<a name="line140"></a>    <span style="color: #009933; font-style: italic;">/**
-<a name="line141"></a>     * Get the request headers.
-<a name="line142"></a>     *
-<a name="line143"></a>     * @return array An array of request headers.
-<a name="line144"></a>     */</span>
-<a name="line145"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getHeaders<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
-<a name="line146"></a>    <span style="color: #009900;">&#123;</span>
-<a name="line147"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">headers</span><span style="color: #339933;">;</span>
-<a name="line148"></a>    <span style="color: #009900;">&#125;</span>
-<a name="line149"></a>&nbsp;
-<a name="line150"></a>    <span style="color: #009933; font-style: italic;">/**
-<a name="line151"></a>     * @return true if the request is a POST with Content-type application/x-www-form-urlencoded
-<a name="line152"></a>     */</span>
-<a name="line153"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> isWWWFormURLEncodedPost<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span> 
-<a name="line154"></a>    <span style="color: #009900;">&#123;</span>
-<a name="line155"></a>        <span style="color: #b1b100;">if</span> <span style="color: #009900;">&#40;</span><a href="http://www.php.net/strtolower"><span style="color: #990000;">strtolower</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">verb</span><span style="color: #009900;">&#41;</span> <span style="color: #339933;">!=</span> <span style="color: #0000ff;">&quot;post&quot;</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
-<a name="line156"></a>            <span style="color: #b1b100;">return</span> <span style="color: #009900; font-weight: bold;">false</span><span style="color: #339933;">;</span>
-<a name="line157"></a>        <span style="color: #009900;">&#125;</span>
-<a name="line158"></a>&nbsp;
-<a name="line159"></a>        <span style="color: #b1b100;">if</span> <span style="color: #009900;">&#40;</span><a href="http://www.php.net/empty"><span style="color: #990000;">empty</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">headers</span><span style="color: #009900;">&#91;</span><span style="color: #0000ff;">&quot;Content-type&quot;</span><span style="color: #009900;">&#93;</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
-<a name="line160"></a>            <span style="color: #b1b100;">return</span> <span style="color: #009900; font-weight: bold;">true</span><span style="color: #339933;">;</span>
-<a name="line161"></a>        <span style="color: #009900;">&#125;</span>
-<a name="line162"></a>&nbsp;
-<a name="line163"></a>        <span style="color: #666666; font-style: italic;">// XXX Do I need to check for other cases of Content-Type content-type, etc?</span>
-<a name="line164"></a>        <span style="color: #b1b100;">switch</span> <span style="color: #009900;">&#40;</span><a href="http://www.php.net/strtolower"><span style="color: #990000;">strtolower</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">headers</span><span style="color: #009900;">&#91;</span><span style="color: #0000ff;">&quot;Content-type&quot;</span><span style="color: #009900;">&#93;</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
-<a name="line165"></a>            <span style="color: #b1b100;">case</span> <span style="color: #0000ff;">&quot;application/x-www-form-urlencoded&quot;</span><span style="color: #339933;">:</span>
-<a name="line166"></a>                <span style="color: #b1b100;">return</span> <span style="color: #009900; font-weight: bold;">true</span><span style="color: #339933;">;</span>
-<a name="line167"></a>            <span style="color: #b1b100;">default</span><span style="color: #339933;">:</span>    
-<a name="line168"></a>                <span style="color: #b1b100;">return</span> <span style="color: #009900; font-weight: bold;">false</span><span style="color: #339933;">;</span>
-<a name="line169"></a>        <span style="color: #009900;">&#125;</span>
-<a name="line170"></a>    <span style="color: #009900;">&#125;</span>
-<a name="line171"></a>&nbsp;
-<a name="line172"></a>    <span style="color: #009933; font-style: italic;">/**
-<a name="line173"></a>     * Get the resource and params as a URL string.
-<a name="line174"></a>     *
-<a name="line175"></a>     * @todo Allow for multiple params of same name (e.g., when filtering by collections or directories for search).
-<a name="line176"></a>     *
-<a name="line177"></a>     * @return string The request body.
-<a name="line178"></a>     */</span>
-<a name="line179"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getUrlStr<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
-<a name="line180"></a>    <span style="color: #009900;">&#123;</span>
-<a name="line181"></a>        <span style="color: #000088;">$str</span> <span style="color: #339933;">=</span> <span style="color: #009900;">&#40;</span><span style="color: #339933;">!</span><a href="http://www.php.net/empty"><span style="color: #990000;">empty</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">resource</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span> ? <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">resource</span> <span style="color: #339933;">:</span> <span style="color: #0000ff;">''</span><span style="color: #339933;">;</span>
-<a name="line182"></a>&nbsp;
-<a name="line183"></a>        <span style="color: #666666; font-style: italic;">/* x-www-form-encoded posts encodes query params in the body */</span>
-<a name="line184"></a>        <span style="color: #b1b100;">if</span> <span style="color: #009900;">&#40;</span><span style="color: #339933;">!</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">isWWWFormURLEncodedPost</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
-<a name="line185"></a>            <span style="color: #000088;">$str</span> <span style="color: #339933;">.=</span> <span style="color: #009900;">&#40;</span><span style="color: #339933;">!</span><a href="http://www.php.net/empty"><span style="color: #990000;">empty</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">params</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span> ? <span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'?'</span> <span style="color: #339933;">.</span> <a href="http://www.php.net/http_build_query"><span style="color: #990000;">http_build_query</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">params</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span> <span style="color: #339933;">:</span> <span style="color: #0000ff;">''</span><span style="color: #339933;">;</span>
-<a name="line186"></a>        <span style="color: #009900;">&#125;</span>
-<a name="line187"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$str</span><span style="color: #339933;">;</span>
-<a name="line188"></a>    <span style="color: #009900;">&#125;</span>
-<a name="line189"></a><span style="color: #009900;">&#125;</span>
-<a name="line190"></a>&nbsp;</pre>
+<a name="line31"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$headers</span><span style="color: #339933;">;</span> <span style="color: #666666; font-style: italic;">// @var array</span>
+<a name="line32"></a>&nbsp;
+<a name="line33"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line34"></a>     * Create a REST request object.
+<a name="line35"></a>     *
+<a name="line36"></a>     * @param string $verb The REST verb (example: 'GET').
+<a name="line37"></a>     * @param string $resource The REST resource (example: 'documents').
+<a name="line38"></a>     * @param array $params Array of parameters for the REST request.
+<a name="line39"></a>     * @param string $body The REST request body;
+<a name="line40"></a>     * @param array $headers Array of request headers;
+<a name="line41"></a>     */</span>
+<a name="line42"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> __construct<span style="color: #009900;">&#40;</span><span style="color: #000088;">$verb</span><span style="color: #339933;">,</span> <span style="color: #000088;">$resource</span><span style="color: #339933;">,</span> <span style="color: #000088;">$params</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/array"><span style="color: #990000;">array</span></a><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">,</span> <span style="color: #000088;">$body</span> <span style="color: #339933;">=</span> <span style="color: #0000ff;">''</span><span style="color: #339933;">,</span> <span style="color: #000088;">$headers</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/array"><span style="color: #990000;">array</span></a><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span>
+<a name="line43"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line44"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">verb</span> <span style="color: #339933;">=</span> <span style="color: #009900;">&#40;</span>string<span style="color: #009900;">&#41;</span><span style="color: #000088;">$verb</span><span style="color: #339933;">;</span>
+<a name="line45"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">resource</span> <span style="color: #339933;">=</span> <span style="color: #009900;">&#40;</span>string<span style="color: #009900;">&#41;</span><span style="color: #000088;">$resource</span><span style="color: #339933;">;</span>
+<a name="line46"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">params</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$params</span><span style="color: #339933;">;</span>
+<a name="line47"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">body</span> <span style="color: #339933;">=</span> <span style="color: #009900;">&#40;</span>string<span style="color: #009900;">&#41;</span><span style="color: #000088;">$body</span><span style="color: #339933;">;</span>
+<a name="line48"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">headers</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$headers</span><span style="color: #339933;">;</span>
+<a name="line49"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line50"></a>&nbsp;
+<a name="line51"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line52"></a>     * Set the REST verb.
+<a name="line53"></a>     *
+<a name="line54"></a>     * @param string $verb The REST verb (example: 'GET')
+<a name="line55"></a>     */</span>
+<a name="line56"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> setVerb<span style="color: #009900;">&#40;</span><span style="color: #000088;">$verb</span><span style="color: #009900;">&#41;</span>
+<a name="line57"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line58"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">verb</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$verb</span><span style="color: #339933;">;</span>
+<a name="line59"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line60"></a>&nbsp;
+<a name="line61"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line62"></a>     * Get the REST verb.
+<a name="line63"></a>     *
+<a name="line64"></a>     * @return string The REST verb.
+<a name="line65"></a>     */</span>
+<a name="line66"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getVerb<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
+<a name="line67"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line68"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">verb</span><span style="color: #339933;">;</span>
+<a name="line69"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line70"></a>&nbsp;
+<a name="line71"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line72"></a>     * Set the REST resource.
+<a name="line73"></a>     *
+<a name="line74"></a>     * @param string $resource The REST resource (example: 'documents').
+<a name="line75"></a>     */</span>
+<a name="line76"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> setResource<span style="color: #009900;">&#40;</span><span style="color: #000088;">$resource</span><span style="color: #009900;">&#41;</span>
+<a name="line77"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line78"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">resource</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$resource</span><span style="color: #339933;">;</span>
+<a name="line79"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line80"></a>&nbsp;
+<a name="line81"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line82"></a>     * Get the REST resource.
+<a name="line83"></a>     *
+<a name="line84"></a>     * @return string The REST resource.
+<a name="line85"></a>     */</span>
+<a name="line86"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getResource<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
+<a name="line87"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line88"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">resource</span><span style="color: #339933;">;</span>
+<a name="line89"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line90"></a>&nbsp;
+<a name="line91"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line92"></a>     * Set the parameters.
+<a name="line93"></a>     *
+<a name="line94"></a>     * @param array $params An array of parameters.
+<a name="line95"></a>     */</span>
+<a name="line96"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> setParams<span style="color: #009900;">&#40;</span><span style="color: #000088;">$params</span><span style="color: #009900;">&#41;</span>
+<a name="line97"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line98"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">params</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$params</span><span style="color: #339933;">;</span>
+<a name="line99"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line100"></a>&nbsp;
+<a name="line101"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line102"></a>     * Get the parameters.
+<a name="line103"></a>     *
+<a name="line104"></a>     * @return array An array of parameters.
+<a name="line105"></a>     */</span>
+<a name="line106"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getParams<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
+<a name="line107"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line108"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">params</span><span style="color: #339933;">;</span>
+<a name="line109"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line110"></a>&nbsp;
+<a name="line111"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line112"></a>     * Set the request body.
+<a name="line113"></a>     *
+<a name="line114"></a>     * @param string $body The request body.
+<a name="line115"></a>     */</span>
+<a name="line116"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> setBody<span style="color: #009900;">&#40;</span><span style="color: #000088;">$body</span><span style="color: #009900;">&#41;</span>
+<a name="line117"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line118"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">body</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$body</span><span style="color: #339933;">;</span>
+<a name="line119"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line120"></a>&nbsp;
+<a name="line121"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line122"></a>     * Get the request body.
+<a name="line123"></a>     *
+<a name="line124"></a>     * @return string The request body.
+<a name="line125"></a>     */</span>
+<a name="line126"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getBody<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
+<a name="line127"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line128"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">body</span><span style="color: #339933;">;</span>
+<a name="line129"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line130"></a>&nbsp;
+<a name="line131"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line132"></a>     * Set the request headers.
+<a name="line133"></a>     *
+<a name="line134"></a>     * @param array $headers An array of request headers (example: 'Content-type' =&gt; 'appliation/xml').
+<a name="line135"></a>     */</span>
+<a name="line136"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> setHeaders<span style="color: #009900;">&#40;</span><span style="color: #000088;">$headers</span><span style="color: #009900;">&#41;</span>
+<a name="line137"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line138"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">headers</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$headers</span><span style="color: #339933;">;</span>
+<a name="line139"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line140"></a>&nbsp;
+<a name="line141"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line142"></a>     * Get the request headers.
+<a name="line143"></a>     *
+<a name="line144"></a>     * @return array An array of request headers.
+<a name="line145"></a>     */</span>
+<a name="line146"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getHeaders<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
+<a name="line147"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line148"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">headers</span><span style="color: #339933;">;</span>
+<a name="line149"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line150"></a>&nbsp;
+<a name="line151"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line152"></a>     * @return true if the request is a POST with Content-type application/x-www-form-urlencoded
+<a name="line153"></a>     */</span>
+<a name="line154"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> isWWWFormURLEncodedPost<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
+<a name="line155"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line156"></a>        <span style="color: #b1b100;">if</span> <span style="color: #009900;">&#40;</span><a href="http://www.php.net/strtolower"><span style="color: #990000;">strtolower</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">verb</span><span style="color: #009900;">&#41;</span> <span style="color: #339933;">!=</span> <span style="color: #0000ff;">&quot;post&quot;</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+<a name="line157"></a>            <span style="color: #b1b100;">return</span> <span style="color: #009900; font-weight: bold;">false</span><span style="color: #339933;">;</span>
+<a name="line158"></a>        <span style="color: #009900;">&#125;</span>
+<a name="line159"></a>&nbsp;
+<a name="line160"></a>        <span style="color: #666666; font-style: italic;">// @todo Should this return false?</span>
+<a name="line161"></a>        <span style="color: #b1b100;">if</span> <span style="color: #009900;">&#40;</span><a href="http://www.php.net/empty"><span style="color: #990000;">empty</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">headers</span><span style="color: #009900;">&#91;</span><span style="color: #0000ff;">&quot;Content-type&quot;</span><span style="color: #009900;">&#93;</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+<a name="line162"></a>            <span style="color: #b1b100;">return</span> <span style="color: #009900; font-weight: bold;">true</span><span style="color: #339933;">;</span>
+<a name="line163"></a>        <span style="color: #009900;">&#125;</span>
+<a name="line164"></a>&nbsp;
+<a name="line165"></a>        <span style="color: #666666; font-style: italic;">// @todo Do I need to check for other cases of Content-Type content-type, etc?</span>
+<a name="line166"></a>        <span style="color: #b1b100;">switch</span> <span style="color: #009900;">&#40;</span><a href="http://www.php.net/strtolower"><span style="color: #990000;">strtolower</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">headers</span><span style="color: #009900;">&#91;</span><span style="color: #0000ff;">&quot;Content-type&quot;</span><span style="color: #009900;">&#93;</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+<a name="line167"></a>            <span style="color: #b1b100;">case</span> <span style="color: #0000ff;">&quot;application/x-www-form-urlencoded&quot;</span><span style="color: #339933;">:</span>
+<a name="line168"></a>                <span style="color: #b1b100;">return</span> <span style="color: #009900; font-weight: bold;">true</span><span style="color: #339933;">;</span>
+<a name="line169"></a>            <span style="color: #b1b100;">default</span><span style="color: #339933;">:</span>
+<a name="line170"></a>                <span style="color: #b1b100;">return</span> <span style="color: #009900; font-weight: bold;">false</span><span style="color: #339933;">;</span>
+<a name="line171"></a>        <span style="color: #009900;">&#125;</span>
+<a name="line172"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line173"></a>&nbsp;
+<a name="line174"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line175"></a>     * Build query from resource and params. Account for the fact that some param
+<a name="line176"></a>     * keys may be associated with arrays, which will generate the same keys multiple
+<a name="line177"></a>     * times in the query, e.g.:
+<a name="line178"></a>     * params: array(&quot;foo&quot;=&gt;[&quot;bar&quot;, &quot;baz&quot;])
+<a name="line179"></a>     * query:  ?foo=bar&amp;foo=baz
+<a name="line180"></a>     *
+<a name="line181"></a>     * @return string The built query.
+<a name="line182"></a>     */</span>
+<a name="line183"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> buildQuery<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
+<a name="line184"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line185"></a>        <span style="color: #000088;">$query</span> <span style="color: #339933;">=</span> <span style="color: #0000ff;">''</span><span style="color: #339933;">;</span>
+<a name="line186"></a>        <span style="color: #b1b100;">if</span> <span style="color: #009900;">&#40;</span><span style="color: #339933;">!</span><a href="http://www.php.net/empty"><span style="color: #990000;">empty</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">params</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+<a name="line187"></a>            <span style="color: #b1b100;">foreach</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">params</span> <span style="color: #b1b100;">as</span> <span style="color: #000088;">$key</span> <span style="color: #339933;">=&gt;</span> <span style="color: #000088;">$val</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+<a name="line188"></a>                <span style="color: #b1b100;">if</span> <span style="color: #009900;">&#40;</span><span style="color: #339933;">!</span><a href="http://www.php.net/is_array"><span style="color: #990000;">is_array</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$val</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+<a name="line189"></a>                    <span style="color: #000088;">$query</span> <span style="color: #339933;">.=</span> <a href="http://www.php.net/urlencode"><span style="color: #990000;">urlencode</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$key</span><span style="color: #009900;">&#41;</span> <span style="color: #339933;">.</span> <span style="color: #0000ff;">'='</span> <span style="color: #339933;">.</span> <a href="http://www.php.net/urlencode"><span style="color: #990000;">urlencode</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$val</span><span style="color: #009900;">&#41;</span> <span style="color: #339933;">.</span> <span style="color: #0000ff;">'&amp;'</span><span style="color: #339933;">;</span>
+<a name="line190"></a>                <span style="color: #009900;">&#125;</span> <span style="color: #b1b100;">else</span> <span style="color: #009900;">&#123;</span>
+<a name="line191"></a>                    <span style="color: #b1b100;">foreach</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$val</span> <span style="color: #b1b100;">as</span> <span style="color: #000088;">$v</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+<a name="line192"></a>                        <span style="color: #000088;">$query</span> <span style="color: #339933;">.=</span> <a href="http://www.php.net/urlencode"><span style="color: #990000;">urlencode</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$key</span><span style="color: #009900;">&#41;</span> <span style="color: #339933;">.</span> <span style="color: #0000ff;">'='</span> <span style="color: #339933;">.</span> <a href="http://www.php.net/urlencode"><span style="color: #990000;">urlencode</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$v</span><span style="color: #009900;">&#41;</span> <span style="color: #339933;">.</span> <span style="color: #0000ff;">'&amp;'</span><span style="color: #339933;">;</span>
+<a name="line193"></a>                    <span style="color: #009900;">&#125;</span>
+<a name="line194"></a>                <span style="color: #009900;">&#125;</span>
+<a name="line195"></a>            <span style="color: #009900;">&#125;</span>
+<a name="line196"></a>            <span style="color: #666666; font-style: italic;">// Remove trailing '&amp;'</span>
+<a name="line197"></a>            <span style="color: #000088;">$query</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/substr"><span style="color: #990000;">substr</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$query</span><span style="color: #339933;">,</span> <span style="color: #cc66cc;">0</span><span style="color: #339933;">,</span> <span style="color: #339933;">-</span><span style="color: #cc66cc;">1</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line198"></a>        <span style="color: #009900;">&#125;</span>
+<a name="line199"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$query</span><span style="color: #339933;">;</span>
+<a name="line200"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line201"></a>&nbsp;
+<a name="line202"></a>&nbsp;
+<a name="line203"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line204"></a>     * Get the resource and params as a URL string.
+<a name="line205"></a>     *
+<a name="line206"></a>     * @todo Allow for multiple params of same name (e.g., when filtering by collections or directories for search).
+<a name="line207"></a>     *       Done: User buildQuery() above, store as array values:
+<a name="line208"></a>     *             array('collection' =&gt; ['coll1', 'coll2'])
+<a name="line209"></a>     * @return string The request body.
+<a name="line210"></a>     */</span>
+<a name="line211"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getUrlStr<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
+<a name="line212"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line213"></a>        <span style="color: #000088;">$str</span> <span style="color: #339933;">=</span> <span style="color: #009900;">&#40;</span><span style="color: #339933;">!</span><a href="http://www.php.net/empty"><span style="color: #990000;">empty</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">resource</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span> ? <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">resource</span> <span style="color: #339933;">:</span> <span style="color: #0000ff;">''</span><span style="color: #339933;">;</span>
+<a name="line214"></a>&nbsp;
+<a name="line215"></a>        <span style="color: #666666; font-style: italic;">/* x-www-form-encoded posts encodes query params in the body */</span>
+<a name="line216"></a>        <span style="color: #b1b100;">if</span> <span style="color: #009900;">&#40;</span><span style="color: #339933;">!</span><span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">isWWWFormURLEncodedPost</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+<a name="line217"></a>            <span style="color: #000088;">$str</span> <span style="color: #339933;">.=</span> <span style="color: #009900;">&#40;</span><span style="color: #339933;">!</span><a href="http://www.php.net/empty"><span style="color: #990000;">empty</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">params</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span> ? <span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'?'</span> <span style="color: #339933;">.</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">buildQuery</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span> <span style="color: #339933;">:</span> <span style="color: #0000ff;">''</span><span style="color: #339933;">;</span>
+<a name="line218"></a>        <span style="color: #009900;">&#125;</span>
+<a name="line219"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$str</span><span style="color: #339933;">;</span>
+<a name="line220"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line221"></a><span style="color: #009900;">&#125;</span>
+<a name="line222"></a>&nbsp;</pre>
 <div class="header">
 <h1><a href=../../examples/index.php target=_top>MLPHP</a></h1>
 <ul>

@@ -1,0 +1,198 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="generator" content="PHPDoctor 2.0.5 (http://peej.github.com/phpdoctor/)">
+<meta name="when" content="Mon, 09 Feb 2015 02:37:39 +0000">
+
+<link rel="stylesheet" type="text/css" href="../stylesheet.css">
+<link rel="start" href="../overview-summary.html">
+
+<title>RESTAPI (MLPHP)</title>
+
+</head>
+<body id="definition" onload="parent.document.title=document.title;">
+
+<div class="header">
+<h1><a href=../../examples/index.php target=_top>MLPHP</a></h1>
+<ul>
+<li><a href="../overview-summary.html">Overview</a></li>
+<li><a href="../mlphp/package-summary.html">Namespace</a></li>
+<li class="active">Class</li>
+<li><a href="../mlphp/package-tree.html">Tree</a></li>
+<li><a href="../overview-files.html">Files</a></li>
+<li><a href="../deprecated-list.html">Deprecated</a></li>
+<li><a href="../todo-list.html">Todo</a></li>
+<li><a href="../index-all.html">Index</a></li>
+</ul>
+</div>
+
+<div class="small_links">
+<a href="../index.html" target="_top">Frames</a>
+<a href="../mlphp/restapi.html" target="_top">No frames</a>
+</div>
+<div class="small_links">
+Summary: <a href="#summary_field">Field</a> | <a href="#summary_method">Method</a> | <a href="#summary_constr">Constr</a>
+Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> | <a href="#summary_constr">Constr</a>
+</div>
+<hr>
+
+<div class="qualifiedName">MLPHP\RESTAPI</div>
+<a href="../source/marklogic/mlphp/restapi.php.html#line28" class="location">MarkLogic/MLPHP/RESTAPI.php at line 28</a>
+
+<h1>Class RESTAPI</h1>
+
+<pre class="tree"><strong>RESTAPI</strong><br /></pre>
+
+<hr>
+
+<p class="signature">public  class <strong>RESTAPI</strong></p>
+
+<div class="comment" id="overview_description"><p>Represents a REST API.</p></div>
+
+<dl>
+<dt>Author:</dt>
+<dd>Mike Wooldridge <mike.wooldridge@marklogic.com></dd>
+</dl>
+<hr>
+
+<table id="summary_constructor">
+<tr><th colspan="2">Constructor Summary</th></tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#__construct()">__construct</a>(string name, string host, string db, int port, string username, string password, LoggerInterface logger)</p><p class="description">Create a REST API object.</p></td>
+</tr>
+</table>
+
+<table id="summary_method">
+<tr><th colspan="2">Method Summary</th></tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#create()">create</a>(<a href="../mlphp/restclient.html">RESTClient</a> client)</p><p class="description">Create a REST API via a post to the MarkLogic rest-apis endpoint.
+</p></td>
+</tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#delete()">delete</a>(boolean module, mixed client)</p><p class="description">Delete a REST API.</p></td>
+</tr>
+<tr>
+<td class="type">protected  void</td>
+<td class="description"><p class="name"><a href="#waitUntilSuccess()">waitUntilSuccess</a>(<a href="../mlphp/restrequest.html">RESTRequest</a> request, int time, int limit, mixed secs)</p><p class="description">Sleep until a request is successful.</p></td>
+</tr>
+<tr>
+<td class="type"> boolean</td>
+<td class="description"><p class="name"><a href="#exists()">exists</a>(string name)</p><p class="description">Check if a REST API with the same name exists on the server.</p></td>
+</tr>
+</table>
+
+<h2 id="detail_method">Constructor Detail</h2>
+<a href="../source/marklogic/mlphp/restapi.php.html#line50" class="location">MarkLogic/MLPHP/RESTAPI.php at line 50</a>
+
+<h3 id="__construct()">__construct</h3>
+<code class="signature">public  void <strong>__construct</strong>(string name, string host, string db, int port, string username, string password, LoggerInterface logger)</code>
+<div class="details">
+<p>Create a REST API object.</p><dl>
+<dt>Parameters:</dt>
+<dd>name - The name of the API (example: 'mlphp-rest-api').</dd>
+<dd>host - The host (example: '127.0.0.1', 'localhost').</dd>
+<dd>db - The name of the database (example: 'mlphp-db').</dd>
+<dd>port - The port of the API.</dd>
+<dd>username - The username for REST authentication.</dd>
+<dd>password - The password for REST authentication.</dd>
+<dd></dd>
+</dl>
+</div>
+
+<hr>
+
+<h2 id="detail_method">Method Detail</h2>
+<a href="../source/marklogic/mlphp/restapi.php.html#line82" class="location">MarkLogic/MLPHP/RESTAPI.php at line 82</a>
+
+<h3 id="create()">create</h3>
+<code class="signature">public  void <strong>create</strong>(<a href="../mlphp/restclient.html">RESTClient</a> client)</code>
+<div class="details">
+<p>Create a REST API via a post to the MarkLogic rest-apis endpoint.
+It will not create an API if there already exists one with the
+same name.</p><dl>
+<dt>Parameters:</dt>
+<dd>client - Optional custom REST client object.</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../source/marklogic/mlphp/restapi.php.html#line118" class="location">MarkLogic/MLPHP/RESTAPI.php at line 118</a>
+
+<h3 id="delete()">delete</h3>
+<code class="signature">public  void <strong>delete</strong>(boolean module, mixed client)</code>
+<div class="details">
+<p>Delete a REST API.</p><dl>
+<dt>Parameters:</dt>
+<dd>module - Optional custom REST client object.</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../source/marklogic/mlphp/restapi.php.html#line143" class="location">MarkLogic/MLPHP/RESTAPI.php at line 143</a>
+
+<h3 id="waitUntilSuccess()">waitUntilSuccess</h3>
+<code class="signature">protected  void <strong>waitUntilSuccess</strong>(<a href="../mlphp/restrequest.html">RESTRequest</a> request, int time, int limit, mixed secs)</code>
+<div class="details">
+<p>Sleep until a request is successful.</p><dl>
+<dt>Parameters:</dt>
+<dd>request - The request to send.</dd>
+<dd>time - Time in secs to wait between requests.</dd>
+<dd>limit - Cycles to complete before timing out.</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../source/marklogic/mlphp/restapi.php.html#line164" class="location">MarkLogic/MLPHP/RESTAPI.php at line 164</a>
+
+<h3 id="exists()">exists</h3>
+<code class="signature">public  boolean <strong>exists</strong>(string name)</code>
+<div class="details">
+<p>Check if a REST API with the same name exists on the server.</p><dl>
+<dt>Parameters:</dt>
+<dd>name - Name of the REST API to check.</dd>
+<dt>Returns:</dt>
+<dd>true|false</dd>
+</dl>
+</div>
+
+<hr>
+
+<div class="header">
+<h1><a href=../../examples/index.php target=_top>MLPHP</a></h1>
+<ul>
+<li><a href="../overview-summary.html">Overview</a></li>
+<li><a href="../mlphp/package-summary.html">Namespace</a></li>
+<li class="active">Class</li>
+<li><a href="../mlphp/package-tree.html">Tree</a></li>
+<li><a href="../overview-files.html">Files</a></li>
+<li><a href="../deprecated-list.html">Deprecated</a></li>
+<li><a href="../todo-list.html">Todo</a></li>
+<li><a href="../index-all.html">Index</a></li>
+</ul>
+</div>
+
+<div class="small_links">
+<a href="../index.html" target="_top">Frames</a>
+<a href="../mlphp/restapi.html" target="_top">No frames</a>
+</div>
+<div class="small_links">
+Summary: <a href="#summary_field">Field</a> | <a href="#summary_method">Method</a> | <a href="#summary_constr">Constr</a>
+Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> | <a href="#summary_constr">Constr</a>
+</div>
+<hr>
+
+<p id="footer">Copyright 2002-2013 MarkLogic Corporation.  All Rights Reserved.</p>
+
+</body>
+
+</html>
