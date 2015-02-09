@@ -242,9 +242,6 @@ class Database
      *
      * Remove a complex property.
      *
-     * @todo This doesn't work when trying to remove only complex property
-     *       an the array, e.g. the remaining Range Element Attribute Index.
-     *
      * @param string type The property type (key).
      * @param array arr Assoc array representing property to remove.
      */
@@ -383,7 +380,6 @@ class Database
     /**
      *
      * Add a field.
-     * @todo generalize this for all complex properties
      *
      * @param string field The Field object.
      */
@@ -395,7 +391,6 @@ class Database
     /**
      *
      * Remove a field.
-     * @todo generalize this for all complex properties
      *
      * @param string name The name of the field to remove.
      */

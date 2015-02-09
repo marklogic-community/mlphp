@@ -172,7 +172,7 @@ class RESTRequest
     }
 
     /**
-     * Build query from resource and params. Account for the fact that some param
+     * Build query from resource and params. Accounts for the fact that some param
      * keys may be associated with arrays, which will generate the same keys multiple
      * times in the query, e.g.:
      * params: array("foo"=>["bar", "baz"])
@@ -203,9 +203,6 @@ class RESTRequest
     /**
      * Get the resource and params as a URL string.
      *
-     * @todo Allow for multiple params of same name (e.g., when filtering by collections or directories for search).
-     *       Done: User buildQuery() above, store as array values:
-     *             array('collection' => ['coll1', 'coll2'])
      * @return string The request body.
      */
     public function getUrlStr()

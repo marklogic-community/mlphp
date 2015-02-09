@@ -73,8 +73,6 @@ class Document
     /**
      * Write a document to the database.
      *
-     * @todo Allow passing multiple params of same key (e.g., collections).
-     *
      * @param string $uri A document URI.
      * @param array $params Optional additional parameters to pass when writing.
      * @return Document $this
