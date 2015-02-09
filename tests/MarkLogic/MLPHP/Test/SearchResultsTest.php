@@ -28,7 +28,7 @@ class SearchResultsTest extends TestBase
     protected $sr;
 
     function setUp() {
-        $xml = TestMocks::getSearchResult();
+        $xml = TestData::getSearchResult();
         $this->sr = new MLPHP\SearchResults($xml);
     }
 

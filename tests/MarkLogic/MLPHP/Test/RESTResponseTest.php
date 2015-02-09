@@ -29,8 +29,8 @@ class RESTResponseTest extends TestBase
     {
         parent::$logger->debug('testRESTResponse');
 
-        $curl_exec = TestMocks::getCurlExec();
-        $curl_getinfo = TestMocks::getCurlInfo();
+        $curl_exec = TestData::getCurlExec();
+        $curl_getinfo = TestData::getCurlInfo();
 
         $resp = new MLPHP\RESTResponse();
         $resp->setBody($curl_exec);
@@ -46,7 +46,7 @@ class RESTResponseTest extends TestBase
     {
         parent::$logger->debug('testErrorJSON');
 
-        $curl_exec = TestMocks::getCurlExecErrorJSON();
+        $curl_exec = TestData::getCurlExecErrorJSON();
 
         $resp = new MLPHP\RESTResponse();
         $resp->setBody($curl_exec);
@@ -59,7 +59,7 @@ class RESTResponseTest extends TestBase
     {
         parent::$logger->debug('testErrorXML');
 
-        $curl_exec = TestMocks::getCurlExecErrorXML();
+        $curl_exec = TestData::getCurlExecErrorXML();
 
         $resp = new MLPHP\RESTResponse();
         $resp->setBody($curl_exec);
@@ -72,7 +72,7 @@ class RESTResponseTest extends TestBase
     {
         parent::$logger->debug('testErrorText');
 
-        $curl_exec = TestMocks::getCurlExecErrorText();
+        $curl_exec = TestData::getCurlExecErrorText();
 
         $resp = new MLPHP\RESTResponse();
         $resp->setBody($curl_exec);

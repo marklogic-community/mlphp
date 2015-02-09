@@ -100,7 +100,7 @@ class MetadataTest extends TestBase
     function testLoadFromXML()
     {
         parent::$logger->debug('testLoadFromXML');
-        $this->m->loadFromXML(TestMocks::getMetadata());
+        $this->m->loadFromXML(TestData::getMetadata());
         $colls = $this->m->getCollections();
         $perms = $this->m->getPermissions();
         $props = $this->m->getProperties();
@@ -111,12 +111,12 @@ class MetadataTest extends TestBase
         $this->assertEquals($this->m->getQuality(), 1);
         // Object as XML should be equal to original XML
         $this->assertXmlStringEqualsXmlString(
-            $this->m->getAsXML(), TestMocks::getMetadata()
+            $this->m->getAsXML(), TestData::getMetadata()
         );
         // Change object, XML no longer equal
         $this->m->setQuality(9);
         $this->assertXmlStringNotEqualsXmlString(
-            $this->m->getAsXML(), TestMocks::getMetadata()
+            $this->m->getAsXML(), TestData::getMetadata()
         );
     }
 }

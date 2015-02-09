@@ -21,7 +21,7 @@ namespace MarkLogic\MLPHP\Test;
  * @author Eric Bloch <eric.bloch@gmail.com>
  * @author Mike Wooldridge <mike.wooldridge@marklogic.com>
  */
-class TestMocks
+class TestData
 {
 
     public static function getSearchResult()

@@ -28,7 +28,7 @@ class MatchTest extends TestBase
     {
         parent::$logger->debug('testMatch');
 
-        $searchResults = TestMocks::getSearchResult();
+        $searchResults = TestData::getSearchResult();
         $doc = new \DOMDocument();
         $doc->loadXML($searchResults);
         $elems = $doc->getElementsByTagName('match');

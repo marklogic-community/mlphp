@@ -28,7 +28,7 @@ class SearchResultTest extends TestBase
     protected $sr;
 
     function setUp() {
-        $xml = TestMocks::getSearchResult();
+        $xml = TestData::getSearchResult();
         $doc = new \DOMDocument();
         $doc->loadXML($xml);
         $elems = $doc->getElementsByTagName('result');
