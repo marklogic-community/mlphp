@@ -223,7 +223,7 @@ Accept: */*'
 
     public static function getCurlExecErrorJSON()
     {
-        // 404 response from documents request, unknown uri, uri = 'foo'
+        // Using 404 response from documents request, unknown uri, uri = 'foo'
         $result = '{"errorResponse":{"statusCode":404, "status":"Not Found", "messageCode":"RESTAPI-NODOCUMENT", "message":"RESTAPI-NODOCUMENT: (err:FOER0000) Resource or document does not exist:  category: content message: foo"}}';
 
         return $result;
@@ -231,7 +231,7 @@ Accept: */*'
 
     public static function getCurlExecErrorXML()
     {
-        // 401 response from bad auth credentials
+        // Using 401 response from bad auth credentials
         $result = '<html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <title>401 Unauthorized</title>
@@ -251,4 +251,3 @@ Accept: */*'
         return $result;
     }
 }
-

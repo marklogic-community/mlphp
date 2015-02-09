@@ -238,7 +238,7 @@ class RESTClient
     protected function setOptions(&$ch, $urlStr, $headers)
     {
         $url = $this->prefix . $urlStr; // Build full URL
-        print ('URL: ' . $url . PHP_EOL);
+        //print ('URL: ' . $url . PHP_EOL);
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_HTTPAUTH, $this->auth);

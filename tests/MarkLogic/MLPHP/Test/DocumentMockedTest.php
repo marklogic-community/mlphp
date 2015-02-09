@@ -22,8 +22,11 @@ use MarkLogic\MLPHP;
  * @package MLPHP\Test
  * @author Mike Wooldridge <mike.wooldridge@marklogic.com>
  * @author Eric Bloch <eric.bloch@gmail.com>
+ *
+ * Similar to DocumentTest but mocks the REST client to avoid database access
+ * https://phpunit.de/manual/current/en/test-doubles.html
  */
-class DocumentTest extends TestBase
+class DocumentMockedTest extends TestBase
 {
 
     public $mockClient;

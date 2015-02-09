@@ -1,23 +1,4 @@
 <?php
-
-// use Monolog\Logger;
-
-// $loader = require 'vendor/autoload.php';
-
-// $mlphp = array(
-//     'log_level' => Logger::DEBUG,
-
-//     /* 'user'      => 'admin', */
-//      'pass'      => 'adm1n',
-
-//     /* 'host'      => 'localhost', */
-//     /* 'port'      => '8234', */
-//     /* 'db'        => 'mlphp-test', */
-//     /* 'mgmt_port' => '8002', */
-
-//     'unused'       => foo
-// )
-
 use MarkLogic\MLPHP;
 
 use Monolog\Logger;
@@ -25,7 +6,7 @@ use Monolog\Handler\StreamHandler;
 
 // Create a logger for tests
 $logger = new Logger('test');
-$logger->pushHandler(new StreamHandler('php://stderr', Logger::DEBUG));
+$logger->pushHandler(new StreamHandler('php://stderr', Logger::ERROR));
 
 // Global config properties for tests
 $mlphp = new MLPHP\MLPHP([
@@ -44,12 +25,13 @@ $mlphp = new MLPHP\MLPHP([
     'logger' => $logger
 ]);
 
-    //$api =  $mlphp->getAPI()->create();
+// Create REST API for tests
+$api =  $mlphp->getAPI()->create();
 
 // Run after all tests complete
 register_shutdown_function(function(){
     global $mlphp;
-    // If API was created, delete it
+    // Delete REST API
     $api = $mlphp->getAPI();
     if ($api->exists()) {
         $api->delete();

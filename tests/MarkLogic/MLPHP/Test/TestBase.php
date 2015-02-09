@@ -25,6 +25,9 @@ use Monolog\Handler\StreamHandler;
  * @package MLPHP\Test
  * @author Eric Bloch <eric.bloch@gmail.com>
  * @author Mike Wooldridge <mike.wooldridge@marklogic.com>
+ *
+ * Extended by test classes that DO NOT access the database.
+ *
  */
 abstract class TestBase extends \PHPUnit_Framework_TestCase
 {
@@ -37,14 +40,15 @@ abstract class TestBase extends \PHPUnit_Framework_TestCase
     {
         global $mlphp;
 
-        // Create a non-function REST client for tests when needed
-        // TestBaseDB can override with functional client
-        self::$client = new MLPHP\RESTClient();
+        parent::setUpBeforeClass();
+
+        // Create a REST client for tests
+        // Some classes require a client for testing even though they do not
+        // access the database
+        self::$client = $mlphp->getClient();
 
         // Create a logger for tests
         self::$logger = $mlphp->config['logger'];
-        // self::$logger = new Logger('test');
-        // self::$logger->pushHandler(new StreamHandler('php://stderr', Logger::ERROR));
     }
 
 }
