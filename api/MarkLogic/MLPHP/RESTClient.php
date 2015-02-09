@@ -238,6 +238,7 @@ class RESTClient
     protected function setOptions(&$ch, $urlStr, $headers)
     {
         $url = $this->prefix . $urlStr; // Build full URL
+        print ('URL: ' . $url . PHP_EOL);
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_HTTPAUTH, $this->auth);
@@ -397,13 +398,16 @@ class RESTClient
     {
         $response = new RESTResponse();
         $curl_exec = curl_exec($ch);
-        // print('******* $curl_exec *******');
+        // print('******* START $curl_exec (body) *******' . PHP_EOL);
         // print_r($curl_exec);
+        // print('******* END   $curl_exec (body) *******' . PHP_EOL);
         $response->setBody($curl_exec);
         $curl_getinfo = curl_getinfo($ch);
-        // print('******* $curl_getinfo *******');
+        // print('******* START $curl_getinfo *******' . PHP_EOL);
         // print_r($curl_getinfo);
-        $response->setInfo($curl_getinfo );
+        // print('******* END   $curl_getinfo *******' . PHP_EOL);
+        $response->setInfo($curl_getinfo);
+        //print_r($response);
         $this->logger->debug("Response code: " . $response->getHttpCode());
         if ($response->getHttpCode() === 0) {
             curl_close ($ch);
@@ -420,6 +424,8 @@ class RESTClient
             );
         } else {
             curl_close ($ch);
+            // print('***** RESPONSE *****' . PHP_EOL);
+            // print_r($response);
             return $response;
         }
     }
