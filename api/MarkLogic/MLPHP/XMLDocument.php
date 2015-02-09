@@ -79,7 +79,12 @@ class XMLDocument extends Document
     public function isValidXML($xml)
     {
         $doc = new \DOMDocument();
-        return $doc->loadXML($xml) === true;
+        try {
+            return $doc->loadXML($xml) === true;
+        } catch(\Exception $e) {
+            $this->logger->warning('XMLDocument::isValidXML() - ' . $e->getMessage());
+            return false;
+        }
     }
 
     /**

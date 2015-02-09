@@ -28,7 +28,7 @@ class Document
     private $content; // @var string
     protected $contentType; // @var string
     private $restClient; // @var RESTClient
-    private $logger; // @var LoggerInterface
+    protected $logger; // @var LoggerInterface
     private $response; // @var RESTResponse
 
     /**
