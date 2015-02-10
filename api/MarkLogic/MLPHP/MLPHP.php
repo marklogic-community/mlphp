@@ -138,6 +138,17 @@ class MLPHP
     }
 
     /**
+     * Return a Document object.
+     */
+    public function getDocument($uri = null)
+    {
+        return new Document(
+            $this->getClient(),
+            $uri
+        );
+    }
+
+    /**
      * PSR-0 autoloader.
      *
      * Do NOT use if you are using Composer to autoload dependencies.
