@@ -29,7 +29,6 @@ use Psr\Log\NullLogger;
 class Database
 {
     private $name; // @var string
-    private $restClient; // @var RESTClient
     private $manageClient; // @var RESTClient
     private $response; // @var RESTResponse
 
