@@ -27,12 +27,12 @@ class JSONDocument extends Document
     /**
      * Create a JSON document object.
      *
-     * @param RESTClient $restClient A REST client object.
+     * @param RESTClient $client A REST client object.
      * @param string $uri A document URI.
      */
-    public function __construct($restClient, $uri = null)
+    public function __construct($client, $uri = null)
     {
-        parent::__construct($restClient, $uri);
+        parent::__construct($client, $uri);
         $this->setContentType('application/json');
     }
 

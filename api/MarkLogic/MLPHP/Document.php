@@ -27,20 +27,20 @@ class Document
     private $uri; // @var string
     private $content; // @var string
     protected $contentType; // @var string
-    private $restClient; // @var RESTClient
+    private $client; // @var RESTClient
     protected $logger; // @var LoggerInterface
     private $response; // @var RESTResponse
 
     /**
      * Create a Document object.
      *
-     * @param RESTClient $restClient A REST client object.
+     * @param RESTClient $client A REST client object.
      * @param string $uri A document URI.
      */
-    public function __construct($restClient, $uri = null)
+    public function __construct($client, $uri = null)
     {
-        $this->restClient = $restClient;
-        $this->logger = $restClient->getLogger();
+        $this->client = $client;
+        $this->logger = $client->getLogger();
         $this->uri = (string)$uri;
     }
 
@@ -59,7 +59,7 @@ class Document
         try {
             $params = array_merge(array('uri' => $this->uri), $params);
             $request = new RESTRequest('GET', 'documents', $params);
-            $this->response = $this->restClient->send($request);
+            $this->response = $this->client->send($request);
             $this->content = $this->response->getBody();
             $this->contentType = $this->response->getContentType();
             return $this->content;
@@ -87,7 +87,7 @@ class Document
                 $headers = array('Content-type' => $this->getContentType());
             }
             $request = new RESTRequest('PUT', 'documents', $params, $this->content, $headers);
-            $this->response = $this->restClient->send($request);
+            $this->response = $this->client->send($request);
         } catch(\Exception $e) {
             $this->logger->error( $e->getMessage() . ' in ' . $e->getFile() . ' on line ' . $e->getLine() );
             throw $e;
@@ -107,7 +107,7 @@ class Document
         try {
             $params = array('uri' => $this->uri);
             $request = new RESTRequest('DELETE', 'documents', $params);
-            $this->response = $this->restClient->send($request);
+            $this->response = $this->client->send($request);
         } catch(\Exception $e) {
             $this->logger->error(  $e->getMessage() . ' in ' . $e->getFile() . ' on line ' . $e->getLine() );
         }
@@ -124,7 +124,7 @@ class Document
         try {
             $params = array('uri' => $this->uri, 'category' => 'metadata');
             $request = new RESTRequest('GET', 'documents', $params);
-            $this->response = $this->restClient->send($request);
+            $this->response = $this->client->send($request);
             $metadata = new Metadata();
             $metadata->loadFromXML($this->response->getBody());
             return $metadata;
@@ -147,7 +147,7 @@ class Document
             $params = array('uri' => $this->uri, 'category' => 'metadata', 'format' => 'xml');
             $headers = array('Content-type' => 'application/xml');
             $request = new RESTRequest('PUT', 'documents', $params, $metaxml, $headers);
-            $this->response = $this->restClient->send($request);
+            $this->response = $this->client->send($request);
         } catch(\Exception $e) {
             $this->logger->error( $e->getMessage() . ' in ' . $e->getFile() . ' on line ' . $e->getLine() );
         }
@@ -164,7 +164,7 @@ class Document
         try {
             $params = array('uri' => $this->uri, 'category' => 'metadata');
             $request = new RESTRequest('DELETE', 'documents', $params);
-            $this->response = $this->restClient->send($request);
+            $this->response = $this->client->send($request);
         } catch(\Exception $e) {
             $this->logger->error( $e->getMessage() . ' in ' . $e->getFile() . ' on line ' . $e->getLine() );
         }
@@ -267,12 +267,12 @@ class Document
     /**
      * Set the REST client for the document.
      *
-     * @param RESTClient $restClient A REST client object.
+     * @param RESTClient $client A REST client object.
      * @return Document $this
      */
-    public function setConnection($restClient)
+    public function setConnection($client)
     {
-        $this->restClient = $restClient;
+        $this->client = $client;
         return $this;
     }
 
@@ -283,7 +283,7 @@ class Document
      */
     public function getConnection()
     {
-        return $this->restClient;
+        return $this->client;
     }
 
     /**

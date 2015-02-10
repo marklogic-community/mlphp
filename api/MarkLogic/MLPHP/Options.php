@@ -27,7 +27,7 @@ namespace MarkLogic\MLPHP;
 class Options
 {
     private $dom; // @var DOMDocument
-    private $restClient; // @var RESTClient
+    private $client; // @var RESTClient
 
     private $constraints; // @var array of constraint objects
     private $values; // @var array of Values objects
@@ -66,11 +66,11 @@ class Options
     /**
      * Create an Options object.
      *
-     * @param RESTClient $restClient A REST client object.
+     * @param RESTClient $client A REST client object.
      */
-    public function __construct($restClient)
+    public function __construct($client)
     {
-        $this->restClient = $restClient;
+        $this->client = $client;
         $this->dom = new \DOMDocument();
         $this->constraints = array();
         $this->values = array();
@@ -216,7 +216,7 @@ class Options
         try {
             $params = array('format' => 'xml');
             $request = new RESTRequest('GET', 'config/query/' . $name, $params);
-            $response = $this->restClient->send($request);
+            $response = $this->client->send($request);
             return $response->getBody();
         } catch(Exception $e) {
             echo $e->getMessage() . ' in ' . $e->getFile() . ' on line ' . $e->getLine() . PHP_EOL;
@@ -235,7 +235,7 @@ class Options
             $params = array('format' => 'xml');
             $headers = array('Content-type' => 'application/xml');
             $request = new RESTRequest('PUT', 'config/query/' . $name, $params, $this->getAsXML(), $headers);
-            $this->response = $this->restClient->send($request);
+            $this->response = $this->client->send($request);
             //print_r($response);
             return $this;
         } catch(Exception $e) {
@@ -253,7 +253,7 @@ class Options
     {
         try {
             $request = new RESTRequest('DELETE', 'config/query/' . $name);
-            $this->response = $response = $this->restClient->send($request);
+            $this->response = $response = $this->client->send($request);
             return $this;
         } catch(Exception $e) {
             echo $e->getMessage() . ' in ' . $e->getFile() . ' on line ' . $e->getLine() . PHP_EOL;

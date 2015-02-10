@@ -33,13 +33,13 @@ class SearchQuery
      * @todo Make $structured optional, automatically determine whether
      * query is XML or JSON (structured) or simple.
      *
-     * @param RESTClient $restClient A REST client object.
+     * @param RESTClient $client A REST client object.
      * @param string $query A simple or structured search query string.
      * @param boolean $structured Whether the query is a structured query.
      */
     public function __construct($query, $structured)
     {
-        $this->query = $restClient;
+        $this->query = $client;
         $this->structured = $structured;
     }
 

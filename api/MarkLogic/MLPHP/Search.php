@@ -25,7 +25,7 @@ namespace MarkLogic\MLPHP;
  */
 class Search
 {
-    private $restClient; // @var RESTClient
+    private $client; // @var RESTClient
     private $query; // @var string
     private $key; // @var string
     private $element; // @var string
@@ -42,14 +42,14 @@ class Search
     /**
      * Create a Search object.
      *
-     * @param RESTClient $restClient A REST client object.
+     * @param RESTClient $client A REST client object.
      */
     public function __construct(
-        $restClient = null, $start = 1, $pageLength = 10,
+        $client = null, $start = 1, $pageLength = 10,
         $view = 'all', $format = 'xml'
     )
     {
-        $this->restClient = $restClient;
+        $this->client = $client;
         $this->start = (int)$start;
         $this->pageLength = (int)$pageLength;
         $this->view = (string)$view;
@@ -59,11 +59,11 @@ class Search
     /**
      * Set the REST client connection.
      *
-     * @param RESTClient $restClient The RestClient object.
+     * @param RESTClient $client The RestClient object.
      */
-    public function setConnection($restClient)
+    public function setConnection($client)
     {
-        $this->restClient = $restClient;
+        $this->client = $client;
     }
 
     /**
@@ -105,7 +105,7 @@ class Search
         $request = new RESTRequest('GET', 'search', $params);
 
         try {
-            $response = $this->restClient->send($request);
+            $response = $this->client->send($request);
             //print_r($response);
             $results = new SearchResults($response->getBody());
             return $results;
@@ -143,7 +143,7 @@ class Search
                 $this->getParams(), $params
             );
             $request = new RESTRequest('GET', 'search', $params);
-            $response = $this->restClient->send($request);
+            $response = $this->client->send($request);
             $results = new SearchResults($response->getBody());
             return $results;
         } catch(Exception $e) {
@@ -199,7 +199,7 @@ class Search
             //     $this->getParams(), $params
             // );
             $request = new RESTRequest('GET', 'keyvalue', $params);
-            $response = $this->restClient->send($request);
+            $response = $this->client->send($request);
             $results = new SearchResults($response->getBody());
             return $results;
         } catch(Exception $e) {
@@ -230,7 +230,7 @@ class Search
     {
         // Install the API extension
         $resource = "resources/highlight";
-        $this->restClient->installExtension("config/" . $resource, array(
+        $this->client->installExtension("config/" . $resource, array(
             'method' => 'post',
             'post:q?' => 'string',
             'post:class' => 'string',
@@ -254,7 +254,7 @@ class Search
         ));
 
         try {
-            $response = $this->restClient->send($request);
+            $response = $this->client->send($request);
             //print_r($response);
             $results = $response->getBody();
             if ($contentType === "text/plain") {
