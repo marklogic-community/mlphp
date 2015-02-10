@@ -46,6 +46,28 @@ class Database
     }
 
     /**
+     * Get the database name.
+     *
+     * @return string The database name.
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set the database name.
+     *
+     * @param string $name The database name.
+     * @return Database $this
+     */
+    public function setName($name)
+    {
+        $this->name = (string)$name;
+        return $this;
+    }
+
+    /**
      *
      * Clear the database of all content.
      *
