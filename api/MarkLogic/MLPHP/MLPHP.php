@@ -149,6 +149,18 @@ class MLPHP
     }
 
     /**
+     * Return a Database object.
+     */
+    public function getDatabase($name = null)
+    {
+        $name = $name ? $name : $this->config['db'];
+        return new Database(
+            $this->getManageClient(),
+            $name
+        );
+    }
+
+    /**
      * PSR-0 autoloader.
      *
      * Do NOT use if you are using Composer to autoload dependencies.
