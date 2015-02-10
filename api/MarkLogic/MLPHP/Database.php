@@ -36,10 +36,10 @@ class Database
     /**
      * Create a Database object.
      *
-     * @param string $name The database name.
      * @param RESTClient $manageClient A REST client to the management API.
+     * @param string $name The database name.
      */
-    public function __construct($name, $manageClient)
+    public function __construct($manageClient, $name)
     {
         $this->name = $name;
         $this->manageClient = $manageClient;

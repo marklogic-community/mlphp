@@ -96,7 +96,7 @@ abstract class TestBaseSearch extends TestBaseDB
     public static function setIndexes($manageClient)
     {
         parent::$logger->debug('setIndexes');
-        $db = new MLPHP\Database('mlphp-test-db', $manageClient);
+        $db = new MLPHP\Database($manageClient, 'mlphp-test-db');
 
         // Set range attribute indexes
         $session = array(

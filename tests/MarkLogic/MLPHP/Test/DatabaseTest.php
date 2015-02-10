@@ -37,7 +37,7 @@ class DatabaseTest extends TestBaseDB
       $doc = new MLPHP\Document(parent::$client);
       $doc->setContent($content)->setContentType('application/xml');
       $doc->write($uri);
-      $this->db = new MLPHP\Database('mlphp-test-db', parent::$manageClient);
+      $this->db = new MLPHP\Database(parent::$manageClient, 'mlphp-test-db');
     }
 
     function testGetConfig()

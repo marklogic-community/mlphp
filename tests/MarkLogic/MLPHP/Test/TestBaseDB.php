@@ -41,7 +41,7 @@ abstract class TestBaseDB extends TestBase
         self::$manageClient = $mlphp->getManageClient();
 
         // Clear the REST API database
-        $db = new MLPHP\Database($mlphp->config['db'], self::$manageClient);
+        $db = new MLPHP\Database(self::$manageClient, $mlphp->config['db']);
         $db->clear();
 
     }
