@@ -54,7 +54,7 @@ class MLPHPTest extends TestBase
     /**
      * @depends testConstructMerge
      */
-    function testNewClient($mlphp)
+    function testGetClient($mlphp)
     {
         $client = $mlphp->getClient();
         $this->assertInstanceOf('MarkLogic\MLPHP\RESTClient', $client);
@@ -63,10 +63,28 @@ class MLPHPTest extends TestBase
     /**
      * @depends testConstructMerge
      */
-    function testNewManageClient($mlphp)
+    function testGetManageClient($mlphp)
     {
         $manageClient = $mlphp->getManageClient();
         $this->assertInstanceOf('MarkLogic\MLPHP\RESTClient', $manageClient);
+    }
+
+    /**
+     * @depends testConstructMerge
+     */
+    function testGetDocument($mlphp)
+    {
+        $doc = $mlphp->getDocument();
+        $this->assertInstanceOf('MarkLogic\MLPHP\Document', $doc);
+    }
+
+    /**
+     * @depends testConstructMerge
+     */
+    function testGetDatabase($mlphp)
+    {
+        $db = $mlphp->getDatabase();
+        $this->assertInstanceOf('MarkLogic\MLPHP\Database', $db);
     }
 
 }
