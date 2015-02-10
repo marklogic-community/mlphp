@@ -32,8 +32,8 @@ abstract class TestBaseSearch extends TestBaseDB
         $subdirs = array('110', '111', '112'); // directories to import from
 
         // Loop through files from subdirectories
+        $count = 0;
         foreach($subdirs as $subdir) {
-            $count = 0;
             $dir = $rootdir . DIRECTORY_SEPARATOR . $subdir;
             if ($handle = opendir($dir)) {
                 echo "Writing files from directory: " . $dir . "<br />";
@@ -58,9 +58,6 @@ abstract class TestBaseSearch extends TestBaseDB
                         $count++;
                         echo $count . ': ' . $uri . ' (' . $type . ')<br />' . PHP_EOL;
                         // Write content to database via REST client
-                        if ($count++ >= 200) {
-                            break;
-                        }
                         $doc->write($uri, $params);
                     }
                 }
@@ -68,13 +65,38 @@ abstract class TestBaseSearch extends TestBaseDB
             }
         }
 
-        parent::$logger->debug('Files loaded: ' . $count . PHP_EOL);
+        parent::$logger->debug('XML files loaded: ' . $count . PHP_EOL);
+
+        // Load json files
+        $dir = __DIR__ . DIRECTORY_SEPARATOR . 'docs' . DIRECTORY_SEPARATOR . 'nv';
+
+        $count = 0;
+        if ($handle = opendir($dir)) {
+            echo "Writing files from directory: " . $dir . "<br />";
+            $doc = new MLPHP\Document($client);
+            while (false !== ($file = readdir($handle))) {
+                if (substr($file, 0, 1) !== ".") {
+                    $doc->setContentType("application/json");
+                    $content = $doc->setContentFile($dir . '/' . $file)->getContent();
+                    $uri = '/legislators/' . $file; // URI example: '/legislators/Care.json'
+                    $obj = json_decode($content);
+                    $params = array("collection" => $obj->{'old_roles'}->{'2009-2010'}[0]->party);
+                    $count++;
+                    echo $count . ': ' . $uri . ' (' . $type . ')<br />' . PHP_EOL;
+                    // Write content to database via REST client
+                    $doc->write($uri, $params);
+                }
+            }
+            closedir($handle);
+        }
+
+        parent::$logger->debug('JSON files loaded: ' . $count . PHP_EOL);
     }
 
     public static function setIndexes($manageClient)
     {
         parent::$logger->debug('setIndexes');
-        $db = new MLPHP\Database('mlphp-test', $manageClient);
+        $db = new MLPHP\Database('mlphp-test-db', $manageClient);
 
         // Set range attribute indexes
         $session = array(
@@ -212,6 +234,7 @@ abstract class TestBaseSearch extends TestBaseDB
         $options->setExtracts($extracts);
 
         $options->setReturnSimilar('true');
+        $options->setReturnQuery('true');
 
         // Term setting
         //$term = new MLPHP\Term("no-results");
