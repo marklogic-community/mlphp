@@ -69,6 +69,7 @@ class MLPHP
             'version' => 'v1',
             'manageVersion' => 'v2',
             'auth' => 'digest',
+            'options' => 'mlphp-options',
             'logger' => new NullLogger()
         ), $config);
 
@@ -161,9 +162,23 @@ class MLPHP
     }
 
     /**
+     * Return a Options object.
+     */
+    public function getOptions($name = null)
+    {
+        $name = $name ? $name : $this->config['options'];
+        return new Options(
+            $this->getClient(),
+            $name
+        );
+    }
+
+    /**
      * PSR-0 autoloader.
      *
      * Do NOT use if you are using Composer to autoload dependencies.
+     *
+     * @todo Delete this if we are requiring Composer for MLPHP.
      *
      * @param $className
      */

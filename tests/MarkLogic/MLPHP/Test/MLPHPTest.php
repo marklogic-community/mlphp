@@ -87,5 +87,14 @@ class MLPHPTest extends TestBase
         $this->assertInstanceOf('MarkLogic\MLPHP\Database', $db);
     }
 
+    /**
+     * @depends testConstructMerge
+     */
+    function testGetOptions($mlphp)
+    {
+        $options = $mlphp->getOptions();
+        $this->assertInstanceOf('MarkLogic\MLPHP\Options', $options);
+    }
+
 }
 
