@@ -17,7 +17,7 @@ limitations under the License.
 namespace MarkLogic\MLPHP;
 
 /**
- * Represents search options.
+ * Represents query options for search.
  *
  * @package MLPHP
  * @author Mike Wooldridge <mike.wooldridge@marklogic.com>
@@ -28,6 +28,7 @@ class Options
 {
     private $dom; // @var DOMDocument
     private $client; // @var RESTClient
+    private $name; // @var string
 
     private $constraints; // @var array of constraint objects
     private $values; // @var array of Values objects
@@ -67,13 +68,37 @@ class Options
      * Create an Options object.
      *
      * @param RESTClient $client A REST client object.
+     * @param string $name Name of the options.
      */
-    public function __construct($client)
+    public function __construct($client, $name = null)
     {
         $this->client = $client;
+        $this->name = $name;
         $this->dom = new \DOMDocument();
         $this->constraints = array();
         $this->values = array();
+    }
+
+    /**
+     * Get the options name.
+     *
+     * @return string The options name.
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set the options name.
+     *
+     * @param string $name The options name.
+     * @return Options $this
+     */
+    public function setName($name)
+    {
+        $this->name = (string)$name;
+        return $this;
     }
 
     /**
@@ -127,9 +152,9 @@ class Options
     }
 
     /**
-     * Get the search options as XML.
+     * Get the query options as XML.
      *
-     * @return string The search options as XML.
+     * @return string The query options as XML.
      */
     public function getAsXML()
     {
@@ -206,13 +231,14 @@ class Options
     }
 
     /**
-     * Read the search options from the database.
+     * Read the query options from the database.
      *
-     * @param string $name The search options name.
-     * @return string The search options as XML.
+     * @param string $name The query options name.
+     * @return string The query options as XML.
      */
-    public function read($name = 'all')
+    public function read($name)
     {
+        $name = $name ? $name : $this->name;
         try {
             $params = array('format' => 'xml');
             $request = new RESTRequest('GET', 'config/query/' . $name, $params);
@@ -224,13 +250,14 @@ class Options
     }
 
     /**
-     * Write the search options to the database.
+     * Write the query options to the database.
      *
-     * @param string $name The search options name.
+     * @param string $name The query options name.
      * @return Options $this
      */
-    public function write($name = 'all')
+    public function write($name)
     {
+        $name = $name ? $name : $this->name;
         try {
             $params = array('format' => 'xml');
             $headers = array('Content-type' => 'application/xml');
@@ -244,13 +271,14 @@ class Options
     }
 
     /**
-     * Delete the search options from the database.
+     * Delete the query options from the database.
      *
-     * @param string $name The search options name.
+     * @param string $name The query options name.
      * @return Options $this
      */
     public function delete($name)
     {
+        $name = $name ? $name : $this->name;
         try {
             $request = new RESTRequest('DELETE', 'config/query/' . $name);
             $this->response = $response = $this->client->send($request);
@@ -569,9 +597,9 @@ class Options
     }
 
     /**
-     * Get the search options.
+     * Get the query options.
      *
-     * @return array The search options.
+     * @return array The query options.
      */
     public function getSearchOptions()
     {
@@ -579,11 +607,11 @@ class Options
     }
 
     /**
-     * Set the search options.
+     * Set the query options.
      *
      * @see http://docs.marklogic.com/search:search#opt-search-option
      *
-     * @param string|array $searchOptions The search options as a string (single option) or array of strings.
+     * @param string|array $searchOptions The query options as a string (single option) or array of strings.
      */
     public function setSearchOptions($searchOptions)
     {
