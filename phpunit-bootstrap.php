@@ -6,7 +6,7 @@ use Monolog\Handler\StreamHandler;
 
 // Create a logger for tests
 $logger = new Logger('test');
-$logger->pushHandler(new StreamHandler('php://stderr', Logger::ERROR));
+$logger->pushHandler(new StreamHandler('php://stderr', Logger::DEBUG));
 
 // Global config properties for tests
 $mlphp = new MLPHP\MLPHP([
@@ -34,7 +34,7 @@ register_shutdown_function(function(){
     // Delete REST API
     $api = $mlphp->getAPI();
     if ($api->exists()) {
-        $api->delete();
+        //$api->delete();
     }
 });
 

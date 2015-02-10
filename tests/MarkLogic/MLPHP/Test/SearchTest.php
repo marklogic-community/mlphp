@@ -29,13 +29,13 @@ class SearchTest extends TestBaseSearch
     {
         parent::setUp();
 
-        $doc = new MLPHP\XMLDocument(parent::$client, "/one.xml");
-        $doc->setContent('<Hello>World</Hello>');
-        $doc->write("/one.xml");
+        // $doc = new MLPHP\XMLDocument(parent::$client, "/one.xml");
+        // $doc->setContent('<Hello>World</Hello>');
+        // $doc->write("/one.xml");
 
-        // parent::loadDocs(parent::$client);
-        // parent::setIndexes(parent::$manageClient);
-        // parent::setOptions(parent::$client);
+        parent::loadDocs(parent::$client);
+        parent::setIndexes(parent::$manageClient);
+        parent::setOptions(parent::$client);
 
     }
 
@@ -51,41 +51,75 @@ class SearchTest extends TestBaseSearch
 
         // print_r($resp);
 
-        //$results = $search->retrieve("act");
+        // $search = new MLPHP\Search(parent::$client, 1, 3);
+        // $results = $search->retrieve("spotsylvania", array(
+        //     'options' => 'test'
+        // ));
+        // print_r($results);
 
-        //print_r($results);
+        // $search = new MLPHP\Search(parent::$client, 1, 5);
+        // $results = $search->retrieve("", array(
+        //     'collection' => 'Republican',
+        //     'options' => 'test'
+        // ));
+        // print_r($results);
 
-        //return;
+        // $search = new MLPHP\Search(parent::$client, 1, 5);
+        // $results = $search->retrieve("services", array(
+        //     'directory' => '/bills/112',
+        //     'options' => 'test'
+        // ));
+        // print_r($results);
 
-        $search = new MLPHP\Search(parent::$client, 0, 100);
+        $search = new MLPHP\Search(parent::$client, 1, 2);
+        $results = $search->retrieveKeyValue("id", "NVL000005");//, array(
+        //     'options' => 'test'
+        // ));
+        print_r($results);
 
-        // results
-        $results = $search->retrieve("world");
-        $this->assertEquals($results->getTotal(), 1);
+        $search = new MLPHP\Search(parent::$client, 1, 5);
+        $results = $search->retrieveKeyValueElement("subject", "", "Taxation"); //, array(
+          //     'options' => 'test'
+          // ));
+        print_r($results);
 
-        // no results
-        $results = $search->retrieve("universe");
-        $this->assertEquals($results->getTotal(), 0);
+        $search = new MLPHP\Search(parent::$client, 1, 3);
+        $results = $search->retrieveKeyValueElement("bill", "number", "104");//, array(
+        //     'options' => 'test'
+        // ));
+        print_r($results);
 
-        // results, structured query
-        $results = $search->retrieve('
-            <query xmlns="http://marklogic.com/appservices/search">
-                <term-query>
-                    <text>world</text>
-                </term-query>
-            </query>
-        ', array(), true);
-        $this->assertEquals($results->getTotal(), 1);
+        return;
 
-        // no results, structured query
-        $results = $search->retrieve('
-            <query xmlns="http://marklogic.com/appservices/search">
-                <term-query>
-                    <text>universe</text>
-                </term-query>
-            </query>
-        ', array(), true);
-        $this->assertEquals($results->getTotal(), 0);
+        // $search = new MLPHP\Search(parent::$client, 0, 100);
+
+        // // results
+        // $results = $search->retrieve("world");
+        // $this->assertEquals($results->getTotal(), 1);
+
+        // // no results
+        // $results = $search->retrieve("universe");
+        // $this->assertEquals($results->getTotal(), 0);
+
+        // // results, structured query
+        // $results = $search->retrieve('
+        //     <query xmlns="http://marklogic.com/appservices/search">
+        //         <term-query>
+        //             <text>world</text>
+        //         </term-query>
+        //     </query>
+        // ', array(), true);
+        // $this->assertEquals($results->getTotal(), 1);
+
+        // // no results, structured query
+        // $results = $search->retrieve('
+        //     <query xmlns="http://marklogic.com/appservices/search">
+        //         <term-query>
+        //             <text>universe</text>
+        //         </term-query>
+        //     </query>
+        // ', array(), true);
+        // $this->assertEquals($results->getTotal(), 0);
 
         /* highlight extension is broken in ML7
         $search = new MLPHP\Search($this->client, 0, 100);

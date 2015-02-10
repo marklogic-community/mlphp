@@ -125,16 +125,24 @@ class Search
      */
     public function retrieveKeyValue($key, $value, $params = array())
     {
-
+        // /v1/keyvalue is deprecated, use /v1/search with structured
         $this->key = (string)$key;
         $this->value = (string)$value;
+        $query = '<query xmlns="http://marklogic.com/appservices/search">
+                    <container-query>
+                      <json-property name="' . $this->key . '" ns="" />
+                      <term-query>
+                        <text>' . $this->value . '</text>
+                      </term-query>
+                    </container-query>
+                  </query>';
 
         try {
             $params = array_merge(
-                array('key' => $this->key, 'value' => $this->value),
+                array('structuredQuery' => $query),
                 $this->getParams(), $params
             );
-            $request = new RESTRequest('GET', 'keyvalue', $params);
+            $request = new RESTRequest('GET', 'search', $params);
             $response = $this->restClient->send($request);
             $results = new SearchResults($response->getBody());
             return $results;
@@ -158,10 +166,21 @@ class Search
         $element, $attribute, $value, $params = array()
     )
     {
-
         $this->element = (string)$element;
         $this->attribute = (string)$attribute;
         $this->value = (string)$value;
+        // /v1/keyvalue is deprecated, use /v1/search with structured
+        // $query = '<query xmlns="http://marklogic.com/appservices/search">
+        //             <container-query>
+        //               <element name="' . $this->element . '" ns="" />';
+        // $query .= $this->attribute ?
+        //     '<attribute name=' . $this->attribute . ' ns="" />' :
+        //     '';
+        // $query .= '<term-query>
+        //                 <text>' . $this->value . '</text>
+        //               </term-query>
+        //             </container-query>
+        //           </query>';
 
         try {
             // Only include attribute in final array if it is set
@@ -170,6 +189,15 @@ class Search
             $params = array_merge(
                 array('element' => $this->element, 'value' => $this->value),
                 $array_attr, $this->getParams(), $params);
+            $request = new RESTRequest('GET', 'keyvalue', $params);
+
+            $params = array_merge(
+                array('element' => $this->element, 'value' => $this->value),
+                $array_attr, $this->getParams(), $params);
+            // $params = array_merge(
+            //     array('structuredQuery' => $query),
+            //     $this->getParams(), $params
+            // );
             $request = new RESTRequest('GET', 'keyvalue', $params);
             $response = $this->restClient->send($request);
             $results = new SearchResults($response->getBody());
