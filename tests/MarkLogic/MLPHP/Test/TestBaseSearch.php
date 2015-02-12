@@ -26,7 +26,7 @@ use MarkLogic\MLPHP;
 abstract class TestBaseSearch extends TestBaseDB
 {
 
-    public static function loadDocs($client)
+    public static function loadDocsXML($client)
     {
         $rootdir = __DIR__ . DIRECTORY_SEPARATOR . 'docs';
         $subdirs = array('110', '111', '112'); // directories to import from
@@ -66,7 +66,10 @@ abstract class TestBaseSearch extends TestBaseDB
         }
 
         parent::$logger->debug('XML files loaded: ' . $count . PHP_EOL);
+    }
 
+    public static function loadDocsJSON($client)
+    {
         // Load json files
         $dir = __DIR__ . DIRECTORY_SEPARATOR . 'docs' . DIRECTORY_SEPARATOR . 'nv';
 
