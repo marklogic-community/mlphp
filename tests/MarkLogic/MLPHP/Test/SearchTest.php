@@ -29,37 +29,207 @@ class SearchTest extends TestBaseSearch
     {
         parent::setUp();
 
-        // $doc = new MLPHP\XMLDocument(parent::$client, "/one.xml");
-        // $doc->setContent('<Hello>World</Hello>');
-        // $doc->write("/one.xml");
 
-        parent::loadDocs(parent::$client);
-        parent::setIndexes(parent::$manageClient);
-        parent::setOptions(parent::$client);
-
+        //parent::loadDocsXML(parent::$client);
+        //parent::setIndexes(parent::$manageClient);
+        //parent::setOptions(parent::$client);
     }
 
-    function testSearch()
+    function testSimpleText()
     {
+        parent::$logger->debug('testSimpleText');
+        $options = new MLPHP\Options(parent::$client, 'simpleText');
+        $options->write();
+        $search = new MLPHP\Search(parent::$client, 1, 3);
+        $results = $search->retrieve('spotsylvania', array('options' => 'simpleText'));
+        $this->assertEquals(1, $results->getTotal());
+    }
 
-        // print('hello');
+    function testCollection()
+    {
+        parent::$logger->debug('testCollection');
+        $options = new MLPHP\Options(parent::$client, 'testCollection');
+        $options->write();
+        $search = new MLPHP\Search(parent::$client, 1, 3);
+        $results = $search->retrieve('', array(
+            'options' => 'testCollection',
+            'collection' => 'h'
+        ));
+        $this->assertEquals(19, $results->getTotal());
+    }
 
-        // $params = array('uri' => '/bills/112/h1208.xml', 'format' => 'xml');
-        // $headers = array('Content-type' => 'application/xml');
-        // $request = new MLPHP\RESTRequest('GET', 'documents', $params, '', $headers);
-        // $resp = parent::$client->send($request);
+    function testDirectory()
+    {
+        parent::$logger->debug('testDirectory');
+        $options = new MLPHP\Options(parent::$client, 'testDirectory');
+        $options->write();
+        $search = new MLPHP\Search(parent::$client, 1, 3);
+        $results = $search->retrieve('', array(
+            'options' => 'testDirectory',
+            'directory' => '/bills/110'
+        ));
+        $this->assertEquals(6, $results->getTotal());
+    }
 
-        // print_r($resp);
+    function testRangeElement()
+    {
+        parent::$logger->debug('testElement');
+        $options = new MLPHP\Options(parent::$client, 'testElement');
+        $constraint = new MLPHP\RangeConstraint(
+            'status', 'xs:string', 'true', 'status'
+        );
+        $options->addConstraint($constraint)->write();
+        $search = new MLPHP\Search(parent::$client, 1, 3);
+        $results = $search->retrieve('status:enacted', array(
+            'options' => 'testElement'
+        ));
+        $this->assertEquals(2, $results->getTotal());
+    }
+
+    function testRangeAttribute()
+    {
+        parent::$logger->debug('testAttribute');
+        $options = new MLPHP\Options(parent::$client, 'testAttribute');
+        $constraint = new MLPHP\RangeConstraint(
+            'number', 'xs:int', 'false', 'bill', '', 'number'
+        );
+        $options->addConstraint($constraint)->write();
+        $search = new MLPHP\Search(parent::$client, 1, 3);
+        $results = $search->retrieve('number:1', array(
+            'options' => 'testAttribute'
+        ));
+        $this->assertEquals(2, $results->getTotal());
+    }
+
+    function testFacets()
+    {
+        parent::$logger->debug('testFacets');
+        $options = new MLPHP\Options(parent::$client, 'testFacets');
+        $constraint = new MLPHP\RangeConstraint(
+            'subject', 'xs:string', 'true', 'subject'
+        );
+        $constraint->setFacetOptions(
+            array('descending', 'frequency-order', 'limit=5')
+        );
+        $options->addConstraint($constraint)->write();
+        $search = new MLPHP\Search(parent::$client, 1, 3);
+        $results = $search->retrieve('', array(
+            'options' => 'testFacets'
+        ));
+        $facetVals = $results->getFacet('subject')->getFacetValues();
+        $this->assertCount(5, $facetVals);
+        $this->assertEquals(
+            'Government information and archives',
+            $facetVals[0]->getName()
+        );
+        $this->assertGreaterThan(
+            $facetVals[4]->getCount(),
+            $facetVals[0]->getCount()
+        );
+    }
+
+    function testExtractConstraint()
+    {
+        parent::$logger->debug('testExtractConstraint');
+        $options = new MLPHP\Options(parent::$client, 'testExtractConstraint');
+        $constraint = new MLPHP\RangeConstraint(
+            'title', 'xs:string', 'false', 'title'
+        );
+        $options->addConstraint($constraint);
+        $extracts = new MLPHP\Extracts();
+        $extracts->addConstraints(array('title'));
+        $options->setExtracts($extracts)->write();
+        $search = new MLPHP\Search(parent::$client, 1, 3);
+        $results = $search->retrieve('', array(
+            'options' => 'testExtractConstraint'
+        ));
+        $this->assertEquals(
+            'Adoption Information Act',
+            $results->getResultByIndex(1)->getMetadata('title')[0]
+        );
+    }
+
+    function testExtractQName()
+    {
+        // NOT WORKING: https://github.com/marklogic/mlphp/issues/6
+        // parent::$logger->debug('testExtractQName');
+        // $options = new MLPHP\Options(parent::$client, 'testExtractQName');
+        // $constraint = new MLPHP\RangeConstraint(
+        //     'title', 'xs:string', 'false', 'title'
+        // );
+        // $options->addConstraint($constraint);
+        // $extracts = new MLPHP\Extracts();
+        // $extracts->addQName('status');
+        // $extracts->addConstraints(array('title'));
+        // $options->setExtracts($extracts)->write();
+        // $search = new MLPHP\Search(parent::$client, 1, 2);
+        // $results = $search->retrieve('', array(
+        //     'options' => 'testExtractQName',
+        //     'collection' => 'h'
+        // ));
+        // print_r($results);
+        // $this->assertEquals(
+        //     '',
+        //     $results->getResultByIndex(1)->getMetadata('status')[0]
+        // );
+    }
+
+    function testReturnQtext()
+    {
+        parent::$logger->debug('testReturnQtext');
+        $options = new MLPHP\Options(parent::$client, 'testReturnQtext');
+        // Default is true so set false and check
+        $options->setReturnQtext('false')->write();
+        $search = new MLPHP\Search(parent::$client, 1, 1);
+        $results = $search->retrieve('act', array(
+            'options' => 'testReturnQtext'
+        ));
+        $this->assertNull($results->getQtext());
+    }
+
+    function testReturnQuery()
+    {
+        parent::$logger->debug('testReturnQuery');
+        $options = new MLPHP\Options(parent::$client, 'testReturnQuery');
+        $options->setReturnQuery('true')->write();
+        $search = new MLPHP\Search(parent::$client, 1, 1);
+        $results = $search->retrieve('bill', array(
+            'options' => 'testReturnQuery'
+        ));
+        $this->assertNotNull($results->getQuery());
+    }
+
+    function testReturnResults()
+    {
+        // NOT WORKING https://github.com/marklogic/mlphp/issues/7
+        // parent::$logger->debug('testReturnResults');
+        // $options = new MLPHP\Options(parent::$client, 'testReturnResults');
+        // // Default is true so set false and check
+        // $options->setReturnResults('false')->write();
+        // print_r($options->getAsXML());
+        // $search = new MLPHP\Search(parent::$client, 1, 2);
+        // $results = $search->retrieve('act', array(
+        //     'options' => 'testReturnResults'
+        // ));
+        // $this->assertNull($results->getQuery());
+    }
+        // collection search
+
+
+        // directory search
+
+
+        // element constraint search
+
+
+        // attribute constraint search
+
+
+        // extract metadata
+
 
         // $search = new MLPHP\Search(parent::$client, 1, 3);
         // $results = $search->retrieve("spotsylvania", array(
-        //     'options' => 'test'
-        // ));
-        // print_r($results);
-
-        // $search = new MLPHP\Search(parent::$client, 1, 5);
-        // $results = $search->retrieve("", array(
-        //     'collection' => 'Republican',
         //     'options' => 'test'
         // ));
         // print_r($results);
@@ -71,69 +241,44 @@ class SearchTest extends TestBaseSearch
         // ));
         // print_r($results);
 
-        $search = new MLPHP\Search(parent::$client, 1, 2);
-        $results = $search->retrieveKeyValue("id", "NVL000005");//, array(
-        //     'options' => 'test'
+        // $search = new MLPHP\Search(parent::$client, 1, 5);
+        // $results = $search->retrieveKeyValueElement("subject", "", "Taxation", array(
+        //      'options' => 'test'
         // ));
-        print_r($results);
+        // print_r($results);
 
-        $search = new MLPHP\Search(parent::$client, 1, 5);
-        $results = $search->retrieveKeyValueElement("subject", "", "Taxation"); //, array(
-          //     'options' => 'test'
-          // ));
-        print_r($results);
-
-        $search = new MLPHP\Search(parent::$client, 1, 3);
-        $results = $search->retrieveKeyValueElement("bill", "number", "104");//, array(
-        //     'options' => 'test'
+        // $search = new MLPHP\Search(parent::$client, 1, 3);
+        // $results = $search->retrieveKeyValueElement("bill", "number", "104", array(
+        //      'options' => 'test'
         // ));
-        print_r($results);
+        // print_r($results);
 
-        return;
+    //}
 
-        // $search = new MLPHP\Search(parent::$client, 0, 100);
 
-        // // results
-        // $results = $search->retrieve("world");
-        // $this->assertEquals($results->getTotal(), 1);
+    // function testSearchJSON()
+    // {
 
-        // // no results
-        // $results = $search->retrieve("universe");
-        // $this->assertEquals($results->getTotal(), 0);
+        // parent::loadDocsJSON(parent::$client);
 
-        // // results, structured query
-        // $results = $search->retrieve('
-        //     <query xmlns="http://marklogic.com/appservices/search">
-        //         <term-query>
-        //             <text>world</text>
-        //         </term-query>
-        //     </query>
-        // ', array(), true);
-        // $this->assertEquals($results->getTotal(), 1);
+        // $search = new MLPHP\Search(parent::$client, 1, 5);
+        // $results = $search->retrieve("", array(
+        //     'collection' => 'Republican'
+        // ));
+        // print_r($results);
 
-        // // no results, structured query
-        // $results = $search->retrieve('
-        //     <query xmlns="http://marklogic.com/appservices/search">
-        //         <term-query>
-        //             <text>universe</text>
-        //         </term-query>
-        //     </query>
-        // ', array(), true);
-        // $this->assertEquals($results->getTotal(), 0);
+        // $search = new MLPHP\Search(parent::$client, 1, 2);
+        // $results = $search->retrieveKeyValue("id", "NVL000005");
+        // print_r($results);
 
-        /* highlight extension is broken in ML7
-        $search = new MLPHP\Search($this->client, 0, 100);
-        $results = $search->highlight('<hello>World</hello>', 'text/plain', 'hit', 'world');
-        $this->assertEquals('<hello><span class="hit">World</span></hello>', $results);
+        // $search = new MLPHP\Search(parent::$client, 1, 5);
+        // $results = $search->retrieveKeyValueElement("subject", "", "Taxation");
+        // print_r($results);
 
-        $search = new MLPHP\Search($this->client, 0, 100);
-        $results = $search->highlight('I like spinach pie<br>', 'text/plain', 'hot', 'liked');
-        $this->assertEquals('I <span class="hot">like</span> spinach pie<br>', $results);
+        // $search = new MLPHP\Search(parent::$client, 1, 3);
+        // $results = $search->retrieveKeyValueElement("bill", "number", "104");
+        // print_r($results);
 
-        $search = new MLPHP\Search($this->client, 0, 100);
-        $results = $search->highlight('<g>I like spinach pie</g>', 'text/xml', 'hot', 'liked');
-        $this->assertXmlStringEqualsXmlString('<g>I <span class="hot">like</span> spinach pie</g>', $results);
-        */
-    }
+    //}
 }
 
