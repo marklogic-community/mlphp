@@ -105,50 +105,60 @@ class Options
      * Add a constraint.
      *
      * @param mixed $constraint constraint object.
+     * @return Options $this
      */
     public function addConstraint($constraint)
     {
         $this->constraints[] = $constraint;
+        return $this;
     }
 
     /**
      * Add a values setting.
      *
      * @param Values $values Values object.
+     * @return Options $this
      */
     public function addValues($values)
     {
         $this->values[] = $values;
+        return $this;
     }
 
     /**
      * Set the metadata extracts.
      *
      * @param Extracts $extracts A metadata extracts object.
+     * @return Options $this
      */
     public function setExtracts($extracts)
     {
         $this->extracts = $extracts;
+        return $this;
     }
 
     /**
      * Set the transform-results setting.
      *
      * @param TransformResults $transformResults A TransformResults object.
+     * @return Options $this
      */
     public function setTransformResults($transformResults)
     {
         $this->transformResults = $transformResults;
+        return $this;
     }
 
     /**
      * Set the term setting.
      *
      * @param Term $term A Term object.
+     * @return Options $this
      */
     public function setTerm($term)
     {
         $this->term = $term;
+        return $this;
     }
 
     /**
@@ -304,10 +314,12 @@ class Options
      * @see http://docs.marklogic.com/search:search#opt-additional-query
      *
      * @param string $additionalQuery The additional-query setting.
+     * @return Options $this
      */
     public function setAdditionalQuery($additionalQuery)
     {
         $this->additionalQuery = (string)$additionalQuery;
+        return $this;
     }
 
     /**
@@ -326,10 +338,12 @@ class Options
      * @see http://docs.marklogic.com/search:search#opt-concurrency-level
      *
      * @param int $concurrencyLevel The concurrency level.
+     * @return Options $this
      */
     public function setConcurrencyLevel($concurrencyLevel)
     {
         $this->concurrencyLevel = (int)$concurrencyLevel;
+        return $this;
     }
 
     /**
@@ -348,10 +362,12 @@ class Options
      * @see http://docs.marklogic.com/search:search#opt-debug
      *
      * @param string $debug The debug setting, 'true' or 'false'.
+     * @return Options $this
      */
     public function setDebug($debug)
     {
         $this->debug = (string)$debug;
+        return $this;
     }
 
     /**
@@ -370,10 +386,12 @@ class Options
      * @see http://docs.marklogic.com/search:search#opt-forest
      *
      * @param int $forest The forest ID.
+     * @return Options $this
      */
     public function setForest($forest)
     {
         $this->forest = (int)$forest;
+        return $this;
     }
 
     /**
@@ -392,10 +410,12 @@ class Options
      * @see http://docs.marklogic.com/search:search#opt-page-length
      *
      * @param int $pageLength The page length.
+     * @return Options $this
      */
     public function setPageLength($pageLength)
     {
         $this->pageLength = (int)$pageLength;
+        return $this;
     }
 
     /**
@@ -414,10 +434,12 @@ class Options
      * @see http://docs.marklogic.com/search:search#opt-quality-weight
      *
      * @param float $qualityWeight The quality weight.
+     * @return Options $this
      */
     public function setQualityWeight($qualityWeight)
     {
         $this->qualityWeight = (float)$qualityWeight;
+        return $this;
     }
 
     /**
@@ -436,10 +458,12 @@ class Options
      * @see http://docs.marklogic.com/search:search#opt-return-constraints
      *
      * @param string $returnConstraints The return-constraints setting, 'true' or 'false'.
+     * @return Options $this
      */
     public function setReturnConstraints($returnConstraints)
     {
         $this->returnConstraints = (string)$returnConstraints;
+        return $this;
     }
 
     /**
@@ -458,10 +482,12 @@ class Options
      * @see http://docs.marklogic.com/search:search#opt-return-facets
      *
      * @param string $returnFacets The return-facets setting, 'true' or 'false'.
+     * @return Options $this
      */
     public function setReturnFacets($returnFacets)
     {
         $this->returnFacets = (string)$returnFacets;
+        return $this;
     }
 
     /**
@@ -480,10 +506,12 @@ class Options
      * @see http://docs.marklogic.com/search:search#opt-return-metrics
      *
      * @param string $returnMetrics The return-metrics setting, 'true' or 'false'.
+     * @return Options $this
      */
     public function setReturnMetrics($returnMetrics)
     {
         $this->returnMetrics = (string)$returnMetrics;
+        return $this;
     }
 
     /**
@@ -502,10 +530,12 @@ class Options
      * @see http://docs.marklogic.com/search:search#opt-return-plan
      *
      * @param string $returnPlan The return-plan setting, 'true' or 'false'.
+     * @return Options $this
      */
     public function setReturnPlan($returnPlan)
     {
         $this->returnPlan = (string)$returnPlan;
+        return $this;
     }
 
     /**
@@ -524,10 +554,12 @@ class Options
      * @see http://docs.marklogic.com/search:search#opt-return-qtext
      *
      * @param string $returnQtext The return-qtext setting, 'true' or 'false'.
+     * @return Options $this
      */
     public function setReturnQtext($returnQtext)
     {
         $this->returnQtext = (string)$returnQtext;
+        return $this;
     }
 
     /**
@@ -546,10 +578,12 @@ class Options
      * @see http://docs.marklogic.com/search:search#opt-return-query
      *
      * @param string $returnQuery The return-query setting, 'true' or 'false'.
+     * @return Options $this
      */
     public function setReturnQuery($returnQuery)
     {
         $this->returnQuery = (string)$returnQuery;
+        return $this;
     }
 
     /**
@@ -565,13 +599,16 @@ class Options
     /**
      * Set the return-results setting.
      *
+     * @todo broken, setting to 'false' doesn't stop results from returning
      * @see http://docs.marklogic.com/search:search#opt-return-results
      *
      * @param string $returnResults The return-results setting, 'true' or 'false'.
+     * @return Options $this
      */
     public function setReturnResults($returnResults)
     {
         $this->returnResults = (string)$returnResults;
+        return $this;
     }
 
     /**
@@ -590,10 +627,12 @@ class Options
      * @see http://docs.marklogic.com/search:search#opt-return-similar
      *
      * @param string $returnSimilar The return-similar setting, 'true' or 'false'.
+     * @return Options $this
      */
     public function setReturnSimilar($returnSimilar)
     {
         $this->returnSimilar = (string)$returnSimilar;
+        return $this;
     }
 
     /**
@@ -612,6 +651,7 @@ class Options
      * @see http://docs.marklogic.com/search:search#opt-search-option
      *
      * @param string|array $searchOptions The query options as a string (single option) or array of strings.
+     * @return Options $this
      */
     public function setSearchOptions($searchOptions)
     {
@@ -621,6 +661,7 @@ class Options
             $this->searchOptions[] = $searchOptions;
             $this->searchOptions = array_unique($this->searchOptions);
         }
+        return $this;
     }
 
     /**
