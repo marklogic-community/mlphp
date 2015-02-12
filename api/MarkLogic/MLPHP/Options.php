@@ -246,7 +246,7 @@ class Options
      * @param string $name The query options name.
      * @return string The query options as XML.
      */
-    public function read($name)
+    public function read($name = null)
     {
         $name = $name ? $name : $this->name;
         try {
@@ -265,7 +265,7 @@ class Options
      * @param string $name The query options name.
      * @return Options $this
      */
-    public function write($name)
+    public function write($name = null)
     {
         $name = $name ? $name : $this->name;
         try {
