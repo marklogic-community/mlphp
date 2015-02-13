@@ -58,6 +58,76 @@ class SearchTest extends TestBaseSearch
         $this->assertEquals(19, $results->getTotal());
     }
 
+    function testCollectionConstraint()
+    {
+        parent::$logger->debug('testCollectionConstraint');
+        // note: collection-lexicon db prop must be set to true
+        // @todo test collection constraints with prefixes
+        // http://developer.marklogic.com/blog/collection-constraints-are-cool
+        $options = new MLPHP\Options(parent::$client, 'testCollectionConstraint');
+        $constraint = new MLPHP\CollectionConstraint(
+            'type', ''
+        );
+        $options->addConstraint($constraint)->write();
+        $search = new MLPHP\Search(parent::$client, 1, 3);
+        $results = $search->retrieve('type:h', array(
+            'options' => 'testCollectionConstraint'
+        ));
+        $this->assertEquals(19, $results->getTotal());
+    }
+
+    function testElementQueryConstraint()
+    {
+        parent::$logger->debug('testElementQueryConstraint');
+        // @todo element-query deprecated, use container constraint
+        // http://docs.marklogic.com/guide/rest-dev/appendixb#id_96729
+        $options = new MLPHP\Options(parent::$client, 'testElementQueryConstraint');
+        $constraint = new MLPHP\ElementQueryConstraint(
+            'blah', 'subject'
+        );
+        $options->addConstraint($constraint)->write();
+        $search = new MLPHP\Search(parent::$client, 1, 3);
+        $results = $search->retrieve('blah:Genetics', array(
+            'options' => 'testElementQueryConstraint'
+        ));
+        $this->assertEquals(1, $results->getTotal());
+    }
+
+    function testValueConstraint()
+    {
+        parent::$logger->debug('testValueConstraint');
+        $options = new MLPHP\Options(parent::$client, 'testValueConstraint');
+        $constraint = new MLPHP\ValueConstraint(
+            'blah', 'subject'
+        );
+        $options->addConstraint($constraint)->write();
+        $search = new MLPHP\Search(parent::$client, 1, 3);
+        $results = $search->retrieve('blah:"Evidence and witnesses"', array(
+            'options' => 'testValueConstraint'
+        ));
+        // Must match entire value inside element, so the following fails
+        $this->assertEquals(1, $results->getTotal());
+        $results2 = $search->retrieve('blah:Evidence', array(
+            'options' => 'testValueConstraint'
+        ));
+        $this->assertEquals(0, $results2->getTotal());
+    }
+
+    function testWordConstraint()
+    {
+        parent::$logger->debug('testWordConstraint');
+        $options = new MLPHP\Options(parent::$client, 'testWordConstraint');
+        $constraint = new MLPHP\WordConstraint(
+            'foo', 'subject'
+        );
+        $options->addConstraint($constraint)->write();
+        $search = new MLPHP\Search(parent::$client, 1, 3);
+        $results = $search->retrieve('foo:Evidence', array(
+            'options' => 'testWordConstraint'
+        ));
+        $this->assertEquals(2, $results->getTotal());
+    }
+
     function testDirectory()
     {
         parent::$logger->debug('testDirectory');
@@ -99,6 +169,21 @@ class SearchTest extends TestBaseSearch
             'options' => 'testAttribute'
         ));
         $this->assertEquals(2, $results->getTotal());
+    }
+
+    function testRangePath()
+    {
+        parent::$logger->debug('testRangePath');
+        $options = new MLPHP\Options(parent::$client, 'testRangePath');
+        $constraint = new MLPHP\PathRangeConstraint(
+            'date', 'xs:string', 'false', 'introduced/@date'
+        );
+        $options->addConstraint($constraint)->write();
+        $search = new MLPHP\Search(parent::$client, 1, 3);
+        $results = $search->retrieve('date:2009-01-06', array(
+            'options' => 'testRangePath'
+        ));
+        $this->assertEquals(8, $results->getTotal());
     }
 
     function testFacets()
