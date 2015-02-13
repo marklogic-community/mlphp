@@ -128,10 +128,9 @@ abstract class TestBaseSearch extends TestBaseDB
         $db->addRangeAttributeIndex($abbrev);
         $date = array(
             'scalar-type' => 'string',
-            'parent-localname' => 'introduced',
-            'localname' => 'date'
+            'path-expression' => 'introduced/@date'
         );
-        $db->addRangeAttributeIndex($date);
+        $db->addRangePathIndex($date);
         $href = array(
             'scalar-type' => 'string',
             'parent-localname' => 'link',
@@ -155,6 +154,9 @@ abstract class TestBaseSearch extends TestBaseDB
             'localname' => 'title'
         );
         $db->addRangeElementIndex($title);
+
+        // to enable collection constraints
+        $db->setProperty('collection-lexicon', 'true');
 
     }
 
@@ -209,10 +211,10 @@ abstract class TestBaseSearch extends TestBaseDB
         $options->addConstraint($keyword);
 
         // Range constraint on title
-        $title = new MLPHP\RangeConstraint(
-            'title', 'xs:string', 'false', 'title'
-        );
-        $options->addConstraint($title);
+        // $title = new MLPHP\RangeConstraint(
+        //     'title', 'xs:string', 'false', 'title'
+        // );
+        // $options->addConstraint($title);
 
         // Range constraint on link
         $title = new MLPHP\RangeConstraint(
@@ -222,15 +224,17 @@ abstract class TestBaseSearch extends TestBaseDB
 
         // Snippetting prefs
         $transform = new MLPHP\TransformResults('snippet');
-        $pref1 = new MLPHP\PreferredElement('title', '');
+        //$pref1 = new MLPHP\PreferredElement('title', '');
         $pref2 = new MLPHP\PreferredElement('summary', '');
-        $transform->addPreferredElements(array($pref1, $pref2));
+        //$transform->addPreferredElements(array($pref1, $pref2));
+        $transform->addPreferredElements(array($pref2));
         $options->setTransformResults($transform);
 
         // Metadata extracts
         $extracts = new MLPHP\Extracts();
         $extracts->addConstraints(
-            array('title', 'status', 'subject', 'introduced',
+            //array('title', 'status', 'subject', 'introduced',
+            array('status', 'subject', 'introduced',
                   'link', 'session', 'abbrev'
             )
         );
