@@ -22,21 +22,21 @@ use MarkLogic\MLPHP;
  * @package MLPHP\Test
  * @author Eric Bloch <eric.bloch@gmail.com>
  */
-class SearchTest extends TestBaseSearch
+class SearchTestXML extends TestBaseSearch
 {
 
     function setUp()
     {
         parent::setUp();
-
-
-        //parent::loadDocsXML(parent::$client);
-        //parent::setIndexes(parent::$manageClient);
-        //parent::setOptions(parent::$client);
     }
 
     function testSimpleText()
     {
+
+        // parent::loadDocsXML(parent::$client);
+        // parent::setIndexesXML(parent::$manageClient);
+        // parent::setOptionsXML(parent::$client);
+
         parent::$logger->debug('testSimpleText');
         $options = new MLPHP\Options(parent::$client, 'simpleText');
         $options->write();
@@ -56,6 +56,21 @@ class SearchTest extends TestBaseSearch
             'collection' => 'h'
         ));
         $this->assertEquals(19, $results->getTotal());
+    }
+
+    function testPropertyConstraint()
+    {
+        parent::$logger->debug('testPropertyConstraint');
+        $options = new MLPHP\Options(parent::$client, 'testPropertyConstraint');
+        $constraint = new MLPHP\PropertiesConstraint(
+            'myprop'
+        );
+        $options->addConstraint($constraint)->write();
+        $search = new MLPHP\Search(parent::$client, 1, 10);
+        $results = $search->retrieve('myprop:110', array(
+            'options' => 'testPropertyConstraint'
+        ));
+        $this->assertEquals(6, $results->getTotal());
     }
 
     function testCollectionConstraint()
@@ -236,7 +251,7 @@ class SearchTest extends TestBaseSearch
 
     function testExtractQName()
     {
-        // NOT WORKING: https://github.com/marklogic/mlphp/issues/6
+        // @todo not working, https://github.com/marklogic/mlphp/issues/6
         // parent::$logger->debug('testExtractQName');
         // $options = new MLPHP\Options(parent::$client, 'testExtractQName');
         // $constraint = new MLPHP\RangeConstraint(
@@ -286,7 +301,7 @@ class SearchTest extends TestBaseSearch
 
     function testReturnResults()
     {
-        // NOT WORKING https://github.com/marklogic/mlphp/issues/7
+        // @todo not working, https://github.com/marklogic/mlphp/issues/7
         // parent::$logger->debug('testReturnResults');
         // $options = new MLPHP\Options(parent::$client, 'testReturnResults');
         // // Default is true so set false and check
@@ -298,47 +313,49 @@ class SearchTest extends TestBaseSearch
         // ));
         // $this->assertNull($results->getQuery());
     }
-        // collection search
 
+    function testFieldConstraint()
+    {
 
-        // directory search
+        // parent::loadDocsXML(parent::$client);
+        //parent::setIndexes(parent::$manageClient);
+        //parent::setOptions(parent::$client);
 
+        parent::$logger->debug('testFieldConstraint');
 
-        // element constraint search
+        $options = new MLPHP\Options(parent::$client, 'testFieldConstraintResults');
+        $constraint = new MLPHP\FieldRangeConstraint(
+            'blah', 'xs:string', 'true', 'fieldResults'
+        );
+        $options->addConstraint($constraint)->write();
+        $search = new MLPHP\Search(parent::$client, 1, 3);
+        $results = $search->retrieve('blah:Government', array(
+            'options' => 'testFieldConstraintResults'
+        ));
+        $this->assertEquals(0, $results->getTotal());
 
+        $options = new MLPHP\Options(parent::$client, 'testFieldConstraintNoResults');
+        $constraint = new MLPHP\FieldRangeConstraint(
+            'foo', 'xs:string', 'false', 'fieldNoResults'
+        );
+        $options->addConstraint($constraint)->write();
+        $search = new MLPHP\Search(parent::$client, 1, 3);
+        $results = $search->retrieve('foo:Health', array(
+            'options' => 'testFieldConstraintNoResults'
+        ));
+        $this->assertEquals(0, $results->getTotal());
 
-        // attribute constraint search
-
-
-        // extract metadata
-
-
-        // $search = new MLPHP\Search(parent::$client, 1, 3);
-        // $results = $search->retrieve("spotsylvania", array(
-        //     'options' => 'test'
-        // ));
-        // print_r($results);
-
-        // $search = new MLPHP\Search(parent::$client, 1, 5);
-        // $results = $search->retrieve("services", array(
-        //     'directory' => '/bills/112',
-        //     'options' => 'test'
-        // ));
-        // print_r($results);
-
-        // $search = new MLPHP\Search(parent::$client, 1, 5);
-        // $results = $search->retrieveKeyValueElement("subject", "", "Taxation", array(
-        //      'options' => 'test'
-        // ));
-        // print_r($results);
-
-        // $search = new MLPHP\Search(parent::$client, 1, 3);
-        // $results = $search->retrieveKeyValueElement("bill", "number", "104", array(
-        //      'options' => 'test'
-        // ));
-        // print_r($results);
-
-    //}
+        $options = new MLPHP\Options(parent::$client, 'testFieldConstraintTitle');
+        $constraint = new MLPHP\FieldRangeConstraint(
+            'bar', 'xs:string', 'false', 'fieldTitle'
+        );
+        $options->addConstraint($constraint)->write();
+        $search = new MLPHP\Search(parent::$client, 1, 3);
+        $results = $search->retrieve('bar:Recommendations', array(
+            'options' => 'testFieldConstraintTitle'
+        ));
+        $this->assertEquals(0, $results->getTotal());
+    }
 
 
     // function testSearchJSON()
