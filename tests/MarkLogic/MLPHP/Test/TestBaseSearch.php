@@ -55,6 +55,8 @@ abstract class TestBaseSearch extends TestBaseDB
                         // Set collection base on bill type. Example: 'hr' (House resolution)
                         $type = $xpath->query('//bill/@type')->item(0)->nodeValue;
                         $params = array("collection" => $type);
+                        $sess = $xpath->query('//bill/@session')->item(0)->nodeValue;
+                        $params['prop:sess'] = $sess;
                         $count++;
                         echo $count . ': ' . $uri . ' (' . $type . ')<br />' . PHP_EOL;
                         // Write content to database via REST client
