@@ -98,7 +98,7 @@ abstract class TestBaseSearch extends TestBaseDB
         parent::$logger->debug('JSON files loaded: ' . $count . PHP_EOL);
     }
 
-    public static function setIndexes($manageClient)
+    public static function setIndexesXML($manageClient)
     {
         parent::$logger->debug('setIndexes');
         $db = new MLPHP\Database($manageClient, 'mlphp-test-db');
@@ -216,7 +216,7 @@ abstract class TestBaseSearch extends TestBaseDB
 
     }
 
-    public static function setOptions($client)
+    public static function setOptionsXML($client)
     {
         parent::$logger->debug('setOptions');
         $options = new MLPHP\Options($client);
