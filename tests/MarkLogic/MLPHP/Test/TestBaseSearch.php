@@ -155,6 +155,60 @@ abstract class TestBaseSearch extends TestBaseDB
         );
         $db->addRangeElementIndex($title);
 
+        // Fields
+        $fieldPath = new MLPHP\FieldPath(array(
+            'path' => '/subjects',
+            'weight' => 1.5
+        ));
+        $included = new MLPHP\FieldElementIncluded(array(
+            'localname' => 'subject',
+            'weight' => 1.7
+        ));
+        $excluded = new MLPHP\FieldElementExcluded(array(
+            'localname' => 'subject'
+        ));
+
+        // for testing, this field WILL return results
+        $fieldResults = new MLPHP\Field(array(
+            'field-name' => 'fieldResults',
+            'field-path' => $fieldPath,
+            'included-element' => $included
+        ));
+        $db->addField($fieldResults);
+        $db->addRangeFieldIndex(array(
+            'field-name' => 'fieldResults'
+        ));
+
+        // for testing, this field WILL NOT return results
+        $fieldNoResults = new MLPHP\Field(array(
+            'field-name' => 'fieldNoResults',
+            'field-path' => $fieldPath,
+            'excluded-element' => $excluded
+        ));
+        $db->addField($fieldNoResults);
+        $db->addRangeFieldIndex(array(
+            'field-name' => 'fieldNoResults'
+        ));
+
+        // for testing, title only
+        $fieldPathTitle = new MLPHP\FieldPath(array(
+            'path' => '/',
+            'weight' => 1.5
+        ));
+        $includedTitle = new MLPHP\FieldElementIncluded(array(
+            'localname' => 'title',
+            'weight' => 1.7
+        ));
+        $fieldTitle = new MLPHP\Field(array(
+            'field-name' => 'fieldTitle',
+            'field-path' => $fieldPathTitle,
+            'included-element' => $includedTitle
+        ));
+        $db->addField($fieldTitle);
+        $db->addRangeFieldIndex(array(
+            'field-name' => 'fieldTitle'
+        ));
+
         // to enable collection constraints
         $db->setProperty('collection-lexicon', 'true');
 
