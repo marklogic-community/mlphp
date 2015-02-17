@@ -22,6 +22,8 @@ use MarkLogic\MLPHP;
  * @package MLPHP\Test
  * @author Eric Bloch <eric.bloch@gmail.com>
  * @author Mike Wooldridge <mike.wooldridge@marklogic.com>
+ *
+ * Supports search tests (of XML and JSON content)
  */
 abstract class TestBaseSearch extends TestBaseDB
 {
@@ -33,10 +35,11 @@ abstract class TestBaseSearch extends TestBaseDB
 
         // Loop through files from subdirectories
         $count = 0;
+        echo PHP_EOL . PHP_EOL;
         foreach($subdirs as $subdir) {
             $dir = $rootdir . DIRECTORY_SEPARATOR . $subdir;
             if ($handle = opendir($dir)) {
-                echo "Writing files from directory: " . $dir . "<br />";
+                echo "Writing files from directory: " . $dir . PHP_EOL;
                 $doc = new MLPHP\Document($client);
                 while (false !== ($file = readdir($handle))) {
                     if (substr($file, 0, 1) !== ".") {
@@ -58,7 +61,7 @@ abstract class TestBaseSearch extends TestBaseDB
                         $sess = $xpath->query('//bill/@session')->item(0)->nodeValue;
                         $params['prop:sess'] = $sess;
                         $count++;
-                        echo $count . ': ' . $uri . ' (' . $type . ')<br />' . PHP_EOL;
+                        echo $count . ': ' . $uri . ' (' . $type . ')' . PHP_EOL;
                         // Write content to database via REST client
                         $doc->write($uri, $params);
                     }
@@ -66,6 +69,7 @@ abstract class TestBaseSearch extends TestBaseDB
                 closedir($handle);
             }
         }
+        echo PHP_EOL;
 
         parent::$logger->debug('XML files loaded: ' . $count . PHP_EOL);
     }
@@ -77,7 +81,8 @@ abstract class TestBaseSearch extends TestBaseDB
 
         $count = 0;
         if ($handle = opendir($dir)) {
-            echo "Writing files from directory: " . $dir . "<br />";
+            echo PHP_EOL . PHP_EOL;
+            echo "Writing files from directory: " . $dir . PHP_EOL;
             $doc = new MLPHP\Document($client);
             while (false !== ($file = readdir($handle))) {
                 if (substr($file, 0, 1) !== ".") {
@@ -87,11 +92,12 @@ abstract class TestBaseSearch extends TestBaseDB
                     $obj = json_decode($content);
                     $params = array("collection" => $obj->{'old_roles'}->{'2009-2010'}[0]->party);
                     $count++;
-                    echo $count . ': ' . $uri . ' (' . $type . ')<br />' . PHP_EOL;
+                    echo $count . ': ' . $uri . PHP_EOL;
                     // Write content to database via REST client
                     $doc->write($uri, $params);
                 }
             }
+            echo PHP_EOL;
             closedir($handle);
         }
 
@@ -213,6 +219,31 @@ abstract class TestBaseSearch extends TestBaseDB
 
         // to enable collection constraints
         $db->setProperty('collection-lexicon', 'true');
+
+    }
+
+    public static function setIndexesJSON($manageClient)
+    {
+        parent::$logger->debug('setIndexes');
+        $db = new MLPHP\Database($manageClient, 'mlphp-test-db');
+
+        $party = array(
+            'scalar-type' => 'string',
+            'path-expression' => 'old_roles/2009-2010[0]/party'
+        );
+        $db->addRangePathIndex($party);
+
+        $id = array(
+            'scalar-type' => 'string',
+            'localname' => 'id'
+        );
+        $db->addRangeElementIndex($id);
+
+        $address = array(
+            'scalar-type' => 'string',
+            'localname' => 'address'
+        );
+        $db->addRangeElementIndex($address);
 
     }
 

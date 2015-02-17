@@ -21,6 +21,9 @@ use MarkLogic\MLPHP;
 /**
  * @package MLPHP\Test
  * @author Eric Bloch <eric.bloch@gmail.com>
+ * @author Mike Wooldridge <mike.wooldridge@marklogic.com>
+ *
+ * Search tests that run on database with XML content
  */
 class SearchTestXML extends TestBaseSearch
 {
@@ -33,8 +36,9 @@ class SearchTestXML extends TestBaseSearch
     function testSimpleText()
     {
 
-        // parent::loadDocsXML(parent::$client);
-        // parent::setIndexesXML(parent::$manageClient);
+        parent::loadDocsXML(parent::$client);
+        parent::setIndexesXML(parent::$manageClient);
+        // Setting options within tests for now
         // parent::setOptionsXML(parent::$client);
 
         parent::$logger->debug('testSimpleText');
@@ -357,30 +361,5 @@ class SearchTestXML extends TestBaseSearch
         $this->assertEquals(0, $results->getTotal());
     }
 
-
-    // function testSearchJSON()
-    // {
-
-        // parent::loadDocsJSON(parent::$client);
-
-        // $search = new MLPHP\Search(parent::$client, 1, 5);
-        // $results = $search->retrieve("", array(
-        //     'collection' => 'Republican'
-        // ));
-        // print_r($results);
-
-        // $search = new MLPHP\Search(parent::$client, 1, 2);
-        // $results = $search->retrieveKeyValue("id", "NVL000005");
-        // print_r($results);
-
-        // $search = new MLPHP\Search(parent::$client, 1, 5);
-        // $results = $search->retrieveKeyValueElement("subject", "", "Taxation");
-        // print_r($results);
-
-        // $search = new MLPHP\Search(parent::$client, 1, 3);
-        // $results = $search->retrieveKeyValueElement("bill", "number", "104");
-        // print_r($results);
-
-    //}
 }
 
