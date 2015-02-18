@@ -190,6 +190,32 @@ class MLPHP
     }
 
     /**
+     * Return an assoc array of MarkLogic server config information.
+     * Keys: 'version', 'platform', 'edition'
+     * @see http://docs.marklogic.com/REST/GET/admin/v1/server-config
+     *
+     * @return array
+     */
+    public function getServerConfig()
+    {
+        $adminClient = $this->getAdminClient();
+        $request = new RESTRequest('GET', 'server-config');
+        try {
+            $response = $adminClient->send($request);
+            $dom = new \DOMDocument();
+            $dom->loadXML($response->getBody());
+            return array(
+              'version' => $dom->getElementsByTagName('version')->item(0)->nodeValue,
+              'platform' => $dom->getElementsByTagName('platform')->item(0)->nodeValue,
+              'edition' => $dom->getElementsByTagName('edition')->item(0)->nodeValue
+            );
+        } catch(Exception $e) {
+            echo 'MLPHP::getServerConfig() failed.' . PHP_EOL;
+            echo $e->getMessage() . ' in ' . $e->getFile() . ' on line ' . $e->getLine() . PHP_EOL;
+        }
+    }
+
+    /**
      * PSR-0 autoloader.
      *
      * Do NOT use if you are using Composer to autoload dependencies.
