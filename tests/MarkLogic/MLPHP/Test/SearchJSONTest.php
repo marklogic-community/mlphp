@@ -51,38 +51,38 @@ class SearchJSONTest extends TestBaseSearch
     /**
      * @todo Refactor ValueConstraint class to support constraints on JSON content
      */
-    function testValueConstraint()
-    {
-        parent::$logger->debug('testValueConstraint');
-        $options = new MLPHP\Options(parent::$client, 'testValueConstraint');
-        $constraint = new MLPHP\ValueConstraint(
-            'blah', 'id'
-        );
-        $options->addConstraint($constraint)->write();
-        $search = new MLPHP\Search(parent::$client, 1, 3);
-        $results = $search->retrieve('blah:NVL000001', array(
-            'options' => 'testValueConstraint'
-        ));
-        $this->assertEquals(1, $results->getTotal());
-    }
+    // function testValueConstraint()
+    // {
+    //     parent::$logger->debug('testValueConstraint');
+    //     $options = new MLPHP\Options(parent::$client, 'testValueConstraint');
+    //     $constraint = new MLPHP\ValueConstraint(
+    //         'blah', 'id'
+    //     );
+    //     $options->addConstraint($constraint)->write();
+    //     $search = new MLPHP\Search(parent::$client, 1, 3);
+    //     $results = $search->retrieve('blah:NVL000001', array(
+    //         'options' => 'testValueConstraint'
+    //     ));
+    //     $this->assertEquals(1, $results->getTotal());
+    // }
 
     /**
      * @todo Refactor WordConstraint class to support constraints on JSON content
      */
-    function testWordConstraint()
-    {
-        parent::$logger->debug('testWordConstraint');
-        $options = new MLPHP\Options(parent::$client, 'testWordConstraint');
-        $constraint = new MLPHP\WordConstraint(
-            'foo', 'address'
-        );
-        $options->addConstraint($constraint)->write();
-        $search = new MLPHP\Search(parent::$client, 1, 3);
-        $results = $search->retrieve('foo:"Carson City"', array(
-            'options' => 'testWordConstraint'
-        ));
-        $this->assertEquals(1, $results->getTotal());
-    }
+    // function testWordConstraint()
+    // {
+    //     parent::$logger->debug('testWordConstraint');
+    //     $options = new MLPHP\Options(parent::$client, 'testWordConstraint');
+    //     $constraint = new MLPHP\WordConstraint(
+    //         'foo', 'address'
+    //     );
+    //     $options->addConstraint($constraint)->write();
+    //     $search = new MLPHP\Search(parent::$client, 1, 3);
+    //     $results = $search->retrieve('foo:"Carson City"', array(
+    //         'options' => 'testWordConstraint'
+    //     ));
+    //     $this->assertEquals(1, $results->getTotal());
+    // }
 
     // Misc tests, relevant?
     // function testSearchJSON()
