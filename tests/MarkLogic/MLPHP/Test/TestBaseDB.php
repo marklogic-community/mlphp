@@ -33,16 +33,19 @@ abstract class TestBaseDB extends TestBase
     // https://phpunit.de/manual/current/en/fixtures.html#fixtures.variations
     public static function setUpBeforeClass()
     {
-        global $mlphp;
+        global $mlphp, $argv, $argc;;
 
         parent::setUpBeforeClass();
 
         // Create a manage client for tests
         self::$manageClient = $mlphp->getManageClient();
 
-        // Clear the REST API database
-        $db = new MLPHP\Database(self::$manageClient, $mlphp->config['db']);
-        $db->clear();
+        // Clear the REST API database (but only if we're not excluding ML8 tests)
+        $index = array_search('ML8', $argv);
+        if (!($index !== false && $argv[$index - 1] === '--exclude-group')) {
+            $db = new MLPHP\Database(self::$manageClient, $mlphp->config['db']);
+            $db->clear();
+        }
 
     }
 
