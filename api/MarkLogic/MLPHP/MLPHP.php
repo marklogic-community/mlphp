@@ -37,21 +37,7 @@ class MLPHP
     /**
      * Constructor, used to set configuration parameters.
      *
-     * @param array config configuration settings, including
-     * <pre> <br/>
-     * host - defaults to '127.0.0.1'<br/>
-     * port - defaults to 7009<br/>
-     * managePort - default to 8002<br/>
-     * api - name of REST API, defaults to 'mlphp-rest-api'
-     * username - defaults to 'admin'<br/>
-     * password - defaults 'admin'<br/>
-     * auth - 'digest' or 'basic', defaults to 'digest'<br/>
-     * path - defaults to ''<br/>
-     * version - defaults to 'v1'<br/>
-     * logger - defaults to Psr\Log\NullLogger
-     * </pre>
-     *
-     * Additional array members are ignored.
+     * @param array config Configuration settings.
      *
      */
     public function __construct($config = array())
@@ -60,14 +46,17 @@ class MLPHP
             'host' => '127.0.0.1',
             'port' => 8003,
             'managePort' => 8002,
+            'adminPort' => 8001,
             'api' => 'mlphp-rest-api',
             'db' => 'mlphp-db',
             'username' => 'admin',
             'password' => 'admin',
             'path' => '',
             'managePath' => 'manage',
+            'adminPath' => 'admin',
             'version' => 'v1',
             'manageVersion' => 'v2',
+            'adminVersion' => 'v1',
             'auth' => 'digest',
             'options' => 'mlphp-options',
             'logger' => new NullLogger()
@@ -124,7 +113,28 @@ class MLPHP
     }
 
     /**
+     * Return a REST client to the admin API.
+     *
+     * @return RESTClient
+     */
+    public function getAdminClient()
+    {
+        return new RESTClient(
+            $this->config['host'],
+            $this->config['adminPort'],
+            $this->config['adminPath'],
+            $this->config['adminVersion'],
+            $this->config['username'],
+            $this->config['password'],
+            $this->config['auth'],
+            $this->config['logger']
+        );
+    }
+
+    /**
      * Create and return a REST API based on current configuration.
+     *
+     * @return RESTAPI
      */
     public function getAPI()
     {
@@ -140,6 +150,8 @@ class MLPHP
 
     /**
      * Return a Document object.
+     *
+     * @return Document
      */
     public function getDocument($uri = null)
     {
@@ -151,6 +163,8 @@ class MLPHP
 
     /**
      * Return a Database object.
+     *
+     * @return Database
      */
     public function getDatabase($name = null)
     {
@@ -162,7 +176,9 @@ class MLPHP
     }
 
     /**
-     * Return a Options object.
+     * Return an Options object.
+     *
+     * @return Options
      */
     public function getOptions($name = null)
     {
