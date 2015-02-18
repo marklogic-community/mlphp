@@ -72,6 +72,15 @@ class MLPHPTest extends TestBase
     /**
      * @depends testConstructMerge
      */
+    function testGetAdminClient($mlphp)
+    {
+        $adminClient = $mlphp->getAdminClient();
+        $this->assertInstanceOf('MarkLogic\MLPHP\RESTClient', $adminClient);
+    }
+
+    /**
+     * @depends testConstructMerge
+     */
     function testGetDocument($mlphp)
     {
         $doc = $mlphp->getDocument();
@@ -94,6 +103,18 @@ class MLPHPTest extends TestBase
     {
         $options = $mlphp->getOptions();
         $this->assertInstanceOf('MarkLogic\MLPHP\Options', $options);
+    }
+
+
+    /**
+     * @depends testConstructMerge
+     */
+    function testGetServerConfig($mlphp)
+    {
+        $serverConfig = $mlphp->getServerConfig();
+        $this->assertNotNull($serverConfig['version']);
+        $this->assertNotNull($serverConfig['platform']);
+        $this->assertNotNull($serverConfig['edition']);
     }
 
 }
