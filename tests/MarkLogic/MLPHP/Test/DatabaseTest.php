@@ -28,6 +28,10 @@ class DatabaseTest extends TestBaseDB
     protected $db;
 
     function setUp() {
+      global $mlphp;
+      if (substr($mlphp->config['mlversion'], 0, 3) < 8) {
+          $this->markTestSkipped('Test requires MarkLogic 8 or greater');
+      }
       $uri = '/text.xml';
       $content = '<doc>
                     <foo bar="baz">hello</foo>
@@ -40,9 +44,6 @@ class DatabaseTest extends TestBaseDB
       $this->db = new MLPHP\Database(parent::$manageClient, 'mlphp-test-db');
     }
 
-   /**
-    * @group ML8
-    */
     function testGetConfig()
     {
         parent::$logger->debug('testGetConfig');
@@ -50,9 +51,6 @@ class DatabaseTest extends TestBaseDB
         $this->assertObjectHasAttribute('database-config', $config);
     }
 
-   /**
-    * @group ML8
-    */
     function testGetCounts()
     {
         parent::$logger->debug('testGetCounts');
@@ -60,18 +58,12 @@ class DatabaseTest extends TestBaseDB
         $this->assertObjectHasAttribute('database-counts', $counts);
     }
 
-   /**
-    * @group ML8
-    */
     function testNumDocs()
     {
         parent::$logger->debug('testNumDocs');
         $this->assertEquals($this->db->numDocs(), 1);
     }
 
-   /**
-    * @group ML8
-    */
     function testGetStatus()
     {
         parent::$logger->debug('testGetStatus');
@@ -79,9 +71,6 @@ class DatabaseTest extends TestBaseDB
         $this->assertObjectHasAttribute('database-status', $status);
     }
 
-   /**
-    * @group ML8
-    */
     function testGetProperties()
     {
         parent::$logger->debug('testGetProperties');
@@ -89,9 +78,6 @@ class DatabaseTest extends TestBaseDB
         $this->assertEquals($properties->{'database-name'}, 'mlphp-test-db');
     }
 
-   /**
-    * @group ML8
-    */
     function testSetProperties()
     {
         parent::$logger->debug('testSetProperties');
@@ -100,9 +86,6 @@ class DatabaseTest extends TestBaseDB
         $this->assertEquals($properties->{'word-searches'}, false);
     }
 
-   /**
-    * @group ML8
-    */
     function testGetProperty()
     {
         parent::$logger->debug('testGetProperty');
@@ -110,9 +93,6 @@ class DatabaseTest extends TestBaseDB
         $this->assertEquals($property, 'mlphp-test-db');
     }
 
-   /**
-    * @group ML8
-    */
     function testSetProperty()
     {
         parent::$logger->debug('testSetProperty');
@@ -121,9 +101,6 @@ class DatabaseTest extends TestBaseDB
         $this->assertEquals($value, true);
     }
 
-   /**
-    * @group ML8
-    */
     function testClear()
     {
         parent::$logger->debug('testClear');
@@ -131,9 +108,6 @@ class DatabaseTest extends TestBaseDB
         $this->assertEquals($counts->{'database-counts'}->{'count-properties'}->documents->value, 0);
     }
 
-   /**
-    * @group ML8
-    */
     function testPropertyExists()
     {
         parent::$logger->debug('testPropertyExists');
@@ -144,9 +118,6 @@ class DatabaseTest extends TestBaseDB
         $this->assertTrue($result);
     }
 
-   /**
-    * @group ML8
-    */
     function testAddRangeElementIndex()
     {
         parent::$logger->debug('testAddRangeElementIndex');
@@ -174,9 +145,6 @@ class DatabaseTest extends TestBaseDB
         ));
     }
 
-   /**
-    * @group ML8
-    */
     function testRemoveRangeElementIndex()
     {
         parent::$logger->debug('testRemoveRangeElementIndex');
@@ -187,9 +155,6 @@ class DatabaseTest extends TestBaseDB
         ));
     }
 
-   /**
-    * @group ML8
-    */
     function testAddRangeAttributeIndex()
     {
         parent::$logger->debug('testAddRangeAttributeIndex');
@@ -205,9 +170,6 @@ class DatabaseTest extends TestBaseDB
         ));
     }
 
-   /**
-    * @group ML8
-    */
     function testRemoveRangeAttributeIndex()
     {
         parent::$logger->debug('testRemoveRangeAttributeIndex');
@@ -218,9 +180,6 @@ class DatabaseTest extends TestBaseDB
         ));
     }
 
-   /**
-    * @group ML8
-    */
     function testAddField()
     {
         parent::$logger->debug('testAddField');
@@ -260,9 +219,6 @@ class DatabaseTest extends TestBaseDB
         ));
     }
 
-   /**
-    * @group ML8
-    */
     function testAddRangeFieldIndex()
     {
         parent::$logger->debug('testAddRangeFieldIndex');
@@ -277,9 +233,6 @@ class DatabaseTest extends TestBaseDB
         ));
     }
 
-   /**
-    * @group ML8
-    */
     function testRemoveRangeFieldIndex()
     {
         parent::$logger->debug('testRemoveRangeFieldIndex');
@@ -290,9 +243,6 @@ class DatabaseTest extends TestBaseDB
         ));
     }
 
-   /**
-    * @group ML8
-    */
     function testRemoveField()
     {
         parent::$logger->debug('testRemoveField');
@@ -303,9 +253,6 @@ class DatabaseTest extends TestBaseDB
         ));
     }
 
-   /**
-    * @group ML8
-    */
     function testAddPathNamespace()
     {
         parent::$logger->debug('testAddPathNamespace');
@@ -320,9 +267,6 @@ class DatabaseTest extends TestBaseDB
         ));
     }
 
-   /**
-    * @group ML8
-    */
     function testRemovePathNamespace()
     {
         parent::$logger->debug('testRemovePathNamespace');
@@ -333,9 +277,6 @@ class DatabaseTest extends TestBaseDB
         ));
     }
 
-   /**
-    * @group ML8
-    */
     function testAddRangePathIndex()
     {
         parent::$logger->debug('testAddRangePathIndex');
@@ -350,9 +291,6 @@ class DatabaseTest extends TestBaseDB
         ));
     }
 
-   /**
-    * @group ML8
-    */
     function testRemoveRangePathIndex()
     {
         parent::$logger->debug('testRemoveRangePathIndex');
@@ -363,9 +301,6 @@ class DatabaseTest extends TestBaseDB
         ));
     }
 
-   /**
-    * @group ML8
-    */
     function testAddElementLexicon()
     {
         parent::$logger->debug('testAddElementLexicon');
@@ -380,9 +315,6 @@ class DatabaseTest extends TestBaseDB
         ));
     }
 
-   /**
-    * @group ML8
-    */
     function testRemoveElementLexicon()
     {
         parent::$logger->debug('testRemoveElementLexicon');
@@ -393,9 +325,6 @@ class DatabaseTest extends TestBaseDB
         ));
     }
 
-   /**
-    * @group ML8
-    */
     function testAddAttributeLexicon()
     {
         parent::$logger->debug('testAddAttributeLexicon');
@@ -413,9 +342,6 @@ class DatabaseTest extends TestBaseDB
         ));
     }
 
-   /**
-    * @group ML8
-    */
     function testRemoveAttributeLexicon()
     {
         parent::$logger->debug('testRemoveAttributeLexicon');

@@ -15,18 +15,17 @@ $logger->pushHandler(new StreamHandler('php://stderr', Logger::ERROR));
 $mlphp = new MLPHP\MLPHP([
     'host' => '127.0.0.1',
     'port' => 8234,
-    'managePort' => 8002,
     'api' => 'mlphp-test-api',
     'db' => 'mlphp-test-db',
     'username' => 'admin',
     'password' => 'admin',
-    'path' => '',
-    'managePath' => 'manage',
-    'version' => 'v1',
-    'manageVersion' => 'v2',
     'auth' => 'digest',
     'logger' => $logger
 ]);
+
+// Get MarkLogic version for test skipping
+$serverConfig = $mlphp->getServerConfig();
+$mlphp->config['mlversion'] =  $serverConfig['version'];
 
 // Create REST API for tests
 $api =  $mlphp->getAPI()->create();
