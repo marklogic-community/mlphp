@@ -22,14 +22,20 @@ use MarkLogic\MLPHP;
  * @package MLPHP\Test
  * @author Eric Bloch <eric.bloch@gmail.com>
  */
-class SmokeTest extends TestBase
+class SmokeTest extends \PHPUnit_Framework_TestCase
 {
-    function testDBName()
+    function testTimestamp()
     {
-        // @todo fix since no longer offer Database->getName()
-        // $db = new MLPHP\Database(parent::$client);
-        // $name = $db->getName();
-        // $this->assertNotNull($name);
+        global $mlphp;
+        $client = new MLPHP\RESTClient(
+          $mlphp->config['host'], 8001, 'admin', $mlphp->config['version'],
+          $mlphp->config['username'], $mlphp->config['password'],
+          $mlphp->config['auth'], $mlphp->config['logger']
+        );
+        $req = new MLPHP\RESTRequest('GET', 'timestamp');
+        $resp = $client->send($req);
+        // match a timestamp
+        $this->assertStringMatchesFormat('%d-%s-%sT%d:%s:%s.%s-%s:%s', $resp->getBody());
     }
 }
 
