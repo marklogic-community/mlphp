@@ -4,6 +4,9 @@ use MarkLogic\MLPHP;
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
 
+// For access to command-line options
+global $argv, $argc;
+
 // Create a logger for tests
 $logger = new Logger('test');
 $logger->pushHandler(new StreamHandler('php://stderr', Logger::ERROR));
