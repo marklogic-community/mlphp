@@ -28,6 +28,12 @@ use MarkLogic\MLPHP;
 abstract class TestBaseSearch extends TestBaseDB
 {
 
+    public static function loadDocsText($client)
+    {
+        $doc = new MLPHP\Document(parent::$client, '/text.txt');
+        $doc->setContent('Hello world')->setContentType('text/text')->write();
+    }
+
     public static function loadDocsXML($client)
     {
         $rootdir = __DIR__ . DIRECTORY_SEPARATOR . 'docs';
@@ -114,35 +120,41 @@ abstract class TestBaseSearch extends TestBaseDB
         $db = new MLPHP\Database($manageClient, 'mlphp-test-db');
 
         // Set range attribute indexes
+        parent::$logger->debug('Add Range Attribute Index: session');
         $session = array(
             'scalar-type' => 'int',
             'parent-localname' => 'bill',
             'localname' => 'session'
         );
         $db->addRangeAttributeIndex($session);
+        parent::$logger->debug('Add Range Attribute Index: type');
         $type = array(
             'scalar-type' => 'string',
             'parent-localname' => 'bill',
             'localname' => 'type'
         );
         $db->addRangeAttributeIndex($type);
+        parent::$logger->debug('Add Range Attribute Index: number');
         $number = array(
             'scalar-type' => 'int',
             'parent-localname' => 'bill',
             'localname' => 'number'
         );
         $db->addRangeAttributeIndex($number);
+        parent::$logger->debug('Add Range Attribute Index: abbrev');
         $abbrev = array(
             'scalar-type' => 'string',
             'parent-localname' => 'bill',
             'localname' => 'abbrev'
         );
         $db->addRangeAttributeIndex($abbrev);
+        parent::$logger->debug('Add Range Attribute Index: date');
         $date = array(
             'scalar-type' => 'string',
             'path-expression' => 'introduced/@date'
         );
         $db->addRangePathIndex($date);
+        parent::$logger->debug('Add Range Attribute Index: href');
         $href = array(
             'scalar-type' => 'string',
             'parent-localname' => 'link',
@@ -151,16 +163,19 @@ abstract class TestBaseSearch extends TestBaseDB
         $db->addRangeAttributeIndex($href);
 
         // Set range element indexes
+        parent::$logger->debug('Add Range Element Index: status');
         $status = array(
             'scalar-type' => 'string',
             'localname' => 'status'
         );
         $db->addRangeElementIndex($status);
+        parent::$logger->debug('Add Range Element Index: subject');
         $subject = array(
             'scalar-type' => 'string',
             'localname' => 'subject'
         );
         $db->addRangeElementIndex($subject);
+        parent::$logger->debug('Add Range Element Index: title');
         $title = array(
             'scalar-type' => 'string',
             'localname' => 'title'
@@ -168,6 +183,7 @@ abstract class TestBaseSearch extends TestBaseDB
         $db->addRangeElementIndex($title);
 
         // Fields
+        parent::$logger->debug('Add Field Range Indexes');
         $fieldPath = new MLPHP\FieldPath(array(
             'path' => '/subjects',
             'weight' => 1.5
@@ -222,6 +238,7 @@ abstract class TestBaseSearch extends TestBaseDB
         ));
 
         // to enable collection constraints
+        parent::$logger->debug('Enable Collection Lexicon');
         $db->setProperty('collection-lexicon', 'true');
 
     }
