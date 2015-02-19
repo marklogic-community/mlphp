@@ -45,11 +45,33 @@ class RESTAPITest extends TestBase
     /**
      * @depends testCreate
      */
+    function testSetProperty($api)
+    {
+        parent::$logger->debug('testSetProperty');
+        $api->setProperty('debug', 'true');
+        $response = $api->getResponse();
+        $this->assertEquals(204, $response->getHttpCode());
+    }
+
+    /**
+     * @depends testCreate
+     */
+    function testGetProperty($api)
+    {
+        parent::$logger->debug('testGetProperty');
+        $property = $api->getProperty('debug');
+        $this->assertTrue($property);
+    }
+
+    /**
+     * @depends testCreate
+     */
     function testDelete($api)
     {
         parent::$logger->debug('testDelete');
         $api->delete();
         $this->assertFalse($api->exists());
     }
+
 }
 
