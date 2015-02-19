@@ -35,6 +35,8 @@ class RESTAPI
     private $password; // @var string
     private $logger; // @var LoggerInterface
     private $client; // @var RESTClient
+    private $apiClient; // @var RESTClient
+    private $response; // @var RESTResponse
 
     /**
      * Create a REST API object.
@@ -65,6 +67,16 @@ class RESTAPI
         $this->client = new RESTClient(
             $this->host,
             8002,
+            '',
+            'v1',
+            $this->username,
+            $this->password,
+            'digest',
+            $this->logger
+        );
+        $this->apiClient = new RESTClient(
+            $this->host,
+            $this->port,
             '',
             'v1',
             $this->username,
@@ -110,6 +122,48 @@ class RESTAPI
             ' (' . $this->db . ') port ' . $this->port
         );
         $this->client->send($request); // Set up REST API
+    }
+
+    /**
+     * Set a REST API property.
+     * Must execute create() before setting a property.
+     *
+     * @param string key The property key.
+     * @param string json The property value.
+     */
+    public function setProperty($key, $value)
+    {
+        $arr = array($key => $value);
+        $params = array('format' => 'json');
+        $request = new RESTRequest(
+          'PUT', 'config/properties/' . $key,
+          $params, json_encode($arr)
+        );
+        try {
+            $this->response = $this->apiClient->send($request);
+            return $this;
+        } catch(Exception $e) {
+            echo $e->getMessage() . ' in ' . $e->getFile() . ' on line ' . $e->getLine() . PHP_EOL;
+        }
+    }
+
+    /**
+     * Get a REST API property.
+     * Must execute create() before getting a property.
+     *
+     * @param string key The property key.
+     */
+    public function getProperty($key)
+    {
+        $params = array('format' => 'json');
+        $request = new RESTRequest('GET', 'config/properties/' . $key, $params);
+        try {
+            $this->response = $this->apiClient->send($request);
+            $property = json_decode($this->response->getBody());
+            return $property->{$key};
+        } catch(Exception $e) {
+            echo $e->getMessage() . ' in ' . $e->getFile() . ' on line ' . $e->getLine() . PHP_EOL;
+        }
     }
 
     /**
@@ -177,6 +231,16 @@ class RESTAPI
             return false;
         }
         return true;
+    }
+
+    /**
+     * Get the last REST response received. Useful for testing.
+     *
+     * @return RESTRresponse A REST response object.
+     */
+    public function getResponse()
+    {
+        return $this->response;
     }
 
 }
