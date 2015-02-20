@@ -254,7 +254,9 @@ class Database
         // add the new field to beginning of array
         array_unshift($existingProperties, $arr);
         // wrap in type property
-        $new = (object) [$type => $existingProperties];
+        // $new = (object) [$type => $existingProperties]; // PHP 5.4
+        $new = new \stdClass();
+        $new->$type = $existingProperties;
         // set the updated properties
         return $this->setProperties($new);
     }
@@ -288,7 +290,9 @@ class Database
                 }
             }
             // wrap in outer property
-            $new = (object) [$type => $existingProperties];
+            //$new = (object) [$type => $existingProperties]; // PHP 5.4
+            $new = new \stdClass();
+            $new->$type = $existingProperties;
             // set the updated properties
             $this->setProperties($new);
         }
