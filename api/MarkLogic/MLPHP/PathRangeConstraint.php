@@ -25,6 +25,8 @@ namespace MarkLogic\MLPHP;
 class PathRangeConstraint extends AbstractConstraint
 {
     private $path; // @var string
+    private $datatype; // @var string
+    private $facet; // @var bool
     private $ns; // @var string
 
     /**
@@ -33,8 +35,9 @@ class PathRangeConstraint extends AbstractConstraint
      * @see http://docs.marklogic.com/search:search#opt-constraint
      *
      * @param string $name Constraint name.
+     * @param string $datatype Constraint datatype.
+     * @param string $facet Whether constraint should be faceted ('true' or 'false').
      * @param string $elem Path expression (e.g., '/publication/my:meta/my:year').
-     * @param string $ns Element namespace.
      */
     public function __construct($name, $datatype, $facet = 'true', $path)
     {
