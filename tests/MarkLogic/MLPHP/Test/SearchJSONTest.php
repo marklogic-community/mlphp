@@ -29,22 +29,22 @@ class SearchJSONTest extends TestBaseSearch
 
     function setUp()
     {
-        parent::setUp();
+        global $mlphp;
+        if (substr($mlphp->config['mlversion'], 0, 3) < 8) {
+            $this->markTestSkipped('Test requires MarkLogic 8 or greater');
+        }
     }
 
-    function testSimpleText()
+    function testSimpleJSON()
     {
-
+        // Load docs that are used in tests that follow
         parent::loadDocsJSON(parent::$client);
-        parent::setIndexesJSON(parent::$manageClient);
-        // Setting options within tests for now
-        //parent::setOptionsJSON(parent::$client);
 
-        parent::$logger->debug('testSimpleText');
-        $options = new MLPHP\Options(parent::$client, 'simpleText');
+        parent::$logger->debug('testSimpleJSON');
+        $options = new MLPHP\Options(parent::$client, 'simpleJSON');
         $options->write();
         $search = new MLPHP\Search(parent::$client, 1, 3);
-        $results = $search->retrieve('Amodei', array('options' => 'simpleText'));
+        $results = $search->retrieve('Amodei', array('options' => 'simpleJSON'));
         $this->assertEquals(1, $results->getTotal());
     }
 

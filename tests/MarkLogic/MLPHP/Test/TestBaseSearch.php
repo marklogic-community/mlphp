@@ -31,7 +31,7 @@ abstract class TestBaseSearch extends TestBaseDB
     public static function loadDocsText($client)
     {
         $doc = new MLPHP\Document(parent::$client, '/text.txt');
-        $doc->setContent('Hello world')->setContentType('text/text')->write();
+        $doc->setContent('Hello MLPHP!!!')->setContentType('text/text')->write();
     }
 
     public static function loadDocsXML($client)
@@ -185,59 +185,52 @@ abstract class TestBaseSearch extends TestBaseDB
         // Fields
         parent::$logger->debug('Add Field Range Indexes');
         $fieldPath = new MLPHP\FieldPath(array(
-            'path' => '/subjects',
+            'path' => 'meta',
             'weight' => 1.5
         ));
         $included = new MLPHP\FieldElementIncluded(array(
-            'localname' => 'subject',
+            'localname' => 'number',
             'weight' => 1.7
         ));
-        $excluded = new MLPHP\FieldElementExcluded(array(
-            'localname' => 'subject'
+        $excluded1 = new MLPHP\FieldElementExcluded(array(
+            'localname' => 'session'
+        ));
+        $excluded2 = new MLPHP\FieldElementExcluded(array(
+            'localname' => 'abbrev'
         ));
 
-        // for testing, this field WILL return results
-        $fieldResults = new MLPHP\Field(array(
-            'field-name' => 'fieldResults',
+        // Field Range Index: type, number
+        $field1 = new MLPHP\Field(array(
+            'field-name' => 'field1',
             'field-path' => $fieldPath,
-            'included-element' => $included
+            'excluded-element' => [$excluded1, $excluded2]
         ));
-        $db->addField($fieldResults);
+        $db->addField($field1);
         $db->addRangeFieldIndex(array(
-            'field-name' => 'fieldResults'
+            'field-name' => 'field1'
         ));
 
-        // for testing, this field WILL NOT return results
-        $fieldNoResults = new MLPHP\Field(array(
-            'field-name' => 'fieldNoResults',
+        // Field Range Index: session/number, type, number
+        $field2 = new MLPHP\Field(array(
+            'field-name' => 'field2',
             'field-path' => $fieldPath,
-            'excluded-element' => $excluded
+            'included-element' => $included,
+            'excluded-element' => [$excluded1, $excluded2]
         ));
-        $db->addField($fieldNoResults);
+        $db->addField($field2);
         $db->addRangeFieldIndex(array(
-            'field-name' => 'fieldNoResults'
+            'field-name' => 'field2'
         ));
 
-        // for testing, title only
-        $fieldPathTitle = new MLPHP\FieldPath(array(
-            'path' => '/',
-            'weight' => 1.5
+        // Field: type, number, abbrev
+        $field3 = new MLPHP\Field(array(
+            'field-name' => 'field3',
+            'field-path' => $fieldPath,
+            'excluded-element' => $excluded1
         ));
-        $includedTitle = new MLPHP\FieldElementIncluded(array(
-            'localname' => 'title',
-            'weight' => 1.7
-        ));
-        $fieldTitle = new MLPHP\Field(array(
-            'field-name' => 'fieldTitle',
-            'field-path' => $fieldPathTitle,
-            'included-element' => $includedTitle
-        ));
-        $db->addField($fieldTitle);
-        $db->addRangeFieldIndex(array(
-            'field-name' => 'fieldTitle'
-        ));
+        $db->addField($field3);
 
-        // to enable collection constraints
+        // // to enable collection constraints
         parent::$logger->debug('Enable Collection Lexicon');
         $db->setProperty('collection-lexicon', 'true');
 
