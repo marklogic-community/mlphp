@@ -73,20 +73,20 @@ class Search
      */
     public function getParams()
     {
-            $params = array(
-                'start' => $this->start, 'pageLength' => $this->pageLength,
-                'view' => $this->view, 'format' => $this->format
-            );
-            if(!empty($this->options)) {
-                $params['options'] = $this->options;
-            }
-            if(!empty($this->collection)) {
-                $params['collection'] = $this->collection;
-            }
-            if(!empty($this->directory)) {
-                $params['directory'] = $this->directory;
-            }
-            return $params;
+        $params = array(
+            'start' => $this->start, 'pageLength' => $this->pageLength,
+            'view' => $this->view, 'format' => $this->format
+        );
+        if(!empty($this->options)) {
+            $params['options'] = $this->options;
+        }
+        if(!empty($this->collection)) {
+            $params['collection'] = $this->collection;
+        }
+        if(!empty($this->directory)) {
+            $params['directory'] = $this->directory;
+        }
+        return $params;
     }
 
     /**
