@@ -21,9 +21,21 @@ use MarkLogic\MLPHP;
 /**
  * @package MLPHP\Test
  * @author Eric Bloch <eric.bloch@gmail.com>
+ * @author Mike Wooldridge <mike.wooldridge@marklogic.com>
+ *
+ * Database index setup and a simple test of REST server connectivity.
+ * Filename prefixed with "1" so it is run first. This ensures the
+ * database indexes will be accessible for later tests.
  */
-class SmokeTest extends \PHPUnit_Framework_TestCase
+class SmokeTest extends TestBaseSearch
 {
+
+    function setUp()
+    {
+        parent::setIndexesXML(parent::$manageClient);
+        parent::setIndexesJSON(parent::$manageClient);
+    }
+
     function testTimestamp()
     {
         global $mlphp;
