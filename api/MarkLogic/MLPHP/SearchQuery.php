@@ -28,25 +28,24 @@ class SearchQuery
     private $structured; // @var boolean
 
     /**
-     * Create a Document object.
+     * Create a SearchQuery object.
      *
      * @todo Make $structured optional, automatically determine whether
      * query is XML or JSON (structured) or simple.
      *
-     * @param RESTClient $client A REST client object.
      * @param string $query A simple or structured search query string.
      * @param boolean $structured Whether the query is a structured query.
      */
     public function __construct($query, $structured)
     {
-        $this->query = $client;
+        $this->query = $query;
         $this->structured = $structured;
     }
 
     /**
      * Get the query string.
      *
-     * @return string|bool The query string.
+     * @return string The query string.
      */
     public function getQuery()
     {
@@ -56,9 +55,7 @@ class SearchQuery
     /**
      * Return whether the query is a structured query.
      *
-     * @param string $uri A document URI.
-     * @param array $params Optional additional parameters to pass when writing.
-     * @return Document $this
+     * @return boolean True if the query is structured.
      */
     public function isStructured()
     {
