@@ -67,5 +67,35 @@ class RangeConstraintTest extends TestBase
         ', $options2->getAsXML());
 
     }
+
+    function testRangeBucketConstraint()
+    {
+        parent::$logger->debug('testRangeBucketConstraint');
+        $options3 = new MLPHP\Options(parent::$client);
+        $constraint3 = new MLPHP\RangeConstraint(
+          'myConstr3', 'string', 'true', 'foo'
+        );
+        $buck1 = new MLPHP\Bucket('low', array(
+            'lt' => 10
+        ));
+        $buck2 = new MLPHP\Bucket('high', array(
+            'ge' => 10,
+            'lt' => 20
+        ));
+        $constraint3->addBuckets(array($buck1, $buck2));
+        $options3->addConstraint($constraint3);
+        $this->assertXmlStringEqualsXmlString('
+            <options xmlns="http://marklogic.com/appservices/search">
+              <constraint name="myConstr3">
+               <range type="string" facet="true">
+                    <element ns="" name="foo"/>
+                    <bucket name="low" lt="10" />
+                    <bucket name="high" ge="10" lt="20" />
+               </range>
+              </constraint>
+            </options>
+        ', $options3->getAsXML());
+
+    }
 }
 
