@@ -273,7 +273,6 @@ class Options
             $headers = array('Content-type' => 'application/xml');
             $request = new RESTRequest('PUT', 'config/query/' . $name, $params, $this->getAsXML(), $headers);
             $this->response = $this->client->send($request);
-            //print_r($response);
             return $this;
         } catch(Exception $e) {
             echo $e->getMessage() . ' in ' . $e->getFile() . ' on line ' . $e->getLine() . PHP_EOL;
@@ -477,7 +476,7 @@ class Options
     }
 
     /**
-     * Set the return-facets setting.
+     * Set the return-facets setting. (Alternative: set view search parameter.)
      *
      * @see http://docs.marklogic.com/search:search#opt-return-facets
      *
@@ -597,7 +596,7 @@ class Options
     }
 
     /**
-     * Set the return-results setting.
+     * Set the return-results setting. (Alternative: set view search parameter.)
      *
      * @todo broken, setting to 'false' doesn't stop results from returning
      * @see http://docs.marklogic.com/search:search#opt-return-results
