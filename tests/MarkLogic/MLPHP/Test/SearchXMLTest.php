@@ -190,6 +190,29 @@ class SearchTestXML extends TestBaseSearch
         $this->assertEquals(2, $results->getTotal());
     }
 
+    function testRangeBucket()
+    {
+        parent::$logger->debug('testBucketConstraint');
+        $options = new MLPHP\Options(parent::$client, 'testBucketConstraint');
+        $constraint = new MLPHP\RangeConstraint(
+          'myBucket', 'xs:int', 'true', 'bill', '', 'number'
+        );
+        $buck1 = new MLPHP\Bucket('low', array(
+            'lt' => 1000
+        ));
+        $buck2 = new MLPHP\Bucket('high', array(
+            'ge' => 1000,
+            'lt' => 2000
+        ));
+        $constraint->addBuckets(array($buck1, $buck2));
+        $options->addConstraint($constraint)->write();
+        $search = new MLPHP\Search(parent::$client, 1, 3);
+        $results = $search->setDirectory('/bills')->retrieve(
+            'myBucket:high', array('options' => 'testBucketConstraint')
+        );
+        $this->assertEquals(4, $results->getTotal());
+    }
+
     function testRangePath()
     {
         parent::$logger->debug('testRangePath');
