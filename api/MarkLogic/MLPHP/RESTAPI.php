@@ -64,6 +64,7 @@ class RESTAPI
         } else {
             $this->logger = $logger;
         }
+        // For creating/deleting REST API
         $this->client = new RESTClient(
             $this->host,
             8002,
@@ -74,6 +75,7 @@ class RESTAPI
             'digest',
             $this->logger
         );
+        // For getting/setting REST API properties
         $this->apiClient = new RESTClient(
             $this->host,
             $this->port,
@@ -99,7 +101,7 @@ class RESTAPI
             $this->logger->debug(
                 'A REST API named "' . $this->name . '" already exists'
             );
-            return;
+            return $this;
         }
         $this->client = $client ?: $this->client;
         $params = array();
@@ -122,6 +124,7 @@ class RESTAPI
             ' (' . $this->db . ') port ' . $this->port
         );
         $this->client->send($request); // Set up REST API
+        return $this;
     }
 
     /**
