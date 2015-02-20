@@ -60,7 +60,7 @@ class FieldRangeConstraint extends AbstractConstraint
         $frangeElem = $dom->createElement('range');
         $frangeElem->setAttribute('type', $this->datatype);
         $frangeElem->setAttribute('facet', $this->facet);
-        if ($this->datatype === 'string') {
+        if ($this->datatype === 'xs:string') {
             $frangeElem->setAttribute('collation', 'http://marklogic.com/collation/');
         }
         $fieldElem = $dom->createElement('field');
