@@ -28,13 +28,14 @@ class RESTAPITest extends TestBase
     function testCreate()
     {
         parent::$logger->debug('testCreate');
+        global $mlphp;
         $api = new MLPHP\RESTAPI(
-            'test-api',
-            '127.0.0.1',
-            'test-db',
-            8345,
-            'admin',
-            'admin',
+            $mlphp->config['api'] . '-1',
+            $mlphp->config['host'],
+            $mlphp->config['db'] . '-1',
+            $mlphp->config['port'] + 1,
+            $mlphp->config['username'],
+            $mlphp->config['password'],
             parent::$logger
         );
         $api->create();
