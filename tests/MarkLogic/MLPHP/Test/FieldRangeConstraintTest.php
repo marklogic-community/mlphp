@@ -29,14 +29,14 @@ class FieldRangeConstraintTest extends TestBase
         parent::$logger->debug('testFieldRangeConstraint');
         $options = new MLPHP\Options(parent::$client);
         $constraint = new MLPHP\FieldRangeConstraint(
-          'myConstraint', 'string', 'false', 'myField'
+          'myConstraint', 'xs:string', 'false', 'myField'
         );
         $options->addConstraint($constraint);
 
         $this->assertXmlStringEqualsXmlString('
             <options xmlns="http://marklogic.com/appservices/search">
               <constraint name="myConstraint">
-                 <range type="string" facet="false"
+                 <range type="xs:string" facet="false"
                   collation="http://marklogic.com/collation/">
                     <field name="myField"/>
                  </range>
