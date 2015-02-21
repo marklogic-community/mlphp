@@ -178,7 +178,7 @@ class RESTAPI
     {
         $this->client = $client ?: $this->client;
         // Delete content and modules as well
-        $params = array('include' => ['content', 'modules']);
+        $params = array('include' => array('content', 'modules'));
         $body = null;
         $headers = array();
         $request = new RESTRequest(

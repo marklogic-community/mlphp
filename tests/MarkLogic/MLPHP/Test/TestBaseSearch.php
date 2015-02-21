@@ -203,7 +203,7 @@ abstract class TestBaseSearch extends TestBaseDB
         $field1 = new MLPHP\Field(array(
             'field-name' => 'field1',
             'field-path' => $fieldPath,
-            'excluded-element' => [$excluded1, $excluded2]
+            'excluded-element' => array($excluded1, $excluded2)
         ));
         $db->addField($field1);
         $db->addRangeFieldIndex(array(
@@ -215,7 +215,7 @@ abstract class TestBaseSearch extends TestBaseDB
             'field-name' => 'field2',
             'field-path' => $fieldPath,
             'included-element' => $included,
-            'excluded-element' => [$excluded1, $excluded2]
+            'excluded-element' => array($excluded1, $excluded2)
         ));
         $db->addField($field2);
         $db->addRangeFieldIndex(array(
