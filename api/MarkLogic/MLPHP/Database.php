@@ -152,7 +152,7 @@ class Database
 
     /**
      *
-     * Get the status information for the database as JSON.
+     * Get the status information for the database.
      *
      */
     public function getStatus()
