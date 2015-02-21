@@ -32,8 +32,11 @@ class SmokeTest extends TestBaseSearch
 
     function setUp()
     {
-        parent::setIndexesXML(parent::$manageClient);
-        parent::setIndexesJSON(parent::$manageClient);
+        global $mlphp;
+        if (substr($mlphp->config['mlversion'], 0, 3) >= 8) {
+            parent::setIndexesXML(parent::$manageClient);
+            parent::setIndexesJSON(parent::$manageClient);
+        }
     }
 
     function testTimestamp()
