@@ -230,7 +230,7 @@ abstract class TestBaseSearch extends TestBaseDB
         ));
         $db->addField($field3);
 
-        // // to enable collection constraints
+        // to enable collection constraints
         parent::$logger->debug('Enable Collection Lexicon');
         $db->setProperty('collection-lexicon', 'true');
 
@@ -241,11 +241,12 @@ abstract class TestBaseSearch extends TestBaseDB
         parent::$logger->debug('setIndexes');
         $db = new MLPHP\Database($manageClient, 'mlphp-test-db');
 
-        $party = array(
-            'scalar-type' => 'string',
-            'path-expression' => 'old_roles/2009-2010[0]/party'
-        );
-        $db->addRangePathIndex($party);
+        // $party = array(
+        //     'scalar-type' => 'string',
+        //     // The following errors due to hyphen '-'
+        //     'path-expression' => '//old_roles/2009-2010[0]/party'
+        // );
+        // $db->addRangePathIndex($party);
 
         $id = array(
             'scalar-type' => 'string',
