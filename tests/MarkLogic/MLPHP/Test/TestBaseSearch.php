@@ -120,13 +120,6 @@ abstract class TestBaseSearch extends TestBaseDB
         $db = new MLPHP\Database($manageClient, 'mlphp-test-db');
 
         // Set range attribute indexes
-        parent::$logger->debug('Add Range Attribute Index: session');
-        $session = array(
-            'scalar-type' => 'int',
-            'parent-localname' => 'bill',
-            'localname' => 'session'
-        );
-        $db->addRangeAttributeIndex($session);
         parent::$logger->debug('Add Range Attribute Index: type');
         $type = array(
             'scalar-type' => 'string',
@@ -141,26 +134,14 @@ abstract class TestBaseSearch extends TestBaseDB
             'localname' => 'number'
         );
         $db->addRangeAttributeIndex($number);
-        parent::$logger->debug('Add Range Attribute Index: abbrev');
-        $abbrev = array(
-            'scalar-type' => 'string',
-            'parent-localname' => 'bill',
-            'localname' => 'abbrev'
-        );
-        $db->addRangeAttributeIndex($abbrev);
+
+        // Set path range index
         parent::$logger->debug('Add Range Attribute Index: date');
         $date = array(
             'scalar-type' => 'string',
             'path-expression' => 'introduced/@date'
         );
         $db->addRangePathIndex($date);
-        parent::$logger->debug('Add Range Attribute Index: href');
-        $href = array(
-            'scalar-type' => 'string',
-            'parent-localname' => 'link',
-            'localname' => 'href'
-        );
-        $db->addRangeAttributeIndex($href);
 
         // Set range element indexes
         parent::$logger->debug('Add Range Element Index: status');
@@ -241,6 +222,7 @@ abstract class TestBaseSearch extends TestBaseDB
         parent::$logger->debug('setIndexes');
         $db = new MLPHP\Database($manageClient, 'mlphp-test-db');
 
+        // @todo define a path expression that works
         // $party = array(
         //     'scalar-type' => 'string',
         //     // The following errors due to hyphen '-'
