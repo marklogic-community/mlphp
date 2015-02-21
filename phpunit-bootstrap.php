@@ -6,7 +6,7 @@ $serverConfig = $mlphp->getServerConfig();
 $mlphp->config['mlversion'] =  $serverConfig['version'];
 
 // Create REST API for tests
-$api = $mlphp->getAPI()->create();//->setProperty('debug', 'true');
+$api = $mlphp->getAPI()->create()->setProperty('debug', 'true');
 
 function phpunitTeardown($api)
 {
