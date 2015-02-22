@@ -2,7 +2,7 @@
 
 ## PHP API for MarkLogic
 
-MLPHP is a PHP API for MarkLogic that makes it easy to store documents, manage document metadata, and create sophisticated search queries on a web server running PHP (version 5.3 or greater). The PHP classes communicate with the MarkLogic via the [MarkLogic REST API](http://developer.marklogic.com/learn/rest).
+MLPHP is a PHP API for MarkLogic that makes it easy to store documents, manage document metadata, and create sophisticated search queries on a web server running PHP (version 5.4 or greater). The PHP classes communicate with the MarkLogic via the [MarkLogic REST API](http://developer.marklogic.com/learn/rest).
 
 After installing MLPHP (see below), you can load documents into
 MarkLogic with just a couple lines of PHP code:
@@ -49,9 +49,6 @@ or
     % php composer.phar install
 
 
-## Examples
-MLPHP comes with a series of examples. To run them, see the [instructions](https://github.com/marklogic/mlphp/blob/master/examples/README.md).
-
 ## API Documentation
 API docs are available [online](http://marklogic.github.io/mlphp).  A copy is also provided inside the MLPHP repo under `api/docs`.
 
@@ -60,6 +57,10 @@ MLPHP is licensed under the Apache License, Version 2.0 (see LICENSE.txt).
 
 ## Status
 MLPHP is in early-stage development, but ready for use.  The API is subject to change.
+
+## Examples
+MLPHP examples are being revised.
+
 
 ## Development
 
@@ -110,11 +111,14 @@ Unit tests can be found under `tests`. To run,
 
         % vendor/bin/phpunit tests
 
-MLPHP uses [PHPUnit](https://phpunit.de) for testing. See tests/README.md for more.
+MLPHP uses [PHPUnit](https://phpunit.de) for testing. See the tests [README.md](https://github.com/marklogic/mlphp/blob/dev/tests/README.md) for more.
 
 ### Contributing
-TBD...
+You can request a new feature by submitting an issue to the project's [GitHub Issue Tracker]
+(https://github.com/marklogic/mlphp/issues).
+
+Please submit [pull requests](https://help.github.com/articles/using-pull-requests/) to the `develop` branch.
 
 ## Copyright
-Copyright 2002-2013 MarkLogic Corporation.  All Rights Reserved.
+Copyright 2002-2015 MarkLogic Corporation.  All Rights Reserved.
 
