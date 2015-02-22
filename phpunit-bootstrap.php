@@ -1,7 +1,11 @@
 <?php
+/**
+ * Bootstrap script for PHPUnit testing.
+ * @see phpunit.xml
+ */
 require_once('phpunit-config.php');
 
-// Get MarkLogic version for skipping tests
+// Get MarkLogic version
 $serverConfig = $mlphp->getServerConfig();
 $mlphp->config['mlversion'] =  $serverConfig['version'];
 
@@ -18,5 +22,3 @@ function phpunitTeardown($api)
 
 // Run after all tests complete
 register_shutdown_function('phpunitTeardown', $api);
-
-?>
