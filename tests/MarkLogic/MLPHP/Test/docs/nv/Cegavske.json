@@ -1,0 +1,120 @@
+{
+  "last_name": "Cegavske",
+  "updated_at": "2015-01-22 21:46:44",
+  "sources": [
+    {
+      "url": "http://www.leg.state.nv.us/App/Legislator/A/Senate/28th2014Special/8"
+    }
+  ],
+  "full_name": "Barbara K Cegavske",
+  "old_roles": {
+    "2009-2010": [
+      {
+        "term": "2009-2010",
+        "end_date": null,
+        "district": "Clark County, No. 8",
+        "level": "state",
+        "country": "us",
+        "chamber": "upper",
+        "state": "nv",
+        "party": "Republican",
+        "type": "member",
+        "start_date": null
+      }
+    ],
+    "2013-2014": [
+      {
+        "term": "2013-2014",
+        "end_date": null,
+        "district": "8",
+        "chamber": "upper",
+        "state": "nv",
+        "party": "Republican",
+        "type": "member",
+        "start_date": null
+      }
+    ],
+    "2011-2012": [
+      {
+        "term": "2011-2012",
+        "end_date": null,
+        "district": "Clark County, No. 8",
+        "level": "state",
+        "country": "us",
+        "chamber": "upper",
+        "state": "nv",
+        "party": "Republican",
+        "type": "member",
+        "start_date": null
+      },
+      {
+        "term": "2011-2012",
+        "committee_id": "NVC000021",
+        "level": "state",
+        "country": "us",
+        "chamber": "upper",
+        "state": "nv",
+        "subcommittee": null,
+        "committee": "Education",
+        "type": "committee member"
+      },
+      {
+        "term": "2011-2012",
+        "committee_id": "NVC000003",
+        "level": "state",
+        "country": "us",
+        "chamber": "upper",
+        "state": "nv",
+        "subcommittee": null,
+        "committee": "Finance",
+        "type": "committee member"
+      },
+      {
+        "term": "2011-2012",
+        "committee_id": "NVC000007",
+        "level": "state",
+        "country": "us",
+        "chamber": "upper",
+        "state": "nv",
+        "subcommittee": null,
+        "committee": "Legislative Operations and Elections",
+        "type": "committee member"
+      }
+    ]
+  },
+  "id": "NVL000005",
+  "first_name": "Barbara K.",
+  "middle_name": "K",
+  "nickname": "",
+  "state": "nv",
+  "votesmart_id": "12503",
+  "email": "bcegavske@sen.state.nv.us",
+  "all_ids": [
+    "NVL000005",
+    "NVL000140",
+    "NVL000140",
+    "NVL000208"
+  ],
+  "leg_id": "NVL000005",
+  "active": false,
+  "transparencydata_id": "3c41b15794dc45f583b0d37483b1f36b",
+  "end_date": "Nov. 2010",
+  "photo_url": "http://leg.state.nv.us/Session/77th2013/legislators/Senators/Images/Cegavske.jpg",
+  "roles": [],
+  "url": "http://www.leg.state.nv.us/Session/76th2011/legislators/Senators/slist.cfm",
+  "country": "us",
+  "created_at": "2010-09-01 16:27:46",
+  "level": "state",
+  "offices": [
+    {
+      "fax": null,
+      "name": "District Address",
+      "phone": "775-555-5555",
+      "address": "1234 Main Street #12 \nCarson City, NV 89701",
+      "type": "district",
+      "email": null
+    }
+  ],
+  "address": "\r\n          \t6465 Laredo Street \r\n\t\t\tLas Vegas, NV 89146-5272\r\n          ",
+  "suffixes": ""
+}

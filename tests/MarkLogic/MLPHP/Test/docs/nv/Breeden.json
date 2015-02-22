@@ -1,0 +1,99 @@
+{
+  "last_name": "Breeden",
+  "updated_at": "2013-01-09 22:29:27",
+  "sources": [
+    {
+      "url": "http://www.leg.state.nv.us/Session/76th2011/legislators/Senators/slist.cfm"
+    }
+  ],
+  "nimsp_candidate_id": "104861",
+  "full_name": "Shirley A Breeden",
+  "old_roles": {
+    "2009-2010": [
+      {
+        "term": "2009-2010",
+        "end_date": null,
+        "district": "Clark County, No. 5",
+        "level": "state",
+        "country": "us",
+        "chamber": "upper",
+        "state": "nv",
+        "party": "Democratic",
+        "type": "member",
+        "start_date": null
+      }
+    ],
+    "2011-2012": [
+      {
+        "term": "2011-2012",
+        "end_date": null,
+        "district": "Clark County, No. 5",
+        "level": "state",
+        "country": "us",
+        "chamber": "upper",
+        "state": "nv",
+        "party": "Democratic",
+        "type": "member",
+        "start_date": null
+      },
+      {
+        "term": "2011-2012",
+        "committee_id": "NVC000020",
+        "level": "state",
+        "country": "us",
+        "chamber": "upper",
+        "state": "nv",
+        "subcommittee": null,
+        "committee": "Commerce, Labor and Energy",
+        "type": "committee member"
+      },
+      {
+        "term": "2011-2012",
+        "committee_id": "NVC000019",
+        "level": "state",
+        "country": "us",
+        "chamber": "upper",
+        "state": "nv",
+        "subcommittee": null,
+        "committee": "Judiciary",
+        "type": "committee member"
+      },
+      {
+        "term": "2011-2012",
+        "committee_id": "NVC000025",
+        "level": "state",
+        "country": "us",
+        "chamber": "upper",
+        "state": "nv",
+        "subcommittee": null,
+        "committee": "Transportation",
+        "type": "committee member"
+      }
+    ]
+  },
+  "id": "NVL000002",
+  "first_name": "Shirley",
+  "middle_name": "A",
+  "state": "nv",
+  "votesmart_id": "106861",
+  "email": "sbreeden@sen.state.nv.us",
+  "all_ids": [
+    "NVL000002",
+    "NVL000138",
+    "NVL000138"
+  ],
+  "leg_id": "NVL000002",
+  "active": false,
+  "transparencydata_id": "2186a6a4cbc648b2a9f5e1bfda58c7e2",
+  "end_date": "Nov. 2012",
+  "photo_url": "http://www.leg.state.nv.us/Senate/Current/Senators/Images/Breeden.jpg",
+  "roles": [],
+  "url": "http://www.leg.state.nv.us/Session/76th2011/legislators/Senators/slist.cfm",
+  "country": "us",
+  "created_at": "2010-09-01 16:27:46",
+  "level": "state",
+  "nimsp_id": "9812",
+  "offices": [],
+  "address": "\r\n          \t284 Kershner Court \r\n\t\t\tHenderson, NV 89074-4180\r\n          ",
+  "suffixes": ""
+}
