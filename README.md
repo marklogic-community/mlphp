@@ -8,39 +8,39 @@ After installing MLPHP (see below), you can load documents into
 MarkLogic with just a couple lines of PHP code:
 
     use MarkLogic\MLPHP;
-    
+
     $document = new MLPHP\Document($client);
     $document->setContentFile('myfile.xml')->write('/myfile.xml');
 
 Searching is just as easy:
 
     use MarkLogic\MLPHP;
-    
+
     $search = new MLPHP\Search($client);
     $results = $search->retrieve('cat');
-    
+
 More details are available in the examples described below.
 
 ## Dependencies
 
-* [MarkLogic 6 or later](http://developer.marklogic.com/products).  Download the server, start it, and request a  a free [Developer or Express license](http://developer.marklogic.com/licensing) directly from the Admin UI on port 8001.
-* PHP 5.3-or-later-enabled web server (e.g., Apache running PHP) with the following extension libraries (typically available by default)
+* [MarkLogic 7 or later](http://developer.marklogic.com/products).  Download the server, start it, and request a free [Developer or Express license](http://developer.marklogic.com/licensing) directly from the Admin UI on port 8001.
+* PHP 5.4-or-later-enabled web server (e.g., Apache running PHP) with the following extension libraries (typically available by default)
 	* DOM
-	* cURL 
-	* XSL 
+	* cURL
+	* XSL
 * [MLPHP](https://github.com/marklogic/mlphp)
 * [Composer](http://getcomposer.org).
 
 ## Installation
-To add MLPHP to your project, simply add MLPHP to your Composer requirement in composer.json:
+To add MLPHP to your project, simply add MLPHP as a Composer requirement in composer.json:
 
     {
-        require: {
-            "marklogic\mlphp" : "dev-master"
+        "require": {
+            "marklogic/mlphp" : "dev-master"
         }
     }
 
-And then, depending on how you installed Composer, you can do
+And then, depending on how you installed Composer, run
 
     % composer install
 
@@ -50,16 +50,16 @@ or
 
 
 ## Examples
-MLPHP comes with a series of examples. To run them, see the [instructions](https://github.com/marklogic/mlphp/blob/master/examples/README.md).  
+MLPHP comes with a series of examples. To run them, see the [instructions](https://github.com/marklogic/mlphp/blob/master/examples/README.md).
 
 ## API Documentation
-API docs are available [online](http://marklogic.github.io/mlphp).  A copy is also provided inside the MLPHP repo under `api/docs` and surfaces from the examples index.
+API docs are available [online](http://marklogic.github.io/mlphp).  A copy is also provided inside the MLPHP repo under `api/docs`.
 
-## License 
+## License
 MLPHP is licensed under the Apache License, Version 2.0 (see LICENSE.txt).
 
 ## Status
-MLPHP is in early-stage development, but ready-for-use.  The API is subject to change.
+MLPHP is in early-stage development, but ready for use.  The API is subject to change.
 
 ## Development
 
@@ -67,7 +67,7 @@ MLPHP is in early-stage development, but ready-for-use.  The API is subject to c
 
     % git clone git@github.com:marklogic/mlphp mlphp
     % cd mlphp
-    % composer update 
+    % composer install
 
 ### To generate a clean set of new API docs from source
 
@@ -85,12 +85,12 @@ MLPHP is in early-stage development, but ready-for-use.  The API is subject to c
 2. Update gh-pages copy  (Technique borrowed from https://gist.github.com/825950)
 
         % cd $PATH_TO_MLPHP/mlphp/api
-        
+
    If this is the first time,
 
         % git clone -b gh-pages \
             --single-branch git@github.com:marklogic/mlphp docs-ghpages
-        
+
    Then...
 
         % cd $PATH_TO_MLPHP/mlphp/api/docs-ghpages
@@ -101,16 +101,16 @@ MLPHP is in early-stage development, but ready-for-use.  The API is subject to c
         % git add .
         % git commit -a -m "New docs"
         % git push origin gh-pages
-        
+
 ### Unit tests
-Beginnings of unit tests can be found under `tests`.  To run, 
+Unit tests can be found under `tests`. To run,
 
-1. Create a database for the tests, named `mlphp-tests` and attache a REST API instance to it. You can do this by importing the DB configuration via the MarkLogic Configuration manager 
-UI at `http://localhost:8002` (change your hostname as you need) found under `tests/setup/package.xml`.
-2. Edit `phpunit-bootstrap.php` and set configuration variables specific to your REST API instance.
-3. Run the tests 
+1. Edit `phpunit-config.php` and set configuration variables specific to your MarkLogic setup.
+2. Run the tests:
 
-        % vendor/bin/phpunit --bootstrap phpunit-bootstrap.php tests
+        % vendor/bin/phpunit tests
+
+MLPHP uses [PHPUnit](https://phpunit.de) for testing. See tests/README.md for more.
 
 ### Contributing
 TBD...
