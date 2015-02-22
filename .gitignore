@@ -4,5 +4,3 @@ api/docs-ghpages/
 composer.lock
 
 TODO.md
-
-tests/MarkLogic/MLPHP/Test/docs/
