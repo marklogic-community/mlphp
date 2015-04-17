@@ -332,8 +332,7 @@ class DatabaseTest extends TestBaseDB
             'parent-localname' => 'one',
             'parent-namespace-uri' => '',
             'localname' => 'two',
-            'namespace-uri' => '',
-            'collation' => ''
+            'namespace-uri' => ''
         );
         $this->db->addAttributeLexicon($properties);
         $this->assertTrue($this->db->propertyExists(
