@@ -64,7 +64,7 @@ class RangeConstraint extends AbstractConstraint
     /**
      * Add bucket objects.
      *
-     * @param array|string $buckets An array of bucket objects or a bucket object.
+     * @param array|Bucket $buckets An array of bucket objects or a bucket object.
      */
     public function addBuckets($buckets) {
         if (is_array($buckets)) {
