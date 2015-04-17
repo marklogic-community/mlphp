@@ -1,7 +1,8 @@
 <?php
 /**
  * Convenience script for cleaning up REST APIs and data used in tests.
- * Useful when the testing process fails midstream.
+ * Useful when the testing process fails midstream. Run the following:
+ * `php ./phpunit-teardown.php`
  */
 require_once('vendor/autoload.php');
 require_once('phpunit-config.php');

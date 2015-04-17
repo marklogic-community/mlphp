@@ -124,7 +124,8 @@ class SearchTestXML extends TestBaseSearch
         $results = $search->retrieve('blah:"Evidence and witnesses"', array(
             'options' => 'testValueConstraint'
         ));
-        // Must match entire value inside element, so the following fails
+        // Must match entire value inside element, so the following returns
+        // no results
         $this->assertEquals(1, $results->getTotal());
         $results2 = $search->retrieve('blah:Evidence', array(
             'options' => 'testValueConstraint'

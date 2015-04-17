@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * Configuration for PHPUnit testing.
+ */
 use MarkLogic\MLPHP;
 
 use Monolog\Logger;
