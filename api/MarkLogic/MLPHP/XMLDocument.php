@@ -29,12 +29,12 @@ class XMLDocument extends Document
     /**
      * Create an XML document object.
      *
-     * @param RESTClient $restClient A REST client object.
+     * @param RESTClient $client A REST client object.
      * @param string $uri A document URI.
      */
-    public function __construct($restClient, $uri = null)
+    public function __construct($client, $uri = null)
     {
-        parent::__construct($restClient, $uri);
+        parent::__construct($client, $uri);
         $this->dom = new \DOMDocument();
         $this->contentType = 'application/xml';
     }
@@ -62,9 +62,29 @@ class XMLDocument extends Document
      */
     public function write($uri = null, $params = array())
     {
-        $this->uri = (isset($uri)) ? (string)$uri : $this->uri;
-        $params = array_merge(array('format' => 'xml'), $params);
-        return parent::write($this->uri, $params);
+        if ($this->isValidXML($this->getContent())) {
+            $this->uri = (isset($uri)) ? (string)$uri : $this->uri;
+            $params = array_merge(array('format' => 'xml'), $params);
+            return parent::write($this->uri, $params);
+        } else {
+            throw new \Exception('Attempting to write invalid XML content');
+        }
+    }
+
+    /**
+     * Check if XML content is valid.
+     *
+     * @return boolean true or false.
+     */
+    public function isValidXML($xml)
+    {
+        $doc = new \DOMDocument();
+        try {
+            return $doc->loadXML($xml) === true;
+        } catch(\Exception $e) {
+            $this->logger->warning('XMLDocument::isValidXML() - ' . $e->getMessage());
+            return false;
+        }
     }
 
     /**

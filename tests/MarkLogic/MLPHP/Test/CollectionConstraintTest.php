@@ -18,20 +18,27 @@ namespace MarkLogic\MLPHP\Test;
 
 use MarkLogic\MLPHP;
 
-use Monolog\Logger;
-use Monolog\Handler\StreamHandler;
-
 /**
  * @package MLPHP\Test
- * @author Eric Bloch <eric.bloch@gmail.com>
+ * @author Mike Wooldridge <mike.wooldridge@marklogic.com>
  */
-class SmokeTest extends TestBase
+class CollectionConstraintTest extends TestBase
 {
-    function testDBName()
+    function testCollectionConstraint()
     {
-        $db = new MLPHP\Database($this->client);
-        $name = $db->getName();
-        $this->assertNotNull($name);
+        parent::$logger->debug('testCollectionConstraint');
+        $options = new MLPHP\Options(parent::$client);
+        $constraint = new MLPHP\CollectionConstraint("cat", "category/");
+        $options->addConstraint($constraint);
+
+        $this->assertXmlStringEqualsXmlString('
+            <options xmlns="http://marklogic.com/appservices/search">
+              <constraint name="cat">
+                <collection prefix="category/"/>
+              </constraint>
+            </options>
+        ', $options->getAsXML());
+
     }
 }
 

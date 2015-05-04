@@ -21,6 +21,10 @@ namespace MarkLogic\MLPHP;
  *
  * @package MLPHP
  * @author Mike Wooldridge <mike.wooldridge@marklogic.com>
+ *
+ * @todo Replace deprecated extract-metadata functionality with
+ * extract-document-data
+ * @see http://docs.marklogic.com/guide/rest-dev/appendixb#id_94425
  */
 class Extracts
 {
@@ -52,6 +56,8 @@ class Extracts
 
     /**
      * Add QName metadata.
+     * @todo Defining extract as QName not working
+     * @see https://github.com/marklogic/mlphp/issues/6
      *
      * @param string $element An element name.
      * @param string $ns An element namespace.

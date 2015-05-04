@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="generator" content="PHPDoctor 2.0.5 (http://peej.github.com/phpdoctor/)">
-<meta name="when" content="Mon, 29 Jul 2013 22:11:19 +0000">
+<meta name="when" content="Mon, 09 Feb 2015 02:37:40 +0000">
 
 <link rel="stylesheet" type="text/css" href="../../../stylesheet.css">
 <link rel="start" href="../../../overview-summary.html">
@@ -77,42 +77,43 @@
 <a name="line39"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">type</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$facet</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getAttribute</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'type'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
 <a name="line40"></a>        <span style="color: #000088;">$values</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$facet</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getElementsByTagName</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'facet-value'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
 <a name="line41"></a>        <span style="color: #b1b100;">foreach</span> <span style="color: #009900;">&#40;</span><span style="color: #000088;">$values</span> <span style="color: #b1b100;">as</span> <span style="color: #000088;">$val</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
-<a name="line42"></a>            <span style="color: #000088;">$facetValue</span> <span style="color: #339933;">=</span> <span style="color: #000000; font-weight: bold;">new</span> FacetValue<span style="color: #009900;">&#40;</span><span style="color: #000088;">$val</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getAttribute</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'name'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">,</span> <span style="color: #000088;">$val</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getAttribute</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'count'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">,</span> <span style="color: #000088;">$val</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">nodeValue</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
-<a name="line43"></a>            <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">facetValues</span><span style="color: #009900;">&#91;</span><span style="color: #009900;">&#93;</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$facetValue</span><span style="color: #339933;">;</span>
-<a name="line44"></a>        <span style="color: #009900;">&#125;</span>
-<a name="line45"></a>    <span style="color: #009900;">&#125;</span>
-<a name="line46"></a>&nbsp;
-<a name="line47"></a>    <span style="color: #009933; font-style: italic;">/**
-<a name="line48"></a>     * Get the facet name.
-<a name="line49"></a>     *
-<a name="line50"></a>     * @return string The facet name.
-<a name="line51"></a>     */</span>
-<a name="line52"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getName<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
-<a name="line53"></a>    <span style="color: #009900;">&#123;</span>
-<a name="line54"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">name</span><span style="color: #339933;">;</span>
-<a name="line55"></a>    <span style="color: #009900;">&#125;</span>
-<a name="line56"></a>&nbsp;
-<a name="line57"></a>    <span style="color: #009933; font-style: italic;">/**
-<a name="line58"></a>     * Get the facet type.
-<a name="line59"></a>     *
-<a name="line60"></a>     * @return string The facet type.
-<a name="line61"></a>     */</span>
-<a name="line62"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> <a href="http://www.php.net/gettype"><span style="color: #990000;">getType</span></a><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
-<a name="line63"></a>    <span style="color: #009900;">&#123;</span>
-<a name="line64"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">type</span><span style="color: #339933;">;</span>
-<a name="line65"></a>    <span style="color: #009900;">&#125;</span>
-<a name="line66"></a>&nbsp;
-<a name="line67"></a>    <span style="color: #009933; font-style: italic;">/**
-<a name="line68"></a>     * Get the facet values.
-<a name="line69"></a>     *
-<a name="line70"></a>     * @return array An array of FacetValue objects.
-<a name="line71"></a>     */</span>
-<a name="line72"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getFacetValues<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
-<a name="line73"></a>    <span style="color: #009900;">&#123;</span>
-<a name="line74"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">facetValues</span><span style="color: #339933;">;</span>
-<a name="line75"></a>    <span style="color: #009900;">&#125;</span>
-<a name="line76"></a><span style="color: #009900;">&#125;</span>
-<a name="line77"></a>&nbsp;</pre>
+<a name="line42"></a>            <span style="color: #000088;">$facetValue</span> <span style="color: #339933;">=</span> <span style="color: #000000; font-weight: bold;">new</span> FacetValue<span style="color: #009900;">&#40;</span><span style="color: #000088;">$val</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getAttribute</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'name'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">,</span>
+<a name="line43"></a>              <span style="color: #000088;">$val</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getAttribute</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'count'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">,</span> <span style="color: #000088;">$val</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">nodeValue</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line44"></a>            <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">facetValues</span><span style="color: #009900;">&#91;</span><span style="color: #009900;">&#93;</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$facetValue</span><span style="color: #339933;">;</span>
+<a name="line45"></a>        <span style="color: #009900;">&#125;</span>
+<a name="line46"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line47"></a>&nbsp;
+<a name="line48"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line49"></a>     * Get the facet name.
+<a name="line50"></a>     *
+<a name="line51"></a>     * @return string The facet name.
+<a name="line52"></a>     */</span>
+<a name="line53"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getName<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
+<a name="line54"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line55"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">name</span><span style="color: #339933;">;</span>
+<a name="line56"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line57"></a>&nbsp;
+<a name="line58"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line59"></a>     * Get the facet type.
+<a name="line60"></a>     *
+<a name="line61"></a>     * @return string The facet type.
+<a name="line62"></a>     */</span>
+<a name="line63"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> <a href="http://www.php.net/gettype"><span style="color: #990000;">getType</span></a><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
+<a name="line64"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line65"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">type</span><span style="color: #339933;">;</span>
+<a name="line66"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line67"></a>&nbsp;
+<a name="line68"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line69"></a>     * Get the facet values.
+<a name="line70"></a>     *
+<a name="line71"></a>     * @return array An array of FacetValue objects.
+<a name="line72"></a>     */</span>
+<a name="line73"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getFacetValues<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
+<a name="line74"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line75"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">facetValues</span><span style="color: #339933;">;</span>
+<a name="line76"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line77"></a><span style="color: #009900;">&#125;</span>
+<a name="line78"></a>&nbsp;</pre>
 <div class="header">
 <h1><a href=../../examples/index.php target=_top>MLPHP</a></h1>
 <ul>

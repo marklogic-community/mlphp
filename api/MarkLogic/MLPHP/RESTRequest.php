@@ -28,8 +28,9 @@ class RESTRequest
     private $resource; // @var string
     private $params; // @var array
     private $body; // @var string
+    private $headers; // @var array
 
-    /*
+    /**
      * Create a REST request object.
      *
      * @param string $verb The REST verb (example: 'GET').
@@ -72,7 +73,7 @@ class RESTRequest
      *
      * @param string $resource The REST resource (example: 'documents').
      */
-    public function setResource($verb)
+    public function setResource($resource)
     {
         $this->resource = $resource;
     }
@@ -150,29 +151,57 @@ class RESTRequest
     /**
      * @return true if the request is a POST with Content-type application/x-www-form-urlencoded
      */
-    public function isWWWFormURLEncodedPost() 
+    public function isWWWFormURLEncodedPost()
     {
         if (strtolower($this->verb) != "post") {
             return false;
         }
 
+        // @todo Should this return false?
         if (empty($this->headers["Content-type"])) {
             return true;
         }
 
-        // XXX Do I need to check for other cases of Content-Type content-type, etc?
+        // @todo Do I need to check for other cases of Content-Type content-type, etc?
         switch (strtolower($this->headers["Content-type"])) {
             case "application/x-www-form-urlencoded":
                 return true;
-            default:    
+            default:
                 return false;
         }
     }
 
     /**
-     * Get the resource and params as a URL string.
+     * Build query from resource and params. Accounts for the fact that some param
+     * keys may be associated with arrays, which will generate the same keys multiple
+     * times in the query, e.g.:
+     * params: array("foo"=>["bar", "baz"])
+     * query:  ?foo=bar&foo=baz
      *
-     * @todo Allow for multiple params of same name (e.g., when filtering by collections or directories for search).
+     * @return string The built query.
+     */
+    public function buildQuery()
+    {
+        $query = '';
+        if (!empty($this->params)) {
+            foreach($this->params as $key => $val) {
+                if (!is_array($val)) {
+                    $query .= urlencode($key) . '=' . urlencode($val) . '&';
+                } else {
+                    foreach($val as $v) {
+                        $query .= urlencode($key) . '=' . urlencode($v) . '&';
+                    }
+                }
+            }
+            // Remove trailing '&'
+            $query = substr($query, 0, -1);
+        }
+        return $query;
+    }
+
+
+    /**
+     * Get the resource and params as a URL string.
      *
      * @return string The request body.
      */
@@ -181,8 +210,8 @@ class RESTRequest
         $str = (!empty($this->resource)) ? $this->resource : '';
 
         /* x-www-form-encoded posts encodes query params in the body */
-        if (! $this->isWWWFormURLEncodedPost()) {
-            $str .= (!empty($this->params)) ? ('?' . http_build_query($this->params)) : '';
+        if (!$this->isWWWFormURLEncodedPost()) {
+            $str .= (!empty($this->params)) ? ('?' . $this->buildQuery()) : '';
         }
         return $str;
     }

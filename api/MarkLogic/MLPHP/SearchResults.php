@@ -27,9 +27,13 @@ class SearchResults
     private $total; // @var int
     private $start; // @var int
     private $pageLength; // @var int
+    private $qtext; // @var string
+    private $query; // @var DOMElement
 
     private $results = array(); // @var array of SearchResult objects
     private $facets; // @var array of Facet objects
+
+    private $response; // @var XML response
 
     /**
      * Create a SearchResults object.
@@ -40,6 +44,7 @@ class SearchResults
      */
     public function __construct($response)
     {
+        $this->response = $response;
         $dom = new \DOMDocument();
         $dom->loadXML($response);
         $respElem = $dom->getElementsByTagName('response')->item(0);
@@ -55,7 +60,21 @@ class SearchResults
         foreach ($facets as $facet) {
             $this->facets[] = new Facet($facet);
         }
+        $this->qtext = $respElem->getElementsByTagName('qtext')->length ?
+            $respElem->getElementsByTagName('qtext')->item(0)->nodeValue : null;
+        $this->query = $respElem->getElementsByTagName('query')->length ?
+            $respElem->getElementsByTagName('query')->item(0) : null;
         return;
+    }
+
+    /**
+     * Get the XML response.
+     *
+     * @return string The original XML response text.
+     */
+    public function getResponse()
+    {
+        return $this->response;
     }
 
     /**
@@ -216,5 +235,25 @@ class SearchResults
             }
         }
         return $result;
+    }
+
+    /**
+     * Get the search qtext.
+     *
+     * @return string The qtext.
+     */
+    public function getQtext()
+    {
+        return $this->qtext;
+    }
+
+    /**
+     * Get the search query.
+     *
+     * @return DOMElement The search query as an DOMElement object.
+     */
+    public function getQuery()
+    {
+        return $this->query;
     }
 }

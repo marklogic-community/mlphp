@@ -39,7 +39,7 @@ class CollectionConstraint extends AbstractConstraint
     public function __construct($name, $prefix)
     {
         $this->prefix = (string)$prefix;
-    parent::__construct($name);
+        parent::__construct($name);
     }
 
     /**

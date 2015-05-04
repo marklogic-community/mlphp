@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="generator" content="PHPDoctor 2.0.5 (http://peej.github.com/phpdoctor/)">
-<meta name="when" content="Mon, 29 Jul 2013 22:11:19 +0000">
+<meta name="when" content="Mon, 09 Feb 2015 02:37:40 +0000">
 
 <link rel="stylesheet" type="text/css" href="../../../stylesheet.css">
 <link rel="start" href="../../../overview-summary.html">
@@ -62,72 +62,544 @@
 <a name="line24"></a> *
 <a name="line25"></a> * @package MLPHP
 <a name="line26"></a> * @author Eric Bloch &lt;eric.bloch@gmail.com&gt;
-<a name="line27"></a> */</span>
-<a name="line28"></a><span style="color: #000000; font-weight: bold;">class</span> Database
-<a name="line29"></a><span style="color: #009900;">&#123;</span>
-<a name="line30"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$restClient</span><span style="color: #339933;">;</span> <span style="color: #666666; font-style: italic;">// @var RESTclient</span>
-<a name="line31"></a>&nbsp;
-<a name="line32"></a>    <span style="color: #009933; font-style: italic;">/**
-<a name="line33"></a>     * Create a Search object.
-<a name="line34"></a>     *
-<a name="line35"></a>     * @param RESTClient $restClient A REST client object.
-<a name="line36"></a>     */</span>
-<a name="line37"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> __construct<span style="color: #009900;">&#40;</span><span style="color: #000088;">$restClient</span><span style="color: #009900;">&#41;</span>
-<a name="line38"></a>    <span style="color: #009900;">&#123;</span>
-<a name="line39"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">restClient</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$restClient</span><span style="color: #339933;">;</span>
-<a name="line40"></a>    <span style="color: #009900;">&#125;</span>
-<a name="line41"></a>&nbsp;
-<a name="line42"></a>    <span style="color: #009933; font-style: italic;">/**
-<a name="line43"></a>     *
-<a name="line44"></a>     * Clear the database of all content
-<a name="line45"></a>     *
-<a name="line46"></a>     *    Installs and uses a resource extension
-<a name="line47"></a>     */</span>
-<a name="line48"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> clear<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
-<a name="line49"></a>    <span style="color: #009900;">&#123;</span>
-<a name="line50"></a>        <span style="color: #666666; font-style: italic;">// Install the API extension</span>
-<a name="line51"></a>        <span style="color: #000088;">$resource</span> <span style="color: #339933;">=</span> <span style="color: #0000ff;">&quot;resources/clear-db&quot;</span><span style="color: #339933;">;</span>
-<a name="line52"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">restClient</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">installExtension</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">&quot;config/&quot;</span> <span style="color: #339933;">.</span> <span style="color: #000088;">$resource</span><span style="color: #339933;">,</span> <a href="http://www.php.net/array"><span style="color: #990000;">array</span></a><span style="color: #009900;">&#40;</span>
-<a name="line53"></a>            <span style="color: #0000ff;">'method'</span> <span style="color: #339933;">=&gt;</span> <span style="color: #0000ff;">'post'</span>
-<a name="line54"></a>        <span style="color: #009900;">&#41;</span><span style="color: #339933;">,</span> <span style="color: #0000ff;">&quot;clear-db.xqy&quot;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
-<a name="line55"></a>&nbsp;
-<a name="line56"></a>        <span style="color: #000088;">$request</span> <span style="color: #339933;">=</span> <span style="color: #000000; font-weight: bold;">new</span> RESTRequest<span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'POST'</span><span style="color: #339933;">,</span> <span style="color: #000088;">$resource</span><span style="color: #339933;">,</span> <a href="http://www.php.net/array"><span style="color: #990000;">array</span></a><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">,</span> <span style="color: #0000ff;">&quot;&quot;</span><span style="color: #339933;">,</span> <a href="http://www.php.net/array"><span style="color: #990000;">array</span></a><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
-<a name="line57"></a>&nbsp;
-<a name="line58"></a>        try <span style="color: #009900;">&#123;</span>
-<a name="line59"></a>            <span style="color: #000088;">$response</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">restClient</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">send</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$request</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
-<a name="line60"></a>        <span style="color: #009900;">&#125;</span> catch<span style="color: #009900;">&#40;</span>Exception <span style="color: #000088;">$e</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
-<a name="line61"></a>            <span style="color: #b1b100;">echo</span> <span style="color: #000088;">$e</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getMessage</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span> <span style="color: #339933;">.</span> <span style="color: #0000ff;">' in '</span> <span style="color: #339933;">.</span> <span style="color: #000088;">$e</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getFile</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span> <span style="color: #339933;">.</span> <span style="color: #0000ff;">' on line '</span> <span style="color: #339933;">.</span> <span style="color: #000088;">$e</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getLine</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span> <span style="color: #339933;">.</span> PHP_EOL<span style="color: #339933;">;</span>
-<a name="line62"></a>        <span style="color: #009900;">&#125;</span>
-<a name="line63"></a>    <span style="color: #009900;">&#125;</span>
-<a name="line64"></a>&nbsp;
-<a name="line65"></a>    <span style="color: #009933; font-style: italic;">/**
-<a name="line66"></a>     *
-<a name="line67"></a>     * Gets the database name
-<a name="line68"></a>     *
-<a name="line69"></a>     *    Installs and uses a resource extension
-<a name="line70"></a>     *
-<a name="line71"></a>     * @return str database name
+<a name="line27"></a> * @author Mike Wooldridge &lt;mike.wooldridge@marklogic.com&gt;
+<a name="line28"></a> */</span>
+<a name="line29"></a><span style="color: #000000; font-weight: bold;">class</span> Database
+<a name="line30"></a><span style="color: #009900;">&#123;</span>
+<a name="line31"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$name</span><span style="color: #339933;">;</span> <span style="color: #666666; font-style: italic;">// @var string</span>
+<a name="line32"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$restClient</span><span style="color: #339933;">;</span> <span style="color: #666666; font-style: italic;">// @var RESTClient</span>
+<a name="line33"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$manageClient</span><span style="color: #339933;">;</span> <span style="color: #666666; font-style: italic;">// @var RESTClient</span>
+<a name="line34"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$response</span><span style="color: #339933;">;</span> <span style="color: #666666; font-style: italic;">// @var RESTResponse</span>
+<a name="line35"></a>&nbsp;
+<a name="line36"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line37"></a>     * Create a Database object.
+<a name="line38"></a>     *
+<a name="line39"></a>     * @param string $name The database name.
+<a name="line40"></a>     * @param RESTClient $manageClient A REST client to the management API.
+<a name="line41"></a>     */</span>
+<a name="line42"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> __construct<span style="color: #009900;">&#40;</span><span style="color: #000088;">$name</span><span style="color: #339933;">,</span> <span style="color: #000088;">$manageClient</span><span style="color: #009900;">&#41;</span>
+<a name="line43"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line44"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">name</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$name</span><span style="color: #339933;">;</span>
+<a name="line45"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">manageClient</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$manageClient</span><span style="color: #339933;">;</span>
+<a name="line46"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line47"></a>&nbsp;
+<a name="line48"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line49"></a>     *
+<a name="line50"></a>     * Clear the database of all content.
+<a name="line51"></a>     *
+<a name="line52"></a>     */</span>
+<a name="line53"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> clear<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
+<a name="line54"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line55"></a>        <span style="color: #000088;">$json</span> <span style="color: #339933;">=</span> <span style="color: #0000ff;">'{
+<a name="line56"></a>            &quot;operation&quot;: &quot;clear-database&quot;
+<a name="line57"></a>        }'</span><span style="color: #339933;">;</span>
+<a name="line58"></a>        <span style="color: #000088;">$headers</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/array"><span style="color: #990000;">array</span></a><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'Content-type'</span> <span style="color: #339933;">=&gt;</span> <span style="color: #0000ff;">'application/json'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line59"></a>        <span style="color: #000088;">$request</span> <span style="color: #339933;">=</span> <span style="color: #000000; font-weight: bold;">new</span> RESTRequest<span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'POST'</span><span style="color: #339933;">,</span> <span style="color: #0000ff;">'databases/'</span> <span style="color: #339933;">.</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">name</span><span style="color: #339933;">,</span> <a href="http://www.php.net/array"><span style="color: #990000;">array</span></a><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">,</span> <span style="color: #000088;">$json</span><span style="color: #339933;">,</span> <span style="color: #000088;">$headers</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line60"></a>        try <span style="color: #009900;">&#123;</span>
+<a name="line61"></a>            <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">response</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">manageClient</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">send</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$request</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line62"></a>            <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">;</span>
+<a name="line63"></a>        <span style="color: #009900;">&#125;</span> catch<span style="color: #009900;">&#40;</span>Exception <span style="color: #000088;">$e</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+<a name="line64"></a>            <span style="color: #b1b100;">echo</span> <span style="color: #000088;">$e</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getMessage</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span> <span style="color: #339933;">.</span> <span style="color: #0000ff;">' in '</span> <span style="color: #339933;">.</span> <span style="color: #000088;">$e</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getFile</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span> <span style="color: #339933;">.</span> <span style="color: #0000ff;">' on line '</span> <span style="color: #339933;">.</span> <span style="color: #000088;">$e</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getLine</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span> <span style="color: #339933;">.</span> PHP_EOL<span style="color: #339933;">;</span>
+<a name="line65"></a>        <span style="color: #009900;">&#125;</span>
+<a name="line66"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line67"></a>&nbsp;
+<a name="line68"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line69"></a>     *
+<a name="line70"></a>     * Delete the database.
+<a name="line71"></a>     *
 <a name="line72"></a>     */</span>
-<a name="line73"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getName<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
+<a name="line73"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> delete<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
 <a name="line74"></a>    <span style="color: #009900;">&#123;</span>
-<a name="line75"></a>        <span style="color: #666666; font-style: italic;">// Install the API extension</span>
-<a name="line76"></a>        <span style="color: #000088;">$resource</span> <span style="color: #339933;">=</span> <span style="color: #0000ff;">&quot;resources/get-db-name&quot;</span><span style="color: #339933;">;</span>
-<a name="line77"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">restClient</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">installExtension</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">&quot;config/&quot;</span> <span style="color: #339933;">.</span> <span style="color: #000088;">$resource</span><span style="color: #339933;">,</span> <a href="http://www.php.net/array"><span style="color: #990000;">array</span></a><span style="color: #009900;">&#40;</span>
-<a name="line78"></a>            <span style="color: #0000ff;">'method'</span> <span style="color: #339933;">=&gt;</span> <span style="color: #0000ff;">'get'</span>
-<a name="line79"></a>        <span style="color: #009900;">&#41;</span><span style="color: #339933;">,</span> <span style="color: #0000ff;">&quot;get-db-name.xqy&quot;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
-<a name="line80"></a>&nbsp;
-<a name="line81"></a>        <span style="color: #000088;">$request</span> <span style="color: #339933;">=</span> <span style="color: #000000; font-weight: bold;">new</span> RESTRequest<span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'GET'</span><span style="color: #339933;">,</span> <span style="color: #000088;">$resource</span><span style="color: #339933;">,</span> <a href="http://www.php.net/array"><span style="color: #990000;">array</span></a><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">,</span> <span style="color: #0000ff;">&quot;&quot;</span><span style="color: #339933;">,</span> <a href="http://www.php.net/array"><span style="color: #990000;">array</span></a><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
-<a name="line82"></a>&nbsp;
-<a name="line83"></a>        try <span style="color: #009900;">&#123;</span>
-<a name="line84"></a>            <span style="color: #000088;">$response</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">restClient</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">send</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$request</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
-<a name="line85"></a>            <span style="color: #b1b100;">return</span> <span style="color: #000088;">$response</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getBody</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
-<a name="line86"></a>        <span style="color: #009900;">&#125;</span> catch<span style="color: #009900;">&#40;</span>Exception <span style="color: #000088;">$e</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
-<a name="line87"></a>            <span style="color: #b1b100;">echo</span> <span style="color: #000088;">$e</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getMessage</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span> <span style="color: #339933;">.</span> <span style="color: #0000ff;">' in '</span> <span style="color: #339933;">.</span> <span style="color: #000088;">$e</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getFile</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span> <span style="color: #339933;">.</span> <span style="color: #0000ff;">' on line '</span> <span style="color: #339933;">.</span> <span style="color: #000088;">$e</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getLine</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span> <span style="color: #339933;">.</span> PHP_EOL<span style="color: #339933;">;</span>
-<a name="line88"></a>        <span style="color: #009900;">&#125;</span>
-<a name="line89"></a>    <span style="color: #009900;">&#125;</span>
-<a name="line90"></a><span style="color: #009900;">&#125;</span>
-<a name="line91"></a>&nbsp;
-<a name="line92"></a>&nbsp;</pre>
+<a name="line75"></a>        <span style="color: #000088;">$headers</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/array"><span style="color: #990000;">array</span></a><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'Content-type'</span> <span style="color: #339933;">=&gt;</span> <span style="color: #0000ff;">'application/json'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line76"></a>        <span style="color: #000088;">$request</span> <span style="color: #339933;">=</span> <span style="color: #000000; font-weight: bold;">new</span> RESTRequest<span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'DELETE'</span><span style="color: #339933;">,</span> <span style="color: #0000ff;">'databases/'</span> <span style="color: #339933;">.</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">name</span><span style="color: #339933;">,</span> <a href="http://www.php.net/array"><span style="color: #990000;">array</span></a><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">,</span> <span style="color: #0000ff;">''</span><span style="color: #339933;">,</span> <span style="color: #000088;">$headers</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line77"></a>        try <span style="color: #009900;">&#123;</span>
+<a name="line78"></a>            <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">response</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">manageClient</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">send</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$request</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line79"></a>            <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">;</span>
+<a name="line80"></a>        <span style="color: #009900;">&#125;</span> catch<span style="color: #009900;">&#40;</span>Exception <span style="color: #000088;">$e</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+<a name="line81"></a>            <span style="color: #b1b100;">echo</span> <span style="color: #000088;">$e</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getMessage</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span> <span style="color: #339933;">.</span> <span style="color: #0000ff;">' in '</span> <span style="color: #339933;">.</span> <span style="color: #000088;">$e</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getFile</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span> <span style="color: #339933;">.</span> <span style="color: #0000ff;">' on line '</span> <span style="color: #339933;">.</span> <span style="color: #000088;">$e</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getLine</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span> <span style="color: #339933;">.</span> PHP_EOL<span style="color: #339933;">;</span>
+<a name="line82"></a>        <span style="color: #009900;">&#125;</span>
+<a name="line83"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line84"></a>&nbsp;
+<a name="line85"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line86"></a>     *
+<a name="line87"></a>     * Get the number of documents in the database.
+<a name="line88"></a>     *
+<a name="line89"></a>     */</span>
+<a name="line90"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> numDocs<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
+<a name="line91"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line92"></a>        <span style="color: #000088;">$counts</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getCounts</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line93"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$counts</span><span style="color: #339933;">-&gt;</span><span style="color: #009900;">&#123;</span><span style="color: #0000ff;">'database-counts'</span><span style="color: #009900;">&#125;</span><span style="color: #339933;">-&gt;</span><span style="color: #009900;">&#123;</span><span style="color: #0000ff;">'count-properties'</span><span style="color: #009900;">&#125;</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">documents</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">value</span><span style="color: #339933;">;</span>
+<a name="line94"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line95"></a>&nbsp;
+<a name="line96"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line97"></a>     *
+<a name="line98"></a>     * Get the configuration information for the database.
+<a name="line99"></a>     *
+<a name="line100"></a>     */</span>
+<a name="line101"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getConfig<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
+<a name="line102"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line103"></a>        <span style="color: #000088;">$params</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/array"><span style="color: #990000;">array</span></a><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'view'</span> <span style="color: #339933;">=&gt;</span> <span style="color: #0000ff;">'config'</span><span style="color: #339933;">,</span> <span style="color: #0000ff;">'format'</span> <span style="color: #339933;">=&gt;</span> <span style="color: #0000ff;">'json'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line104"></a>        <span style="color: #000088;">$request</span> <span style="color: #339933;">=</span> <span style="color: #000000; font-weight: bold;">new</span> RESTRequest<span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'GET'</span><span style="color: #339933;">,</span> <span style="color: #0000ff;">'databases/'</span> <span style="color: #339933;">.</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">name</span><span style="color: #339933;">,</span> <span style="color: #000088;">$params</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line105"></a>        try <span style="color: #009900;">&#123;</span>
+<a name="line106"></a>            <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">response</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">manageClient</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">send</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$request</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line107"></a>            <span style="color: #000088;">$config</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/json_decode"><span style="color: #990000;">json_decode</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">response</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getBody</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line108"></a>            <span style="color: #b1b100;">return</span> <span style="color: #000088;">$config</span><span style="color: #339933;">;</span>
+<a name="line109"></a>        <span style="color: #009900;">&#125;</span> catch<span style="color: #009900;">&#40;</span>Exception <span style="color: #000088;">$e</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+<a name="line110"></a>            <span style="color: #b1b100;">echo</span> <span style="color: #000088;">$e</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getMessage</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span> <span style="color: #339933;">.</span> <span style="color: #0000ff;">' in '</span> <span style="color: #339933;">.</span> <span style="color: #000088;">$e</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getFile</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span> <span style="color: #339933;">.</span> <span style="color: #0000ff;">' on line '</span> <span style="color: #339933;">.</span> <span style="color: #000088;">$e</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getLine</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span> <span style="color: #339933;">.</span> PHP_EOL<span style="color: #339933;">;</span>
+<a name="line111"></a>        <span style="color: #009900;">&#125;</span>
+<a name="line112"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line113"></a>&nbsp;
+<a name="line114"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line115"></a>     *
+<a name="line116"></a>     * Get the count information for the database.
+<a name="line117"></a>     *
+<a name="line118"></a>     */</span>
+<a name="line119"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getCounts<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
+<a name="line120"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line121"></a>        <span style="color: #000088;">$params</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/array"><span style="color: #990000;">array</span></a><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'view'</span> <span style="color: #339933;">=&gt;</span> <span style="color: #0000ff;">'counts'</span><span style="color: #339933;">,</span> <span style="color: #0000ff;">'format'</span> <span style="color: #339933;">=&gt;</span> <span style="color: #0000ff;">'json'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line122"></a>        <span style="color: #000088;">$request</span> <span style="color: #339933;">=</span> <span style="color: #000000; font-weight: bold;">new</span> RESTRequest<span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'GET'</span><span style="color: #339933;">,</span> <span style="color: #0000ff;">'databases/'</span> <span style="color: #339933;">.</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">name</span><span style="color: #339933;">,</span> <span style="color: #000088;">$params</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line123"></a>        try <span style="color: #009900;">&#123;</span>
+<a name="line124"></a>            <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">response</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">manageClient</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">send</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$request</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line125"></a>            <span style="color: #000088;">$counts</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/json_decode"><span style="color: #990000;">json_decode</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">response</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getBody</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line126"></a>            <span style="color: #b1b100;">return</span> <span style="color: #000088;">$counts</span><span style="color: #339933;">;</span>
+<a name="line127"></a>        <span style="color: #009900;">&#125;</span> catch<span style="color: #009900;">&#40;</span>Exception <span style="color: #000088;">$e</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+<a name="line128"></a>            <span style="color: #b1b100;">echo</span> <span style="color: #000088;">$e</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getMessage</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span> <span style="color: #339933;">.</span> <span style="color: #0000ff;">' in '</span> <span style="color: #339933;">.</span> <span style="color: #000088;">$e</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getFile</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span> <span style="color: #339933;">.</span> <span style="color: #0000ff;">' on line '</span> <span style="color: #339933;">.</span> <span style="color: #000088;">$e</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getLine</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span> <span style="color: #339933;">.</span> PHP_EOL<span style="color: #339933;">;</span>
+<a name="line129"></a>        <span style="color: #009900;">&#125;</span>
+<a name="line130"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line131"></a>&nbsp;
+<a name="line132"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line133"></a>     *
+<a name="line134"></a>     * Get the status information for the database as JSON.
+<a name="line135"></a>     *
+<a name="line136"></a>     */</span>
+<a name="line137"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getStatus<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
+<a name="line138"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line139"></a>        <span style="color: #000088;">$params</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/array"><span style="color: #990000;">array</span></a><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'view'</span> <span style="color: #339933;">=&gt;</span> <span style="color: #0000ff;">'status'</span><span style="color: #339933;">,</span> <span style="color: #0000ff;">'format'</span> <span style="color: #339933;">=&gt;</span> <span style="color: #0000ff;">'json'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line140"></a>        <span style="color: #000088;">$request</span> <span style="color: #339933;">=</span> <span style="color: #000000; font-weight: bold;">new</span> RESTRequest<span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'GET'</span><span style="color: #339933;">,</span> <span style="color: #0000ff;">'databases/'</span> <span style="color: #339933;">.</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">name</span><span style="color: #339933;">,</span> <span style="color: #000088;">$params</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line141"></a>        try <span style="color: #009900;">&#123;</span>
+<a name="line142"></a>            <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">response</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">manageClient</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">send</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$request</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line143"></a>            <span style="color: #000088;">$status</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/json_decode"><span style="color: #990000;">json_decode</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">response</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getBody</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line144"></a>            <span style="color: #b1b100;">return</span> <span style="color: #000088;">$status</span><span style="color: #339933;">;</span>
+<a name="line145"></a>        <span style="color: #009900;">&#125;</span> catch<span style="color: #009900;">&#40;</span>Exception <span style="color: #000088;">$e</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+<a name="line146"></a>            <span style="color: #b1b100;">echo</span> <span style="color: #000088;">$e</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getMessage</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span> <span style="color: #339933;">.</span> <span style="color: #0000ff;">' in '</span> <span style="color: #339933;">.</span> <span style="color: #000088;">$e</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getFile</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span> <span style="color: #339933;">.</span> <span style="color: #0000ff;">' on line '</span> <span style="color: #339933;">.</span> <span style="color: #000088;">$e</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getLine</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span> <span style="color: #339933;">.</span> PHP_EOL<span style="color: #339933;">;</span>
+<a name="line147"></a>        <span style="color: #009900;">&#125;</span>
+<a name="line148"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line149"></a>&nbsp;
+<a name="line150"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line151"></a>     *
+<a name="line152"></a>     * Get the modifiable properties of the database as a PHP object.
+<a name="line153"></a>     *
+<a name="line154"></a>     */</span>
+<a name="line155"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getProperties<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
+<a name="line156"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line157"></a>        <span style="color: #000088;">$params</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/array"><span style="color: #990000;">array</span></a><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'format'</span> <span style="color: #339933;">=&gt;</span> <span style="color: #0000ff;">'json'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line158"></a>        <span style="color: #000088;">$request</span> <span style="color: #339933;">=</span> <span style="color: #000000; font-weight: bold;">new</span> RESTRequest<span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'GET'</span><span style="color: #339933;">,</span> <span style="color: #0000ff;">'databases/'</span> <span style="color: #339933;">.</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">name</span> <span style="color: #339933;">.</span> <span style="color: #0000ff;">'/properties'</span><span style="color: #339933;">,</span> <span style="color: #000088;">$params</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line159"></a>        try <span style="color: #009900;">&#123;</span>
+<a name="line160"></a>            <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">response</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">manageClient</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">send</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$request</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line161"></a>            <span style="color: #000088;">$properties</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/json_decode"><span style="color: #990000;">json_decode</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">response</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getBody</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line162"></a>            <span style="color: #b1b100;">return</span> <span style="color: #000088;">$properties</span><span style="color: #339933;">;</span>
+<a name="line163"></a>        <span style="color: #009900;">&#125;</span> catch<span style="color: #009900;">&#40;</span>Exception <span style="color: #000088;">$e</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+<a name="line164"></a>            <span style="color: #b1b100;">echo</span> <span style="color: #000088;">$e</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getMessage</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span> <span style="color: #339933;">.</span> <span style="color: #0000ff;">' in '</span> <span style="color: #339933;">.</span> <span style="color: #000088;">$e</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getFile</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span> <span style="color: #339933;">.</span> <span style="color: #0000ff;">' on line '</span> <span style="color: #339933;">.</span> <span style="color: #000088;">$e</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getLine</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span> <span style="color: #339933;">.</span> PHP_EOL<span style="color: #339933;">;</span>
+<a name="line165"></a>        <span style="color: #009900;">&#125;</span>
+<a name="line166"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line167"></a>&nbsp;
+<a name="line168"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line169"></a>     *
+<a name="line170"></a>     * Set properties of the database.
+<a name="line171"></a>     *
+<a name="line172"></a>     * @param array arr Assoc array representing one or more properties.
+<a name="line173"></a>     */</span>
+<a name="line174"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> setProperties<span style="color: #009900;">&#40;</span><span style="color: #000088;">$arr</span><span style="color: #009900;">&#41;</span>
+<a name="line175"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line176"></a>        <span style="color: #000088;">$headers</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/array"><span style="color: #990000;">array</span></a><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'Content-type'</span> <span style="color: #339933;">=&gt;</span> <span style="color: #0000ff;">'application/json'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line177"></a>        <span style="color: #000088;">$request</span> <span style="color: #339933;">=</span> <span style="color: #000000; font-weight: bold;">new</span> RESTRequest<span style="color: #009900;">&#40;</span>
+<a name="line178"></a>          <span style="color: #0000ff;">'PUT'</span><span style="color: #339933;">,</span> <span style="color: #0000ff;">'databases/'</span> <span style="color: #339933;">.</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">name</span> <span style="color: #339933;">.</span> <span style="color: #0000ff;">'/properties'</span><span style="color: #339933;">,</span>
+<a name="line179"></a>          <a href="http://www.php.net/array"><span style="color: #990000;">array</span></a><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">,</span> <a href="http://www.php.net/json_encode"><span style="color: #990000;">json_encode</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$arr</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">,</span> <span style="color: #000088;">$headers</span>
+<a name="line180"></a>        <span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line181"></a>        try <span style="color: #009900;">&#123;</span>
+<a name="line182"></a>            <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">response</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">manageClient</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">send</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$request</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line183"></a>            <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">;</span>
+<a name="line184"></a>        <span style="color: #009900;">&#125;</span> catch<span style="color: #009900;">&#40;</span>Exception <span style="color: #000088;">$e</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+<a name="line185"></a>            <span style="color: #b1b100;">echo</span> <span style="color: #000088;">$e</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getMessage</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span> <span style="color: #339933;">.</span> <span style="color: #0000ff;">' in '</span> <span style="color: #339933;">.</span> <span style="color: #000088;">$e</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getFile</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span> <span style="color: #339933;">.</span> <span style="color: #0000ff;">' on line '</span> <span style="color: #339933;">.</span> <span style="color: #000088;">$e</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getLine</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span> <span style="color: #339933;">.</span> PHP_EOL<span style="color: #339933;">;</span>
+<a name="line186"></a>        <span style="color: #009900;">&#125;</span>
+<a name="line187"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line188"></a>&nbsp;
+<a name="line189"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line190"></a>     *
+<a name="line191"></a>     * Get a simple property of the database.
+<a name="line192"></a>     *
+<a name="line193"></a>     * @param string key The property key.
+<a name="line194"></a>     */</span>
+<a name="line195"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getProperty<span style="color: #009900;">&#40;</span><span style="color: #000088;">$key</span><span style="color: #009900;">&#41;</span>
+<a name="line196"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line197"></a>        <span style="color: #000088;">$properties</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getProperties</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line198"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$properties</span><span style="color: #339933;">-&gt;</span><span style="color: #000088;">$key</span> ?<span style="color: #339933;">:</span> <span style="color: #009900; font-weight: bold;">null</span><span style="color: #339933;">;</span>
+<a name="line199"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line200"></a>&nbsp;
+<a name="line201"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line202"></a>     *
+<a name="line203"></a>     * Set a simple property of the database.
+<a name="line204"></a>     *
+<a name="line205"></a>     * @param string key The property key.
+<a name="line206"></a>     * @param string json The property value.
+<a name="line207"></a>     */</span>
+<a name="line208"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> setProperty<span style="color: #009900;">&#40;</span><span style="color: #000088;">$key</span><span style="color: #339933;">,</span> <span style="color: #000088;">$value</span><span style="color: #009900;">&#41;</span>
+<a name="line209"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line210"></a>        <span style="color: #000088;">$new</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/array"><span style="color: #990000;">array</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$key</span> <span style="color: #339933;">=&gt;</span> <span style="color: #000088;">$value</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line211"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">setProperties</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$new</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line212"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line213"></a>&nbsp;
+<a name="line214"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line215"></a>     *
+<a name="line216"></a>     * Add a complex property.
+<a name="line217"></a>     * Generalized from addField, example:
+<a name="line218"></a>     * $type = 'field'
+<a name="line219"></a>     * $arr = instance of Field as an assoc array of properties
+<a name="line220"></a>     *
+<a name="line221"></a>     * @param string type The property type (key).
+<a name="line222"></a>     * @param array arr The assoc array representing the property to add.
+<a name="line223"></a>     */</span>
+<a name="line224"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> addProperty<span style="color: #009900;">&#40;</span><span style="color: #000088;">$type</span><span style="color: #339933;">,</span> <span style="color: #000088;">$arr</span><span style="color: #009900;">&#41;</span>
+<a name="line225"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line226"></a>        <span style="color: #666666; font-style: italic;">// get existing</span>
+<a name="line227"></a>        <span style="color: #000088;">$properties</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getProperties</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line228"></a>        <span style="color: #b1b100;">if</span> <span style="color: #009900;">&#40;</span>property_exists<span style="color: #009900;">&#40;</span><span style="color: #000088;">$properties</span><span style="color: #339933;">,</span> <span style="color: #000088;">$type</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+<a name="line229"></a>          <span style="color: #000088;">$existingProperties</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$properties</span><span style="color: #339933;">-&gt;</span><span style="color: #000088;">$type</span><span style="color: #339933;">;</span>
+<a name="line230"></a>        <span style="color: #009900;">&#125;</span> <span style="color: #b1b100;">else</span> <span style="color: #009900;">&#123;</span>
+<a name="line231"></a>          <span style="color: #000088;">$existingProperties</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/array"><span style="color: #990000;">array</span></a><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line232"></a>        <span style="color: #009900;">&#125;</span>
+<a name="line233"></a>        <span style="color: #666666; font-style: italic;">// add the new field to beginning of array</span>
+<a name="line234"></a>        <a href="http://www.php.net/array_unshift"><span style="color: #990000;">array_unshift</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$existingProperties</span><span style="color: #339933;">,</span> <span style="color: #000088;">$arr</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line235"></a>        <span style="color: #666666; font-style: italic;">// wrap in type property</span>
+<a name="line236"></a>        <span style="color: #000088;">$new</span> <span style="color: #339933;">=</span> <span style="color: #009900;">&#40;</span>object<span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#91;</span><span style="color: #000088;">$type</span> <span style="color: #339933;">=&gt;</span> <span style="color: #000088;">$existingProperties</span><span style="color: #009900;">&#93;</span><span style="color: #339933;">;</span>
+<a name="line237"></a>        <span style="color: #666666; font-style: italic;">// set the updated properties</span>
+<a name="line238"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">setProperties</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$new</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line239"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line240"></a>&nbsp;
+<a name="line241"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line242"></a>     *
+<a name="line243"></a>     * Remove a complex property.
+<a name="line244"></a>     *
+<a name="line245"></a>     * @todo This doesn't work when trying to remove only complex property
+<a name="line246"></a>     *       an the array, e.g. the remaining Range Element Attribute Index.
+<a name="line247"></a>     *
+<a name="line248"></a>     * @param string type The property type (key).
+<a name="line249"></a>     * @param array arr Assoc array representing property to remove.
+<a name="line250"></a>     */</span>
+<a name="line251"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> removeProperty<span style="color: #009900;">&#40;</span><span style="color: #000088;">$type</span><span style="color: #339933;">,</span> <span style="color: #000088;">$arr</span><span style="color: #009900;">&#41;</span>
+<a name="line252"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line253"></a>        <span style="color: #666666; font-style: italic;">// get existing</span>
+<a name="line254"></a>        <span style="color: #000088;">$properties</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getProperties</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line255"></a>        <span style="color: #b1b100;">if</span> <span style="color: #009900;">&#40;</span>property_exists<span style="color: #009900;">&#40;</span><span style="color: #000088;">$properties</span><span style="color: #339933;">,</span> <span style="color: #000088;">$type</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+<a name="line256"></a>            <span style="color: #000088;">$existingProperties</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$properties</span><span style="color: #339933;">-&gt;</span><span style="color: #000088;">$type</span><span style="color: #339933;">;</span>
+<a name="line257"></a>            <span style="color: #666666; font-style: italic;">// cycle through each property of type</span>
+<a name="line258"></a>            <span style="color: #b1b100;">foreach</span> <span style="color: #009900;">&#40;</span><span style="color: #000088;">$existingProperties</span> <span style="color: #b1b100;">as</span> <span style="color: #000088;">$k1</span><span style="color: #339933;">=&gt;</span><span style="color: #000088;">$v1</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+<a name="line259"></a>                <span style="color: #000088;">$found</span> <span style="color: #339933;">=</span> <span style="color: #009900; font-weight: bold;">true</span><span style="color: #339933;">;</span>
+<a name="line260"></a>                <span style="color: #666666; font-style: italic;">// if any property doesn't match, don't remove</span>
+<a name="line261"></a>                <span style="color: #b1b100;">foreach</span> <span style="color: #009900;">&#40;</span><span style="color: #000088;">$arr</span> <span style="color: #b1b100;">as</span> <span style="color: #000088;">$k2</span><span style="color: #339933;">=&gt;</span><span style="color: #000088;">$v2</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+<a name="line262"></a>                    <span style="color: #b1b100;">if</span> <span style="color: #009900;">&#40;</span><span style="color: #000088;">$v1</span><span style="color: #339933;">-&gt;</span><span style="color: #000088;">$k2</span> <span style="color: #339933;">!=</span> <span style="color: #000088;">$v2</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+<a name="line263"></a>                        <span style="color: #000088;">$found</span> <span style="color: #339933;">=</span> <span style="color: #009900; font-weight: bold;">false</span><span style="color: #339933;">;</span>
+<a name="line264"></a>                        <span style="color: #b1b100;">break</span><span style="color: #339933;">;</span>
+<a name="line265"></a>                    <span style="color: #009900;">&#125;</span>
+<a name="line266"></a>                <span style="color: #009900;">&#125;</span>
+<a name="line267"></a>                <span style="color: #b1b100;">if</span> <span style="color: #009900;">&#40;</span><span style="color: #000088;">$found</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+<a name="line268"></a>                    <a href="http://www.php.net/unset"><span style="color: #990000;">unset</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$existingProperties</span><span style="color: #009900;">&#91;</span><span style="color: #000088;">$k1</span><span style="color: #009900;">&#93;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line269"></a>                    <span style="color: #000088;">$existingProperties</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/array_values"><span style="color: #990000;">array_values</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$existingProperties</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span> <span style="color: #666666; font-style: italic;">// reindex</span>
+<a name="line270"></a>                <span style="color: #009900;">&#125;</span>
+<a name="line271"></a>            <span style="color: #009900;">&#125;</span>
+<a name="line272"></a>            <span style="color: #666666; font-style: italic;">// wrap in outer property</span>
+<a name="line273"></a>            <span style="color: #000088;">$new</span> <span style="color: #339933;">=</span> <span style="color: #009900;">&#40;</span>object<span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#91;</span><span style="color: #000088;">$type</span> <span style="color: #339933;">=&gt;</span> <span style="color: #000088;">$existingProperties</span><span style="color: #009900;">&#93;</span><span style="color: #339933;">;</span>
+<a name="line274"></a>            <span style="color: #666666; font-style: italic;">// set the updated properties</span>
+<a name="line275"></a>            <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">setProperties</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$new</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line276"></a>        <span style="color: #009900;">&#125;</span>
+<a name="line277"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">;</span>
+<a name="line278"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line279"></a>&nbsp;
+<a name="line280"></a>&nbsp;
+<a name="line281"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line282"></a>     *
+<a name="line283"></a>     * Check if a complex property exists.
+<a name="line284"></a>     *
+<a name="line285"></a>     * @param string type The property type (key).
+<a name="line286"></a>     * @param array arr Assoc array representing property to check.
+<a name="line287"></a>     */</span>
+<a name="line288"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> propertyExists<span style="color: #009900;">&#40;</span><span style="color: #000088;">$type</span><span style="color: #339933;">,</span> <span style="color: #000088;">$arr</span><span style="color: #009900;">&#41;</span>
+<a name="line289"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line290"></a>        <span style="color: #666666; font-style: italic;">// get existing</span>
+<a name="line291"></a>        <span style="color: #000088;">$properties</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getProperties</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line292"></a>        <span style="color: #b1b100;">if</span> <span style="color: #009900;">&#40;</span>property_exists<span style="color: #009900;">&#40;</span><span style="color: #000088;">$properties</span><span style="color: #339933;">,</span> <span style="color: #000088;">$type</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+<a name="line293"></a>            <span style="color: #000088;">$existingProperties</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$properties</span><span style="color: #339933;">-&gt;</span><span style="color: #000088;">$type</span><span style="color: #339933;">;</span>
+<a name="line294"></a>            <span style="color: #666666; font-style: italic;">// cycle through each property of type</span>
+<a name="line295"></a>            <span style="color: #b1b100;">foreach</span> <span style="color: #009900;">&#40;</span><span style="color: #000088;">$existingProperties</span> <span style="color: #b1b100;">as</span> <span style="color: #000088;">$k1</span><span style="color: #339933;">=&gt;</span><span style="color: #000088;">$v1</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+<a name="line296"></a>                <span style="color: #000088;">$found</span> <span style="color: #339933;">=</span> <span style="color: #009900; font-weight: bold;">true</span><span style="color: #339933;">;</span>
+<a name="line297"></a>                <span style="color: #666666; font-style: italic;">// check if any properties don't match</span>
+<a name="line298"></a>                <span style="color: #b1b100;">foreach</span> <span style="color: #009900;">&#40;</span><span style="color: #000088;">$arr</span> <span style="color: #b1b100;">as</span> <span style="color: #000088;">$k2</span><span style="color: #339933;">=&gt;</span><span style="color: #000088;">$v2</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+<a name="line299"></a>                    <span style="color: #b1b100;">if</span> <span style="color: #009900;">&#40;</span><span style="color: #000088;">$v1</span><span style="color: #339933;">-&gt;</span><span style="color: #000088;">$k2</span> <span style="color: #339933;">!=</span> <span style="color: #000088;">$v2</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+<a name="line300"></a>                        <span style="color: #000088;">$found</span> <span style="color: #339933;">=</span> <span style="color: #009900; font-weight: bold;">false</span><span style="color: #339933;">;</span>
+<a name="line301"></a>                        <span style="color: #b1b100;">break</span><span style="color: #339933;">;</span>
+<a name="line302"></a>                    <span style="color: #009900;">&#125;</span>
+<a name="line303"></a>                <span style="color: #009900;">&#125;</span>
+<a name="line304"></a>                <span style="color: #666666; font-style: italic;">// match found</span>
+<a name="line305"></a>                <span style="color: #b1b100;">if</span> <span style="color: #009900;">&#40;</span><span style="color: #000088;">$found</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+<a name="line306"></a>                    <span style="color: #b1b100;">return</span> <span style="color: #009900; font-weight: bold;">true</span><span style="color: #339933;">;</span>
+<a name="line307"></a>                <span style="color: #009900;">&#125;</span>
+<a name="line308"></a>            <span style="color: #009900;">&#125;</span>
+<a name="line309"></a>        <span style="color: #009900;">&#125;</span>
+<a name="line310"></a>        <span style="color: #666666; font-style: italic;">// none matched</span>
+<a name="line311"></a>        <span style="color: #b1b100;">return</span> <span style="color: #009900; font-weight: bold;">false</span><span style="color: #339933;">;</span>
+<a name="line312"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line313"></a>&nbsp;
+<a name="line314"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line315"></a>     *
+<a name="line316"></a>     * Add a range element index.
+<a name="line317"></a>     * @see http://docs-ea.marklogic.com/guide/admin/range_index#id_51346
+<a name="line318"></a>     *
+<a name="line319"></a>     * @param array arr Assoc array of properties.
+<a name="line320"></a>     */</span>
+<a name="line321"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> addRangeElementIndex<span style="color: #009900;">&#40;</span><span style="color: #000088;">$arr</span><span style="color: #009900;">&#41;</span>
+<a name="line322"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line323"></a>        <span style="color: #000088;">$arr</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/array_merge"><span style="color: #990000;">array_merge</span></a><span style="color: #009900;">&#40;</span><a href="http://www.php.net/array"><span style="color: #990000;">array</span></a><span style="color: #009900;">&#40;</span>
+<a name="line324"></a>            <span style="color: #0000ff;">'scalar-type'</span> <span style="color: #339933;">=&gt;</span> <span style="color: #0000ff;">'string'</span><span style="color: #339933;">,</span>
+<a name="line325"></a>            <span style="color: #0000ff;">'localname'</span> <span style="color: #339933;">=&gt;</span> <span style="color: #0000ff;">''</span><span style="color: #339933;">,</span>
+<a name="line326"></a>            <span style="color: #0000ff;">'namespace-uri'</span> <span style="color: #339933;">=&gt;</span> <span style="color: #0000ff;">''</span><span style="color: #339933;">,</span>
+<a name="line327"></a>            <span style="color: #0000ff;">'range-value-positions'</span> <span style="color: #339933;">=&gt;</span> <span style="color: #009900; font-weight: bold;">false</span><span style="color: #339933;">,</span>
+<a name="line328"></a>            <span style="color: #0000ff;">'invalid-values'</span> <span style="color: #339933;">=&gt;</span> <span style="color: #0000ff;">'reject'</span><span style="color: #339933;">,</span>
+<a name="line329"></a>            <span style="color: #0000ff;">'collation'</span> <span style="color: #339933;">=&gt;</span> <span style="color: #0000ff;">''</span>
+<a name="line330"></a>        <span style="color: #009900;">&#41;</span><span style="color: #339933;">,</span> <span style="color: #000088;">$arr</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line331"></a>        <span style="color: #666666; font-style: italic;">// string types require a collation property, set if empty</span>
+<a name="line332"></a>        <span style="color: #000088;">$arr</span><span style="color: #009900;">&#91;</span><span style="color: #0000ff;">'collation'</span><span style="color: #009900;">&#93;</span> <span style="color: #339933;">=</span> <span style="color: #009900;">&#40;</span><span style="color: #000088;">$arr</span><span style="color: #009900;">&#91;</span><span style="color: #0000ff;">'scalar-type'</span><span style="color: #009900;">&#93;</span> <span style="color: #339933;">===</span> <span style="color: #0000ff;">'string'</span> <span style="color: #339933;">&amp;&amp;</span>
+<a name="line333"></a>            <span style="color: #000088;">$arr</span><span style="color: #009900;">&#91;</span><span style="color: #0000ff;">'collation'</span><span style="color: #009900;">&#93;</span> <span style="color: #339933;">===</span> <span style="color: #0000ff;">''</span><span style="color: #009900;">&#41;</span> ? <span style="color: #0000ff;">'http://marklogic.com/collation/'</span> <span style="color: #339933;">:</span> <span style="color: #0000ff;">''</span><span style="color: #339933;">;</span>
+<a name="line334"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">addProperty</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'range-element-index'</span><span style="color: #339933;">,</span> <span style="color: #000088;">$arr</span><span style="color: #339933;">,</span> <span style="color: #0000ff;">'localname'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line335"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line336"></a>&nbsp;
+<a name="line337"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line338"></a>     *
+<a name="line339"></a>     * Remove a range element index.
+<a name="line340"></a>     *
+<a name="line341"></a>     * @param array arr Assoc array representing index to remove.
+<a name="line342"></a>     */</span>
+<a name="line343"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> removeRangeElementIndex<span style="color: #009900;">&#40;</span><span style="color: #000088;">$arr</span><span style="color: #009900;">&#41;</span>
+<a name="line344"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line345"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">removeProperty</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'range-element-index'</span><span style="color: #339933;">,</span> <span style="color: #000088;">$arr</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line346"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line347"></a>&nbsp;
+<a name="line348"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line349"></a>     *
+<a name="line350"></a>     * Add a range element attribute index.
+<a name="line351"></a>     *
+<a name="line352"></a>     * @param array arr Assoc array of properties.
+<a name="line353"></a>     */</span>
+<a name="line354"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> addRangeAttributeIndex<span style="color: #009900;">&#40;</span><span style="color: #000088;">$arr</span><span style="color: #009900;">&#41;</span>
+<a name="line355"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line356"></a>        <span style="color: #000088;">$arr</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/array_merge"><span style="color: #990000;">array_merge</span></a><span style="color: #009900;">&#40;</span><a href="http://www.php.net/array"><span style="color: #990000;">array</span></a><span style="color: #009900;">&#40;</span>
+<a name="line357"></a>            <span style="color: #0000ff;">'scalar-type'</span> <span style="color: #339933;">=&gt;</span> <span style="color: #0000ff;">'string'</span><span style="color: #339933;">,</span>
+<a name="line358"></a>            <span style="color: #0000ff;">'parent-localname'</span> <span style="color: #339933;">=&gt;</span> <span style="color: #0000ff;">''</span><span style="color: #339933;">,</span>
+<a name="line359"></a>            <span style="color: #0000ff;">'localname'</span> <span style="color: #339933;">=&gt;</span> <span style="color: #0000ff;">''</span><span style="color: #339933;">,</span>
+<a name="line360"></a>            <span style="color: #0000ff;">'parent-namespace-uri'</span> <span style="color: #339933;">=&gt;</span> <span style="color: #0000ff;">''</span><span style="color: #339933;">,</span>
+<a name="line361"></a>            <span style="color: #0000ff;">'namespace-uri'</span> <span style="color: #339933;">=&gt;</span> <span style="color: #0000ff;">''</span><span style="color: #339933;">,</span>
+<a name="line362"></a>            <span style="color: #0000ff;">'range-value-positions'</span> <span style="color: #339933;">=&gt;</span> <span style="color: #009900; font-weight: bold;">false</span><span style="color: #339933;">,</span>
+<a name="line363"></a>            <span style="color: #0000ff;">'invalid-values'</span> <span style="color: #339933;">=&gt;</span> <span style="color: #0000ff;">'reject'</span><span style="color: #339933;">,</span>
+<a name="line364"></a>            <span style="color: #0000ff;">'collation'</span> <span style="color: #339933;">=&gt;</span> <span style="color: #0000ff;">''</span>
+<a name="line365"></a>        <span style="color: #009900;">&#41;</span><span style="color: #339933;">,</span> <span style="color: #000088;">$arr</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line366"></a>        <span style="color: #666666; font-style: italic;">// string types require a collation property, set if empty</span>
+<a name="line367"></a>        <span style="color: #000088;">$arr</span><span style="color: #009900;">&#91;</span><span style="color: #0000ff;">'collation'</span><span style="color: #009900;">&#93;</span> <span style="color: #339933;">=</span> <span style="color: #009900;">&#40;</span><span style="color: #000088;">$arr</span><span style="color: #009900;">&#91;</span><span style="color: #0000ff;">'scalar-type'</span><span style="color: #009900;">&#93;</span> <span style="color: #339933;">===</span> <span style="color: #0000ff;">'string'</span> <span style="color: #339933;">&amp;&amp;</span>
+<a name="line368"></a>            <span style="color: #000088;">$arr</span><span style="color: #009900;">&#91;</span><span style="color: #0000ff;">'collation'</span><span style="color: #009900;">&#93;</span> <span style="color: #339933;">===</span> <span style="color: #0000ff;">''</span><span style="color: #009900;">&#41;</span> ? <span style="color: #0000ff;">'http://marklogic.com/collation/'</span> <span style="color: #339933;">:</span> <span style="color: #0000ff;">''</span><span style="color: #339933;">;</span>
+<a name="line369"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">addProperty</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'range-element-attribute-index'</span><span style="color: #339933;">,</span> <span style="color: #000088;">$arr</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line370"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line371"></a>&nbsp;
+<a name="line372"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line373"></a>     *
+<a name="line374"></a>     * Remove a range element attribute index.
+<a name="line375"></a>     *
+<a name="line376"></a>     * @param array arr Assoc array representing index to remove.
+<a name="line377"></a>     */</span>
+<a name="line378"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> removeRangeAttributeIndex<span style="color: #009900;">&#40;</span><span style="color: #000088;">$arr</span><span style="color: #009900;">&#41;</span>
+<a name="line379"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line380"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">removeProperty</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'range-element-attribute-index'</span><span style="color: #339933;">,</span> <span style="color: #000088;">$arr</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line381"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line382"></a>&nbsp;
+<a name="line383"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line384"></a>     *
+<a name="line385"></a>     * Add a field.
+<a name="line386"></a>     * @todo generalize this for all complex properties
+<a name="line387"></a>     *
+<a name="line388"></a>     * @param string field The Field object.
+<a name="line389"></a>     */</span>
+<a name="line390"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> addField<span style="color: #009900;">&#40;</span><span style="color: #000088;">$field</span><span style="color: #009900;">&#41;</span>
+<a name="line391"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line392"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">addProperty</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'field'</span><span style="color: #339933;">,</span> <span style="color: #000088;">$field</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line393"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line394"></a>&nbsp;
+<a name="line395"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line396"></a>     *
+<a name="line397"></a>     * Remove a field.
+<a name="line398"></a>     * @todo generalize this for all complex properties
+<a name="line399"></a>     *
+<a name="line400"></a>     * @param string name The name of the field to remove.
+<a name="line401"></a>     */</span>
+<a name="line402"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> removeField<span style="color: #009900;">&#40;</span><span style="color: #000088;">$name</span><span style="color: #009900;">&#41;</span>
+<a name="line403"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line404"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">removeProperty</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'field'</span><span style="color: #339933;">,</span> <a href="http://www.php.net/array"><span style="color: #990000;">array</span></a><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'field-name'</span> <span style="color: #339933;">=&gt;</span> <span style="color: #000088;">$name</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line405"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line406"></a>&nbsp;
+<a name="line407"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line408"></a>     *
+<a name="line409"></a>     * Add a range field index.
+<a name="line410"></a>     *
+<a name="line411"></a>     * @param array arr Assoc array of properties.
+<a name="line412"></a>     */</span>
+<a name="line413"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> addRangeFieldIndex<span style="color: #009900;">&#40;</span><span style="color: #000088;">$arr</span><span style="color: #009900;">&#41;</span>
+<a name="line414"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line415"></a>        <span style="color: #000088;">$arr</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/array_merge"><span style="color: #990000;">array_merge</span></a><span style="color: #009900;">&#40;</span><a href="http://www.php.net/array"><span style="color: #990000;">array</span></a><span style="color: #009900;">&#40;</span>
+<a name="line416"></a>            <span style="color: #0000ff;">'scalar-type'</span> <span style="color: #339933;">=&gt;</span> <span style="color: #0000ff;">'string'</span><span style="color: #339933;">,</span>
+<a name="line417"></a>            <span style="color: #0000ff;">'field-name'</span> <span style="color: #339933;">=&gt;</span> <span style="color: #0000ff;">''</span><span style="color: #339933;">,</span>
+<a name="line418"></a>            <span style="color: #0000ff;">'range-value-positions'</span> <span style="color: #339933;">=&gt;</span> <span style="color: #009900; font-weight: bold;">false</span><span style="color: #339933;">,</span>
+<a name="line419"></a>            <span style="color: #0000ff;">'invalid-values'</span> <span style="color: #339933;">=&gt;</span> <span style="color: #0000ff;">'reject'</span><span style="color: #339933;">,</span>
+<a name="line420"></a>            <span style="color: #0000ff;">'collation'</span> <span style="color: #339933;">=&gt;</span> <span style="color: #0000ff;">''</span>
+<a name="line421"></a>        <span style="color: #009900;">&#41;</span><span style="color: #339933;">,</span> <span style="color: #000088;">$arr</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line422"></a>        <span style="color: #666666; font-style: italic;">// string types require a collation property, set if empty</span>
+<a name="line423"></a>        <span style="color: #000088;">$arr</span><span style="color: #009900;">&#91;</span><span style="color: #0000ff;">'collation'</span><span style="color: #009900;">&#93;</span> <span style="color: #339933;">=</span> <span style="color: #009900;">&#40;</span><span style="color: #000088;">$arr</span><span style="color: #009900;">&#91;</span><span style="color: #0000ff;">'scalar-type'</span><span style="color: #009900;">&#93;</span> <span style="color: #339933;">===</span> <span style="color: #0000ff;">'string'</span> <span style="color: #339933;">&amp;&amp;</span>
+<a name="line424"></a>            <span style="color: #000088;">$arr</span><span style="color: #009900;">&#91;</span><span style="color: #0000ff;">'collation'</span><span style="color: #009900;">&#93;</span> <span style="color: #339933;">===</span> <span style="color: #0000ff;">''</span><span style="color: #009900;">&#41;</span> ? <span style="color: #0000ff;">'http://marklogic.com/collation/'</span> <span style="color: #339933;">:</span> <span style="color: #0000ff;">''</span><span style="color: #339933;">;</span>
+<a name="line425"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">addProperty</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'range-field-index'</span><span style="color: #339933;">,</span> <span style="color: #000088;">$arr</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line426"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line427"></a>&nbsp;
+<a name="line428"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line429"></a>     *
+<a name="line430"></a>     * Remove a range field index.
+<a name="line431"></a>     *
+<a name="line432"></a>     * @param array arr Assoc array representing index to remove.
+<a name="line433"></a>     */</span>
+<a name="line434"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> removeRangeFieldIndex<span style="color: #009900;">&#40;</span><span style="color: #000088;">$arr</span><span style="color: #009900;">&#41;</span>
+<a name="line435"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line436"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">removeProperty</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'range-field-index'</span><span style="color: #339933;">,</span> <span style="color: #000088;">$arr</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line437"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line438"></a>&nbsp;
+<a name="line439"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line440"></a>     *
+<a name="line441"></a>     * Add a path namespace.
+<a name="line442"></a>     *
+<a name="line443"></a>     * @param array arr Assoc array of properties.
+<a name="line444"></a>     */</span>
+<a name="line445"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> addPathNamespace<span style="color: #009900;">&#40;</span><span style="color: #000088;">$arr</span><span style="color: #009900;">&#41;</span>
+<a name="line446"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line447"></a>        <span style="color: #000088;">$arr</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/array_merge"><span style="color: #990000;">array_merge</span></a><span style="color: #009900;">&#40;</span><a href="http://www.php.net/array"><span style="color: #990000;">array</span></a><span style="color: #009900;">&#40;</span>
+<a name="line448"></a>            <span style="color: #0000ff;">'prefix'</span> <span style="color: #339933;">=&gt;</span> <span style="color: #0000ff;">''</span><span style="color: #339933;">,</span>
+<a name="line449"></a>            <span style="color: #0000ff;">'namespace-uri'</span> <span style="color: #339933;">=&gt;</span> <span style="color: #0000ff;">''</span>
+<a name="line450"></a>        <span style="color: #009900;">&#41;</span><span style="color: #339933;">,</span> <span style="color: #000088;">$arr</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line451"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">addProperty</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'path-namespace'</span><span style="color: #339933;">,</span> <span style="color: #000088;">$arr</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line452"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line453"></a>&nbsp;
+<a name="line454"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line455"></a>     *
+<a name="line456"></a>     * Remove a path namespace.
+<a name="line457"></a>     *
+<a name="line458"></a>     * @param array arr Assoc array representing index to remove.
+<a name="line459"></a>     */</span>
+<a name="line460"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> removePathNamespace<span style="color: #009900;">&#40;</span><span style="color: #000088;">$arr</span><span style="color: #009900;">&#41;</span>
+<a name="line461"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line462"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">removeProperty</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'path-namespace'</span><span style="color: #339933;">,</span> <span style="color: #000088;">$arr</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line463"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line464"></a>&nbsp;
+<a name="line465"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line466"></a>     *
+<a name="line467"></a>     * Add a range path index.
+<a name="line468"></a>     *
+<a name="line469"></a>     * @param array arr Assoc array of properties.
+<a name="line470"></a>     */</span>
+<a name="line471"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> addRangePathIndex<span style="color: #009900;">&#40;</span><span style="color: #000088;">$arr</span><span style="color: #009900;">&#41;</span>
+<a name="line472"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line473"></a>        <span style="color: #000088;">$arr</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/array_merge"><span style="color: #990000;">array_merge</span></a><span style="color: #009900;">&#40;</span><a href="http://www.php.net/array"><span style="color: #990000;">array</span></a><span style="color: #009900;">&#40;</span>
+<a name="line474"></a>            <span style="color: #0000ff;">'scalar-type'</span> <span style="color: #339933;">=&gt;</span> <span style="color: #0000ff;">'string'</span><span style="color: #339933;">,</span>
+<a name="line475"></a>            <span style="color: #0000ff;">'path-expression'</span> <span style="color: #339933;">=&gt;</span> <span style="color: #0000ff;">''</span><span style="color: #339933;">,</span>
+<a name="line476"></a>            <span style="color: #0000ff;">'range-value-positions'</span> <span style="color: #339933;">=&gt;</span> <span style="color: #009900; font-weight: bold;">false</span><span style="color: #339933;">,</span>
+<a name="line477"></a>            <span style="color: #0000ff;">'invalid-values'</span> <span style="color: #339933;">=&gt;</span> <span style="color: #0000ff;">'reject'</span><span style="color: #339933;">,</span>
+<a name="line478"></a>            <span style="color: #0000ff;">'collation'</span> <span style="color: #339933;">=&gt;</span> <span style="color: #0000ff;">''</span>
+<a name="line479"></a>        <span style="color: #009900;">&#41;</span><span style="color: #339933;">,</span> <span style="color: #000088;">$arr</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line480"></a>        <span style="color: #666666; font-style: italic;">// string types require a collation property, set if empty</span>
+<a name="line481"></a>        <span style="color: #000088;">$arr</span><span style="color: #009900;">&#91;</span><span style="color: #0000ff;">'collation'</span><span style="color: #009900;">&#93;</span> <span style="color: #339933;">=</span> <span style="color: #009900;">&#40;</span><span style="color: #000088;">$arr</span><span style="color: #009900;">&#91;</span><span style="color: #0000ff;">'scalar-type'</span><span style="color: #009900;">&#93;</span> <span style="color: #339933;">===</span> <span style="color: #0000ff;">'string'</span> <span style="color: #339933;">&amp;&amp;</span>
+<a name="line482"></a>            <span style="color: #000088;">$arr</span><span style="color: #009900;">&#91;</span><span style="color: #0000ff;">'collation'</span><span style="color: #009900;">&#93;</span> <span style="color: #339933;">===</span> <span style="color: #0000ff;">''</span><span style="color: #009900;">&#41;</span> ? <span style="color: #0000ff;">'http://marklogic.com/collation/'</span> <span style="color: #339933;">:</span> <span style="color: #0000ff;">''</span><span style="color: #339933;">;</span>
+<a name="line483"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">addProperty</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'range-path-index'</span><span style="color: #339933;">,</span> <span style="color: #000088;">$arr</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line484"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line485"></a>&nbsp;
+<a name="line486"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line487"></a>     *
+<a name="line488"></a>     * Remove a range path index.
+<a name="line489"></a>     *
+<a name="line490"></a>     * @param array arr Assoc array representing index to remove.
+<a name="line491"></a>     */</span>
+<a name="line492"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> removeRangePathIndex<span style="color: #009900;">&#40;</span><span style="color: #000088;">$arr</span><span style="color: #009900;">&#41;</span>
+<a name="line493"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line494"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">removeProperty</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'range-path-index'</span><span style="color: #339933;">,</span> <span style="color: #000088;">$arr</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line495"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line496"></a>&nbsp;
+<a name="line497"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line498"></a>     *
+<a name="line499"></a>     * Add an element word lexicon.
+<a name="line500"></a>     *
+<a name="line501"></a>     * @param array arr Assoc array of properties.
+<a name="line502"></a>     */</span>
+<a name="line503"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> addElementLexicon<span style="color: #009900;">&#40;</span><span style="color: #000088;">$arr</span><span style="color: #009900;">&#41;</span>
+<a name="line504"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line505"></a>        <span style="color: #000088;">$arr</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/array_merge"><span style="color: #990000;">array_merge</span></a><span style="color: #009900;">&#40;</span><a href="http://www.php.net/array"><span style="color: #990000;">array</span></a><span style="color: #009900;">&#40;</span>
+<a name="line506"></a>            <span style="color: #0000ff;">'localname'</span> <span style="color: #339933;">=&gt;</span> <span style="color: #0000ff;">''</span><span style="color: #339933;">,</span>
+<a name="line507"></a>            <span style="color: #0000ff;">'namespace-uri'</span> <span style="color: #339933;">=&gt;</span> <span style="color: #0000ff;">''</span><span style="color: #339933;">,</span>
+<a name="line508"></a>            <span style="color: #0000ff;">'collation'</span> <span style="color: #339933;">=&gt;</span> <span style="color: #0000ff;">'http://marklogic.com/collation/'</span>
+<a name="line509"></a>        <span style="color: #009900;">&#41;</span><span style="color: #339933;">,</span> <span style="color: #000088;">$arr</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line510"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">addProperty</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'element-word-lexicon'</span><span style="color: #339933;">,</span> <span style="color: #000088;">$arr</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line511"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line512"></a>&nbsp;
+<a name="line513"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line514"></a>     *
+<a name="line515"></a>     * Remove an element word lexicon.
+<a name="line516"></a>     *
+<a name="line517"></a>     * @param array arr Assoc array of properties.
+<a name="line518"></a>     */</span>
+<a name="line519"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> removeElementLexicon<span style="color: #009900;">&#40;</span><span style="color: #000088;">$arr</span><span style="color: #009900;">&#41;</span>
+<a name="line520"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line521"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">removeProperty</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'element-word-lexicon'</span><span style="color: #339933;">,</span> <span style="color: #000088;">$arr</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line522"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line523"></a>&nbsp;
+<a name="line524"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line525"></a>     *
+<a name="line526"></a>     * Add an element attribute word lexicon.
+<a name="line527"></a>     *
+<a name="line528"></a>     * @param array arr Assoc array of properties.
+<a name="line529"></a>     */</span>
+<a name="line530"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> addAttributeLexicon<span style="color: #009900;">&#40;</span><span style="color: #000088;">$arr</span><span style="color: #009900;">&#41;</span>
+<a name="line531"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line532"></a>        <span style="color: #000088;">$arr</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/array_merge"><span style="color: #990000;">array_merge</span></a><span style="color: #009900;">&#40;</span><a href="http://www.php.net/array"><span style="color: #990000;">array</span></a><span style="color: #009900;">&#40;</span>
+<a name="line533"></a>            <span style="color: #0000ff;">'parent-localname'</span> <span style="color: #339933;">=&gt;</span> <span style="color: #0000ff;">''</span><span style="color: #339933;">,</span>
+<a name="line534"></a>            <span style="color: #0000ff;">'parent-namespace-uri'</span> <span style="color: #339933;">=&gt;</span> <span style="color: #0000ff;">''</span><span style="color: #339933;">,</span>
+<a name="line535"></a>            <span style="color: #0000ff;">'localname'</span> <span style="color: #339933;">=&gt;</span> <span style="color: #0000ff;">''</span><span style="color: #339933;">,</span>
+<a name="line536"></a>            <span style="color: #0000ff;">'namespace-uri'</span> <span style="color: #339933;">=&gt;</span> <span style="color: #0000ff;">''</span><span style="color: #339933;">,</span>
+<a name="line537"></a>            <span style="color: #0000ff;">'collation'</span> <span style="color: #339933;">=&gt;</span> <span style="color: #0000ff;">'http://marklogic.com/collation/'</span>
+<a name="line538"></a>        <span style="color: #009900;">&#41;</span><span style="color: #339933;">,</span> <span style="color: #000088;">$arr</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line539"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">addProperty</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'element-attribute-word-lexicon'</span><span style="color: #339933;">,</span> <span style="color: #000088;">$arr</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line540"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line541"></a>&nbsp;
+<a name="line542"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line543"></a>     *
+<a name="line544"></a>     * Remove an element attribute word lexicon.
+<a name="line545"></a>     *
+<a name="line546"></a>     * @param array arr Assoc array of properties.
+<a name="line547"></a>     */</span>
+<a name="line548"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> removeAttributeLexicon<span style="color: #009900;">&#40;</span><span style="color: #000088;">$arr</span><span style="color: #009900;">&#41;</span>
+<a name="line549"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line550"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">removeProperty</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'element-attribute-word-lexicon'</span><span style="color: #339933;">,</span> <span style="color: #000088;">$arr</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line551"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line552"></a>&nbsp;
+<a name="line553"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line554"></a>     * Get the last REST response received. Useful for testing.
+<a name="line555"></a>     *
+<a name="line556"></a>     * @return RESTRresponse A REST response object.
+<a name="line557"></a>     */</span>
+<a name="line558"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getResponse<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
+<a name="line559"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line560"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">response</span><span style="color: #339933;">;</span>
+<a name="line561"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line562"></a><span style="color: #009900;">&#125;</span>
+<a name="line563"></a>&nbsp;
+<a name="line564"></a>&nbsp;</pre>
 <div class="header">
 <h1><a href=../../examples/index.php target=_top>MLPHP</a></h1>
 <ul>

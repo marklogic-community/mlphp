@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="generator" content="PHPDoctor 2.0.5 (http://peej.github.com/phpdoctor/)">
-<meta name="when" content="Mon, 29 Jul 2013 22:11:19 +0000">
+<meta name="when" content="Mon, 09 Feb 2015 02:37:39 +0000">
 
 <link rel="stylesheet" type="text/css" href="../stylesheet.css">
 <link rel="start" href="../overview-summary.html">
@@ -83,11 +83,13 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 </tr>
 <tr>
 <td class="type"> <a href="../mlphp/searchresults.html">SearchResults</a></td>
-<td class="description"><p class="name"><a href="#retrieveKeyValue()">retrieveKeyValue</a>(string key, string value, mixed params)</p><p class="description">Retrieve the key-value search results for JSON content using the REST client.</p></td>
+<td class="description"><p class="name"><a href="#retrieveKeyValue()">retrieveKeyValue</a>(string key, string value, mixed params)</p><p class="description">Retrieve the key-value search results for JSON content using the
+REST client.</p></td>
 </tr>
 <tr>
 <td class="type"> <a href="../mlphp/searchresults.html">SearchResults</a></td>
-<td class="description"><p class="name"><a href="#retrieveKeyValueElement()">retrieveKeyValueElement</a>(string element, string attribute, string value, mixed params)</p><p class="description">Retrieve the key-value search results, where the key is an element name, for XML content using the REST client.</p></td>
+<td class="description"><p class="name"><a href="#retrieveKeyValueElement()">retrieveKeyValueElement</a>(string element, string attribute, string value, mixed params)</p><p class="description">Retrieve the key-value search results, where the key is an element
+name, for XML content using the REST client.</p></td>
 </tr>
 <tr>
 <td class="type"> string</td>
@@ -139,7 +141,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 </tr>
 <tr>
 <td class="type"> void</td>
-<td class="description"><p class="name"><a href="#setCollection()">setCollection</a>(string collection)</p><p class="description">Set the collection to filter by.</p></td>
+<td class="description"><p class="name"><a href="#setCollection()">setCollection</a>(array|string collection)</p><p class="description">Set the collection to filter by.</p></td>
 </tr>
 <tr>
 <td class="type"> string</td>
@@ -147,7 +149,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 </tr>
 <tr>
 <td class="type"> void</td>
-<td class="description"><p class="name"><a href="#setDirectory()">setDirectory</a>(string directory)</p><p class="description">Set the directory to filter by.</p></td>
+<td class="description"><p class="name"><a href="#setDirectory()">setDirectory</a>(array|string directory)</p><p class="description">Set the directory to filter by.</p></td>
 </tr>
 </table>
 
@@ -192,7 +194,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/search.php.html#line94" class="location">MarkLogic/MLPHP/Search.php at line 94</a>
+<a href="../source/marklogic/mlphp/search.php.html#line97" class="location">MarkLogic/MLPHP/Search.php at line 97</a>
 
 <h3 id="retrieve()">retrieve</h3>
 <code class="signature">public  <a href="../mlphp/searchresults.html">SearchResults</a> <strong>retrieve</strong>(string query, array params, bool structured)</code>
@@ -209,12 +211,13 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/search.php.html#line117" class="location">MarkLogic/MLPHP/Search.php at line 117</a>
+<a href="../source/marklogic/mlphp/search.php.html#line123" class="location">MarkLogic/MLPHP/Search.php at line 123</a>
 
 <h3 id="retrieveKeyValue()">retrieveKeyValue</h3>
 <code class="signature">public  <a href="../mlphp/searchresults.html">SearchResults</a> <strong>retrieveKeyValue</strong>(string key, string value, mixed params)</code>
 <div class="details">
-<p>Retrieve the key-value search results for JSON content using the REST client.</p><dl>
+<p>Retrieve the key-value search results for JSON content using the
+REST client.</p><dl>
 <dt>Parameters:</dt>
 <dd>key - The key (property name) in JSON content.</dd>
 <dd>value - The value (property value) in JSON content.</dd>
@@ -225,12 +228,13 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/search.php.html#line142" class="location">MarkLogic/MLPHP/Search.php at line 142</a>
+<a href="../source/marklogic/mlphp/search.php.html#line154" class="location">MarkLogic/MLPHP/Search.php at line 154</a>
 
 <h3 id="retrieveKeyValueElement()">retrieveKeyValueElement</h3>
 <code class="signature">public  <a href="../mlphp/searchresults.html">SearchResults</a> <strong>retrieveKeyValueElement</strong>(string element, string attribute, string value, mixed params)</code>
 <div class="details">
-<p>Retrieve the key-value search results, where the key is an element name, for XML content using the REST client.</p><dl>
+<p>Retrieve the key-value search results, where the key is an element
+name, for XML content using the REST client.</p><dl>
 <dt>Parameters:</dt>
 <dd>element - The element name.</dd>
 <dd>attribute - The attribute for the element, to search for attribute content.</dd>
@@ -242,7 +246,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/search.php.html#line174" class="location">MarkLogic/MLPHP/Search.php at line 174</a>
+<a href="../source/marklogic/mlphp/search.php.html#line194" class="location">MarkLogic/MLPHP/Search.php at line 194</a>
 
 <h3 id="highlight()">highlight</h3>
 <code class="signature">public  string <strong>highlight</strong>(string content, string contentType, string query, array params, bool structured, mixed class)</code>
@@ -261,7 +265,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/search.php.html#line221" class="location">MarkLogic/MLPHP/Search.php at line 221</a>
+<a href="../source/marklogic/mlphp/search.php.html#line242" class="location">MarkLogic/MLPHP/Search.php at line 242</a>
 
 <h3 id="getStart()">getStart</h3>
 <code class="signature">public  string <strong>getStart</strong>()</code>
@@ -274,7 +278,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/search.php.html#line231" class="location">MarkLogic/MLPHP/Search.php at line 231</a>
+<a href="../source/marklogic/mlphp/search.php.html#line252" class="location">MarkLogic/MLPHP/Search.php at line 252</a>
 
 <h3 id="setStart()">setStart</h3>
 <code class="signature">public  void <strong>setStart</strong>(string start)</code>
@@ -287,7 +291,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/search.php.html#line241" class="location">MarkLogic/MLPHP/Search.php at line 241</a>
+<a href="../source/marklogic/mlphp/search.php.html#line263" class="location">MarkLogic/MLPHP/Search.php at line 263</a>
 
 <h3 id="getPageLength()">getPageLength</h3>
 <code class="signature">public  int <strong>getPageLength</strong>()</code>
@@ -300,7 +304,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/search.php.html#line253" class="location">MarkLogic/MLPHP/Search.php at line 253</a>
+<a href="../source/marklogic/mlphp/search.php.html#line275" class="location">MarkLogic/MLPHP/Search.php at line 275</a>
 
 <h3 id="setPageLength()">setPageLength</h3>
 <code class="signature">public  void <strong>setPageLength</strong>(int pageLength)</code>
@@ -315,7 +319,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/search.php.html#line263" class="location">MarkLogic/MLPHP/Search.php at line 263</a>
+<a href="../source/marklogic/mlphp/search.php.html#line286" class="location">MarkLogic/MLPHP/Search.php at line 286</a>
 
 <h3 id="getOptions()">getOptions</h3>
 <code class="signature">public  string <strong>getOptions</strong>()</code>
@@ -328,7 +332,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/search.php.html#line273" class="location">MarkLogic/MLPHP/Search.php at line 273</a>
+<a href="../source/marklogic/mlphp/search.php.html#line296" class="location">MarkLogic/MLPHP/Search.php at line 296</a>
 
 <h3 id="setOptions()">setOptions</h3>
 <code class="signature">public  void <strong>setOptions</strong>(string option, mixed options)</code>
@@ -341,7 +345,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/search.php.html#line283" class="location">MarkLogic/MLPHP/Search.php at line 283</a>
+<a href="../source/marklogic/mlphp/search.php.html#line307" class="location">MarkLogic/MLPHP/Search.php at line 307</a>
 
 <h3 id="getView()">getView</h3>
 <code class="signature">public  string <strong>getView</strong>()</code>
@@ -354,7 +358,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/search.php.html#line295" class="location">MarkLogic/MLPHP/Search.php at line 295</a>
+<a href="../source/marklogic/mlphp/search.php.html#line319" class="location">MarkLogic/MLPHP/Search.php at line 319</a>
 
 <h3 id="setView()">setView</h3>
 <code class="signature">public  void <strong>setView</strong>(string view)</code>
@@ -369,7 +373,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/search.php.html#line305" class="location">MarkLogic/MLPHP/Search.php at line 305</a>
+<a href="../source/marklogic/mlphp/search.php.html#line330" class="location">MarkLogic/MLPHP/Search.php at line 330</a>
 
 <h3 id="getFormat()">getFormat</h3>
 <code class="signature">public  string <strong>getFormat</strong>()</code>
@@ -382,12 +386,13 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/search.php.html#line317" class="location">MarkLogic/MLPHP/Search.php at line 317</a>
+<a href="../source/marklogic/mlphp/search.php.html#line343" class="location">MarkLogic/MLPHP/Search.php at line 343</a>
 
 <h3 id="setFormat()">setFormat</h3>
 <code class="signature">public  void <strong>setFormat</strong>(string format)</code>
 <div class="details">
-<p>Set the format setting ('xml' or 'json'). MLPHP only supports 'xml' currently.</p><dl>
+<p>Set the format setting ('xml' or 'json'). MLPHP only supports
+'xml' currently.</p><dl>
 <dt>See Also:</dt>
 <dd><a href="http://docs.marklogic.com/REST/GET/v1/search">http://docs.marklogic.com/REST/GET/v1/search</a></dd>
 <dt>Parameters:</dt>
@@ -397,7 +402,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/search.php.html#line327" class="location">MarkLogic/MLPHP/Search.php at line 327</a>
+<a href="../source/marklogic/mlphp/search.php.html#line354" class="location">MarkLogic/MLPHP/Search.php at line 354</a>
 
 <h3 id="getCollection()">getCollection</h3>
 <code class="signature">public  string <strong>getCollection</strong>()</code>
@@ -410,24 +415,22 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/search.php.html#line340" class="location">MarkLogic/MLPHP/Search.php at line 340</a>
+<a href="../source/marklogic/mlphp/search.php.html#line367" class="location">MarkLogic/MLPHP/Search.php at line 367</a>
 
 <h3 id="setCollection()">setCollection</h3>
-<code class="signature">public  void <strong>setCollection</strong>(string collection)</code>
+<code class="signature">public  void <strong>setCollection</strong>(array|string collection)</code>
 <div class="details">
 <p>Set the collection to filter by.</p><dl>
 <dt>See Also:</dt>
 <dd><a href="http://docs.marklogic.com/guide/rest-dev/search#id_74024">http://docs.marklogic.com/guide/rest-dev/search#id_74024</a></dd>
-<dt>Todo:</dt>
-<dd>Allow filtering by multiple collections.</dd>
 <dt>Parameters:</dt>
-<dd>collection - A collection string .</dd>
+<dd>collection - An array of collection strings or a collection string.</dd>
 </dl>
 </div>
 
 <hr>
 
-<a href="../source/marklogic/mlphp/search.php.html#line350" class="location">MarkLogic/MLPHP/Search.php at line 350</a>
+<a href="../source/marklogic/mlphp/search.php.html#line378" class="location">MarkLogic/MLPHP/Search.php at line 378</a>
 
 <h3 id="getDirectory()">getDirectory</h3>
 <code class="signature">public  string <strong>getDirectory</strong>()</code>
@@ -440,18 +443,16 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/search.php.html#line363" class="location">MarkLogic/MLPHP/Search.php at line 363</a>
+<a href="../source/marklogic/mlphp/search.php.html#line391" class="location">MarkLogic/MLPHP/Search.php at line 391</a>
 
 <h3 id="setDirectory()">setDirectory</h3>
-<code class="signature">public  void <strong>setDirectory</strong>(string directory)</code>
+<code class="signature">public  void <strong>setDirectory</strong>(array|string directory)</code>
 <div class="details">
 <p>Set the directory to filter by.</p><dl>
 <dt>See Also:</dt>
 <dd><a href="http://docs.marklogic.com/guide/rest-dev/search#id_74024">http://docs.marklogic.com/guide/rest-dev/search#id_74024</a></dd>
-<dt>Todo:</dt>
-<dd>Allow filtering by multiple directories.</dd>
 <dt>Parameters:</dt>
-<dd>directory - A directory string.</dd>
+<dd>directory - An array of directory strings or a directory string.</dd>
 </dl>
 </div>
 

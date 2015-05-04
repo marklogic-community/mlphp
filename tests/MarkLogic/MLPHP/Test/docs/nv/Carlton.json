@@ -1,0 +1,167 @@
+{
+  "last_name": "Carlton",
+  "updated_at": "2015-01-26 00:15:03",
+  "sources": [
+    {
+      "url": "http://www.leg.state.nv.us/App/Legislator/A/Assembly/78th2015/14"
+    }
+  ],
+  "full_name": "Maggie Carlton",
+  "old_roles": {
+    "2009-2010": [
+      {
+        "term": "2009-2010",
+        "end_date": null,
+        "district": "Clark County, No. 2",
+        "level": "state",
+        "country": "us",
+        "chamber": "upper",
+        "state": "nv",
+        "party": "Democratic",
+        "type": "member",
+        "start_date": null
+      },
+      {
+        "term": "2009-2010",
+        "committee_id": "NVC000017",
+        "level": "state",
+        "country": "us",
+        "chamber": "upper",
+        "state": "nv",
+        "subcommittee": null,
+        "committee": "Commerce and Labor",
+        "type": "committee member"
+      },
+      {
+        "term": "2009-2010",
+        "committee_id": "NVC000002",
+        "level": "state",
+        "country": "us",
+        "chamber": "upper",
+        "state": "nv",
+        "subcommittee": null,
+        "committee": "Energy, Infrastructure and Transportation",
+        "type": "committee member"
+      },
+      {
+        "term": "2009-2010",
+        "committee_id": "NVC000009",
+        "level": "state",
+        "country": "us",
+        "chamber": "upper",
+        "state": "nv",
+        "subcommittee": null,
+        "committee": "Taxation",
+        "type": "committee member"
+      }
+    ],
+    "2013-2014": [
+      {
+        "term": "2013-2014",
+        "end_date": null,
+        "district": "14",
+        "chamber": "lower",
+        "state": "nv",
+        "party": "Democratic",
+        "type": "member",
+        "start_date": null
+      }
+    ],
+    "2011-2012": [
+      {
+        "term": "2011-2012",
+        "end_date": null,
+        "district": "14",
+        "level": "state",
+        "country": "us",
+        "chamber": "lower",
+        "state": "nv",
+        "party": "Democratic",
+        "type": "member",
+        "start_date": null
+      },
+      {
+        "term": "2011-2012",
+        "committee_id": "NVC000001",
+        "level": "state",
+        "country": "us",
+        "chamber": "lower",
+        "state": "nv",
+        "subcommittee": null,
+        "committee": "Commerce and Labor",
+        "type": "committee member"
+      },
+      {
+        "term": "2011-2012",
+        "committee_id": "NVC000027",
+        "level": "state",
+        "country": "us",
+        "chamber": "lower",
+        "state": "nv",
+        "subcommittee": null,
+        "committee": "Natural Resources, Agriculture, and Mining",
+        "type": "committee member"
+      },
+      {
+        "term": "2011-2012",
+        "committee_id": "NVC000016",
+        "level": "state",
+        "country": "us",
+        "chamber": "lower",
+        "state": "nv",
+        "subcommittee": null,
+        "committee": "Ways and Means",
+        "type": "committee member"
+      }
+    ]
+  },
+  "id": "NVL000004",
+  "first_name": "Maggie",
+  "middle_name": "",
+  "district": "14",
+  "nickname": "",
+  "state": "nv",
+  "votesmart_id": "22822",
+  "party": "Democratic",
+  "email": "mcarlton@asm.state.nv.us",
+  "all_ids": [
+    "NVL000166",
+    "NVL000120",
+    "NVL000004",
+    "NVL000231"
+  ],
+  "leg_id": "NVL000004",
+  "active": true,
+  "transparencydata_id": "b7550423c59c4c1b979aab367b8f9812",
+  "end_date": "Nov. 2010",
+  "photo_url": "http://leg.state.nv.us/Session/77th2013/legislators/Assembly/Images/Carlton.jpg",
+  "roles": [
+    {
+      "term": "2015-2016",
+      "end_date": null,
+      "district": "14",
+      "chamber": "lower",
+      "state": "nv",
+      "party": "Democratic",
+      "type": "member",
+      "start_date": null
+    }
+  ],
+  "url": "http://www.leg.state.nv.us/Session/76th2011/legislators/Assembly/alist.cfm",
+  "country": "us",
+  "created_at": "2010-09-01 16:27:46",
+  "level": "state",
+  "chamber": "lower",
+  "offices": [
+    {
+      "fax": null,
+      "name": "District Address",
+      "phone": "775-555-5555",
+      "address": "1234 Main Street #12 \nCarson City, NV 89701",
+      "type": "district",
+      "email": null
+    }
+  ],
+  "address": "\r\n        \t5540 East Cartwright Avenue \r\n\t\t\tLas Vegas, NV 89110-3802\r\n        ",
+  "suffixes": ""
+}

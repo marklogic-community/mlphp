@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="generator" content="PHPDoctor 2.0.5 (http://peej.github.com/phpdoctor/)">
-<meta name="when" content="Mon, 29 Jul 2013 22:11:19 +0000">
+<meta name="when" content="Mon, 09 Feb 2015 02:37:39 +0000">
 
 <link rel="stylesheet" type="text/css" href="../stylesheet.css">
 <link rel="start" href="../overview-summary.html">
@@ -114,35 +114,35 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 <td class="description"><p class="name"><a href="#getLogger()">getLogger</a>()</p><p class="description">Get the logger.</p></td>
 </tr>
 <tr>
-<td class="type"> void</td>
+<td class="type"> <a href="../mlphp/restresponse.html">RESTResponse</a></td>
 <td class="description"><p class="name"><a href="#send()">send</a>(<a href="../mlphp/restrequest.html">RESTRequest</a> request)</p><p class="description">Send a REST request.</p></td>
 </tr>
 <tr>
-<td class="type">protected  void</td>
+<td class="type">protected  array</td>
 <td class="description"><p class="name"><a href="#setOptions()">setOptions</a>(resource ch, string url, mixed urlStr, mixed headers)</p><p class="description">Set cURL options common to all requests</p></td>
 </tr>
 <tr>
-<td class="type"> void</td>
+<td class="type"> <a href="../mlphp/restresponse.html">RESTResponse</a></td>
 <td class="description"><p class="name"><a href="#get()">get</a>(<a href="../mlphp/restrequest.html">RESTRequest</a> request)</p><p class="description">Perform a GET request with cURL</p></td>
 </tr>
 <tr>
-<td class="type"> void</td>
+<td class="type"> <a href="../mlphp/restresponse.html">RESTResponse</a></td>
 <td class="description"><p class="name"><a href="#put()">put</a>(<a href="../mlphp/restrequest.html">RESTRequest</a> request)</p><p class="description">Perform a PUT request with cURL</p></td>
 </tr>
 <tr>
-<td class="type"> void</td>
+<td class="type"> <a href="../mlphp/restresponse.html">RESTResponse</a></td>
 <td class="description"><p class="name"><a href="#delete()">delete</a>(<a href="../mlphp/restrequest.html">RESTRequest</a> request)</p><p class="description">Perform a DELETE request with cURL</p></td>
 </tr>
 <tr>
-<td class="type"> void</td>
+<td class="type"> <a href="../mlphp/restresponse.html">RESTResponse</a></td>
 <td class="description"><p class="name"><a href="#post()">post</a>(<a href="../mlphp/restrequest.html">RESTRequest</a> request)</p><p class="description">Perform a POST request with cURL</p></td>
 </tr>
 <tr>
-<td class="type"> void</td>
+<td class="type"> <a href="../mlphp/restresponse.html">RESTResponse</a></td>
 <td class="description"><p class="name"><a href="#head()">head</a>(<a href="../mlphp/restrequest.html">RESTRequest</a> request)</p><p class="description">Perform a HEAD request with cURL</p></td>
 </tr>
 <tr>
-<td class="type"> void</td>
+<td class="type">protected  <a href="../mlphp/restresponse.html">RESTResponse</a></td>
 <td class="description"><p class="name"><a href="#execute()">execute</a>(resource ch)</p><p class="description">Execute a cURL request.</p></td>
 </tr>
 <tr>
@@ -300,13 +300,13 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 <a href="../source/marklogic/mlphp/restclient.php.html#line203" class="location">MarkLogic/MLPHP/RESTClient.php at line 203</a>
 
 <h3 id="send()">send</h3>
-<code class="signature">public  void <strong>send</strong>(<a href="../mlphp/restrequest.html">RESTRequest</a> request)</code>
+<code class="signature">public  <a href="../mlphp/restresponse.html">RESTResponse</a> <strong>send</strong>(<a href="../mlphp/restrequest.html">RESTRequest</a> request)</code>
 <div class="details">
 <p>Send a REST request.</p><dl>
 <dt>Parameters:</dt>
 <dd>request - A RESTRequest object</dd>
-<dt>Result:</dt>
-<dd>RESTResponse A RESTResponse object.</dd>
+<dt>Returns:</dt>
+<dd>A RESTResponse object.</dd>
 </dl>
 </div>
 
@@ -315,112 +315,112 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 <a href="../source/marklogic/mlphp/restclient.php.html#line237" class="location">MarkLogic/MLPHP/RESTClient.php at line 237</a>
 
 <h3 id="setOptions()">setOptions</h3>
-<code class="signature">protected  void <strong>setOptions</strong>(resource ch, string url, mixed urlStr, mixed headers)</code>
+<code class="signature">protected  array <strong>setOptions</strong>(resource ch, string url, mixed urlStr, mixed headers)</code>
 <div class="details">
 <p>Set cURL options common to all requests</p><dl>
 <dt>Parameters:</dt>
 <dd>ch - The cURL handle.</dd>
 <dd>url - The REST URL string (example: 'documents').</dd>
-<dt>Result:</dt>
-<dd>array An array of cURL options.</dd>
+<dt>Returns:</dt>
+<dd>An array of cURL options.</dd>
 </dl>
 </div>
 
 <hr>
 
-<a href="../source/marklogic/mlphp/restclient.php.html#line262" class="location">MarkLogic/MLPHP/RESTClient.php at line 262</a>
+<a href="../source/marklogic/mlphp/restclient.php.html#line263" class="location">MarkLogic/MLPHP/RESTClient.php at line 263</a>
 
 <h3 id="get()">get</h3>
-<code class="signature">public  void <strong>get</strong>(<a href="../mlphp/restrequest.html">RESTRequest</a> request)</code>
+<code class="signature">public  <a href="../mlphp/restresponse.html">RESTResponse</a> <strong>get</strong>(<a href="../mlphp/restrequest.html">RESTRequest</a> request)</code>
 <div class="details">
 <p>Perform a GET request with cURL</p><dl>
 <dt>Parameters:</dt>
 <dd>request - A REST request.</dd>
-<dt>Result:</dt>
-<dd>RESTResponse A REST response.</dd>
+<dt>Returns:</dt>
+<dd>A REST response.</dd>
 </dl>
 </div>
 
 <hr>
 
-<a href="../source/marklogic/mlphp/restclient.php.html#line283" class="location">MarkLogic/MLPHP/RESTClient.php at line 283</a>
+<a href="../source/marklogic/mlphp/restclient.php.html#line284" class="location">MarkLogic/MLPHP/RESTClient.php at line 284</a>
 
 <h3 id="put()">put</h3>
-<code class="signature">public  void <strong>put</strong>(<a href="../mlphp/restrequest.html">RESTRequest</a> request)</code>
+<code class="signature">public  <a href="../mlphp/restresponse.html">RESTResponse</a> <strong>put</strong>(<a href="../mlphp/restrequest.html">RESTRequest</a> request)</code>
 <div class="details">
 <p>Perform a PUT request with cURL</p><dl>
 <dt>Parameters:</dt>
 <dd>request - A REST request.</dd>
-<dt>Result:</dt>
-<dd>RESTResponse A REST response.</dd>
+<dt>Returns:</dt>
+<dd>A REST response.</dd>
 </dl>
 </div>
 
 <hr>
 
-<a href="../source/marklogic/mlphp/restclient.php.html#line320" class="location">MarkLogic/MLPHP/RESTClient.php at line 320</a>
+<a href="../source/marklogic/mlphp/restclient.php.html#line318" class="location">MarkLogic/MLPHP/RESTClient.php at line 318</a>
 
 <h3 id="delete()">delete</h3>
-<code class="signature">public  void <strong>delete</strong>(<a href="../mlphp/restrequest.html">RESTRequest</a> request)</code>
+<code class="signature">public  <a href="../mlphp/restresponse.html">RESTResponse</a> <strong>delete</strong>(<a href="../mlphp/restrequest.html">RESTRequest</a> request)</code>
 <div class="details">
 <p>Perform a DELETE request with cURL</p><dl>
 <dt>Parameters:</dt>
 <dd>request - A REST request.</dd>
-<dt>Result:</dt>
-<dd>RESTResponse A REST response.</dd>
+<dt>Returns:</dt>
+<dd>A REST response.</dd>
 </dl>
 </div>
 
 <hr>
 
-<a href="../source/marklogic/mlphp/restclient.php.html#line341" class="location">MarkLogic/MLPHP/RESTClient.php at line 341</a>
+<a href="../source/marklogic/mlphp/restclient.php.html#line339" class="location">MarkLogic/MLPHP/RESTClient.php at line 339</a>
 
 <h3 id="post()">post</h3>
-<code class="signature">public  void <strong>post</strong>(<a href="../mlphp/restrequest.html">RESTRequest</a> request)</code>
+<code class="signature">public  <a href="../mlphp/restresponse.html">RESTResponse</a> <strong>post</strong>(<a href="../mlphp/restrequest.html">RESTRequest</a> request)</code>
 <div class="details">
 <p>Perform a POST request with cURL</p><dl>
 <dt>Parameters:</dt>
 <dd>request - A REST request.</dd>
-<dt>Result:</dt>
-<dd>RESTResponse A REST response.</dd>
+<dt>Returns:</dt>
+<dd>A REST response.</dd>
 </dl>
 </div>
 
 <hr>
 
-<a href="../source/marklogic/mlphp/restclient.php.html#line378" class="location">MarkLogic/MLPHP/RESTClient.php at line 378</a>
+<a href="../source/marklogic/mlphp/restclient.php.html#line372" class="location">MarkLogic/MLPHP/RESTClient.php at line 372</a>
 
 <h3 id="head()">head</h3>
-<code class="signature">public  void <strong>head</strong>(<a href="../mlphp/restrequest.html">RESTRequest</a> request)</code>
+<code class="signature">public  <a href="../mlphp/restresponse.html">RESTResponse</a> <strong>head</strong>(<a href="../mlphp/restrequest.html">RESTRequest</a> request)</code>
 <div class="details">
 <p>Perform a HEAD request with cURL</p><dl>
 <dt>Parameters:</dt>
 <dd>request - A REST request.</dd>
-<dt>Result:</dt>
-<dd>RESTResponse A REST response.</dd>
+<dt>Returns:</dt>
+<dd>A REST response.</dd>
 </dl>
 </div>
 
 <hr>
 
-<a href="../source/marklogic/mlphp/restclient.php.html#line402" class="location">MarkLogic/MLPHP/RESTClient.php at line 402</a>
+<a href="../source/marklogic/mlphp/restclient.php.html#line396" class="location">MarkLogic/MLPHP/RESTClient.php at line 396</a>
 
 <h3 id="execute()">execute</h3>
-<code class="signature">public  void <strong>execute</strong>(resource ch)</code>
+<code class="signature">protected  <a href="../mlphp/restresponse.html">RESTResponse</a> <strong>execute</strong>(resource ch)</code>
 <div class="details">
 <p>Execute a cURL request.</p><dl>
 <dt>Todo:</dt>
 <dd>Handle more response codes</dd>
 <dt>Parameters:</dt>
 <dd>ch - The REST URL string (example: 'documents')</dd>
-<dt>Result:</dt>
-<dd>RESTResponse A RESTResponse object.</dd>
+<dt>Returns:</dt>
+<dd>A RESTResponse object.</dd>
 </dl>
 </div>
 
 <hr>
 
-<a href="../source/marklogic/mlphp/restclient.php.html#line433" class="location">MarkLogic/MLPHP/RESTClient.php at line 433</a>
+<a href="../source/marklogic/mlphp/restclient.php.html#line439" class="location">MarkLogic/MLPHP/RESTClient.php at line 439</a>
 
 <h3 id="installExtension()">installExtension</h3>
 <code class="signature">public  void <strong>installExtension</strong>($resource URL, $params resource, $filename file, mixed params, mixed filename)</code>

@@ -1,20 +1,24 @@
 <?php
+/**
+ * Bootstrap script for PHPUnit testing.
+ * @see phpunit.xml
+ */
+require_once('phpunit-config.php');
 
-use Monolog\Logger;
+// Get MarkLogic version
+$serverConfig = $mlphp->getServerConfig();
+$mlphp->config['mlversion'] =  $serverConfig['version'];
 
-$loader = require 'vendor/autoload.php';
+// Create REST API for tests
+$api = $mlphp->getAPI()->create()->setProperty('debug', 'true');
 
-$mlphp = array(
-    'log_level' => Logger::DEBUG,
+function phpunitTeardown($api)
+{
+    // Delete REST API
+    if ($api->exists()) {
+        $api->delete();
+    }
+}
 
-    /* 'user'      => 'admin', */
-    /* 'pass'      => 'adm1n', */
-
-    /* 'host'      => 'localhost', */
-    /* 'port'      => '8234', */
-    /* 'db'        => 'mlphp-test', */
-    /* 'mgmt_port' => '8002', */
-
-    'unused'       => foo
-)
-?>
+// Run after all tests complete
+register_shutdown_function('phpunitTeardown', $api);

@@ -1,15 +1,17 @@
 # MLPHP Examples
 
+*NOTE: The MLPHP examples are being revised and may not be fully functional.*
+
 ## Prerequisites
 
-* [MarkLogic 6 or later](http://developer.marklogic.com/products)
-* PHP 5.3-enabled web server (e.g., Apache running PHP) with the following extension libraries (typically available by default)
+* [MarkLogic 7 or later](http://developer.marklogic.com/products)
+* PHP 5.4-enabled web server (e.g., Apache running PHP) with the following extension libraries (typically available by default)
 	* DOM
-	* cURL 
-	* XSL 
+	* cURL
+	* XSL
 * [MLPHP](https://github.com/marklogic/mlphp)
 * [Composer](http://getcomposer.org)
-  
+
 
 ## Instructions
 
@@ -23,9 +25,9 @@ To run the MLPHP Examples, you need to grab a copy of MLPHP with the examples in
 
         % cd mlphp
         % composer install
-      
-3. The main MLPHP directory (it contains an 'api' subdirectory among other things) should be named 'mlphp'. Rename it if necessary and put it inside your PHP-enabled server's web directory. You can then browse to the examples like this: `http://localhost/~user/mlphp/examples`. 
-        
+
+3. The main MLPHP directory (it contains an 'api' subdirectory among other things) should be named 'mlphp'. Rename it if necessary and put it inside your PHP-enabled server's web directory. You can then browse to the examples like this: `http://localhost/~user/mlphp/examples`.
+
    (Change the host and path information to reflect your server setup.) If PHP is working, you should see the MLPHP home page at that URL. The applications linked to from the home page will not work correctly until you complete the steps that follow.
 
 4. Start MarkLogic Server. In the MarkLogic Admin interface
@@ -34,7 +36,7 @@ To run the MLPHP Examples, you need to grab a copy of MLPHP with the examples in
            user name: rest-writer-user
            password: writer-pw
            role: rest-writer
-           
+
            user name: rest-admin-user
            password: admin-pw
            role: rest-admin
@@ -51,7 +53,7 @@ To run the MLPHP Examples, you need to grab a copy of MLPHP with the examples in
 
    `package-6_0.xml`
 
-   This will set up REST servers, databases, and database indexes needed by the MLPHP examples. 
+   This will set up REST servers, databases, and database indexes needed by the MLPHP examples.
 
    NB.  As of MarkLogic 6, the Packaging tool sets the modules setting for the REST servers incorrectly. Until that bug is fixed, you need to perform the following in the [Admin interface](http://localhost:8001):
 
@@ -89,7 +91,7 @@ To run the MLPHP Examples, you need to grab a copy of MLPHP with the examples in
 * The REST servers are set up on ports 8077, 8078, and 8079. You can test them directly, for example: `http://localhost:8077`
 * If you encounter 400 errors, make sure you have completed step 6.
 * Clearing your PHP session can help if you're reinstalling MLPHP. You can clear it here `http://localhost/~user/mlphp/examples/utils/clear_session.php`.
-  
+
 ## Copyright
 Copyright 2002-2013 MarkLogic Corporation.  All Rights Reserved.
 

@@ -48,7 +48,7 @@ class RESTClient
      * @param string username The username for REST authentication.
      * @param string password The password for REST authentication.
      * @param string auth The authentication scheme ('basic' or 'digest' (default)).
-     * @param LoggerInterface logger 
+     * @param LoggerInterface logger
      */
     public function __construct($host = '', $port = 0, $path = '', $version = '', $username = '', $password = '', $auth = 'digest',
         $logger = null)
@@ -199,7 +199,7 @@ class RESTClient
      * Send a REST request.
      *
      * @param RESTRequest request A RESTRequest object
-     * @result RESTResponse A RESTResponse object.
+     * @return RESTResponse A RESTResponse object.
      */
     public function send($request)
     {
@@ -233,11 +233,12 @@ class RESTClient
      *
      * @param resource ch The cURL handle.
      * @param string url The REST URL string (example: 'documents').
-     * @result array An array of cURL options.
+     * @return array An array of cURL options.
      */
     protected function setOptions(&$ch, $urlStr, $headers)
     {
         $url = $this->prefix . $urlStr; // Build full URL
+        //print ('URL: ' . $url . PHP_EOL);
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_HTTPAUTH, $this->auth);
@@ -254,11 +255,11 @@ class RESTClient
         }
     }
 
-  /**
+    /**
      * Perform a GET request with cURL
      *
      * @param RESTRequest request A REST request.
-     * @result RESTResponse A REST response.
+     * @return RESTResponse A REST response.
      */
     public function get($request)
     {
@@ -279,11 +280,11 @@ class RESTClient
      * Perform a PUT request with cURL
      *
      * @param RESTRequest request A REST request.
-     * @result RESTResponse A REST response.
+     * @return RESTResponse A REST response.
      */
     public function put($request)
     {
-        $this->logger->debug("PUT " . $request->headers['Content-type']);
+        $this->logger->debug("PUT ");
 
         $ch = curl_init();
 
@@ -291,9 +292,6 @@ class RESTClient
         $body = $request->getBody();
         $requestLength = strlen($body);
         $fh = fopen('php://temp', 'rw');
-
-        $this->logger->debug("Request body: " . $body);
-        $this->logger->debug("Request body size: " . $requestLength);
 
         fwrite($fh, $body);
         rewind($fh);
@@ -316,7 +314,7 @@ class RESTClient
      * Perform a DELETE request with cURL
      *
      * @param RESTRequest request A REST request.
-     * @result RESTResponse A REST response.
+     * @return RESTResponse A REST response.
      */
     public function delete($request)
     {
@@ -337,7 +335,7 @@ class RESTClient
      * Perform a POST request with cURL
      *
      * @param RESTRequest request A REST request.
-     * @result RESTResponse A REST response.
+     * @return RESTResponse A REST response.
      */
     public function post($request)
     {
@@ -353,16 +351,12 @@ class RESTClient
             $requestBody = http_build_query($request->getParams());
 
             curl_setopt($ch, CURLOPT_POSTFIELDS, $requestBody);
-            $this->logger->debug("Request body: " . $requestBody);
 
         } else {
 
-            $this->logger->debug("POST " . $request->headers['Content-type']);
+            $this->logger->debug("POST ");
 
             $requestLength = strlen($request->getBody());
-
-            $this->logger->debug("Request body: " . $request->getBody());
-            $this->logger->debug("Request body size: " . $requestLength);
 
             curl_setopt($ch, CURLOPT_POSTFIELDS, $request->getBody());
         }
@@ -374,7 +368,7 @@ class RESTClient
      * Perform a HEAD request with cURL
      *
      * @param RESTRequest request A REST request.
-     * @result RESTResponse A REST response.
+     * @return RESTResponse A REST response.
      */
     public function head($request)
     {
@@ -382,7 +376,7 @@ class RESTClient
 
         $this->setOptions($ch, $request->getUrlStr(), $request->getHeaders());
 
-        // Options specific to POST
+        // Options specific to HEAD
         curl_setopt($ch, CURLOPT_NOBODY, true);
         curl_setopt($ch, CURLOPT_HEADER, true);
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'HEAD');
@@ -398,36 +392,48 @@ class RESTClient
      * @todo Handle more response codes
      *
      * @param resource ch The REST URL string (example: 'documents')
-     * @result RESTResponse A RESTResponse object.
+     * @return RESTResponse A RESTResponse object.
      */
-    public function execute(&$ch)
+    protected function execute(&$ch)
     {
         $response = new RESTResponse();
-        $this->logger->debug("URL: " . curl_getinfo($ch, CURLINFO_EFFECTIVE_URL));
-        $response->setBody(curl_exec($ch));
-        $response->setInfo(curl_getinfo($ch));
-        $this->logger->debug("Request headers : " . curl_getinfo($ch, CURLINFO_HEADER_OUT)); 
+        $curl_exec = curl_exec($ch);
+        // print('******* START $curl_exec (body) *******' . PHP_EOL);
+        // print_r($curl_exec);
+        // print('******* END   $curl_exec (body) *******' . PHP_EOL);
+        $response->setBody($curl_exec);
+        $curl_getinfo = curl_getinfo($ch);
+        // print('******* START $curl_getinfo *******' . PHP_EOL);
+        // print_r($curl_getinfo);
+        // print('******* END   $curl_getinfo *******' . PHP_EOL);
+        $response->setInfo($curl_getinfo);
+        //print_r($response);
         $this->logger->debug("Response code: " . $response->getHttpCode());
-        $this->logger->debug("Response length: " . curl_getinfo($ch, CURLINFO_CONTENT_LENGTH_DOWNLOAD));
-        $this->logger->debug("Response content type: " . curl_getinfo($ch, CURLINFO_CONTENT_TYPE));
-        $this->logger->debug("Response body: " . $response->getBody());
         if ($response->getHttpCode() === 0) {
             curl_close ($ch);
-            throw new \Exception('No connection: ' . $response->getUrl(), $response->getHttpCode());
+            throw new \Exception(
+              'No connection: ' . $response->getUrl(),
+              $response->getHttpCode()
+            );
         } else if ($response->getHttpCode() >= 400) {
             curl_close ($ch);
             $this->logger->debug("HTTP Error " . $response->getHttpCode());
-            throw new \Exception($response->getErrorMessage(), $response->getHttpCode());
+            throw new \Exception(
+              $response->getErrorMessage(),
+              $response->getHttpCode()
+            );
         } else {
             curl_close ($ch);
+            // print('***** RESPONSE *****' . PHP_EOL);
+            // print_r($response);
             return $response;
         }
     }
 
     /**
-     * Install a REST API XQuery extension 
+     * Install a REST API XQuery extension
      *
-     * @param $resource URL 
+     * @param $resource URL
      * @param $params resource parameters (adds in provider=MLPHP if provider not set)
      * @param $filename file system name of contents of the XQuery module.
      */
@@ -436,7 +442,7 @@ class RESTClient
         if (!isset($params["provider"])) {
             $params["provider"] = 'MLPHP';
         }
-        
+
         $path = __DIR__ . DIRECTORY_SEPARATOR . "xquery" . DIRECTORY_SEPARATOR . $filename;
 
         $body = file_get_contents($path);

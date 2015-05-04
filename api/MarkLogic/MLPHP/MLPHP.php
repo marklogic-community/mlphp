@@ -23,44 +23,42 @@ use Psr\Log\NullLogger;
  *
  * @package MLPHP
  * @author Eric Bloch <eric.bloch@gmail.com>
+ * @author Mike Wooldridge <mike.wooldridge@marklogic.com>
  */
 class MLPHP
-{   
+{
     /**
-     *  Array of configuration parameters used to create clients.
-     *  @var mixed[] 
+     *  Array of configuration parameters used to create clients and REST APIs.
+     *  @var mixed[]
      *  @see MLPHP#__construct
      */
-    public $config = array(); 
+    public $config = array();
 
     /**
-     * Constructor, used to set configuration parameters for creating clients
+     * Constructor, used to set configuration parameters.
      *
-     * @param array config configuration settings, including
-     * <pre> <br/>
-     * host - default to localhost<br/>
-     * port - default to 7009<br/>
-     * username - default to admin<br/>
-     * password - default admin<br/>
-     * auth-type (digest or basic) - default to basic<br/>
-     * path - default to /<br/>
-     * version - default to v1<br/>
-     * logger - default to Psr\Log\NullLogger
-     * </pre>
+     * @param array config Configuration settings.
      *
-     * Additional array members are ignored.
-     *  
      */
-    public function __construct($config)
+    public function __construct($config = array())
     {
         $this->config = array_merge(array(
-            'host' => 'localhost',
-            'port' => 7009,
-            'user' => 'admin',
+            'host' => '127.0.0.1',
+            'port' => 8003,
+            'managePort' => 8002,
+            'adminPort' => 8001,
+            'api' => 'mlphp-rest-api',
+            'db' => 'mlphp-db',
+            'username' => 'admin',
             'password' => 'admin',
             'path' => '',
+            'managePath' => 'manage',
+            'adminPath' => 'admin',
             'version' => 'v1',
+            'manageVersion' => 'v2',
+            'adminVersion' => 'v1',
             'auth' => 'digest',
+            'options' => 'mlphp-options',
             'logger' => new NullLogger()
         ), $config);
 
@@ -71,34 +69,158 @@ class MLPHP
      *
      * @param config
      */
-    public function mergeConfig($config) 
+    public function mergeConfig($config)
     {
         $this->config = array_merge($this->config, $config);
     }
 
     /**
-     * Return a REST client based on current configuration
+     * Return a REST client based on current configuration.
      *
      * @return RESTClient
      */
-    public function newClient() 
+    public function getClient()
     {
         return new RESTClient(
-            $this->config['host'], 
-            $this->config['port'], 
-            $this->config['path'], 
+            $this->config['host'],
+            $this->config['port'],
+            $this->config['path'],
             $this->config['version'],
-            $this->config['username'], 
-            $this->config['password'], 
+            $this->config['username'],
+            $this->config['password'],
             $this->config['auth'],
             $this->config['logger']
         );
     }
 
     /**
+     * Return a REST client to the management API.
+     *
+     * @return RESTClient
+     */
+    public function getManageClient()
+    {
+        return new RESTClient(
+            $this->config['host'],
+            $this->config['managePort'],
+            $this->config['managePath'],
+            $this->config['manageVersion'],
+            $this->config['username'],
+            $this->config['password'],
+            $this->config['auth'],
+            $this->config['logger']
+        );
+    }
+
+    /**
+     * Return a REST client to the admin API.
+     *
+     * @return RESTClient
+     */
+    public function getAdminClient()
+    {
+        return new RESTClient(
+            $this->config['host'],
+            $this->config['adminPort'],
+            $this->config['adminPath'],
+            $this->config['adminVersion'],
+            $this->config['username'],
+            $this->config['password'],
+            $this->config['auth'],
+            $this->config['logger']
+        );
+    }
+
+    /**
+     * Create and return a REST API based on current configuration.
+     *
+     * @return RESTAPI
+     */
+    public function getAPI()
+    {
+        return new RESTAPI(
+            $this->config['api'],
+            $this->config['host'],
+            $this->config['db'],
+            $this->config['port'],
+            $this->config['username'],
+            $this->config['password']
+        );
+    }
+
+    /**
+     * Return a Document object.
+     *
+     * @return Document
+     */
+    public function getDocument($uri = null)
+    {
+        return new Document(
+            $this->getClient(),
+            $uri
+        );
+    }
+
+    /**
+     * Return a Database object.
+     *
+     * @return Database
+     */
+    public function getDatabase($name = null)
+    {
+        $name = $name ? $name : $this->config['db'];
+        return new Database(
+            $this->getManageClient(),
+            $name
+        );
+    }
+
+    /**
+     * Return an Options object.
+     *
+     * @return Options
+     */
+    public function getOptions($name = null)
+    {
+        $name = $name ? $name : $this->config['options'];
+        return new Options(
+            $this->getClient(),
+            $name
+        );
+    }
+
+    /**
+     * Return an assoc array of MarkLogic server config information.
+     * Keys: 'version', 'platform', 'edition'
+     * @see http://docs.marklogic.com/REST/GET/admin/v1/server-config
+     *
+     * @return array
+     */
+    public function getServerConfig()
+    {
+        $adminClient = $this->getAdminClient();
+        $request = new RESTRequest('GET', 'server-config');
+        try {
+            $response = $adminClient->send($request);
+            $dom = new \DOMDocument();
+            $dom->loadXML($response->getBody());
+            return array(
+              'version' => $dom->getElementsByTagName('version')->item(0)->nodeValue,
+              'platform' => $dom->getElementsByTagName('platform')->item(0)->nodeValue,
+              'edition' => $dom->getElementsByTagName('edition')->item(0)->nodeValue
+            );
+        } catch(Exception $e) {
+            echo 'MLPHP::getServerConfig() failed.' . PHP_EOL;
+            echo $e->getMessage() . ' in ' . $e->getFile() . ' on line ' . $e->getLine() . PHP_EOL;
+        }
+    }
+
+    /**
      * PSR-0 autoloader.
-     * 
+     *
      * Do NOT use if you are using Composer to autoload dependencies.
+     *
+     * @todo Delete this if we are requiring Composer for MLPHP.
      *
      * @param $className
      */
@@ -139,9 +261,9 @@ class MLPHP
     }
 
     /**
-     * Register PSR-0 autoloader. 
-     * 
-     * Do NOT use if you are using Composer to 
+     * Register PSR-0 autoloader.
+     *
+     * Do NOT use if you are using Composer to
      * autoload dependencies.
      */
     public static function registerAutoloader()

@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="generator" content="PHPDoctor 2.0.5 (http://peej.github.com/phpdoctor/)">
-<meta name="when" content="Mon, 29 Jul 2013 22:11:20 +0000">
+<meta name="when" content="Mon, 09 Feb 2015 02:37:41 +0000">
 
 <link rel="stylesheet" type="text/css" href="../../../stylesheet.css">
 <link rel="start" href="../../../overview-summary.html">
@@ -87,7 +87,7 @@
 <a name="line49"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$returnQuery</span><span style="color: #339933;">;</span> <span style="color: #666666; font-style: italic;">// @var string</span>
 <a name="line50"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$returnResults</span><span style="color: #339933;">;</span> <span style="color: #666666; font-style: italic;">// @var string</span>
 <a name="line51"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$returnSimilar</span><span style="color: #339933;">;</span> <span style="color: #666666; font-style: italic;">// @var string</span>
-<a name="line52"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$searchOption</span><span style="color: #339933;">;</span> <span style="color: #666666; font-style: italic;">// @var array</span>
+<a name="line52"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$searchOptions</span><span style="color: #339933;">;</span> <span style="color: #666666; font-style: italic;">// @var array</span>
 <a name="line53"></a>&nbsp;
 <a name="line54"></a>    <span style="color: #666666; font-style: italic;">// TODO (*** higher priority):</span>
 <a name="line55"></a>    <span style="color: #666666; font-style: italic;">// custom constraint</span>
@@ -265,7 +265,7 @@
 <a name="line227"></a>     * Write the search options to the database.
 <a name="line228"></a>     *
 <a name="line229"></a>     * @param string $name The search options name.
-<a name="line230"></a>     * @return RESTResponse RESTResponse object.
+<a name="line230"></a>     * @return Options $this
 <a name="line231"></a>     */</span>
 <a name="line232"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> write<span style="color: #009900;">&#40;</span><span style="color: #000088;">$name</span> <span style="color: #339933;">=</span> <span style="color: #0000ff;">'all'</span><span style="color: #009900;">&#41;</span>
 <a name="line233"></a>    <span style="color: #009900;">&#123;</span>
@@ -273,9 +273,9 @@
 <a name="line235"></a>            <span style="color: #000088;">$params</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/array"><span style="color: #990000;">array</span></a><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'format'</span> <span style="color: #339933;">=&gt;</span> <span style="color: #0000ff;">'xml'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
 <a name="line236"></a>            <span style="color: #000088;">$headers</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/array"><span style="color: #990000;">array</span></a><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'Content-type'</span> <span style="color: #339933;">=&gt;</span> <span style="color: #0000ff;">'application/xml'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
 <a name="line237"></a>            <span style="color: #000088;">$request</span> <span style="color: #339933;">=</span> <span style="color: #000000; font-weight: bold;">new</span> RESTRequest<span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'PUT'</span><span style="color: #339933;">,</span> <span style="color: #0000ff;">'config/query/'</span> <span style="color: #339933;">.</span> <span style="color: #000088;">$name</span><span style="color: #339933;">,</span> <span style="color: #000088;">$params</span><span style="color: #339933;">,</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getAsXML</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">,</span> <span style="color: #000088;">$headers</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
-<a name="line238"></a>            <span style="color: #000088;">$response</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">restClient</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">send</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$request</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line238"></a>            <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">response</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">restClient</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">send</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$request</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
 <a name="line239"></a>            <span style="color: #666666; font-style: italic;">//print_r($response);</span>
-<a name="line240"></a>            <span style="color: #b1b100;">return</span> <span style="color: #000088;">$response</span><span style="color: #339933;">;</span>
+<a name="line240"></a>            <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">;</span>
 <a name="line241"></a>        <span style="color: #009900;">&#125;</span> catch<span style="color: #009900;">&#40;</span>Exception <span style="color: #000088;">$e</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
 <a name="line242"></a>            <span style="color: #b1b100;">echo</span> <span style="color: #000088;">$e</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getMessage</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span> <span style="color: #339933;">.</span> <span style="color: #0000ff;">' in '</span> <span style="color: #339933;">.</span> <span style="color: #000088;">$e</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getFile</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span> <span style="color: #339933;">.</span> <span style="color: #0000ff;">' on line '</span> <span style="color: #339933;">.</span> <span style="color: #000088;">$e</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getLine</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span> <span style="color: #339933;">.</span> PHP_EOL<span style="color: #339933;">;</span>
 <a name="line243"></a>        <span style="color: #009900;">&#125;</span>
@@ -291,7 +291,7 @@
 <a name="line253"></a>    <span style="color: #009900;">&#123;</span>
 <a name="line254"></a>        try <span style="color: #009900;">&#123;</span>
 <a name="line255"></a>            <span style="color: #000088;">$request</span> <span style="color: #339933;">=</span> <span style="color: #000000; font-weight: bold;">new</span> RESTRequest<span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'DELETE'</span><span style="color: #339933;">,</span> <span style="color: #0000ff;">'config/query/'</span> <span style="color: #339933;">.</span> <span style="color: #000088;">$name</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
-<a name="line256"></a>            <span style="color: #000088;">$response</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">restClient</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">send</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$request</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line256"></a>            <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">response</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$response</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">restClient</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">send</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$request</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
 <a name="line257"></a>            <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">;</span>
 <a name="line258"></a>        <span style="color: #009900;">&#125;</span> catch<span style="color: #009900;">&#40;</span>Exception <span style="color: #000088;">$e</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
 <a name="line259"></a>            <span style="color: #b1b100;">echo</span> <span style="color: #000088;">$e</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getMessage</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span> <span style="color: #339933;">.</span> <span style="color: #0000ff;">' in '</span> <span style="color: #339933;">.</span> <span style="color: #000088;">$e</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getFile</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span> <span style="color: #339933;">.</span> <span style="color: #0000ff;">' on line '</span> <span style="color: #339933;">.</span> <span style="color: #000088;">$e</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getLine</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span> <span style="color: #339933;">.</span> PHP_EOL<span style="color: #339933;">;</span>
@@ -632,8 +632,18 @@
 <a name="line594"></a>            <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">searchOptions</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/array_unique"><span style="color: #990000;">array_unique</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">searchOptions</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
 <a name="line595"></a>        <span style="color: #009900;">&#125;</span>
 <a name="line596"></a>    <span style="color: #009900;">&#125;</span>
-<a name="line597"></a><span style="color: #009900;">&#125;</span>
-<a name="line598"></a>&nbsp;</pre>
+<a name="line597"></a>&nbsp;
+<a name="line598"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line599"></a>     * Get the last REST response received. Useful for testing.
+<a name="line600"></a>     *
+<a name="line601"></a>     * @return RESTRresponse A REST response object.
+<a name="line602"></a>     */</span>
+<a name="line603"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getResponse<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
+<a name="line604"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line605"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">response</span><span style="color: #339933;">;</span>
+<a name="line606"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line607"></a><span style="color: #009900;">&#125;</span>
+<a name="line608"></a>&nbsp;</pre>
 <div class="header">
 <h1><a href=../../examples/index.php target=_top>MLPHP</a></h1>
 <ul>

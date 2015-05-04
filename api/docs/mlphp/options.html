@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="generator" content="PHPDoctor 2.0.5 (http://peej.github.com/phpdoctor/)">
-<meta name="when" content="Mon, 29 Jul 2013 22:11:19 +0000">
+<meta name="when" content="Mon, 09 Feb 2015 02:37:39 +0000">
 
 <link rel="stylesheet" type="text/css" href="../stylesheet.css">
 <link rel="start" href="../overview-summary.html">
@@ -106,7 +106,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 <td class="description"><p class="name"><a href="#read()">read</a>(string name)</p><p class="description">Read the search options from the database.</p></td>
 </tr>
 <tr>
-<td class="type"> <a href="../mlphp/restresponse.html">RESTResponse</a></td>
+<td class="type"> <a href="../mlphp/options.html">Options</a></td>
 <td class="description"><p class="name"><a href="#write()">write</a>(string name)</p><p class="description">Write the search options to the database.</p></td>
 </tr>
 <tr>
@@ -232,6 +232,10 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 <tr>
 <td class="type"> void</td>
 <td class="description"><p class="name"><a href="#setSearchOptions()">setSearchOptions</a>(string|array searchOptions)</p><p class="description">Set the search options.</p></td>
+</tr>
+<tr>
+<td class="type"> RESTRresponse</td>
+<td class="description"><p class="name"><a href="#getResponse()">getResponse</a>()</p><p class="description">Get the last REST response received. </p></td>
 </tr>
 </table>
 
@@ -361,13 +365,13 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 <a href="../source/marklogic/mlphp/options.php.html#line232" class="location">MarkLogic/MLPHP/Options.php at line 232</a>
 
 <h3 id="write()">write</h3>
-<code class="signature">public  <a href="../mlphp/restresponse.html">RESTResponse</a> <strong>write</strong>(string name)</code>
+<code class="signature">public  <a href="../mlphp/options.html">Options</a> <strong>write</strong>(string name)</code>
 <div class="details">
 <p>Write the search options to the database.</p><dl>
 <dt>Parameters:</dt>
 <dd>name - The search options name.</dd>
 <dt>Returns:</dt>
-<dd>RESTResponse object.</dd>
+<dd>$this</dd>
 </dl>
 </div>
 
@@ -803,6 +807,19 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 <dd><a href="http://docs.marklogic.com/search:search#opt-search-option">http://docs.marklogic.com/search:search#opt-search-option</a></dd>
 <dt>Parameters:</dt>
 <dd>searchOptions - The search options as a string (single option) or array of strings.</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../source/marklogic/mlphp/options.php.html#line603" class="location">MarkLogic/MLPHP/Options.php at line 603</a>
+
+<h3 id="getResponse()">getResponse</h3>
+<code class="signature">public  RESTRresponse <strong>getResponse</strong>()</code>
+<div class="details">
+<p>Get the last REST response received. Useful for testing.</p><dl>
+<dt>Returns:</dt>
+<dd>A REST response object.</dd>
 </dl>
 </div>
 

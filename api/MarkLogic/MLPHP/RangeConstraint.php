@@ -30,6 +30,7 @@ class RangeConstraint extends AbstractConstraint
     private $attrNs; // @var string
     private $datatype; // @var string
     private $facet; // @var bool
+    private $buckets; // @var array
     protected $fragmentScope; // @var string
     protected $facetOptions; // @var array
 
@@ -46,7 +47,9 @@ class RangeConstraint extends AbstractConstraint
      * @param string $attr Attribute name.
      * @param string $attrNs An attribute namespace.
      */
-    public function __construct($name, $datatype, $facet = 'true', $elem, $ns = '', $attr = '', $attrNs = '')
+    public function __construct(
+        $name, $datatype, $facet = 'true', $elem, $ns = '', $attr = '', $attrNs = ''
+    )
     {
         $this->elem = (string)$elem;
         $this->ns = (string)$ns;
@@ -54,7 +57,21 @@ class RangeConstraint extends AbstractConstraint
         $this->attrNs = (string)$attrNs;
         $this->datatype = (string)$datatype;
         $this->facet = (string)$facet;
+        $this->buckets = array();
         parent::__construct($name);
+    }
+
+    /**
+     * Add bucket objects.
+     *
+     * @param array|Bucket $buckets An array of bucket objects or a bucket object.
+     */
+    public function addBuckets($buckets) {
+        if (is_array($buckets)) {
+            $this->buckets = array_merge($this->buckets, $buckets);
+        } else {
+            $this->buckets[] = $buckets;
+        }
     }
 
     /**
@@ -78,6 +95,16 @@ class RangeConstraint extends AbstractConstraint
             $attrElem->setAttribute('ns', $this->attrNs);
             $attrElem->setAttribute('name', $this->attr);
             $rangeElem->appendChild($attrElem);
+        }
+        if($this->buckets) {
+            foreach ($this->buckets as $buck) {
+                $buckElem = $dom->createElement('bucket');
+                $buckElem->setAttribute('name', $buck->getName());
+                foreach ($buck->getOptions() as $key => $val) {
+                    $buckElem->setAttribute($key, $val);
+                }
+                $rangeElem->appendChild($buckElem);
+            }
         }
         // Note: No term options for range constraints
         $this->addFacetOptions($dom, $rangeElem);

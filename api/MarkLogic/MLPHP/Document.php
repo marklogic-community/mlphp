@@ -27,19 +27,20 @@ class Document
     private $uri; // @var string
     private $content; // @var string
     protected $contentType; // @var string
-    private $restClient; // @var RESTClient
-    private $logger; // @var LoggerInterface
+    private $client; // @var RESTClient
+    protected $logger; // @var LoggerInterface
+    private $response; // @var RESTResponse
 
     /**
      * Create a Document object.
      *
-     * @param RESTClient $restClient A REST client object.
+     * @param RESTClient $client A REST client object.
      * @param string $uri A document URI.
      */
-    public function __construct($restClient, $uri = null)
+    public function __construct($client, $uri = null)
     {
-        $this->restClient = $restClient;
-        $this->logger = $restClient->getLogger();
+        $this->client = $client;
+        $this->logger = $client->getLogger();
         $this->uri = (string)$uri;
     }
 
@@ -58,9 +59,9 @@ class Document
         try {
             $params = array_merge(array('uri' => $this->uri), $params);
             $request = new RESTRequest('GET', 'documents', $params);
-            $response = $this->restClient->send($request);
-            $this->content = $response->getBody();
-            $this->contentType = $response->getContentType();
+            $this->response = $this->client->send($request);
+            $this->content = $this->response->getBody();
+            $this->contentType = $this->response->getContentType();
             return $this->content;
         } catch(\Exception $e) {
             // TODO: error codes for not-found and other reasonable, unexceptional errors.
@@ -71,8 +72,6 @@ class Document
 
     /**
      * Write a document to the database.
-     *
-     * @todo Allow passing multiple params of same key (e.g., collections).
      *
      * @param string $uri A document URI.
      * @param array $params Optional additional parameters to pass when writing.
@@ -88,9 +87,10 @@ class Document
                 $headers = array('Content-type' => $this->getContentType());
             }
             $request = new RESTRequest('PUT', 'documents', $params, $this->content, $headers);
-            $response = $this->restClient->send($request);
+            $this->response = $this->client->send($request);
         } catch(\Exception $e) {
             $this->logger->error( $e->getMessage() . ' in ' . $e->getFile() . ' on line ' . $e->getLine() );
+            throw $e;
         }
         return $this;
     }
@@ -107,7 +107,7 @@ class Document
         try {
             $params = array('uri' => $this->uri);
             $request = new RESTRequest('DELETE', 'documents', $params);
-            $response = $this->restClient->send($request);
+            $this->response = $this->client->send($request);
         } catch(\Exception $e) {
             $this->logger->error(  $e->getMessage() . ' in ' . $e->getFile() . ' on line ' . $e->getLine() );
         }
@@ -124,9 +124,9 @@ class Document
         try {
             $params = array('uri' => $this->uri, 'category' => 'metadata');
             $request = new RESTRequest('GET', 'documents', $params);
-            $response = $this->restClient->send($request);
+            $this->response = $this->client->send($request);
             $metadata = new Metadata();
-            $metadata->loadFromXML($response->getBody());
+            $metadata->loadFromXML($this->response->getBody());
             return $metadata;
         } catch(\Exception $e) {
             $this->logger->error( $e->getMessage() . ' in ' . $e->getFile() . ' on line ' . $e->getLine() );
@@ -147,7 +147,7 @@ class Document
             $params = array('uri' => $this->uri, 'category' => 'metadata', 'format' => 'xml');
             $headers = array('Content-type' => 'application/xml');
             $request = new RESTRequest('PUT', 'documents', $params, $metaxml, $headers);
-            $response = $this->restClient->send($request);
+            $this->response = $this->client->send($request);
         } catch(\Exception $e) {
             $this->logger->error( $e->getMessage() . ' in ' . $e->getFile() . ' on line ' . $e->getLine() );
         }
@@ -164,7 +164,7 @@ class Document
         try {
             $params = array('uri' => $this->uri, 'category' => 'metadata');
             $request = new RESTRequest('DELETE', 'documents', $params);
-            $response = $this->restClient->send($request);
+            $this->response = $this->client->send($request);
         } catch(\Exception $e) {
             $this->logger->error( $e->getMessage() . ' in ' . $e->getFile() . ' on line ' . $e->getLine() );
         }
@@ -267,12 +267,12 @@ class Document
     /**
      * Set the REST client for the document.
      *
-     * @param RESTClient $restClient A REST client object.
+     * @param RESTClient $client A REST client object.
      * @return Document $this
      */
-    public function setConnection($restClient)
+    public function setConnection($client)
     {
-        $this->restClient = $restClient;
+        $this->client = $client;
         return $this;
     }
 
@@ -283,7 +283,7 @@ class Document
      */
     public function getConnection()
     {
-        return $this->restClient;
+        return $this->client;
     }
 
     /**
@@ -292,7 +292,7 @@ class Document
      * @param string $file The file.
      * @return string The the mimetype of the file.
      */
-    protected function getFileMimeType($file)
+    public function getFileMimeType($file)
     {
         if (function_exists('finfo_file')) {
             $finfo = finfo_open(FILEINFO_MIME_TYPE);
@@ -304,5 +304,15 @@ class Document
         	$type = '';
         }
         return $type;
+    }
+
+    /**
+     * Get the last REST response received. Useful for testing.
+     *
+     * @return RESTRresponse A REST response object.
+     */
+    public function getResponse()
+    {
+        return $this->response;
     }
 }

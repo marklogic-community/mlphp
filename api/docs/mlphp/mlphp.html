@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="generator" content="PHPDoctor 2.0.5 (http://peej.github.com/phpdoctor/)">
-<meta name="when" content="Mon, 29 Jul 2013 22:11:19 +0000">
+<meta name="when" content="Mon, 09 Feb 2015 02:37:39 +0000">
 
 <link rel="stylesheet" type="text/css" href="../stylesheet.css">
 <link rel="start" href="../overview-summary.html">
@@ -41,7 +41,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 <hr>
 
 <div class="qualifiedName">MLPHP\MLPHP</div>
-<a href="../source/marklogic/mlphp/mlphp.php.html#line27" class="location">MarkLogic/MLPHP/MLPHP.php at line 27</a>
+<a href="../source/marklogic/mlphp/mlphp.php.html#line28" class="location">MarkLogic/MLPHP/MLPHP.php at line 28</a>
 
 <h1>Class MLPHP</h1>
 
@@ -56,6 +56,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 <dl>
 <dt>Author:</dt>
 <dd>Eric Bloch <eric.bloch@gmail.com></dd>
+<dd>Mike Wooldridge <mike.wooldridge@marklogic.com></dd>
 </dl>
 <hr>
 
@@ -63,7 +64,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 <tr><th colspan="2">Field Summary</th></tr>
 <tr>
 <td class="type"> mixed[]</td>
-<td class="description"><p class="name"><a href="#config">$config</a></p><p class="description">Array of configuration parameters used to create clients.</p></td>
+<td class="description"><p class="name"><a href="#config">$config</a></p><p class="description">Array of configuration parameters used to create clients and REST APIs.</p></td>
 </tr>
 </table>
 
@@ -71,7 +72,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 <tr><th colspan="2">Constructor Summary</th></tr>
 <tr>
 <td class="type"> void</td>
-<td class="description"><p class="name"><a href="#__construct()">__construct</a>(array config)</p><p class="description">Constructor, used to set configuration parameters for creating clients</p></td>
+<td class="description"><p class="name"><a href="#__construct()">__construct</a>(array config)</p><p class="description">Constructor, used to set configuration parameters.</p></td>
 </tr>
 </table>
 
@@ -83,7 +84,15 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 </tr>
 <tr>
 <td class="type"> <a href="../mlphp/restclient.html">RESTClient</a></td>
-<td class="description"><p class="name"><a href="#newClient()">newClient</a>()</p><p class="description">Return a REST client based on current configuration</p></td>
+<td class="description"><p class="name"><a href="#getClient()">getClient</a>()</p><p class="description">Return a REST client based on current configuration.</p></td>
+</tr>
+<tr>
+<td class="type"> <a href="../mlphp/restclient.html">RESTClient</a></td>
+<td class="description"><p class="name"><a href="#getManageClient()">getManageClient</a>()</p><p class="description">Return a REST client to the management API.</p></td>
+</tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#getAPI()">getAPI</a>()</p><p class="description">Create and return a REST API based on current configuration.</p></td>
 </tr>
 <tr>
 <td class="type">static  void</td>
@@ -92,17 +101,18 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 </tr>
 <tr>
 <td class="type">static  void</td>
-<td class="description"><p class="name"><a href="#registerAutoloader()">registerAutoloader</a>()</p><p class="description">Register PSR-0 autoloader. </p></td>
+<td class="description"><p class="name"><a href="#registerAutoloader()">registerAutoloader</a>()</p><p class="description">Register PSR-0 autoloader.
+</p></td>
 </tr>
 </table>
 
 <h2 id="detail_field">Field Detail</h2>
-<a href="../source/marklogic/mlphp/mlphp.php.html#line34" class="location">MarkLogic/MLPHP/MLPHP.php at line 34</a>
+<a href="../source/marklogic/mlphp/mlphp.php.html#line35" class="location">MarkLogic/MLPHP/MLPHP.php at line 35</a>
 
 <h3 id="config">config</h3>
 <code class="signature">public  mixed[] <strong>$config</strong> = array()</code>
 <div class="details">
-<p>Array of configuration parameters used to create clients.</p><dl>
+<p>Array of configuration parameters used to create clients and REST APIs.</p><dl>
 <dt>See Also:</dt>
 <dd><a href="../mlphp/mlphp.html#__construct()">MLPHP#__construct</a></dd>
 </dl>
@@ -111,21 +121,21 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 <hr>
 
 <h2 id="detail_method">Constructor Detail</h2>
-<a href="../source/marklogic/mlphp/mlphp.php.html#line54" class="location">MarkLogic/MLPHP/MLPHP.php at line 54</a>
+<a href="../source/marklogic/mlphp/mlphp.php.html#line57" class="location">MarkLogic/MLPHP/MLPHP.php at line 57</a>
 
 <h3 id="__construct()">__construct</h3>
 <code class="signature">public  void <strong>__construct</strong>(array config)</code>
 <div class="details">
-<p>Constructor, used to set configuration parameters for creating clients</p><dl>
+<p>Constructor, used to set configuration parameters.</p><dl>
 <dt>Parameters:</dt>
-<dd>config - configuration settings, including <pre> <br/> host - default to localhost<br/> port - default to 7009<br/> username - default to admin<br/> password - default admin<br/> auth-type (digest or basic) - default to basic<br/> path - default to /<br/> version - default to v1<br/> logger - default to Psr\Log\NullLogger </pre> Additional array members are ignored.</dd>
+<dd>config - configuration settings, including <pre> <br/> host - defaults to '127.0.0.1'<br/> port - defaults to 7009<br/> managePort - default to 8002<br/> api - name of REST API, defaults to 'mlphp-rest-api' username - defaults to 'admin'<br/> password - defaults 'admin'<br/> auth - 'digest' or 'basic', defaults to 'digest'<br/> path - defaults to ''<br/> version - defaults to 'v1'<br/> logger - defaults to Psr\Log\NullLogger </pre> Additional array members are ignored.</dd>
 </dl>
 </div>
 
 <hr>
 
 <h2 id="detail_method">Method Detail</h2>
-<a href="../source/marklogic/mlphp/mlphp.php.html#line74" class="location">MarkLogic/MLPHP/MLPHP.php at line 74</a>
+<a href="../source/marklogic/mlphp/mlphp.php.html#line82" class="location">MarkLogic/MLPHP/MLPHP.php at line 82</a>
 
 <h3 id="mergeConfig()">mergeConfig</h3>
 <code class="signature">public  void <strong>mergeConfig</strong>(config config)</code>
@@ -134,16 +144,34 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/mlphp.php.html#line84" class="location">MarkLogic/MLPHP/MLPHP.php at line 84</a>
+<a href="../source/marklogic/mlphp/mlphp.php.html#line92" class="location">MarkLogic/MLPHP/MLPHP.php at line 92</a>
 
-<h3 id="newClient()">newClient</h3>
-<code class="signature">public  <a href="../mlphp/restclient.html">RESTClient</a> <strong>newClient</strong>()</code>
+<h3 id="getClient()">getClient</h3>
+<code class="signature">public  <a href="../mlphp/restclient.html">RESTClient</a> <strong>getClient</strong>()</code>
 <div class="details">
-<p>Return a REST client based on current configuration</p></div>
+<p>Return a REST client based on current configuration.</p></div>
 
 <hr>
 
-<a href="../source/marklogic/mlphp/mlphp.php.html#line105" class="location">MarkLogic/MLPHP/MLPHP.php at line 105</a>
+<a href="../source/marklogic/mlphp/mlphp.php.html#line111" class="location">MarkLogic/MLPHP/MLPHP.php at line 111</a>
+
+<h3 id="getManageClient()">getManageClient</h3>
+<code class="signature">public  <a href="../mlphp/restclient.html">RESTClient</a> <strong>getManageClient</strong>()</code>
+<div class="details">
+<p>Return a REST client to the management API.</p></div>
+
+<hr>
+
+<a href="../source/marklogic/mlphp/mlphp.php.html#line128" class="location">MarkLogic/MLPHP/MLPHP.php at line 128</a>
+
+<h3 id="getAPI()">getAPI</h3>
+<code class="signature">public  void <strong>getAPI</strong>()</code>
+<div class="details">
+<p>Create and return a REST API based on current configuration.</p></div>
+
+<hr>
+
+<a href="../source/marklogic/mlphp/mlphp.php.html#line147" class="location">MarkLogic/MLPHP/MLPHP.php at line 147</a>
 
 <h3 id="autoload()">autoload</h3>
 <code class="signature">public static  void <strong>autoload</strong>($className className)</code>
@@ -152,7 +180,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/mlphp.php.html#line143" class="location">MarkLogic/MLPHP/MLPHP.php at line 143</a>
+<a href="../source/marklogic/mlphp/mlphp.php.html#line185" class="location">MarkLogic/MLPHP/MLPHP.php at line 185</a>
 
 <h3 id="registerAutoloader()">registerAutoloader</h3>
 <code class="signature">public static  void <strong>registerAutoloader</strong>()</code>
