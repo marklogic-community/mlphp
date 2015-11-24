@@ -202,7 +202,7 @@ class Options
             $root->appendChild($termElem);
         }
 
-        $this->addOption($root, 'additional-query', $this->additionalQuery);
+        $this->addOptionXML($root, 'additional-query', $this->additionalQuery);
         $this->addOption($root, 'concurrency-level', $this->concurrencyLevel);
         $this->addOption($root, 'debug', $this->debug);
         $this->addOption($root, 'forest', $this->forest);
@@ -225,7 +225,8 @@ class Options
     }
 
     /**
-     * If an option value is set, create a DOM element with an option name and value and append it to the root element of the options node.
+     * If an option value is set, create a DOM element with an option name
+     * and value and append it to the root element of the options node.
      *
      * @param DOMElement $root The root element of the options node.
      * @param string $name The element name (option name).
@@ -236,6 +237,26 @@ class Options
         if (isset($value)) {
             $elem = $this->dom->createElement($name);
             $elem->nodeValue = $value;
+            $root->appendChild($elem);
+        }
+    }
+
+    /**
+     * If an option value is set, create a DOM element with an option name
+     * and XML string value and append it to the root element of the options node.
+     *
+     * @param DOMElement $root The root element of the options node.
+     * @param string $name The element name (option name).
+     * @param string $value The node value as an XML string.
+     */
+    public function addOptionXML($root, $name, $xmlString)
+    {
+        if (isset($valueXML)) {
+            $elem = $this->dom->createElement($name);
+            $xmlDoc = new \DOMDocument();
+            $xmlDoc->loadXML($xmlString);
+            // http://stackoverflow.com/questions/5783716/php-xml-dom-uncaught-exception-domexception-with-message-wrong-document-error
+            $elem->appendChild($this->dom->importNode($xmlDoc->documentElement, true));
             $root->appendChild($elem);
         }
     }
