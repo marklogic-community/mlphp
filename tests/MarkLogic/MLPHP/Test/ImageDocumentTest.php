@@ -32,8 +32,6 @@ class ImageDocumentTest extends TestBaseDB
             $imageDoc = new MLPHP\ImageDocument(parent::$client);
             $imageDoc->setContentFile(__DIR__ . DIRECTORY_SEPARATOR . 'example2.jpg');
             $exif = $imageDoc->getExif();
-            print_r($exif);
-            print($exif ? 'true' : 'false');
             $this->assertNotFalse($exif);
         } else {
             parent::$logger->debug('exif_read_data function not available');

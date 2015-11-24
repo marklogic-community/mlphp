@@ -70,5 +70,19 @@ class OptionsTest extends TestBaseDB
         $this->assertEquals(204, $response->getHttpCode());
     }
 
+    function testSetAdditionalQuery()
+    {
+        // setAdditionalQuery
+        parent::$logger->debug('setAdditionalQuery');
+        $additional = '<foo>bar</foo>';
+        $this->options->setAdditionalQuery($additional);
+        // Inside options doc: <additional-query><foo>bar</foo></additional-query>
+        $doc = new DOMDocument();
+        $doc->loadXML($this->options->getAsXML());
+        $elem1 = $doc->getElementsByTagName('additional-query')->item(0);
+        $elem2 = $elem1->getElementsByTagName('foo')->item(0);
+        $this->assertEquals('bar', $elem2->nodeValue);
+    }
+
 }
 
