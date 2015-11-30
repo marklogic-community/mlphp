@@ -251,7 +251,7 @@ class Options
      */
     public function addOptionXML($root, $name, $xmlString)
     {
-        if (isset($valueXML)) {
+        if (isset($xmlString)) {
             $elem = $this->dom->createElement($name);
             $xmlDoc = new \DOMDocument();
             $xmlDoc->loadXML($xmlString);
