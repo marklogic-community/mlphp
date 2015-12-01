@@ -27,12 +27,12 @@ class JSONDocument extends Document
     /**
      * Create a JSON document object.
      *
-     * @param RESTClient $restClient A REST client object.
+     * @param RESTClient $client A REST client object.
      * @param string $uri A document URI.
      */
-    public function __construct($restClient, $uri = null)
+    public function __construct($client, $uri = null)
     {
-        parent::__construct($restClient, $uri);
+        parent::__construct($client, $uri);
         $this->setContentType('application/json');
     }
 
@@ -59,9 +59,23 @@ class JSONDocument extends Document
      */
     public function write($uri = null, $params = array())
     {
-        $this->uri = (isset($uri)) ? (string)$uri : $this->uri;
-        $params = array_merge(array('format' => 'json'), $params);
-        return parent::write($this->uri, $params);
+        if ($this->isValidJSON($this->getContent())) {
+            $this->uri = (isset($uri)) ? (string)$uri : $this->uri;
+            $params = array_merge(array('format' => 'json'), $params);
+            return parent::write($this->uri, $params);
+        } else {
+            throw new \Exception('Attempting to write invalid JSON content');
+        }
+    }
+
+    /**
+     * Check if JSON content is valid.
+     *
+     * @return boolean true or false.
+     */
+    public function isValidJSON($json)
+    {
+        return !(json_decode($json) === null);
     }
 
     /**

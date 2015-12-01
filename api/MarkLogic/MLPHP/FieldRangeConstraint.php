@@ -70,7 +70,7 @@ class FieldRangeConstraint extends AbstractConstraint
         $this->addFragmentScope($dom, $frangeElem);
         $constElem->appendChild($frangeElem);
         /* <constraint name='name'>
-                 <range type='xs:string' collation='http://marklogic.com/collation/'>
+                 <range type='string' collation='http://marklogic.com/collation/'>
                     <field name='my-field-name'/>
                  </range>
             </constraint> */

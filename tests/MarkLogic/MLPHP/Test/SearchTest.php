@@ -17,64 +17,53 @@ limitations under the License.
 namespace MarkLogic\MLPHP\Test;
 
 use MarkLogic\MLPHP;
-use Monolog\Logger;
-use Monolog\Handler\StreamHandler;
 
 /**
  * @package MLPHP\Test
  * @author Eric Bloch <eric.bloch@gmail.com>
+ * @author Mike Wooldridge <mike.wooldridge@marklogic.com>
+ *
+ * Search tests that run on database with XML content
  */
-class SearchTest extends TestBase
+class SearchTest extends TestBaseSearch
 {
-    function testSearch()
+
+    function testSimpleText()
     {
-        $search = new MLPHP\Search($this->client, 0, 100);
-        $results = $search->retrieve("world");
-    
-        $this->assertEquals($results->getTotal(), 1);
+        // Load docs that are used in tests that follow
+        parent::loadDocsText(parent::$client);
 
-        $results = $search->retrieve("poop");
-        $this->assertEquals($results->getTotal(), 0);
-    
+        parent::$logger->debug('testText');
+        $options = new MLPHP\Options(parent::$client, 'simpleText');
+        $options->write();
+        $search = new MLPHP\Search(parent::$client, 1, 3);
+        $results = $search->retrieve('MLPHP!!!', array('options' => 'simpleText'));
+        $this->assertEquals(1, $results->getTotal());
+        $results = $search->retrieve('goodbye???', array('options' => 'simpleText'));
+        $this->assertEquals(0, $results->getTotal());
+    }
+
+    function testStructuredQuery()
+    {
+        parent::$logger->debug('testStructuredQuery');
+        $search = new MLPHP\Search(parent::$client, 1, 3);
         $results = $search->retrieve('
             <query xmlns="http://marklogic.com/appservices/search">
                 <term-query>
-                    <text>world</text>
+                    <text>MLPHP!!!</text>
                 </term-query>
             </query>
         ', array(), true);
-        $this->assertEquals($results->getTotal(), 1);
-
+        $this->assertEquals(1, $results->getTotal());
         $results = $search->retrieve('
             <query xmlns="http://marklogic.com/appservices/search">
                 <term-query>
-                    <text>poop</text>
+                    <text>goodbye???</text>
                 </term-query>
             </query>
         ', array(), true);
-        $this->assertEquals($results->getTotal(), 0);
-
-        /* highlight extension is broken in ML7
-        $search = new MLPHP\Search($this->client, 0, 100);
-        $results = $search->highlight('<hello>World</hello>', 'text/plain', 'hit', 'world');
-        $this->assertEquals('<hello><span class="hit">World</span></hello>', $results);
-
-        $search = new MLPHP\Search($this->client, 0, 100);
-        $results = $search->highlight('I like spinach pie<br>', 'text/plain', 'hot', 'liked');
-        $this->assertEquals('I <span class="hot">like</span> spinach pie<br>', $results);
-
-        $search = new MLPHP\Search($this->client, 0, 100);
-        $results = $search->highlight('<g>I like spinach pie</g>', 'text/xml', 'hot', 'liked');
-        $this->assertXmlStringEqualsXmlString('<g>I <span class="hot">like</span> spinach pie</g>', $results); 
-        */
+        $this->assertEquals(0, $results->getTotal());
     }
 
-    function setUp() {
-        parent::setUp();
-
-        $doc = new MLPHP\XMLDocument($this->client, "/one.xml");
-        $doc->setContent('<Hello>World</Hello>');
-        $doc->write("/one.xml");
-    }
 }
 

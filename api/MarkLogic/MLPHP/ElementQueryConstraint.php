@@ -19,6 +19,9 @@ namespace MarkLogic\MLPHP;
 /**
  * Represents an element-query constraint for search.
  *
+ * @todo element-query deprecated, use container constraint
+ * http://docs.marklogic.com/guide/rest-dev/appendixb#id_96729
+ *
  * @package MLPHP
  * @author Mike Wooldridge <mike.wooldridge@marklogic.com>
  */
@@ -39,8 +42,8 @@ class ElementQueryConstraint extends AbstractConstraint
     public function __construct($name, $elem, $ns = '')
     {
         $this->elem = (string)$elem;
-      $this->ns = (string)$ns;
-    parent::__construct($name);
+        $this->ns = (string)$ns;
+        parent::__construct($name);
     }
 
     /**

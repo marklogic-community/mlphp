@@ -33,7 +33,7 @@ class RESTResponse
     /**
      * Set the response body.
      *
-     * @param mixed $result The REST result.
+     * @param mixed $result The REST result from a cURL call: curl_exec($ch)
      */
     public function setBody($result)
     {
@@ -53,7 +53,7 @@ class RESTResponse
     /**
      * Set the response information.
      *
-     * @param array $result The REST information.
+     * @param array $result The REST information from a cURL call: curl_getinfo($ch);
      */
     public function setInfo($info)
     {
@@ -111,29 +111,57 @@ class RESTResponse
     }
 
     /**
+     * Get the format type of the body.
+     *
+     * @return string The type:
+     * 'json', 'xml', or 'other' (for non-JSON, non-XML text)
+     */
+    public function getBodyType()
+    {
+        $result = '';
+        if (json_decode($this->body)) {
+            $result = 'json';
+        } else if (substr(trim($this->body), 0, 1) === '<') {
+            $result = 'xml';
+        } else {
+            $result = 'other';
+        }
+        return $result;
+    }
+
+    /**
      * Get error message from REST response body.
+     *
+     * @see http://docs.marklogic.com/guide/rest-dev/service#id_61169
+     * @todo error message formats seem unpredictable from server
      *
      * @return array The message.
      */
     public function getErrorMessage()
     {
-        if ($obj = json_decode($this->body)) {
-            // response body is JSON
-            $statusCode = $obj->error->{'status-code'};
-            $status = $obj->error->status;
-            $message = $obj->error->message;
-            $result = 'Error ' . $statusCode . ': ' . $status . ' - ' . $message;
-        } else if (substr(trim($this->body), 0, 1) === '<') {
-            // response body is XML
-            $dom = new \DOMDocument($this->body);
-            $dom->loadXML($this->body);
-            $statusCode = $dom->getElementsByTagNameNS('http://marklogic.com/rest-api', 'status-code')->item(0)->nodeValue;
-            $status = $dom->getElementsByTagNameNS('http://marklogic.com/rest-api', 'status')->item(0)->nodeValue;
-            $message = $dom->getElementsByTagNameNS('http://marklogic.com/rest-api', 'message')->item(0)->nodeValue;
-            $result = 'Error ' . $statusCode . ': ' . $status . ' - ' . $message;
-        } else {
-            // response is text or something else
-            $result = 'Error: ' . $this->body;
+        $result = '';
+        switch ($this->getBodyType())
+        {
+            case 'json':
+                $obj = json_decode($this->body);
+                $statusCode = $obj->errorResponse->statusCode;
+                $status = $obj->errorResponse->status;
+                $message = $obj->errorResponse->message;
+                $result = 'Error ' . $statusCode . ': ' . $status . ' - ' . $message;
+                break;
+            case 'xml':
+                $dom = new \DOMDocument($this->body);
+                $dom->loadXML($this->body);
+                // $statusCode = $dom->getElementsByTagNameNS('http://marklogic.com/rest-api', 'status-code')->item(0)->nodeValue;
+                // $status = $dom->getElementsByTagNameNS('http://marklogic.com/rest-api', 'status')->item(0)->nodeValue;
+                // $message = $dom->getElementsByTagNameNS('http://marklogic.com/rest-api', 'message')->item(0)->nodeValue;
+                // $result = 'Error ' . $statusCode . ': ' . $status . ' - ' . $message;
+                // @todo XML won't necessarily be http://marklogic.com/rest-api format
+                // For now, just return body of response
+                $result = 'Error: ' . $this->body;
+                break;
+            default:
+                $result = 'Error: ' . $this->body;
         }
         return $result;
     }

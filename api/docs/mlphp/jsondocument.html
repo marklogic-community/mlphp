@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="generator" content="PHPDoctor 2.0.5 (http://peej.github.com/phpdoctor/)">
-<meta name="when" content="Mon, 29 Jul 2013 22:11:19 +0000">
+<meta name="when" content="Mon, 09 Feb 2015 02:37:39 +0000">
 
 <link rel="stylesheet" type="text/css" href="../stylesheet.css">
 <link rel="start" href="../overview-summary.html">
@@ -80,6 +80,10 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 <td class="description"><p class="name"><a href="#write()">write</a>(string uri, array params)</p><p class="description">Write a JSON document to the database.</p></td>
 </tr>
 <tr>
+<td class="type"> boolean</td>
+<td class="description"><p class="name"><a href="#isValidJSON()">isValidJSON</a>(mixed json)</p><p class="description">Check if JSON content is valid.</p></td>
+</tr>
+<tr>
 <td class="type"> Object</td>
 <td class="description"><p class="name"><a href="#getAsObject()">getAsObject</a>()</p><p class="description">Get the document as a PHP object.</p></td>
 </tr>
@@ -91,7 +95,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <table class="inherit">
 <tr><th colspan="2">Methods inherited from MLPHP\Document</th></tr>
-<tr><td><a href="../mlphp/document.html#__construct()">__construct</a>, <a href="../mlphp/document.html#delete()">delete</a>, <a href="../mlphp/document.html#deleteMetadata()">deleteMetadata</a>, <a href="../mlphp/document.html#getConnection()">getConnection</a>, <a href="../mlphp/document.html#getContent()">getContent</a>, <a href="../mlphp/document.html#getContentType()">getContentType</a>, <a href="../mlphp/document.html#getFileMimeType()">getFileMimeType</a>, <a href="../mlphp/document.html#getURI()">getURI</a>, <a href="../mlphp/document.html#hasContent()">hasContent</a>, <a href="../mlphp/document.html#read()">read</a>, <a href="../mlphp/document.html#readMetadata()">readMetadata</a>, <a href="../mlphp/document.html#setConnection()">setConnection</a>, <a href="../mlphp/document.html#setContent()">setContent</a>, <a href="../mlphp/document.html#setContentFile()">setContentFile</a>, <a href="../mlphp/document.html#setContentType()">setContentType</a>, <a href="../mlphp/document.html#setURI()">setURI</a>, <a href="../mlphp/document.html#write()">write</a>, <a href="../mlphp/document.html#writeMetadata()">writeMetadata</a></td></tr></table>
+<tr><td><a href="../mlphp/document.html#__construct()">__construct</a>, <a href="../mlphp/document.html#delete()">delete</a>, <a href="../mlphp/document.html#deleteMetadata()">deleteMetadata</a>, <a href="../mlphp/document.html#getConnection()">getConnection</a>, <a href="../mlphp/document.html#getContent()">getContent</a>, <a href="../mlphp/document.html#getContentType()">getContentType</a>, <a href="../mlphp/document.html#getFileMimeType()">getFileMimeType</a>, <a href="../mlphp/document.html#getResponse()">getResponse</a>, <a href="../mlphp/document.html#getURI()">getURI</a>, <a href="../mlphp/document.html#hasContent()">hasContent</a>, <a href="../mlphp/document.html#read()">read</a>, <a href="../mlphp/document.html#readMetadata()">readMetadata</a>, <a href="../mlphp/document.html#setConnection()">setConnection</a>, <a href="../mlphp/document.html#setContent()">setContent</a>, <a href="../mlphp/document.html#setContentFile()">setContentFile</a>, <a href="../mlphp/document.html#setContentType()">setContentType</a>, <a href="../mlphp/document.html#setURI()">setURI</a>, <a href="../mlphp/document.html#write()">write</a>, <a href="../mlphp/document.html#writeMetadata()">writeMetadata</a></td></tr></table>
 
 <h2 id="detail_method">Constructor Detail</h2>
 <a href="../source/marklogic/mlphp/jsondocument.php.html#line33" class="location">MarkLogic/MLPHP/JSONDocument.php at line 33</a>
@@ -145,7 +149,20 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/jsondocument.php.html#line72" class="location">MarkLogic/MLPHP/JSONDocument.php at line 72</a>
+<a href="../source/marklogic/mlphp/jsondocument.php.html#line76" class="location">MarkLogic/MLPHP/JSONDocument.php at line 76</a>
+
+<h3 id="isValidJSON()">isValidJSON</h3>
+<code class="signature">public  boolean <strong>isValidJSON</strong>(mixed json)</code>
+<div class="details">
+<p>Check if JSON content is valid.</p><dl>
+<dt>Returns:</dt>
+<dd>true or false.</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../source/marklogic/mlphp/jsondocument.php.html#line86" class="location">MarkLogic/MLPHP/JSONDocument.php at line 86</a>
 
 <h3 id="getAsObject()">getAsObject</h3>
 <code class="signature">public  Object <strong>getAsObject</strong>()</code>
@@ -158,7 +175,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/jsondocument.php.html#line82" class="location">MarkLogic/MLPHP/JSONDocument.php at line 82</a>
+<a href="../source/marklogic/mlphp/jsondocument.php.html#line96" class="location">MarkLogic/MLPHP/JSONDocument.php at line 96</a>
 
 <h3 id="getAsArray()">getAsArray</h3>
 <code class="signature">public  array <strong>getAsArray</strong>()</code>

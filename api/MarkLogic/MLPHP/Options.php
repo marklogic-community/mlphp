@@ -17,7 +17,7 @@ limitations under the License.
 namespace MarkLogic\MLPHP;
 
 /**
- * Represents search options.
+ * Represents query options for search.
  *
  * @package MLPHP
  * @author Mike Wooldridge <mike.wooldridge@marklogic.com>
@@ -27,7 +27,8 @@ namespace MarkLogic\MLPHP;
 class Options
 {
     private $dom; // @var DOMDocument
-    private $restClient; // @var RESTClient
+    private $client; // @var RESTClient
+    private $name; // @var string
 
     private $constraints; // @var array of constraint objects
     private $values; // @var array of Values objects
@@ -49,7 +50,7 @@ class Options
     private $returnQuery; // @var string
     private $returnResults; // @var string
     private $returnSimilar; // @var string
-    private $searchOption; // @var array
+    private $searchOptions; // @var array
 
     // TODO (*** higher priority):
     // custom constraint
@@ -66,70 +67,104 @@ class Options
     /**
      * Create an Options object.
      *
-     * @param RESTClient $restClient A REST client object.
+     * @param RESTClient $client A REST client object.
+     * @param string $name Name of the options.
      */
-    public function __construct($restClient)
+    public function __construct($client, $name = null)
     {
-        $this->restClient = $restClient;
+        $this->client = $client;
+        $this->name = $name;
         $this->dom = new \DOMDocument();
         $this->constraints = array();
         $this->values = array();
     }
 
     /**
+     * Get the options name.
+     *
+     * @return string The options name.
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set the options name.
+     *
+     * @param string $name The options name.
+     * @return Options $this
+     */
+    public function setName($name)
+    {
+        $this->name = (string)$name;
+        return $this;
+    }
+
+    /**
      * Add a constraint.
      *
      * @param mixed $constraint constraint object.
+     * @return Options $this
      */
     public function addConstraint($constraint)
     {
         $this->constraints[] = $constraint;
+        return $this;
     }
 
     /**
      * Add a values setting.
      *
      * @param Values $values Values object.
+     * @return Options $this
      */
     public function addValues($values)
     {
         $this->values[] = $values;
+        return $this;
     }
 
     /**
      * Set the metadata extracts.
      *
      * @param Extracts $extracts A metadata extracts object.
+     * @return Options $this
      */
     public function setExtracts($extracts)
     {
         $this->extracts = $extracts;
+        return $this;
     }
 
     /**
      * Set the transform-results setting.
      *
      * @param TransformResults $transformResults A TransformResults object.
+     * @return Options $this
      */
     public function setTransformResults($transformResults)
     {
         $this->transformResults = $transformResults;
+        return $this;
     }
 
     /**
      * Set the term setting.
      *
      * @param Term $term A Term object.
+     * @return Options $this
      */
     public function setTerm($term)
     {
         $this->term = $term;
+        return $this;
     }
 
     /**
-     * Get the search options as XML.
+     * Get the query options as XML.
      *
-     * @return string The search options as XML.
+     * @return string The query options as XML.
      */
     public function getAsXML()
     {
@@ -167,7 +202,7 @@ class Options
             $root->appendChild($termElem);
         }
 
-        $this->addOption($root, 'additional-query', $this->additionalQuery);
+        $this->addOptionXML($root, 'additional-query', $this->additionalQuery);
         $this->addOption($root, 'concurrency-level', $this->concurrencyLevel);
         $this->addOption($root, 'debug', $this->debug);
         $this->addOption($root, 'forest', $this->forest);
@@ -190,7 +225,8 @@ class Options
     }
 
     /**
-     * If an option value is set, create a DOM element with an option name and value and append it to the root element of the options node.
+     * If an option value is set, create a DOM element with an option name
+     * and value and append it to the root element of the options node.
      *
      * @param DOMElement $root The root element of the options node.
      * @param string $name The element name (option name).
@@ -206,17 +242,38 @@ class Options
     }
 
     /**
-     * Read the search options from the database.
+     * If an option value is set, create a DOM element with an option name
+     * and XML string value and append it to the root element of the options node.
      *
-     * @param string $name The search options name.
-     * @return string The search options as XML.
+     * @param DOMElement $root The root element of the options node.
+     * @param string $name The element name (option name).
+     * @param string $value The node value as an XML string.
      */
-    public function read($name = 'all')
+    public function addOptionXML($root, $name, $xmlString)
     {
+        if (isset($xmlString)) {
+            $elem = $this->dom->createElement($name);
+            $xmlDoc = new \DOMDocument();
+            $xmlDoc->loadXML($xmlString);
+            // http://stackoverflow.com/questions/5783716/php-xml-dom-uncaught-exception-domexception-with-message-wrong-document-error
+            $elem->appendChild($this->dom->importNode($xmlDoc->documentElement, true));
+            $root->appendChild($elem);
+        }
+    }
+
+    /**
+     * Read the query options from the database.
+     *
+     * @param string $name The query options name.
+     * @return string The query options as XML.
+     */
+    public function read($name = null)
+    {
+        $name = $name ? $name : $this->name;
         try {
             $params = array('format' => 'xml');
             $request = new RESTRequest('GET', 'config/query/' . $name, $params);
-            $response = $this->restClient->send($request);
+            $response = $this->client->send($request);
             return $response->getBody();
         } catch(Exception $e) {
             echo $e->getMessage() . ' in ' . $e->getFile() . ' on line ' . $e->getLine() . PHP_EOL;
@@ -224,36 +281,37 @@ class Options
     }
 
     /**
-     * Write the search options to the database.
+     * Write the query options to the database.
      *
-     * @param string $name The search options name.
-     * @return RESTResponse RESTResponse object.
+     * @param string $name The query options name.
+     * @return Options $this
      */
-    public function write($name = 'all')
+    public function write($name = null)
     {
+        $name = $name ? $name : $this->name;
         try {
             $params = array('format' => 'xml');
             $headers = array('Content-type' => 'application/xml');
             $request = new RESTRequest('PUT', 'config/query/' . $name, $params, $this->getAsXML(), $headers);
-            $response = $this->restClient->send($request);
-            //print_r($response);
-            return $response;
+            $this->response = $this->client->send($request);
+            return $this;
         } catch(Exception $e) {
             echo $e->getMessage() . ' in ' . $e->getFile() . ' on line ' . $e->getLine() . PHP_EOL;
         }
     }
 
     /**
-     * Delete the search options from the database.
+     * Delete the query options from the database.
      *
-     * @param string $name The search options name.
+     * @param string $name The query options name.
      * @return Options $this
      */
     public function delete($name)
     {
+        $name = $name ? $name : $this->name;
         try {
             $request = new RESTRequest('DELETE', 'config/query/' . $name);
-            $response = $this->restClient->send($request);
+            $this->response = $response = $this->client->send($request);
             return $this;
         } catch(Exception $e) {
             echo $e->getMessage() . ' in ' . $e->getFile() . ' on line ' . $e->getLine() . PHP_EOL;
@@ -276,10 +334,12 @@ class Options
      * @see http://docs.marklogic.com/search:search#opt-additional-query
      *
      * @param string $additionalQuery The additional-query setting.
+     * @return Options $this
      */
     public function setAdditionalQuery($additionalQuery)
     {
         $this->additionalQuery = (string)$additionalQuery;
+        return $this;
     }
 
     /**
@@ -298,10 +358,12 @@ class Options
      * @see http://docs.marklogic.com/search:search#opt-concurrency-level
      *
      * @param int $concurrencyLevel The concurrency level.
+     * @return Options $this
      */
     public function setConcurrencyLevel($concurrencyLevel)
     {
         $this->concurrencyLevel = (int)$concurrencyLevel;
+        return $this;
     }
 
     /**
@@ -320,10 +382,12 @@ class Options
      * @see http://docs.marklogic.com/search:search#opt-debug
      *
      * @param string $debug The debug setting, 'true' or 'false'.
+     * @return Options $this
      */
     public function setDebug($debug)
     {
         $this->debug = (string)$debug;
+        return $this;
     }
 
     /**
@@ -342,10 +406,12 @@ class Options
      * @see http://docs.marklogic.com/search:search#opt-forest
      *
      * @param int $forest The forest ID.
+     * @return Options $this
      */
     public function setForest($forest)
     {
         $this->forest = (int)$forest;
+        return $this;
     }
 
     /**
@@ -364,10 +430,12 @@ class Options
      * @see http://docs.marklogic.com/search:search#opt-page-length
      *
      * @param int $pageLength The page length.
+     * @return Options $this
      */
     public function setPageLength($pageLength)
     {
         $this->pageLength = (int)$pageLength;
+        return $this;
     }
 
     /**
@@ -386,10 +454,12 @@ class Options
      * @see http://docs.marklogic.com/search:search#opt-quality-weight
      *
      * @param float $qualityWeight The quality weight.
+     * @return Options $this
      */
     public function setQualityWeight($qualityWeight)
     {
         $this->qualityWeight = (float)$qualityWeight;
+        return $this;
     }
 
     /**
@@ -408,10 +478,12 @@ class Options
      * @see http://docs.marklogic.com/search:search#opt-return-constraints
      *
      * @param string $returnConstraints The return-constraints setting, 'true' or 'false'.
+     * @return Options $this
      */
     public function setReturnConstraints($returnConstraints)
     {
         $this->returnConstraints = (string)$returnConstraints;
+        return $this;
     }
 
     /**
@@ -425,15 +497,17 @@ class Options
     }
 
     /**
-     * Set the return-facets setting.
+     * Set the return-facets setting. (Alternative: set view search parameter.)
      *
      * @see http://docs.marklogic.com/search:search#opt-return-facets
      *
      * @param string $returnFacets The return-facets setting, 'true' or 'false'.
+     * @return Options $this
      */
     public function setReturnFacets($returnFacets)
     {
         $this->returnFacets = (string)$returnFacets;
+        return $this;
     }
 
     /**
@@ -452,10 +526,12 @@ class Options
      * @see http://docs.marklogic.com/search:search#opt-return-metrics
      *
      * @param string $returnMetrics The return-metrics setting, 'true' or 'false'.
+     * @return Options $this
      */
     public function setReturnMetrics($returnMetrics)
     {
         $this->returnMetrics = (string)$returnMetrics;
+        return $this;
     }
 
     /**
@@ -474,10 +550,12 @@ class Options
      * @see http://docs.marklogic.com/search:search#opt-return-plan
      *
      * @param string $returnPlan The return-plan setting, 'true' or 'false'.
+     * @return Options $this
      */
     public function setReturnPlan($returnPlan)
     {
         $this->returnPlan = (string)$returnPlan;
+        return $this;
     }
 
     /**
@@ -496,10 +574,12 @@ class Options
      * @see http://docs.marklogic.com/search:search#opt-return-qtext
      *
      * @param string $returnQtext The return-qtext setting, 'true' or 'false'.
+     * @return Options $this
      */
     public function setReturnQtext($returnQtext)
     {
         $this->returnQtext = (string)$returnQtext;
+        return $this;
     }
 
     /**
@@ -518,10 +598,12 @@ class Options
      * @see http://docs.marklogic.com/search:search#opt-return-query
      *
      * @param string $returnQuery The return-query setting, 'true' or 'false'.
+     * @return Options $this
      */
     public function setReturnQuery($returnQuery)
     {
         $this->returnQuery = (string)$returnQuery;
+        return $this;
     }
 
     /**
@@ -535,15 +617,18 @@ class Options
     }
 
     /**
-     * Set the return-results setting.
+     * Set the return-results setting. (Alternative: set view search parameter.)
      *
+     * @todo broken, setting to 'false' doesn't stop results from returning
      * @see http://docs.marklogic.com/search:search#opt-return-results
      *
      * @param string $returnResults The return-results setting, 'true' or 'false'.
+     * @return Options $this
      */
     public function setReturnResults($returnResults)
     {
         $this->returnResults = (string)$returnResults;
+        return $this;
     }
 
     /**
@@ -562,16 +647,18 @@ class Options
      * @see http://docs.marklogic.com/search:search#opt-return-similar
      *
      * @param string $returnSimilar The return-similar setting, 'true' or 'false'.
+     * @return Options $this
      */
     public function setReturnSimilar($returnSimilar)
     {
         $this->returnSimilar = (string)$returnSimilar;
+        return $this;
     }
 
     /**
-     * Get the search options.
+     * Get the query options.
      *
-     * @return array The search options.
+     * @return array The query options.
      */
     public function getSearchOptions()
     {
@@ -579,11 +666,12 @@ class Options
     }
 
     /**
-     * Set the search options.
+     * Set the query options.
      *
      * @see http://docs.marklogic.com/search:search#opt-search-option
      *
-     * @param string|array $searchOptions The search options as a string (single option) or array of strings.
+     * @param string|array $searchOptions The query options as a string (single option) or array of strings.
+     * @return Options $this
      */
     public function setSearchOptions($searchOptions)
     {
@@ -593,5 +681,16 @@ class Options
             $this->searchOptions[] = $searchOptions;
             $this->searchOptions = array_unique($this->searchOptions);
         }
+        return $this;
+    }
+
+    /**
+     * Get the last REST response received. Useful for testing.
+     *
+     * @return RESTRresponse A REST response object.
+     */
+    public function getResponse()
+    {
+        return $this->response;
     }
 }

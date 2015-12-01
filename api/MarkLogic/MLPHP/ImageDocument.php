@@ -29,12 +29,12 @@ class ImageDocument extends Document
     /**
      * Create an Image object.
      *
-     * @param RESTClient $restClient A REST client object.
+     * @param RESTClient $client A REST client object.
      * @param string $uri A document URI.
      */
-    public function __construct($restClient, $uri = null)
+    public function __construct($client, $uri = null)
     {
-        parent::__construct($restClient, $uri);
+        parent::__construct($client, $uri);
     }
 
 
@@ -48,7 +48,9 @@ class ImageDocument extends Document
         $type = $this->getFileMimeType($file);
         // Check for $type === '' to address MIME check not working on XAMPP Windows
         if ($type === 'image/jpeg' || $type === 'image/tiff' || $type === '') {
-            $this->exif = exif_read_data((string)$file);
+            if (function_exists('exif_read_data')) {
+                $this->exif = exif_read_data((string)$file);
+            }
         }
         parent::setContentFile((string)$file);
     }
