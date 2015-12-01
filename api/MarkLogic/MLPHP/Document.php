@@ -305,4 +305,26 @@ class Document
         }
         return $type;
     }
+    /**
+     *	Get the result by qbe
+	 * @params string $query REST api query body
+	 * @param array $params Optional additional parameters to pass when reading.
+	 * @return string|bool The document content or false on failure.
+     */
+    public function qbe($query = null, $params = array())
+    {
+        $this->query = (isset($query)) ? (string)$query : $this->query;
+        try {
+            $params = array_merge(array('query' => $this->query), $params);
+            $request = new RESTRequest('GET', 'qbe', $params);
+            $response = $this->restClient->send($request);
+            $this->content = $response->getBody();
+            $this->contentType = $response->getContentType();
+            return $this->content;
+        } catch(\Exception $e) {
+            // TODO: error codes for not-found and other reasonable, unexceptional errors.
+            $this->logger->warning( $e->getMessage() . ' in ' . $e->getFile() . ' on line ' . $e->getLine() );
+            return false;
+        }
+    }
 }
