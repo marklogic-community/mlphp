@@ -339,7 +339,7 @@ class Search
      */
     public function setCollection($collection)
     {
-        $this->collection = collection;
+        $this->collection = $collection;
     }
 
     /**
