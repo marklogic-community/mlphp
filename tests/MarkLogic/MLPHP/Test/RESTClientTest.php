@@ -74,13 +74,13 @@ class RESTClientTest extends TestBaseDB
         $prefix = $dom->getElementsByTagName('prefix')->item(0)->nodeValue;
         $this->assertEquals($prefix, 'will');
 
-        // GET namespaces as XML via header
+        // GET namespaces as JSON via header
+        // Default Accept is XML if setting by header fails, so test with JSON
         $params = array();
-        $headers = array('Accept' => 'application/xml');
+        $headers = array('Accept' => 'application/json', 'Foo' => 'bar');
         $req = new MLPHP\RESTRequest('GET', 'config/namespaces', $params, '' , $headers);
         $resp = self::$client->send($req);
-
-        $this->assertEquals($resp->getBodyType(), 'xml');
+        $this->assertEquals($resp->getBodyType(), 'json');
 
         // POST additional namespace as XML
         $headers = array('Content-type' => 'application/xml');
