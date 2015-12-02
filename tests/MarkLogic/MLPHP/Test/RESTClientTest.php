@@ -80,7 +80,6 @@ class RESTClientTest extends TestBaseDB
         $headers = array('Accept' => 'application/json', 'Foo' => 'bar');
         $req = new MLPHP\RESTRequest('GET', 'config/namespaces', $params, '' , $headers);
         $resp = self::$client->send($req);
-        print($resp->getBodyType());
         $this->assertEquals($resp->getBodyType(), 'json');
 
         // POST additional namespace as XML
