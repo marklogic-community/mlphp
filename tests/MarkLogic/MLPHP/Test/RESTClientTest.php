@@ -58,21 +58,21 @@ class RESTClientTest extends TestBaseDB
         $req = new MLPHP\RESTRequest('GET', 'config/namespaces', $params);
         $resp = self::$client->send($req);
 
-        $this->assertEquals($resp->getBodyType(), 'json');
+        $this->assertEquals('json', $resp->getBodyType());
         $resp_parsed = json_decode($resp->getBody());
         $prefix = $resp_parsed->{'namespace-bindings'}[0]->prefix;
-        $this->assertEquals($prefix, 'will');
+        $this->assertEquals('will', $prefix);
 
         // GET namespaces as XML via param
         $params = array('format' => 'xml');
         $req = new MLPHP\RESTRequest('GET', 'config/namespaces', $params);
         $resp = self::$client->send($req);
 
-        $this->assertEquals($resp->getBodyType(), 'xml');
+        $this->assertEquals('xml', $resp->getBodyType());
         $dom = new \DOMDocument();
         $dom->loadXML($resp->getBody());
         $prefix = $dom->getElementsByTagName('prefix')->item(0)->nodeValue;
-        $this->assertEquals($prefix, 'will');
+        $this->assertEquals('will', $prefix);
 
         // GET namespaces as JSON via header
         // Default Accept is XML if setting by header fails, so test with JSON
@@ -80,7 +80,7 @@ class RESTClientTest extends TestBaseDB
         $headers = array('Accept' => 'application/json', 'Foo' => 'bar');
         $req = new MLPHP\RESTRequest('GET', 'config/namespaces', $params, '' , $headers);
         $resp = self::$client->send($req);
-        $this->assertEquals($resp->getBodyType(), 'json');
+        $this->assertEquals('json', $resp->getBodyType());
 
         // POST additional namespace as XML
         $headers = array('Content-type' => 'application/xml');
@@ -102,7 +102,7 @@ class RESTClientTest extends TestBaseDB
         $req = new MLPHP\RESTRequest('DELETE', 'config/namespaces');
         $resp = self::$client->send($req);
 
-        $this->assertEquals($resp->getHttpCode(), '204');
+        $this->assertEquals('204', $resp->getHttpCode());
 
         // HEAD via the Management API
         $manageClient = new MLPHP\RESTClient(
@@ -118,7 +118,7 @@ class RESTClientTest extends TestBaseDB
         $req = new MLPHP\RESTRequest('HEAD', 'timestamp');
         $resp = $manageClient->send($req);
 
-        $this->assertEquals($resp->getHttpCode(), '200');
+        $this->assertEquals('200', $resp->getHttpCode());
     }
 
 }

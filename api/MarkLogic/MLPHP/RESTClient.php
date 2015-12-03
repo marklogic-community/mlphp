@@ -250,11 +250,12 @@ class RESTClient
         curl_setopt($ch, CURLOPT_MAXREDIRS, 10); // Expose ?
         curl_setopt($ch, CURLOPT_TIMEOUT, 10); // Expose ?
 
+        $headerArr = array();
         foreach ($headers as $key => $val) {
             $headerArr[] = $key . ':' . $val;
         }
         // If headers exist, add them
-        if (is_array($headerArr)) {
+        if (count($headerArr) > 0) {
           curl_setopt($ch, CURLOPT_HTTPHEADER, $headerArr);
         }
 
