@@ -44,6 +44,7 @@ class TestData
                 <search:constraint-meta name="link">http://thomas.loc.gov/cgi-bin/query/z?c111:H.R.1258:</search:constraint-meta>
                 <search:constraint-meta name="session">111</search:constraint-meta>
                 <search:constraint-meta name="abbrev">H.R. 1258</search:constraint-meta>
+                <search:bar>baz</search:bar>
               </search:metadata>
             </search:result>
             <search:result index="12" uri="/bills/111/h1262.xml" path="fn:doc(&quot;/bills/111/h1262.xml&quot;)" score="50688" confidence="0.4909869" fitness="0.8105518" href="/v1/documents?uri=%2Fbills%2F111%2Fh1262.xml" mimetype="application/xml" format="xml">
@@ -63,6 +64,7 @@ class TestData
                 <search:constraint-meta name="link">http://thomas.loc.gov/cgi-bin/query/z?c111:H.R.1262:</search:constraint-meta>
                 <search:constraint-meta name="session">111</search:constraint-meta>
                 <search:constraint-meta name="abbrev">H.R. 1262</search:constraint-meta>
+                <search:bar>baz</search:bar>
               </search:metadata>
             </search:result>
             <search:result index="13" uri="/bills/111/h1011.xml" path="fn:doc(&quot;/bills/111/h1011.xml&quot;)" score="50688" confidence="0.4909869" fitness="0.8105518" href="/v1/documents?uri=%2Fbills%2F111%2Fh1011.xml" mimetype="application/xml" format="xml">
@@ -78,6 +80,7 @@ class TestData
                 <search:constraint-meta name="link">http://thomas.loc.gov/cgi-bin/query/z?c111:H.R.1011:</search:constraint-meta>
                 <search:constraint-meta name="session">111</search:constraint-meta>
                 <search:constraint-meta name="abbrev">H.R. 1011</search:constraint-meta>
+                <search:bar>baz</search:bar>
               </search:metadata>
             </search:result>
             <search:result index="14" uri="/bills/111/h1147.xml" path="fn:doc(&quot;/bills/111/h1147.xml&quot;)" score="50688" confidence="0.4909869" fitness="0.8105518" href="/v1/documents?uri=%2Fbills%2F111%2Fh1147.xml" mimetype="application/xml" format="xml">
@@ -94,6 +97,7 @@ class TestData
                 <search:constraint-meta name="link">http://thomas.loc.gov/cgi-bin/query/z?c111:H.R.1147:</search:constraint-meta>
                 <search:constraint-meta name="session">111</search:constraint-meta>
                 <search:constraint-meta name="abbrev">H.R. 1147</search:constraint-meta>
+                <search:bar>baz</search:bar>
               </search:metadata>
             </search:result>
             <search:result index="15" uri="/bills/110/h1068.xml" path="fn:doc(&quot;/bills/110/h1068.xml&quot;)" score="50688" confidence="0.4909869" fitness="0.8105518" href="/v1/documents?uri=%2Fbills%2F110%2Fh1068.xml" mimetype="application/xml" format="xml">
@@ -112,6 +116,7 @@ class TestData
                 <search:constraint-meta name="link">http://thomas.loc.gov/cgi-bin/query/z?c110:H.R.1068:</search:constraint-meta>
                 <search:constraint-meta name="session">110</search:constraint-meta>
                 <search:constraint-meta name="abbrev">H.R. 1068</search:constraint-meta>
+                <search:bar>baz</search:bar>
               </search:metadata>
             </search:result>
             <search:facet name="status" type="xs:string">
