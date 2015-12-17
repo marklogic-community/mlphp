@@ -24,6 +24,7 @@ namespace MarkLogic\MLPHP;
  */
 class SearchResult
 {
+    private $result; // @var DOMElement
     private $index; // @var int
     private $uri; // @var string
     private $path; // @var string
@@ -42,6 +43,7 @@ class SearchResult
      */
     public function __construct($result)
     {
+        $this->result = $result;
         $this->index = $result->getAttribute('index');
         $this->uri = $result->getAttribute('uri');
         $this->path = $result->getAttribute('path');
@@ -153,6 +155,33 @@ class SearchResult
     public function getMetadata($key)
     {
         return (isset($this->metadata[$key])) ? $this->metadata[$key] : null;
+    }
+
+    /**
+     * Get an array metadata value(s) based on a qname element and namespace.
+     *
+     * @param mixed $elem The qname element name.
+     * @param mixed $ns The qname namespace (optional).
+     * @return array The array of metadata value(s) associated with the qname.
+     */
+    public function getMetadataQName($elem, $ns = '')
+    {
+        $result = array();
+        // with optional namespace
+        if ($ns) {
+            foreach ($this->result->getElementsByTagNameNS($ns, $elem) as $e) {
+                $val = $e->nodeValue;
+                $result[] = $val;
+            }
+        }
+        // without optional namespace
+        else {
+            foreach ($this->result->getElementsByTagName($elem) as $e) {
+                $val = $e->nodeValue;
+                $result[] = $val;
+            }
+        }
+        return (count($result) > 0) ? $result  : null;
     }
 
     /**

@@ -81,6 +81,18 @@ class SearchResultTest extends TestBase
         $this->assertNull($meta2);
     }
 
+    function testGetMetadataQName()
+    {
+        $meta1 = $this->sr->getMetadataQName('bar');
+        $this->assertEquals(1, count($meta1));
+        $this->assertEquals('baz', $meta1[0]);
+        $meta2 = $this->sr->getMetadataQName('baz');
+        $this->assertNull($meta2);
+        $meta3 = $this->sr->getMetadataQName('bar', 'http://marklogic.com/appservices/search');
+        $this->assertEquals(1, count($meta3));
+        $this->assertEquals('baz', $meta3[0]);
+    }
+
     function testGetMetadataKeys()
     {
         $keys = $this->sr->getMetadataKeys();
