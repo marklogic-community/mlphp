@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="generator" content="PHPDoctor 2.0.5 (http://peej.github.com/phpdoctor/)">
-<meta name="when" content="Mon, 09 Feb 2015 02:37:42 +0000">
+<meta name="when" content="Wed, 23 Dec 2015 22:23:57 +0000">
 
 <link rel="stylesheet" type="text/css" href="../../../stylesheet.css">
 <link rel="start" href="../../../overview-summary.html">
@@ -17,7 +17,7 @@
 <body id="file" onload="parent.document.title=document.title;">
 
 <div class="header">
-<h1><a href=../../examples/index.php target=_top>MLPHP</a></h1>
+<h1>MLPHP</h1>
 <ul>
 <li><a href="../../../overview-summary.html">Overview</a></li>
 <li>Package</li><li>Class</li><li>Tree</li><li><a href="../../../overview-files.html">Files</a></li>
@@ -210,7 +210,7 @@
 <a name="line172"></a>    <span style="color: #009900;">&#125;</span>
 <a name="line173"></a>&nbsp;
 <a name="line174"></a>    <span style="color: #009933; font-style: italic;">/**
-<a name="line175"></a>     * Build query from resource and params. Account for the fact that some param
+<a name="line175"></a>     * Build query from resource and params. Accounts for the fact that some param
 <a name="line176"></a>     * keys may be associated with arrays, which will generate the same keys multiple
 <a name="line177"></a>     * times in the query, e.g.:
 <a name="line178"></a>     * params: array(&quot;foo&quot;=&gt;[&quot;bar&quot;, &quot;baz&quot;])
@@ -241,25 +241,22 @@
 <a name="line203"></a>    <span style="color: #009933; font-style: italic;">/**
 <a name="line204"></a>     * Get the resource and params as a URL string.
 <a name="line205"></a>     *
-<a name="line206"></a>     * @todo Allow for multiple params of same name (e.g., when filtering by collections or directories for search).
-<a name="line207"></a>     *       Done: User buildQuery() above, store as array values:
-<a name="line208"></a>     *             array('collection' =&gt; ['coll1', 'coll2'])
-<a name="line209"></a>     * @return string The request body.
-<a name="line210"></a>     */</span>
-<a name="line211"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getUrlStr<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
-<a name="line212"></a>    <span style="color: #009900;">&#123;</span>
-<a name="line213"></a>        <span style="color: #000088;">$str</span> <span style="color: #339933;">=</span> <span style="color: #009900;">&#40;</span><span style="color: #339933;">!</span><a href="http://www.php.net/empty"><span style="color: #990000;">empty</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">resource</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span> ? <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">resource</span> <span style="color: #339933;">:</span> <span style="color: #0000ff;">''</span><span style="color: #339933;">;</span>
-<a name="line214"></a>&nbsp;
-<a name="line215"></a>        <span style="color: #666666; font-style: italic;">/* x-www-form-encoded posts encodes query params in the body */</span>
-<a name="line216"></a>        <span style="color: #b1b100;">if</span> <span style="color: #009900;">&#40;</span><span style="color: #339933;">!</span><span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">isWWWFormURLEncodedPost</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
-<a name="line217"></a>            <span style="color: #000088;">$str</span> <span style="color: #339933;">.=</span> <span style="color: #009900;">&#40;</span><span style="color: #339933;">!</span><a href="http://www.php.net/empty"><span style="color: #990000;">empty</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">params</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span> ? <span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'?'</span> <span style="color: #339933;">.</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">buildQuery</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span> <span style="color: #339933;">:</span> <span style="color: #0000ff;">''</span><span style="color: #339933;">;</span>
-<a name="line218"></a>        <span style="color: #009900;">&#125;</span>
-<a name="line219"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$str</span><span style="color: #339933;">;</span>
-<a name="line220"></a>    <span style="color: #009900;">&#125;</span>
-<a name="line221"></a><span style="color: #009900;">&#125;</span>
-<a name="line222"></a>&nbsp;</pre>
+<a name="line206"></a>     * @return string The request body.
+<a name="line207"></a>     */</span>
+<a name="line208"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getUrlStr<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
+<a name="line209"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line210"></a>        <span style="color: #000088;">$str</span> <span style="color: #339933;">=</span> <span style="color: #009900;">&#40;</span><span style="color: #339933;">!</span><a href="http://www.php.net/empty"><span style="color: #990000;">empty</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">resource</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span> ? <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">resource</span> <span style="color: #339933;">:</span> <span style="color: #0000ff;">''</span><span style="color: #339933;">;</span>
+<a name="line211"></a>&nbsp;
+<a name="line212"></a>        <span style="color: #666666; font-style: italic;">/* x-www-form-encoded posts encodes query params in the body */</span>
+<a name="line213"></a>        <span style="color: #b1b100;">if</span> <span style="color: #009900;">&#40;</span><span style="color: #339933;">!</span><span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">isWWWFormURLEncodedPost</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+<a name="line214"></a>            <span style="color: #000088;">$str</span> <span style="color: #339933;">.=</span> <span style="color: #009900;">&#40;</span><span style="color: #339933;">!</span><a href="http://www.php.net/empty"><span style="color: #990000;">empty</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">params</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span> ? <span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'?'</span> <span style="color: #339933;">.</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">buildQuery</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span> <span style="color: #339933;">:</span> <span style="color: #0000ff;">''</span><span style="color: #339933;">;</span>
+<a name="line215"></a>        <span style="color: #009900;">&#125;</span>
+<a name="line216"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$str</span><span style="color: #339933;">;</span>
+<a name="line217"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line218"></a><span style="color: #009900;">&#125;</span>
+<a name="line219"></a>&nbsp;</pre>
 <div class="header">
-<h1><a href=../../examples/index.php target=_top>MLPHP</a></h1>
+<h1>MLPHP</h1>
 <ul>
 <li><a href="../../../overview-summary.html">Overview</a></li>
 <li>Package</li><li>Class</li><li>Tree</li><li><a href="../../../overview-files.html">Files</a></li>
@@ -275,7 +272,7 @@
 </div>
 <hr>
 
-<p id="footer">Copyright 2002-2013 MarkLogic Corporation.  All Rights Reserved.</p>
+<p id="footer">Copyright 2002-2015 MarkLogic Corporation.  All Rights Reserved.</p>
 
 </body>
 
