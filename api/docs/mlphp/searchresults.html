@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="generator" content="PHPDoctor 2.0.5 (http://peej.github.com/phpdoctor/)">
-<meta name="when" content="Mon, 09 Feb 2015 02:37:39 +0000">
+<meta name="when" content="Wed, 23 Dec 2015 22:23:56 +0000">
 
 <link rel="stylesheet" type="text/css" href="../stylesheet.css">
 <link rel="start" href="../overview-summary.html">
@@ -17,7 +17,7 @@
 <body id="definition" onload="parent.document.title=document.title;">
 
 <div class="header">
-<h1><a href=../../examples/index.php target=_top>MLPHP</a></h1>
+<h1>MLPHP</h1>
 <ul>
 <li><a href="../overview-summary.html">Overview</a></li>
 <li><a href="../mlphp/package-summary.html">Namespace</a></li>
@@ -69,6 +69,10 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <table id="summary_method">
 <tr><th colspan="2">Method Summary</th></tr>
+<tr>
+<td class="type"> string</td>
+<td class="description"><p class="name"><a href="#getResponse()">getResponse</a>()</p><p class="description">Get the XML response.</p></td>
+</tr>
 <tr>
 <td class="type"> array</td>
 <td class="description"><p class="name"><a href="#getResults()">getResults</a>()</p><p class="description">Get the search results.</p></td>
@@ -125,10 +129,18 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 <td class="type"> array</td>
 <td class="description"><p class="name"><a href="#getFacet()">getFacet</a>(mixed name)</p><p class="description">Get a facet by its name.</p></td>
 </tr>
+<tr>
+<td class="type"> string</td>
+<td class="description"><p class="name"><a href="#getQtext()">getQtext</a>()</p><p class="description">Get the search qtext.</p></td>
+</tr>
+<tr>
+<td class="type"> DOMElement</td>
+<td class="description"><p class="name"><a href="#getQuery()">getQuery</a>()</p><p class="description">Get the search query.</p></td>
+</tr>
 </table>
 
 <h2 id="detail_method">Constructor Detail</h2>
-<a href="../source/marklogic/mlphp/searchresults.php.html#line41" class="location">MarkLogic/MLPHP/SearchResults.php at line 41</a>
+<a href="../source/marklogic/mlphp/searchresults.php.html#line45" class="location">MarkLogic/MLPHP/SearchResults.php at line 45</a>
 
 <h3 id="__construct()">__construct</h3>
 <code class="signature">public  void <strong>__construct</strong>(string response)</code>
@@ -144,7 +156,20 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 <hr>
 
 <h2 id="detail_method">Method Detail</h2>
-<a href="../source/marklogic/mlphp/searchresults.php.html#line66" class="location">MarkLogic/MLPHP/SearchResults.php at line 66</a>
+<a href="../source/marklogic/mlphp/searchresults.php.html#line75" class="location">MarkLogic/MLPHP/SearchResults.php at line 75</a>
+
+<h3 id="getResponse()">getResponse</h3>
+<code class="signature">public  string <strong>getResponse</strong>()</code>
+<div class="details">
+<p>Get the XML response.</p><dl>
+<dt>Returns:</dt>
+<dd>The original XML response text.</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../source/marklogic/mlphp/searchresults.php.html#line85" class="location">MarkLogic/MLPHP/SearchResults.php at line 85</a>
 
 <h3 id="getResults()">getResults</h3>
 <code class="signature">public  array <strong>getResults</strong>()</code>
@@ -157,7 +182,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/searchresults.php.html#line77" class="location">MarkLogic/MLPHP/SearchResults.php at line 77</a>
+<a href="../source/marklogic/mlphp/searchresults.php.html#line96" class="location">MarkLogic/MLPHP/SearchResults.php at line 96</a>
 
 <h3 id="getResultByURI()">getResultByURI</h3>
 <code class="signature">public  <a href="../mlphp/searchresult.html">SearchResult</a> <strong>getResultByURI</strong>(string uri)</code>
@@ -172,7 +197,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/searchresults.php.html#line94" class="location">MarkLogic/MLPHP/SearchResults.php at line 94</a>
+<a href="../source/marklogic/mlphp/searchresults.php.html#line113" class="location">MarkLogic/MLPHP/SearchResults.php at line 113</a>
 
 <h3 id="getResultByIndex()">getResultByIndex</h3>
 <code class="signature">public  <a href="../mlphp/searchresult.html">SearchResult</a> <strong>getResultByIndex</strong>(int index)</code>
@@ -187,7 +212,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/searchresults.php.html#line110" class="location">MarkLogic/MLPHP/SearchResults.php at line 110</a>
+<a href="../source/marklogic/mlphp/searchresults.php.html#line129" class="location">MarkLogic/MLPHP/SearchResults.php at line 129</a>
 
 <h3 id="getTotal()">getTotal</h3>
 <code class="signature">public  int <strong>getTotal</strong>()</code>
@@ -200,7 +225,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/searchresults.php.html#line120" class="location">MarkLogic/MLPHP/SearchResults.php at line 120</a>
+<a href="../source/marklogic/mlphp/searchresults.php.html#line139" class="location">MarkLogic/MLPHP/SearchResults.php at line 139</a>
 
 <h3 id="getStart()">getStart</h3>
 <code class="signature">public  int <strong>getStart</strong>()</code>
@@ -213,7 +238,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/searchresults.php.html#line130" class="location">MarkLogic/MLPHP/SearchResults.php at line 130</a>
+<a href="../source/marklogic/mlphp/searchresults.php.html#line149" class="location">MarkLogic/MLPHP/SearchResults.php at line 149</a>
 
 <h3 id="getEnd()">getEnd</h3>
 <code class="signature">public  int <strong>getEnd</strong>()</code>
@@ -226,7 +251,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/searchresults.php.html#line140" class="location">MarkLogic/MLPHP/SearchResults.php at line 140</a>
+<a href="../source/marklogic/mlphp/searchresults.php.html#line159" class="location">MarkLogic/MLPHP/SearchResults.php at line 159</a>
 
 <h3 id="getCurrentPage()">getCurrentPage</h3>
 <code class="signature">public  int <strong>getCurrentPage</strong>()</code>
@@ -239,7 +264,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/searchresults.php.html#line150" class="location">MarkLogic/MLPHP/SearchResults.php at line 150</a>
+<a href="../source/marklogic/mlphp/searchresults.php.html#line169" class="location">MarkLogic/MLPHP/SearchResults.php at line 169</a>
 
 <h3 id="getTotalPages()">getTotalPages</h3>
 <code class="signature">public  int <strong>getTotalPages</strong>()</code>
@@ -252,7 +277,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/searchresults.php.html#line160" class="location">MarkLogic/MLPHP/SearchResults.php at line 160</a>
+<a href="../source/marklogic/mlphp/searchresults.php.html#line179" class="location">MarkLogic/MLPHP/SearchResults.php at line 179</a>
 
 <h3 id="getPageLength()">getPageLength</h3>
 <code class="signature">public  int <strong>getPageLength</strong>()</code>
@@ -265,7 +290,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/searchresults.php.html#line170" class="location">MarkLogic/MLPHP/SearchResults.php at line 170</a>
+<a href="../source/marklogic/mlphp/searchresults.php.html#line189" class="location">MarkLogic/MLPHP/SearchResults.php at line 189</a>
 
 <h3 id="getPreviousStart()">getPreviousStart</h3>
 <code class="signature">public  int <strong>getPreviousStart</strong>()</code>
@@ -278,7 +303,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/searchresults.php.html#line180" class="location">MarkLogic/MLPHP/SearchResults.php at line 180</a>
+<a href="../source/marklogic/mlphp/searchresults.php.html#line199" class="location">MarkLogic/MLPHP/SearchResults.php at line 199</a>
 
 <h3 id="getNextStart()">getNextStart</h3>
 <code class="signature">public  int <strong>getNextStart</strong>()</code>
@@ -291,7 +316,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/searchresults.php.html#line190" class="location">MarkLogic/MLPHP/SearchResults.php at line 190</a>
+<a href="../source/marklogic/mlphp/searchresults.php.html#line209" class="location">MarkLogic/MLPHP/SearchResults.php at line 209</a>
 
 <h3 id="hasFacets()">hasFacets</h3>
 <code class="signature">public  bool <strong>hasFacets</strong>()</code>
@@ -304,7 +329,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/searchresults.php.html#line200" class="location">MarkLogic/MLPHP/SearchResults.php at line 200</a>
+<a href="../source/marklogic/mlphp/searchresults.php.html#line219" class="location">MarkLogic/MLPHP/SearchResults.php at line 219</a>
 
 <h3 id="getFacets()">getFacets</h3>
 <code class="signature">public  array <strong>getFacets</strong>()</code>
@@ -317,7 +342,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/searchresults.php.html#line210" class="location">MarkLogic/MLPHP/SearchResults.php at line 210</a>
+<a href="../source/marklogic/mlphp/searchresults.php.html#line229" class="location">MarkLogic/MLPHP/SearchResults.php at line 229</a>
 
 <h3 id="getFacet()">getFacet</h3>
 <code class="signature">public  array <strong>getFacet</strong>(mixed name)</code>
@@ -330,8 +355,34 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
+<a href="../source/marklogic/mlphp/searchresults.php.html#line245" class="location">MarkLogic/MLPHP/SearchResults.php at line 245</a>
+
+<h3 id="getQtext()">getQtext</h3>
+<code class="signature">public  string <strong>getQtext</strong>()</code>
+<div class="details">
+<p>Get the search qtext.</p><dl>
+<dt>Returns:</dt>
+<dd>The qtext.</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../source/marklogic/mlphp/searchresults.php.html#line255" class="location">MarkLogic/MLPHP/SearchResults.php at line 255</a>
+
+<h3 id="getQuery()">getQuery</h3>
+<code class="signature">public  DOMElement <strong>getQuery</strong>()</code>
+<div class="details">
+<p>Get the search query.</p><dl>
+<dt>Returns:</dt>
+<dd>The search query as an DOMElement object.</dd>
+</dl>
+</div>
+
+<hr>
+
 <div class="header">
-<h1><a href=../../examples/index.php target=_top>MLPHP</a></h1>
+<h1>MLPHP</h1>
 <ul>
 <li><a href="../overview-summary.html">Overview</a></li>
 <li><a href="../mlphp/package-summary.html">Namespace</a></li>
@@ -354,7 +405,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 </div>
 <hr>
 
-<p id="footer">Copyright 2002-2013 MarkLogic Corporation.  All Rights Reserved.</p>
+<p id="footer">Copyright 2002-2015 MarkLogic Corporation.  All Rights Reserved.</p>
 
 </body>
 

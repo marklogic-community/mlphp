@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="generator" content="PHPDoctor 2.0.5 (http://peej.github.com/phpdoctor/)">
-<meta name="when" content="Mon, 09 Feb 2015 02:37:39 +0000">
+<meta name="when" content="Wed, 23 Dec 2015 22:23:56 +0000">
 
 <link rel="stylesheet" type="text/css" href="stylesheet.css">
 <link rel="start" href="overview-summary.html">
@@ -17,7 +17,7 @@
 <body id="overview" onload="parent.document.title=document.title;">
 
 <div class="header">
-<h1><a href=../../examples/index.php target=_top>MLPHP</a></h1>
+<h1>MLPHP</h1>
 <ul>
 <li><a href="overview-summary.html">Overview</a></li>
 <li>Namespace</li><li>Class</li><li><a href="overview-tree.html">Tree</a></li>
@@ -62,6 +62,8 @@
 <dd>Represents a abstraction of a search-options constraint that specific constraints can extend.</dd>
 <dt><a href="mlphp/database.html#addAttributeLexicon()">addAttributeLexicon()</a> - Method in class <a href="mlphp/database.html">MLPHP\Database</a></dt>
 <dd>Add an element attribute word lexicon.</dd>
+<dt><a href="mlphp/rangeconstraint.html#addBuckets()">addBuckets()</a> - Method in class <a href="mlphp/rangeconstraint.html">MLPHP\RangeConstraint</a></dt>
+<dd>Add bucket objects.</dd>
 <dt><a href="mlphp/permission.html#addCapabilities()">addCapabilities()</a> - Method in class <a href="mlphp/permission.html">MLPHP\Permission</a></dt>
 <dd>Add capabilities.</dd>
 <dt><a href="mlphp/metadata.html#addCollections()">addCollections()</a> - Method in class <a href="mlphp/metadata.html">MLPHP\Metadata</a></dt>
@@ -83,7 +85,11 @@
 <dt><a href="mlphp/field.html#addIncluded()">addIncluded()</a> - Method in class <a href="mlphp/field.html">MLPHP\Field</a></dt>
 <dd>Add an included element to the field.</dd>
 <dt><a href="mlphp/options.html#addOption()">addOption()</a> - Method in class <a href="mlphp/options.html">MLPHP\Options</a></dt>
-<dd>If an option value is set, create a DOM element with an option name and value and append it to the root element of the options node.</dd>
+<dd>If an option value is set, create a DOM element with an option name
+ and value and append it to the root element of the options node.</dd>
+<dt><a href="mlphp/options.html#addOptionXML()">addOptionXML()</a> - Method in class <a href="mlphp/options.html">MLPHP\Options</a></dt>
+<dd>If an option value is set, create a DOM element with an option name
+ and XML string value and append it to the root element of the options node.</dd>
 <dt><a href="mlphp/field.html#addPath()">addPath()</a> - Method in class <a href="mlphp/field.html">MLPHP\Field</a></dt>
 <dd>Add a path to the field.</dd>
 <dt><a href="mlphp/database.html#addPathNamespace()">addPathNamespace()</a> - Method in class <a href="mlphp/database.html">MLPHP\Database</a></dt>
@@ -117,6 +123,8 @@
 </dl>
 <h1 id="letterB">B</h1>
 <dl>
+<dt><a href="mlphp/bucket.html">Bucket()</a> - Class in namespace <a href="mlphp/package-summary.html">MLPHP</a></dt>
+<dd>Represents a range constraint bucket.</dd>
 <dt><a href="mlphp/restrequest.html#buildQuery()">buildQuery()</a> - Method in class <a href="mlphp/restrequest.html">MLPHP\RESTRequest</a></dt>
 <dd>Build query from resource and params. </dd>
 </dl>
@@ -136,16 +144,16 @@
 <dl>
 <dt><a href="mlphp/database.html">Database()</a> - Class in namespace <a href="mlphp/package-summary.html">MLPHP</a></dt>
 <dd>Represents a Database</dd>
-<dt><a href="mlphp/restapi.html#delete()">delete()</a> - Method in class <a href="mlphp/restapi.html">MLPHP\RESTAPI</a></dt>
-<dd>Delete a REST API.</dd>
 <dt><a href="mlphp/options.html#delete()">delete()</a> - Method in class <a href="mlphp/options.html">MLPHP\Options</a></dt>
-<dd>Delete the search options from the database.</dd>
-<dt><a href="mlphp/document.html#delete()">delete()</a> - Method in class <a href="mlphp/document.html">MLPHP\Document</a></dt>
-<dd>Delete a document from the database. </dd>
+<dd>Delete the query options from the database.</dd>
 <dt><a href="mlphp/restclient.html#delete()">delete()</a> - Method in class <a href="mlphp/restclient.html">MLPHP\RESTClient</a></dt>
 <dd>Perform a DELETE request with cURL</dd>
+<dt><a href="mlphp/document.html#delete()">delete()</a> - Method in class <a href="mlphp/document.html">MLPHP\Document</a></dt>
+<dd>Delete a document from the database. </dd>
 <dt><a href="mlphp/database.html#delete()">delete()</a> - Method in class <a href="mlphp/database.html">MLPHP\Database</a></dt>
 <dd>Delete the database.</dd>
+<dt><a href="mlphp/restapi.html#delete()">delete()</a> - Method in class <a href="mlphp/restapi.html">MLPHP\RESTAPI</a></dt>
+<dd>Delete a REST API.</dd>
 <dt><a href="mlphp/metadata.html#deleteCollections()">deleteCollections()</a> - Method in class <a href="mlphp/metadata.html">MLPHP\Metadata</a></dt>
 <dd>Delete collections metadata.</dd>
 <dt><a href="mlphp/document.html#deleteMetadata()">deleteMetadata()</a> - Method in class <a href="mlphp/document.html">MLPHP\Document</a></dt>
@@ -193,6 +201,8 @@
 <dd>Perform a GET request with cURL</dd>
 <dt><a href="mlphp/options.html#getAdditionalQuery()">getAdditionalQuery()</a> - Method in class <a href="mlphp/options.html">MLPHP\Options</a></dt>
 <dd>Get the additional-query setting.</dd>
+<dt><a href="mlphp/mlphp.html#getAdminClient()">getAdminClient()</a> - Method in class <a href="mlphp/mlphp.html">MLPHP\MLPHP</a></dt>
+<dd>Return a REST client to the admin API.</dd>
 <dt><a href="mlphp/mlphp.html#getAPI()">getAPI()</a> - Method in class <a href="mlphp/mlphp.html">MLPHP\MLPHP</a></dt>
 <dd>Create and return a REST API based on current configuration.</dd>
 <dt><a href="mlphp/transformresults.html#getApply()">getApply()</a> - Method in class <a href="mlphp/transformresults.html">MLPHP\TransformResults</a></dt>
@@ -201,41 +211,43 @@
 <dd>Get the document as a PHP associative array.</dd>
 <dt><a href="mlphp/xmldocument.html#getAsDOMDocument()">getAsDOMDocument()</a> - Method in class <a href="mlphp/xmldocument.html">MLPHP\XMLDocument</a></dt>
 <dd>Get the document as a DOMDocument object.</dd>
-<dt><a href="mlphp/fieldwordconstraint.html#getAsElem()">getAsElem()</a> - Method in class <a href="mlphp/fieldwordconstraint.html">MLPHP\FieldWordConstraint</a></dt>
+<dt><a href="mlphp/elementqueryconstraint.html#getAsElem()">getAsElem()</a> - Method in class <a href="mlphp/elementqueryconstraint.html">MLPHP\ElementQueryConstraint</a></dt>
 <dd>Get the constraint as a DOMElement object.</dd>
 <dt><a href="mlphp/fieldrangeconstraint.html#getAsElem()">getAsElem()</a> - Method in class <a href="mlphp/fieldrangeconstraint.html">MLPHP\FieldRangeConstraint</a></dt>
 <dd>Get the constraint as a DOMElement object.</dd>
-<dt><a href="mlphp/propertiesconstraint.html#getAsElem()">getAsElem()</a> - Method in class <a href="mlphp/propertiesconstraint.html">MLPHP\PropertiesConstraint</a></dt>
-<dd>Get the constraint as a DOMElement object.</dd>
-<dt><a href="mlphp/elementqueryconstraint.html#getAsElem()">getAsElem()</a> - Method in class <a href="mlphp/elementqueryconstraint.html">MLPHP\ElementQueryConstraint</a></dt>
-<dd>Get the constraint as a DOMElement object.</dd>
-<dt><a href="mlphp/term.html#getAsElem()">getAsElem()</a> - Method in class <a href="mlphp/term.html">MLPHP\Term</a></dt>
-<dd>Get the term as a DOMElement object.</dd>
-<dt><a href="mlphp/valueconstraint.html#getAsElem()">getAsElem()</a> - Method in class <a href="mlphp/valueconstraint.html">MLPHP\ValueConstraint</a></dt>
-<dd>Get the constraint as a DOMElement object.</dd>
-<dt><a href="mlphp/wordconstraint.html#getAsElem()">getAsElem()</a> - Method in class <a href="mlphp/wordconstraint.html">MLPHP\WordConstraint</a></dt>
+<dt><a href="mlphp/fieldwordconstraint.html#getAsElem()">getAsElem()</a> - Method in class <a href="mlphp/fieldwordconstraint.html">MLPHP\FieldWordConstraint</a></dt>
 <dd>Get the constraint as a DOMElement object.</dd>
 <dt><a href="mlphp/collectionconstraint.html#getAsElem()">getAsElem()</a> - Method in class <a href="mlphp/collectionconstraint.html">MLPHP\CollectionConstraint</a></dt>
 <dd>Get the constraint as a DOMElement object.</dd>
-<dt><a href="mlphp/abstractconstraint.html#getAsElem()">getAsElem()</a> - Method in class <a href="mlphp/abstractconstraint.html">MLPHP\AbstractConstraint</a></dt>
-<dd>Get the constraint as a DOMElement object.</dd>
-<dt><a href="mlphp/constraint.html#getAsElem()">getAsElem()</a> - Method in class <a href="mlphp/constraint.html">MLPHP\Constraint</a></dt>
 <dt><a href="mlphp/rangeconstraint.html#getAsElem()">getAsElem()</a> - Method in class <a href="mlphp/rangeconstraint.html">MLPHP\RangeConstraint</a></dt>
 <dd>Get the constraint as a DOMElement object.</dd>
+<dt><a href="mlphp/pathrangeconstraint.html#getAsElem()">getAsElem()</a> - Method in class <a href="mlphp/pathrangeconstraint.html">MLPHP\PathRangeConstraint</a></dt>
+<dd>Get the constraint as a DOMElement object.</dd>
+<dt><a href="mlphp/term.html#getAsElem()">getAsElem()</a> - Method in class <a href="mlphp/term.html">MLPHP\Term</a></dt>
+<dd>Get the term as a DOMElement object.</dd>
+<dt><a href="mlphp/propertiesconstraint.html#getAsElem()">getAsElem()</a> - Method in class <a href="mlphp/propertiesconstraint.html">MLPHP\PropertiesConstraint</a></dt>
+<dd>Get the constraint as a DOMElement object.</dd>
+<dt><a href="mlphp/wordconstraint.html#getAsElem()">getAsElem()</a> - Method in class <a href="mlphp/wordconstraint.html">MLPHP\WordConstraint</a></dt>
+<dd>Get the constraint as a DOMElement object.</dd>
+<dt><a href="mlphp/abstractconstraint.html#getAsElem()">getAsElem()</a> - Method in class <a href="mlphp/abstractconstraint.html">MLPHP\AbstractConstraint</a></dt>
+<dd>Get the constraint as a DOMElement object.</dd>
+<dt><a href="mlphp/valueconstraint.html#getAsElem()">getAsElem()</a> - Method in class <a href="mlphp/valueconstraint.html">MLPHP\ValueConstraint</a></dt>
+<dd>Get the constraint as a DOMElement object.</dd>
+<dt><a href="mlphp/constraint.html#getAsElem()">getAsElem()</a> - Method in class <a href="mlphp/constraint.html">MLPHP\Constraint</a></dt>
 <dt><a href="mlphp/jsondocument.html#getAsObject()">getAsObject()</a> - Method in class <a href="mlphp/jsondocument.html">MLPHP\JSONDocument</a></dt>
 <dd>Get the document as a PHP object.</dd>
 <dt><a href="mlphp/metadata.html#getAsXML()">getAsXML()</a> - Method in class <a href="mlphp/metadata.html">MLPHP\Metadata</a></dt>
 <dd>Get the metadata object as XML.</dd>
 <dt><a href="mlphp/options.html#getAsXML()">getAsXML()</a> - Method in class <a href="mlphp/options.html">MLPHP\Options</a></dt>
-<dd>Get the search options as XML.</dd>
+<dd>Get the query options as XML.</dd>
 <dt><a href="mlphp/qname.html#getAttribute()">getAttribute()</a> - Method in class <a href="mlphp/qname.html">MLPHP\QName</a></dt>
 <dd>Get the attribute name.</dd>
 <dt><a href="mlphp/qname.html#getAttributeNs()">getAttributeNs()</a> - Method in class <a href="mlphp/qname.html">MLPHP\QName</a></dt>
 <dd>Get the attribute namespace.</dd>
-<dt><a href="mlphp/restresponse.html#getBody()">getBody()</a> - Method in class <a href="mlphp/restresponse.html">MLPHP\RESTResponse</a></dt>
-<dd>Get the response body.</dd>
 <dt><a href="mlphp/restrequest.html#getBody()">getBody()</a> - Method in class <a href="mlphp/restrequest.html">MLPHP\RESTRequest</a></dt>
 <dd>Get the request body.</dd>
+<dt><a href="mlphp/restresponse.html#getBody()">getBody()</a> - Method in class <a href="mlphp/restresponse.html">MLPHP\RESTResponse</a></dt>
+<dd>Get the response body.</dd>
 <dt><a href="mlphp/restresponse.html#getBodyType()">getBodyType()</a> - Method in class <a href="mlphp/restresponse.html">MLPHP\RESTResponse</a></dt>
 <dd>Get the format type of the body.</dd>
 <dt><a href="mlphp/permission.html#getCapabilities()">getCapabilities()</a> - Method in class <a href="mlphp/permission.html">MLPHP\Permission</a></dt>
@@ -254,24 +266,28 @@
 <dd>Get the configuration information for the database.</dd>
 <dt><a href="mlphp/document.html#getConnection()">getConnection()</a> - Method in class <a href="mlphp/document.html">MLPHP\Document</a></dt>
 <dd>Get the REST client for the document.</dd>
-<dt><a href="mlphp/document.html#getContent()">getContent()</a> - Method in class <a href="mlphp/document.html">MLPHP\Document</a></dt>
-<dd>Get the document content.</dd>
 <dt><a href="mlphp/match.html#getContent()">getContent()</a> - Method in class <a href="mlphp/match.html">MLPHP\Match</a></dt>
 <dd>Get the content.</dd>
-<dt><a href="mlphp/document.html#getContentType()">getContentType()</a> - Method in class <a href="mlphp/document.html">MLPHP\Document</a></dt>
-<dd>Get the document content type.</dd>
+<dt><a href="mlphp/document.html#getContent()">getContent()</a> - Method in class <a href="mlphp/document.html">MLPHP\Document</a></dt>
+<dd>Get the document content.</dd>
 <dt><a href="mlphp/restresponse.html#getContentType()">getContentType()</a> - Method in class <a href="mlphp/restresponse.html">MLPHP\RESTResponse</a></dt>
 <dd>Get the content type.</dd>
+<dt><a href="mlphp/document.html#getContentType()">getContentType()</a> - Method in class <a href="mlphp/document.html">MLPHP\Document</a></dt>
+<dd>Get the document content type.</dd>
 <dt><a href="mlphp/facetvalue.html#getCount()">getCount()</a> - Method in class <a href="mlphp/facetvalue.html">MLPHP\FacetValue</a></dt>
 <dd>Get the facet-value count.</dd>
 <dt><a href="mlphp/database.html#getCounts()">getCounts()</a> - Method in class <a href="mlphp/database.html">MLPHP\Database</a></dt>
 <dd>Get the count information for the database.</dd>
 <dt><a href="mlphp/searchresults.html#getCurrentPage()">getCurrentPage()</a> - Method in class <a href="mlphp/searchresults.html">MLPHP\SearchResults</a></dt>
 <dd>Get the current page index (starts at 1).</dd>
+<dt><a href="mlphp/mlphp.html#getDatabase()">getDatabase()</a> - Method in class <a href="mlphp/mlphp.html">MLPHP\MLPHP</a></dt>
+<dd>Return a Database object.</dd>
 <dt><a href="mlphp/options.html#getDebug()">getDebug()</a> - Method in class <a href="mlphp/options.html">MLPHP\Options</a></dt>
 <dd>Get the debug setting.</dd>
 <dt><a href="mlphp/search.html#getDirectory()">getDirectory()</a> - Method in class <a href="mlphp/search.html">MLPHP\Search</a></dt>
 <dd>Get the directory to filter by.</dd>
+<dt><a href="mlphp/mlphp.html#getDocument()">getDocument()</a> - Method in class <a href="mlphp/mlphp.html">MLPHP\MLPHP</a></dt>
+<dd>Return a Document object.</dd>
 <dt><a href="mlphp/preferredelement.html#getElement()">getElement()</a> - Method in class <a href="mlphp/preferredelement.html">MLPHP\PreferredElement</a></dt>
 <dd>Get the element name.</dd>
 <dt><a href="mlphp/qname.html#getElement()">getElement()</a> - Method in class <a href="mlphp/qname.html">MLPHP\QName</a></dt>
@@ -318,56 +334,81 @@
 <dd>Get an arbitrary metadata array based on its key. </dd>
 <dt><a href="mlphp/searchresult.html#getMetadataKeys()">getMetadataKeys()</a> - Method in class <a href="mlphp/searchresult.html">MLPHP\SearchResult</a></dt>
 <dd>Get all available metadata keys.</dd>
+<dt><a href="mlphp/searchresult.html#getMetadataQName()">getMetadataQName()</a> - Method in class <a href="mlphp/searchresult.html">MLPHP\SearchResult</a></dt>
+<dd>Get an array metadata value(s) based on a qname element and namespace.</dd>
+<dt><a href="mlphp/bucket.html#getName()">getName()</a> - Method in class <a href="mlphp/bucket.html">MLPHP\Bucket</a></dt>
+<dd>Get the path.</dd>
+<dt><a href="mlphp/database.html#getName()">getName()</a> - Method in class <a href="mlphp/database.html">MLPHP\Database</a></dt>
+<dd>Get the database name.</dd>
 <dt><a href="mlphp/facet.html#getName()">getName()</a> - Method in class <a href="mlphp/facet.html">MLPHP\Facet</a></dt>
 <dd>Get the facet name.</dd>
 <dt><a href="mlphp/facetvalue.html#getName()">getName()</a> - Method in class <a href="mlphp/facetvalue.html">MLPHP\FacetValue</a></dt>
 <dd>Get the facet-value name.</dd>
+<dt><a href="mlphp/options.html#getName()">getName()</a> - Method in class <a href="mlphp/options.html">MLPHP\Options</a></dt>
+<dd>Get the options name.</dd>
 <dt><a href="mlphp/searchresults.html#getNextStart()">getNextStart()</a> - Method in class <a href="mlphp/searchresults.html">MLPHP\SearchResults</a></dt>
 <dd>Get the next starting index for paging.</dd>
 <dt><a href="mlphp/qname.html#getNs()">getNs()</a> - Method in class <a href="mlphp/qname.html">MLPHP\QName</a></dt>
 <dd>Get the element namespace.</dd>
 <dt><a href="mlphp/search.html#getOptions()">getOptions()</a> - Method in class <a href="mlphp/search.html">MLPHP\Search</a></dt>
 <dd>Get the search-options name.</dd>
+<dt><a href="mlphp/mlphp.html#getOptions()">getOptions()</a> - Method in class <a href="mlphp/mlphp.html">MLPHP\MLPHP</a></dt>
+<dd>Return an Options object.</dd>
+<dt><a href="mlphp/bucket.html#getOptions()">getOptions()</a> - Method in class <a href="mlphp/bucket.html">MLPHP\Bucket</a></dt>
+<dd>Get the bucket options.</dd>
 <dt><a href="mlphp/search.html#getPageLength()">getPageLength()</a> - Method in class <a href="mlphp/search.html">MLPHP\Search</a></dt>
 <dd>Get the page length.</dd>
 <dt><a href="mlphp/searchresults.html#getPageLength()">getPageLength()</a> - Method in class <a href="mlphp/searchresults.html">MLPHP\SearchResults</a></dt>
 <dd>Get the page length (number of results in results set).</dd>
 <dt><a href="mlphp/options.html#getPageLength()">getPageLength()</a> - Method in class <a href="mlphp/options.html">MLPHP\Options</a></dt>
 <dd>Get the page length.</dd>
-<dt><a href="mlphp/search.html#getParams()">getParams()</a> - Method in class <a href="mlphp/search.html">MLPHP\Search</a></dt>
-<dd>Get the common search parameters as an associated array.</dd>
 <dt><a href="mlphp/restrequest.html#getParams()">getParams()</a> - Method in class <a href="mlphp/restrequest.html">MLPHP\RESTRequest</a></dt>
 <dd>Get the parameters.</dd>
-<dt><a href="mlphp/match.html#getPath()">getPath()</a> - Method in class <a href="mlphp/match.html">MLPHP\Match</a></dt>
-<dd>Get the path.</dd>
+<dt><a href="mlphp/search.html#getParams()">getParams()</a> - Method in class <a href="mlphp/search.html">MLPHP\Search</a></dt>
+<dd>Get the common search parameters as an associated array.</dd>
 <dt><a href="mlphp/searchresult.html#getPath()">getPath()</a> - Method in class <a href="mlphp/searchresult.html">MLPHP\SearchResult</a></dt>
 <dd>Get the result path.</dd>
+<dt><a href="mlphp/match.html#getPath()">getPath()</a> - Method in class <a href="mlphp/match.html">MLPHP\Match</a></dt>
+<dd>Get the path.</dd>
 <dt><a href="mlphp/metadata.html#getPermissions()">getPermissions()</a> - Method in class <a href="mlphp/metadata.html">MLPHP\Metadata</a></dt>
 <dd>Get the permissions metadata.</dd>
 <dt><a href="mlphp/restclient.html#getPrefix()">getPrefix()</a> - Method in class <a href="mlphp/restclient.html">MLPHP\RESTClient</a></dt>
 <dd>Get the URL prefix.</dd>
 <dt><a href="mlphp/searchresults.html#getPreviousStart()">getPreviousStart()</a> - Method in class <a href="mlphp/searchresults.html">MLPHP\SearchResults</a></dt>
 <dd>Get the previous starting index for paging.</dd>
-<dt><a href="mlphp/database.html#getProperties()">getProperties()</a> - Method in class <a href="mlphp/database.html">MLPHP\Database</a></dt>
-<dd>Get the modifiable properties of the database as a PHP object.</dd>
 <dt><a href="mlphp/metadata.html#getProperties()">getProperties()</a> - Method in class <a href="mlphp/metadata.html">MLPHP\Metadata</a></dt>
 <dd>Get property metadata.</dd>
+<dt><a href="mlphp/database.html#getProperties()">getProperties()</a> - Method in class <a href="mlphp/database.html">MLPHP\Database</a></dt>
+<dd>Get the modifiable properties of the database as a PHP object.</dd>
+<dt><a href="mlphp/restapi.html#getProperty()">getProperty()</a> - Method in class <a href="mlphp/restapi.html">MLPHP\RESTAPI</a></dt>
+<dd>Get a REST API property.
+</dd>
 <dt><a href="mlphp/database.html#getProperty()">getProperty()</a> - Method in class <a href="mlphp/database.html">MLPHP\Database</a></dt>
 <dd>Get a simple property of the database.</dd>
+<dt><a href="mlphp/searchresults.html#getQtext()">getQtext()</a> - Method in class <a href="mlphp/searchresults.html">MLPHP\SearchResults</a></dt>
+<dd>Get the search qtext.</dd>
 <dt><a href="mlphp/metadata.html#getQuality()">getQuality()</a> - Method in class <a href="mlphp/metadata.html">MLPHP\Metadata</a></dt>
 <dd>Get quality metadata.</dd>
 <dt><a href="mlphp/options.html#getQualityWeight()">getQualityWeight()</a> - Method in class <a href="mlphp/options.html">MLPHP\Options</a></dt>
 <dd>Get the quality weight.</dd>
+<dt><a href="mlphp/searchquery.html#getQuery()">getQuery()</a> - Method in class <a href="mlphp/searchquery.html">MLPHP\SearchQuery</a></dt>
+<dd>Get the query string.</dd>
+<dt><a href="mlphp/searchresults.html#getQuery()">getQuery()</a> - Method in class <a href="mlphp/searchresults.html">MLPHP\SearchResults</a></dt>
+<dd>Get the search query.</dd>
 <dt><a href="mlphp/restresponse.html#getRedirectUrl()">getRedirectUrl()</a> - Method in class <a href="mlphp/restresponse.html">MLPHP\RESTResponse</a></dt>
 <dd>Get the redirect URL.</dd>
 <dt><a href="mlphp/restrequest.html#getResource()">getResource()</a> - Method in class <a href="mlphp/restrequest.html">MLPHP\RESTRequest</a></dt>
 <dd>Get the REST resource.</dd>
 <dt><a href="mlphp/document.html#getResponse()">getResponse()</a> - Method in class <a href="mlphp/document.html">MLPHP\Document</a></dt>
 <dd>Get the last REST response received. </dd>
+<dt><a href="mlphp/restapi.html#getResponse()">getResponse()</a> - Method in class <a href="mlphp/restapi.html">MLPHP\RESTAPI</a></dt>
+<dd>Get the last REST response received. </dd>
 <dt><a href="mlphp/options.html#getResponse()">getResponse()</a> - Method in class <a href="mlphp/options.html">MLPHP\Options</a></dt>
 <dd>Get the last REST response received. </dd>
 <dt><a href="mlphp/database.html#getResponse()">getResponse()</a> - Method in class <a href="mlphp/database.html">MLPHP\Database</a></dt>
 <dd>Get the last REST response received. </dd>
+<dt><a href="mlphp/searchresults.html#getResponse()">getResponse()</a> - Method in class <a href="mlphp/searchresults.html">MLPHP\SearchResults</a></dt>
+<dd>Get the XML response.</dd>
 <dt><a href="mlphp/searchresults.html#getResultByIndex()">getResultByIndex()</a> - Method in class <a href="mlphp/searchresults.html">MLPHP\SearchResults</a></dt>
 <dd>Get a search result corresponding to an index.</dd>
 <dt><a href="mlphp/searchresults.html#getResultByURI()">getResultByURI()</a> - Method in class <a href="mlphp/searchresults.html">MLPHP\SearchResults</a></dt>
@@ -395,7 +436,10 @@
 <dt><a href="mlphp/searchresult.html#getScore()">getScore()</a> - Method in class <a href="mlphp/searchresult.html">MLPHP\SearchResult</a></dt>
 <dd>Get the result score.</dd>
 <dt><a href="mlphp/options.html#getSearchOptions()">getSearchOptions()</a> - Method in class <a href="mlphp/options.html">MLPHP\Options</a></dt>
-<dd>Get the search options.</dd>
+<dd>Get the query options.</dd>
+<dt><a href="mlphp/mlphp.html#getServerConfig()">getServerConfig()</a> - Method in class <a href="mlphp/mlphp.html">MLPHP\MLPHP</a></dt>
+<dd>Return an assoc array of MarkLogic server config information.
+</dd>
 <dt><a href="mlphp/searchresult.html#getSimilar()">getSimilar()</a> - Method in class <a href="mlphp/searchresult.html">MLPHP\SearchResult</a></dt>
 <dd>Get similar documents.</dd>
 <dt><a href="mlphp/search.html#getStart()">getStart()</a> - Method in class <a href="mlphp/search.html">MLPHP\Search</a></dt>
@@ -403,7 +447,7 @@
 <dt><a href="mlphp/searchresults.html#getStart()">getStart()</a> - Method in class <a href="mlphp/searchresults.html">MLPHP\SearchResults</a></dt>
 <dd>Get the result starting index.</dd>
 <dt><a href="mlphp/database.html#getStatus()">getStatus()</a> - Method in class <a href="mlphp/database.html">MLPHP\Database</a></dt>
-<dd>Get the status information for the database as JSON.</dd>
+<dd>Get the status information for the database.</dd>
 <dt><a href="mlphp/searchresults.html#getTotal()">getTotal()</a> - Method in class <a href="mlphp/searchresults.html">MLPHP\SearchResults</a></dt>
 <dd>Get the total number of results.</dd>
 <dt><a href="mlphp/searchresults.html#getTotalPages()">getTotalPages()</a> - Method in class <a href="mlphp/searchresults.html">MLPHP\SearchResults</a></dt>
@@ -412,10 +456,10 @@
 <dd>Get the results transformation settings as a DOMElement object.</dd>
 <dt><a href="mlphp/facet.html#getType()">getType()</a> - Method in class <a href="mlphp/facet.html">MLPHP\Facet</a></dt>
 <dd>Get the facet type.</dd>
-<dt><a href="mlphp/document.html#getURI()">getURI()</a> - Method in class <a href="mlphp/document.html">MLPHP\Document</a></dt>
-<dd>Get the document URI.</dd>
 <dt><a href="mlphp/searchresult.html#getURI()">getURI()</a> - Method in class <a href="mlphp/searchresult.html">MLPHP\SearchResult</a></dt>
 <dd>Get the result URI.</dd>
+<dt><a href="mlphp/document.html#getURI()">getURI()</a> - Method in class <a href="mlphp/document.html">MLPHP\Document</a></dt>
+<dd>Get the document URI.</dd>
 <dt><a href="mlphp/restresponse.html#getUrl()">getUrl()</a> - Method in class <a href="mlphp/restresponse.html">MLPHP\RESTResponse</a></dt>
 <dd>Get the URL.</dd>
 <dt><a href="mlphp/restrequest.html#getUrlStr()">getUrlStr()</a> - Method in class <a href="mlphp/restrequest.html">MLPHP\RESTRequest</a></dt>
@@ -448,6 +492,8 @@
 <dd>Represents an image.</dd>
 <dt><a href="mlphp/restclient.html#installExtension()">installExtension()</a> - Method in class <a href="mlphp/restclient.html">MLPHP\RESTClient</a></dt>
 <dd>Install a REST API XQuery extension</dd>
+<dt><a href="mlphp/searchquery.html#isStructured()">isStructured()</a> - Method in class <a href="mlphp/searchquery.html">MLPHP\SearchQuery</a></dt>
+<dd>Return whether the query is a structured query.</dd>
 <dt><a href="mlphp/jsondocument.html#isValidJSON()">isValidJSON()</a> - Method in class <a href="mlphp/jsondocument.html">MLPHP\JSONDocument</a></dt>
 <dd>Check if JSON content is valid.</dd>
 <dt><a href="mlphp/xmldocument.html#isValidXML()">isValidXML()</a> - Method in class <a href="mlphp/xmldocument.html">MLPHP\XMLDocument</a></dt>
@@ -459,10 +505,10 @@
 <dl>
 <dt><a href="mlphp/jsondocument.html">JSONDocument()</a> - Class in namespace <a href="mlphp/package-summary.html">MLPHP</a></dt>
 <dd>Represents a JSON document.</dd>
-<dt><a href="mlphp/fieldpath.html#jsonSerialize()">jsonSerialize()</a> - Method in class <a href="mlphp/fieldpath.html">MLPHP\FieldPath</a></dt>
-<dt><a href="mlphp/fieldelementexcluded.html#jsonSerialize()">jsonSerialize()</a> - Method in class <a href="mlphp/fieldelementexcluded.html">MLPHP\FieldElementExcluded</a></dt>
 <dt><a href="mlphp/field.html#jsonSerialize()">jsonSerialize()</a> - Method in class <a href="mlphp/field.html">MLPHP\Field</a></dt>
+<dt><a href="mlphp/fieldelementexcluded.html#jsonSerialize()">jsonSerialize()</a> - Method in class <a href="mlphp/fieldelementexcluded.html">MLPHP\FieldElementExcluded</a></dt>
 <dt><a href="mlphp/fieldelementincluded.html#jsonSerialize()">jsonSerialize()</a> - Method in class <a href="mlphp/fieldelementincluded.html">MLPHP\FieldElementIncluded</a></dt>
+<dt><a href="mlphp/fieldpath.html#jsonSerialize()">jsonSerialize()</a> - Method in class <a href="mlphp/fieldpath.html">MLPHP\FieldPath</a></dt>
 </dl>
 <h1 id="letterL">L</h1>
 <dl>
@@ -488,10 +534,12 @@
 <h1 id="letterO">O</h1>
 <dl>
 <dt><a href="mlphp/options.html">Options()</a> - Class in namespace <a href="mlphp/package-summary.html">MLPHP</a></dt>
-<dd>Represents search options.</dd>
+<dd>Represents query options for search.</dd>
 </dl>
 <h1 id="letterP">P</h1>
 <dl>
+<dt><a href="mlphp/pathrangeconstraint.html">PathRangeConstraint()</a> - Class in namespace <a href="mlphp/package-summary.html">MLPHP</a></dt>
+<dd>Represents path range constraint for search.</dd>
 <dt><a href="mlphp/permission.html">Permission()</a> - Class in namespace <a href="mlphp/package-summary.html">MLPHP</a></dt>
 <dd>Represents permission metadata.</dd>
 <dt><a href="mlphp/restclient.html#post()">post()</a> - Method in class <a href="mlphp/restclient.html">MLPHP\RESTClient</a></dt>
@@ -514,14 +562,14 @@
 <dl>
 <dt><a href="mlphp/rangeconstraint.html">RangeConstraint()</a> - Class in namespace <a href="mlphp/package-summary.html">MLPHP</a></dt>
 <dd>Represents a range constraint for search.</dd>
+<dt><a href="mlphp/xmldocument.html#read()">read()</a> - Method in class <a href="mlphp/xmldocument.html">MLPHP\XMLDocument</a></dt>
+<dd>Read an XML document from the database.</dd>
+<dt><a href="mlphp/options.html#read()">read()</a> - Method in class <a href="mlphp/options.html">MLPHP\Options</a></dt>
+<dd>Read the query options from the database.</dd>
 <dt><a href="mlphp/document.html#read()">read()</a> - Method in class <a href="mlphp/document.html">MLPHP\Document</a></dt>
 <dd>Read a document from the database.</dd>
 <dt><a href="mlphp/jsondocument.html#read()">read()</a> - Method in class <a href="mlphp/jsondocument.html">MLPHP\JSONDocument</a></dt>
 <dd>Read a JSON document from the database.</dd>
-<dt><a href="mlphp/options.html#read()">read()</a> - Method in class <a href="mlphp/options.html">MLPHP\Options</a></dt>
-<dd>Read the search options from the database.</dd>
-<dt><a href="mlphp/xmldocument.html#read()">read()</a> - Method in class <a href="mlphp/xmldocument.html">MLPHP\XMLDocument</a></dt>
-<dd>Read an XML document from the database.</dd>
 <dt><a href="mlphp/document.html#readMetadata()">readMetadata()</a> - Method in class <a href="mlphp/document.html">MLPHP\Document</a></dt>
 <dd>Read document metadata from the database.</dd>
 <dt><a href="mlphp/mlphp.html#registerAutoloader()">registerAutoloader()</a> - Method in class <a href="mlphp/mlphp.html">MLPHP\MLPHP</a></dt>
@@ -566,6 +614,8 @@
 <dl>
 <dt><a href="mlphp/search.html">Search()</a> - Class in namespace <a href="mlphp/package-summary.html">MLPHP</a></dt>
 <dd>Represents a search.</dd>
+<dt><a href="mlphp/searchquery.html">SearchQuery()</a> - Class in namespace <a href="mlphp/package-summary.html">MLPHP</a></dt>
+<dd>Represents a search query.</dd>
 <dt><a href="mlphp/searchresult.html">SearchResult()</a> - Class in namespace <a href="mlphp/package-summary.html">MLPHP</a></dt>
 <dd>Represents a search result.</dd>
 <dt><a href="mlphp/searchresults.html">SearchResults()</a> - Class in namespace <a href="mlphp/package-summary.html">MLPHP</a></dt>
@@ -580,10 +630,10 @@
 <dd>Set the type of transformation to apply.</dd>
 <dt><a href="mlphp/restclient.html#setAuth()">setAuth()</a> - Method in class <a href="mlphp/restclient.html">MLPHP\RESTClient</a></dt>
 <dd>Set the authentication scheme.</dd>
-<dt><a href="mlphp/restresponse.html#setBody()">setBody()</a> - Method in class <a href="mlphp/restresponse.html">MLPHP\RESTResponse</a></dt>
-<dd>Set the response body.</dd>
 <dt><a href="mlphp/restrequest.html#setBody()">setBody()</a> - Method in class <a href="mlphp/restrequest.html">MLPHP\RESTRequest</a></dt>
 <dd>Set the request body.</dd>
+<dt><a href="mlphp/restresponse.html#setBody()">setBody()</a> - Method in class <a href="mlphp/restresponse.html">MLPHP\RESTResponse</a></dt>
+<dd>Set the response body.</dd>
 <dt><a href="mlphp/search.html#setCollection()">setCollection()</a> - Method in class <a href="mlphp/search.html">MLPHP\Search</a></dt>
 <dd>Set the collection to filter by.</dd>
 <dt><a href="mlphp/options.html#setConcurrencyLevel()">setConcurrencyLevel()</a> - Method in class <a href="mlphp/options.html">MLPHP\Options</a></dt>
@@ -632,6 +682,10 @@
 <dd>Set the response information.</dd>
 <dt><a href="mlphp/restclient.html#setLogger()">setLogger()</a> - Method in class <a href="mlphp/restclient.html">MLPHP\RESTClient</a></dt>
 <dd>Set the logger.</dd>
+<dt><a href="mlphp/options.html#setName()">setName()</a> - Method in class <a href="mlphp/options.html">MLPHP\Options</a></dt>
+<dd>Set the options name.</dd>
+<dt><a href="mlphp/database.html#setName()">setName()</a> - Method in class <a href="mlphp/database.html">MLPHP\Database</a></dt>
+<dd>Set the database name.</dd>
 <dt><a href="mlphp/search.html#setOptions()">setOptions()</a> - Method in class <a href="mlphp/search.html">MLPHP\Search</a></dt>
 <dd>Set the search-options name.</dd>
 <dt><a href="mlphp/restclient.html#setOptions()">setOptions()</a> - Method in class <a href="mlphp/restclient.html">MLPHP\RESTClient</a></dt>
@@ -654,6 +708,9 @@
 <dd>Set the URL prefix. </dd>
 <dt><a href="mlphp/database.html#setProperties()">setProperties()</a> - Method in class <a href="mlphp/database.html">MLPHP\Database</a></dt>
 <dd>Set properties of the database.</dd>
+<dt><a href="mlphp/restapi.html#setProperty()">setProperty()</a> - Method in class <a href="mlphp/restapi.html">MLPHP\RESTAPI</a></dt>
+<dd>Set a REST API property.
+</dd>
 <dt><a href="mlphp/database.html#setProperty()">setProperty()</a> - Method in class <a href="mlphp/database.html">MLPHP\Database</a></dt>
 <dd>Set a simple property of the database.</dd>
 <dt><a href="mlphp/metadata.html#setQuality()">setQuality()</a> - Method in class <a href="mlphp/metadata.html">MLPHP\Metadata</a></dt>
@@ -665,7 +722,7 @@
 <dt><a href="mlphp/options.html#setReturnConstraints()">setReturnConstraints()</a> - Method in class <a href="mlphp/options.html">MLPHP\Options</a></dt>
 <dd>Set the return-constraints setting.</dd>
 <dt><a href="mlphp/options.html#setReturnFacets()">setReturnFacets()</a> - Method in class <a href="mlphp/options.html">MLPHP\Options</a></dt>
-<dd>Set the return-facets setting.</dd>
+<dd>Set the return-facets setting. </dd>
 <dt><a href="mlphp/options.html#setReturnMetrics()">setReturnMetrics()</a> - Method in class <a href="mlphp/options.html">MLPHP\Options</a></dt>
 <dd>Set the return-metrics setting.</dd>
 <dt><a href="mlphp/options.html#setReturnPlan()">setReturnPlan()</a> - Method in class <a href="mlphp/options.html">MLPHP\Options</a></dt>
@@ -675,13 +732,13 @@
 <dt><a href="mlphp/options.html#setReturnQuery()">setReturnQuery()</a> - Method in class <a href="mlphp/options.html">MLPHP\Options</a></dt>
 <dd>Set the return-query setting.</dd>
 <dt><a href="mlphp/options.html#setReturnResults()">setReturnResults()</a> - Method in class <a href="mlphp/options.html">MLPHP\Options</a></dt>
-<dd>Set the return-results setting.</dd>
+<dd>Set the return-results setting. </dd>
 <dt><a href="mlphp/options.html#setReturnSimilar()">setReturnSimilar()</a> - Method in class <a href="mlphp/options.html">MLPHP\Options</a></dt>
 <dd>Set the return-similar setting.</dd>
 <dt><a href="mlphp/permission.html#setRoleName()">setRoleName()</a> - Method in class <a href="mlphp/permission.html">MLPHP\Permission</a></dt>
 <dd>Set the role name.</dd>
 <dt><a href="mlphp/options.html#setSearchOptions()">setSearchOptions()</a> - Method in class <a href="mlphp/options.html">MLPHP\Options</a></dt>
-<dd>Set the search options.</dd>
+<dd>Set the query options.</dd>
 <dt><a href="mlphp/search.html#setStart()">setStart()</a> - Method in class <a href="mlphp/search.html">MLPHP\Search</a></dt>
 <dd>Set the start setting.</dd>
 <dt><a href="mlphp/options.html#setTerm()">setTerm()</a> - Method in class <a href="mlphp/options.html">MLPHP\Options</a></dt>
@@ -734,11 +791,11 @@
 <dt><a href="mlphp/xmldocument.html#write()">write()</a> - Method in class <a href="mlphp/xmldocument.html">MLPHP\XMLDocument</a></dt>
 <dd>Write an XML document to the database.</dd>
 <dt><a href="mlphp/options.html#write()">write()</a> - Method in class <a href="mlphp/options.html">MLPHP\Options</a></dt>
-<dd>Write the search options to the database.</dd>
-<dt><a href="mlphp/document.html#write()">write()</a> - Method in class <a href="mlphp/document.html">MLPHP\Document</a></dt>
-<dd>Write a document to the database.</dd>
+<dd>Write the query options to the database.</dd>
 <dt><a href="mlphp/jsondocument.html#write()">write()</a> - Method in class <a href="mlphp/jsondocument.html">MLPHP\JSONDocument</a></dt>
 <dd>Write a JSON document to the database.</dd>
+<dt><a href="mlphp/document.html#write()">write()</a> - Method in class <a href="mlphp/document.html">MLPHP\Document</a></dt>
+<dd>Write a document to the database.</dd>
 <dt><a href="mlphp/document.html#writeMetadata()">writeMetadata()</a> - Method in class <a href="mlphp/document.html">MLPHP\Document</a></dt>
 <dd>Write document metadata to the database.</dd>
 </dl>
@@ -748,7 +805,7 @@
 <dd>Represents an XML document.</dd>
 </dl>
 <div class="header">
-<h1><a href=../../examples/index.php target=_top>MLPHP</a></h1>
+<h1>MLPHP</h1>
 <ul>
 <li><a href="overview-summary.html">Overview</a></li>
 <li>Namespace</li><li>Class</li><li><a href="overview-tree.html">Tree</a></li>
@@ -765,7 +822,7 @@
 </div>
 <hr>
 
-<p id="footer">Copyright 2002-2013 MarkLogic Corporation.  All Rights Reserved.</p>
+<p id="footer">Copyright 2002-2015 MarkLogic Corporation.  All Rights Reserved.</p>
 
 </body>
 

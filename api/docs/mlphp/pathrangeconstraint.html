@@ -11,7 +11,7 @@
 <link rel="stylesheet" type="text/css" href="../stylesheet.css">
 <link rel="start" href="../overview-summary.html">
 
-<title>ElementQueryConstraint (MLPHP)</title>
+<title>PathRangeConstraint (MLPHP)</title>
 
 </head>
 <body id="definition" onload="parent.document.title=document.title;">
@@ -32,7 +32,7 @@
 
 <div class="small_links">
 <a href="../index.html" target="_top">Frames</a>
-<a href="../mlphp/elementqueryconstraint.html" target="_top">No frames</a>
+<a href="../mlphp/pathrangeconstraint.html" target="_top">No frames</a>
 </div>
 <div class="small_links">
 Summary: <a href="#summary_field">Field</a> | <a href="#summary_method">Method</a> | <a href="#summary_constr">Constr</a>
@@ -40,24 +40,22 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 </div>
 <hr>
 
-<div class="qualifiedName">MLPHP\ElementQueryConstraint</div>
-<a href="../source/marklogic/mlphp/elementqueryconstraint.php.html#line28" class="location">MarkLogic/MLPHP/ElementQueryConstraint.php at line 28</a>
+<div class="qualifiedName">MLPHP\PathRangeConstraint</div>
+<a href="../source/marklogic/mlphp/pathrangeconstraint.php.html#line25" class="location">MarkLogic/MLPHP/PathRangeConstraint.php at line 25</a>
 
-<h1>Class ElementQueryConstraint</h1>
+<h1>Class PathRangeConstraint</h1>
 
-<pre class="tree"><a href="../mlphp/abstractconstraint.html">AbstractConstraint</a><br>    └─<strong>ElementQueryConstraint</strong><br /></pre>
+<pre class="tree"><a href="../mlphp/abstractconstraint.html">AbstractConstraint</a><br>    └─<strong>PathRangeConstraint</strong><br /></pre>
 
 <hr>
 
-<p class="signature">public  class <strong>ElementQueryConstraint</strong><br>extends <a href="../mlphp/abstractconstraint.html">AbstractConstraint</a>
+<p class="signature">public  class <strong>PathRangeConstraint</strong><br>extends <a href="../mlphp/abstractconstraint.html">AbstractConstraint</a>
 
 </p>
 
-<div class="comment" id="overview_description"><p>Represents an element-query constraint for search.</p></div>
+<div class="comment" id="overview_description"><p>Represents path range constraint for search.</p></div>
 
 <dl>
-<dt>Todo:</dt>
-<dd>element-query deprecated, use container constraint http://docs.marklogic.com/guide/rest-dev/appendixb#id_96729</dd>
 <dt>Author:</dt>
 <dd>Mike Wooldridge <mike.wooldridge@marklogic.com></dd>
 </dl>
@@ -67,7 +65,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 <tr><th colspan="2">Constructor Summary</th></tr>
 <tr>
 <td class="type"> void</td>
-<td class="description"><p class="name"><a href="#__construct()">__construct</a>(string name, string elem, string ns)</p><p class="description">Create a ElementQueryConstraint object.</p></td>
+<td class="description"><p class="name"><a href="#__construct()">__construct</a>(string name, string datatype, string facet, mixed path, string elem)</p><p class="description">Create a PathRangeConstraint object.</p></td>
 </tr>
 </table>
 
@@ -84,25 +82,26 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 <tr><td><a href="../mlphp/abstractconstraint.html#__construct()">__construct</a>, <a href="../mlphp/abstractconstraint.html#addFacetOptions()">addFacetOptions</a>, <a href="../mlphp/abstractconstraint.html#addFragmentScope()">addFragmentScope</a>, <a href="../mlphp/abstractconstraint.html#addTermOptions()">addTermOptions</a>, <a href="../mlphp/abstractconstraint.html#getAsElem()">getAsElem</a>, <a href="../mlphp/abstractconstraint.html#setFacetOptions()">setFacetOptions</a>, <a href="../mlphp/abstractconstraint.html#setFragmentScrope()">setFragmentScrope</a>, <a href="../mlphp/abstractconstraint.html#setTermOptions()">setTermOptions</a></td></tr></table>
 
 <h2 id="detail_method">Constructor Detail</h2>
-<a href="../source/marklogic/mlphp/elementqueryconstraint.php.html#line42" class="location">MarkLogic/MLPHP/ElementQueryConstraint.php at line 42</a>
+<a href="../source/marklogic/mlphp/pathrangeconstraint.php.html#line42" class="location">MarkLogic/MLPHP/PathRangeConstraint.php at line 42</a>
 
 <h3 id="__construct()">__construct</h3>
-<code class="signature">public  void <strong>__construct</strong>(string name, string elem, string ns)</code>
+<code class="signature">public  void <strong>__construct</strong>(string name, string datatype, string facet, mixed path, string elem)</code>
 <div class="details">
-<p>Create a ElementQueryConstraint object.</p><dl>
+<p>Create a PathRangeConstraint object.</p><dl>
 <dt>See Also:</dt>
 <dd><a href="http://docs.marklogic.com/search:search#opt-constraint">http://docs.marklogic.com/search:search#opt-constraint</a></dd>
 <dt>Parameters:</dt>
 <dd>name - Constraint name.</dd>
-<dd>elem - Element name.</dd>
-<dd>ns - Element namespace.</dd>
+<dd>datatype - Constraint datatype.</dd>
+<dd>facet - Whether constraint should be faceted ('true' or 'false').</dd>
+<dd>elem - Path expression (e.g., '/publication/my:meta/my:year').</dd>
 </dl>
 </div>
 
 <hr>
 
 <h2 id="detail_method">Method Detail</h2>
-<a href="../source/marklogic/mlphp/elementqueryconstraint.php.html#line54" class="location">MarkLogic/MLPHP/ElementQueryConstraint.php at line 54</a>
+<a href="../source/marklogic/mlphp/pathrangeconstraint.php.html#line55" class="location">MarkLogic/MLPHP/PathRangeConstraint.php at line 55</a>
 
 <h3 id="getAsElem()">getAsElem</h3>
 <code class="signature">public  void <strong>getAsElem</strong>(DOMDocument dom)</code>
@@ -131,7 +130,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <div class="small_links">
 <a href="../index.html" target="_top">Frames</a>
-<a href="../mlphp/elementqueryconstraint.html" target="_top">No frames</a>
+<a href="../mlphp/pathrangeconstraint.html" target="_top">No frames</a>
 </div>
 <div class="small_links">
 Summary: <a href="#summary_field">Field</a> | <a href="#summary_method">Method</a> | <a href="#summary_constr">Constr</a>

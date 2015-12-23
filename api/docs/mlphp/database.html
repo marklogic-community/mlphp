@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="generator" content="PHPDoctor 2.0.5 (http://peej.github.com/phpdoctor/)">
-<meta name="when" content="Mon, 09 Feb 2015 02:37:39 +0000">
+<meta name="when" content="Wed, 23 Dec 2015 22:23:55 +0000">
 
 <link rel="stylesheet" type="text/css" href="../stylesheet.css">
 <link rel="start" href="../overview-summary.html">
@@ -17,7 +17,7 @@
 <body id="definition" onload="parent.document.title=document.title;">
 
 <div class="header">
-<h1><a href=../../examples/index.php target=_top>MLPHP</a></h1>
+<h1>MLPHP</h1>
 <ul>
 <li><a href="../overview-summary.html">Overview</a></li>
 <li><a href="../mlphp/package-summary.html">Namespace</a></li>
@@ -64,12 +64,20 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 <tr><th colspan="2">Constructor Summary</th></tr>
 <tr>
 <td class="type"> void</td>
-<td class="description"><p class="name"><a href="#__construct()">__construct</a>(string name, <a href="../mlphp/restclient.html">RESTClient</a> manageClient)</p><p class="description">Create a Database object.</p></td>
+<td class="description"><p class="name"><a href="#__construct()">__construct</a>(<a href="../mlphp/restclient.html">RESTClient</a> manageClient, string name)</p><p class="description">Create a Database object.</p></td>
 </tr>
 </table>
 
 <table id="summary_method">
 <tr><th colspan="2">Method Summary</th></tr>
+<tr>
+<td class="type"> string</td>
+<td class="description"><p class="name"><a href="#getName()">getName</a>()</p><p class="description">Get the database name.</p></td>
+</tr>
+<tr>
+<td class="type"> <a href="../mlphp/database.html">Database</a></td>
+<td class="description"><p class="name"><a href="#setName()">setName</a>(string name)</p><p class="description">Set the database name.</p></td>
+</tr>
 <tr>
 <td class="type"> void</td>
 <td class="description"><p class="name"><a href="#clear()">clear</a>()</p><p class="description">Clear the database of all content.</p></td>
@@ -92,7 +100,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 </tr>
 <tr>
 <td class="type"> void</td>
-<td class="description"><p class="name"><a href="#getStatus()">getStatus</a>()</p><p class="description">Get the status information for the database as JSON.</p></td>
+<td class="description"><p class="name"><a href="#getStatus()">getStatus</a>()</p><p class="description">Get the status information for the database.</p></td>
 </tr>
 <tr>
 <td class="type"> void</td>
@@ -194,22 +202,50 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 </table>
 
 <h2 id="detail_method">Constructor Detail</h2>
-<a href="../source/marklogic/mlphp/database.php.html#line42" class="location">MarkLogic/MLPHP/Database.php at line 42</a>
+<a href="../source/marklogic/mlphp/database.php.html#line41" class="location">MarkLogic/MLPHP/Database.php at line 41</a>
 
 <h3 id="__construct()">__construct</h3>
-<code class="signature">public  void <strong>__construct</strong>(string name, <a href="../mlphp/restclient.html">RESTClient</a> manageClient)</code>
+<code class="signature">public  void <strong>__construct</strong>(<a href="../mlphp/restclient.html">RESTClient</a> manageClient, string name)</code>
 <div class="details">
 <p>Create a Database object.</p><dl>
 <dt>Parameters:</dt>
-<dd>name - The database name.</dd>
 <dd>manageClient - A REST client to the management API.</dd>
+<dd>name - The database name.</dd>
 </dl>
 </div>
 
 <hr>
 
 <h2 id="detail_method">Method Detail</h2>
-<a href="../source/marklogic/mlphp/database.php.html#line53" class="location">MarkLogic/MLPHP/Database.php at line 53</a>
+<a href="../source/marklogic/mlphp/database.php.html#line52" class="location">MarkLogic/MLPHP/Database.php at line 52</a>
+
+<h3 id="getName()">getName</h3>
+<code class="signature">public  string <strong>getName</strong>()</code>
+<div class="details">
+<p>Get the database name.</p><dl>
+<dt>Returns:</dt>
+<dd>The database name.</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../source/marklogic/mlphp/database.php.html#line63" class="location">MarkLogic/MLPHP/Database.php at line 63</a>
+
+<h3 id="setName()">setName</h3>
+<code class="signature">public  <a href="../mlphp/database.html">Database</a> <strong>setName</strong>(string name)</code>
+<div class="details">
+<p>Set the database name.</p><dl>
+<dt>Parameters:</dt>
+<dd>name - The database name.</dd>
+<dt>Returns:</dt>
+<dd>$this</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../source/marklogic/mlphp/database.php.html#line74" class="location">MarkLogic/MLPHP/Database.php at line 74</a>
 
 <h3 id="clear()">clear</h3>
 <code class="signature">public  void <strong>clear</strong>()</code>
@@ -218,7 +254,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/database.php.html#line73" class="location">MarkLogic/MLPHP/Database.php at line 73</a>
+<a href="../source/marklogic/mlphp/database.php.html#line94" class="location">MarkLogic/MLPHP/Database.php at line 94</a>
 
 <h3 id="delete()">delete</h3>
 <code class="signature">public  void <strong>delete</strong>()</code>
@@ -227,7 +263,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/database.php.html#line90" class="location">MarkLogic/MLPHP/Database.php at line 90</a>
+<a href="../source/marklogic/mlphp/database.php.html#line111" class="location">MarkLogic/MLPHP/Database.php at line 111</a>
 
 <h3 id="numDocs()">numDocs</h3>
 <code class="signature">public  void <strong>numDocs</strong>()</code>
@@ -236,7 +272,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/database.php.html#line101" class="location">MarkLogic/MLPHP/Database.php at line 101</a>
+<a href="../source/marklogic/mlphp/database.php.html#line122" class="location">MarkLogic/MLPHP/Database.php at line 122</a>
 
 <h3 id="getConfig()">getConfig</h3>
 <code class="signature">public  void <strong>getConfig</strong>()</code>
@@ -245,7 +281,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/database.php.html#line119" class="location">MarkLogic/MLPHP/Database.php at line 119</a>
+<a href="../source/marklogic/mlphp/database.php.html#line140" class="location">MarkLogic/MLPHP/Database.php at line 140</a>
 
 <h3 id="getCounts()">getCounts</h3>
 <code class="signature">public  void <strong>getCounts</strong>()</code>
@@ -254,16 +290,16 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/database.php.html#line137" class="location">MarkLogic/MLPHP/Database.php at line 137</a>
+<a href="../source/marklogic/mlphp/database.php.html#line158" class="location">MarkLogic/MLPHP/Database.php at line 158</a>
 
 <h3 id="getStatus()">getStatus</h3>
 <code class="signature">public  void <strong>getStatus</strong>()</code>
 <div class="details">
-<p>Get the status information for the database as JSON.</p></div>
+<p>Get the status information for the database.</p></div>
 
 <hr>
 
-<a href="../source/marklogic/mlphp/database.php.html#line155" class="location">MarkLogic/MLPHP/Database.php at line 155</a>
+<a href="../source/marklogic/mlphp/database.php.html#line176" class="location">MarkLogic/MLPHP/Database.php at line 176</a>
 
 <h3 id="getProperties()">getProperties</h3>
 <code class="signature">public  void <strong>getProperties</strong>()</code>
@@ -272,7 +308,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/database.php.html#line174" class="location">MarkLogic/MLPHP/Database.php at line 174</a>
+<a href="../source/marklogic/mlphp/database.php.html#line195" class="location">MarkLogic/MLPHP/Database.php at line 195</a>
 
 <h3 id="setProperties()">setProperties</h3>
 <code class="signature">public  void <strong>setProperties</strong>(array arr)</code>
@@ -285,7 +321,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/database.php.html#line195" class="location">MarkLogic/MLPHP/Database.php at line 195</a>
+<a href="../source/marklogic/mlphp/database.php.html#line216" class="location">MarkLogic/MLPHP/Database.php at line 216</a>
 
 <h3 id="getProperty()">getProperty</h3>
 <code class="signature">public  void <strong>getProperty</strong>(string key)</code>
@@ -298,7 +334,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/database.php.html#line208" class="location">MarkLogic/MLPHP/Database.php at line 208</a>
+<a href="../source/marklogic/mlphp/database.php.html#line229" class="location">MarkLogic/MLPHP/Database.php at line 229</a>
 
 <h3 id="setProperty()">setProperty</h3>
 <code class="signature">public  void <strong>setProperty</strong>(string key, string json, mixed value)</code>
@@ -312,7 +348,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/database.php.html#line224" class="location">MarkLogic/MLPHP/Database.php at line 224</a>
+<a href="../source/marklogic/mlphp/database.php.html#line245" class="location">MarkLogic/MLPHP/Database.php at line 245</a>
 
 <h3 id="addProperty()">addProperty</h3>
 <code class="signature">public  void <strong>addProperty</strong>(string type, array arr)</code>
@@ -329,14 +365,12 @@ $arr = instance of Field as an assoc array of properties</p><dl>
 
 <hr>
 
-<a href="../source/marklogic/mlphp/database.php.html#line251" class="location">MarkLogic/MLPHP/Database.php at line 251</a>
+<a href="../source/marklogic/mlphp/database.php.html#line271" class="location">MarkLogic/MLPHP/Database.php at line 271</a>
 
 <h3 id="removeProperty()">removeProperty</h3>
 <code class="signature">public  void <strong>removeProperty</strong>(string type, array arr)</code>
 <div class="details">
 <p>Remove a complex property.</p><dl>
-<dt>Todo:</dt>
-<dd>This doesn't work when trying to remove only complex property an the array, e.g. the remaining Range Element Attribute Index.</dd>
 <dt>Parameters:</dt>
 <dd>type - The property type (key).</dd>
 <dd>arr - Assoc array representing property to remove.</dd>
@@ -345,7 +379,7 @@ $arr = instance of Field as an assoc array of properties</p><dl>
 
 <hr>
 
-<a href="../source/marklogic/mlphp/database.php.html#line288" class="location">MarkLogic/MLPHP/Database.php at line 288</a>
+<a href="../source/marklogic/mlphp/database.php.html#line310" class="location">MarkLogic/MLPHP/Database.php at line 310</a>
 
 <h3 id="propertyExists()">propertyExists</h3>
 <code class="signature">public  void <strong>propertyExists</strong>(string type, array arr)</code>
@@ -359,7 +393,7 @@ $arr = instance of Field as an assoc array of properties</p><dl>
 
 <hr>
 
-<a href="../source/marklogic/mlphp/database.php.html#line321" class="location">MarkLogic/MLPHP/Database.php at line 321</a>
+<a href="../source/marklogic/mlphp/database.php.html#line343" class="location">MarkLogic/MLPHP/Database.php at line 343</a>
 
 <h3 id="addRangeElementIndex()">addRangeElementIndex</h3>
 <code class="signature">public  void <strong>addRangeElementIndex</strong>(array arr)</code>
@@ -374,7 +408,7 @@ $arr = instance of Field as an assoc array of properties</p><dl>
 
 <hr>
 
-<a href="../source/marklogic/mlphp/database.php.html#line343" class="location">MarkLogic/MLPHP/Database.php at line 343</a>
+<a href="../source/marklogic/mlphp/database.php.html#line365" class="location">MarkLogic/MLPHP/Database.php at line 365</a>
 
 <h3 id="removeRangeElementIndex()">removeRangeElementIndex</h3>
 <code class="signature">public  void <strong>removeRangeElementIndex</strong>(array arr)</code>
@@ -387,7 +421,7 @@ $arr = instance of Field as an assoc array of properties</p><dl>
 
 <hr>
 
-<a href="../source/marklogic/mlphp/database.php.html#line354" class="location">MarkLogic/MLPHP/Database.php at line 354</a>
+<a href="../source/marklogic/mlphp/database.php.html#line376" class="location">MarkLogic/MLPHP/Database.php at line 376</a>
 
 <h3 id="addRangeAttributeIndex()">addRangeAttributeIndex</h3>
 <code class="signature">public  void <strong>addRangeAttributeIndex</strong>(array arr)</code>
@@ -400,7 +434,7 @@ $arr = instance of Field as an assoc array of properties</p><dl>
 
 <hr>
 
-<a href="../source/marklogic/mlphp/database.php.html#line378" class="location">MarkLogic/MLPHP/Database.php at line 378</a>
+<a href="../source/marklogic/mlphp/database.php.html#line400" class="location">MarkLogic/MLPHP/Database.php at line 400</a>
 
 <h3 id="removeRangeAttributeIndex()">removeRangeAttributeIndex</h3>
 <code class="signature">public  void <strong>removeRangeAttributeIndex</strong>(array arr)</code>
@@ -413,14 +447,12 @@ $arr = instance of Field as an assoc array of properties</p><dl>
 
 <hr>
 
-<a href="../source/marklogic/mlphp/database.php.html#line390" class="location">MarkLogic/MLPHP/Database.php at line 390</a>
+<a href="../source/marklogic/mlphp/database.php.html#line411" class="location">MarkLogic/MLPHP/Database.php at line 411</a>
 
 <h3 id="addField()">addField</h3>
 <code class="signature">public  void <strong>addField</strong>(string field)</code>
 <div class="details">
 <p>Add a field.</p><dl>
-<dt>Todo:</dt>
-<dd>generalize this for all complex properties</dd>
 <dt>Parameters:</dt>
 <dd>field - The Field object.</dd>
 </dl>
@@ -428,14 +460,12 @@ $arr = instance of Field as an assoc array of properties</p><dl>
 
 <hr>
 
-<a href="../source/marklogic/mlphp/database.php.html#line402" class="location">MarkLogic/MLPHP/Database.php at line 402</a>
+<a href="../source/marklogic/mlphp/database.php.html#line422" class="location">MarkLogic/MLPHP/Database.php at line 422</a>
 
 <h3 id="removeField()">removeField</h3>
 <code class="signature">public  void <strong>removeField</strong>(string name)</code>
 <div class="details">
 <p>Remove a field.</p><dl>
-<dt>Todo:</dt>
-<dd>generalize this for all complex properties</dd>
 <dt>Parameters:</dt>
 <dd>name - The name of the field to remove.</dd>
 </dl>
@@ -443,7 +473,7 @@ $arr = instance of Field as an assoc array of properties</p><dl>
 
 <hr>
 
-<a href="../source/marklogic/mlphp/database.php.html#line413" class="location">MarkLogic/MLPHP/Database.php at line 413</a>
+<a href="../source/marklogic/mlphp/database.php.html#line433" class="location">MarkLogic/MLPHP/Database.php at line 433</a>
 
 <h3 id="addRangeFieldIndex()">addRangeFieldIndex</h3>
 <code class="signature">public  void <strong>addRangeFieldIndex</strong>(array arr)</code>
@@ -456,7 +486,7 @@ $arr = instance of Field as an assoc array of properties</p><dl>
 
 <hr>
 
-<a href="../source/marklogic/mlphp/database.php.html#line434" class="location">MarkLogic/MLPHP/Database.php at line 434</a>
+<a href="../source/marklogic/mlphp/database.php.html#line454" class="location">MarkLogic/MLPHP/Database.php at line 454</a>
 
 <h3 id="removeRangeFieldIndex()">removeRangeFieldIndex</h3>
 <code class="signature">public  void <strong>removeRangeFieldIndex</strong>(array arr)</code>
@@ -469,7 +499,7 @@ $arr = instance of Field as an assoc array of properties</p><dl>
 
 <hr>
 
-<a href="../source/marklogic/mlphp/database.php.html#line445" class="location">MarkLogic/MLPHP/Database.php at line 445</a>
+<a href="../source/marklogic/mlphp/database.php.html#line465" class="location">MarkLogic/MLPHP/Database.php at line 465</a>
 
 <h3 id="addPathNamespace()">addPathNamespace</h3>
 <code class="signature">public  void <strong>addPathNamespace</strong>(array arr)</code>
@@ -482,7 +512,7 @@ $arr = instance of Field as an assoc array of properties</p><dl>
 
 <hr>
 
-<a href="../source/marklogic/mlphp/database.php.html#line460" class="location">MarkLogic/MLPHP/Database.php at line 460</a>
+<a href="../source/marklogic/mlphp/database.php.html#line480" class="location">MarkLogic/MLPHP/Database.php at line 480</a>
 
 <h3 id="removePathNamespace()">removePathNamespace</h3>
 <code class="signature">public  void <strong>removePathNamespace</strong>(array arr)</code>
@@ -495,7 +525,7 @@ $arr = instance of Field as an assoc array of properties</p><dl>
 
 <hr>
 
-<a href="../source/marklogic/mlphp/database.php.html#line471" class="location">MarkLogic/MLPHP/Database.php at line 471</a>
+<a href="../source/marklogic/mlphp/database.php.html#line491" class="location">MarkLogic/MLPHP/Database.php at line 491</a>
 
 <h3 id="addRangePathIndex()">addRangePathIndex</h3>
 <code class="signature">public  void <strong>addRangePathIndex</strong>(array arr)</code>
@@ -508,7 +538,7 @@ $arr = instance of Field as an assoc array of properties</p><dl>
 
 <hr>
 
-<a href="../source/marklogic/mlphp/database.php.html#line492" class="location">MarkLogic/MLPHP/Database.php at line 492</a>
+<a href="../source/marklogic/mlphp/database.php.html#line512" class="location">MarkLogic/MLPHP/Database.php at line 512</a>
 
 <h3 id="removeRangePathIndex()">removeRangePathIndex</h3>
 <code class="signature">public  void <strong>removeRangePathIndex</strong>(array arr)</code>
@@ -521,7 +551,7 @@ $arr = instance of Field as an assoc array of properties</p><dl>
 
 <hr>
 
-<a href="../source/marklogic/mlphp/database.php.html#line503" class="location">MarkLogic/MLPHP/Database.php at line 503</a>
+<a href="../source/marklogic/mlphp/database.php.html#line523" class="location">MarkLogic/MLPHP/Database.php at line 523</a>
 
 <h3 id="addElementLexicon()">addElementLexicon</h3>
 <code class="signature">public  void <strong>addElementLexicon</strong>(array arr)</code>
@@ -534,7 +564,7 @@ $arr = instance of Field as an assoc array of properties</p><dl>
 
 <hr>
 
-<a href="../source/marklogic/mlphp/database.php.html#line519" class="location">MarkLogic/MLPHP/Database.php at line 519</a>
+<a href="../source/marklogic/mlphp/database.php.html#line539" class="location">MarkLogic/MLPHP/Database.php at line 539</a>
 
 <h3 id="removeElementLexicon()">removeElementLexicon</h3>
 <code class="signature">public  void <strong>removeElementLexicon</strong>(array arr)</code>
@@ -547,7 +577,7 @@ $arr = instance of Field as an assoc array of properties</p><dl>
 
 <hr>
 
-<a href="../source/marklogic/mlphp/database.php.html#line530" class="location">MarkLogic/MLPHP/Database.php at line 530</a>
+<a href="../source/marklogic/mlphp/database.php.html#line550" class="location">MarkLogic/MLPHP/Database.php at line 550</a>
 
 <h3 id="addAttributeLexicon()">addAttributeLexicon</h3>
 <code class="signature">public  void <strong>addAttributeLexicon</strong>(array arr)</code>
@@ -560,7 +590,7 @@ $arr = instance of Field as an assoc array of properties</p><dl>
 
 <hr>
 
-<a href="../source/marklogic/mlphp/database.php.html#line548" class="location">MarkLogic/MLPHP/Database.php at line 548</a>
+<a href="../source/marklogic/mlphp/database.php.html#line568" class="location">MarkLogic/MLPHP/Database.php at line 568</a>
 
 <h3 id="removeAttributeLexicon()">removeAttributeLexicon</h3>
 <code class="signature">public  void <strong>removeAttributeLexicon</strong>(array arr)</code>
@@ -573,7 +603,7 @@ $arr = instance of Field as an assoc array of properties</p><dl>
 
 <hr>
 
-<a href="../source/marklogic/mlphp/database.php.html#line558" class="location">MarkLogic/MLPHP/Database.php at line 558</a>
+<a href="../source/marklogic/mlphp/database.php.html#line578" class="location">MarkLogic/MLPHP/Database.php at line 578</a>
 
 <h3 id="getResponse()">getResponse</h3>
 <code class="signature">public  RESTRresponse <strong>getResponse</strong>()</code>
@@ -587,7 +617,7 @@ $arr = instance of Field as an assoc array of properties</p><dl>
 <hr>
 
 <div class="header">
-<h1><a href=../../examples/index.php target=_top>MLPHP</a></h1>
+<h1>MLPHP</h1>
 <ul>
 <li><a href="../overview-summary.html">Overview</a></li>
 <li><a href="../mlphp/package-summary.html">Namespace</a></li>
@@ -610,7 +640,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 </div>
 <hr>
 
-<p id="footer">Copyright 2002-2013 MarkLogic Corporation.  All Rights Reserved.</p>
+<p id="footer">Copyright 2002-2015 MarkLogic Corporation.  All Rights Reserved.</p>
 
 </body>
 

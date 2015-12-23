@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="generator" content="PHPDoctor 2.0.5 (http://peej.github.com/phpdoctor/)">
-<meta name="when" content="Mon, 09 Feb 2015 02:37:39 +0000">
+<meta name="when" content="Wed, 23 Dec 2015 22:23:55 +0000">
 
 <link rel="stylesheet" type="text/css" href="../stylesheet.css">
 <link rel="start" href="../overview-summary.html">
@@ -17,7 +17,7 @@
 <body id="definition" onload="parent.document.title=document.title;">
 
 <div class="header">
-<h1><a href=../../examples/index.php target=_top>MLPHP</a></h1>
+<h1>MLPHP</h1>
 <ul>
 <li><a href="../overview-summary.html">Overview</a></li>
 <li><a href="../mlphp/package-summary.html">Namespace</a></li>
@@ -76,6 +76,16 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 </tr>
 <tr>
 <td class="type"> void</td>
+<td class="description"><p class="name"><a href="#setProperty()">setProperty</a>(string key, string json, mixed value)</p><p class="description">Set a REST API property.
+</p></td>
+</tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#getProperty()">getProperty</a>(string key)</p><p class="description">Get a REST API property.
+</p></td>
+</tr>
+<tr>
+<td class="type"> void</td>
 <td class="description"><p class="name"><a href="#delete()">delete</a>(boolean module, mixed client)</p><p class="description">Delete a REST API.</p></td>
 </tr>
 <tr>
@@ -86,10 +96,14 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 <td class="type"> boolean</td>
 <td class="description"><p class="name"><a href="#exists()">exists</a>(string name)</p><p class="description">Check if a REST API with the same name exists on the server.</p></td>
 </tr>
+<tr>
+<td class="type"> RESTRresponse</td>
+<td class="description"><p class="name"><a href="#getResponse()">getResponse</a>()</p><p class="description">Get the last REST response received. </p></td>
+</tr>
 </table>
 
 <h2 id="detail_method">Constructor Detail</h2>
-<a href="../source/marklogic/mlphp/restapi.php.html#line50" class="location">MarkLogic/MLPHP/RESTAPI.php at line 50</a>
+<a href="../source/marklogic/mlphp/restapi.php.html#line52" class="location">MarkLogic/MLPHP/RESTAPI.php at line 52</a>
 
 <h3 id="__construct()">__construct</h3>
 <code class="signature">public  void <strong>__construct</strong>(string name, string host, string db, int port, string username, string password, LoggerInterface logger)</code>
@@ -109,7 +123,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 <hr>
 
 <h2 id="detail_method">Method Detail</h2>
-<a href="../source/marklogic/mlphp/restapi.php.html#line82" class="location">MarkLogic/MLPHP/RESTAPI.php at line 82</a>
+<a href="../source/marklogic/mlphp/restapi.php.html#line96" class="location">MarkLogic/MLPHP/RESTAPI.php at line 96</a>
 
 <h3 id="create()">create</h3>
 <code class="signature">public  void <strong>create</strong>(<a href="../mlphp/restclient.html">RESTClient</a> client)</code>
@@ -124,7 +138,36 @@ same name.</p><dl>
 
 <hr>
 
-<a href="../source/marklogic/mlphp/restapi.php.html#line118" class="location">MarkLogic/MLPHP/RESTAPI.php at line 118</a>
+<a href="../source/marklogic/mlphp/restapi.php.html#line135" class="location">MarkLogic/MLPHP/RESTAPI.php at line 135</a>
+
+<h3 id="setProperty()">setProperty</h3>
+<code class="signature">public  void <strong>setProperty</strong>(string key, string json, mixed value)</code>
+<div class="details">
+<p>Set a REST API property.
+Must execute create() before setting a property.</p><dl>
+<dt>Parameters:</dt>
+<dd>key - The property key.</dd>
+<dd>json - The property value.</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../source/marklogic/mlphp/restapi.php.html#line157" class="location">MarkLogic/MLPHP/RESTAPI.php at line 157</a>
+
+<h3 id="getProperty()">getProperty</h3>
+<code class="signature">public  void <strong>getProperty</strong>(string key)</code>
+<div class="details">
+<p>Get a REST API property.
+Must execute create() before getting a property.</p><dl>
+<dt>Parameters:</dt>
+<dd>key - The property key.</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../source/marklogic/mlphp/restapi.php.html#line175" class="location">MarkLogic/MLPHP/RESTAPI.php at line 175</a>
 
 <h3 id="delete()">delete</h3>
 <code class="signature">public  void <strong>delete</strong>(boolean module, mixed client)</code>
@@ -137,7 +180,7 @@ same name.</p><dl>
 
 <hr>
 
-<a href="../source/marklogic/mlphp/restapi.php.html#line143" class="location">MarkLogic/MLPHP/RESTAPI.php at line 143</a>
+<a href="../source/marklogic/mlphp/restapi.php.html#line200" class="location">MarkLogic/MLPHP/RESTAPI.php at line 200</a>
 
 <h3 id="waitUntilSuccess()">waitUntilSuccess</h3>
 <code class="signature">protected  void <strong>waitUntilSuccess</strong>(<a href="../mlphp/restrequest.html">RESTRequest</a> request, int time, int limit, mixed secs)</code>
@@ -152,7 +195,7 @@ same name.</p><dl>
 
 <hr>
 
-<a href="../source/marklogic/mlphp/restapi.php.html#line164" class="location">MarkLogic/MLPHP/RESTAPI.php at line 164</a>
+<a href="../source/marklogic/mlphp/restapi.php.html#line221" class="location">MarkLogic/MLPHP/RESTAPI.php at line 221</a>
 
 <h3 id="exists()">exists</h3>
 <code class="signature">public  boolean <strong>exists</strong>(string name)</code>
@@ -167,8 +210,21 @@ same name.</p><dl>
 
 <hr>
 
+<a href="../source/marklogic/mlphp/restapi.php.html#line242" class="location">MarkLogic/MLPHP/RESTAPI.php at line 242</a>
+
+<h3 id="getResponse()">getResponse</h3>
+<code class="signature">public  RESTRresponse <strong>getResponse</strong>()</code>
+<div class="details">
+<p>Get the last REST response received. Useful for testing.</p><dl>
+<dt>Returns:</dt>
+<dd>A REST response object.</dd>
+</dl>
+</div>
+
+<hr>
+
 <div class="header">
-<h1><a href=../../examples/index.php target=_top>MLPHP</a></h1>
+<h1>MLPHP</h1>
 <ul>
 <li><a href="../overview-summary.html">Overview</a></li>
 <li><a href="../mlphp/package-summary.html">Namespace</a></li>
@@ -191,7 +247,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 </div>
 <hr>
 
-<p id="footer">Copyright 2002-2013 MarkLogic Corporation.  All Rights Reserved.</p>
+<p id="footer">Copyright 2002-2015 MarkLogic Corporation.  All Rights Reserved.</p>
 
 </body>
 

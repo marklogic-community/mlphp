@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="generator" content="PHPDoctor 2.0.5 (http://peej.github.com/phpdoctor/)">
-<meta name="when" content="Mon, 09 Feb 2015 02:37:39 +0000">
+<meta name="when" content="Wed, 23 Dec 2015 22:23:55 +0000">
 
 <link rel="stylesheet" type="text/css" href="../stylesheet.css">
 <link rel="start" href="../overview-summary.html">
@@ -17,7 +17,7 @@
 <body id="definition" onload="parent.document.title=document.title;">
 
 <div class="header">
-<h1><a href=../../examples/index.php target=_top>MLPHP</a></h1>
+<h1>MLPHP</h1>
 <ul>
 <li><a href="../overview-summary.html">Overview</a></li>
 <li><a href="../mlphp/package-summary.html">Namespace</a></li>
@@ -68,7 +68,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 <tr><th colspan="2">Constructor Summary</th></tr>
 <tr>
 <td class="type"> void</td>
-<td class="description"><p class="name"><a href="#__construct()">__construct</a>(<a href="../mlphp/restclient.html">RESTClient</a> restClient, string uri)</p><p class="description">Create a Document object.</p></td>
+<td class="description"><p class="name"><a href="#__construct()">__construct</a>(<a href="../mlphp/restclient.html">RESTClient</a> client, string uri)</p><p class="description">Create a Document object.</p></td>
 </tr>
 </table>
 
@@ -132,7 +132,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 </tr>
 <tr>
 <td class="type"> <a href="../mlphp/document.html">Document</a></td>
-<td class="description"><p class="name"><a href="#setConnection()">setConnection</a>(<a href="../mlphp/restclient.html">RESTClient</a> restClient)</p><p class="description">Set the REST client for the document.</p></td>
+<td class="description"><p class="name"><a href="#setConnection()">setConnection</a>(<a href="../mlphp/restclient.html">RESTClient</a> client)</p><p class="description">Set the REST client for the document.</p></td>
 </tr>
 <tr>
 <td class="type"> <a href="../mlphp/restclient.html">RESTClient</a></td>
@@ -152,11 +152,11 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 <a href="../source/marklogic/mlphp/document.php.html#line40" class="location">MarkLogic/MLPHP/Document.php at line 40</a>
 
 <h3 id="__construct()">__construct</h3>
-<code class="signature">public  void <strong>__construct</strong>(<a href="../mlphp/restclient.html">RESTClient</a> restClient, string uri)</code>
+<code class="signature">public  void <strong>__construct</strong>(<a href="../mlphp/restclient.html">RESTClient</a> client, string uri)</code>
 <div class="details">
 <p>Create a Document object.</p><dl>
 <dt>Parameters:</dt>
-<dd>restClient - A REST client object.</dd>
+<dd>client - A REST client object.</dd>
 <dd>uri - A document URI.</dd>
 </dl>
 </div>
@@ -182,14 +182,12 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/document.php.html#line82" class="location">MarkLogic/MLPHP/Document.php at line 82</a>
+<a href="../source/marklogic/mlphp/document.php.html#line80" class="location">MarkLogic/MLPHP/Document.php at line 80</a>
 
 <h3 id="write()">write</h3>
 <code class="signature">public  <a href="../mlphp/document.html">Document</a> <strong>write</strong>(string uri, array params)</code>
 <div class="details">
 <p>Write a document to the database.</p><dl>
-<dt>Todo:</dt>
-<dd>Allow passing multiple params of same key (e.g., collections).</dd>
 <dt>Parameters:</dt>
 <dd>uri - A document URI.</dd>
 <dd>params - Optional additional parameters to pass when writing.</dd>
@@ -200,7 +198,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/document.php.html#line106" class="location">MarkLogic/MLPHP/Document.php at line 106</a>
+<a href="../source/marklogic/mlphp/document.php.html#line104" class="location">MarkLogic/MLPHP/Document.php at line 104</a>
 
 <h3 id="delete()">delete</h3>
 <code class="signature">public  <a href="../mlphp/document.html">Document</a> <strong>delete</strong>(string uri)</code>
@@ -215,7 +213,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/document.php.html#line124" class="location">MarkLogic/MLPHP/Document.php at line 124</a>
+<a href="../source/marklogic/mlphp/document.php.html#line122" class="location">MarkLogic/MLPHP/Document.php at line 122</a>
 
 <h3 id="readMetadata()">readMetadata</h3>
 <code class="signature">public  <a href="../mlphp/metadata.html">Metadata</a> <strong>readMetadata</strong>()</code>
@@ -228,7 +226,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/document.php.html#line145" class="location">MarkLogic/MLPHP/Document.php at line 145</a>
+<a href="../source/marklogic/mlphp/document.php.html#line143" class="location">MarkLogic/MLPHP/Document.php at line 143</a>
 
 <h3 id="writeMetadata()">writeMetadata</h3>
 <code class="signature">public  <a href="../mlphp/document.html">Document</a> <strong>writeMetadata</strong>(<a href="../mlphp/metadata.html">Metadata</a> metadata)</code>
@@ -243,7 +241,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/document.php.html#line164" class="location">MarkLogic/MLPHP/Document.php at line 164</a>
+<a href="../source/marklogic/mlphp/document.php.html#line162" class="location">MarkLogic/MLPHP/Document.php at line 162</a>
 
 <h3 id="deleteMetadata()">deleteMetadata</h3>
 <code class="signature">public  <a href="../mlphp/document.html">Document</a> <strong>deleteMetadata</strong>()</code>
@@ -256,7 +254,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/document.php.html#line181" class="location">MarkLogic/MLPHP/Document.php at line 181</a>
+<a href="../source/marklogic/mlphp/document.php.html#line179" class="location">MarkLogic/MLPHP/Document.php at line 179</a>
 
 <h3 id="getURI()">getURI</h3>
 <code class="signature">public  string <strong>getURI</strong>()</code>
@@ -269,7 +267,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/document.php.html#line192" class="location">MarkLogic/MLPHP/Document.php at line 192</a>
+<a href="../source/marklogic/mlphp/document.php.html#line190" class="location">MarkLogic/MLPHP/Document.php at line 190</a>
 
 <h3 id="setURI()">setURI</h3>
 <code class="signature">public  <a href="../mlphp/document.html">Document</a> <strong>setURI</strong>(string uri)</code>
@@ -284,7 +282,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/document.php.html#line203" class="location">MarkLogic/MLPHP/Document.php at line 203</a>
+<a href="../source/marklogic/mlphp/document.php.html#line201" class="location">MarkLogic/MLPHP/Document.php at line 201</a>
 
 <h3 id="getContentType()">getContentType</h3>
 <code class="signature">public  string <strong>getContentType</strong>()</code>
@@ -297,7 +295,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/document.php.html#line214" class="location">MarkLogic/MLPHP/Document.php at line 214</a>
+<a href="../source/marklogic/mlphp/document.php.html#line212" class="location">MarkLogic/MLPHP/Document.php at line 212</a>
 
 <h3 id="setContentType()">setContentType</h3>
 <code class="signature">public  <a href="../mlphp/document.html">Document</a> <strong>setContentType</strong>(string contentType)</code>
@@ -312,7 +310,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/document.php.html#line225" class="location">MarkLogic/MLPHP/Document.php at line 225</a>
+<a href="../source/marklogic/mlphp/document.php.html#line223" class="location">MarkLogic/MLPHP/Document.php at line 223</a>
 
 <h3 id="getContent()">getContent</h3>
 <code class="signature">public  string <strong>getContent</strong>()</code>
@@ -325,7 +323,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/document.php.html#line236" class="location">MarkLogic/MLPHP/Document.php at line 236</a>
+<a href="../source/marklogic/mlphp/document.php.html#line234" class="location">MarkLogic/MLPHP/Document.php at line 234</a>
 
 <h3 id="setContent()">setContent</h3>
 <code class="signature">public  <a href="../mlphp/document.html">Document</a> <strong>setContent</strong>(string content)</code>
@@ -340,7 +338,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/document.php.html#line248" class="location">MarkLogic/MLPHP/Document.php at line 248</a>
+<a href="../source/marklogic/mlphp/document.php.html#line246" class="location">MarkLogic/MLPHP/Document.php at line 246</a>
 
 <h3 id="setContentFile()">setContentFile</h3>
 <code class="signature">public  <a href="../mlphp/document.html">Document</a> <strong>setContentFile</strong>(string file)</code>
@@ -355,7 +353,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/document.php.html#line264" class="location">MarkLogic/MLPHP/Document.php at line 264</a>
+<a href="../source/marklogic/mlphp/document.php.html#line262" class="location">MarkLogic/MLPHP/Document.php at line 262</a>
 
 <h3 id="hasContent()">hasContent</h3>
 <code class="signature">public  bool <strong>hasContent</strong>()</code>
@@ -368,14 +366,14 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/document.php.html#line275" class="location">MarkLogic/MLPHP/Document.php at line 275</a>
+<a href="../source/marklogic/mlphp/document.php.html#line273" class="location">MarkLogic/MLPHP/Document.php at line 273</a>
 
 <h3 id="setConnection()">setConnection</h3>
-<code class="signature">public  <a href="../mlphp/document.html">Document</a> <strong>setConnection</strong>(<a href="../mlphp/restclient.html">RESTClient</a> restClient)</code>
+<code class="signature">public  <a href="../mlphp/document.html">Document</a> <strong>setConnection</strong>(<a href="../mlphp/restclient.html">RESTClient</a> client)</code>
 <div class="details">
 <p>Set the REST client for the document.</p><dl>
 <dt>Parameters:</dt>
-<dd>restClient - A REST client object.</dd>
+<dd>client - A REST client object.</dd>
 <dt>Returns:</dt>
 <dd>$this</dd>
 </dl>
@@ -383,7 +381,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/document.php.html#line286" class="location">MarkLogic/MLPHP/Document.php at line 286</a>
+<a href="../source/marklogic/mlphp/document.php.html#line284" class="location">MarkLogic/MLPHP/Document.php at line 284</a>
 
 <h3 id="getConnection()">getConnection</h3>
 <code class="signature">public  <a href="../mlphp/restclient.html">RESTClient</a> <strong>getConnection</strong>()</code>
@@ -396,7 +394,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/document.php.html#line297" class="location">MarkLogic/MLPHP/Document.php at line 297</a>
+<a href="../source/marklogic/mlphp/document.php.html#line295" class="location">MarkLogic/MLPHP/Document.php at line 295</a>
 
 <h3 id="getFileMimeType()">getFileMimeType</h3>
 <code class="signature">public  string <strong>getFileMimeType</strong>(string file)</code>
@@ -411,7 +409,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/document.php.html#line316" class="location">MarkLogic/MLPHP/Document.php at line 316</a>
+<a href="../source/marklogic/mlphp/document.php.html#line314" class="location">MarkLogic/MLPHP/Document.php at line 314</a>
 
 <h3 id="getResponse()">getResponse</h3>
 <code class="signature">public  RESTRresponse <strong>getResponse</strong>()</code>
@@ -425,7 +423,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 <hr>
 
 <div class="header">
-<h1><a href=../../examples/index.php target=_top>MLPHP</a></h1>
+<h1>MLPHP</h1>
 <ul>
 <li><a href="../overview-summary.html">Overview</a></li>
 <li><a href="../mlphp/package-summary.html">Namespace</a></li>
@@ -448,7 +446,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 </div>
 <hr>
 
-<p id="footer">Copyright 2002-2013 MarkLogic Corporation.  All Rights Reserved.</p>
+<p id="footer">Copyright 2002-2015 MarkLogic Corporation.  All Rights Reserved.</p>
 
 </body>
 

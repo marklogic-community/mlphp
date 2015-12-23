@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="generator" content="PHPDoctor 2.0.5 (http://peej.github.com/phpdoctor/)">
-<meta name="when" content="Mon, 09 Feb 2015 02:37:39 +0000">
+<meta name="when" content="Wed, 23 Dec 2015 22:23:55 +0000">
 
 <link rel="stylesheet" type="text/css" href="../stylesheet.css">
 <link rel="start" href="../overview-summary.html">
@@ -17,7 +17,7 @@
 <body id="definition" onload="parent.document.title=document.title;">
 
 <div class="header">
-<h1><a href=../../examples/index.php target=_top>MLPHP</a></h1>
+<h1>MLPHP</h1>
 <ul>
 <li><a href="../overview-summary.html">Overview</a></li>
 <li><a href="../mlphp/package-summary.html">Namespace</a></li>
@@ -119,7 +119,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 </tr>
 <tr>
 <td class="type">protected  array</td>
-<td class="description"><p class="name"><a href="#setOptions()">setOptions</a>(resource ch, string url, mixed urlStr, mixed headers)</p><p class="description">Set cURL options common to all requests</p></td>
+<td class="description"><p class="name"><a href="#setOptions()">setOptions</a>(resource ch, string url, array headers, mixed urlStr)</p><p class="description">Set cURL options common to all requests</p></td>
 </tr>
 <tr>
 <td class="type"> <a href="../mlphp/restresponse.html">RESTResponse</a></td>
@@ -312,15 +312,16 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/restclient.php.html#line237" class="location">MarkLogic/MLPHP/RESTClient.php at line 237</a>
+<a href="../source/marklogic/mlphp/restclient.php.html#line238" class="location">MarkLogic/MLPHP/RESTClient.php at line 238</a>
 
 <h3 id="setOptions()">setOptions</h3>
-<code class="signature">protected  array <strong>setOptions</strong>(resource ch, string url, mixed urlStr, mixed headers)</code>
+<code class="signature">protected  array <strong>setOptions</strong>(resource ch, string url, array headers, mixed urlStr)</code>
 <div class="details">
 <p>Set cURL options common to all requests</p><dl>
 <dt>Parameters:</dt>
 <dd>ch - The cURL handle.</dd>
 <dd>url - The REST URL string (example: 'documents').</dd>
+<dd>headers - Optional assoc array of headers.</dd>
 <dt>Returns:</dt>
 <dd>An array of cURL options.</dd>
 </dl>
@@ -328,7 +329,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/restclient.php.html#line263" class="location">MarkLogic/MLPHP/RESTClient.php at line 263</a>
+<a href="../source/marklogic/mlphp/restclient.php.html#line269" class="location">MarkLogic/MLPHP/RESTClient.php at line 269</a>
 
 <h3 id="get()">get</h3>
 <code class="signature">public  <a href="../mlphp/restresponse.html">RESTResponse</a> <strong>get</strong>(<a href="../mlphp/restrequest.html">RESTRequest</a> request)</code>
@@ -343,7 +344,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/restclient.php.html#line284" class="location">MarkLogic/MLPHP/RESTClient.php at line 284</a>
+<a href="../source/marklogic/mlphp/restclient.php.html#line290" class="location">MarkLogic/MLPHP/RESTClient.php at line 290</a>
 
 <h3 id="put()">put</h3>
 <code class="signature">public  <a href="../mlphp/restresponse.html">RESTResponse</a> <strong>put</strong>(<a href="../mlphp/restrequest.html">RESTRequest</a> request)</code>
@@ -358,7 +359,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/restclient.php.html#line318" class="location">MarkLogic/MLPHP/RESTClient.php at line 318</a>
+<a href="../source/marklogic/mlphp/restclient.php.html#line324" class="location">MarkLogic/MLPHP/RESTClient.php at line 324</a>
 
 <h3 id="delete()">delete</h3>
 <code class="signature">public  <a href="../mlphp/restresponse.html">RESTResponse</a> <strong>delete</strong>(<a href="../mlphp/restrequest.html">RESTRequest</a> request)</code>
@@ -373,7 +374,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/restclient.php.html#line339" class="location">MarkLogic/MLPHP/RESTClient.php at line 339</a>
+<a href="../source/marklogic/mlphp/restclient.php.html#line345" class="location">MarkLogic/MLPHP/RESTClient.php at line 345</a>
 
 <h3 id="post()">post</h3>
 <code class="signature">public  <a href="../mlphp/restresponse.html">RESTResponse</a> <strong>post</strong>(<a href="../mlphp/restrequest.html">RESTRequest</a> request)</code>
@@ -388,7 +389,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/restclient.php.html#line372" class="location">MarkLogic/MLPHP/RESTClient.php at line 372</a>
+<a href="../source/marklogic/mlphp/restclient.php.html#line378" class="location">MarkLogic/MLPHP/RESTClient.php at line 378</a>
 
 <h3 id="head()">head</h3>
 <code class="signature">public  <a href="../mlphp/restresponse.html">RESTResponse</a> <strong>head</strong>(<a href="../mlphp/restrequest.html">RESTRequest</a> request)</code>
@@ -403,7 +404,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/restclient.php.html#line396" class="location">MarkLogic/MLPHP/RESTClient.php at line 396</a>
+<a href="../source/marklogic/mlphp/restclient.php.html#line402" class="location">MarkLogic/MLPHP/RESTClient.php at line 402</a>
 
 <h3 id="execute()">execute</h3>
 <code class="signature">protected  <a href="../mlphp/restresponse.html">RESTResponse</a> <strong>execute</strong>(resource ch)</code>
@@ -420,7 +421,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/restclient.php.html#line439" class="location">MarkLogic/MLPHP/RESTClient.php at line 439</a>
+<a href="../source/marklogic/mlphp/restclient.php.html#line445" class="location">MarkLogic/MLPHP/RESTClient.php at line 445</a>
 
 <h3 id="installExtension()">installExtension</h3>
 <code class="signature">public  void <strong>installExtension</strong>($resource URL, $params resource, $filename file, mixed params, mixed filename)</code>
@@ -436,7 +437,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 <hr>
 
 <div class="header">
-<h1><a href=../../examples/index.php target=_top>MLPHP</a></h1>
+<h1>MLPHP</h1>
 <ul>
 <li><a href="../overview-summary.html">Overview</a></li>
 <li><a href="../mlphp/package-summary.html">Namespace</a></li>
@@ -459,7 +460,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 </div>
 <hr>
 
-<p id="footer">Copyright 2002-2013 MarkLogic Corporation.  All Rights Reserved.</p>
+<p id="footer">Copyright 2002-2015 MarkLogic Corporation.  All Rights Reserved.</p>
 
 </body>
 

@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="generator" content="PHPDoctor 2.0.5 (http://peej.github.com/phpdoctor/)">
-<meta name="when" content="Mon, 09 Feb 2015 02:37:40 +0000">
+<meta name="when" content="Wed, 23 Dec 2015 22:23:56 +0000">
 
 <link rel="stylesheet" type="text/css" href="../../../stylesheet.css">
 <link rel="start" href="../../../overview-summary.html">
@@ -17,7 +17,7 @@
 <body id="file" onload="parent.document.title=document.title;">
 
 <div class="header">
-<h1><a href=../../examples/index.php target=_top>MLPHP</a></h1>
+<h1>MLPHP</h1>
 <ul>
 <li><a href="../../../overview-summary.html">Overview</a></li>
 <li>Package</li><li>Class</li><li>Tree</li><li><a href="../../../overview-files.html">Files</a></li>
@@ -65,20 +65,20 @@
 <a name="line27"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$uri</span><span style="color: #339933;">;</span> <span style="color: #666666; font-style: italic;">// @var string</span>
 <a name="line28"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$content</span><span style="color: #339933;">;</span> <span style="color: #666666; font-style: italic;">// @var string</span>
 <a name="line29"></a>    <span style="color: #000000; font-weight: bold;">protected</span> <span style="color: #000088;">$contentType</span><span style="color: #339933;">;</span> <span style="color: #666666; font-style: italic;">// @var string</span>
-<a name="line30"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$restClient</span><span style="color: #339933;">;</span> <span style="color: #666666; font-style: italic;">// @var RESTClient</span>
+<a name="line30"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$client</span><span style="color: #339933;">;</span> <span style="color: #666666; font-style: italic;">// @var RESTClient</span>
 <a name="line31"></a>    <span style="color: #000000; font-weight: bold;">protected</span> <span style="color: #000088;">$logger</span><span style="color: #339933;">;</span> <span style="color: #666666; font-style: italic;">// @var LoggerInterface</span>
 <a name="line32"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$response</span><span style="color: #339933;">;</span> <span style="color: #666666; font-style: italic;">// @var RESTResponse</span>
 <a name="line33"></a>&nbsp;
 <a name="line34"></a>    <span style="color: #009933; font-style: italic;">/**
 <a name="line35"></a>     * Create a Document object.
 <a name="line36"></a>     *
-<a name="line37"></a>     * @param RESTClient $restClient A REST client object.
+<a name="line37"></a>     * @param RESTClient $client A REST client object.
 <a name="line38"></a>     * @param string $uri A document URI.
 <a name="line39"></a>     */</span>
-<a name="line40"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> __construct<span style="color: #009900;">&#40;</span><span style="color: #000088;">$restClient</span><span style="color: #339933;">,</span> <span style="color: #000088;">$uri</span> <span style="color: #339933;">=</span> <span style="color: #009900; font-weight: bold;">null</span><span style="color: #009900;">&#41;</span>
+<a name="line40"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> __construct<span style="color: #009900;">&#40;</span><span style="color: #000088;">$client</span><span style="color: #339933;">,</span> <span style="color: #000088;">$uri</span> <span style="color: #339933;">=</span> <span style="color: #009900; font-weight: bold;">null</span><span style="color: #009900;">&#41;</span>
 <a name="line41"></a>    <span style="color: #009900;">&#123;</span>
-<a name="line42"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">restClient</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$restClient</span><span style="color: #339933;">;</span>
-<a name="line43"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">logger</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$restClient</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getLogger</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line42"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">client</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$client</span><span style="color: #339933;">;</span>
+<a name="line43"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">logger</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$client</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getLogger</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
 <a name="line44"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">uri</span> <span style="color: #339933;">=</span> <span style="color: #009900;">&#40;</span>string<span style="color: #009900;">&#41;</span><span style="color: #000088;">$uri</span><span style="color: #339933;">;</span>
 <a name="line45"></a>    <span style="color: #009900;">&#125;</span>
 <a name="line46"></a>&nbsp;
@@ -97,7 +97,7 @@
 <a name="line59"></a>        try <span style="color: #009900;">&#123;</span>
 <a name="line60"></a>            <span style="color: #000088;">$params</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/array_merge"><span style="color: #990000;">array_merge</span></a><span style="color: #009900;">&#40;</span><a href="http://www.php.net/array"><span style="color: #990000;">array</span></a><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'uri'</span> <span style="color: #339933;">=&gt;</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">uri</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">,</span> <span style="color: #000088;">$params</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
 <a name="line61"></a>            <span style="color: #000088;">$request</span> <span style="color: #339933;">=</span> <span style="color: #000000; font-weight: bold;">new</span> RESTRequest<span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'GET'</span><span style="color: #339933;">,</span> <span style="color: #0000ff;">'documents'</span><span style="color: #339933;">,</span> <span style="color: #000088;">$params</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
-<a name="line62"></a>            <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">response</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">restClient</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">send</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$request</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line62"></a>            <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">response</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">client</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">send</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$request</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
 <a name="line63"></a>            <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">content</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">response</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getBody</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
 <a name="line64"></a>            <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">contentType</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">response</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getContentType</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
 <a name="line65"></a>            <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">content</span><span style="color: #339933;">;</span>
@@ -111,254 +111,252 @@
 <a name="line73"></a>    <span style="color: #009933; font-style: italic;">/**
 <a name="line74"></a>     * Write a document to the database.
 <a name="line75"></a>     *
-<a name="line76"></a>     * @todo Allow passing multiple params of same key (e.g., collections).
-<a name="line77"></a>     *
-<a name="line78"></a>     * @param string $uri A document URI.
-<a name="line79"></a>     * @param array $params Optional additional parameters to pass when writing.
-<a name="line80"></a>     * @return Document $this
-<a name="line81"></a>     */</span>
-<a name="line82"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> write<span style="color: #009900;">&#40;</span><span style="color: #000088;">$uri</span> <span style="color: #339933;">=</span> <span style="color: #009900; font-weight: bold;">null</span><span style="color: #339933;">,</span> <span style="color: #000088;">$params</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/array"><span style="color: #990000;">array</span></a><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span>
-<a name="line83"></a>    <span style="color: #009900;">&#123;</span>
-<a name="line84"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">uri</span> <span style="color: #339933;">=</span> <span style="color: #009900;">&#40;</span><a href="http://www.php.net/isset"><span style="color: #990000;">isset</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$uri</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span> ? <span style="color: #009900;">&#40;</span>string<span style="color: #009900;">&#41;</span><span style="color: #000088;">$uri</span> <span style="color: #339933;">:</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">uri</span><span style="color: #339933;">;</span>
-<a name="line85"></a>        try <span style="color: #009900;">&#123;</span>
-<a name="line86"></a>            <span style="color: #000088;">$params</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/array_merge"><span style="color: #990000;">array_merge</span></a><span style="color: #009900;">&#40;</span><a href="http://www.php.net/array"><span style="color: #990000;">array</span></a><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'uri'</span> <span style="color: #339933;">=&gt;</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">uri</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">,</span> <span style="color: #000088;">$params</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
-<a name="line87"></a>            <span style="color: #000088;">$headers</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/array"><span style="color: #990000;">array</span></a><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
-<a name="line88"></a>            <span style="color: #b1b100;">if</span> <span style="color: #009900;">&#40;</span><span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getContentType</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
-<a name="line89"></a>                <span style="color: #000088;">$headers</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/array"><span style="color: #990000;">array</span></a><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'Content-type'</span> <span style="color: #339933;">=&gt;</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getContentType</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
-<a name="line90"></a>            <span style="color: #009900;">&#125;</span>
-<a name="line91"></a>            <span style="color: #000088;">$request</span> <span style="color: #339933;">=</span> <span style="color: #000000; font-weight: bold;">new</span> RESTRequest<span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'PUT'</span><span style="color: #339933;">,</span> <span style="color: #0000ff;">'documents'</span><span style="color: #339933;">,</span> <span style="color: #000088;">$params</span><span style="color: #339933;">,</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">content</span><span style="color: #339933;">,</span> <span style="color: #000088;">$headers</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
-<a name="line92"></a>            <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">response</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">restClient</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">send</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$request</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
-<a name="line93"></a>        <span style="color: #009900;">&#125;</span> catch<span style="color: #009900;">&#40;</span>\Exception <span style="color: #000088;">$e</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
-<a name="line94"></a>            <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">logger</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">error</span><span style="color: #009900;">&#40;</span> <span style="color: #000088;">$e</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getMessage</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span> <span style="color: #339933;">.</span> <span style="color: #0000ff;">' in '</span> <span style="color: #339933;">.</span> <span style="color: #000088;">$e</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getFile</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span> <span style="color: #339933;">.</span> <span style="color: #0000ff;">' on line '</span> <span style="color: #339933;">.</span> <span style="color: #000088;">$e</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getLine</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
-<a name="line95"></a>            <span style="color: #b1b100;">throw</span> <span style="color: #000088;">$e</span><span style="color: #339933;">;</span>
-<a name="line96"></a>        <span style="color: #009900;">&#125;</span>
-<a name="line97"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">;</span>
-<a name="line98"></a>    <span style="color: #009900;">&#125;</span>
-<a name="line99"></a>&nbsp;
-<a name="line100"></a>    <span style="color: #009933; font-style: italic;">/**
-<a name="line101"></a>     * Delete a document from the database. Note that no properties for object are changed.
-<a name="line102"></a>     *
-<a name="line103"></a>     * @param string $uri The document URI.
-<a name="line104"></a>     * @return Document $this
-<a name="line105"></a>     */</span>
-<a name="line106"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> delete<span style="color: #009900;">&#40;</span><span style="color: #000088;">$uri</span> <span style="color: #339933;">=</span> <span style="color: #009900; font-weight: bold;">null</span><span style="color: #009900;">&#41;</span>
-<a name="line107"></a>    <span style="color: #009900;">&#123;</span>
-<a name="line108"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">uri</span> <span style="color: #339933;">=</span> <span style="color: #009900;">&#40;</span><a href="http://www.php.net/isset"><span style="color: #990000;">isset</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$uri</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span> ? <span style="color: #009900;">&#40;</span>string<span style="color: #009900;">&#41;</span><span style="color: #000088;">$uri</span> <span style="color: #339933;">:</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">uri</span><span style="color: #339933;">;</span>
-<a name="line109"></a>        try <span style="color: #009900;">&#123;</span>
-<a name="line110"></a>            <span style="color: #000088;">$params</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/array"><span style="color: #990000;">array</span></a><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'uri'</span> <span style="color: #339933;">=&gt;</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">uri</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
-<a name="line111"></a>            <span style="color: #000088;">$request</span> <span style="color: #339933;">=</span> <span style="color: #000000; font-weight: bold;">new</span> RESTRequest<span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'DELETE'</span><span style="color: #339933;">,</span> <span style="color: #0000ff;">'documents'</span><span style="color: #339933;">,</span> <span style="color: #000088;">$params</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
-<a name="line112"></a>            <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">response</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">restClient</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">send</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$request</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
-<a name="line113"></a>        <span style="color: #009900;">&#125;</span> catch<span style="color: #009900;">&#40;</span>\Exception <span style="color: #000088;">$e</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
-<a name="line114"></a>            <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">logger</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">error</span><span style="color: #009900;">&#40;</span>  <span style="color: #000088;">$e</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getMessage</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span> <span style="color: #339933;">.</span> <span style="color: #0000ff;">' in '</span> <span style="color: #339933;">.</span> <span style="color: #000088;">$e</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getFile</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span> <span style="color: #339933;">.</span> <span style="color: #0000ff;">' on line '</span> <span style="color: #339933;">.</span> <span style="color: #000088;">$e</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getLine</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
-<a name="line115"></a>        <span style="color: #009900;">&#125;</span>
-<a name="line116"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">;</span>
-<a name="line117"></a>    <span style="color: #009900;">&#125;</span>
-<a name="line118"></a>&nbsp;
-<a name="line119"></a>    <span style="color: #009933; font-style: italic;">/**
-<a name="line120"></a>     * Read document metadata from the database.
-<a name="line121"></a>     *
-<a name="line122"></a>     * @return Metadata A Metadata object.
-<a name="line123"></a>     */</span>
-<a name="line124"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> readMetadata<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
-<a name="line125"></a>    <span style="color: #009900;">&#123;</span>
-<a name="line126"></a>        try <span style="color: #009900;">&#123;</span>
-<a name="line127"></a>            <span style="color: #000088;">$params</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/array"><span style="color: #990000;">array</span></a><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'uri'</span> <span style="color: #339933;">=&gt;</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">uri</span><span style="color: #339933;">,</span> <span style="color: #0000ff;">'category'</span> <span style="color: #339933;">=&gt;</span> <span style="color: #0000ff;">'metadata'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
-<a name="line128"></a>            <span style="color: #000088;">$request</span> <span style="color: #339933;">=</span> <span style="color: #000000; font-weight: bold;">new</span> RESTRequest<span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'GET'</span><span style="color: #339933;">,</span> <span style="color: #0000ff;">'documents'</span><span style="color: #339933;">,</span> <span style="color: #000088;">$params</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
-<a name="line129"></a>            <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">response</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">restClient</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">send</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$request</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
-<a name="line130"></a>            <span style="color: #000088;">$metadata</span> <span style="color: #339933;">=</span> <span style="color: #000000; font-weight: bold;">new</span> Metadata<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
-<a name="line131"></a>            <span style="color: #000088;">$metadata</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">loadFromXML</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">response</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getBody</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
-<a name="line132"></a>            <span style="color: #b1b100;">return</span> <span style="color: #000088;">$metadata</span><span style="color: #339933;">;</span>
-<a name="line133"></a>        <span style="color: #009900;">&#125;</span> catch<span style="color: #009900;">&#40;</span>\Exception <span style="color: #000088;">$e</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
-<a name="line134"></a>            <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">logger</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">error</span><span style="color: #009900;">&#40;</span> <span style="color: #000088;">$e</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getMessage</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span> <span style="color: #339933;">.</span> <span style="color: #0000ff;">' in '</span> <span style="color: #339933;">.</span> <span style="color: #000088;">$e</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getFile</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span> <span style="color: #339933;">.</span> <span style="color: #0000ff;">' on line '</span> <span style="color: #339933;">.</span> <span style="color: #000088;">$e</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getLine</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
-<a name="line135"></a>            <span style="color: #b1b100;">return</span> <span style="color: #009900; font-weight: bold;">null</span><span style="color: #339933;">;</span>
-<a name="line136"></a>        <span style="color: #009900;">&#125;</span>
-<a name="line137"></a>    <span style="color: #009900;">&#125;</span>
-<a name="line138"></a>&nbsp;
-<a name="line139"></a>    <span style="color: #009933; font-style: italic;">/**
-<a name="line140"></a>     * Write document metadata to the database.
-<a name="line141"></a>     *
-<a name="line142"></a>     * @param Metadata $metadata A Metadata object.
-<a name="line143"></a>     * @return Document $this
-<a name="line144"></a>     */</span>
-<a name="line145"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> writeMetadata<span style="color: #009900;">&#40;</span><span style="color: #000088;">$metadata</span><span style="color: #009900;">&#41;</span>
-<a name="line146"></a>    <span style="color: #009900;">&#123;</span>
-<a name="line147"></a>        <span style="color: #000088;">$metaxml</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$metadata</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getAsXML</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
-<a name="line148"></a>        try <span style="color: #009900;">&#123;</span>
-<a name="line149"></a>            <span style="color: #000088;">$params</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/array"><span style="color: #990000;">array</span></a><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'uri'</span> <span style="color: #339933;">=&gt;</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">uri</span><span style="color: #339933;">,</span> <span style="color: #0000ff;">'category'</span> <span style="color: #339933;">=&gt;</span> <span style="color: #0000ff;">'metadata'</span><span style="color: #339933;">,</span> <span style="color: #0000ff;">'format'</span> <span style="color: #339933;">=&gt;</span> <span style="color: #0000ff;">'xml'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
-<a name="line150"></a>            <span style="color: #000088;">$headers</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/array"><span style="color: #990000;">array</span></a><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'Content-type'</span> <span style="color: #339933;">=&gt;</span> <span style="color: #0000ff;">'application/xml'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
-<a name="line151"></a>            <span style="color: #000088;">$request</span> <span style="color: #339933;">=</span> <span style="color: #000000; font-weight: bold;">new</span> RESTRequest<span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'PUT'</span><span style="color: #339933;">,</span> <span style="color: #0000ff;">'documents'</span><span style="color: #339933;">,</span> <span style="color: #000088;">$params</span><span style="color: #339933;">,</span> <span style="color: #000088;">$metaxml</span><span style="color: #339933;">,</span> <span style="color: #000088;">$headers</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
-<a name="line152"></a>            <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">response</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">restClient</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">send</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$request</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
-<a name="line153"></a>        <span style="color: #009900;">&#125;</span> catch<span style="color: #009900;">&#40;</span>\Exception <span style="color: #000088;">$e</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
-<a name="line154"></a>            <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">logger</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">error</span><span style="color: #009900;">&#40;</span> <span style="color: #000088;">$e</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getMessage</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span> <span style="color: #339933;">.</span> <span style="color: #0000ff;">' in '</span> <span style="color: #339933;">.</span> <span style="color: #000088;">$e</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getFile</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span> <span style="color: #339933;">.</span> <span style="color: #0000ff;">' on line '</span> <span style="color: #339933;">.</span> <span style="color: #000088;">$e</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getLine</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
-<a name="line155"></a>        <span style="color: #009900;">&#125;</span>
-<a name="line156"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">;</span>
-<a name="line157"></a>    <span style="color: #009900;">&#125;</span>
-<a name="line158"></a>&nbsp;
-<a name="line159"></a>    <span style="color: #009933; font-style: italic;">/**
-<a name="line160"></a>     * Delete document metadata. Metadata reverts to default metadata state.
-<a name="line161"></a>     *
-<a name="line162"></a>     * @return Document $this
-<a name="line163"></a>     */</span>
-<a name="line164"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> deleteMetadata<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
-<a name="line165"></a>    <span style="color: #009900;">&#123;</span>
-<a name="line166"></a>        try <span style="color: #009900;">&#123;</span>
-<a name="line167"></a>            <span style="color: #000088;">$params</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/array"><span style="color: #990000;">array</span></a><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'uri'</span> <span style="color: #339933;">=&gt;</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">uri</span><span style="color: #339933;">,</span> <span style="color: #0000ff;">'category'</span> <span style="color: #339933;">=&gt;</span> <span style="color: #0000ff;">'metadata'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
-<a name="line168"></a>            <span style="color: #000088;">$request</span> <span style="color: #339933;">=</span> <span style="color: #000000; font-weight: bold;">new</span> RESTRequest<span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'DELETE'</span><span style="color: #339933;">,</span> <span style="color: #0000ff;">'documents'</span><span style="color: #339933;">,</span> <span style="color: #000088;">$params</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
-<a name="line169"></a>            <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">response</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">restClient</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">send</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$request</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
-<a name="line170"></a>        <span style="color: #009900;">&#125;</span> catch<span style="color: #009900;">&#40;</span>\Exception <span style="color: #000088;">$e</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
-<a name="line171"></a>            <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">logger</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">error</span><span style="color: #009900;">&#40;</span> <span style="color: #000088;">$e</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getMessage</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span> <span style="color: #339933;">.</span> <span style="color: #0000ff;">' in '</span> <span style="color: #339933;">.</span> <span style="color: #000088;">$e</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getFile</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span> <span style="color: #339933;">.</span> <span style="color: #0000ff;">' on line '</span> <span style="color: #339933;">.</span> <span style="color: #000088;">$e</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getLine</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
-<a name="line172"></a>        <span style="color: #009900;">&#125;</span>
-<a name="line173"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">;</span>
-<a name="line174"></a>    <span style="color: #009900;">&#125;</span>
-<a name="line175"></a>&nbsp;
-<a name="line176"></a>    <span style="color: #009933; font-style: italic;">/**
-<a name="line177"></a>     * Get the document URI.
-<a name="line178"></a>     *
-<a name="line179"></a>     * @return string The document URI.
-<a name="line180"></a>     */</span>
-<a name="line181"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getURI<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
-<a name="line182"></a>    <span style="color: #009900;">&#123;</span>
-<a name="line183"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">uri</span><span style="color: #339933;">;</span>
-<a name="line184"></a>    <span style="color: #009900;">&#125;</span>
-<a name="line185"></a>&nbsp;
-<a name="line186"></a>    <span style="color: #009933; font-style: italic;">/**
-<a name="line187"></a>     * Set the document URI.
-<a name="line188"></a>     *
-<a name="line189"></a>     * @param string $uri The document URI.
-<a name="line190"></a>     * @return Document $this
-<a name="line191"></a>     */</span>
-<a name="line192"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> setURI<span style="color: #009900;">&#40;</span><span style="color: #000088;">$uri</span><span style="color: #009900;">&#41;</span>
-<a name="line193"></a>    <span style="color: #009900;">&#123;</span>
-<a name="line194"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">uri</span> <span style="color: #339933;">=</span> <span style="color: #009900;">&#40;</span>string<span style="color: #009900;">&#41;</span><span style="color: #000088;">$uri</span><span style="color: #339933;">;</span>
-<a name="line195"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">;</span>
-<a name="line196"></a>    <span style="color: #009900;">&#125;</span>
-<a name="line197"></a>&nbsp;
-<a name="line198"></a>    <span style="color: #009933; font-style: italic;">/**
-<a name="line199"></a>     * Get the document content type.
-<a name="line200"></a>     *
-<a name="line201"></a>     * @return string The document content type.
-<a name="line202"></a>     */</span>
-<a name="line203"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getContentType<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
-<a name="line204"></a>    <span style="color: #009900;">&#123;</span>
-<a name="line205"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">contentType</span><span style="color: #339933;">;</span>
-<a name="line206"></a>    <span style="color: #009900;">&#125;</span>
-<a name="line207"></a>&nbsp;
-<a name="line208"></a>    <span style="color: #009933; font-style: italic;">/**
-<a name="line209"></a>     * Set the document content type.
-<a name="line210"></a>     *
-<a name="line211"></a>     * @param string $contentType The document content type.
-<a name="line212"></a>     * @return Document $this
-<a name="line213"></a>     */</span>
-<a name="line214"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> setContentType<span style="color: #009900;">&#40;</span><span style="color: #000088;">$contentType</span><span style="color: #009900;">&#41;</span>
-<a name="line215"></a>    <span style="color: #009900;">&#123;</span>
-<a name="line216"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">contentType</span> <span style="color: #339933;">=</span> <span style="color: #009900;">&#40;</span>string<span style="color: #009900;">&#41;</span><span style="color: #000088;">$contentType</span><span style="color: #339933;">;</span>
-<a name="line217"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">;</span>
-<a name="line218"></a>    <span style="color: #009900;">&#125;</span>
-<a name="line219"></a>&nbsp;
-<a name="line220"></a>    <span style="color: #009933; font-style: italic;">/**
-<a name="line221"></a>     * Get the document content.
-<a name="line222"></a>     *
-<a name="line223"></a>     * @return string The document content.
-<a name="line224"></a>     */</span>
-<a name="line225"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getContent<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
-<a name="line226"></a>    <span style="color: #009900;">&#123;</span>
-<a name="line227"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">content</span><span style="color: #339933;">;</span>
-<a name="line228"></a>    <span style="color: #009900;">&#125;</span>
-<a name="line229"></a>&nbsp;
-<a name="line230"></a>    <span style="color: #009933; font-style: italic;">/**
-<a name="line231"></a>     * Set the document content.
-<a name="line232"></a>     *
-<a name="line233"></a>     * @param string $content The document content.
-<a name="line234"></a>     * @return Document $this
-<a name="line235"></a>     */</span>
-<a name="line236"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> setContent<span style="color: #009900;">&#40;</span><span style="color: #000088;">$content</span><span style="color: #009900;">&#41;</span>
-<a name="line237"></a>    <span style="color: #009900;">&#123;</span>
-<a name="line238"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">content</span> <span style="color: #339933;">=</span> <span style="color: #009900;">&#40;</span>string<span style="color: #009900;">&#41;</span><span style="color: #000088;">$content</span><span style="color: #339933;">;</span>
-<a name="line239"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">;</span>
-<a name="line240"></a>    <span style="color: #009900;">&#125;</span>
-<a name="line241"></a>&nbsp;
-<a name="line242"></a>    <span style="color: #009933; font-style: italic;">/**
-<a name="line243"></a>     * Set the document content from the file system.
-<a name="line244"></a>     *
-<a name="line245"></a>     * @param string $file The file location.
-<a name="line246"></a>     * @return Document $this
-<a name="line247"></a>     */</span>
-<a name="line248"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> setContentFile<span style="color: #009900;">&#40;</span><span style="color: #000088;">$file</span><span style="color: #009900;">&#41;</span>
-<a name="line249"></a>    <span style="color: #009900;">&#123;</span>
-<a name="line250"></a>        try <span style="color: #009900;">&#123;</span>
-<a name="line251"></a>            <span style="color: #000088;">$content</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/file_get_contents"><span style="color: #990000;">file_get_contents</span></a><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#40;</span>string<span style="color: #009900;">&#41;</span><span style="color: #000088;">$file</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
-<a name="line252"></a>        <span style="color: #009900;">&#125;</span> catch<span style="color: #009900;">&#40;</span>\Exception <span style="color: #000088;">$e</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
-<a name="line253"></a>            <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">logger</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">error</span><span style="color: #009900;">&#40;</span> <span style="color: #000088;">$e</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getMessage</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
-<a name="line254"></a>        <span style="color: #009900;">&#125;</span>
-<a name="line255"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">setContent</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$content</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
-<a name="line256"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">;</span>
-<a name="line257"></a>    <span style="color: #009900;">&#125;</span>
-<a name="line258"></a>&nbsp;
-<a name="line259"></a>    <span style="color: #009933; font-style: italic;">/**
-<a name="line260"></a>     * Check if the document has content associated with it.
-<a name="line261"></a>     *
-<a name="line262"></a>     * @return bool true if the document has content, false otherwise.
-<a name="line263"></a>     */</span>
-<a name="line264"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> hasContent<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
-<a name="line265"></a>    <span style="color: #009900;">&#123;</span>
-<a name="line266"></a>        <span style="color: #b1b100;">return</span> <span style="color: #339933;">!</span><a href="http://www.php.net/empty"><span style="color: #990000;">empty</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">content</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
-<a name="line267"></a>    <span style="color: #009900;">&#125;</span>
-<a name="line268"></a>&nbsp;
-<a name="line269"></a>    <span style="color: #009933; font-style: italic;">/**
-<a name="line270"></a>     * Set the REST client for the document.
-<a name="line271"></a>     *
-<a name="line272"></a>     * @param RESTClient $restClient A REST client object.
-<a name="line273"></a>     * @return Document $this
-<a name="line274"></a>     */</span>
-<a name="line275"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> setConnection<span style="color: #009900;">&#40;</span><span style="color: #000088;">$restClient</span><span style="color: #009900;">&#41;</span>
-<a name="line276"></a>    <span style="color: #009900;">&#123;</span>
-<a name="line277"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">restClient</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$restClient</span><span style="color: #339933;">;</span>
-<a name="line278"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">;</span>
-<a name="line279"></a>    <span style="color: #009900;">&#125;</span>
-<a name="line280"></a>&nbsp;
-<a name="line281"></a>    <span style="color: #009933; font-style: italic;">/**
-<a name="line282"></a>     * Get the REST client for the document.
-<a name="line283"></a>     *
-<a name="line284"></a>     * @return RESTClient  A REST client object.
-<a name="line285"></a>     */</span>
-<a name="line286"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getConnection<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
-<a name="line287"></a>    <span style="color: #009900;">&#123;</span>
-<a name="line288"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">restClient</span><span style="color: #339933;">;</span>
-<a name="line289"></a>    <span style="color: #009900;">&#125;</span>
-<a name="line290"></a>&nbsp;
-<a name="line291"></a>    <span style="color: #009933; font-style: italic;">/**
-<a name="line292"></a>     * Get the mimetype of a file.
-<a name="line293"></a>     *
-<a name="line294"></a>     * @param string $file The file.
-<a name="line295"></a>     * @return string The the mimetype of the file.
-<a name="line296"></a>     */</span>
-<a name="line297"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getFileMimeType<span style="color: #009900;">&#40;</span><span style="color: #000088;">$file</span><span style="color: #009900;">&#41;</span>
-<a name="line298"></a>    <span style="color: #009900;">&#123;</span>
-<a name="line299"></a>        <span style="color: #b1b100;">if</span> <span style="color: #009900;">&#40;</span><a href="http://www.php.net/function_exists"><span style="color: #990000;">function_exists</span></a><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'finfo_file'</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
-<a name="line300"></a>            <span style="color: #000088;">$finfo</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/finfo_open"><span style="color: #990000;">finfo_open</span></a><span style="color: #009900;">&#40;</span>FILEINFO_MIME_TYPE<span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
-<a name="line301"></a>            <span style="color: #000088;">$type</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/finfo_file"><span style="color: #990000;">finfo_file</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$finfo</span><span style="color: #339933;">,</span> <span style="color: #000088;">$file</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
-<a name="line302"></a>            <a href="http://www.php.net/finfo_close"><span style="color: #990000;">finfo_close</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$finfo</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
-<a name="line303"></a>        <span style="color: #009900;">&#125;</span> <span style="color: #b1b100;">else</span> <span style="color: #b1b100;">if</span> <span style="color: #009900;">&#40;</span><a href="http://www.php.net/function_exists"><span style="color: #990000;">function_exists</span></a><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'mime_content_type'</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
-<a name="line304"></a>            <span style="color: #000088;">$type</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/mime_content_type"><span style="color: #990000;">mime_content_type</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$file</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
-<a name="line305"></a>        <span style="color: #009900;">&#125;</span> <span style="color: #b1b100;">else</span> <span style="color: #009900;">&#123;</span>
-<a name="line306"></a>        	<span style="color: #000088;">$type</span> <span style="color: #339933;">=</span> <span style="color: #0000ff;">''</span><span style="color: #339933;">;</span>
-<a name="line307"></a>        <span style="color: #009900;">&#125;</span>
-<a name="line308"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$type</span><span style="color: #339933;">;</span>
-<a name="line309"></a>    <span style="color: #009900;">&#125;</span>
-<a name="line310"></a>&nbsp;
-<a name="line311"></a>    <span style="color: #009933; font-style: italic;">/**
-<a name="line312"></a>     * Get the last REST response received. Useful for testing.
-<a name="line313"></a>     *
-<a name="line314"></a>     * @return RESTRresponse A REST response object.
-<a name="line315"></a>     */</span>
-<a name="line316"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getResponse<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
-<a name="line317"></a>    <span style="color: #009900;">&#123;</span>
-<a name="line318"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">response</span><span style="color: #339933;">;</span>
-<a name="line319"></a>    <span style="color: #009900;">&#125;</span>
-<a name="line320"></a><span style="color: #009900;">&#125;</span>
-<a name="line321"></a>&nbsp;</pre>
+<a name="line76"></a>     * @param string $uri A document URI.
+<a name="line77"></a>     * @param array $params Optional additional parameters to pass when writing.
+<a name="line78"></a>     * @return Document $this
+<a name="line79"></a>     */</span>
+<a name="line80"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> write<span style="color: #009900;">&#40;</span><span style="color: #000088;">$uri</span> <span style="color: #339933;">=</span> <span style="color: #009900; font-weight: bold;">null</span><span style="color: #339933;">,</span> <span style="color: #000088;">$params</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/array"><span style="color: #990000;">array</span></a><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span>
+<a name="line81"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line82"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">uri</span> <span style="color: #339933;">=</span> <span style="color: #009900;">&#40;</span><a href="http://www.php.net/isset"><span style="color: #990000;">isset</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$uri</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span> ? <span style="color: #009900;">&#40;</span>string<span style="color: #009900;">&#41;</span><span style="color: #000088;">$uri</span> <span style="color: #339933;">:</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">uri</span><span style="color: #339933;">;</span>
+<a name="line83"></a>        try <span style="color: #009900;">&#123;</span>
+<a name="line84"></a>            <span style="color: #000088;">$params</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/array_merge"><span style="color: #990000;">array_merge</span></a><span style="color: #009900;">&#40;</span><a href="http://www.php.net/array"><span style="color: #990000;">array</span></a><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'uri'</span> <span style="color: #339933;">=&gt;</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">uri</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">,</span> <span style="color: #000088;">$params</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line85"></a>            <span style="color: #000088;">$headers</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/array"><span style="color: #990000;">array</span></a><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line86"></a>            <span style="color: #b1b100;">if</span> <span style="color: #009900;">&#40;</span><span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getContentType</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+<a name="line87"></a>                <span style="color: #000088;">$headers</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/array"><span style="color: #990000;">array</span></a><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'Content-type'</span> <span style="color: #339933;">=&gt;</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getContentType</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line88"></a>            <span style="color: #009900;">&#125;</span>
+<a name="line89"></a>            <span style="color: #000088;">$request</span> <span style="color: #339933;">=</span> <span style="color: #000000; font-weight: bold;">new</span> RESTRequest<span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'PUT'</span><span style="color: #339933;">,</span> <span style="color: #0000ff;">'documents'</span><span style="color: #339933;">,</span> <span style="color: #000088;">$params</span><span style="color: #339933;">,</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">content</span><span style="color: #339933;">,</span> <span style="color: #000088;">$headers</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line90"></a>            <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">response</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">client</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">send</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$request</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line91"></a>        <span style="color: #009900;">&#125;</span> catch<span style="color: #009900;">&#40;</span>\Exception <span style="color: #000088;">$e</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+<a name="line92"></a>            <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">logger</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">error</span><span style="color: #009900;">&#40;</span> <span style="color: #000088;">$e</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getMessage</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span> <span style="color: #339933;">.</span> <span style="color: #0000ff;">' in '</span> <span style="color: #339933;">.</span> <span style="color: #000088;">$e</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getFile</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span> <span style="color: #339933;">.</span> <span style="color: #0000ff;">' on line '</span> <span style="color: #339933;">.</span> <span style="color: #000088;">$e</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getLine</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line93"></a>            <span style="color: #b1b100;">throw</span> <span style="color: #000088;">$e</span><span style="color: #339933;">;</span>
+<a name="line94"></a>        <span style="color: #009900;">&#125;</span>
+<a name="line95"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">;</span>
+<a name="line96"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line97"></a>&nbsp;
+<a name="line98"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line99"></a>     * Delete a document from the database. Note that no properties for object are changed.
+<a name="line100"></a>     *
+<a name="line101"></a>     * @param string $uri The document URI.
+<a name="line102"></a>     * @return Document $this
+<a name="line103"></a>     */</span>
+<a name="line104"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> delete<span style="color: #009900;">&#40;</span><span style="color: #000088;">$uri</span> <span style="color: #339933;">=</span> <span style="color: #009900; font-weight: bold;">null</span><span style="color: #009900;">&#41;</span>
+<a name="line105"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line106"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">uri</span> <span style="color: #339933;">=</span> <span style="color: #009900;">&#40;</span><a href="http://www.php.net/isset"><span style="color: #990000;">isset</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$uri</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span> ? <span style="color: #009900;">&#40;</span>string<span style="color: #009900;">&#41;</span><span style="color: #000088;">$uri</span> <span style="color: #339933;">:</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">uri</span><span style="color: #339933;">;</span>
+<a name="line107"></a>        try <span style="color: #009900;">&#123;</span>
+<a name="line108"></a>            <span style="color: #000088;">$params</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/array"><span style="color: #990000;">array</span></a><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'uri'</span> <span style="color: #339933;">=&gt;</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">uri</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line109"></a>            <span style="color: #000088;">$request</span> <span style="color: #339933;">=</span> <span style="color: #000000; font-weight: bold;">new</span> RESTRequest<span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'DELETE'</span><span style="color: #339933;">,</span> <span style="color: #0000ff;">'documents'</span><span style="color: #339933;">,</span> <span style="color: #000088;">$params</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line110"></a>            <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">response</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">client</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">send</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$request</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line111"></a>        <span style="color: #009900;">&#125;</span> catch<span style="color: #009900;">&#40;</span>\Exception <span style="color: #000088;">$e</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+<a name="line112"></a>            <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">logger</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">error</span><span style="color: #009900;">&#40;</span>  <span style="color: #000088;">$e</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getMessage</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span> <span style="color: #339933;">.</span> <span style="color: #0000ff;">' in '</span> <span style="color: #339933;">.</span> <span style="color: #000088;">$e</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getFile</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span> <span style="color: #339933;">.</span> <span style="color: #0000ff;">' on line '</span> <span style="color: #339933;">.</span> <span style="color: #000088;">$e</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getLine</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line113"></a>        <span style="color: #009900;">&#125;</span>
+<a name="line114"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">;</span>
+<a name="line115"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line116"></a>&nbsp;
+<a name="line117"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line118"></a>     * Read document metadata from the database.
+<a name="line119"></a>     *
+<a name="line120"></a>     * @return Metadata A Metadata object.
+<a name="line121"></a>     */</span>
+<a name="line122"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> readMetadata<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
+<a name="line123"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line124"></a>        try <span style="color: #009900;">&#123;</span>
+<a name="line125"></a>            <span style="color: #000088;">$params</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/array"><span style="color: #990000;">array</span></a><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'uri'</span> <span style="color: #339933;">=&gt;</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">uri</span><span style="color: #339933;">,</span> <span style="color: #0000ff;">'category'</span> <span style="color: #339933;">=&gt;</span> <span style="color: #0000ff;">'metadata'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line126"></a>            <span style="color: #000088;">$request</span> <span style="color: #339933;">=</span> <span style="color: #000000; font-weight: bold;">new</span> RESTRequest<span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'GET'</span><span style="color: #339933;">,</span> <span style="color: #0000ff;">'documents'</span><span style="color: #339933;">,</span> <span style="color: #000088;">$params</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line127"></a>            <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">response</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">client</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">send</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$request</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line128"></a>            <span style="color: #000088;">$metadata</span> <span style="color: #339933;">=</span> <span style="color: #000000; font-weight: bold;">new</span> Metadata<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line129"></a>            <span style="color: #000088;">$metadata</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">loadFromXML</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">response</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getBody</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line130"></a>            <span style="color: #b1b100;">return</span> <span style="color: #000088;">$metadata</span><span style="color: #339933;">;</span>
+<a name="line131"></a>        <span style="color: #009900;">&#125;</span> catch<span style="color: #009900;">&#40;</span>\Exception <span style="color: #000088;">$e</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+<a name="line132"></a>            <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">logger</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">error</span><span style="color: #009900;">&#40;</span> <span style="color: #000088;">$e</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getMessage</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span> <span style="color: #339933;">.</span> <span style="color: #0000ff;">' in '</span> <span style="color: #339933;">.</span> <span style="color: #000088;">$e</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getFile</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span> <span style="color: #339933;">.</span> <span style="color: #0000ff;">' on line '</span> <span style="color: #339933;">.</span> <span style="color: #000088;">$e</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getLine</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line133"></a>            <span style="color: #b1b100;">return</span> <span style="color: #009900; font-weight: bold;">null</span><span style="color: #339933;">;</span>
+<a name="line134"></a>        <span style="color: #009900;">&#125;</span>
+<a name="line135"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line136"></a>&nbsp;
+<a name="line137"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line138"></a>     * Write document metadata to the database.
+<a name="line139"></a>     *
+<a name="line140"></a>     * @param Metadata $metadata A Metadata object.
+<a name="line141"></a>     * @return Document $this
+<a name="line142"></a>     */</span>
+<a name="line143"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> writeMetadata<span style="color: #009900;">&#40;</span><span style="color: #000088;">$metadata</span><span style="color: #009900;">&#41;</span>
+<a name="line144"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line145"></a>        <span style="color: #000088;">$metaxml</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$metadata</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getAsXML</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line146"></a>        try <span style="color: #009900;">&#123;</span>
+<a name="line147"></a>            <span style="color: #000088;">$params</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/array"><span style="color: #990000;">array</span></a><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'uri'</span> <span style="color: #339933;">=&gt;</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">uri</span><span style="color: #339933;">,</span> <span style="color: #0000ff;">'category'</span> <span style="color: #339933;">=&gt;</span> <span style="color: #0000ff;">'metadata'</span><span style="color: #339933;">,</span> <span style="color: #0000ff;">'format'</span> <span style="color: #339933;">=&gt;</span> <span style="color: #0000ff;">'xml'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line148"></a>            <span style="color: #000088;">$headers</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/array"><span style="color: #990000;">array</span></a><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'Content-type'</span> <span style="color: #339933;">=&gt;</span> <span style="color: #0000ff;">'application/xml'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line149"></a>            <span style="color: #000088;">$request</span> <span style="color: #339933;">=</span> <span style="color: #000000; font-weight: bold;">new</span> RESTRequest<span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'PUT'</span><span style="color: #339933;">,</span> <span style="color: #0000ff;">'documents'</span><span style="color: #339933;">,</span> <span style="color: #000088;">$params</span><span style="color: #339933;">,</span> <span style="color: #000088;">$metaxml</span><span style="color: #339933;">,</span> <span style="color: #000088;">$headers</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line150"></a>            <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">response</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">client</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">send</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$request</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line151"></a>        <span style="color: #009900;">&#125;</span> catch<span style="color: #009900;">&#40;</span>\Exception <span style="color: #000088;">$e</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+<a name="line152"></a>            <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">logger</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">error</span><span style="color: #009900;">&#40;</span> <span style="color: #000088;">$e</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getMessage</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span> <span style="color: #339933;">.</span> <span style="color: #0000ff;">' in '</span> <span style="color: #339933;">.</span> <span style="color: #000088;">$e</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getFile</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span> <span style="color: #339933;">.</span> <span style="color: #0000ff;">' on line '</span> <span style="color: #339933;">.</span> <span style="color: #000088;">$e</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getLine</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line153"></a>        <span style="color: #009900;">&#125;</span>
+<a name="line154"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">;</span>
+<a name="line155"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line156"></a>&nbsp;
+<a name="line157"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line158"></a>     * Delete document metadata. Metadata reverts to default metadata state.
+<a name="line159"></a>     *
+<a name="line160"></a>     * @return Document $this
+<a name="line161"></a>     */</span>
+<a name="line162"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> deleteMetadata<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
+<a name="line163"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line164"></a>        try <span style="color: #009900;">&#123;</span>
+<a name="line165"></a>            <span style="color: #000088;">$params</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/array"><span style="color: #990000;">array</span></a><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'uri'</span> <span style="color: #339933;">=&gt;</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">uri</span><span style="color: #339933;">,</span> <span style="color: #0000ff;">'category'</span> <span style="color: #339933;">=&gt;</span> <span style="color: #0000ff;">'metadata'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line166"></a>            <span style="color: #000088;">$request</span> <span style="color: #339933;">=</span> <span style="color: #000000; font-weight: bold;">new</span> RESTRequest<span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'DELETE'</span><span style="color: #339933;">,</span> <span style="color: #0000ff;">'documents'</span><span style="color: #339933;">,</span> <span style="color: #000088;">$params</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line167"></a>            <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">response</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">client</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">send</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$request</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line168"></a>        <span style="color: #009900;">&#125;</span> catch<span style="color: #009900;">&#40;</span>\Exception <span style="color: #000088;">$e</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+<a name="line169"></a>            <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">logger</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">error</span><span style="color: #009900;">&#40;</span> <span style="color: #000088;">$e</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getMessage</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span> <span style="color: #339933;">.</span> <span style="color: #0000ff;">' in '</span> <span style="color: #339933;">.</span> <span style="color: #000088;">$e</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getFile</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span> <span style="color: #339933;">.</span> <span style="color: #0000ff;">' on line '</span> <span style="color: #339933;">.</span> <span style="color: #000088;">$e</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getLine</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line170"></a>        <span style="color: #009900;">&#125;</span>
+<a name="line171"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">;</span>
+<a name="line172"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line173"></a>&nbsp;
+<a name="line174"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line175"></a>     * Get the document URI.
+<a name="line176"></a>     *
+<a name="line177"></a>     * @return string The document URI.
+<a name="line178"></a>     */</span>
+<a name="line179"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getURI<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
+<a name="line180"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line181"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">uri</span><span style="color: #339933;">;</span>
+<a name="line182"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line183"></a>&nbsp;
+<a name="line184"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line185"></a>     * Set the document URI.
+<a name="line186"></a>     *
+<a name="line187"></a>     * @param string $uri The document URI.
+<a name="line188"></a>     * @return Document $this
+<a name="line189"></a>     */</span>
+<a name="line190"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> setURI<span style="color: #009900;">&#40;</span><span style="color: #000088;">$uri</span><span style="color: #009900;">&#41;</span>
+<a name="line191"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line192"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">uri</span> <span style="color: #339933;">=</span> <span style="color: #009900;">&#40;</span>string<span style="color: #009900;">&#41;</span><span style="color: #000088;">$uri</span><span style="color: #339933;">;</span>
+<a name="line193"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">;</span>
+<a name="line194"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line195"></a>&nbsp;
+<a name="line196"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line197"></a>     * Get the document content type.
+<a name="line198"></a>     *
+<a name="line199"></a>     * @return string The document content type.
+<a name="line200"></a>     */</span>
+<a name="line201"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getContentType<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
+<a name="line202"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line203"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">contentType</span><span style="color: #339933;">;</span>
+<a name="line204"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line205"></a>&nbsp;
+<a name="line206"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line207"></a>     * Set the document content type.
+<a name="line208"></a>     *
+<a name="line209"></a>     * @param string $contentType The document content type.
+<a name="line210"></a>     * @return Document $this
+<a name="line211"></a>     */</span>
+<a name="line212"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> setContentType<span style="color: #009900;">&#40;</span><span style="color: #000088;">$contentType</span><span style="color: #009900;">&#41;</span>
+<a name="line213"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line214"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">contentType</span> <span style="color: #339933;">=</span> <span style="color: #009900;">&#40;</span>string<span style="color: #009900;">&#41;</span><span style="color: #000088;">$contentType</span><span style="color: #339933;">;</span>
+<a name="line215"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">;</span>
+<a name="line216"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line217"></a>&nbsp;
+<a name="line218"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line219"></a>     * Get the document content.
+<a name="line220"></a>     *
+<a name="line221"></a>     * @return string The document content.
+<a name="line222"></a>     */</span>
+<a name="line223"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getContent<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
+<a name="line224"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line225"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">content</span><span style="color: #339933;">;</span>
+<a name="line226"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line227"></a>&nbsp;
+<a name="line228"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line229"></a>     * Set the document content.
+<a name="line230"></a>     *
+<a name="line231"></a>     * @param string $content The document content.
+<a name="line232"></a>     * @return Document $this
+<a name="line233"></a>     */</span>
+<a name="line234"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> setContent<span style="color: #009900;">&#40;</span><span style="color: #000088;">$content</span><span style="color: #009900;">&#41;</span>
+<a name="line235"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line236"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">content</span> <span style="color: #339933;">=</span> <span style="color: #009900;">&#40;</span>string<span style="color: #009900;">&#41;</span><span style="color: #000088;">$content</span><span style="color: #339933;">;</span>
+<a name="line237"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">;</span>
+<a name="line238"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line239"></a>&nbsp;
+<a name="line240"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line241"></a>     * Set the document content from the file system.
+<a name="line242"></a>     *
+<a name="line243"></a>     * @param string $file The file location.
+<a name="line244"></a>     * @return Document $this
+<a name="line245"></a>     */</span>
+<a name="line246"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> setContentFile<span style="color: #009900;">&#40;</span><span style="color: #000088;">$file</span><span style="color: #009900;">&#41;</span>
+<a name="line247"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line248"></a>        try <span style="color: #009900;">&#123;</span>
+<a name="line249"></a>            <span style="color: #000088;">$content</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/file_get_contents"><span style="color: #990000;">file_get_contents</span></a><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#40;</span>string<span style="color: #009900;">&#41;</span><span style="color: #000088;">$file</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line250"></a>        <span style="color: #009900;">&#125;</span> catch<span style="color: #009900;">&#40;</span>\Exception <span style="color: #000088;">$e</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+<a name="line251"></a>            <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">logger</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">error</span><span style="color: #009900;">&#40;</span> <span style="color: #000088;">$e</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getMessage</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line252"></a>        <span style="color: #009900;">&#125;</span>
+<a name="line253"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">setContent</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$content</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line254"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">;</span>
+<a name="line255"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line256"></a>&nbsp;
+<a name="line257"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line258"></a>     * Check if the document has content associated with it.
+<a name="line259"></a>     *
+<a name="line260"></a>     * @return bool true if the document has content, false otherwise.
+<a name="line261"></a>     */</span>
+<a name="line262"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> hasContent<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
+<a name="line263"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line264"></a>        <span style="color: #b1b100;">return</span> <span style="color: #339933;">!</span><a href="http://www.php.net/empty"><span style="color: #990000;">empty</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">content</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line265"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line266"></a>&nbsp;
+<a name="line267"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line268"></a>     * Set the REST client for the document.
+<a name="line269"></a>     *
+<a name="line270"></a>     * @param RESTClient $client A REST client object.
+<a name="line271"></a>     * @return Document $this
+<a name="line272"></a>     */</span>
+<a name="line273"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> setConnection<span style="color: #009900;">&#40;</span><span style="color: #000088;">$client</span><span style="color: #009900;">&#41;</span>
+<a name="line274"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line275"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">client</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$client</span><span style="color: #339933;">;</span>
+<a name="line276"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">;</span>
+<a name="line277"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line278"></a>&nbsp;
+<a name="line279"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line280"></a>     * Get the REST client for the document.
+<a name="line281"></a>     *
+<a name="line282"></a>     * @return RESTClient  A REST client object.
+<a name="line283"></a>     */</span>
+<a name="line284"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getConnection<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
+<a name="line285"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line286"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">client</span><span style="color: #339933;">;</span>
+<a name="line287"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line288"></a>&nbsp;
+<a name="line289"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line290"></a>     * Get the mimetype of a file.
+<a name="line291"></a>     *
+<a name="line292"></a>     * @param string $file The file.
+<a name="line293"></a>     * @return string The the mimetype of the file.
+<a name="line294"></a>     */</span>
+<a name="line295"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getFileMimeType<span style="color: #009900;">&#40;</span><span style="color: #000088;">$file</span><span style="color: #009900;">&#41;</span>
+<a name="line296"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line297"></a>        <span style="color: #b1b100;">if</span> <span style="color: #009900;">&#40;</span><a href="http://www.php.net/function_exists"><span style="color: #990000;">function_exists</span></a><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'finfo_file'</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+<a name="line298"></a>            <span style="color: #000088;">$finfo</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/finfo_open"><span style="color: #990000;">finfo_open</span></a><span style="color: #009900;">&#40;</span>FILEINFO_MIME_TYPE<span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line299"></a>            <span style="color: #000088;">$type</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/finfo_file"><span style="color: #990000;">finfo_file</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$finfo</span><span style="color: #339933;">,</span> <span style="color: #000088;">$file</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line300"></a>            <a href="http://www.php.net/finfo_close"><span style="color: #990000;">finfo_close</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$finfo</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line301"></a>        <span style="color: #009900;">&#125;</span> <span style="color: #b1b100;">else</span> <span style="color: #b1b100;">if</span> <span style="color: #009900;">&#40;</span><a href="http://www.php.net/function_exists"><span style="color: #990000;">function_exists</span></a><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'mime_content_type'</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+<a name="line302"></a>            <span style="color: #000088;">$type</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/mime_content_type"><span style="color: #990000;">mime_content_type</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$file</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line303"></a>        <span style="color: #009900;">&#125;</span> <span style="color: #b1b100;">else</span> <span style="color: #009900;">&#123;</span>
+<a name="line304"></a>        	<span style="color: #000088;">$type</span> <span style="color: #339933;">=</span> <span style="color: #0000ff;">''</span><span style="color: #339933;">;</span>
+<a name="line305"></a>        <span style="color: #009900;">&#125;</span>
+<a name="line306"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$type</span><span style="color: #339933;">;</span>
+<a name="line307"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line308"></a>&nbsp;
+<a name="line309"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line310"></a>     * Get the last REST response received. Useful for testing.
+<a name="line311"></a>     *
+<a name="line312"></a>     * @return RESTRresponse A REST response object.
+<a name="line313"></a>     */</span>
+<a name="line314"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getResponse<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
+<a name="line315"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line316"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">response</span><span style="color: #339933;">;</span>
+<a name="line317"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line318"></a><span style="color: #009900;">&#125;</span>
+<a name="line319"></a>&nbsp;</pre>
 <div class="header">
-<h1><a href=../../examples/index.php target=_top>MLPHP</a></h1>
+<h1>MLPHP</h1>
 <ul>
 <li><a href="../../../overview-summary.html">Overview</a></li>
 <li>Package</li><li>Class</li><li>Tree</li><li><a href="../../../overview-files.html">Files</a></li>
@@ -374,7 +372,7 @@
 </div>
 <hr>
 
-<p id="footer">Copyright 2002-2013 MarkLogic Corporation.  All Rights Reserved.</p>
+<p id="footer">Copyright 2002-2015 MarkLogic Corporation.  All Rights Reserved.</p>
 
 </body>
 

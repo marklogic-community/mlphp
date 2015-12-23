@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="generator" content="PHPDoctor 2.0.5 (http://peej.github.com/phpdoctor/)">
-<meta name="when" content="Mon, 09 Feb 2015 02:37:41 +0000">
+<meta name="when" content="Wed, 23 Dec 2015 22:23:57 +0000">
 
 <link rel="stylesheet" type="text/css" href="../../../stylesheet.css">
 <link rel="start" href="../../../overview-summary.html">
@@ -17,7 +17,7 @@
 <body id="file" onload="parent.document.title=document.title;">
 
 <div class="header">
-<h1><a href=../../examples/index.php target=_top>MLPHP</a></h1>
+<h1>MLPHP</h1>
 <ul>
 <li><a href="../../../overview-summary.html">Overview</a></li>
 <li>Package</li><li>Class</li><li>Tree</li><li><a href="../../../overview-files.html">Files</a></li>
@@ -73,154 +73,221 @@
 <a name="line35"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$password</span><span style="color: #339933;">;</span> <span style="color: #666666; font-style: italic;">// @var string</span>
 <a name="line36"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$logger</span><span style="color: #339933;">;</span> <span style="color: #666666; font-style: italic;">// @var LoggerInterface</span>
 <a name="line37"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$client</span><span style="color: #339933;">;</span> <span style="color: #666666; font-style: italic;">// @var RESTClient</span>
-<a name="line38"></a>&nbsp;
-<a name="line39"></a>    <span style="color: #009933; font-style: italic;">/**
-<a name="line40"></a>     * Create a REST API object.
-<a name="line41"></a>     *
-<a name="line42"></a>     * @param string name The name of the API (example: 'mlphp-rest-api').
-<a name="line43"></a>     * @param string host The host (example: '127.0.0.1', 'localhost').
-<a name="line44"></a>     * @param string db The name of the database (example: 'mlphp-db').
-<a name="line45"></a>     * @param int port The port of the API.
-<a name="line46"></a>     * @param string username The username for REST authentication.
-<a name="line47"></a>     * @param string password The password for REST authentication.
-<a name="line48"></a>     * @param LoggerInterface logger
-<a name="line49"></a>     */</span>
-<a name="line50"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> __construct<span style="color: #009900;">&#40;</span>
-<a name="line51"></a>      <span style="color: #000088;">$name</span><span style="color: #339933;">,</span> <span style="color: #000088;">$host</span><span style="color: #339933;">,</span> <span style="color: #000088;">$db</span><span style="color: #339933;">,</span> <span style="color: #000088;">$port</span><span style="color: #339933;">,</span> <span style="color: #000088;">$username</span><span style="color: #339933;">,</span> <span style="color: #000088;">$password</span><span style="color: #339933;">,</span> <span style="color: #000088;">$logger</span> <span style="color: #339933;">=</span> <span style="color: #009900; font-weight: bold;">null</span>
-<a name="line52"></a>    <span style="color: #009900;">&#41;</span>
-<a name="line53"></a>    <span style="color: #009900;">&#123;</span>
-<a name="line54"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">name</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$name</span> ?<span style="color: #339933;">:</span> <span style="color: #0000ff;">'mlphp-rest-api'</span><span style="color: #339933;">;</span>
-<a name="line55"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">host</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$host</span> ?<span style="color: #339933;">:</span> <span style="color: #0000ff;">'127.0.0.1'</span><span style="color: #339933;">;</span>
-<a name="line56"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">db</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$db</span> ?<span style="color: #339933;">:</span> <span style="color: #0000ff;">'mlphp-db'</span><span style="color: #339933;">;</span>
-<a name="line57"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">port</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$port</span> ?<span style="color: #339933;">:</span> <span style="color: #cc66cc;">8234</span><span style="color: #339933;">;</span>
-<a name="line58"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">username</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$username</span> ?<span style="color: #339933;">:</span> <span style="color: #0000ff;">'admin'</span><span style="color: #339933;">;</span>
-<a name="line59"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">password</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$password</span> ?<span style="color: #339933;">:</span> <span style="color: #0000ff;">'admin'</span><span style="color: #339933;">;</span>
-<a name="line60"></a>        <span style="color: #b1b100;">if</span> <span style="color: #009900;">&#40;</span><a href="http://www.php.net/is_null"><span style="color: #990000;">is_null</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$logger</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
-<a name="line61"></a>            <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">logger</span> <span style="color: #339933;">=</span> <span style="color: #000000; font-weight: bold;">new</span> NullLogger<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
-<a name="line62"></a>        <span style="color: #009900;">&#125;</span> <span style="color: #b1b100;">else</span> <span style="color: #009900;">&#123;</span>
-<a name="line63"></a>            <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">logger</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$logger</span><span style="color: #339933;">;</span>
-<a name="line64"></a>        <span style="color: #009900;">&#125;</span>
-<a name="line65"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">client</span> <span style="color: #339933;">=</span> <span style="color: #000000; font-weight: bold;">new</span> RESTClient<span style="color: #009900;">&#40;</span>
-<a name="line66"></a>            <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">host</span><span style="color: #339933;">,</span>
-<a name="line67"></a>            <span style="color: #cc66cc;">8002</span><span style="color: #339933;">,</span>
-<a name="line68"></a>            <span style="color: #0000ff;">''</span><span style="color: #339933;">,</span>
-<a name="line69"></a>            <span style="color: #0000ff;">'v1'</span><span style="color: #339933;">,</span>
-<a name="line70"></a>            <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">username</span><span style="color: #339933;">,</span>
-<a name="line71"></a>            <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">password</span><span style="color: #339933;">,</span>
-<a name="line72"></a>            <span style="color: #0000ff;">'digest'</span><span style="color: #339933;">,</span>
-<a name="line73"></a>            <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">logger</span>
-<a name="line74"></a>        <span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
-<a name="line75"></a>    <span style="color: #009900;">&#125;</span>
-<a name="line76"></a>&nbsp;
-<a name="line77"></a>    <span style="color: #009933; font-style: italic;">/**
-<a name="line78"></a>     * Create a REST API via a post to the MarkLogic rest-apis endpoint.
-<a name="line79"></a>     * It will not create an API if there already exists one with the
-<a name="line80"></a>     * same name.
-<a name="line81"></a>     *
-<a name="line82"></a>     * @param RESTClient client Optional custom REST client object.
-<a name="line83"></a>     */</span>
-<a name="line84"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> create<span style="color: #009900;">&#40;</span><span style="color: #000088;">$client</span> <span style="color: #339933;">=</span> <span style="color: #009900; font-weight: bold;">null</span><span style="color: #009900;">&#41;</span>
-<a name="line85"></a>    <span style="color: #009900;">&#123;</span>
-<a name="line86"></a>        <span style="color: #b1b100;">if</span> <span style="color: #009900;">&#40;</span><span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">exists</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
-<a name="line87"></a>            <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">logger</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">debug</span><span style="color: #009900;">&#40;</span>
-<a name="line88"></a>                <span style="color: #0000ff;">'A REST API named &quot;'</span> <span style="color: #339933;">.</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">name</span> <span style="color: #339933;">.</span> <span style="color: #0000ff;">'&quot; already exists'</span>
-<a name="line89"></a>            <span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
-<a name="line90"></a>            <span style="color: #b1b100;">return</span><span style="color: #339933;">;</span>
-<a name="line91"></a>        <span style="color: #009900;">&#125;</span>
-<a name="line92"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">client</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$client</span> ?<span style="color: #339933;">:</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">client</span><span style="color: #339933;">;</span>
-<a name="line93"></a>        <span style="color: #000088;">$params</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/array"><span style="color: #990000;">array</span></a><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
-<a name="line94"></a>        <span style="color: #000088;">$headers</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/array"><span style="color: #990000;">array</span></a><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'Content-type'</span> <span style="color: #339933;">=&gt;</span> <span style="color: #0000ff;">'application/json'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
-<a name="line95"></a>        <span style="color: #000088;">$body</span> <span style="color: #339933;">=</span> <span style="color: #0000ff;">'
-<a name="line96"></a>            {
-<a name="line97"></a>                &quot;rest-api&quot;: {
-<a name="line98"></a>                    &quot;name&quot;: &quot;'</span> <span style="color: #339933;">.</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">name</span> <span style="color: #339933;">.</span> <span style="color: #0000ff;">'&quot;,
-<a name="line99"></a>                    &quot;database&quot;: &quot;'</span> <span style="color: #339933;">.</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">db</span> <span style="color: #339933;">.</span> <span style="color: #0000ff;">'&quot;,
-<a name="line100"></a>                    &quot;modules-database&quot;: &quot;'</span> <span style="color: #339933;">.</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">db</span> <span style="color: #339933;">.</span> <span style="color: #0000ff;">'-modules&quot;,
-<a name="line101"></a>                    &quot;port&quot;: &quot;'</span> <span style="color: #339933;">.</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">port</span> <span style="color: #339933;">.</span> <span style="color: #0000ff;">'&quot;,
-<a name="line102"></a>                    &quot;forests-per-host&quot;: 1,
-<a name="line103"></a>                    &quot;error-format&quot;: &quot;json&quot;
-<a name="line104"></a>                }
-<a name="line105"></a>            }
-<a name="line106"></a>        '</span><span style="color: #339933;">;</span>
-<a name="line107"></a>        <span style="color: #000088;">$request</span> <span style="color: #339933;">=</span> <span style="color: #000000; font-weight: bold;">new</span> RESTRequest<span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'POST'</span><span style="color: #339933;">,</span> <span style="color: #0000ff;">'rest-apis'</span><span style="color: #339933;">,</span> <span style="color: #000088;">$params</span><span style="color: #339933;">,</span> <span style="color: #000088;">$body</span><span style="color: #339933;">,</span> <span style="color: #000088;">$headers</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
-<a name="line108"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">logger</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">debug</span><span style="color: #009900;">&#40;</span>
-<a name="line109"></a>            <span style="color: #0000ff;">&quot;Setting up REST API: &quot;</span> <span style="color: #339933;">.</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">name</span> <span style="color: #339933;">.</span>
-<a name="line110"></a>            <span style="color: #0000ff;">' ('</span> <span style="color: #339933;">.</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">db</span> <span style="color: #339933;">.</span> <span style="color: #0000ff;">') port '</span> <span style="color: #339933;">.</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">port</span>
-<a name="line111"></a>        <span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
-<a name="line112"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">client</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">send</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$request</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span> <span style="color: #666666; font-style: italic;">// Set up REST API</span>
-<a name="line113"></a>    <span style="color: #009900;">&#125;</span>
-<a name="line114"></a>&nbsp;
-<a name="line115"></a>    <span style="color: #009933; font-style: italic;">/**
-<a name="line116"></a>     * Delete a REST API.
-<a name="line117"></a>     *
-<a name="line118"></a>     * @param boolean module Optional custom REST client object.
-<a name="line119"></a>     */</span>
-<a name="line120"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> delete<span style="color: #009900;">&#40;</span><span style="color: #000088;">$client</span> <span style="color: #339933;">=</span> <span style="color: #009900; font-weight: bold;">null</span><span style="color: #009900;">&#41;</span>
-<a name="line121"></a>    <span style="color: #009900;">&#123;</span>
-<a name="line122"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">client</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$client</span> ?<span style="color: #339933;">:</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">client</span><span style="color: #339933;">;</span>
-<a name="line123"></a>        <span style="color: #666666; font-style: italic;">// Delete content and modules as well</span>
-<a name="line124"></a>        <span style="color: #000088;">$params</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/array"><span style="color: #990000;">array</span></a><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'include'</span> <span style="color: #339933;">=&gt;</span> <span style="color: #009900;">&#91;</span><span style="color: #0000ff;">'content'</span><span style="color: #339933;">,</span> <span style="color: #0000ff;">'modules'</span><span style="color: #009900;">&#93;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
-<a name="line125"></a>        <span style="color: #000088;">$body</span> <span style="color: #339933;">=</span> <span style="color: #009900; font-weight: bold;">null</span><span style="color: #339933;">;</span>
-<a name="line126"></a>        <span style="color: #000088;">$headers</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/array"><span style="color: #990000;">array</span></a><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
-<a name="line127"></a>        <span style="color: #000088;">$request</span> <span style="color: #339933;">=</span> <span style="color: #000000; font-weight: bold;">new</span> RESTRequest<span style="color: #009900;">&#40;</span>
-<a name="line128"></a>            <span style="color: #0000ff;">'DELETE'</span><span style="color: #339933;">,</span> <span style="color: #0000ff;">'rest-apis/'</span> <span style="color: #339933;">.</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">name</span><span style="color: #339933;">,</span> <span style="color: #000088;">$params</span><span style="color: #339933;">,</span> <span style="color: #000088;">$body</span><span style="color: #339933;">,</span> <span style="color: #000088;">$headers</span>
-<a name="line129"></a>        <span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
-<a name="line130"></a>&nbsp;
-<a name="line131"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">client</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">send</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$request</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
-<a name="line132"></a>&nbsp;
-<a name="line133"></a>        <span style="color: #666666; font-style: italic;">// Wait for server reboot</span>
-<a name="line134"></a>        <span style="color: #000088;">$requestWait</span> <span style="color: #339933;">=</span> <span style="color: #000000; font-weight: bold;">new</span> RESTRequest<span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'GET'</span><span style="color: #339933;">,</span> <span style="color: #0000ff;">'rest-apis'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
-<a name="line135"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">waitUntilSuccess</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$requestWait</span><span style="color: #339933;">,</span> <span style="color: #cc66cc;">3</span><span style="color: #339933;">,</span> <span style="color: #cc66cc;">10</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
-<a name="line136"></a>    <span style="color: #009900;">&#125;</span>
-<a name="line137"></a>&nbsp;
-<a name="line138"></a>    <span style="color: #009933; font-style: italic;">/**
-<a name="line139"></a>     * Sleep until a request is successful.
-<a name="line140"></a>     *
-<a name="line141"></a>     * @param RESTRequest $request The request to send.
-<a name="line142"></a>     * @param int $time Time in secs to wait between requests.
-<a name="line143"></a>     * @param int $limit Cycles to complete before timing out.
-<a name="line144"></a>     */</span>
-<a name="line145"></a>    <span style="color: #000000; font-weight: bold;">protected</span> <span style="color: #000000; font-weight: bold;">function</span> waitUntilSuccess<span style="color: #009900;">&#40;</span><span style="color: #000088;">$request</span><span style="color: #339933;">,</span> <span style="color: #000088;">$secs</span><span style="color: #339933;">,</span> <span style="color: #000088;">$limit</span><span style="color: #009900;">&#41;</span>
-<a name="line146"></a>    <span style="color: #009900;">&#123;</span>
-<a name="line147"></a>        <a href="http://www.php.net/sleep"><span style="color: #990000;">sleep</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$secs</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
-<a name="line148"></a>        <span style="color: #000088;">$limit</span><span style="color: #339933;">--;</span>
-<a name="line149"></a>        try <span style="color: #009900;">&#123;</span>
-<a name="line150"></a>            <span style="color: #000088;">$response</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">client</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">send</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$request</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
-<a name="line151"></a>        <span style="color: #009900;">&#125;</span> catch<span style="color: #009900;">&#40;</span>\Exception <span style="color: #000088;">$e</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
-<a name="line152"></a>            <span style="color: #b1b100;">if</span> <span style="color: #009900;">&#40;</span><span style="color: #000088;">$limit</span> <span style="color: #339933;">&gt;</span> <span style="color: #cc66cc;">0</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
-<a name="line153"></a>                <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">waitUntilSuccess</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$request</span><span style="color: #339933;">,</span> <span style="color: #000088;">$secs</span><span style="color: #339933;">,</span> <span style="color: #000088;">$limit</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
-<a name="line154"></a>            <span style="color: #009900;">&#125;</span> <span style="color: #b1b100;">else</span> <span style="color: #009900;">&#123;</span>
-<a name="line155"></a>                <span style="color: #b1b100;">throw</span> <span style="color: #000000; font-weight: bold;">new</span> Exception<span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'waitUntilSuccess() timed out'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
-<a name="line156"></a>            <span style="color: #009900;">&#125;</span>
-<a name="line157"></a>        <span style="color: #009900;">&#125;</span>
-<a name="line158"></a>        <span style="color: #b1b100;">return</span><span style="color: #339933;">;</span>
-<a name="line159"></a>    <span style="color: #009900;">&#125;</span>
-<a name="line160"></a>    <span style="color: #009933; font-style: italic;">/**
-<a name="line161"></a>     * Check if a REST API with the same name exists on the server.
-<a name="line162"></a>     *
-<a name="line163"></a>     * @param string name Name of the REST API to check.
-<a name="line164"></a>     * @return boolean true|false
-<a name="line165"></a>     */</span>
-<a name="line166"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> exists<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
-<a name="line167"></a>    <span style="color: #009900;">&#123;</span>
-<a name="line168"></a>        try <span style="color: #009900;">&#123;</span>
-<a name="line169"></a>            <span style="color: #000088;">$params</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/array"><span style="color: #990000;">array</span></a><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
-<a name="line170"></a>            <span style="color: #000088;">$body</span> <span style="color: #339933;">=</span> <span style="color: #009900; font-weight: bold;">null</span><span style="color: #339933;">;</span>
-<a name="line171"></a>            <span style="color: #000088;">$headers</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/array"><span style="color: #990000;">array</span></a><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
-<a name="line172"></a>            <span style="color: #000088;">$request</span> <span style="color: #339933;">=</span> <span style="color: #000000; font-weight: bold;">new</span> RESTRequest<span style="color: #009900;">&#40;</span>
-<a name="line173"></a>                <span style="color: #0000ff;">'GET'</span><span style="color: #339933;">,</span> <span style="color: #0000ff;">'rest-apis/'</span> <span style="color: #339933;">.</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">name</span><span style="color: #339933;">,</span> <span style="color: #000088;">$params</span><span style="color: #339933;">,</span> <span style="color: #000088;">$body</span><span style="color: #339933;">,</span> <span style="color: #000088;">$headers</span>
-<a name="line174"></a>            <span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
-<a name="line175"></a>            <span style="color: #000088;">$response</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">client</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">send</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$request</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
-<a name="line176"></a>        <span style="color: #009900;">&#125;</span> catch<span style="color: #009900;">&#40;</span>\Exception <span style="color: #000088;">$e</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
-<a name="line177"></a>            <span style="color: #b1b100;">return</span> <span style="color: #009900; font-weight: bold;">false</span><span style="color: #339933;">;</span>
-<a name="line178"></a>        <span style="color: #009900;">&#125;</span>
-<a name="line179"></a>        <span style="color: #b1b100;">return</span> <span style="color: #009900; font-weight: bold;">true</span><span style="color: #339933;">;</span>
-<a name="line180"></a>    <span style="color: #009900;">&#125;</span>
-<a name="line181"></a>&nbsp;
-<a name="line182"></a><span style="color: #009900;">&#125;</span>
-<a name="line183"></a>&nbsp;</pre>
+<a name="line38"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$apiClient</span><span style="color: #339933;">;</span> <span style="color: #666666; font-style: italic;">// @var RESTClient</span>
+<a name="line39"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$response</span><span style="color: #339933;">;</span> <span style="color: #666666; font-style: italic;">// @var RESTResponse</span>
+<a name="line40"></a>&nbsp;
+<a name="line41"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line42"></a>     * Create a REST API object.
+<a name="line43"></a>     *
+<a name="line44"></a>     * @param string name The name of the API (example: 'mlphp-rest-api').
+<a name="line45"></a>     * @param string host The host (example: '127.0.0.1', 'localhost').
+<a name="line46"></a>     * @param string db The name of the database (example: 'mlphp-db').
+<a name="line47"></a>     * @param int port The port of the API.
+<a name="line48"></a>     * @param string username The username for REST authentication.
+<a name="line49"></a>     * @param string password The password for REST authentication.
+<a name="line50"></a>     * @param LoggerInterface logger
+<a name="line51"></a>     */</span>
+<a name="line52"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> __construct<span style="color: #009900;">&#40;</span>
+<a name="line53"></a>      <span style="color: #000088;">$name</span><span style="color: #339933;">,</span> <span style="color: #000088;">$host</span><span style="color: #339933;">,</span> <span style="color: #000088;">$db</span><span style="color: #339933;">,</span> <span style="color: #000088;">$port</span><span style="color: #339933;">,</span> <span style="color: #000088;">$username</span><span style="color: #339933;">,</span> <span style="color: #000088;">$password</span><span style="color: #339933;">,</span> <span style="color: #000088;">$logger</span> <span style="color: #339933;">=</span> <span style="color: #009900; font-weight: bold;">null</span>
+<a name="line54"></a>    <span style="color: #009900;">&#41;</span>
+<a name="line55"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line56"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">name</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$name</span> ?<span style="color: #339933;">:</span> <span style="color: #0000ff;">'mlphp-rest-api'</span><span style="color: #339933;">;</span>
+<a name="line57"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">host</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$host</span> ?<span style="color: #339933;">:</span> <span style="color: #0000ff;">'127.0.0.1'</span><span style="color: #339933;">;</span>
+<a name="line58"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">db</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$db</span> ?<span style="color: #339933;">:</span> <span style="color: #0000ff;">'mlphp-db'</span><span style="color: #339933;">;</span>
+<a name="line59"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">port</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$port</span> ?<span style="color: #339933;">:</span> <span style="color: #cc66cc;">8234</span><span style="color: #339933;">;</span>
+<a name="line60"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">username</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$username</span> ?<span style="color: #339933;">:</span> <span style="color: #0000ff;">'admin'</span><span style="color: #339933;">;</span>
+<a name="line61"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">password</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$password</span> ?<span style="color: #339933;">:</span> <span style="color: #0000ff;">'admin'</span><span style="color: #339933;">;</span>
+<a name="line62"></a>        <span style="color: #b1b100;">if</span> <span style="color: #009900;">&#40;</span><a href="http://www.php.net/is_null"><span style="color: #990000;">is_null</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$logger</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+<a name="line63"></a>            <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">logger</span> <span style="color: #339933;">=</span> <span style="color: #000000; font-weight: bold;">new</span> NullLogger<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line64"></a>        <span style="color: #009900;">&#125;</span> <span style="color: #b1b100;">else</span> <span style="color: #009900;">&#123;</span>
+<a name="line65"></a>            <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">logger</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$logger</span><span style="color: #339933;">;</span>
+<a name="line66"></a>        <span style="color: #009900;">&#125;</span>
+<a name="line67"></a>        <span style="color: #666666; font-style: italic;">// For creating/deleting REST API</span>
+<a name="line68"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">client</span> <span style="color: #339933;">=</span> <span style="color: #000000; font-weight: bold;">new</span> RESTClient<span style="color: #009900;">&#40;</span>
+<a name="line69"></a>            <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">host</span><span style="color: #339933;">,</span>
+<a name="line70"></a>            <span style="color: #cc66cc;">8002</span><span style="color: #339933;">,</span>
+<a name="line71"></a>            <span style="color: #0000ff;">''</span><span style="color: #339933;">,</span>
+<a name="line72"></a>            <span style="color: #0000ff;">'v1'</span><span style="color: #339933;">,</span>
+<a name="line73"></a>            <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">username</span><span style="color: #339933;">,</span>
+<a name="line74"></a>            <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">password</span><span style="color: #339933;">,</span>
+<a name="line75"></a>            <span style="color: #0000ff;">'digest'</span><span style="color: #339933;">,</span>
+<a name="line76"></a>            <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">logger</span>
+<a name="line77"></a>        <span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line78"></a>        <span style="color: #666666; font-style: italic;">// For getting/setting REST API properties</span>
+<a name="line79"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">apiClient</span> <span style="color: #339933;">=</span> <span style="color: #000000; font-weight: bold;">new</span> RESTClient<span style="color: #009900;">&#40;</span>
+<a name="line80"></a>            <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">host</span><span style="color: #339933;">,</span>
+<a name="line81"></a>            <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">port</span><span style="color: #339933;">,</span>
+<a name="line82"></a>            <span style="color: #0000ff;">''</span><span style="color: #339933;">,</span>
+<a name="line83"></a>            <span style="color: #0000ff;">'v1'</span><span style="color: #339933;">,</span>
+<a name="line84"></a>            <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">username</span><span style="color: #339933;">,</span>
+<a name="line85"></a>            <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">password</span><span style="color: #339933;">,</span>
+<a name="line86"></a>            <span style="color: #0000ff;">'digest'</span><span style="color: #339933;">,</span>
+<a name="line87"></a>            <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">logger</span>
+<a name="line88"></a>        <span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line89"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line90"></a>&nbsp;
+<a name="line91"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line92"></a>     * Create a REST API via a post to the MarkLogic rest-apis endpoint.
+<a name="line93"></a>     * It will not create an API if there already exists one with the
+<a name="line94"></a>     * same name.
+<a name="line95"></a>     *
+<a name="line96"></a>     * @param RESTClient client Optional custom REST client object.
+<a name="line97"></a>     */</span>
+<a name="line98"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> create<span style="color: #009900;">&#40;</span><span style="color: #000088;">$client</span> <span style="color: #339933;">=</span> <span style="color: #009900; font-weight: bold;">null</span><span style="color: #009900;">&#41;</span>
+<a name="line99"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line100"></a>        <span style="color: #b1b100;">if</span> <span style="color: #009900;">&#40;</span><span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">exists</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+<a name="line101"></a>            <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">logger</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">debug</span><span style="color: #009900;">&#40;</span>
+<a name="line102"></a>                <span style="color: #0000ff;">'A REST API named &quot;'</span> <span style="color: #339933;">.</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">name</span> <span style="color: #339933;">.</span> <span style="color: #0000ff;">'&quot; already exists'</span>
+<a name="line103"></a>            <span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line104"></a>            <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">;</span>
+<a name="line105"></a>        <span style="color: #009900;">&#125;</span>
+<a name="line106"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">client</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$client</span> ?<span style="color: #339933;">:</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">client</span><span style="color: #339933;">;</span>
+<a name="line107"></a>        <span style="color: #000088;">$params</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/array"><span style="color: #990000;">array</span></a><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line108"></a>        <span style="color: #000088;">$headers</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/array"><span style="color: #990000;">array</span></a><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'Content-type'</span> <span style="color: #339933;">=&gt;</span> <span style="color: #0000ff;">'application/json'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line109"></a>        <span style="color: #000088;">$body</span> <span style="color: #339933;">=</span> <span style="color: #0000ff;">'
+<a name="line110"></a>            {
+<a name="line111"></a>                &quot;rest-api&quot;: {
+<a name="line112"></a>                    &quot;name&quot;: &quot;'</span> <span style="color: #339933;">.</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">name</span> <span style="color: #339933;">.</span> <span style="color: #0000ff;">'&quot;,
+<a name="line113"></a>                    &quot;database&quot;: &quot;'</span> <span style="color: #339933;">.</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">db</span> <span style="color: #339933;">.</span> <span style="color: #0000ff;">'&quot;,
+<a name="line114"></a>                    &quot;modules-database&quot;: &quot;'</span> <span style="color: #339933;">.</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">db</span> <span style="color: #339933;">.</span> <span style="color: #0000ff;">'-modules&quot;,
+<a name="line115"></a>                    &quot;port&quot;: &quot;'</span> <span style="color: #339933;">.</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">port</span> <span style="color: #339933;">.</span> <span style="color: #0000ff;">'&quot;,
+<a name="line116"></a>                    &quot;forests-per-host&quot;: 1,
+<a name="line117"></a>                    &quot;error-format&quot;: &quot;json&quot;
+<a name="line118"></a>                }
+<a name="line119"></a>            }
+<a name="line120"></a>        '</span><span style="color: #339933;">;</span>
+<a name="line121"></a>        <span style="color: #000088;">$request</span> <span style="color: #339933;">=</span> <span style="color: #000000; font-weight: bold;">new</span> RESTRequest<span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'POST'</span><span style="color: #339933;">,</span> <span style="color: #0000ff;">'rest-apis'</span><span style="color: #339933;">,</span> <span style="color: #000088;">$params</span><span style="color: #339933;">,</span> <span style="color: #000088;">$body</span><span style="color: #339933;">,</span> <span style="color: #000088;">$headers</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line122"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">logger</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">debug</span><span style="color: #009900;">&#40;</span>
+<a name="line123"></a>            <span style="color: #0000ff;">&quot;Setting up REST API: &quot;</span> <span style="color: #339933;">.</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">name</span> <span style="color: #339933;">.</span>
+<a name="line124"></a>            <span style="color: #0000ff;">' ('</span> <span style="color: #339933;">.</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">db</span> <span style="color: #339933;">.</span> <span style="color: #0000ff;">') port '</span> <span style="color: #339933;">.</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">port</span>
+<a name="line125"></a>        <span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line126"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">client</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">send</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$request</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span> <span style="color: #666666; font-style: italic;">// Set up REST API</span>
+<a name="line127"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">;</span>
+<a name="line128"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line129"></a>&nbsp;
+<a name="line130"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line131"></a>     * Set a REST API property.
+<a name="line132"></a>     * Must execute create() before setting a property.
+<a name="line133"></a>     *
+<a name="line134"></a>     * @param string key The property key.
+<a name="line135"></a>     * @param string json The property value.
+<a name="line136"></a>     */</span>
+<a name="line137"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> setProperty<span style="color: #009900;">&#40;</span><span style="color: #000088;">$key</span><span style="color: #339933;">,</span> <span style="color: #000088;">$value</span><span style="color: #009900;">&#41;</span>
+<a name="line138"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line139"></a>        <span style="color: #000088;">$arr</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/array"><span style="color: #990000;">array</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$key</span> <span style="color: #339933;">=&gt;</span> <span style="color: #000088;">$value</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line140"></a>        <span style="color: #000088;">$params</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/array"><span style="color: #990000;">array</span></a><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'format'</span> <span style="color: #339933;">=&gt;</span> <span style="color: #0000ff;">'json'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line141"></a>        <span style="color: #000088;">$request</span> <span style="color: #339933;">=</span> <span style="color: #000000; font-weight: bold;">new</span> RESTRequest<span style="color: #009900;">&#40;</span>
+<a name="line142"></a>          <span style="color: #0000ff;">'PUT'</span><span style="color: #339933;">,</span> <span style="color: #0000ff;">'config/properties/'</span> <span style="color: #339933;">.</span> <span style="color: #000088;">$key</span><span style="color: #339933;">,</span>
+<a name="line143"></a>          <span style="color: #000088;">$params</span><span style="color: #339933;">,</span> <a href="http://www.php.net/json_encode"><span style="color: #990000;">json_encode</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$arr</span><span style="color: #009900;">&#41;</span>
+<a name="line144"></a>        <span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line145"></a>        try <span style="color: #009900;">&#123;</span>
+<a name="line146"></a>            <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">response</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">apiClient</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">send</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$request</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line147"></a>            <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">;</span>
+<a name="line148"></a>        <span style="color: #009900;">&#125;</span> catch<span style="color: #009900;">&#40;</span>Exception <span style="color: #000088;">$e</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+<a name="line149"></a>            <span style="color: #b1b100;">echo</span> <span style="color: #000088;">$e</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getMessage</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span> <span style="color: #339933;">.</span> <span style="color: #0000ff;">' in '</span> <span style="color: #339933;">.</span> <span style="color: #000088;">$e</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getFile</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span> <span style="color: #339933;">.</span> <span style="color: #0000ff;">' on line '</span> <span style="color: #339933;">.</span> <span style="color: #000088;">$e</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getLine</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span> <span style="color: #339933;">.</span> PHP_EOL<span style="color: #339933;">;</span>
+<a name="line150"></a>        <span style="color: #009900;">&#125;</span>
+<a name="line151"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line152"></a>&nbsp;
+<a name="line153"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line154"></a>     * Get a REST API property.
+<a name="line155"></a>     * Must execute create() before getting a property.
+<a name="line156"></a>     *
+<a name="line157"></a>     * @param string key The property key.
+<a name="line158"></a>     */</span>
+<a name="line159"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getProperty<span style="color: #009900;">&#40;</span><span style="color: #000088;">$key</span><span style="color: #009900;">&#41;</span>
+<a name="line160"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line161"></a>        <span style="color: #000088;">$params</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/array"><span style="color: #990000;">array</span></a><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'format'</span> <span style="color: #339933;">=&gt;</span> <span style="color: #0000ff;">'json'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line162"></a>        <span style="color: #000088;">$request</span> <span style="color: #339933;">=</span> <span style="color: #000000; font-weight: bold;">new</span> RESTRequest<span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'GET'</span><span style="color: #339933;">,</span> <span style="color: #0000ff;">'config/properties/'</span> <span style="color: #339933;">.</span> <span style="color: #000088;">$key</span><span style="color: #339933;">,</span> <span style="color: #000088;">$params</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line163"></a>        try <span style="color: #009900;">&#123;</span>
+<a name="line164"></a>            <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">response</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">apiClient</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">send</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$request</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line165"></a>            <span style="color: #000088;">$property</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/json_decode"><span style="color: #990000;">json_decode</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">response</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getBody</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line166"></a>            <span style="color: #b1b100;">return</span> <span style="color: #000088;">$property</span><span style="color: #339933;">-&gt;</span><span style="color: #009900;">&#123;</span><span style="color: #000088;">$key</span><span style="color: #009900;">&#125;</span><span style="color: #339933;">;</span>
+<a name="line167"></a>        <span style="color: #009900;">&#125;</span> catch<span style="color: #009900;">&#40;</span>Exception <span style="color: #000088;">$e</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+<a name="line168"></a>            <span style="color: #b1b100;">echo</span> <span style="color: #000088;">$e</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getMessage</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span> <span style="color: #339933;">.</span> <span style="color: #0000ff;">' in '</span> <span style="color: #339933;">.</span> <span style="color: #000088;">$e</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getFile</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span> <span style="color: #339933;">.</span> <span style="color: #0000ff;">' on line '</span> <span style="color: #339933;">.</span> <span style="color: #000088;">$e</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getLine</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span> <span style="color: #339933;">.</span> PHP_EOL<span style="color: #339933;">;</span>
+<a name="line169"></a>        <span style="color: #009900;">&#125;</span>
+<a name="line170"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line171"></a>&nbsp;
+<a name="line172"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line173"></a>     * Delete a REST API.
+<a name="line174"></a>     *
+<a name="line175"></a>     * @param boolean module Optional custom REST client object.
+<a name="line176"></a>     */</span>
+<a name="line177"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> delete<span style="color: #009900;">&#40;</span><span style="color: #000088;">$client</span> <span style="color: #339933;">=</span> <span style="color: #009900; font-weight: bold;">null</span><span style="color: #009900;">&#41;</span>
+<a name="line178"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line179"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">client</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$client</span> ?<span style="color: #339933;">:</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">client</span><span style="color: #339933;">;</span>
+<a name="line180"></a>        <span style="color: #666666; font-style: italic;">// Delete content and modules as well</span>
+<a name="line181"></a>        <span style="color: #000088;">$params</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/array"><span style="color: #990000;">array</span></a><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'include'</span> <span style="color: #339933;">=&gt;</span> <a href="http://www.php.net/array"><span style="color: #990000;">array</span></a><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'content'</span><span style="color: #339933;">,</span> <span style="color: #0000ff;">'modules'</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line182"></a>        <span style="color: #000088;">$body</span> <span style="color: #339933;">=</span> <span style="color: #009900; font-weight: bold;">null</span><span style="color: #339933;">;</span>
+<a name="line183"></a>        <span style="color: #000088;">$headers</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/array"><span style="color: #990000;">array</span></a><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line184"></a>        <span style="color: #000088;">$request</span> <span style="color: #339933;">=</span> <span style="color: #000000; font-weight: bold;">new</span> RESTRequest<span style="color: #009900;">&#40;</span>
+<a name="line185"></a>            <span style="color: #0000ff;">'DELETE'</span><span style="color: #339933;">,</span> <span style="color: #0000ff;">'rest-apis/'</span> <span style="color: #339933;">.</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">name</span><span style="color: #339933;">,</span> <span style="color: #000088;">$params</span><span style="color: #339933;">,</span> <span style="color: #000088;">$body</span><span style="color: #339933;">,</span> <span style="color: #000088;">$headers</span>
+<a name="line186"></a>        <span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line187"></a>&nbsp;
+<a name="line188"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">client</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">send</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$request</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line189"></a>&nbsp;
+<a name="line190"></a>        <span style="color: #666666; font-style: italic;">// Wait for server reboot</span>
+<a name="line191"></a>        <span style="color: #000088;">$requestWait</span> <span style="color: #339933;">=</span> <span style="color: #000000; font-weight: bold;">new</span> RESTRequest<span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'GET'</span><span style="color: #339933;">,</span> <span style="color: #0000ff;">'rest-apis'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line192"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">waitUntilSuccess</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$requestWait</span><span style="color: #339933;">,</span> <span style="color: #cc66cc;">3</span><span style="color: #339933;">,</span> <span style="color: #cc66cc;">10</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line193"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line194"></a>&nbsp;
+<a name="line195"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line196"></a>     * Sleep until a request is successful.
+<a name="line197"></a>     *
+<a name="line198"></a>     * @param RESTRequest $request The request to send.
+<a name="line199"></a>     * @param int $time Time in secs to wait between requests.
+<a name="line200"></a>     * @param int $limit Cycles to complete before timing out.
+<a name="line201"></a>     */</span>
+<a name="line202"></a>    <span style="color: #000000; font-weight: bold;">protected</span> <span style="color: #000000; font-weight: bold;">function</span> waitUntilSuccess<span style="color: #009900;">&#40;</span><span style="color: #000088;">$request</span><span style="color: #339933;">,</span> <span style="color: #000088;">$secs</span><span style="color: #339933;">,</span> <span style="color: #000088;">$limit</span><span style="color: #009900;">&#41;</span>
+<a name="line203"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line204"></a>        <a href="http://www.php.net/sleep"><span style="color: #990000;">sleep</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$secs</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line205"></a>        <span style="color: #000088;">$limit</span><span style="color: #339933;">--;</span>
+<a name="line206"></a>        try <span style="color: #009900;">&#123;</span>
+<a name="line207"></a>            <span style="color: #000088;">$response</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">client</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">send</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$request</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line208"></a>        <span style="color: #009900;">&#125;</span> catch<span style="color: #009900;">&#40;</span>\Exception <span style="color: #000088;">$e</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+<a name="line209"></a>            <span style="color: #b1b100;">if</span> <span style="color: #009900;">&#40;</span><span style="color: #000088;">$limit</span> <span style="color: #339933;">&gt;</span> <span style="color: #cc66cc;">0</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+<a name="line210"></a>                <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">waitUntilSuccess</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$request</span><span style="color: #339933;">,</span> <span style="color: #000088;">$secs</span><span style="color: #339933;">,</span> <span style="color: #000088;">$limit</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line211"></a>            <span style="color: #009900;">&#125;</span> <span style="color: #b1b100;">else</span> <span style="color: #009900;">&#123;</span>
+<a name="line212"></a>                <span style="color: #b1b100;">throw</span> <span style="color: #000000; font-weight: bold;">new</span> Exception<span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'waitUntilSuccess() timed out'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line213"></a>            <span style="color: #009900;">&#125;</span>
+<a name="line214"></a>        <span style="color: #009900;">&#125;</span>
+<a name="line215"></a>        <span style="color: #b1b100;">return</span><span style="color: #339933;">;</span>
+<a name="line216"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line217"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line218"></a>     * Check if a REST API with the same name exists on the server.
+<a name="line219"></a>     *
+<a name="line220"></a>     * @param string name Name of the REST API to check.
+<a name="line221"></a>     * @return boolean true|false
+<a name="line222"></a>     */</span>
+<a name="line223"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> exists<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
+<a name="line224"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line225"></a>        try <span style="color: #009900;">&#123;</span>
+<a name="line226"></a>            <span style="color: #000088;">$params</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/array"><span style="color: #990000;">array</span></a><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line227"></a>            <span style="color: #000088;">$body</span> <span style="color: #339933;">=</span> <span style="color: #009900; font-weight: bold;">null</span><span style="color: #339933;">;</span>
+<a name="line228"></a>            <span style="color: #000088;">$headers</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/array"><span style="color: #990000;">array</span></a><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line229"></a>            <span style="color: #000088;">$request</span> <span style="color: #339933;">=</span> <span style="color: #000000; font-weight: bold;">new</span> RESTRequest<span style="color: #009900;">&#40;</span>
+<a name="line230"></a>                <span style="color: #0000ff;">'GET'</span><span style="color: #339933;">,</span> <span style="color: #0000ff;">'rest-apis/'</span> <span style="color: #339933;">.</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">name</span><span style="color: #339933;">,</span> <span style="color: #000088;">$params</span><span style="color: #339933;">,</span> <span style="color: #000088;">$body</span><span style="color: #339933;">,</span> <span style="color: #000088;">$headers</span>
+<a name="line231"></a>            <span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line232"></a>            <span style="color: #000088;">$response</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">client</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">send</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$request</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line233"></a>        <span style="color: #009900;">&#125;</span> catch<span style="color: #009900;">&#40;</span>\Exception <span style="color: #000088;">$e</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+<a name="line234"></a>            <span style="color: #b1b100;">return</span> <span style="color: #009900; font-weight: bold;">false</span><span style="color: #339933;">;</span>
+<a name="line235"></a>        <span style="color: #009900;">&#125;</span>
+<a name="line236"></a>        <span style="color: #b1b100;">return</span> <span style="color: #009900; font-weight: bold;">true</span><span style="color: #339933;">;</span>
+<a name="line237"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line238"></a>&nbsp;
+<a name="line239"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line240"></a>     * Get the last REST response received. Useful for testing.
+<a name="line241"></a>     *
+<a name="line242"></a>     * @return RESTRresponse A REST response object.
+<a name="line243"></a>     */</span>
+<a name="line244"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getResponse<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
+<a name="line245"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line246"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">response</span><span style="color: #339933;">;</span>
+<a name="line247"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line248"></a>&nbsp;
+<a name="line249"></a><span style="color: #009900;">&#125;</span>
+<a name="line250"></a>&nbsp;</pre>
 <div class="header">
-<h1><a href=../../examples/index.php target=_top>MLPHP</a></h1>
+<h1>MLPHP</h1>
 <ul>
 <li><a href="../../../overview-summary.html">Overview</a></li>
 <li>Package</li><li>Class</li><li>Tree</li><li><a href="../../../overview-files.html">Files</a></li>
@@ -236,7 +303,7 @@
 </div>
 <hr>
 
-<p id="footer">Copyright 2002-2013 MarkLogic Corporation.  All Rights Reserved.</p>
+<p id="footer">Copyright 2002-2015 MarkLogic Corporation.  All Rights Reserved.</p>
 
 </body>
 

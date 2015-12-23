@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="generator" content="PHPDoctor 2.0.5 (http://peej.github.com/phpdoctor/)">
-<meta name="when" content="Mon, 09 Feb 2015 02:37:42 +0000">
+<meta name="when" content="Wed, 23 Dec 2015 22:23:57 +0000">
 
 <link rel="stylesheet" type="text/css" href="../../../stylesheet.css">
 <link rel="start" href="../../../overview-summary.html">
@@ -17,7 +17,7 @@
 <body id="file" onload="parent.document.title=document.title;">
 
 <div class="header">
-<h1><a href=../../examples/index.php target=_top>MLPHP</a></h1>
+<h1>MLPHP</h1>
 <ul>
 <li><a href="../../../overview-summary.html">Overview</a></li>
 <li>Package</li><li>Class</li><li>Tree</li><li><a href="../../../overview-files.html">Files</a></li>
@@ -67,12 +67,12 @@
 <a name="line29"></a>    <span style="color: #009933; font-style: italic;">/**
 <a name="line30"></a>     * Create an XML document object.
 <a name="line31"></a>     *
-<a name="line32"></a>     * @param RESTClient $restClient A REST client object.
+<a name="line32"></a>     * @param RESTClient $client A REST client object.
 <a name="line33"></a>     * @param string $uri A document URI.
 <a name="line34"></a>     */</span>
-<a name="line35"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> __construct<span style="color: #009900;">&#40;</span><span style="color: #000088;">$restClient</span><span style="color: #339933;">,</span> <span style="color: #000088;">$uri</span> <span style="color: #339933;">=</span> <span style="color: #009900; font-weight: bold;">null</span><span style="color: #009900;">&#41;</span>
+<a name="line35"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> __construct<span style="color: #009900;">&#40;</span><span style="color: #000088;">$client</span><span style="color: #339933;">,</span> <span style="color: #000088;">$uri</span> <span style="color: #339933;">=</span> <span style="color: #009900; font-weight: bold;">null</span><span style="color: #009900;">&#41;</span>
 <a name="line36"></a>    <span style="color: #009900;">&#123;</span>
-<a name="line37"></a>        parent<span style="color: #339933;">::</span>__construct<span style="color: #009900;">&#40;</span><span style="color: #000088;">$restClient</span><span style="color: #339933;">,</span> <span style="color: #000088;">$uri</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line37"></a>        parent<span style="color: #339933;">::</span>__construct<span style="color: #009900;">&#40;</span><span style="color: #000088;">$client</span><span style="color: #339933;">,</span> <span style="color: #000088;">$uri</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
 <a name="line38"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">dom</span> <span style="color: #339933;">=</span> <span style="color: #000000; font-weight: bold;">new</span> \DOMDocument<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
 <a name="line39"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">contentType</span> <span style="color: #339933;">=</span> <span style="color: #0000ff;">'application/xml'</span><span style="color: #339933;">;</span>
 <a name="line40"></a>    <span style="color: #009900;">&#125;</span>
@@ -138,7 +138,7 @@
 <a name="line100"></a><span style="color: #009900;">&#125;</span>
 <a name="line101"></a>&nbsp;</pre>
 <div class="header">
-<h1><a href=../../examples/index.php target=_top>MLPHP</a></h1>
+<h1>MLPHP</h1>
 <ul>
 <li><a href="../../../overview-summary.html">Overview</a></li>
 <li>Package</li><li>Class</li><li>Tree</li><li><a href="../../../overview-files.html">Files</a></li>
@@ -154,7 +154,7 @@
 </div>
 <hr>
 
-<p id="footer">Copyright 2002-2013 MarkLogic Corporation.  All Rights Reserved.</p>
+<p id="footer">Copyright 2002-2015 MarkLogic Corporation.  All Rights Reserved.</p>
 
 </body>
 
