@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="generator" content="PHPDoctor 2.0.5 (http://peej.github.com/phpdoctor/)">
-<meta name="when" content="Mon, 29 Jul 2013 22:11:29 +0000">
+<meta name="when" content="Mon, 04 Jan 2016 01:29:27 +0000">
 
 <link rel="stylesheet" type="text/css" href="../stylesheet.css">
 <link rel="start" href="../overview-summary.html">
@@ -68,7 +68,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 <tr><th colspan="2">Constructor Summary</th></tr>
 <tr>
 <td class="type"> void</td>
-<td class="description"><p class="name"><a href="#__construct()">__construct</a>(<a href="../mlphp/restclient.html">RESTClient</a> restClient, string uri)</p><p class="description">Create a Document object.</p></td>
+<td class="description"><p class="name"><a href="#__construct()">__construct</a>(<a href="../mlphp/restclient.html">RESTClient</a> client, string uri)</p><p class="description">Create a Document object.</p></td>
 </tr>
 </table>
 
@@ -132,27 +132,31 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 </tr>
 <tr>
 <td class="type"> <a href="../mlphp/document.html">Document</a></td>
-<td class="description"><p class="name"><a href="#setConnection()">setConnection</a>(<a href="../mlphp/restclient.html">RESTClient</a> restClient)</p><p class="description">Set the REST client for the document.</p></td>
+<td class="description"><p class="name"><a href="#setConnection()">setConnection</a>(<a href="../mlphp/restclient.html">RESTClient</a> client)</p><p class="description">Set the REST client for the document.</p></td>
 </tr>
 <tr>
 <td class="type"> <a href="../mlphp/restclient.html">RESTClient</a></td>
 <td class="description"><p class="name"><a href="#getConnection()">getConnection</a>()</p><p class="description">Get the REST client for the document.</p></td>
 </tr>
 <tr>
-<td class="type">protected  string</td>
+<td class="type"> string</td>
 <td class="description"><p class="name"><a href="#getFileMimeType()">getFileMimeType</a>(string file)</p><p class="description">Get the mimetype of a file.</p></td>
+</tr>
+<tr>
+<td class="type"> RESTRresponse</td>
+<td class="description"><p class="name"><a href="#getResponse()">getResponse</a>()</p><p class="description">Get the last REST response received. </p></td>
 </tr>
 </table>
 
 <h2 id="detail_method">Constructor Detail</h2>
-<a href="../source/marklogic/mlphp/document.php.html#line39" class="location">MarkLogic/MLPHP/Document.php at line 39</a>
+<a href="../source/marklogic/mlphp/document.php.html#line40" class="location">MarkLogic/MLPHP/Document.php at line 40</a>
 
 <h3 id="__construct()">__construct</h3>
-<code class="signature">public  void <strong>__construct</strong>(<a href="../mlphp/restclient.html">RESTClient</a> restClient, string uri)</code>
+<code class="signature">public  void <strong>__construct</strong>(<a href="../mlphp/restclient.html">RESTClient</a> client, string uri)</code>
 <div class="details">
 <p>Create a Document object.</p><dl>
 <dt>Parameters:</dt>
-<dd>restClient - A REST client object.</dd>
+<dd>client - A REST client object.</dd>
 <dd>uri - A document URI.</dd>
 </dl>
 </div>
@@ -160,7 +164,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 <hr>
 
 <h2 id="detail_method">Method Detail</h2>
-<a href="../source/marklogic/mlphp/document.php.html#line55" class="location">MarkLogic/MLPHP/Document.php at line 55</a>
+<a href="../source/marklogic/mlphp/document.php.html#line56" class="location">MarkLogic/MLPHP/Document.php at line 56</a>
 
 <h3 id="read()">read</h3>
 <code class="signature">public  string|bool <strong>read</strong>(string uri, array params)</code>
@@ -178,14 +182,12 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/document.php.html#line81" class="location">MarkLogic/MLPHP/Document.php at line 81</a>
+<a href="../source/marklogic/mlphp/document.php.html#line80" class="location">MarkLogic/MLPHP/Document.php at line 80</a>
 
 <h3 id="write()">write</h3>
 <code class="signature">public  <a href="../mlphp/document.html">Document</a> <strong>write</strong>(string uri, array params)</code>
 <div class="details">
 <p>Write a document to the database.</p><dl>
-<dt>Todo:</dt>
-<dd>Allow passing multiple params of same key (e.g., collections).</dd>
 <dt>Parameters:</dt>
 <dd>uri - A document URI.</dd>
 <dd>params - Optional additional parameters to pass when writing.</dd>
@@ -367,11 +369,11 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 <a href="../source/marklogic/mlphp/document.php.html#line273" class="location">MarkLogic/MLPHP/Document.php at line 273</a>
 
 <h3 id="setConnection()">setConnection</h3>
-<code class="signature">public  <a href="../mlphp/document.html">Document</a> <strong>setConnection</strong>(<a href="../mlphp/restclient.html">RESTClient</a> restClient)</code>
+<code class="signature">public  <a href="../mlphp/document.html">Document</a> <strong>setConnection</strong>(<a href="../mlphp/restclient.html">RESTClient</a> client)</code>
 <div class="details">
 <p>Set the REST client for the document.</p><dl>
 <dt>Parameters:</dt>
-<dd>restClient - A REST client object.</dd>
+<dd>client - A REST client object.</dd>
 <dt>Returns:</dt>
 <dd>$this</dd>
 </dl>
@@ -395,13 +397,26 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 <a href="../source/marklogic/mlphp/document.php.html#line295" class="location">MarkLogic/MLPHP/Document.php at line 295</a>
 
 <h3 id="getFileMimeType()">getFileMimeType</h3>
-<code class="signature">protected  string <strong>getFileMimeType</strong>(string file)</code>
+<code class="signature">public  string <strong>getFileMimeType</strong>(string file)</code>
 <div class="details">
 <p>Get the mimetype of a file.</p><dl>
 <dt>Parameters:</dt>
 <dd>file - The file.</dd>
 <dt>Returns:</dt>
 <dd>The the mimetype of the file.</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../source/marklogic/mlphp/document.php.html#line314" class="location">MarkLogic/MLPHP/Document.php at line 314</a>
+
+<h3 id="getResponse()">getResponse</h3>
+<code class="signature">public  RESTRresponse <strong>getResponse</strong>()</code>
+<div class="details">
+<p>Get the last REST response received. Useful for testing.</p><dl>
+<dt>Returns:</dt>
+<dd>A REST response object.</dd>
 </dl>
 </div>
 

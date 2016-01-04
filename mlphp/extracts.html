@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="generator" content="PHPDoctor 2.0.5 (http://peej.github.com/phpdoctor/)">
-<meta name="when" content="Mon, 29 Jul 2013 22:11:29 +0000">
+<meta name="when" content="Mon, 04 Jan 2016 01:29:27 +0000">
 
 <link rel="stylesheet" type="text/css" href="../stylesheet.css">
 <link rel="start" href="../overview-summary.html">
@@ -41,7 +41,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 <hr>
 
 <div class="qualifiedName">MLPHP\Extracts</div>
-<a href="../source/marklogic/mlphp/extracts.php.html#line25" class="location">MarkLogic/MLPHP/Extracts.php at line 25</a>
+<a href="../source/marklogic/mlphp/extracts.php.html#line29" class="location">MarkLogic/MLPHP/Extracts.php at line 29</a>
 
 <h1>Class Extracts</h1>
 
@@ -56,6 +56,10 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 <dl>
 <dt>Author:</dt>
 <dd>Mike Wooldridge <mike.wooldridge@marklogic.com></dd>
+<dt>Todo:</dt>
+<dd>Replace deprecated extract-metadata functionality with extract-document-data</dd>
+<dt>See Also:</dt>
+<dd><a href="http://docs.marklogic.com/guide/rest-dev/appendixb#id_94425">http://docs.marklogic.com/guide/rest-dev/appendixb#id_94425</a></dd>
 </dl>
 <hr>
 
@@ -84,7 +88,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 </table>
 
 <h2 id="detail_method">Constructor Detail</h2>
-<a href="../source/marklogic/mlphp/extracts.php.html#line35" class="location">MarkLogic/MLPHP/Extracts.php at line 35</a>
+<a href="../source/marklogic/mlphp/extracts.php.html#line39" class="location">MarkLogic/MLPHP/Extracts.php at line 39</a>
 
 <h3 id="__construct()">__construct</h3>
 <code class="signature">public  void <strong>__construct</strong>()</code>
@@ -98,7 +102,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 <hr>
 
 <h2 id="detail_method">Method Detail</h2>
-<a href="../source/marklogic/mlphp/extracts.php.html#line45" class="location">MarkLogic/MLPHP/Extracts.php at line 45</a>
+<a href="../source/marklogic/mlphp/extracts.php.html#line49" class="location">MarkLogic/MLPHP/Extracts.php at line 49</a>
 
 <h3 id="addConstraints()">addConstraints</h3>
 <code class="signature">public  void <strong>addConstraints</strong>(array|string constraints)</code>
@@ -111,12 +115,16 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/extracts.php.html#line61" class="location">MarkLogic/MLPHP/Extracts.php at line 61</a>
+<a href="../source/marklogic/mlphp/extracts.php.html#line67" class="location">MarkLogic/MLPHP/Extracts.php at line 67</a>
 
 <h3 id="addQName()">addQName</h3>
 <code class="signature">public  void <strong>addQName</strong>(string element, string ns, string attribute, string attributeNs)</code>
 <div class="details">
 <p>Add QName metadata.</p><dl>
+<dt>Todo:</dt>
+<dd>Defining extract as QName not working</dd>
+<dt>See Also:</dt>
+<dd><a href="https://github.com/marklogic/mlphp/issues/6">https://github.com/marklogic/mlphp/issues/6</a></dd>
 <dt>Parameters:</dt>
 <dd>element - An element name.</dd>
 <dd>ns - An element namespace.</dd>
@@ -127,7 +135,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/extracts.php.html#line71" class="location">MarkLogic/MLPHP/Extracts.php at line 71</a>
+<a href="../source/marklogic/mlphp/extracts.php.html#line77" class="location">MarkLogic/MLPHP/Extracts.php at line 77</a>
 
 <h3 id="getExtractsAsElem()">getExtractsAsElem</h3>
 <code class="signature">public  void <strong>getExtractsAsElem</strong>(DOMDocument dom)</code>

@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="generator" content="PHPDoctor 2.0.5 (http://peej.github.com/phpdoctor/)">
-<meta name="when" content="Mon, 29 Jul 2013 22:11:29 +0000">
+<meta name="when" content="Mon, 04 Jan 2016 01:29:27 +0000">
 
 <link rel="stylesheet" type="text/css" href="../stylesheet.css">
 <link rel="start" href="../overview-summary.html">
@@ -94,6 +94,10 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 <td class="description"><p class="name"><a href="#getRedirectUrl()">getRedirectUrl</a>()</p><p class="description">Get the redirect URL.</p></td>
 </tr>
 <tr>
+<td class="type"> string</td>
+<td class="description"><p class="name"><a href="#getBodyType()">getBodyType</a>()</p><p class="description">Get the format type of the body.</p></td>
+</tr>
+<tr>
 <td class="type"> array</td>
 <td class="description"><p class="name"><a href="#getErrorMessage()">getErrorMessage</a>()</p><p class="description">Get error message from REST response body.</p></td>
 </tr>
@@ -107,7 +111,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 <div class="details">
 <p>Set the response body.</p><dl>
 <dt>Parameters:</dt>
-<dd>result - The REST result.</dd>
+<dd>result - The REST result from a cURL call: curl_exec($ch)</dd>
 </dl>
 </div>
 
@@ -133,7 +137,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 <div class="details">
 <p>Set the response information.</p><dl>
 <dt>Parameters:</dt>
-<dd>result - The REST information.</dd>
+<dd>result - The REST information from a cURL call: curl_getinfo($ch);</dd>
 </dl>
 </div>
 
@@ -206,12 +210,29 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/restresponse.php.html#line118" class="location">MarkLogic/MLPHP/RESTResponse.php at line 118</a>
+<a href="../source/marklogic/mlphp/restresponse.php.html#line119" class="location">MarkLogic/MLPHP/RESTResponse.php at line 119</a>
+
+<h3 id="getBodyType()">getBodyType</h3>
+<code class="signature">public  string <strong>getBodyType</strong>()</code>
+<div class="details">
+<p>Get the format type of the body.</p><dl>
+<dt>Returns:</dt>
+<dd>The type: 'json', 'xml', or 'other' (for non-JSON, non-XML text)</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../source/marklogic/mlphp/restresponse.php.html#line140" class="location">MarkLogic/MLPHP/RESTResponse.php at line 140</a>
 
 <h3 id="getErrorMessage()">getErrorMessage</h3>
 <code class="signature">public  array <strong>getErrorMessage</strong>()</code>
 <div class="details">
 <p>Get error message from REST response body.</p><dl>
+<dt>See Also:</dt>
+<dd><a href="http://docs.marklogic.com/guide/rest-dev/service#id_61169">http://docs.marklogic.com/guide/rest-dev/service#id_61169</a></dd>
+<dt>Todo:</dt>
+<dd>error message formats seem unpredictable from server</dd>
 <dt>Returns:</dt>
 <dd>The message.</dd>
 </dl>

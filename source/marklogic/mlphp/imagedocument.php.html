@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="generator" content="PHPDoctor 2.0.5 (http://peej.github.com/phpdoctor/)">
-<meta name="when" content="Mon, 29 Jul 2013 22:11:30 +0000">
+<meta name="when" content="Mon, 04 Jan 2016 01:29:28 +0000">
 
 <link rel="stylesheet" type="text/css" href="../../../stylesheet.css">
 <link rel="start" href="../../../overview-summary.html">
@@ -67,12 +67,12 @@
 <a name="line29"></a>    <span style="color: #009933; font-style: italic;">/**
 <a name="line30"></a>     * Create an Image object.
 <a name="line31"></a>     *
-<a name="line32"></a>     * @param RESTClient $restClient A REST client object.
+<a name="line32"></a>     * @param RESTClient $client A REST client object.
 <a name="line33"></a>     * @param string $uri A document URI.
 <a name="line34"></a>     */</span>
-<a name="line35"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> __construct<span style="color: #009900;">&#40;</span><span style="color: #000088;">$restClient</span><span style="color: #339933;">,</span> <span style="color: #000088;">$uri</span> <span style="color: #339933;">=</span> <span style="color: #009900; font-weight: bold;">null</span><span style="color: #009900;">&#41;</span>
+<a name="line35"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> __construct<span style="color: #009900;">&#40;</span><span style="color: #000088;">$client</span><span style="color: #339933;">,</span> <span style="color: #000088;">$uri</span> <span style="color: #339933;">=</span> <span style="color: #009900; font-weight: bold;">null</span><span style="color: #009900;">&#41;</span>
 <a name="line36"></a>    <span style="color: #009900;">&#123;</span>
-<a name="line37"></a>        parent<span style="color: #339933;">::</span>__construct<span style="color: #009900;">&#40;</span><span style="color: #000088;">$restClient</span><span style="color: #339933;">,</span> <span style="color: #000088;">$uri</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line37"></a>        parent<span style="color: #339933;">::</span>__construct<span style="color: #009900;">&#40;</span><span style="color: #000088;">$client</span><span style="color: #339933;">,</span> <span style="color: #000088;">$uri</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
 <a name="line38"></a>    <span style="color: #009900;">&#125;</span>
 <a name="line39"></a>&nbsp;
 <a name="line40"></a>&nbsp;
@@ -86,22 +86,24 @@
 <a name="line48"></a>        <span style="color: #000088;">$type</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getFileMimeType</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$file</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
 <a name="line49"></a>        <span style="color: #666666; font-style: italic;">// Check for $type === '' to address MIME check not working on XAMPP Windows</span>
 <a name="line50"></a>        <span style="color: #b1b100;">if</span> <span style="color: #009900;">&#40;</span><span style="color: #000088;">$type</span> <span style="color: #339933;">===</span> <span style="color: #0000ff;">'image/jpeg'</span> <span style="color: #339933;">||</span> <span style="color: #000088;">$type</span> <span style="color: #339933;">===</span> <span style="color: #0000ff;">'image/tiff'</span> <span style="color: #339933;">||</span> <span style="color: #000088;">$type</span> <span style="color: #339933;">===</span> <span style="color: #0000ff;">''</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
-<a name="line51"></a>            <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">exif</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/exif_read_data"><span style="color: #990000;">exif_read_data</span></a><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#40;</span>string<span style="color: #009900;">&#41;</span><span style="color: #000088;">$file</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
-<a name="line52"></a>        <span style="color: #009900;">&#125;</span>
-<a name="line53"></a>        parent<span style="color: #339933;">::</span><span style="color: #004000;">setContentFile</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#40;</span>string<span style="color: #009900;">&#41;</span><span style="color: #000088;">$file</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
-<a name="line54"></a>    <span style="color: #009900;">&#125;</span>
-<a name="line55"></a>&nbsp;
-<a name="line56"></a>    <span style="color: #009933; font-style: italic;">/**
-<a name="line57"></a>     * Get the image EXIF metadata.
-<a name="line58"></a>     *
-<a name="line59"></a>     * @return array The EXIF data.
-<a name="line60"></a>     */</span>
-<a name="line61"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getExif<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
-<a name="line62"></a>    <span style="color: #009900;">&#123;</span>
-<a name="line63"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">exif</span><span style="color: #339933;">;</span>
-<a name="line64"></a>    <span style="color: #009900;">&#125;</span>
-<a name="line65"></a><span style="color: #009900;">&#125;</span>
-<a name="line66"></a>&nbsp;</pre>
+<a name="line51"></a>            <span style="color: #b1b100;">if</span> <span style="color: #009900;">&#40;</span><a href="http://www.php.net/function_exists"><span style="color: #990000;">function_exists</span></a><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'exif_read_data'</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+<a name="line52"></a>                <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">exif</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/exif_read_data"><span style="color: #990000;">exif_read_data</span></a><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#40;</span>string<span style="color: #009900;">&#41;</span><span style="color: #000088;">$file</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line53"></a>            <span style="color: #009900;">&#125;</span>
+<a name="line54"></a>        <span style="color: #009900;">&#125;</span>
+<a name="line55"></a>        parent<span style="color: #339933;">::</span><span style="color: #004000;">setContentFile</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#40;</span>string<span style="color: #009900;">&#41;</span><span style="color: #000088;">$file</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line56"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line57"></a>&nbsp;
+<a name="line58"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line59"></a>     * Get the image EXIF metadata.
+<a name="line60"></a>     *
+<a name="line61"></a>     * @return array The EXIF data.
+<a name="line62"></a>     */</span>
+<a name="line63"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getExif<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
+<a name="line64"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line65"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">exif</span><span style="color: #339933;">;</span>
+<a name="line66"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line67"></a><span style="color: #009900;">&#125;</span>
+<a name="line68"></a>&nbsp;</pre>
 <div class="header">
 <h1><a href=https://github.com/marklogic/mlphp target=_top>MLPHP</a></h1>
 <ul>

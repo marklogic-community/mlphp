@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="generator" content="PHPDoctor 2.0.5 (http://peej.github.com/phpdoctor/)">
-<meta name="when" content="Mon, 29 Jul 2013 22:11:29 +0000">
+<meta name="when" content="Mon, 04 Jan 2016 01:29:27 +0000">
 
 <link rel="stylesheet" type="text/css" href="../stylesheet.css">
 <link rel="start" href="../overview-summary.html">
@@ -63,7 +63,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 <tr><th colspan="2">Constructor Summary</th></tr>
 <tr>
 <td class="type"> void</td>
-<td class="description"><p class="name"><a href="#__construct()">__construct</a>(mixed verb, mixed resource, mixed params)</p></td>
+<td class="description"><p class="name"><a href="#__construct()">__construct</a>(string verb, string resource, array params, string body, array headers)</p><p class="description">Create a REST request object.</p></td>
 </tr>
 </table>
 
@@ -79,7 +79,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 </tr>
 <tr>
 <td class="type"> void</td>
-<td class="description"><p class="name"><a href="#setResource()">setResource</a>(string resource, mixed verb)</p><p class="description">Set the REST resource.</p></td>
+<td class="description"><p class="name"><a href="#setResource()">setResource</a>(string resource)</p><p class="description">Set the REST resource.</p></td>
 </tr>
 <tr>
 <td class="type"> string</td>
@@ -115,22 +115,34 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 </tr>
 <tr>
 <td class="type"> string</td>
+<td class="description"><p class="name"><a href="#buildQuery()">buildQuery</a>()</p><p class="description">Build query from resource and params. </p></td>
+</tr>
+<tr>
+<td class="type"> string</td>
 <td class="description"><p class="name"><a href="#getUrlStr()">getUrlStr</a>()</p><p class="description">Get the resource and params as a URL string.</p></td>
 </tr>
 </table>
 
 <h2 id="detail_method">Constructor Detail</h2>
-<a href="../source/marklogic/mlphp/restrequest.php.html#line41" class="location">MarkLogic/MLPHP/RESTRequest.php at line 41</a>
+<a href="../source/marklogic/mlphp/restrequest.php.html#line42" class="location">MarkLogic/MLPHP/RESTRequest.php at line 42</a>
 
 <h3 id="__construct()">__construct</h3>
-<code class="signature">public  void <strong>__construct</strong>(mixed verb, mixed resource, mixed params)</code>
+<code class="signature">public  void <strong>__construct</strong>(string verb, string resource, array params, string body, array headers)</code>
 <div class="details">
+<p>Create a REST request object.</p><dl>
+<dt>Parameters:</dt>
+<dd>verb - The REST verb (example: 'GET').</dd>
+<dd>resource - The REST resource (example: 'documents').</dd>
+<dd>params - Array of parameters for the REST request.</dd>
+<dd>body - The REST request body;</dd>
+<dd>headers - Array of request headers;</dd>
+</dl>
 </div>
 
 <hr>
 
 <h2 id="detail_method">Method Detail</h2>
-<a href="../source/marklogic/mlphp/restrequest.php.html#line55" class="location">MarkLogic/MLPHP/RESTRequest.php at line 55</a>
+<a href="../source/marklogic/mlphp/restrequest.php.html#line56" class="location">MarkLogic/MLPHP/RESTRequest.php at line 56</a>
 
 <h3 id="setVerb()">setVerb</h3>
 <code class="signature">public  void <strong>setVerb</strong>(string verb)</code>
@@ -143,7 +155,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/restrequest.php.html#line65" class="location">MarkLogic/MLPHP/RESTRequest.php at line 65</a>
+<a href="../source/marklogic/mlphp/restrequest.php.html#line66" class="location">MarkLogic/MLPHP/RESTRequest.php at line 66</a>
 
 <h3 id="getVerb()">getVerb</h3>
 <code class="signature">public  string <strong>getVerb</strong>()</code>
@@ -156,10 +168,10 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/restrequest.php.html#line75" class="location">MarkLogic/MLPHP/RESTRequest.php at line 75</a>
+<a href="../source/marklogic/mlphp/restrequest.php.html#line76" class="location">MarkLogic/MLPHP/RESTRequest.php at line 76</a>
 
 <h3 id="setResource()">setResource</h3>
-<code class="signature">public  void <strong>setResource</strong>(string resource, mixed verb)</code>
+<code class="signature">public  void <strong>setResource</strong>(string resource)</code>
 <div class="details">
 <p>Set the REST resource.</p><dl>
 <dt>Parameters:</dt>
@@ -169,7 +181,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/restrequest.php.html#line85" class="location">MarkLogic/MLPHP/RESTRequest.php at line 85</a>
+<a href="../source/marklogic/mlphp/restrequest.php.html#line86" class="location">MarkLogic/MLPHP/RESTRequest.php at line 86</a>
 
 <h3 id="getResource()">getResource</h3>
 <code class="signature">public  string <strong>getResource</strong>()</code>
@@ -182,7 +194,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/restrequest.php.html#line95" class="location">MarkLogic/MLPHP/RESTRequest.php at line 95</a>
+<a href="../source/marklogic/mlphp/restrequest.php.html#line96" class="location">MarkLogic/MLPHP/RESTRequest.php at line 96</a>
 
 <h3 id="setParams()">setParams</h3>
 <code class="signature">public  void <strong>setParams</strong>(array params)</code>
@@ -195,7 +207,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/restrequest.php.html#line105" class="location">MarkLogic/MLPHP/RESTRequest.php at line 105</a>
+<a href="../source/marklogic/mlphp/restrequest.php.html#line106" class="location">MarkLogic/MLPHP/RESTRequest.php at line 106</a>
 
 <h3 id="getParams()">getParams</h3>
 <code class="signature">public  array <strong>getParams</strong>()</code>
@@ -208,7 +220,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/restrequest.php.html#line115" class="location">MarkLogic/MLPHP/RESTRequest.php at line 115</a>
+<a href="../source/marklogic/mlphp/restrequest.php.html#line116" class="location">MarkLogic/MLPHP/RESTRequest.php at line 116</a>
 
 <h3 id="setBody()">setBody</h3>
 <code class="signature">public  void <strong>setBody</strong>(string body)</code>
@@ -221,7 +233,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/restrequest.php.html#line125" class="location">MarkLogic/MLPHP/RESTRequest.php at line 125</a>
+<a href="../source/marklogic/mlphp/restrequest.php.html#line126" class="location">MarkLogic/MLPHP/RESTRequest.php at line 126</a>
 
 <h3 id="getBody()">getBody</h3>
 <code class="signature">public  string <strong>getBody</strong>()</code>
@@ -234,7 +246,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/restrequest.php.html#line135" class="location">MarkLogic/MLPHP/RESTRequest.php at line 135</a>
+<a href="../source/marklogic/mlphp/restrequest.php.html#line136" class="location">MarkLogic/MLPHP/RESTRequest.php at line 136</a>
 
 <h3 id="setHeaders()">setHeaders</h3>
 <code class="signature">public  void <strong>setHeaders</strong>(array headers)</code>
@@ -247,7 +259,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/restrequest.php.html#line145" class="location">MarkLogic/MLPHP/RESTRequest.php at line 145</a>
+<a href="../source/marklogic/mlphp/restrequest.php.html#line146" class="location">MarkLogic/MLPHP/RESTRequest.php at line 146</a>
 
 <h3 id="getHeaders()">getHeaders</h3>
 <code class="signature">public  array <strong>getHeaders</strong>()</code>
@@ -260,7 +272,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/restrequest.php.html#line153" class="location">MarkLogic/MLPHP/RESTRequest.php at line 153</a>
+<a href="../source/marklogic/mlphp/restrequest.php.html#line154" class="location">MarkLogic/MLPHP/RESTRequest.php at line 154</a>
 
 <h3 id="isWWWFormURLEncodedPost()">isWWWFormURLEncodedPost</h3>
 <code class="signature">public  true <strong>isWWWFormURLEncodedPost</strong>()</code>
@@ -273,14 +285,29 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/restrequest.php.html#line179" class="location">MarkLogic/MLPHP/RESTRequest.php at line 179</a>
+<a href="../source/marklogic/mlphp/restrequest.php.html#line183" class="location">MarkLogic/MLPHP/RESTRequest.php at line 183</a>
+
+<h3 id="buildQuery()">buildQuery</h3>
+<code class="signature">public  string <strong>buildQuery</strong>()</code>
+<div class="details">
+<p>Build query from resource and params. Accounts for the fact that some param
+keys may be associated with arrays, which will generate the same keys multiple
+times in the query, e.g.:
+params: array("foo"=>["bar", "baz"])
+query:  ?foo=bar&foo=baz</p><dl>
+<dt>Returns:</dt>
+<dd>The built query.</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../source/marklogic/mlphp/restrequest.php.html#line208" class="location">MarkLogic/MLPHP/RESTRequest.php at line 208</a>
 
 <h3 id="getUrlStr()">getUrlStr</h3>
 <code class="signature">public  string <strong>getUrlStr</strong>()</code>
 <div class="details">
 <p>Get the resource and params as a URL string.</p><dl>
-<dt>Todo:</dt>
-<dd>Allow for multiple params of same name (e.g., when filtering by collections or directories for search).</dd>
 <dt>Returns:</dt>
 <dd>The request body.</dd>
 </dl>

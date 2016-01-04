@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="generator" content="PHPDoctor 2.0.5 (http://peej.github.com/phpdoctor/)">
-<meta name="when" content="Mon, 29 Jul 2013 22:11:31 +0000">
+<meta name="when" content="Mon, 04 Jan 2016 01:29:29 +0000">
 
 <link rel="stylesheet" type="text/css" href="../../../stylesheet.css">
 <link rel="start" href="../../../overview-summary.html">
@@ -62,151 +62,187 @@
 <a name="line24"></a> */</span>
 <a name="line25"></a><span style="color: #000000; font-weight: bold;">class</span> SearchResult
 <a name="line26"></a><span style="color: #009900;">&#123;</span>
-<a name="line27"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$index</span><span style="color: #339933;">;</span> <span style="color: #666666; font-style: italic;">// @var int</span>
-<a name="line28"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$uri</span><span style="color: #339933;">;</span> <span style="color: #666666; font-style: italic;">// @var string</span>
-<a name="line29"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$path</span><span style="color: #339933;">;</span> <span style="color: #666666; font-style: italic;">// @var string</span>
-<a name="line30"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$score</span><span style="color: #339933;">;</span> <span style="color: #666666; font-style: italic;">// @var int</span>
-<a name="line31"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$confidence</span><span style="color: #339933;">;</span> <span style="color: #666666; font-style: italic;">// @var int</span>
-<a name="line32"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$fitness</span><span style="color: #339933;">;</span> <span style="color: #666666; font-style: italic;">// @var int</span>
-<a name="line33"></a>&nbsp;
-<a name="line34"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$matches</span><span style="color: #339933;">;</span> <span style="color: #666666; font-style: italic;">// @var array</span>
-<a name="line35"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$metadata</span><span style="color: #339933;">;</span> <span style="color: #666666; font-style: italic;">// @var array</span>
-<a name="line36"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$similar</span><span style="color: #339933;">;</span> <span style="color: #666666; font-style: italic;">// @var array</span>
-<a name="line37"></a>&nbsp;
-<a name="line38"></a>    <span style="color: #009933; font-style: italic;">/**
-<a name="line39"></a>     * Create a SearchResult object.
-<a name="line40"></a>     *
-<a name="line41"></a>     * @param DOMElement A result as a DOMElement object.
-<a name="line42"></a>     */</span>
-<a name="line43"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> __construct<span style="color: #009900;">&#40;</span><span style="color: #000088;">$result</span><span style="color: #009900;">&#41;</span>
-<a name="line44"></a>    <span style="color: #009900;">&#123;</span>
-<a name="line45"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">index</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$result</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getAttribute</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'index'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
-<a name="line46"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">uri</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$result</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getAttribute</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'uri'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
-<a name="line47"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">path</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$result</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getAttribute</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'path'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
-<a name="line48"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">score</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$result</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getAttribute</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'score'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
-<a name="line49"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">confidence</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$result</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getAttribute</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'confidence'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
-<a name="line50"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">fitness</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$result</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getAttribute</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'fitness'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
-<a name="line51"></a>        <span style="color: #000088;">$matches</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$result</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getElementsByTagName</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'match'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
-<a name="line52"></a>        <span style="color: #b1b100;">foreach</span> <span style="color: #009900;">&#40;</span><span style="color: #000088;">$matches</span> <span style="color: #b1b100;">as</span> <span style="color: #000088;">$m</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
-<a name="line53"></a>            <span style="color: #000088;">$match</span> <span style="color: #339933;">=</span> <span style="color: #000000; font-weight: bold;">new</span> Match<span style="color: #009900;">&#40;</span><span style="color: #000088;">$m</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
-<a name="line54"></a>            <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">matches</span><span style="color: #009900;">&#91;</span><span style="color: #009900;">&#93;</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$match</span><span style="color: #339933;">;</span>
-<a name="line55"></a>        <span style="color: #009900;">&#125;</span>
-<a name="line56"></a>        <span style="color: #000088;">$metadata</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$result</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getElementsByTagName</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'constraint-meta'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
-<a name="line57"></a>        <span style="color: #b1b100;">foreach</span> <span style="color: #009900;">&#40;</span><span style="color: #000088;">$metadata</span> <span style="color: #b1b100;">as</span> <span style="color: #000088;">$meta</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
-<a name="line58"></a>            <span style="color: #000088;">$key</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$meta</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getAttribute</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'name'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
-<a name="line59"></a>            <span style="color: #000088;">$val</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$meta</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">nodeValue</span><span style="color: #339933;">;</span>
-<a name="line60"></a>            <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">metadata</span><span style="color: #009900;">&#91;</span><span style="color: #000088;">$key</span><span style="color: #009900;">&#93;</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$val</span><span style="color: #339933;">;</span>
-<a name="line61"></a>        <span style="color: #009900;">&#125;</span>
-<a name="line62"></a>        <span style="color: #000088;">$similar</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$result</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getElementsByTagName</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'similar'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
-<a name="line63"></a>        <span style="color: #b1b100;">foreach</span> <span style="color: #009900;">&#40;</span><span style="color: #000088;">$similar</span> <span style="color: #b1b100;">as</span> <span style="color: #000088;">$sim</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
-<a name="line64"></a>            <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">similar</span><span style="color: #009900;">&#91;</span><span style="color: #009900;">&#93;</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$sim</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">nodeValue</span><span style="color: #339933;">;</span>
-<a name="line65"></a>        <span style="color: #009900;">&#125;</span>
-<a name="line66"></a>    <span style="color: #009900;">&#125;</span>
-<a name="line67"></a>&nbsp;
-<a name="line68"></a>    <span style="color: #009933; font-style: italic;">/**
-<a name="line69"></a>     * Get the result index.
-<a name="line70"></a>     *
-<a name="line71"></a>     * @return int The result index.
-<a name="line72"></a>     */</span>
-<a name="line73"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getIndex<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
-<a name="line74"></a>    <span style="color: #009900;">&#123;</span>
-<a name="line75"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">index</span><span style="color: #339933;">;</span>
-<a name="line76"></a>    <span style="color: #009900;">&#125;</span>
-<a name="line77"></a>&nbsp;
-<a name="line78"></a>    <span style="color: #009933; font-style: italic;">/**
-<a name="line79"></a>     * Get the result URI.
-<a name="line80"></a>     *
-<a name="line81"></a>     * @return string The result URI.
-<a name="line82"></a>     */</span>
-<a name="line83"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getURI<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
-<a name="line84"></a>    <span style="color: #009900;">&#123;</span>
-<a name="line85"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">uri</span><span style="color: #339933;">;</span>
-<a name="line86"></a>    <span style="color: #009900;">&#125;</span>
-<a name="line87"></a>&nbsp;
-<a name="line88"></a>    <span style="color: #009933; font-style: italic;">/**
-<a name="line89"></a>     * Get the result path.
-<a name="line90"></a>     *
-<a name="line91"></a>     * @return string The result path.
-<a name="line92"></a>     */</span>
-<a name="line93"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getPath<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
-<a name="line94"></a>    <span style="color: #009900;">&#123;</span>
-<a name="line95"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">path</span><span style="color: #339933;">;</span>
-<a name="line96"></a>    <span style="color: #009900;">&#125;</span>
-<a name="line97"></a>&nbsp;
-<a name="line98"></a>    <span style="color: #009933; font-style: italic;">/**
-<a name="line99"></a>     * Get the result score.
-<a name="line100"></a>     *
-<a name="line101"></a>     * @return int The result score.
-<a name="line102"></a>     */</span>
-<a name="line103"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getScore<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
-<a name="line104"></a>    <span style="color: #009900;">&#123;</span>
-<a name="line105"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">score</span><span style="color: #339933;">;</span>
-<a name="line106"></a>    <span style="color: #009900;">&#125;</span>
-<a name="line107"></a>&nbsp;
-<a name="line108"></a>    <span style="color: #009933; font-style: italic;">/**
-<a name="line109"></a>     * Get the result confidence.
-<a name="line110"></a>     *
-<a name="line111"></a>     * @return int The result confidence.
-<a name="line112"></a>     */</span>
-<a name="line113"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getConfidence<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
-<a name="line114"></a>    <span style="color: #009900;">&#123;</span>
-<a name="line115"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">confidence</span><span style="color: #339933;">;</span>
-<a name="line116"></a>    <span style="color: #009900;">&#125;</span>
-<a name="line117"></a>&nbsp;
-<a name="line118"></a>    <span style="color: #009933; font-style: italic;">/**
-<a name="line119"></a>     * Get the result fitness.
-<a name="line120"></a>     *
-<a name="line121"></a>     * @return int The result fitness.
-<a name="line122"></a>     */</span>
-<a name="line123"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getFitness<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
-<a name="line124"></a>    <span style="color: #009900;">&#123;</span>
-<a name="line125"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">fitness</span><span style="color: #339933;">;</span>
-<a name="line126"></a>    <span style="color: #009900;">&#125;</span>
-<a name="line127"></a>&nbsp;
-<a name="line128"></a>    <span style="color: #009933; font-style: italic;">/**
-<a name="line129"></a>     * Get matches.
-<a name="line130"></a>     *
-<a name="line131"></a>     * @return array Array of Match objects respresenting snippet.
-<a name="line132"></a>     */</span>
-<a name="line133"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getMatches<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
-<a name="line134"></a>    <span style="color: #009900;">&#123;</span>
-<a name="line135"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">matches</span><span style="color: #339933;">;</span>
-<a name="line136"></a>    <span style="color: #009900;">&#125;</span>
-<a name="line137"></a>&nbsp;
-<a name="line138"></a>    <span style="color: #009933; font-style: italic;">/**
-<a name="line139"></a>     * Get an arbitrary metadata value based on its key.
-<a name="line140"></a>     *
-<a name="line141"></a>     * @todo Handle multiple instances of metadata (e.g., keywords).
-<a name="line142"></a>     *
-<a name="line143"></a>     * @param mixed $key The key for the metadata value.
-<a name="line144"></a>     * @return mixed The metadata value.
-<a name="line145"></a>     */</span>
-<a name="line146"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getMetadata<span style="color: #009900;">&#40;</span><span style="color: #000088;">$key</span><span style="color: #009900;">&#41;</span>
-<a name="line147"></a>    <span style="color: #009900;">&#123;</span>
-<a name="line148"></a>        <span style="color: #b1b100;">return</span> <span style="color: #009900;">&#40;</span><a href="http://www.php.net/isset"><span style="color: #990000;">isset</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">metadata</span><span style="color: #009900;">&#91;</span><span style="color: #000088;">$key</span><span style="color: #009900;">&#93;</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span> ? <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">metadata</span><span style="color: #009900;">&#91;</span><span style="color: #000088;">$key</span><span style="color: #009900;">&#93;</span> <span style="color: #339933;">:</span> <span style="color: #009900; font-weight: bold;">null</span><span style="color: #339933;">;</span>
-<a name="line149"></a>    <span style="color: #009900;">&#125;</span>
-<a name="line150"></a>&nbsp;
-<a name="line151"></a>    <span style="color: #009933; font-style: italic;">/**
-<a name="line152"></a>     * Get all available metadata keys.
-<a name="line153"></a>     *
-<a name="line154"></a>     * @return array An array of metadata keys.
-<a name="line155"></a>     */</span>
-<a name="line156"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getMetadataKeys<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
-<a name="line157"></a>    <span style="color: #009900;">&#123;</span>
-<a name="line158"></a>        <span style="color: #b1b100;">return</span> <span style="color: #009900;">&#40;</span><a href="http://www.php.net/isset"><span style="color: #990000;">isset</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">metadata</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span> ? <a href="http://www.php.net/array_keys"><span style="color: #990000;">array_keys</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">metadata</span><span style="color: #009900;">&#41;</span> <span style="color: #339933;">:</span> <a href="http://www.php.net/array"><span style="color: #990000;">array</span></a><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
-<a name="line159"></a>    <span style="color: #009900;">&#125;</span>
-<a name="line160"></a>&nbsp;
-<a name="line161"></a>    <span style="color: #009933; font-style: italic;">/**
-<a name="line162"></a>     * Get similar documents.
-<a name="line163"></a>     *
-<a name="line164"></a>     * @return array Array of document URIs.
-<a name="line165"></a>     */</span>
-<a name="line166"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getSimilar<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
-<a name="line167"></a>    <span style="color: #009900;">&#123;</span>
-<a name="line168"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">similar</span><span style="color: #339933;">;</span>
-<a name="line169"></a>    <span style="color: #009900;">&#125;</span>
-<a name="line170"></a><span style="color: #009900;">&#125;</span>
-<a name="line171"></a>&nbsp;</pre>
+<a name="line27"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$result</span><span style="color: #339933;">;</span> <span style="color: #666666; font-style: italic;">// @var DOMElement</span>
+<a name="line28"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$index</span><span style="color: #339933;">;</span> <span style="color: #666666; font-style: italic;">// @var int</span>
+<a name="line29"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$uri</span><span style="color: #339933;">;</span> <span style="color: #666666; font-style: italic;">// @var string</span>
+<a name="line30"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$path</span><span style="color: #339933;">;</span> <span style="color: #666666; font-style: italic;">// @var string</span>
+<a name="line31"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$score</span><span style="color: #339933;">;</span> <span style="color: #666666; font-style: italic;">// @var int</span>
+<a name="line32"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$confidence</span><span style="color: #339933;">;</span> <span style="color: #666666; font-style: italic;">// @var int</span>
+<a name="line33"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$fitness</span><span style="color: #339933;">;</span> <span style="color: #666666; font-style: italic;">// @var int</span>
+<a name="line34"></a>&nbsp;
+<a name="line35"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$matches</span><span style="color: #339933;">;</span> <span style="color: #666666; font-style: italic;">// @var array</span>
+<a name="line36"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$metadata</span><span style="color: #339933;">;</span> <span style="color: #666666; font-style: italic;">// @var array</span>
+<a name="line37"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$similar</span><span style="color: #339933;">;</span> <span style="color: #666666; font-style: italic;">// @var array</span>
+<a name="line38"></a>&nbsp;
+<a name="line39"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line40"></a>     * Create a SearchResult object.
+<a name="line41"></a>     *
+<a name="line42"></a>     * @param DOMElement A result as a DOMElement object.
+<a name="line43"></a>     */</span>
+<a name="line44"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> __construct<span style="color: #009900;">&#40;</span><span style="color: #000088;">$result</span><span style="color: #009900;">&#41;</span>
+<a name="line45"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line46"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">result</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$result</span><span style="color: #339933;">;</span>
+<a name="line47"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">index</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$result</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getAttribute</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'index'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line48"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">uri</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$result</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getAttribute</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'uri'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line49"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">path</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$result</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getAttribute</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'path'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line50"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">score</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$result</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getAttribute</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'score'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line51"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">confidence</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$result</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getAttribute</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'confidence'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line52"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">fitness</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$result</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getAttribute</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'fitness'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line53"></a>        <span style="color: #000088;">$matches</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$result</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getElementsByTagName</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'match'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line54"></a>        <span style="color: #b1b100;">foreach</span> <span style="color: #009900;">&#40;</span><span style="color: #000088;">$matches</span> <span style="color: #b1b100;">as</span> <span style="color: #000088;">$m</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+<a name="line55"></a>            <span style="color: #000088;">$match</span> <span style="color: #339933;">=</span> <span style="color: #000000; font-weight: bold;">new</span> Match<span style="color: #009900;">&#40;</span><span style="color: #000088;">$m</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line56"></a>            <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">matches</span><span style="color: #009900;">&#91;</span><span style="color: #009900;">&#93;</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$match</span><span style="color: #339933;">;</span>
+<a name="line57"></a>        <span style="color: #009900;">&#125;</span>
+<a name="line58"></a>        <span style="color: #000088;">$metadata</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$result</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getElementsByTagName</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'constraint-meta'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line59"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">metadata</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/array"><span style="color: #990000;">array</span></a><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line60"></a>        <span style="color: #b1b100;">foreach</span> <span style="color: #009900;">&#40;</span><span style="color: #000088;">$metadata</span> <span style="color: #b1b100;">as</span> <span style="color: #000088;">$meta</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+<a name="line61"></a>            <span style="color: #000088;">$name</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$meta</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getAttribute</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'name'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line62"></a>            <span style="color: #000088;">$val</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$meta</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">nodeValue</span><span style="color: #339933;">;</span>
+<a name="line63"></a>            <span style="color: #b1b100;">if</span> <span style="color: #009900;">&#40;</span><a href="http://www.php.net/array_key_exists"><span style="color: #990000;">array_key_exists</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$name</span><span style="color: #339933;">,</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">metadata</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+<a name="line64"></a>                <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">metadata</span><span style="color: #009900;">&#91;</span><span style="color: #000088;">$name</span><span style="color: #009900;">&#93;</span><span style="color: #009900;">&#91;</span><span style="color: #009900;">&#93;</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$val</span><span style="color: #339933;">;</span>
+<a name="line65"></a>            <span style="color: #009900;">&#125;</span> <span style="color: #b1b100;">else</span> <span style="color: #009900;">&#123;</span>
+<a name="line66"></a>                <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">metadata</span><span style="color: #009900;">&#91;</span><span style="color: #000088;">$name</span><span style="color: #009900;">&#93;</span> <span style="color: #339933;">=</span> <span style="color: #009900;">&#91;</span><span style="color: #000088;">$val</span><span style="color: #009900;">&#93;</span><span style="color: #339933;">;</span>
+<a name="line67"></a>            <span style="color: #009900;">&#125;</span>
+<a name="line68"></a>&nbsp;
+<a name="line69"></a>        <span style="color: #009900;">&#125;</span>
+<a name="line70"></a>        <span style="color: #000088;">$similar</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$result</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getElementsByTagName</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'similar'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line71"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">similar</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/array"><span style="color: #990000;">array</span></a><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line72"></a>        <span style="color: #b1b100;">foreach</span> <span style="color: #009900;">&#40;</span><span style="color: #000088;">$similar</span> <span style="color: #b1b100;">as</span> <span style="color: #000088;">$sim</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+<a name="line73"></a>            <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">similar</span><span style="color: #009900;">&#91;</span><span style="color: #009900;">&#93;</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$sim</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">nodeValue</span><span style="color: #339933;">;</span>
+<a name="line74"></a>        <span style="color: #009900;">&#125;</span>
+<a name="line75"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line76"></a>&nbsp;
+<a name="line77"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line78"></a>     * Get the result index.
+<a name="line79"></a>     *
+<a name="line80"></a>     * @return int The result index.
+<a name="line81"></a>     */</span>
+<a name="line82"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getIndex<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
+<a name="line83"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line84"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">index</span><span style="color: #339933;">;</span>
+<a name="line85"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line86"></a>&nbsp;
+<a name="line87"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line88"></a>     * Get the result URI.
+<a name="line89"></a>     *
+<a name="line90"></a>     * @return string The result URI.
+<a name="line91"></a>     */</span>
+<a name="line92"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getURI<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
+<a name="line93"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line94"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">uri</span><span style="color: #339933;">;</span>
+<a name="line95"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line96"></a>&nbsp;
+<a name="line97"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line98"></a>     * Get the result path.
+<a name="line99"></a>     *
+<a name="line100"></a>     * @return string The result path.
+<a name="line101"></a>     */</span>
+<a name="line102"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getPath<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
+<a name="line103"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line104"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">path</span><span style="color: #339933;">;</span>
+<a name="line105"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line106"></a>&nbsp;
+<a name="line107"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line108"></a>     * Get the result score.
+<a name="line109"></a>     *
+<a name="line110"></a>     * @return int The result score.
+<a name="line111"></a>     */</span>
+<a name="line112"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getScore<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
+<a name="line113"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line114"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">score</span><span style="color: #339933;">;</span>
+<a name="line115"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line116"></a>&nbsp;
+<a name="line117"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line118"></a>     * Get the result confidence.
+<a name="line119"></a>     *
+<a name="line120"></a>     * @return int The result confidence.
+<a name="line121"></a>     */</span>
+<a name="line122"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getConfidence<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
+<a name="line123"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line124"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">confidence</span><span style="color: #339933;">;</span>
+<a name="line125"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line126"></a>&nbsp;
+<a name="line127"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line128"></a>     * Get the result fitness.
+<a name="line129"></a>     *
+<a name="line130"></a>     * @return int The result fitness.
+<a name="line131"></a>     */</span>
+<a name="line132"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getFitness<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
+<a name="line133"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line134"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">fitness</span><span style="color: #339933;">;</span>
+<a name="line135"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line136"></a>&nbsp;
+<a name="line137"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line138"></a>     * Get matches.
+<a name="line139"></a>     *
+<a name="line140"></a>     * @return array Array of Match objects respresenting snippet.
+<a name="line141"></a>     */</span>
+<a name="line142"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getMatches<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
+<a name="line143"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line144"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">matches</span><span style="color: #339933;">;</span>
+<a name="line145"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line146"></a>&nbsp;
+<a name="line147"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line148"></a>     * Get an arbitrary metadata array based on its key. A metadata key can be
+<a name="line149"></a>     * associated with multiple metadata values in a search result (e.g.,
+<a name="line150"></a>     * keywords) which is why the values are stored as arrays.
+<a name="line151"></a>     *
+<a name="line152"></a>     * @param mixed $key The key for the metadata value(s).
+<a name="line153"></a>     * @return array The array of metadata value(s) associated with the key.
+<a name="line154"></a>     */</span>
+<a name="line155"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getMetadata<span style="color: #009900;">&#40;</span><span style="color: #000088;">$key</span><span style="color: #009900;">&#41;</span>
+<a name="line156"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line157"></a>        <span style="color: #b1b100;">return</span> <span style="color: #009900;">&#40;</span><a href="http://www.php.net/isset"><span style="color: #990000;">isset</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">metadata</span><span style="color: #009900;">&#91;</span><span style="color: #000088;">$key</span><span style="color: #009900;">&#93;</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span> ? <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">metadata</span><span style="color: #009900;">&#91;</span><span style="color: #000088;">$key</span><span style="color: #009900;">&#93;</span> <span style="color: #339933;">:</span> <span style="color: #009900; font-weight: bold;">null</span><span style="color: #339933;">;</span>
+<a name="line158"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line159"></a>&nbsp;
+<a name="line160"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line161"></a>     * Get an array metadata value(s) based on a qname element and namespace.
+<a name="line162"></a>     *
+<a name="line163"></a>     * @param mixed $elem The qname element name.
+<a name="line164"></a>     * @param mixed $ns The qname namespace (optional).
+<a name="line165"></a>     * @return array The array of metadata value(s) associated with the qname.
+<a name="line166"></a>     */</span>
+<a name="line167"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getMetadataQName<span style="color: #009900;">&#40;</span><span style="color: #000088;">$elem</span><span style="color: #339933;">,</span> <span style="color: #000088;">$ns</span> <span style="color: #339933;">=</span> <span style="color: #0000ff;">''</span><span style="color: #009900;">&#41;</span>
+<a name="line168"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line169"></a>        <span style="color: #000088;">$result</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/array"><span style="color: #990000;">array</span></a><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line170"></a>        <span style="color: #666666; font-style: italic;">// with optional namespace</span>
+<a name="line171"></a>        <span style="color: #b1b100;">if</span> <span style="color: #009900;">&#40;</span><span style="color: #000088;">$ns</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+<a name="line172"></a>            <span style="color: #b1b100;">foreach</span> <span style="color: #009900;">&#40;</span><span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">result</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getElementsByTagNameNS</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$ns</span><span style="color: #339933;">,</span> <span style="color: #000088;">$elem</span><span style="color: #009900;">&#41;</span> <span style="color: #b1b100;">as</span> <span style="color: #000088;">$e</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+<a name="line173"></a>                <span style="color: #000088;">$val</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$e</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">nodeValue</span><span style="color: #339933;">;</span>
+<a name="line174"></a>                <span style="color: #000088;">$result</span><span style="color: #009900;">&#91;</span><span style="color: #009900;">&#93;</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$val</span><span style="color: #339933;">;</span>
+<a name="line175"></a>            <span style="color: #009900;">&#125;</span>
+<a name="line176"></a>        <span style="color: #009900;">&#125;</span>
+<a name="line177"></a>        <span style="color: #666666; font-style: italic;">// without optional namespace</span>
+<a name="line178"></a>        <span style="color: #b1b100;">else</span> <span style="color: #009900;">&#123;</span>
+<a name="line179"></a>            <span style="color: #b1b100;">foreach</span> <span style="color: #009900;">&#40;</span><span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">result</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getElementsByTagName</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$elem</span><span style="color: #009900;">&#41;</span> <span style="color: #b1b100;">as</span> <span style="color: #000088;">$e</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+<a name="line180"></a>                <span style="color: #000088;">$val</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$e</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">nodeValue</span><span style="color: #339933;">;</span>
+<a name="line181"></a>                <span style="color: #000088;">$result</span><span style="color: #009900;">&#91;</span><span style="color: #009900;">&#93;</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$val</span><span style="color: #339933;">;</span>
+<a name="line182"></a>            <span style="color: #009900;">&#125;</span>
+<a name="line183"></a>        <span style="color: #009900;">&#125;</span>
+<a name="line184"></a>        <span style="color: #b1b100;">return</span> <span style="color: #009900;">&#40;</span><a href="http://www.php.net/count"><span style="color: #990000;">count</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$result</span><span style="color: #009900;">&#41;</span> <span style="color: #339933;">&gt;</span> <span style="color: #cc66cc;">0</span><span style="color: #009900;">&#41;</span> ? <span style="color: #000088;">$result</span>  <span style="color: #339933;">:</span> <span style="color: #009900; font-weight: bold;">null</span><span style="color: #339933;">;</span>
+<a name="line185"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line186"></a>&nbsp;
+<a name="line187"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line188"></a>     * Get all available metadata keys.
+<a name="line189"></a>     *
+<a name="line190"></a>     * @return array An array of metadata keys.
+<a name="line191"></a>     */</span>
+<a name="line192"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getMetadataKeys<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
+<a name="line193"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line194"></a>        <span style="color: #b1b100;">return</span> <span style="color: #009900;">&#40;</span><a href="http://www.php.net/isset"><span style="color: #990000;">isset</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">metadata</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span> ? <a href="http://www.php.net/array_keys"><span style="color: #990000;">array_keys</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">metadata</span><span style="color: #009900;">&#41;</span> <span style="color: #339933;">:</span> <a href="http://www.php.net/array"><span style="color: #990000;">array</span></a><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line195"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line196"></a>&nbsp;
+<a name="line197"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line198"></a>     * Get similar documents.
+<a name="line199"></a>     *
+<a name="line200"></a>     * @return array Array of document URIs.
+<a name="line201"></a>     */</span>
+<a name="line202"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getSimilar<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
+<a name="line203"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line204"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">similar</span><span style="color: #339933;">;</span>
+<a name="line205"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line206"></a><span style="color: #009900;">&#125;</span>
+<a name="line207"></a>&nbsp;</pre>
 <div class="header">
 <h1><a href=https://github.com/marklogic/mlphp target=_top>MLPHP</a></h1>
 <ul>

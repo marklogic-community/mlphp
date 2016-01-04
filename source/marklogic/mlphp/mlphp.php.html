@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="generator" content="PHPDoctor 2.0.5 (http://peej.github.com/phpdoctor/)">
-<meta name="when" content="Mon, 29 Jul 2013 22:11:30 +0000">
+<meta name="when" content="Mon, 04 Jan 2016 01:29:28 +0000">
 
 <link rel="stylesheet" type="text/css" href="../../../stylesheet.css">
 <link rel="start" href="../../../overview-summary.html">
@@ -61,134 +61,256 @@
 <a name="line23"></a> *
 <a name="line24"></a> * @package MLPHP
 <a name="line25"></a> * @author Eric Bloch &lt;eric.bloch@gmail.com&gt;
-<a name="line26"></a> */</span>
-<a name="line27"></a><span style="color: #000000; font-weight: bold;">class</span> MLPHP
-<a name="line28"></a><span style="color: #009900;">&#123;</span>   
-<a name="line29"></a>    <span style="color: #009933; font-style: italic;">/**
-<a name="line30"></a>     *  Array of configuration parameters used to create clients.
-<a name="line31"></a>     *  @var mixed[] 
-<a name="line32"></a>     *  @see MLPHP#__construct
-<a name="line33"></a>     */</span>
-<a name="line34"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000088;">$config</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/array"><span style="color: #990000;">array</span></a><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span> 
-<a name="line35"></a>&nbsp;
-<a name="line36"></a>    <span style="color: #009933; font-style: italic;">/**
-<a name="line37"></a>     * Constructor, used to set configuration parameters for creating clients
-<a name="line38"></a>     *
-<a name="line39"></a>     * @param array config configuration settings, including
-<a name="line40"></a>     * &lt;pre&gt; &lt;br/&gt;
-<a name="line41"></a>     * host - default to localhost&lt;br/&gt;
-<a name="line42"></a>     * port - default to 7009&lt;br/&gt;
-<a name="line43"></a>     * username - default to admin&lt;br/&gt;
-<a name="line44"></a>     * password - default admin&lt;br/&gt;
-<a name="line45"></a>     * auth-type (digest or basic) - default to basic&lt;br/&gt;
-<a name="line46"></a>     * path - default to /&lt;br/&gt;
-<a name="line47"></a>     * version - default to v1&lt;br/&gt;
-<a name="line48"></a>     * logger - default to Psr\Log\NullLogger
-<a name="line49"></a>     * &lt;/pre&gt;
-<a name="line50"></a>     *
-<a name="line51"></a>     * Additional array members are ignored.
-<a name="line52"></a>     *  
-<a name="line53"></a>     */</span>
-<a name="line54"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> __construct<span style="color: #009900;">&#40;</span><span style="color: #000088;">$config</span><span style="color: #009900;">&#41;</span>
-<a name="line55"></a>    <span style="color: #009900;">&#123;</span>
-<a name="line56"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">config</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/array_merge"><span style="color: #990000;">array_merge</span></a><span style="color: #009900;">&#40;</span><a href="http://www.php.net/array"><span style="color: #990000;">array</span></a><span style="color: #009900;">&#40;</span>
-<a name="line57"></a>            <span style="color: #0000ff;">'host'</span> <span style="color: #339933;">=&gt;</span> <span style="color: #0000ff;">'localhost'</span><span style="color: #339933;">,</span>
-<a name="line58"></a>            <span style="color: #0000ff;">'port'</span> <span style="color: #339933;">=&gt;</span> <span style="color: #cc66cc;">7009</span><span style="color: #339933;">,</span>
-<a name="line59"></a>            <span style="color: #0000ff;">'user'</span> <span style="color: #339933;">=&gt;</span> <span style="color: #0000ff;">'admin'</span><span style="color: #339933;">,</span>
-<a name="line60"></a>            <span style="color: #0000ff;">'password'</span> <span style="color: #339933;">=&gt;</span> <span style="color: #0000ff;">'admin'</span><span style="color: #339933;">,</span>
-<a name="line61"></a>            <span style="color: #0000ff;">'path'</span> <span style="color: #339933;">=&gt;</span> <span style="color: #0000ff;">''</span><span style="color: #339933;">,</span>
-<a name="line62"></a>            <span style="color: #0000ff;">'version'</span> <span style="color: #339933;">=&gt;</span> <span style="color: #0000ff;">'v1'</span><span style="color: #339933;">,</span>
-<a name="line63"></a>            <span style="color: #0000ff;">'auth'</span> <span style="color: #339933;">=&gt;</span> <span style="color: #0000ff;">'digest'</span><span style="color: #339933;">,</span>
-<a name="line64"></a>            <span style="color: #0000ff;">'logger'</span> <span style="color: #339933;">=&gt;</span> <span style="color: #000000; font-weight: bold;">new</span> NullLogger<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
-<a name="line65"></a>        <span style="color: #009900;">&#41;</span><span style="color: #339933;">,</span> <span style="color: #000088;">$config</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line26"></a> * @author Mike Wooldridge &lt;mike.wooldridge@marklogic.com&gt;
+<a name="line27"></a> */</span>
+<a name="line28"></a><span style="color: #000000; font-weight: bold;">class</span> MLPHP
+<a name="line29"></a><span style="color: #009900;">&#123;</span>
+<a name="line30"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line31"></a>     *  Array of configuration parameters used to create clients and REST APIs.
+<a name="line32"></a>     *  @var mixed[]
+<a name="line33"></a>     *  @see MLPHP#__construct
+<a name="line34"></a>     */</span>
+<a name="line35"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000088;">$config</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/array"><span style="color: #990000;">array</span></a><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line36"></a>&nbsp;
+<a name="line37"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line38"></a>     * Constructor, used to set configuration parameters.
+<a name="line39"></a>     *
+<a name="line40"></a>     * @param array config Configuration settings.
+<a name="line41"></a>     *
+<a name="line42"></a>     */</span>
+<a name="line43"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> __construct<span style="color: #009900;">&#40;</span><span style="color: #000088;">$config</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/array"><span style="color: #990000;">array</span></a><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span>
+<a name="line44"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line45"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">config</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/array_merge"><span style="color: #990000;">array_merge</span></a><span style="color: #009900;">&#40;</span><a href="http://www.php.net/array"><span style="color: #990000;">array</span></a><span style="color: #009900;">&#40;</span>
+<a name="line46"></a>            <span style="color: #0000ff;">'host'</span> <span style="color: #339933;">=&gt;</span> <span style="color: #0000ff;">'127.0.0.1'</span><span style="color: #339933;">,</span>
+<a name="line47"></a>            <span style="color: #0000ff;">'port'</span> <span style="color: #339933;">=&gt;</span> <span style="color: #cc66cc;">8003</span><span style="color: #339933;">,</span>
+<a name="line48"></a>            <span style="color: #0000ff;">'managePort'</span> <span style="color: #339933;">=&gt;</span> <span style="color: #cc66cc;">8002</span><span style="color: #339933;">,</span>
+<a name="line49"></a>            <span style="color: #0000ff;">'adminPort'</span> <span style="color: #339933;">=&gt;</span> <span style="color: #cc66cc;">8001</span><span style="color: #339933;">,</span>
+<a name="line50"></a>            <span style="color: #0000ff;">'api'</span> <span style="color: #339933;">=&gt;</span> <span style="color: #0000ff;">'mlphp-rest-api'</span><span style="color: #339933;">,</span>
+<a name="line51"></a>            <span style="color: #0000ff;">'db'</span> <span style="color: #339933;">=&gt;</span> <span style="color: #0000ff;">'mlphp-db'</span><span style="color: #339933;">,</span>
+<a name="line52"></a>            <span style="color: #0000ff;">'username'</span> <span style="color: #339933;">=&gt;</span> <span style="color: #0000ff;">'admin'</span><span style="color: #339933;">,</span>
+<a name="line53"></a>            <span style="color: #0000ff;">'password'</span> <span style="color: #339933;">=&gt;</span> <span style="color: #0000ff;">'admin'</span><span style="color: #339933;">,</span>
+<a name="line54"></a>            <span style="color: #0000ff;">'path'</span> <span style="color: #339933;">=&gt;</span> <span style="color: #0000ff;">''</span><span style="color: #339933;">,</span>
+<a name="line55"></a>            <span style="color: #0000ff;">'managePath'</span> <span style="color: #339933;">=&gt;</span> <span style="color: #0000ff;">'manage'</span><span style="color: #339933;">,</span>
+<a name="line56"></a>            <span style="color: #0000ff;">'adminPath'</span> <span style="color: #339933;">=&gt;</span> <span style="color: #0000ff;">'admin'</span><span style="color: #339933;">,</span>
+<a name="line57"></a>            <span style="color: #0000ff;">'version'</span> <span style="color: #339933;">=&gt;</span> <span style="color: #0000ff;">'v1'</span><span style="color: #339933;">,</span>
+<a name="line58"></a>            <span style="color: #0000ff;">'manageVersion'</span> <span style="color: #339933;">=&gt;</span> <span style="color: #0000ff;">'v2'</span><span style="color: #339933;">,</span>
+<a name="line59"></a>            <span style="color: #0000ff;">'adminVersion'</span> <span style="color: #339933;">=&gt;</span> <span style="color: #0000ff;">'v1'</span><span style="color: #339933;">,</span>
+<a name="line60"></a>            <span style="color: #0000ff;">'auth'</span> <span style="color: #339933;">=&gt;</span> <span style="color: #0000ff;">'digest'</span><span style="color: #339933;">,</span>
+<a name="line61"></a>            <span style="color: #0000ff;">'options'</span> <span style="color: #339933;">=&gt;</span> <span style="color: #0000ff;">'mlphp-options'</span><span style="color: #339933;">,</span>
+<a name="line62"></a>            <span style="color: #0000ff;">'logger'</span> <span style="color: #339933;">=&gt;</span> <span style="color: #000000; font-weight: bold;">new</span> NullLogger<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
+<a name="line63"></a>        <span style="color: #009900;">&#41;</span><span style="color: #339933;">,</span> <span style="color: #000088;">$config</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line64"></a>&nbsp;
+<a name="line65"></a>    <span style="color: #009900;">&#125;</span>
 <a name="line66"></a>&nbsp;
-<a name="line67"></a>    <span style="color: #009900;">&#125;</span>
-<a name="line68"></a>&nbsp;
-<a name="line69"></a>    <span style="color: #009933; font-style: italic;">/**
-<a name="line70"></a>     * Merge the passed in config parameters.  Only affects future clients.
-<a name="line71"></a>     *
-<a name="line72"></a>     * @param config
-<a name="line73"></a>     */</span>
-<a name="line74"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> mergeConfig<span style="color: #009900;">&#40;</span><span style="color: #000088;">$config</span><span style="color: #009900;">&#41;</span> 
-<a name="line75"></a>    <span style="color: #009900;">&#123;</span>
-<a name="line76"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">config</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/array_merge"><span style="color: #990000;">array_merge</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">config</span><span style="color: #339933;">,</span> <span style="color: #000088;">$config</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
-<a name="line77"></a>    <span style="color: #009900;">&#125;</span>
-<a name="line78"></a>&nbsp;
-<a name="line79"></a>    <span style="color: #009933; font-style: italic;">/**
-<a name="line80"></a>     * Return a REST client based on current configuration
-<a name="line81"></a>     *
-<a name="line82"></a>     * @return RESTClient
-<a name="line83"></a>     */</span>
-<a name="line84"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> newClient<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span> 
-<a name="line85"></a>    <span style="color: #009900;">&#123;</span>
-<a name="line86"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000000; font-weight: bold;">new</span> RESTClient<span style="color: #009900;">&#40;</span>
-<a name="line87"></a>            <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">config</span><span style="color: #009900;">&#91;</span><span style="color: #0000ff;">'host'</span><span style="color: #009900;">&#93;</span><span style="color: #339933;">,</span> 
-<a name="line88"></a>            <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">config</span><span style="color: #009900;">&#91;</span><span style="color: #0000ff;">'port'</span><span style="color: #009900;">&#93;</span><span style="color: #339933;">,</span> 
-<a name="line89"></a>            <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">config</span><span style="color: #009900;">&#91;</span><span style="color: #0000ff;">'path'</span><span style="color: #009900;">&#93;</span><span style="color: #339933;">,</span> 
-<a name="line90"></a>            <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">config</span><span style="color: #009900;">&#91;</span><span style="color: #0000ff;">'version'</span><span style="color: #009900;">&#93;</span><span style="color: #339933;">,</span>
-<a name="line91"></a>            <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">config</span><span style="color: #009900;">&#91;</span><span style="color: #0000ff;">'username'</span><span style="color: #009900;">&#93;</span><span style="color: #339933;">,</span> 
-<a name="line92"></a>            <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">config</span><span style="color: #009900;">&#91;</span><span style="color: #0000ff;">'password'</span><span style="color: #009900;">&#93;</span><span style="color: #339933;">,</span> 
-<a name="line93"></a>            <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">config</span><span style="color: #009900;">&#91;</span><span style="color: #0000ff;">'auth'</span><span style="color: #009900;">&#93;</span><span style="color: #339933;">,</span>
-<a name="line94"></a>            <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">config</span><span style="color: #009900;">&#91;</span><span style="color: #0000ff;">'logger'</span><span style="color: #009900;">&#93;</span>
-<a name="line95"></a>        <span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
-<a name="line96"></a>    <span style="color: #009900;">&#125;</span>
-<a name="line97"></a>&nbsp;
-<a name="line98"></a>    <span style="color: #009933; font-style: italic;">/**
-<a name="line99"></a>     * PSR-0 autoloader.
-<a name="line100"></a>     * 
-<a name="line101"></a>     * Do NOT use if you are using Composer to autoload dependencies.
-<a name="line102"></a>     *
-<a name="line103"></a>     * @param $className
-<a name="line104"></a>     */</span>
-<a name="line105"></a>    <span style="color: #000000; font-weight: bold;">public</span> static <span style="color: #000000; font-weight: bold;">function</span> autoload<span style="color: #009900;">&#40;</span><span style="color: #000088;">$className</span><span style="color: #009900;">&#41;</span>
-<a name="line106"></a>    <span style="color: #009900;">&#123;</span>
-<a name="line107"></a>        <span style="color: #000088;">$thisClass</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/str_replace"><span style="color: #990000;">str_replace</span></a><span style="color: #009900;">&#40;</span>__NAMESPACE__ <span style="color: #339933;">.</span> <span style="color: #0000ff;">'\\'</span><span style="color: #339933;">,</span> <span style="color: #0000ff;">''</span><span style="color: #339933;">,</span> <span style="color: #009900; font-weight: bold;">__CLASS__</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
-<a name="line108"></a>&nbsp;
-<a name="line109"></a>        <span style="color: #000088;">$baseDir</span> <span style="color: #339933;">=</span> __DIR__<span style="color: #339933;">;</span>
-<a name="line110"></a>&nbsp;
-<a name="line111"></a>        <span style="color: #b1b100;">if</span> <span style="color: #009900;">&#40;</span><a href="http://www.php.net/substr"><span style="color: #990000;">substr</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$baseDir</span><span style="color: #339933;">,</span> <span style="color: #339933;">-</span><a href="http://www.php.net/strlen"><span style="color: #990000;">strlen</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$thisClass</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span> <span style="color: #339933;">===</span> <span style="color: #000088;">$thisClass</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
-<a name="line112"></a>            <span style="color: #000088;">$baseDir</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/substr"><span style="color: #990000;">substr</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$baseDir</span><span style="color: #339933;">,</span> <span style="color: #cc66cc;">0</span><span style="color: #339933;">,</span> <span style="color: #339933;">-</span><a href="http://www.php.net/strlen"><span style="color: #990000;">strlen</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$thisClass</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
-<a name="line113"></a>        <span style="color: #009900;">&#125;</span>
+<a name="line67"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line68"></a>     * Merge the passed in config parameters.  Only affects future clients.
+<a name="line69"></a>     *
+<a name="line70"></a>     * @param config
+<a name="line71"></a>     */</span>
+<a name="line72"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> mergeConfig<span style="color: #009900;">&#40;</span><span style="color: #000088;">$config</span><span style="color: #009900;">&#41;</span>
+<a name="line73"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line74"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">config</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/array_merge"><span style="color: #990000;">array_merge</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">config</span><span style="color: #339933;">,</span> <span style="color: #000088;">$config</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line75"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line76"></a>&nbsp;
+<a name="line77"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line78"></a>     * Return a REST client based on current configuration.
+<a name="line79"></a>     *
+<a name="line80"></a>     * @return RESTClient
+<a name="line81"></a>     */</span>
+<a name="line82"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getClient<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
+<a name="line83"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line84"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000000; font-weight: bold;">new</span> RESTClient<span style="color: #009900;">&#40;</span>
+<a name="line85"></a>            <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">config</span><span style="color: #009900;">&#91;</span><span style="color: #0000ff;">'host'</span><span style="color: #009900;">&#93;</span><span style="color: #339933;">,</span>
+<a name="line86"></a>            <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">config</span><span style="color: #009900;">&#91;</span><span style="color: #0000ff;">'port'</span><span style="color: #009900;">&#93;</span><span style="color: #339933;">,</span>
+<a name="line87"></a>            <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">config</span><span style="color: #009900;">&#91;</span><span style="color: #0000ff;">'path'</span><span style="color: #009900;">&#93;</span><span style="color: #339933;">,</span>
+<a name="line88"></a>            <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">config</span><span style="color: #009900;">&#91;</span><span style="color: #0000ff;">'version'</span><span style="color: #009900;">&#93;</span><span style="color: #339933;">,</span>
+<a name="line89"></a>            <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">config</span><span style="color: #009900;">&#91;</span><span style="color: #0000ff;">'username'</span><span style="color: #009900;">&#93;</span><span style="color: #339933;">,</span>
+<a name="line90"></a>            <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">config</span><span style="color: #009900;">&#91;</span><span style="color: #0000ff;">'password'</span><span style="color: #009900;">&#93;</span><span style="color: #339933;">,</span>
+<a name="line91"></a>            <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">config</span><span style="color: #009900;">&#91;</span><span style="color: #0000ff;">'auth'</span><span style="color: #009900;">&#93;</span><span style="color: #339933;">,</span>
+<a name="line92"></a>            <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">config</span><span style="color: #009900;">&#91;</span><span style="color: #0000ff;">'logger'</span><span style="color: #009900;">&#93;</span>
+<a name="line93"></a>        <span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line94"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line95"></a>&nbsp;
+<a name="line96"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line97"></a>     * Return a REST client to the management API.
+<a name="line98"></a>     *
+<a name="line99"></a>     * @return RESTClient
+<a name="line100"></a>     */</span>
+<a name="line101"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getManageClient<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
+<a name="line102"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line103"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000000; font-weight: bold;">new</span> RESTClient<span style="color: #009900;">&#40;</span>
+<a name="line104"></a>            <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">config</span><span style="color: #009900;">&#91;</span><span style="color: #0000ff;">'host'</span><span style="color: #009900;">&#93;</span><span style="color: #339933;">,</span>
+<a name="line105"></a>            <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">config</span><span style="color: #009900;">&#91;</span><span style="color: #0000ff;">'managePort'</span><span style="color: #009900;">&#93;</span><span style="color: #339933;">,</span>
+<a name="line106"></a>            <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">config</span><span style="color: #009900;">&#91;</span><span style="color: #0000ff;">'managePath'</span><span style="color: #009900;">&#93;</span><span style="color: #339933;">,</span>
+<a name="line107"></a>            <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">config</span><span style="color: #009900;">&#91;</span><span style="color: #0000ff;">'manageVersion'</span><span style="color: #009900;">&#93;</span><span style="color: #339933;">,</span>
+<a name="line108"></a>            <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">config</span><span style="color: #009900;">&#91;</span><span style="color: #0000ff;">'username'</span><span style="color: #009900;">&#93;</span><span style="color: #339933;">,</span>
+<a name="line109"></a>            <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">config</span><span style="color: #009900;">&#91;</span><span style="color: #0000ff;">'password'</span><span style="color: #009900;">&#93;</span><span style="color: #339933;">,</span>
+<a name="line110"></a>            <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">config</span><span style="color: #009900;">&#91;</span><span style="color: #0000ff;">'auth'</span><span style="color: #009900;">&#93;</span><span style="color: #339933;">,</span>
+<a name="line111"></a>            <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">config</span><span style="color: #009900;">&#91;</span><span style="color: #0000ff;">'logger'</span><span style="color: #009900;">&#93;</span>
+<a name="line112"></a>        <span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line113"></a>    <span style="color: #009900;">&#125;</span>
 <a name="line114"></a>&nbsp;
-<a name="line115"></a>        <span style="color: #000088;">$className</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/ltrim"><span style="color: #990000;">ltrim</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$className</span><span style="color: #339933;">,</span> <span style="color: #0000ff;">'\\'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
-<a name="line116"></a>           <span style="color: #666666; font-style: italic;">// echo &quot;class &quot; . $className;</span>
-<a name="line117"></a>           <span style="color: #666666; font-style: italic;">// echo '&lt;br/&gt;';</span>
-<a name="line118"></a>        <span style="color: #000088;">$fileName</span>  <span style="color: #339933;">=</span> <span style="color: #009900;">&#40;</span><a href="http://www.php.net/dirname"><span style="color: #990000;">dirname</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$baseDir</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span> <span style="color: #339933;">.</span> <span style="color: #009900; font-weight: bold;">DIRECTORY_SEPARATOR</span><span style="color: #339933;">;</span>
-<a name="line119"></a>                <span style="color: #666666; font-style: italic;">// echo &quot;file &quot; . $fileName;</span>
-<a name="line120"></a>                <span style="color: #666666; font-style: italic;">// echo '&lt;br/&gt;';</span>
-<a name="line121"></a>        <span style="color: #b1b100;">if</span> <span style="color: #009900;">&#40;</span><span style="color: #000088;">$lastNsPos</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/strripos"><span style="color: #990000;">strripos</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$className</span><span style="color: #339933;">,</span> <span style="color: #0000ff;">'\\'</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
-<a name="line122"></a>            <span style="color: #000088;">$namespace</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/substr"><span style="color: #990000;">substr</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$className</span><span style="color: #339933;">,</span> <span style="color: #cc66cc;">0</span><span style="color: #339933;">,</span> <span style="color: #000088;">$lastNsPos</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
-<a name="line123"></a>               <span style="color: #666666; font-style: italic;">// echo &quot;ns &quot; . $namespace;</span>
-<a name="line124"></a>               <span style="color: #666666; font-style: italic;">// echo '&lt;br/&gt;';</span>
-<a name="line125"></a>            <span style="color: #000088;">$className</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/substr"><span style="color: #990000;">substr</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$className</span><span style="color: #339933;">,</span> <span style="color: #000088;">$lastNsPos</span> <span style="color: #339933;">+</span> <span style="color: #cc66cc;">1</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
-<a name="line126"></a>               <span style="color: #666666; font-style: italic;">// echo &quot;class &quot; . $className;</span>
-<a name="line127"></a>               <span style="color: #666666; font-style: italic;">// echo '&lt;br/&gt;';</span>
-<a name="line128"></a>            <span style="color: #000088;">$fileName</span> <span style="color: #339933;">.=</span> <a href="http://www.php.net/str_replace"><span style="color: #990000;">str_replace</span></a><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'\\'</span><span style="color: #339933;">,</span> <span style="color: #009900; font-weight: bold;">DIRECTORY_SEPARATOR</span><span style="color: #339933;">,</span> <span style="color: #000088;">$namespace</span><span style="color: #009900;">&#41;</span> <span style="color: #339933;">.</span> <span style="color: #009900; font-weight: bold;">DIRECTORY_SEPARATOR</span><span style="color: #339933;">;</span>
-<a name="line129"></a>               <span style="color: #666666; font-style: italic;">// echo &quot;file &quot; . $fileName;</span>
-<a name="line130"></a>               <span style="color: #666666; font-style: italic;">// echo '&lt;br/&gt;';</span>
-<a name="line131"></a>        <span style="color: #009900;">&#125;</span>
-<a name="line132"></a>        <span style="color: #000088;">$fileName</span> <span style="color: #339933;">.=</span> <a href="http://www.php.net/str_replace"><span style="color: #990000;">str_replace</span></a><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'_'</span><span style="color: #339933;">,</span> <span style="color: #009900; font-weight: bold;">DIRECTORY_SEPARATOR</span><span style="color: #339933;">,</span> <span style="color: #000088;">$className</span><span style="color: #009900;">&#41;</span> <span style="color: #339933;">.</span> <span style="color: #0000ff;">'.php'</span><span style="color: #339933;">;</span>
+<a name="line115"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line116"></a>     * Return a REST client to the admin API.
+<a name="line117"></a>     *
+<a name="line118"></a>     * @return RESTClient
+<a name="line119"></a>     */</span>
+<a name="line120"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getAdminClient<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
+<a name="line121"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line122"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000000; font-weight: bold;">new</span> RESTClient<span style="color: #009900;">&#40;</span>
+<a name="line123"></a>            <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">config</span><span style="color: #009900;">&#91;</span><span style="color: #0000ff;">'host'</span><span style="color: #009900;">&#93;</span><span style="color: #339933;">,</span>
+<a name="line124"></a>            <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">config</span><span style="color: #009900;">&#91;</span><span style="color: #0000ff;">'adminPort'</span><span style="color: #009900;">&#93;</span><span style="color: #339933;">,</span>
+<a name="line125"></a>            <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">config</span><span style="color: #009900;">&#91;</span><span style="color: #0000ff;">'adminPath'</span><span style="color: #009900;">&#93;</span><span style="color: #339933;">,</span>
+<a name="line126"></a>            <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">config</span><span style="color: #009900;">&#91;</span><span style="color: #0000ff;">'adminVersion'</span><span style="color: #009900;">&#93;</span><span style="color: #339933;">,</span>
+<a name="line127"></a>            <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">config</span><span style="color: #009900;">&#91;</span><span style="color: #0000ff;">'username'</span><span style="color: #009900;">&#93;</span><span style="color: #339933;">,</span>
+<a name="line128"></a>            <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">config</span><span style="color: #009900;">&#91;</span><span style="color: #0000ff;">'password'</span><span style="color: #009900;">&#93;</span><span style="color: #339933;">,</span>
+<a name="line129"></a>            <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">config</span><span style="color: #009900;">&#91;</span><span style="color: #0000ff;">'auth'</span><span style="color: #009900;">&#93;</span><span style="color: #339933;">,</span>
+<a name="line130"></a>            <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">config</span><span style="color: #009900;">&#91;</span><span style="color: #0000ff;">'logger'</span><span style="color: #009900;">&#93;</span>
+<a name="line131"></a>        <span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line132"></a>    <span style="color: #009900;">&#125;</span>
 <a name="line133"></a>&nbsp;
-<a name="line134"></a>           <span style="color: #666666; font-style: italic;">// echo &quot;FILE: &quot; . $fileName;</span>
-<a name="line135"></a>&nbsp;
-<a name="line136"></a>        <span style="color: #b1b100;">if</span> <span style="color: #009900;">&#40;</span><a href="http://www.php.net/file_exists"><span style="color: #990000;">file_exists</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$fileName</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
-<a name="line137"></a>            <span style="color: #b1b100;">require</span> <span style="color: #000088;">$fileName</span><span style="color: #339933;">;</span>
-<a name="line138"></a>        <span style="color: #009900;">&#125;</span>
-<a name="line139"></a>    <span style="color: #009900;">&#125;</span>
-<a name="line140"></a>&nbsp;
-<a name="line141"></a>    <span style="color: #009933; font-style: italic;">/**
-<a name="line142"></a>     * Register PSR-0 autoloader. 
-<a name="line143"></a>     * 
-<a name="line144"></a>     * Do NOT use if you are using Composer to 
-<a name="line145"></a>     * autoload dependencies.
-<a name="line146"></a>     */</span>
-<a name="line147"></a>    <span style="color: #000000; font-weight: bold;">public</span> static <span style="color: #000000; font-weight: bold;">function</span> registerAutoloader<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
-<a name="line148"></a>    <span style="color: #009900;">&#123;</span>
-<a name="line149"></a>        <span style="color: #000088;">$n</span> <span style="color: #339933;">=</span> __NAMESPACE__<span style="color: #339933;">;</span> <span style="color: #666666; font-style: italic;">// workaround for bug in phpdoctor</span>
-<a name="line150"></a>        <a href="http://www.php.net/spl_autoload_register"><span style="color: #990000;">spl_autoload_register</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$n</span> <span style="color: #339933;">.</span> <span style="color: #0000ff;">'\\MLPHP::autoload'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
-<a name="line151"></a>    <span style="color: #009900;">&#125;</span>
-<a name="line152"></a><span style="color: #009900;">&#125;</span>
-<a name="line153"></a>&nbsp;</pre>
+<a name="line134"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line135"></a>     * Create and return a REST API based on current configuration.
+<a name="line136"></a>     *
+<a name="line137"></a>     * @return RESTAPI
+<a name="line138"></a>     */</span>
+<a name="line139"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getAPI<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
+<a name="line140"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line141"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000000; font-weight: bold;">new</span> RESTAPI<span style="color: #009900;">&#40;</span>
+<a name="line142"></a>            <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">config</span><span style="color: #009900;">&#91;</span><span style="color: #0000ff;">'api'</span><span style="color: #009900;">&#93;</span><span style="color: #339933;">,</span>
+<a name="line143"></a>            <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">config</span><span style="color: #009900;">&#91;</span><span style="color: #0000ff;">'host'</span><span style="color: #009900;">&#93;</span><span style="color: #339933;">,</span>
+<a name="line144"></a>            <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">config</span><span style="color: #009900;">&#91;</span><span style="color: #0000ff;">'db'</span><span style="color: #009900;">&#93;</span><span style="color: #339933;">,</span>
+<a name="line145"></a>            <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">config</span><span style="color: #009900;">&#91;</span><span style="color: #0000ff;">'port'</span><span style="color: #009900;">&#93;</span><span style="color: #339933;">,</span>
+<a name="line146"></a>            <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">config</span><span style="color: #009900;">&#91;</span><span style="color: #0000ff;">'username'</span><span style="color: #009900;">&#93;</span><span style="color: #339933;">,</span>
+<a name="line147"></a>            <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">config</span><span style="color: #009900;">&#91;</span><span style="color: #0000ff;">'password'</span><span style="color: #009900;">&#93;</span>
+<a name="line148"></a>        <span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line149"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line150"></a>&nbsp;
+<a name="line151"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line152"></a>     * Return a Document object.
+<a name="line153"></a>     *
+<a name="line154"></a>     * @return Document
+<a name="line155"></a>     */</span>
+<a name="line156"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getDocument<span style="color: #009900;">&#40;</span><span style="color: #000088;">$uri</span> <span style="color: #339933;">=</span> <span style="color: #009900; font-weight: bold;">null</span><span style="color: #009900;">&#41;</span>
+<a name="line157"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line158"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000000; font-weight: bold;">new</span> Document<span style="color: #009900;">&#40;</span>
+<a name="line159"></a>            <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getClient</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">,</span>
+<a name="line160"></a>            <span style="color: #000088;">$uri</span>
+<a name="line161"></a>        <span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line162"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line163"></a>&nbsp;
+<a name="line164"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line165"></a>     * Return a Database object.
+<a name="line166"></a>     *
+<a name="line167"></a>     * @return Database
+<a name="line168"></a>     */</span>
+<a name="line169"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getDatabase<span style="color: #009900;">&#40;</span><span style="color: #000088;">$name</span> <span style="color: #339933;">=</span> <span style="color: #009900; font-weight: bold;">null</span><span style="color: #009900;">&#41;</span>
+<a name="line170"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line171"></a>        <span style="color: #000088;">$name</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$name</span> ? <span style="color: #000088;">$name</span> <span style="color: #339933;">:</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">config</span><span style="color: #009900;">&#91;</span><span style="color: #0000ff;">'db'</span><span style="color: #009900;">&#93;</span><span style="color: #339933;">;</span>
+<a name="line172"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000000; font-weight: bold;">new</span> Database<span style="color: #009900;">&#40;</span>
+<a name="line173"></a>            <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getManageClient</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">,</span>
+<a name="line174"></a>            <span style="color: #000088;">$name</span>
+<a name="line175"></a>        <span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line176"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line177"></a>&nbsp;
+<a name="line178"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line179"></a>     * Return an Options object.
+<a name="line180"></a>     *
+<a name="line181"></a>     * @return Options
+<a name="line182"></a>     */</span>
+<a name="line183"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getOptions<span style="color: #009900;">&#40;</span><span style="color: #000088;">$name</span> <span style="color: #339933;">=</span> <span style="color: #009900; font-weight: bold;">null</span><span style="color: #009900;">&#41;</span>
+<a name="line184"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line185"></a>        <span style="color: #000088;">$name</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$name</span> ? <span style="color: #000088;">$name</span> <span style="color: #339933;">:</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">config</span><span style="color: #009900;">&#91;</span><span style="color: #0000ff;">'options'</span><span style="color: #009900;">&#93;</span><span style="color: #339933;">;</span>
+<a name="line186"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000000; font-weight: bold;">new</span> Options<span style="color: #009900;">&#40;</span>
+<a name="line187"></a>            <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getClient</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">,</span>
+<a name="line188"></a>            <span style="color: #000088;">$name</span>
+<a name="line189"></a>        <span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line190"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line191"></a>&nbsp;
+<a name="line192"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line193"></a>     * Return an assoc array of MarkLogic server config information.
+<a name="line194"></a>     * Keys: 'version', 'platform', 'edition'
+<a name="line195"></a>     * @see http://docs.marklogic.com/REST/GET/admin/v1/server-config
+<a name="line196"></a>     *
+<a name="line197"></a>     * @return array
+<a name="line198"></a>     */</span>
+<a name="line199"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getServerConfig<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
+<a name="line200"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line201"></a>        <span style="color: #000088;">$adminClient</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getAdminClient</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line202"></a>        <span style="color: #000088;">$request</span> <span style="color: #339933;">=</span> <span style="color: #000000; font-weight: bold;">new</span> RESTRequest<span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'GET'</span><span style="color: #339933;">,</span> <span style="color: #0000ff;">'server-config'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line203"></a>        try <span style="color: #009900;">&#123;</span>
+<a name="line204"></a>            <span style="color: #000088;">$response</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$adminClient</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">send</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$request</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line205"></a>            <span style="color: #000088;">$dom</span> <span style="color: #339933;">=</span> <span style="color: #000000; font-weight: bold;">new</span> \DOMDocument<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line206"></a>            <span style="color: #000088;">$dom</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">loadXML</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$response</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getBody</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line207"></a>            <span style="color: #b1b100;">return</span> <a href="http://www.php.net/array"><span style="color: #990000;">array</span></a><span style="color: #009900;">&#40;</span>
+<a name="line208"></a>              <span style="color: #0000ff;">'version'</span> <span style="color: #339933;">=&gt;</span> <span style="color: #000088;">$dom</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getElementsByTagName</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'version'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">item</span><span style="color: #009900;">&#40;</span><span style="color: #cc66cc;">0</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">nodeValue</span><span style="color: #339933;">,</span>
+<a name="line209"></a>              <span style="color: #0000ff;">'platform'</span> <span style="color: #339933;">=&gt;</span> <span style="color: #000088;">$dom</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getElementsByTagName</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'platform'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">item</span><span style="color: #009900;">&#40;</span><span style="color: #cc66cc;">0</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">nodeValue</span><span style="color: #339933;">,</span>
+<a name="line210"></a>              <span style="color: #0000ff;">'edition'</span> <span style="color: #339933;">=&gt;</span> <span style="color: #000088;">$dom</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getElementsByTagName</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'edition'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">item</span><span style="color: #009900;">&#40;</span><span style="color: #cc66cc;">0</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">nodeValue</span>
+<a name="line211"></a>            <span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line212"></a>        <span style="color: #009900;">&#125;</span> catch<span style="color: #009900;">&#40;</span>Exception <span style="color: #000088;">$e</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+<a name="line213"></a>            <span style="color: #b1b100;">echo</span> <span style="color: #0000ff;">'MLPHP::getServerConfig() failed.'</span> <span style="color: #339933;">.</span> PHP_EOL<span style="color: #339933;">;</span>
+<a name="line214"></a>            <span style="color: #b1b100;">echo</span> <span style="color: #000088;">$e</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getMessage</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span> <span style="color: #339933;">.</span> <span style="color: #0000ff;">' in '</span> <span style="color: #339933;">.</span> <span style="color: #000088;">$e</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getFile</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span> <span style="color: #339933;">.</span> <span style="color: #0000ff;">' on line '</span> <span style="color: #339933;">.</span> <span style="color: #000088;">$e</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getLine</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span> <span style="color: #339933;">.</span> PHP_EOL<span style="color: #339933;">;</span>
+<a name="line215"></a>        <span style="color: #009900;">&#125;</span>
+<a name="line216"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line217"></a>&nbsp;
+<a name="line218"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line219"></a>     * PSR-0 autoloader.
+<a name="line220"></a>     *
+<a name="line221"></a>     * Do NOT use if you are using Composer to autoload dependencies.
+<a name="line222"></a>     *
+<a name="line223"></a>     * @todo Delete this if we are requiring Composer for MLPHP.
+<a name="line224"></a>     *
+<a name="line225"></a>     * @param $className
+<a name="line226"></a>     */</span>
+<a name="line227"></a>    <span style="color: #000000; font-weight: bold;">public</span> static <span style="color: #000000; font-weight: bold;">function</span> autoload<span style="color: #009900;">&#40;</span><span style="color: #000088;">$className</span><span style="color: #009900;">&#41;</span>
+<a name="line228"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line229"></a>        <span style="color: #000088;">$thisClass</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/str_replace"><span style="color: #990000;">str_replace</span></a><span style="color: #009900;">&#40;</span>__NAMESPACE__ <span style="color: #339933;">.</span> <span style="color: #0000ff;">'\\'</span><span style="color: #339933;">,</span> <span style="color: #0000ff;">''</span><span style="color: #339933;">,</span> <span style="color: #009900; font-weight: bold;">__CLASS__</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line230"></a>&nbsp;
+<a name="line231"></a>        <span style="color: #000088;">$baseDir</span> <span style="color: #339933;">=</span> __DIR__<span style="color: #339933;">;</span>
+<a name="line232"></a>&nbsp;
+<a name="line233"></a>        <span style="color: #b1b100;">if</span> <span style="color: #009900;">&#40;</span><a href="http://www.php.net/substr"><span style="color: #990000;">substr</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$baseDir</span><span style="color: #339933;">,</span> <span style="color: #339933;">-</span><a href="http://www.php.net/strlen"><span style="color: #990000;">strlen</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$thisClass</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span> <span style="color: #339933;">===</span> <span style="color: #000088;">$thisClass</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+<a name="line234"></a>            <span style="color: #000088;">$baseDir</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/substr"><span style="color: #990000;">substr</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$baseDir</span><span style="color: #339933;">,</span> <span style="color: #cc66cc;">0</span><span style="color: #339933;">,</span> <span style="color: #339933;">-</span><a href="http://www.php.net/strlen"><span style="color: #990000;">strlen</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$thisClass</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line235"></a>        <span style="color: #009900;">&#125;</span>
+<a name="line236"></a>&nbsp;
+<a name="line237"></a>        <span style="color: #000088;">$className</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/ltrim"><span style="color: #990000;">ltrim</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$className</span><span style="color: #339933;">,</span> <span style="color: #0000ff;">'\\'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line238"></a>           <span style="color: #666666; font-style: italic;">// echo &quot;class &quot; . $className;</span>
+<a name="line239"></a>           <span style="color: #666666; font-style: italic;">// echo '&lt;br/&gt;';</span>
+<a name="line240"></a>        <span style="color: #000088;">$fileName</span>  <span style="color: #339933;">=</span> <span style="color: #009900;">&#40;</span><a href="http://www.php.net/dirname"><span style="color: #990000;">dirname</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$baseDir</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span> <span style="color: #339933;">.</span> <span style="color: #009900; font-weight: bold;">DIRECTORY_SEPARATOR</span><span style="color: #339933;">;</span>
+<a name="line241"></a>                <span style="color: #666666; font-style: italic;">// echo &quot;file &quot; . $fileName;</span>
+<a name="line242"></a>                <span style="color: #666666; font-style: italic;">// echo '&lt;br/&gt;';</span>
+<a name="line243"></a>        <span style="color: #b1b100;">if</span> <span style="color: #009900;">&#40;</span><span style="color: #000088;">$lastNsPos</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/strripos"><span style="color: #990000;">strripos</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$className</span><span style="color: #339933;">,</span> <span style="color: #0000ff;">'\\'</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+<a name="line244"></a>            <span style="color: #000088;">$namespace</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/substr"><span style="color: #990000;">substr</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$className</span><span style="color: #339933;">,</span> <span style="color: #cc66cc;">0</span><span style="color: #339933;">,</span> <span style="color: #000088;">$lastNsPos</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line245"></a>               <span style="color: #666666; font-style: italic;">// echo &quot;ns &quot; . $namespace;</span>
+<a name="line246"></a>               <span style="color: #666666; font-style: italic;">// echo '&lt;br/&gt;';</span>
+<a name="line247"></a>            <span style="color: #000088;">$className</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/substr"><span style="color: #990000;">substr</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$className</span><span style="color: #339933;">,</span> <span style="color: #000088;">$lastNsPos</span> <span style="color: #339933;">+</span> <span style="color: #cc66cc;">1</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line248"></a>               <span style="color: #666666; font-style: italic;">// echo &quot;class &quot; . $className;</span>
+<a name="line249"></a>               <span style="color: #666666; font-style: italic;">// echo '&lt;br/&gt;';</span>
+<a name="line250"></a>            <span style="color: #000088;">$fileName</span> <span style="color: #339933;">.=</span> <a href="http://www.php.net/str_replace"><span style="color: #990000;">str_replace</span></a><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'\\'</span><span style="color: #339933;">,</span> <span style="color: #009900; font-weight: bold;">DIRECTORY_SEPARATOR</span><span style="color: #339933;">,</span> <span style="color: #000088;">$namespace</span><span style="color: #009900;">&#41;</span> <span style="color: #339933;">.</span> <span style="color: #009900; font-weight: bold;">DIRECTORY_SEPARATOR</span><span style="color: #339933;">;</span>
+<a name="line251"></a>               <span style="color: #666666; font-style: italic;">// echo &quot;file &quot; . $fileName;</span>
+<a name="line252"></a>               <span style="color: #666666; font-style: italic;">// echo '&lt;br/&gt;';</span>
+<a name="line253"></a>        <span style="color: #009900;">&#125;</span>
+<a name="line254"></a>        <span style="color: #000088;">$fileName</span> <span style="color: #339933;">.=</span> <a href="http://www.php.net/str_replace"><span style="color: #990000;">str_replace</span></a><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'_'</span><span style="color: #339933;">,</span> <span style="color: #009900; font-weight: bold;">DIRECTORY_SEPARATOR</span><span style="color: #339933;">,</span> <span style="color: #000088;">$className</span><span style="color: #009900;">&#41;</span> <span style="color: #339933;">.</span> <span style="color: #0000ff;">'.php'</span><span style="color: #339933;">;</span>
+<a name="line255"></a>&nbsp;
+<a name="line256"></a>           <span style="color: #666666; font-style: italic;">// echo &quot;FILE: &quot; . $fileName;</span>
+<a name="line257"></a>&nbsp;
+<a name="line258"></a>        <span style="color: #b1b100;">if</span> <span style="color: #009900;">&#40;</span><a href="http://www.php.net/file_exists"><span style="color: #990000;">file_exists</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$fileName</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+<a name="line259"></a>            <span style="color: #b1b100;">require</span> <span style="color: #000088;">$fileName</span><span style="color: #339933;">;</span>
+<a name="line260"></a>        <span style="color: #009900;">&#125;</span>
+<a name="line261"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line262"></a>&nbsp;
+<a name="line263"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line264"></a>     * Register PSR-0 autoloader.
+<a name="line265"></a>     *
+<a name="line266"></a>     * Do NOT use if you are using Composer to
+<a name="line267"></a>     * autoload dependencies.
+<a name="line268"></a>     */</span>
+<a name="line269"></a>    <span style="color: #000000; font-weight: bold;">public</span> static <span style="color: #000000; font-weight: bold;">function</span> registerAutoloader<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
+<a name="line270"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line271"></a>        <span style="color: #000088;">$n</span> <span style="color: #339933;">=</span> __NAMESPACE__<span style="color: #339933;">;</span> <span style="color: #666666; font-style: italic;">// workaround for bug in phpdoctor</span>
+<a name="line272"></a>        <a href="http://www.php.net/spl_autoload_register"><span style="color: #990000;">spl_autoload_register</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$n</span> <span style="color: #339933;">.</span> <span style="color: #0000ff;">'\\MLPHP::autoload'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line273"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line274"></a><span style="color: #009900;">&#125;</span>
+<a name="line275"></a>&nbsp;</pre>
 <div class="header">
 <h1><a href=https://github.com/marklogic/mlphp target=_top>MLPHP</a></h1>
 <ul>

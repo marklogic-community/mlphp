@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="generator" content="PHPDoctor 2.0.5 (http://peej.github.com/phpdoctor/)">
-<meta name="when" content="Mon, 29 Jul 2013 22:11:29 +0000">
+<meta name="when" content="Mon, 04 Jan 2016 01:29:27 +0000">
 
 <link rel="stylesheet" type="text/css" href="../stylesheet.css">
 <link rel="start" href="../overview-summary.html">
@@ -65,7 +65,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 <tr><th colspan="2">Constructor Summary</th></tr>
 <tr>
 <td class="type"> void</td>
-<td class="description"><p class="name"><a href="#__construct()">__construct</a>(<a href="../mlphp/restclient.html">RESTClient</a> restClient, string uri)</p><p class="description">Create an Image object.</p></td>
+<td class="description"><p class="name"><a href="#__construct()">__construct</a>(<a href="../mlphp/restclient.html">RESTClient</a> client, string uri)</p><p class="description">Create an Image object.</p></td>
 </tr>
 </table>
 
@@ -83,17 +83,17 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <table class="inherit">
 <tr><th colspan="2">Methods inherited from MLPHP\Document</th></tr>
-<tr><td><a href="../mlphp/document.html#__construct()">__construct</a>, <a href="../mlphp/document.html#delete()">delete</a>, <a href="../mlphp/document.html#deleteMetadata()">deleteMetadata</a>, <a href="../mlphp/document.html#getConnection()">getConnection</a>, <a href="../mlphp/document.html#getContent()">getContent</a>, <a href="../mlphp/document.html#getContentType()">getContentType</a>, <a href="../mlphp/document.html#getFileMimeType()">getFileMimeType</a>, <a href="../mlphp/document.html#getURI()">getURI</a>, <a href="../mlphp/document.html#hasContent()">hasContent</a>, <a href="../mlphp/document.html#read()">read</a>, <a href="../mlphp/document.html#readMetadata()">readMetadata</a>, <a href="../mlphp/document.html#setConnection()">setConnection</a>, <a href="../mlphp/document.html#setContent()">setContent</a>, <a href="../mlphp/document.html#setContentFile()">setContentFile</a>, <a href="../mlphp/document.html#setContentType()">setContentType</a>, <a href="../mlphp/document.html#setURI()">setURI</a>, <a href="../mlphp/document.html#write()">write</a>, <a href="../mlphp/document.html#writeMetadata()">writeMetadata</a></td></tr></table>
+<tr><td><a href="../mlphp/document.html#__construct()">__construct</a>, <a href="../mlphp/document.html#delete()">delete</a>, <a href="../mlphp/document.html#deleteMetadata()">deleteMetadata</a>, <a href="../mlphp/document.html#getConnection()">getConnection</a>, <a href="../mlphp/document.html#getContent()">getContent</a>, <a href="../mlphp/document.html#getContentType()">getContentType</a>, <a href="../mlphp/document.html#getFileMimeType()">getFileMimeType</a>, <a href="../mlphp/document.html#getResponse()">getResponse</a>, <a href="../mlphp/document.html#getURI()">getURI</a>, <a href="../mlphp/document.html#hasContent()">hasContent</a>, <a href="../mlphp/document.html#read()">read</a>, <a href="../mlphp/document.html#readMetadata()">readMetadata</a>, <a href="../mlphp/document.html#setConnection()">setConnection</a>, <a href="../mlphp/document.html#setContent()">setContent</a>, <a href="../mlphp/document.html#setContentFile()">setContentFile</a>, <a href="../mlphp/document.html#setContentType()">setContentType</a>, <a href="../mlphp/document.html#setURI()">setURI</a>, <a href="../mlphp/document.html#write()">write</a>, <a href="../mlphp/document.html#writeMetadata()">writeMetadata</a></td></tr></table>
 
 <h2 id="detail_method">Constructor Detail</h2>
 <a href="../source/marklogic/mlphp/imagedocument.php.html#line35" class="location">MarkLogic/MLPHP/ImageDocument.php at line 35</a>
 
 <h3 id="__construct()">__construct</h3>
-<code class="signature">public  void <strong>__construct</strong>(<a href="../mlphp/restclient.html">RESTClient</a> restClient, string uri)</code>
+<code class="signature">public  void <strong>__construct</strong>(<a href="../mlphp/restclient.html">RESTClient</a> client, string uri)</code>
 <div class="details">
 <p>Create an Image object.</p><dl>
 <dt>Parameters:</dt>
-<dd>restClient - A REST client object.</dd>
+<dd>client - A REST client object.</dd>
 <dd>uri - A document URI.</dd>
 </dl>
 </div>
@@ -116,7 +116,7 @@ Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> 
 
 <hr>
 
-<a href="../source/marklogic/mlphp/imagedocument.php.html#line61" class="location">MarkLogic/MLPHP/ImageDocument.php at line 61</a>
+<a href="../source/marklogic/mlphp/imagedocument.php.html#line63" class="location">MarkLogic/MLPHP/ImageDocument.php at line 63</a>
 
 <h3 id="getExif()">getExif</h3>
 <code class="signature">public  array <strong>getExif</strong>()</code>
