@@ -19,7 +19,7 @@ limitations under the License.
 
 // 1. Complete the installation steps, see: mlphp/README.md
 
-// 2. Tell the app how to talk to MarkLogic.  
+// 2. Tell the app how to talk to MarkLogic.
 
 // Adjust the path below as needed to find the MLPHP project's vendor directory.
 require_once __DIR__ . '/../vendor/autoload.php';
@@ -37,7 +37,7 @@ $mlphp = new MLPHP\MLPHP(array(
     'auth'     => 'digest'
 ));
 
-$client = $mlphp->newClient();
+$client = $mlphp->getClient();
 
 // 4. Add a document to the MarkLogic database.
 $document = new MLPHP\Document($client);
