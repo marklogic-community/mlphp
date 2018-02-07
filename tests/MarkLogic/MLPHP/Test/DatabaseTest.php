@@ -36,7 +36,7 @@ class DatabaseTest extends TestBaseDB
       $content = '<doc>
                     <foo bar="baz">hello</foo>
                     <one two="3">world</one>
-                    <a b="c">!</one>
+                    <a b="c">!</a>
                   </doc>';
       $doc = new MLPHP\Document(parent::$client);
       $doc->setContent($content)->setContentType('application/xml');
