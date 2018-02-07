@@ -32,7 +32,7 @@ $mlphp = new MLPHP\MLPHP(array(
     'username' => 'rest-writer-user',
     'password' => 'writer-pw',
     'host'     => 'localhost',
-    'port'     => 8077,
+    'port'     => 8000,
     'version'  => 'v1',
     'auth'     => 'digest'
 ));
